@@ -39,6 +39,8 @@ tld.getDomain('fr.t.co'); // returns `t.co`
 ```
 ## Browser-side
 
+**Notice**: this part has not been developed yet.
+
 The library is designed to be useable on the browser-side, in an framework agnostic fashion. No `jQuery.tld()`.
 
 ```javascript
@@ -48,8 +50,23 @@ tld.getDomain(window.location.host); //returns the current domain
 </script>
 ```
 
+## Rebuilding TLDs List
+
+Many libraries offer a list of TLDs. But, are they up-to-date? And how to update them?
+
+Hopefully for you, even if I'm flying over the world, if I've lost my Internet connection or even if
+you do manage your own list, you can update it by yourself, painlessly.
+
+How? By typing this in your console
+
+```bash
+npm run-script build
+```
+
+A fresh copy will be located in `src/rules.json`.
+
 
 ## Contributing
 
 Provide a pull request (with tested code) to include your work in this main project.
-If the database is outdated, just run `npm run-script update` to update the database, then push your code (or use your own fork if I'm too slow).
+Issues may be awaiting for help so feel free to give a hand, with code or ideas.
