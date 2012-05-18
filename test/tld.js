@@ -2,6 +2,13 @@ var tld = require('../index.js');
 var expect = require('expect.js');
 
 suite('tld.js', function(){
+  suite('Basics', function(){
+    test('Rules are already loaded', function(){
+      expect(tld.rules).to.be.an('array');
+      expect(tld.rules.length).to.be.above(0);
+    });
+  });
+
   suite('#getDomain()', function(){
     test('basic domains', function(){
       expect(tld.getDomain('google.com')).to.be('google.com');
