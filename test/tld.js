@@ -9,6 +9,33 @@ suite('tld.js', function(){
     });
   });
 
+  suite('#isValid()', function(){
+    test('Good one', function(){
+      expect(tld.isValid('')).to.be(false);
+      expect(tld.isValid('google.com')).to.be(true);
+      expect(tld.isValid('miam.google.com')).to.be(true);
+      expect(tld.isValid('miam.miam.google.com')).to.be(true);
+    });
+    test('Invalid type', function(){
+      expect(tld.isValid(null)).to.be(false);
+      expect(tld.isValid(undefined)).to.be(false);
+      expect(tld.isValid(0)).to.be(false);
+      expect(tld.isValid([])).to.be(false);
+      expect(tld.isValid({})).to.be(false);
+      expect(tld.isValid(function(){})).to.be(false);
+    });
+
+    test('Invalid notation', function(){
+      expect(tld.isValid('.google.com')).to.be(false);
+      expect(tld.isValid('.com')).to.be(false);
+    });
+
+    test('Dot-less hostname', function(){
+      expect(tld.isValid('localhost')).to.be(false);
+      expect(tld.isValid('google')).to.be(false);
+    });
+  });
+
   suite('#getDomain()', function(){
     test('basic domains', function(){
       expect(tld.getDomain('google.com')).to.be('google.com');
