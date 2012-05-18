@@ -16,7 +16,9 @@
     "node": "~0.6.17"
   },
   "dependencies": {
-    "optimist": "~0.3.4"
+    "optimist": "~0.3.4",
+    "request": "~2.9.202",
+    "shelljs": "0.0.5pre4"
   },
   "devDependencies": {
     "mocha": "~1.0.3",
