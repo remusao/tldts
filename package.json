@@ -10,15 +10,16 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "make test"
+    "test": "./node_modules/.bin/mocha --ui tdd --timeout 8000"
   },
   "engines": {
     "node": "~0.6.17"
   },
   "dependencies": {
-    "expect": "0.0.2",
-    "optimist": "~0.3.4",
-    "mocha": "~1.0.3"
+    "optimist": "~0.3.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "mocha": "~1.0.3",
+    "expect.js": "~0.1.2"
+  }
 }
