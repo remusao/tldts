@@ -1,13 +1,15 @@
 tld.js
 ======
 
+[![Build Status](https://secure.travis-ci.org/oncletom/tld.js.png?branch=master)](http://travis-ci.org/oncletom/tld.js)
+
 Handful API to do stuff with domain names and URIs: validity, public etc.
 
 Its main purpose is to check if a domain name is valid upon. 2 constraints:
 * an up-to-date TLDs database
 * must work in node.js and the browser
 
-It is based on the [public suffix list](http://publicsuffix.org/list/) provided by Mozilla.  
+It is based on the [public suffix list](http://publicsuffix.org/list/) provided by Mozilla.
 Thanks Mozilla!
 
 ## Usage
@@ -19,7 +21,7 @@ var tld = require('tld');
 
 tld.isValid('google.com'); // returns `true`
 tld.isValid('t.co'); // returns `true`
-tld.isValid('t.go'); // returns `false` 
+tld.isValid('t.go'); // returns `false`
 
 ```
 
@@ -49,5 +51,5 @@ tld.getDomain(window.location.host); //returns the current domain
 
 ## Contributing
 
-Provide a pull request (with tested code) to include your work in this main project.  
+Provide a pull request (with tested code) to include your work in this main project.
 If the database is outdated, just run `npm run-script update` to update the database, then push your code (or use your own fork if I'm too slow).
