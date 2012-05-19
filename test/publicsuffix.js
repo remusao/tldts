@@ -67,7 +67,7 @@ suite('http://publicsuffix.org/list/test.txt', function(){
     expect(tld.getDomain('test.ac.jp')).to.be('test.ac.jp');
     expect(tld.getDomain('www.test.ac.jp')).to.be('test.ac.jp');
     expect(tld.getDomain('kyoto.jp')).to.be(null);
-    expect(tld.getDomain('c.kyoto.jp')).to.be(null);   //@see https://gist.github.com/2727303
+    expect(tld.getDomain('c.kyoto.jp')).to.be(null);
     expect(tld.getDomain('b.c.kyoto.jp')).to.be('b.c.kyoto.jp');
     expect(tld.getDomain('a.b.c.kyoto.jp')).to.be('b.c.kyoto.jp');
     expect(tld.getDomain('pref.kyoto.jp')).to.be('pref.kyoto.jp');      //exception
@@ -78,7 +78,7 @@ suite('http://publicsuffix.org/list/test.txt', function(){
 
   test('TLD with a wildcard rule and exceptions', function(){
     expect(tld.getDomain('om')).to.be(null);
-    expect(tld.getDomain('test.om')).to.be(null);     //@see https://gist.github.com/2727303
+    expect(tld.getDomain('test.om')).to.be(null);
     expect(tld.getDomain('b.test.om')).to.be('b.test.om');
     expect(tld.getDomain('a.b.test.om')).to.be('b.test.om');
     expect(tld.getDomain('songfest.om')).to.be('songfest.om');
