@@ -14,22 +14,21 @@ Thanks Mozilla!
 
 ## Usage
 
-### isValid()
+*tld.js* is available under [NPM](http://npmjs.org/) registry.
 
 ```javascript
-var tld = require('tld');
+npm install tldjs --save
+```
 
-tld.isValid('google.com'); // returns `true`
-tld.isValid('t.co'); // returns `true`
-tld.isValid('t.go'); // returns `false`
+And to include it in any relevant script:
 
+```javascript
+var tld = require('tldjs');
 ```
 
 ### getDomain()
 
 ```javascript
-var tld = require('tld');
-
 tld.getDomain('google.com'); // returns `google.com`
 tld.getDomain('fr.google.com'); // returns `google.com`
 tld.getDomain('google.co.uk'); // returns `google.co.uk`
@@ -37,6 +36,16 @@ tld.getDomain('foo.google.co.uk'); // returns `google.co.uk`
 tld.getDomain('t.co'); // returns `t.co`
 tld.getDomain('fr.t.co'); // returns `t.co`
 ```
+
+### isValid()
+
+```javascript
+tld.isValid('google.com'); // returns `true`
+tld.isValid('t.co'); // returns `true`
+tld.isValid('t.go'); // returns `false`
+
+```
+
 ## Browser-side
 
 **Notice**: this part has not been developed yet.
