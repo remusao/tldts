@@ -1,99 +1,110 @@
 var tld = require('../index.js');
 var expect = require('expect.js');
+var checkPublicSuffix;
 
 suite('http://publicsuffix.org/list/test.txt', function(){
+  setup(function(){
+    //ease testing by simply copy/pasting tests from Mozilla Central
+    //@see http://mxr.mozilla.org/mozilla-central/source/netwerk/test/unit/data/test_psl.txt?raw=1
+    checkPublicSuffix = function(testDomain, expectedResult){
+      expect(tld.getDomain(testDomain)).to.be(expectedResult);
+    };
+  });
+
   test('NULL input', function(){
-    expect(tld.getDomain(null)).to.be(null);
+    checkPublicSuffix(null, null);
   });
 
   test('Mixed case', function(){
-    expect(tld.getDomain('COM')).to.be(null);
-    expect(tld.getDomain('example.COM')).to.be('example.com');
-    expect(tld.getDomain('WwW.example.COM')).to.be('example.com');
+    checkPublicSuffix('COM', null);
+    checkPublicSuffix('example.COM', 'example.com');
+    checkPublicSuffix('WwW.example.COM', 'example.com');
   });
 
   test('Leading dot', function(){
-    expect(tld.getDomain('.com')).to.be(null);
-    expect(tld.getDomain('.example')).to.be(null);
-    expect(tld.getDomain('.example.com')).to.be(null);
-    expect(tld.getDomain('example.example')).to.be(null);
+    checkPublicSuffix('.com', null);
+    checkPublicSuffix('.example', null);
+    checkPublicSuffix('.example.com', null);
+    checkPublicSuffix('.example.example', null);
   });
 
   test('Unlisted TLD', function(){
-    expect(tld.getDomain('example')).to.be(null);
-    expect(tld.getDomain('example.example')).to.be(null);
-    expect(tld.getDomain('b.example.example')).to.be(null);
-    expect(tld.getDomain('a.b.example.example')).to.be(null);
+    checkPublicSuffix('example', null);
+    checkPublicSuffix('example.example', 'example.example');
+    checkPublicSuffix('b.example.example', 'example.example');
+    checkPublicSuffix('a.b.example.example', 'example.example');
   });
 
-  /*test('Listed, but non-Internet, TLD', function(){
-    expect(tld.getDomain('local')).to.be(null);
-    expect(tld.getDomain('example.local')).to.be(null);
-    expect(tld.getDomain('b.example.local')).to.be(null);
-    expect(tld.getDomain('a.b.example.local')).to.be(null);
-  });*/
+  test('Listed, but non-Internet, TLD', function(){
+   //checkPublicSuffix('local', null);
+   //checkPublicSuffix('example.local', null);
+   //checkPublicSuffix('b.example.local', null);
+   //checkPublicSuffix('a.b.example.local', null);
+  });
 
   test('TLD with only 1 rule', function(){
-    expect(tld.getDomain('biz')).to.be(null);
-    expect(tld.getDomain('domain.biz')).to.be('domain.biz');
-    expect(tld.getDomain('b.domain.biz')).to.be('domain.biz');
-    expect(tld.getDomain('a.b.domain.biz')).to.be('domain.biz');
+    checkPublicSuffix('biz', null);
+    checkPublicSuffix('domain.biz', 'domain.biz');
+    checkPublicSuffix('b.domain.biz', 'domain.biz');
+    checkPublicSuffix('a.b.domain.biz', 'domain.biz');
   });
 
   test('TLD with some 2-level rules', function(){
-    expect(tld.getDomain('com')).to.be(null);
-    expect(tld.getDomain('example.com')).to.be('example.com');
-    expect(tld.getDomain('b.example.com')).to.be('example.com');
-    expect(tld.getDomain('a.b.example.com')).to.be('example.com');
-    expect(tld.getDomain('uk.com')).to.be(null);
-    expect(tld.getDomain('example.uk.com')).to.be('example.uk.com');
-    expect(tld.getDomain('b.example.uk.com')).to.be('example.uk.com');
-    expect(tld.getDomain('a.b.example.uk.com')).to.be('example.uk.com');
-    expect(tld.getDomain('test.ac')).to.be('test.ac');
+    checkPublicSuffix('com', null);
+    checkPublicSuffix('example.com', 'example.com');
+    checkPublicSuffix('b.example.com', 'example.com');
+    checkPublicSuffix('a.b.example.com', 'example.com');
+    checkPublicSuffix('uk.com', null);
+    checkPublicSuffix('example.uk.com', 'example.uk.com');
+    checkPublicSuffix('b.example.uk.com', 'example.uk.com');
+    checkPublicSuffix('a.b.example.uk.com', 'example.uk.com');
+    checkPublicSuffix('test.ac', 'test.ac');
   });
 
   test('TLD with only 1 (wildcard) rule', function(){
-    expect(tld.getDomain('cy')).to.be(null);
-    expect(tld.getDomain('c.cy')).to.be(null);
-    expect(tld.getDomain('b.c.cy')).to.be('b.c.cy');
-    expect(tld.getDomain('a.b.c.cy')).to.be('b.c.cy');
+    checkPublicSuffix('cy', null);
+    checkPublicSuffix('c.cy', null);
+    checkPublicSuffix('b.c.cy', 'b.c.cy');
+    checkPublicSuffix('a.b.c.cy', 'b.c.cy');
   });
 
   test('More complex TLD', function(){
-    expect(tld.getDomain('jp')).to.be(null);
-    expect(tld.getDomain('test.jp')).to.be('test.jp');
-    expect(tld.getDomain('www.test.jp')).to.be('test.jp');
-    expect(tld.getDomain('ac.jp')).to.be(null);
-    expect(tld.getDomain('test.ac.jp')).to.be('test.ac.jp');
-    expect(tld.getDomain('www.test.ac.jp')).to.be('test.ac.jp');
-    expect(tld.getDomain('kyoto.jp')).to.be(null);
-    expect(tld.getDomain('c.kyoto.jp')).to.be(null);
-    expect(tld.getDomain('b.c.kyoto.jp')).to.be('b.c.kyoto.jp');
-    expect(tld.getDomain('a.b.c.kyoto.jp')).to.be('b.c.kyoto.jp');
-    expect(tld.getDomain('pref.kyoto.jp')).to.be('pref.kyoto.jp');      //exception
-    expect(tld.getDomain('www.pref.kyoto.jp')).to.be('pref.kyoto.jp');  //exception
-    expect(tld.getDomain('city.kyoto.jp')).to.be('city.kyoto.jp');      //exception
-    expect(tld.getDomain('www.city.kyoto.jp')).to.be('city.kyoto.jp');  //exception
+    checkPublicSuffix('jp', null);
+    checkPublicSuffix('test.jp', 'test.jp');
+    checkPublicSuffix('www.test.jp', 'test.jp');
+    checkPublicSuffix('ac.jp', null);
+    checkPublicSuffix('test.ac.jp', 'test.ac.jp');
+    checkPublicSuffix('www.test.ac.jp', 'test.ac.jp');
+    checkPublicSuffix('kyoto.jp', null);
+    checkPublicSuffix('test.kyoto.jp', 'test.kyoto.jp');
+    checkPublicSuffix('ide.kyoto.jp', null);
+    checkPublicSuffix('b.ide.kyoto.jp', 'b.ide.kyoto.jp');
+    checkPublicSuffix('a.b.ide.kyoto.jp', 'b.ide.kyoto.jp');
+    checkPublicSuffix('c.kobe.jp', null);
+    checkPublicSuffix('b.c.kobe.jp', 'b.c.kobe.jp');
+    checkPublicSuffix('a.b.c.kobe.jp', 'b.c.kobe.jp');
+    checkPublicSuffix('city.kobe.jp', 'city.kobe.jp');
+    checkPublicSuffix('www.city.kobe.jp', 'city.kobe.jp');
   });
 
   test('TLD with a wildcard rule and exceptions', function(){
-    expect(tld.getDomain('om')).to.be(null);
-    expect(tld.getDomain('test.om')).to.be(null);
-    expect(tld.getDomain('b.test.om')).to.be('b.test.om');
-    expect(tld.getDomain('a.b.test.om')).to.be('b.test.om');
-    expect(tld.getDomain('songfest.om')).to.be('songfest.om');
-    expect(tld.getDomain('www.songfest.om')).to.be('songfest.om');
+    checkPublicSuffix('om', null);
+    checkPublicSuffix('test.om', null);
+    checkPublicSuffix('b.test.om', 'b.test.om');
+    checkPublicSuffix('a.b.test.om', 'b.test.om');
+    checkPublicSuffix('songfest.om', 'songfest.om');
+    checkPublicSuffix('www.songfest.om', 'songfest.om');
   });
 
   test('US K12', function(){
-    expect(tld.getDomain('us')).to.be(null);
-    expect(tld.getDomain('test.us')).to.be('test.us');
-    expect(tld.getDomain('www.test.us')).to.be('test.us');
-    expect(tld.getDomain('ak.us')).to.be(null);
-    expect(tld.getDomain('test.ak.us')).to.be('test.ak.us');
-    expect(tld.getDomain('www.test.ak.us')).to.be('test.ak.us');
-    expect(tld.getDomain('k12.ak.us')).to.be(null);
-    expect(tld.getDomain('test.k12.ak.us')).to.be('test.k12.ak.us');
-    expect(tld.getDomain('www.test.k12.ak.us')).to.be('test.k12.ak.us');
+    checkPublicSuffix('us', null);
+    checkPublicSuffix('test.us', 'test.us');
+    checkPublicSuffix('www.test.us', 'test.us');
+    checkPublicSuffix('ak.us', null);
+    checkPublicSuffix('test.ak.us', 'test.ak.us');
+    checkPublicSuffix('www.test.ak.us', 'test.ak.us');
+    checkPublicSuffix('k12.ak.us', null);
+    checkPublicSuffix('test.k12.ak.us', 'test.k12.ak.us');
+    checkPublicSuffix('www.test.k12.ak.us', 'test.k12.ak.us');
   });
 });
