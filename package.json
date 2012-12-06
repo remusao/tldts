@@ -17,7 +17,7 @@
     "build": "./bin/build.js"
   },
   "engines": {
-    "node": "~0.6.17"
+    "node": ["~0.6.0", "~0.8.0"]
   },
   "dependencies": {
     "optimist": "~0.3.4",
