@@ -1,0 +1,6 @@
+{
+  "providers": {
+    "mozilla": "http://mxr.mozilla.org/mozilla-central/source/netwerk/dns/effective_tld_names.dat?raw=1"
+  },
+  "default_provider": "mozilla"
+}
