@@ -1,3 +1,8 @@
+"use strict";
+
+/*jshint node:true strict: true */
+/*global suite:true test:true setup:true */
+
 var tld = require('../index.js');
 var expect = require('expect.js');
 var checkPublicSuffix;
