@@ -9,10 +9,10 @@ var checkPublicSuffix;
 
 suite('http://publicsuffix.org/list/test.txt', function(){
   setup(function(){
-    var pattern = require(__dirname + '/../src/rules-regexp.json').default;
+    var patterns = require(__dirname + '/../src/rules-regexp.json');
 
     checkPublicSuffix = function(testDomain, expectedResult){
-      expect(tld.getDomainFromPattern(testDomain, pattern)).to.be(expectedResult);
+      expect(tld.getDomainFromPattern(testDomain, patterns)).to.be(expectedResult);
     };
   });
 
