@@ -6,3 +6,6 @@ notifications:
   email:
     on_success: change
     on_failure: change
+before_script:
+  - npm install -g grunt
+  - npm run-script build

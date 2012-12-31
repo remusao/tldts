@@ -16,8 +16,8 @@ Thanks Mozilla!
 
 *tld.js* is available under [NPM](http://npmjs.org/) registry.
 
-```javascript
-npm install tldjs --save
+```bash
+npm install tldjs --save --production
 ```
 
 And to include it in any relevant script:
@@ -46,25 +46,26 @@ tld.isValid('t.go'); // returns `false`
 
 ```
 
-## Browser-side
-
-**Notice**: this part has not been developed yet.
-
-The library is designed to be useable on the browser-side, in an framework agnostic fashion. No `jQuery.tld()`.
-
-```javascript
-<script src="/path/to/tld.js"></script>
-<script>
-tld.getDomain(window.location.host); //returns the current domain
-</script>
-```
-
-## Rebuilding TLDs List
+## Updating TLDs List
 
 Many libraries offer a list of TLDs. But, are they up-to-date? And how to update them?
 
 Hopefully for you, even if I'm flying over the world, if I've lost my Internet connection or even if
 you do manage your own list, you can update it by yourself, painlessly.
+
+You may have installed the package with its `devDependencies` with:
+
+```bash
+npm install tldjs --save
+```
+
+If you did not install with the `--production` flag, then it's okay.
+
+[grunt](http://gruntjs.com/) is mandatory to build and update rules. If it's not installed globally, then do so:
+
+```bash
+npm install -g grunt
+```
 
 How? By typing this in your console
 
