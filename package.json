@@ -2,7 +2,7 @@
   "author": "Oncle Tom <thomas@oncle-tom.net> (http://case.oncle-tom.net)",
   "name": "tldjs",
   "description": "Handful API to do stuff with domain names and URIs: validity, public etc.",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "homepage": "https://github.com/oncletom/tld.js",
   "repository": {
     "type": "git",
