@@ -9,8 +9,8 @@ var expect = require('expect.js');
 suite('tld.js', function(){
   suite('Basics', function(){
     test('Rules are already loaded', function(){
-      expect(tld.rules).to.be.an('array');
-      expect(tld.rules.length).to.be.above(0);
+      expect(tld.rules).to.be.an(Object);
+      expect(Object.keys(tld.rules).length).to.be.above(0);
     });
   });
 
