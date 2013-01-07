@@ -80,4 +80,28 @@ suite('tld.js', function () {
       expect(tld.tldExists('uk.com')).to.be(true);
     });
   });
+
+  suite('#getSubdomain()', function(){
+    test('simple TLD', function(){
+      expect(tld.getSubdomain('google.com')).to.be('');
+      expect(tld.getSubdomain('fr.google.com')).to.be('fr');
+      expect(tld.getSubdomain('random.fr.google.com')).to.be('random.fr');
+      expect(tld.getSubdomain('my.custom.domain')).to.be('my');
+    });
+
+    test('TLD + SLD', function(){
+      expect(tld.getSubdomain('love.fukushima.jp')).to.be('');
+      expect(tld.getSubdomain('i.love.fukushima.jp')).to.be('i');
+      expect(tld.getSubdomain('random.nuclear.strike.co.jp')).to.be('random.nuclear');
+      expect(tld.getSubdomain('blogspot.co.uk')).to.be('');
+      expect(tld.getSubdomain('emergency.blogspot.co.uk')).to.be('emergency');
+    });
+
+    test('wildcard', function(){
+      expect(tld.getSubdomain('google.co.uk')).to.be('');
+      expect(tld.getSubdomain('fr.google.co.uk')).to.be('fr');
+      expect(tld.getSubdomain('random.fr.google.co.uk')).to.be('random.fr');
+      expect(tld.getSubdomain('random.fr.google.co.uk')).to.be('random.fr');
+    });
+  });
 });
