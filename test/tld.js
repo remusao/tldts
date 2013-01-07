@@ -60,14 +60,14 @@ suite('tld.js', function () {
   });
 
   suite('#domainExists', function () {
-    test('existing domain', function(){
+    test('existing domain', function () {
       expect(tld.domainExists('com')).to.be(true);
       expect(tld.domainExists('uk.com')).to.be(true);
       expect(tld.domainExists('co.uk')).to.be(true);
       expect(tld.domainExists('台灣')).to.be(true);
     });
 
-    test('inexisting domain', function(){
+    test('inexisting domain', function () {
       expect(tld.domainExists('con')).to.be(false);
       expect(tld.domainExists('google.com')).to.be(false);
       expect(tld.domainExists('go')).to.be(false);
