@@ -51,6 +51,20 @@ tld.tldexists('uk'); // returns `true`
 tld.tldexists('co.uk'); // returns `true` (because `uk` is a valid TLD)
 tld.tldexists('amazon.fancy.uk'); // returns `true` (still because `uk` is a valid TLD)
 tld.tldexists('amazon.co.uk'); // returns `true` (still because `uk` is a valid TLD)
+
+### getSubdomain()
+
+Returns the complete subdomain for a given host.
+
+```javascript
+tld.getDomain('google.com'); // returns ``
+tld.getDomain('fr.google.com'); // returns `fr`
+tld.getDomain('google.co.uk'); // returns ``
+tld.getDomain('foo.google.co.uk'); // returns `foo`
+tld.getDomain('moar.foo.google.co.uk'); // returns `moar.foo`
+tld.getDomain('t.co'); // returns ``
+tld.getDomain('fr.t.co'); // returns `fr`
+>>>>>>> Documentation
 ```
 
 ### isValid()
