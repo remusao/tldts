@@ -15,13 +15,13 @@ suite('tld.js', function(){
   });
 
   suite('#isValid()', function(){
-    test('Good one', function(){
+    test('Good ones', function(){
       expect(tld.isValid('')).to.be(false);
       expect(tld.isValid('google.com')).to.be(true);
       expect(tld.isValid('miam.google.com')).to.be(true);
       expect(tld.isValid('miam.miam.google.com')).to.be(true);
     });
-    test('Invalid type', function(){
+    test('Invalid types', function(){
       expect(tld.isValid(null)).to.be(false);
       expect(tld.isValid(undefined)).to.be(false);
       expect(tld.isValid(0)).to.be(false);
