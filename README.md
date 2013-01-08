@@ -28,6 +28,8 @@ var tld = require('tldjs');
 
 ### getDomain()
 
+Returns the fully qualified domain from a host string.
+
 ```javascript
 tld.getDomain('google.com'); // returns `google.com`
 tld.getDomain('fr.google.com'); // returns `google.com`
@@ -39,11 +41,14 @@ tld.getDomain('fr.t.co'); // returns `t.co`
 
 ### isValid()
 
+Checks if the host string is valid.
+It does not check if the *tld* exists.
+
 ```javascript
 tld.isValid('google.com'); // returns `true`
-tld.isValid('t.co'); // returns `true`
-tld.isValid('t.go'); // returns `false`
-
+tld.isValid('.google.com'); // returns `false`
+tld.isValid('my.fake.domain'); // returns `true`
+tld.isValid('localhost'); // returns `false`
 ```
 
 ## Updating TLDs List
