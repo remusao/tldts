@@ -40,11 +40,11 @@ suite('http://publicsuffix.org/list/test.txt', function(){
     checkPublicSuffix('a.b.example.example', 'example.example');
   });
 
-  test('Listed, but non-Internet, TLD', function(){
-   //checkPublicSuffix('local', null);
-   //checkPublicSuffix('example.local', null);
-   //checkPublicSuffix('b.example.local', null);
-   //checkPublicSuffix('a.b.example.local', null);
+  test.skip('Listed, but non-Internet, TLD', function(){
+   checkPublicSuffix('local', null);
+   checkPublicSuffix('example.local', null);
+   checkPublicSuffix('b.example.local', null);
+   checkPublicSuffix('a.b.example.local', null);
   });
 
   test('TLD with only 1 rule', function(){

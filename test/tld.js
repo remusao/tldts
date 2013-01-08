@@ -21,6 +21,7 @@ suite('tld.js', function () {
       expect(tld.isValid('miam.google.com')).to.be(true);
       expect(tld.isValid('miam.miam.google.com')).to.be(true);
     });
+
     test('Invalid types', function () {
       expect(tld.isValid(null)).to.be(false);
       expect(tld.isValid(undefined)).to.be(false);
@@ -46,6 +47,8 @@ suite('tld.js', function () {
     test('basic domains', function () {
       expect(tld.getDomain('google.com')).to.be('google.com');
       expect(tld.getDomain('t.co')).to.be('t.co');
+      expect(tld.getDomain('  GOOGLE.COM   ')).to.be('google.com');
+      expect(tld.getDomain('    t.CO    ')).to.be('t.co');
     });
 
     test('composed ', function () {
@@ -89,19 +92,28 @@ suite('tld.js', function () {
       expect(tld.getSubdomain('my.custom.domain')).to.be('my');
     });
 
+    test('weirdo syntax', function(){
+      expect(tld.getSubdomain(' google.COM')).to.be('');
+      expect(tld.getSubdomain('   fr.GOOGLE.COM ')).to.be('fr');
+      expect(tld.getSubdomain(' random.FR.google.com')).to.be('random.fr');
+    });
+
     test('TLD + SLD', function(){
       expect(tld.getSubdomain('love.fukushima.jp')).to.be('');
       expect(tld.getSubdomain('i.love.fukushima.jp')).to.be('i');
       expect(tld.getSubdomain('random.nuclear.strike.co.jp')).to.be('random.nuclear');
-      expect(tld.getSubdomain('blogspot.co.uk')).to.be('');
-      expect(tld.getSubdomain('emergency.blogspot.co.uk')).to.be('emergency');
     });
 
     test('wildcard', function(){
       expect(tld.getSubdomain('google.co.uk')).to.be('');
       expect(tld.getSubdomain('fr.google.co.uk')).to.be('fr');
       expect(tld.getSubdomain('random.fr.google.co.uk')).to.be('random.fr');
-      expect(tld.getSubdomain('random.fr.google.co.uk')).to.be('random.fr');
+    });
+
+    //@see https://github.com/oncletom/tld.js/issues/25
+    test.skip('reserved domains', function(){
+      expect(tld.getSubdomain('blogspot.co.uk')).to.be('');
+      expect(tld.getSubdomain('emergency.blogspot.co.uk')).to.be('emergency');
     });
   });
 });
