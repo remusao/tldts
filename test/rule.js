@@ -40,6 +40,11 @@ suite('Public Suffix Rule', function(){
   });
 
   test('#getNormalXld()', function(){
+    expect(rules.tld.getNormalXld()).to.be('.com');
+    expect(rules.sld.getNormalXld()).to.be('.uk.com');
+    expect(rules.tldWildcard.getNormalXld()).to.be('.om');
+    expect(rules.sldException.getNormalXld()).to.be('.songfest.om');
+    expect(rules.sldWildcard.getNormalXld()).to.be('.fake.om');
 
   });
 
