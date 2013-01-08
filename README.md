@@ -46,11 +46,11 @@ Checks if the TLD is valid for a given host.
 ```javascript
 tld.tldExists('google.com'); // returns `true`
 tld.tldExists('google.google'); // returns `false` (not an explicit registered TLD)
-tld.tldexists('com'); // returns `true`
-tld.tldexists('uk'); // returns `true`
-tld.tldexists('co.uk'); // returns `true` (because `uk` is a valid TLD)
-tld.tldexists('amazon.fancy.uk'); // returns `true` (still because `uk` is a valid TLD)
-tld.tldexists('amazon.co.uk'); // returns `true` (still because `uk` is a valid TLD)
+tld.tldExists('com'); // returns `true`
+tld.tldExists('uk'); // returns `true`
+tld.tldExists('co.uk'); // returns `true` (because `uk` is a valid TLD)
+tld.tldExists('amazon.fancy.uk'); // returns `true` (still because `uk` is a valid TLD)
+tld.tldExists('amazon.co.uk'); // returns `true` (still because `uk` is a valid TLD)
 ```
 
 ### getSubdomain()
