@@ -33,10 +33,24 @@ Returns the fully qualified domain from a host string.
 ```javascript
 tld.getDomain('google.com'); // returns `google.com`
 tld.getDomain('fr.google.com'); // returns `google.com`
-tld.getDomain('google.co.uk'); // returns `google.co.uk`
+tld.getDomain('fr.google.google'); // returns `google.google`
 tld.getDomain('foo.google.co.uk'); // returns `google.co.uk`
 tld.getDomain('t.co'); // returns `t.co`
 tld.getDomain('fr.t.co'); // returns `t.co`
+```
+
+### tldExists()
+
+Checks if the TLD is valid for a given host.
+
+```javascript
+tld.tldExists('google.com'); // returns `true`
+tld.tldExists('google.google'); // returns `false` (not an explicit registered TLD)
+tld.tldexists('com'); // returns `true`
+tld.tldexists('uk'); // returns `true`
+tld.tldexists('co.uk'); // returns `true` (because `uk` is a valid TLD)
+tld.tldexists('amazon.fancy.uk'); // returns `true` (still because `uk` is a valid TLD)
+tld.tldexists('amazon.co.uk'); // returns `true` (still because `uk` is a valid TLD)
 ```
 
 ### isValid()
