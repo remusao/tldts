@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.1.2
+
+Subtle fixes and new non-breaking methods.
+
+* fixed `isValid` documentation ([#24](https://github.com/oncletom/tld.js/issue/24))
+* added `getSubdomain` method ([#13](https://github.com/oncletom/tld.js/issue/13))
+* added `domainExists` method ([#14](https://github.com/oncletom/tld.js/issue/14))
+* added tests and fixes for the `Rule` object ([#3](https://github.com/oncletom/tld.js/issue/3))
+
+## 1.1.1
+
+Hotfix release.
+
+* fixed `package.json` engines config; the package was impossible to install
+
 ## 1.1
 
 Nothing new: only optimization and cleanup.
