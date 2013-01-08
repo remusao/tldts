@@ -66,6 +66,6 @@ suite('Public Suffix Rule', function () {
     expect(rules.sld.getPattern()).to.be('([^\\.]+\\.uk\\.com)$');
     expect(rules.tldWildcard.getPattern()).to.be('([^\\.]+\\.[^\\.]+\\.om)$');
     expect(rules.sldException.getPattern()).to.be('(songfest\\.om)$');
-    expect(rules.sldWildcard.getPattern()).to.be('(\\.[^\\.]+\\.fake\\.om)$');
+    expect(rules.sldWildcard.getPattern()).to.be('([^\\.]+\\.[^\\.]+\\.fake\\.om)$');
   });
 });
