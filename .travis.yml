@@ -7,5 +7,5 @@ notifications:
     on_success: change
     on_failure: change
 before_script:
-  - npm install -g grunt --production
+  - npm install -g grunt@"0.3.x" --production
   - npm run-script build
