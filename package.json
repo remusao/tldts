@@ -18,17 +18,25 @@
     "prepublish": "grunt update"
   },
   "engines": {
-    "node": "0.6.x || 0.8.x"
+    "node": "0.6.x || 0.8.x || 0.10.x"
   },
   "dependencies": {
   },
   "devDependencies": {
     "request": "~2.12.0",
+    "grunt": "~0.4.1",
     "mocha": "~1.7.4",
     "expect.js": "~0.2.0"
   },
   "keywords": [
-    "tld", "sld", "domain", "travis", "uri", "url", "domain name",
-    "subdomain", "public suffix"
+    "tld",
+    "sld",
+    "domain",
+    "travis",
+    "uri",
+    "url",
+    "domain name",
+    "subdomain",
+    "public suffix"
   ]
 }
