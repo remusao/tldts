@@ -1,7 +1,6 @@
 "use strict";
 
-/*jshint node:true strict: true */
-/*global suite:true test:true setup:true */
+/* global suite, test, setup */
 
 var tld = require('../index.js');
 var expect = require('expect.js');

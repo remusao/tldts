@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0
+
+* removed `node 0.6` compat
+* added `node 0.10` compat
+* switched to `grunt 0.4`
+
 ## 1.1.2
 
 Subtle fixes and new non-breaking methods.

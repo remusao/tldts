@@ -2,7 +2,7 @@
   "author": "Oncle Tom <thomas@oncle-tom.net> (http://case.oncle-tom.net)",
   "name": "tldjs",
   "description": "Handful API to do stuff with domain names and URIs: validity, public etc.",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "homepage": "https://github.com/oncletom/tld.js",
   "repository": {
     "type": "git",
@@ -18,17 +18,26 @@
     "prepublish": "grunt update"
   },
   "engines": {
-    "node": "0.6.x || 0.8.x"
+    "node": "0.8.x || 0.10.x"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "request": "~2.12.0",
+    "grunt": "~0.4.1",
     "mocha": "~1.7.4",
-    "expect.js": "~0.2.0"
+    "expect.js": "~0.2.0",
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-contrib-jshint": "~0.4.3"
   },
   "keywords": [
-    "tld", "sld", "domain", "travis", "uri", "url", "domain name",
-    "subdomain", "public suffix"
+    "tld",
+    "sld",
+    "domain",
+    "travis",
+    "uri",
+    "url",
+    "domain name",
+    "subdomain",
+    "public suffix"
   ]
 }

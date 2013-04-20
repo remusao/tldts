@@ -1,7 +1,6 @@
 "use strict";
 
-/*jshint node:true strict: true */
-/*global suite:true test:true suiteSetup:true */
+/* global suite, test, suiteSetup */
 
 var Rule = require(__dirname + '/../lib/rule.js');
 var expect = require('expect.js');
