@@ -18,7 +18,7 @@
     "prepublish": "grunt update"
   },
   "engines": {
-    "node": "0.6.x || 0.8.x || 0.10.x"
+    "node": "0.8.x || 0.10.x"
   },
   "dependencies": {},
   "devDependencies": {
