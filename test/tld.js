@@ -70,6 +70,13 @@ describe('tld.js', function () {
       expect(tld.getDomain('www.bl.uk')).to.equal('bl.uk');
       expect(tld.getDomain('www.majestic12.co.uk')).to.equal('majestic12.co.uk');
     });
+
+    //@see https://github.com/oncletom/tld.js/issues/25
+    //@see https://github.com/oncletom/tld.js/issues/30
+    it('existing rule constraint', function () {
+      expect(tld.getDomain('s3.amazonaws.com')).to.be(null);
+      expect(tld.getDomain('blogspot.co.uk')).to.be(null);
+    });
   });
 
   describe('tldExists method', function () {
@@ -91,6 +98,17 @@ describe('tld.js', function () {
 
     it('should be truthy on complex TLD which cannot be verified as long as the gTLD exists', function(){
       expect(tld.tldExists('uk.com')).to.be(true);
+    });
+  });
+
+  describe('#getPublicSuffix', function () {
+    //@see https://github.com/oncletom/tld.js/issues/30
+    it('existing rule constraint', function () {
+      expect(tld.getPublicSuffix('s3.amazonaws.com')).to.be('s3.amazonaws.com');
+    });
+
+    it('existing rule constraint', function () {
+      expect(tld.getPublicSuffix('www.google.co.uk')).to.be('google.co.uk');
     });
   });
 
