@@ -2,6 +2,7 @@ tld.js
 ======
 
 [![Build Status](https://secure.travis-ci.org/oncletom/tld.js.png?branch=master)](http://travis-ci.org/oncletom/tld.js)
+[![browser support](https://ci.testling.com/oncletom/tld.js.png)](https://ci.testling.com/oncletom/tld.js)
 
 Handful API to do stuff with domain names and URIs: validity, public etc.
 
