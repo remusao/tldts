@@ -13,7 +13,8 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "npm run test-node && npm run test-browser",
+    "test": "npm run lint && npm run test-node && npm run test-browser",
+    "lint": "jshint --config .jshintrc lib/**/*.js",
     "test-node": "mocha --ui tdd --reporter dot",
     "test-browser": "testling",
     "build": "npm run build-rules && npm run build-browser",
@@ -47,7 +48,9 @@
     "grunt-contrib-watch": "~0.3.1",
     "grunt-contrib-jshint": "~0.4.3",
     "testling": "~1.5.1",
-    "browserify": "~2.34.0"
+    "browserify": "~2.34.0",
+    "grunt-cli": "~0.1.9",
+    "jshint": "~2.1.11"
   },
   "keywords": [
     "tld",

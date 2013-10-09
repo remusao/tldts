@@ -1,12 +1,10 @@
 language: "node_js"
 node_js:
-  - 0.8
-  - 0.10
+  - "0.8"
+  - "0.10"
 notifications:
   email:
     on_success: change
     on_failure: change
-before_install:
-  - npm install -g grunt-cli --production
 before_script:
-  - npm run-script build
+  - npm run build
