@@ -20,7 +20,7 @@
     "build": "npm run build-rules && npm run build-browser",
     "build-rules": "grunt update",
     "build-browser": "browserify -r ./lib/tld.js > dist/tld.js",
-    "prepublish": "npm run test && npm run build"
+    "prepublish": "npm run build && npm run test"
   },
   "engines": {
     "node": "0.8.x || 0.10.x"
