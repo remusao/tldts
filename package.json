@@ -13,7 +13,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint && npm run test-node && npm run test-browser",
+    "test": "npm run lint && npm run test-node",
     "lint": "jshint --config .jshintrc lib/**/*.js",
     "test-node": "mocha --ui tdd --reporter dot",
     "test-browser": "testling",
