@@ -21,8 +21,5 @@ module.exports = function (grunt) {
   grunt.registerTask('default', 'jshint');
 
   // Custom Task to build files
-  grunt.registerTask('update',
-    'Update ruleset from publicsuffix.org dataset.',
-    require(__dirname + '/lib/grunt/update.js')(grunt)
-  );
+  grunt.loadTasks('lib/grunt');
 };
