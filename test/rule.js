@@ -2,7 +2,7 @@
 
 /* global suite, test, suiteSetup */
 
-var Rule = require(__dirname + '/../lib/rule.js');
+var Rule = require('../lib/rule.js');
 var expect = require('expect.js');
 
 suite('Public Suffix Rule', function () {

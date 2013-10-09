@@ -92,12 +92,12 @@ suite('http://publicsuffix.org/list/test.txt', function(){
   });
 
   test('TLD with a wildcard rule and exceptions', function(){
-    checkPublicSuffix('om', null);
-    checkPublicSuffix('test.om', null);
-    checkPublicSuffix('b.test.om', 'b.test.om');
-    checkPublicSuffix('a.b.test.om', 'b.test.om');
-    checkPublicSuffix('songfest.om', 'songfest.om');
-    checkPublicSuffix('www.songfest.om', 'songfest.om');
+    checkPublicSuffix('ck', null);
+    checkPublicSuffix('test.ck', null);
+    checkPublicSuffix('b.test.ck', 'b.test.ck');
+    checkPublicSuffix('a.b.test.ck', 'b.test.ck');
+    checkPublicSuffix('www.ck', 'www.ck');
+    checkPublicSuffix('www.www.ck', 'www.ck');
   });
 
   test('US K12', function(){
