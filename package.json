@@ -19,19 +19,40 @@
     "test-browser": "testling",
     "build": "npm run build-rules && npm run build-browser",
     "build-rules": "grunt update",
-    "build-browser": "browserify -r ./lib/tld.js > dist/tld.js"
+    "build-browser": "browserify -r ./lib/tld.js > dist/tld.js",
+    "prepublish": "npm run build"
   },
   "engines": {
     "node": "0.8.x || 0.10.x"
   },
   "testling": {
     "browsers": {
-      "iexplore": ["6.0", "7.0", "8.0", "9.0", "10.0"],
-      "iphone": ["6.0"],
-      "firefox/": ["10", "nightly"],
-      "chrome": ["29", "canary"],
-      "opera": ["15", "next"],
-      "safari": ["5.1", "6.0"]
+      "iexplore": [
+        "6.0",
+        "7.0",
+        "8.0",
+        "9.0",
+        "10.0"
+      ],
+      "iphone": [
+        "6.0"
+      ],
+      "firefox/": [
+        "10",
+        "nightly"
+      ],
+      "chrome": [
+        "29",
+        "canary"
+      ],
+      "opera": [
+        "15",
+        "next"
+      ],
+      "safari": [
+        "5.1",
+        "6.0"
+      ]
     },
     "harness": "mocha-tdd",
     "files": "test/*.js"
