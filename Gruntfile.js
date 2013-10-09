@@ -3,13 +3,13 @@
 module.exports = function (grunt) {
   // Project configuration.
   grunt.initConfig({
-    jshint:   {
+    jshint: {
       all: ['grunt.js', 'lib/**/*.js', 'test/**/*.js'],
       options: {
-	jshintrc: '.jshintrc'
+        jshintrc: '.jshintrc'
       }
     },
-    watch:  {
+    watch: {
       files: '<config:lint.files>',
       tasks: 'lint'
     }
