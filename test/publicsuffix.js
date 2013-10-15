@@ -3,7 +3,7 @@
 /* global suite, test, setup */
 
 var tld = require('../index.js');
-var expect = require('expect.js');
+var expect = require('chai').expect;
 var checkPublicSuffix;
 
 suite('http://publicsuffix.org/list/test.txt', function(){
@@ -11,7 +11,7 @@ suite('http://publicsuffix.org/list/test.txt', function(){
     //ease testing by simply copy/pasting tests from Mozilla Central
     //@see http://mxr.mozilla.org/mozilla-central/source/netwerk/test/unit/data/test_psl.txt?raw=1
     checkPublicSuffix = function(testDomain, expectedResult){
-      expect(tld.getDomain(testDomain)).to.be(expectedResult);
+      expect(tld.getDomain(testDomain)).to.equal(expectedResult);
     };
   });
 
