@@ -26,36 +26,17 @@
     "node": "0.8.x || 0.10.x"
   },
   "testling": {
-    "browsers": {
-      "iexplore": [
-        "6.0",
-        "7.0",
-        "8.0",
-        "9.0",
-        "10.0"
-      ],
-      "iphone": [
-        "6.0"
-      ],
-      "firefox/": [
-        "10",
-        "nightly"
-      ],
-      "chrome": [
-        "29",
-        "canary"
-      ],
-      "opera": [
-        "15",
-        "next"
-      ],
-      "safari": [
-        "5.1",
-        "6.0"
-      ]
-    },
+    "files": "test/*.js",
     "harness": "mocha-tdd",
-    "files": "test/*.js"
+    "browsers": [
+      "ie/6..10",
+      "ff/latest..nightly",
+      "chrome/latest..canary",
+      "opera/latest..next",
+      "safari/latest",
+      "ipad/latest",
+      "android/latest"
+    ]
   },
   "dependencies": {},
   "devDependencies": {
