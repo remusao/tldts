@@ -6,8 +6,8 @@ var tld = require('../index.js');
 var expect = require('chai').expect;
 var checkPublicSuffix;
 
-suite('http://publicsuffix.org/list/test.txt', function(){
-  setup(function(){
+describe('PublicSuffix tests', function(){
+  beforeEach(function(){
     //ease testing by simply copy/pasting tests from Mozilla Central
     //@see http://mxr.mozilla.org/mozilla-central/source/netwerk/test/unit/data/test_psl.txt?raw=1
     checkPublicSuffix = function(testDomain, expectedResult){
@@ -15,45 +15,45 @@ suite('http://publicsuffix.org/list/test.txt', function(){
     };
   });
 
-  test('NULL input', function(){
+  it('should return NULL on NULL input', function(){
     checkPublicSuffix(null, null);
   });
 
-  test('Mixed case', function(){
+  it('should return the TLD on a valid hostname', function(){
     checkPublicSuffix('COM', null);
     checkPublicSuffix('example.COM', 'example.com');
     checkPublicSuffix('WwW.example.COM', 'example.com');
   });
 
-  test('Leading dot', function(){
+  it('should return NULL on dotted hostnames', function(){
     checkPublicSuffix('.com', null);
     checkPublicSuffix('.example', null);
     checkPublicSuffix('.example.com', null);
     checkPublicSuffix('.example.example', null);
   });
 
-  test('Unlisted TLD', function(){
+  it('should return the TLD even if the gTLD is unknown', function(){
     checkPublicSuffix('example', null);
     checkPublicSuffix('example.example', 'example.example');
     checkPublicSuffix('b.example.example', 'example.example');
     checkPublicSuffix('a.b.example.example', 'example.example');
   });
 
-  test.skip('Listed, but non-Internet, TLD', function(){
+  it.skip('should return NULL on non-Internet TLDs', function(){
    checkPublicSuffix('local', null);
    checkPublicSuffix('example.local', null);
    checkPublicSuffix('b.example.local', null);
    checkPublicSuffix('a.b.example.local', null);
   });
 
-  test('TLD with only 1 rule', function(){
+  it('should return the TLD of single level hostname', function(){
     checkPublicSuffix('biz', null);
     checkPublicSuffix('domain.biz', 'domain.biz');
     checkPublicSuffix('b.domain.biz', 'domain.biz');
     checkPublicSuffix('a.b.domain.biz', 'domain.biz');
   });
 
-  test('TLD with some 2-level rules', function(){
+  it('should return the TLD of two levels hostname', function(){
     checkPublicSuffix('com', null);
     checkPublicSuffix('example.com', 'example.com');
     checkPublicSuffix('b.example.com', 'example.com');
@@ -65,14 +65,14 @@ suite('http://publicsuffix.org/list/test.txt', function(){
     checkPublicSuffix('test.ac', 'test.ac');
   });
 
-  test('TLD with only 1 (wildcard) rule', function(){
+  it('should return the relevant TLD of wildcard hostname', function(){
     checkPublicSuffix('cy', null);
     checkPublicSuffix('c.cy', null);
     checkPublicSuffix('b.c.cy', 'b.c.cy');
     checkPublicSuffix('a.b.c.cy', 'b.c.cy');
   });
 
-  test('More complex TLD', function(){
+  it('should handle complex exceptions', function(){
     checkPublicSuffix('jp', null);
     checkPublicSuffix('test.jp', 'test.jp');
     checkPublicSuffix('www.test.jp', 'test.jp');
@@ -91,7 +91,7 @@ suite('http://publicsuffix.org/list/test.txt', function(){
     checkPublicSuffix('www.city.kobe.jp', 'city.kobe.jp');
   });
 
-  test('TLD with a wildcard rule and exceptions', function(){
+  it('should deal with complex combination of wildcard and exception', function(){
     checkPublicSuffix('ck', null);
     checkPublicSuffix('test.ck', null);
     checkPublicSuffix('b.test.ck', 'b.test.ck');
@@ -100,7 +100,7 @@ suite('http://publicsuffix.org/list/test.txt', function(){
     checkPublicSuffix('www.www.ck', 'www.ck');
   });
 
-  test('US K12', function(){
+  it('should deal with US K12 rules', function(){
     checkPublicSuffix('us', null);
     checkPublicSuffix('test.us', 'test.us');
     checkPublicSuffix('www.test.us', 'test.us');

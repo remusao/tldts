@@ -15,7 +15,7 @@
   "scripts": {
     "test": "npm run lint && npm run test-node",
     "lint": "jshint --config .jshintrc lib/**/*.js",
-    "test-node": "mocha --ui tdd --reporter dot",
+    "test-node": "mocha --reporter dot",
     "test-browser": "testling",
     "build": "npm run build-rules && npm run build-browser",
     "build-rules": "grunt update",
@@ -27,7 +27,7 @@
   },
   "testling": {
     "files": "test/*.js",
-    "harness": "mocha-tdd",
+    "harness": "mocha-bdd",
     "browsers": [
       "ie/6..10",
       "ff/latest..nightly",

@@ -5,23 +5,23 @@
 var tld = require('../index.js');
 var expect = require('chai').expect;
 
-suite('tld.js', function () {
-  suite('Basics', function () {
-    test('Rules are already loaded', function () {
+describe('tld.js', function () {
+  describe('Constructor', function () {
+    it('should have have rules already loaded', function () {
       expect(tld.rules).to.be.an('object');
       expect(Object.keys(tld.rules)).not.to.be.empty;
     });
   });
 
-  suite('#isValid()', function () {
-    test('Good ones', function () {
+  describe('isValid method', function () {
+    it('should detect valid hostname', function () {
       expect(tld.isValid('')).to.be.false;
       expect(tld.isValid('google.com')).to.be.true;
       expect(tld.isValid('miam.google.com')).to.be.true;
       expect(tld.isValid('miam.miam.google.com')).to.be.true;
     });
 
-    test('Invalid types', function () {
+    it('should detect invalid hostname', function () {
       expect(tld.isValid(null)).to.be.false;
       expect(tld.isValid(undefined)).to.be.false;
       expect(tld.isValid(0)).to.be.false;
@@ -31,38 +31,38 @@ suite('tld.js', function () {
       })).to.be.false;
     });
 
-    test('Invalid notation', function () {
+    it('should be falsy on invalid domain syntax', function () {
       expect(tld.isValid('.google.com')).to.be.false;
       expect(tld.isValid('.com')).to.be.false;
     });
 
-    test('Dot-less hostname', function () {
+    it('should be falsy on dotless hostname', function () {
       expect(tld.isValid('localhost')).to.be.false;
       expect(tld.isValid('google')).to.be.false;
     });
   });
 
-  suite('#getDomain()', function () {
-    test('basic domains', function () {
+  describe('getDomain method', function () {
+    it('should return the expected domain from a simple string', function () {
       expect(tld.getDomain('google.com')).to.equal('google.com');
       expect(tld.getDomain('t.co')).to.equal('t.co');
       expect(tld.getDomain('  GOOGLE.COM   ')).to.equal('google.com');
       expect(tld.getDomain('    t.CO    ')).to.equal('t.co');
     });
 
-    test('composed ', function () {
+    it('should return the relevant domain of a two levels domain', function () {
       expect(tld.getDomain('google.co.uk')).to.equal('google.co.uk');
     });
 
-    test('subdomains', function () {
+    it('should return the relevant domain from a subdomain string', function () {
       expect(tld.getDomain('fr.google.com')).to.equal('google.com');
       expect(tld.getDomain('foo.google.co.uk')).to.equal('google.co.uk');
       expect(tld.getDomain('fr.t.co')).to.equal('t.co');
     });
   });
 
-  suite('#tldExists', function () {
-    test('existing TLD', function () {
+  describe('tldExists method', function () {
+    it('should be truthy on existing TLD', function () {
       expect(tld.tldExists('com')).to.be.true;
       expect(tld.tldExists('example.com')).to.be.true;
       expect(tld.tldExists('co.uk')).to.be.true;
@@ -71,46 +71,46 @@ suite('tld.js', function () {
       expect(tld.tldExists('台灣.台灣')).to.be.true;
     });
 
-    test('unexisting TLD', function () {
+    it('should be falsy on unexisting TLD', function () {
       expect(tld.tldExists('con')).to.be.false;
       expect(tld.tldExists('example.con')).to.be.false;
       expect(tld.tldExists('go')).to.be.false;
       expect(tld.tldExists('チーズ')).to.be.false;
     });
 
-    test('they cannot be verified', function(){
+    it('should be truthy on complex TLD which cannot be verified as long as the gTLD exists', function(){
       expect(tld.tldExists('uk.com')).to.be.true;
     });
   });
 
-  suite('#getSubdomain()', function(){
-    test('simple TLD', function(){
+  describe('getSubdomain method', function(){
+    it('should return the relevant subdomain of a hostname', function(){
       expect(tld.getSubdomain('google.com')).to.equal('');
       expect(tld.getSubdomain('fr.google.com')).to.equal('fr');
       expect(tld.getSubdomain('random.fr.google.com')).to.equal('random.fr');
       expect(tld.getSubdomain('my.custom.domain')).to.equal('my');
     });
 
-    test('weirdo syntax', function(){
+    it('should return the relevant subdomain of a badly trimmed string', function(){
       expect(tld.getSubdomain(' google.COM')).to.equal('');
       expect(tld.getSubdomain('   fr.GOOGLE.COM ')).to.equal('fr');
       expect(tld.getSubdomain(' random.FR.google.com')).to.equal('random.fr');
     });
 
-    test('TLD + SLD', function(){
+    it('should return the subdomain of a TLD + SLD hostname', function(){
       expect(tld.getSubdomain('love.fukushima.jp')).to.equal('');
       expect(tld.getSubdomain('i.love.fukushima.jp')).to.equal('i');
       expect(tld.getSubdomain('random.nuclear.strike.co.jp')).to.equal('random.nuclear');
     });
 
-    test('wildcard', function(){
+    it('should return the subdomain of a wildcard hostname', function(){
       expect(tld.getSubdomain('google.co.uk')).to.equal('');
       expect(tld.getSubdomain('fr.google.co.uk')).to.equal('fr');
       expect(tld.getSubdomain('random.fr.google.co.uk')).to.equal('random.fr');
     });
 
     //@see https://github.com/oncletom/tld.js/issues/25
-    test.skip('reserved domains', function(){
+    it.skip('should return the subdomain of reserved subdomains', function(){
       expect(tld.getSubdomain('blogspot.co.uk')).to.equal('');
       expect(tld.getSubdomain('emergency.blogspot.co.uk')).to.equal('emergency');
     });

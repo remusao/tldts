@@ -5,10 +5,10 @@
 var Rule = require('../lib/rule.js');
 var expect = require('chai').expect;
 
-suite('Public Suffix Rule', function () {
+describe('Rule Object', function () {
   var rules;
 
-  suiteSetup(function () {
+  beforeEach(function () {
     rules = {
       tld:          new Rule({firstLevel: 'com'}),
       sld:          new Rule({firstLevel: 'com', 'secondLevel': 'uk'}),
@@ -18,7 +18,7 @@ suite('Public Suffix Rule', function () {
     };
   });
 
-  test('#constructor', function () {
+  it('should construct properly against various Rule configurations', function () {
     expect(rules.tld.secondLevel).to.be.null;
     expect(rules.tld.wildcard).to.be.false;
     expect(rules.tld.exception).to.be.false;
@@ -38,7 +38,7 @@ suite('Public Suffix Rule', function () {
     expect(rules.sldWildcard.exception).to.be.false;
   });
 
-  test('#getNormalXld()', function () {
+  it('should return valid XLD', function () {
     expect(rules.tld.getNormalXld()).to.equal('.com');
     expect(rules.sld.getNormalXld()).to.equal('.uk.com');
     expect(rules.tldWildcard.getNormalXld()).to.equal('.om');
@@ -46,21 +46,21 @@ suite('Public Suffix Rule', function () {
     expect(rules.sldWildcard.getNormalXld()).to.equal('.fake.om');
   });
 
-  test('#getNormalPattern()', function () {
+  it('should return valid pattern for regular rule', function () {
     expect(rules.tld.getNormalPattern()).to.equal('\\.com');
     expect(rules.sld.getNormalPattern()).to.equal('\\.uk\\.com');
   });
 
-  test('#getWildcardPattern()', function () {
+  it('should return valid pattern for wildcard rule', function () {
     expect(rules.tldWildcard.getWildcardPattern()).to.equal('\\.[^\\.]+\\.om');
     expect(rules.sldWildcard.getWildcardPattern()).to.equal('\\.[^\\.]+\\.fake\\.om');
   });
 
-  test('#getExceptionPattern()', function () {
+  it('should return valid pattern for exception rule', function () {
     expect(rules.sldException.getExceptionPattern()).to.equal('songfest\\.om');
   });
 
-  test('#getPattern()', function () {
+  it('should return valid complete pattern for any kind of rule', function () {
     expect(rules.tld.getPattern()).to.equal('([^\\.]+\\.com)$');
     expect(rules.sld.getPattern()).to.equal('([^\\.]+\\.uk\\.com)$');
     expect(rules.tldWildcard.getPattern()).to.equal('([^\\.]+\\.[^\\.]+\\.om)$');
