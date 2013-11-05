@@ -1,5 +1,5 @@
 {
-  "name": "tld",
+  "name": "tld.js",
   "description": "tld parser",
   "scripts": [
     "index.js",
