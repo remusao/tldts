@@ -1,0 +1,10 @@
+{
+  "name": "tld",
+  "description": "tld parser",
+  "scripts": [
+    "index.js",
+    "lib/rule.js",
+    "lib/tld.js",
+    "dist/rules.json"
+  ]
+}
