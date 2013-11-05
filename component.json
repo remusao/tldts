@@ -6,7 +6,7 @@
     "lib/rule.js",
     "lib/tld.js"
   ],
-  "files": [
+  "templates": [
     "dist/rules.json"
   ]
 }
