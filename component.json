@@ -4,7 +4,9 @@
   "scripts": [
     "index.js",
     "lib/rule.js",
-    "lib/tld.js",
+    "lib/tld.js"
+  ],
+  "files": [
     "dist/rules.json"
   ]
 }
