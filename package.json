@@ -1,5 +1,5 @@
 {
-  "author": "Oncle Tom <thomas@oncle-tom.net> (http://case.oncle-tom.net)",
+  "author": "Thomas Parisot (https://oncletom.io)",
   "name": "tldjs",
   "description": "Handful API to do stuff with domain names and URIs: validity, public etc.",
   "version": "1.2.0",
@@ -12,6 +12,7 @@
     "url": "https://github.com/oncletom/tld.js/issues"
   },
   "main": "index.js",
+  "license": "MIT",
   "scripts": {
     "test": "npm run lint && npm run test-node",
     "lint": "jshint --config .jshintrc lib/**/*.js",
@@ -29,13 +30,13 @@
     "files": "test/*.js",
     "harness": "mocha-bdd",
     "browsers": [
-      "ie/6..10",
+      "ie/7..10",
       "ff/latest..nightly",
       "chrome/latest..canary",
       "opera/latest..next",
-      "safari/latest",
-      "ipad/latest",
-      "android/latest"
+      "safari/6.0",
+      "iphone/6.0",
+      "android/4.2"
     ]
   },
   "dependencies": {},
@@ -55,7 +56,6 @@
     "tld",
     "sld",
     "domain",
-    "travis",
     "browser",
     "uri",
     "url",

@@ -1,0 +1,31 @@
+{
+  "name": "tldjs",
+  "main": "index.js",
+  "version": "1.2.0",
+  "homepage": "https://github.com/oncletom/tld.js",
+  "authors": [
+    "Thomas Parisot (https://oncletom.io)"
+  ],
+  "description": "Handful API to do stuff with domain names and URIs: validity, public etc.",
+  "keywords": [
+    "tld",
+    "sld",
+    "domain",
+    "browser",
+    "uri",
+    "url",
+    "domain",
+    "name",
+    "subdomain",
+    "public",
+    "suffix"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
