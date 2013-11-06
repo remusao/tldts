@@ -1,7 +1,5 @@
-tld.js
-======
+# tld.js [![Build Status](https://secure.travis-ci.org/oncletom/tld.js.png?branch=master)](http://travis-ci.org/oncletom/tld.js)
 
-[![Build Status](https://secure.travis-ci.org/oncletom/tld.js.png?branch=master)](http://travis-ci.org/oncletom/tld.js)
 [![browser support](https://ci.testling.com/oncletom/tld.js.png)](https://ci.testling.com/oncletom/tld.js)
 
 Handful API to do stuff with domain names and URIs: validity, public etc.
@@ -11,23 +9,53 @@ Its main purpose is to check if a domain name is valid upon. 2 constraints:
 * must work in node.js and the browser
 
 It is based on the [public suffix list](http://publicsuffix.org/list/) provided by Mozilla.
+
 Thanks Mozilla!
 
-## Usage
+# Install
 
-*tld.js* is available under [NPM](http://npmjs.org/) registry.
+<table>
+  <thead>
+    <tr>
+      <th>`npm`</th>
+      <th>`bower`</th>
+      <th>`component`</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>npm install --save tldjs</code></td>
+      <td><code>bower install --save tld</code></td>
+      <td><code>component install tld</code></td>
+    </tr>
+  </tbody>
+</table>
 
-```bash
-npm install tldjs --save --production
-```
 
-And to include it in any relevant script:
+# Using It
+
+## Node.js
 
 ```javascript
 var tld = require('tldjs');
+
+tld.getDomain('http://mail.google.co.uk');
+// -> 'google.co.uk'
 ```
 
-### getDomain()
+## Browser
+
+```
+<script src="bower_components/tld/dist/tld.min.js">
+<script>
+tld.getDomain('http://mail.google.co.uk');
+// -> 'google.co.uk'
+</script>
+```
+
+# API
+
+## getDomain()
 
 Returns the fully qualified domain from a host string.
 
@@ -40,7 +68,7 @@ tld.getDomain('t.co'); // returns `t.co`
 tld.getDomain('fr.t.co'); // returns `t.co`
 ```
 
-### tldExists()
+## tldExists()
 
 Checks if the TLD is valid for a given host.
 
@@ -54,7 +82,7 @@ tld.tldExists('amazon.fancy.uk'); // returns `true` (still because `uk` is a val
 tld.tldExists('amazon.co.uk'); // returns `true` (still because `uk` is a valid TLD)
 ```
 
-### getSubdomain()
+## getSubdomain()
 
 Returns the complete subdomain for a given host.
 
@@ -68,7 +96,7 @@ tld.getSubdomain('t.co'); // returns ``
 tld.getSubdomain('fr.t.co'); // returns `fr`
 ```
 
-### isValid()
+## isValid()
 
 Checks if the host string is valid.
 It does not check if the *tld* exists.
@@ -80,26 +108,14 @@ tld.isValid('my.fake.domain'); // returns `true`
 tld.isValid('localhost'); // returns `false`
 ```
 
-## Updating TLDs List
+# Troubleshouting
+
+## Updating the TLDs List
 
 Many libraries offer a list of TLDs. But, are they up-to-date? And how to update them?
 
 Hopefully for you, even if I'm flying over the world, if I've lost my Internet connection or even if
 you do manage your own list, you can update it by yourself, painlessly.
-
-You may have installed the package with its `devDependencies` with:
-
-```bash
-npm install tldjs --save
-```
-
-If you did not install with the `--production` flag, then it's okay.
-
-[grunt](http://gruntjs.com/) is mandatory to build and update rules. If it's not installed globally, then do so:
-
-```bash
-npm install -g grunt
-```
 
 How? By typing this in your console
 
@@ -109,8 +125,10 @@ npm run-script build
 
 A fresh copy will be located in `src/rules.json`.
 
+Open an issue to request an update in all package systems (or do a PR with a bugfix version bump).
 
-## Contributing
+
+# Contributing
 
 Provide a pull request (with tested code) to include your work in this main project.
 Issues may be awaiting for help so feel free to give a hand, with code or ideas.
