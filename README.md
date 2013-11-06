@@ -17,9 +17,9 @@ Thanks Mozilla!
 <table>
   <thead>
     <tr>
-      <th>`npm`</th>
-      <th>`bower`</th>
-      <th>`component`</th>
+      <th>npm</th>
+      <th>bower</th>
+      <th>component</th>
     </tr>
   </thead>
   <tbody>
@@ -45,7 +45,7 @@ tld.getDomain('http://mail.google.co.uk');
 
 ## Browser
 
-```
+```html
 <script src="bower_components/tld/dist/tld.min.js">
 <script>
 tld.getDomain('http://mail.google.co.uk');

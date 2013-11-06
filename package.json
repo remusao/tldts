@@ -20,7 +20,7 @@
     "test-browser": "testling",
     "build": "npm run build-rules && npm run build-browser",
     "build-rules": "grunt update",
-    "build-browser": "browserify -r ./lib/tld.js > dist/tld.js",
+    "build-browser": "browserify -r ./index.js -s tld > dist/tld.js && uglifyjs dist/tld.js > dist/tld.min.js",
     "prepublish": "npm run build"
   },
   "engines": {
@@ -50,7 +50,8 @@
     "browserify": "~2.34.0",
     "grunt-cli": "~0.1.9",
     "jshint": "~2.1.11",
-    "chai": "~1.8.1"
+    "chai": "~1.8.1",
+    "uglify-js": "~2.4.3"
   },
   "keywords": [
     "tld",
