@@ -6,7 +6,7 @@
   "authors": [
     "Thomas Parisot (https://oncletom.io)"
   ],
-  "description": "Handful API to do stuff with domain names and URIs: validity, public etc.",
+  "description": "JavaScript API to work against complex domain names, subdomains and URIs.",
   "keywords": [
     "tld",
     "sld",

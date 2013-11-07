@@ -1,7 +1,7 @@
 {
   "name": "tld",
   "repo": "oncletom/tld.js",
-  "description": "Handful API to do stuff with domain names and URIs: validity, public etc.",
+  "description": "JavaScript API to work against complex domain names, subdomains and URIs.",
   "version": "1.3.0",
   "main": "lib/tld.min.js",
   "license": "MIT",
