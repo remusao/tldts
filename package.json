@@ -18,9 +18,10 @@
     "lint": "jshint --config .jshintrc lib/**/*.js",
     "test-node": "mocha --reporter dot",
     "test-browser": "testling",
-    "build": "npm run build-rules && npm run build-browser",
+    "build": "npm run build-rules && npm run build-browser && npm run build-compress",
     "build-rules": "grunt update",
-    "build-browser": "browserify -r ./index.js -s tld > dist/tld.js && uglifyjs dist/tld.js > dist/tld.min.js",
+    "build-browser": "browserify -r ./index.js -s tld > dist/tld.js",
+    "build-compress": "uglifyjs -b beautify=false,quote-keys=true dist/tld.js > dist/tld.min.js",
     "prepublish": "npm run build"
   },
   "engines": {

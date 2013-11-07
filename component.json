@@ -8,7 +8,8 @@
   "scripts": [
     "index.js",
     "lib/rule.js",
-    "lib/tld.js"
+    "lib/tld.js",
+    "lib/tld.min.js"
   ],
   "templates": [
     "dist/rules.json"
