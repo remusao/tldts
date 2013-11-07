@@ -2,13 +2,12 @@
 
 [![browser support](https://ci.testling.com/oncletom/tld.js.png)](https://ci.testling.com/oncletom/tld.js)
 
-Handful API to do stuff with domain names and URIs: validity, public etc.
+**`tld.js` is JavaScript API to work against complex domain names, subdomains and URIs**.
 
-Its main purpose is to check if a domain name is valid upon. 2 constraints:
-* an up-to-date TLDs database
-* must work in node.js and the browser
+It answers with accuracy to questions like *what is the domain/subdomain of `mail.google.com` and `a.b.ide.kyoto.jp`?*
 
-It is based on the [public suffix list](http://publicsuffix.org/list/) provided by Mozilla.
+`tld.js` is fully tested, works in Node.js and in the browser, with or without AMD.
+Its database keeps up to date thanks to Mozilla's [public suffix list](http://publicsuffix.org/list/) to have and keep up to date with domain names.
 
 Thanks Mozilla!
 
@@ -39,7 +38,7 @@ Thanks Mozilla!
 ```javascript
 var tld = require('tldjs');
 
-tld.getDomain('http://mail.google.co.uk');
+tld.getDomain('mail.google.co.uk');
 // -> 'google.co.uk'
 ```
 
@@ -48,8 +47,19 @@ tld.getDomain('http://mail.google.co.uk');
 ```html
 <script src="bower_components/tld/dist/tld.min.js">
 <script>
-tld.getDomain('http://mail.google.co.uk');
+tld.getDomain('mail.google.co.uk');
 // -> 'google.co.uk'
+</script>
+```
+
+## Browser with AMD / Require.js
+
+```html
+<script>
+require(['tld'], function(tld){
+  tld.getDomain('mail.google.co.uk');
+  // -> 'google.co.uk'
+});
 </script>
 ```
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.0
+
+* added browser compatibility
+* availability for [component.io](http://component.io/) and [bower](http://bower.io/) package managers
+* updated rules
+
 ## 1.2.0
 
 * removed `node 0.6` compat
