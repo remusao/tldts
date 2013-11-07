@@ -3,11 +3,9 @@
   "repo": "oncletom/tld.js",
   "description": "Handful API to do stuff with domain names and URIs: validity, public etc.",
   "version": "1.2.0",
-  "main": "index.js",
+  "main": "lib/tld.min.js",
   "license": "MIT",
   "scripts": [
-    "index.js",
-    "lib/rule.js",
     "lib/tld.js",
     "lib/tld.min.js"
   ],
