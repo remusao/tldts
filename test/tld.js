@@ -124,5 +124,12 @@ describe('tld.js', function () {
     it('should not break on specific RegExp characters', function () {
       expect(tld.getSubdomain('www.weir)domain.com')).to.equal('www');
     });
+
+    //@see https://github.com/oncletom/tld.js/issues/35
+    it('should provide consistent results', function(){
+      expect(tld.getSubdomain('www.majestic12.co.uk')).to.equal('www');
+      expect(tld.getSubdomain('www.bl.uk')).to.equal('www');
+      expect(tld.getSubdomain('www.majestic12.co.uk')).to.equal('www');
+    });
   });
 });
