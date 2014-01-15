@@ -59,6 +59,11 @@ describe('tld.js', function () {
       expect(tld.getDomain('foo.google.co.uk')).to.equal('google.co.uk');
       expect(tld.getDomain('fr.t.co')).to.equal('t.co');
     });
+
+    //@see https://github.com/oncletom/tld.js/issues/33
+    it('should not break on specific RegExp characters', function () {
+      expect(tld.getDomain('www.weir)domain.com')).to.equal('weir)domain.com');
+    });
   });
 
   describe('tldExists method', function () {
@@ -113,6 +118,11 @@ describe('tld.js', function () {
     it.skip('should return the subdomain of reserved subdomains', function(){
       expect(tld.getSubdomain('blogspot.co.uk')).to.equal('');
       expect(tld.getSubdomain('emergency.blogspot.co.uk')).to.equal('emergency');
+    });
+
+    //@see https://github.com/oncletom/tld.js/issues/33
+    it('should not break on specific RegExp characters', function () {
+      expect(tld.getSubdomain('www.weir)domain.com')).to.equal('www');
     });
   });
 });
