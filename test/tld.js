@@ -64,6 +64,11 @@ describe('tld.js', function () {
     it('should not break on specific RegExp characters', function () {
       expect(tld.getDomain('www.weir)domain.com')).to.equal('weir)domain.com');
     });
+
+    it('should provide consistent results', function(){
+      expect(tld.getDomain('www.bl.uk')).to.equal('bl.uk');
+      expect(tld.getDomain('www.majestic12.co.uk')).to.equal('majestic12.co.uk');
+    });
   });
 
   describe('tldExists method', function () {
@@ -127,7 +132,6 @@ describe('tld.js', function () {
 
     //@see https://github.com/oncletom/tld.js/issues/35
     it('should provide consistent results', function(){
-      expect(tld.getSubdomain('www.majestic12.co.uk')).to.equal('www');
       expect(tld.getSubdomain('www.bl.uk')).to.equal('www');
       expect(tld.getSubdomain('www.majestic12.co.uk')).to.equal('www');
     });
