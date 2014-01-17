@@ -17,6 +17,7 @@
     "test": "npm run lint && npm run test-node",
     "lint": "jshint --config .jshintrc lib/**/*.js",
     "test-node": "mocha --reporter dot",
+    "test-watch": "mocha --reporter dot --watch",
     "test-browser": "testling",
     "build": "npm run build-rules && npm run build-browser && npm run build-compress",
     "build-rules": "grunt update",
