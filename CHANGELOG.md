@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.1
+
+* fixed bad tld escaping for `tld.getSubdomain` ([#33](https://github.com/oncletom/tld.js/issue/33))
+* fixed rule order inconsistency caused by `tld.getDomain` ([#35](https://github.com/oncletom/tld.js/issue/35))
+
 ## 1.3.0
 
 * added browser compatibility
