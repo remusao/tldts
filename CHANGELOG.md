@@ -4,6 +4,8 @@
 
 * fixed bad tld escaping for `tld.getSubdomain` ([#33](https://github.com/oncletom/tld.js/issue/33))
 * fixed rule order inconsistency caused by `tld.getDomain` ([#35](https://github.com/oncletom/tld.js/issue/35))
+* Grunt is no longer a needed dependency ([#36](https://github.com/oncletom/tld.js/issue/36))
+* updated PublicSuffix rules
 
 ## 1.3.0
 
