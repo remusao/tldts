@@ -1,6 +1,6 @@
 {
   "providers": {
-    "mozilla": "https://hg.mozilla.org/mozilla-central/raw-file/tip/netwerk/dns/effective_tld_names.dat"
+    "mozilla": "https://publicsuffix.org/list/effective_tld_names.dat"
   },
   "default_provider": "mozilla"
 }
