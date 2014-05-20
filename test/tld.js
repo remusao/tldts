@@ -21,6 +21,13 @@ describe('tld.js', function () {
       expect(tld.isValid('miam.miam.google.com')).to.be.true;
     });
 
+    it('should also work with url fragments', function () {
+      expect(tld.isValid('http://google.com')).to.be.true;
+      expect(tld.isValid('https://user:password@miam.google.com')).to.be.true;
+      expect(tld.isValid('miam.miam.google.com/some/path?query#hash')).to.be.true;
+      expect(tld.isValid('https://user:password@example.co.uk:8080/some/path?and&query#hash')).to.be.true;
+    });
+
     it('should detect invalid hostname', function () {
       expect(tld.isValid(null)).to.be.false;
       expect(tld.isValid(undefined)).to.be.false;
@@ -60,6 +67,13 @@ describe('tld.js', function () {
       expect(tld.getDomain('fr.t.co')).to.equal('t.co');
     });
 
+    it('should also work with url fragments', function () {
+      expect(tld.getDomain('http://fr.google.com')).to.equal('google.com');
+      expect(tld.getDomain('https://user:password@foo.google.co.uk')).to.equal('google.co.uk');
+      expect(tld.getDomain('fr.t.co/some/path?query#hash')).to.equal('t.co');
+      expect(tld.getDomain('https://user:password@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
+    });
+
     //@see https://github.com/oncletom/tld.js/issues/33
     it('should not break on specific RegExp characters', function () {
       expect(tld.getDomain('www.weir)domain.com')).to.equal('weir)domain.com');
@@ -88,6 +102,13 @@ describe('tld.js', function () {
       expect(tld.tldExists('チーズ')).to.be.false;
     });
 
+    it('should also work with url fragments', function () {
+      expect(tld.tldExists('http://google.com')).to.be.true;
+      expect(tld.tldExists('https://user:password@miam.google.com')).to.be.true;
+      expect(tld.tldExists('miam.miam.google.com/some/path?query#hash')).to.be.true;
+      expect(tld.tldExists('https://user:password@example.co.uk:8080/some/path?and&query#hash')).to.be.true;
+    });
+
     it('should be truthy on complex TLD which cannot be verified as long as the gTLD exists', function(){
       expect(tld.tldExists('uk.com')).to.be.true;
     });
@@ -111,6 +132,13 @@ describe('tld.js', function () {
       expect(tld.getSubdomain('love.fukushima.jp')).to.equal('');
       expect(tld.getSubdomain('i.love.fukushima.jp')).to.equal('i');
       expect(tld.getSubdomain('random.nuclear.strike.co.jp')).to.equal('random.nuclear');
+    });
+
+    it('should also work with url fragments', function(){
+      expect(tld.getSubdomain('http://love.fukushima.jp')).to.equal('');
+      expect(tld.getSubdomain('https://user:password@i.love.fukushima.jp')).to.equal('i');
+      expect(tld.getSubdomain('random.nuclear.strike.co.jp/some/path?query#hash')).to.equal('random.nuclear');
+      expect(tld.getSubdomain('https://user:password@example.co.uk:8080/some/path?and&query#hash')).to.equal('');
     });
 
     it('should return the subdomain of a wildcard hostname', function(){
