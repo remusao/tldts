@@ -45,15 +45,12 @@
   "devDependencies": {
     "request": "~2.12.0",
     "mocha": "~1.13.0",
-    "grunt-contrib-watch": "~0.3.1",
-    "grunt-contrib-jshint": "~0.4.3",
     "testling": "~1.5.1",
     "browserify": "~2.34.0",
     "jshint": "~2.1.11",
     "chai": "~1.8.1",
     "uglify-js": "~2.4.3",
-    "async": "~0.2.9",
-    "lodash": "~2.4.1"
+    "async": "~0.2.9"
   },
   "keywords": [
     "tld",
