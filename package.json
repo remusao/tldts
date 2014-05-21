@@ -43,14 +43,15 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "request": "~2.12.0",
-    "mocha": "~1.13.0",
-    "testling": "~1.5.1",
-    "browserify": "~2.34.0",
-    "jshint": "~2.1.11",
-    "chai": "~1.8.1",
-    "uglify-js": "~2.4.3",
-    "async": "~0.2.9"
+    "async": "^0.9.0",
+    "browserify": "^4.1.5",
+    "chai": "^1.9.1",
+    "jshint": "^2.5.1",
+    "mocha": "^1.19.0",
+    "optimist": "^0.6.1",
+    "request": "^2.36.0",
+    "testling": "^1.6.1",
+    "uglify-js": "^2.4.13"
   },
   "keywords": [
     "tld",
