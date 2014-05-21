@@ -11,6 +11,9 @@
   "bugs": {
     "url": "https://github.com/oncletom/tld.js/issues"
   },
+  "engines": {
+    "node": ">=0.9"
+  },
   "main": "index.js",
   "license": "MIT",
   "scripts": {
