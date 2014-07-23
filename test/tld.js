@@ -4,7 +4,7 @@
 
 var tld = require('../index.js');
 var tldLib = require('../lib/tld.js');
-var expect = require('chai').expect;
+var expect = require('expect.js');
 
 describe('tld.js', function () {
   describe('Constructor', function () {

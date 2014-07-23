@@ -3,7 +3,7 @@
 /* global suite, test, suiteSetup */
 
 var Rule = require('../lib/rule.js');
-var expect = require('chai').expect;
+var expect = require('expect.js');
 
 describe('Rule Object', function () {
   var rules;

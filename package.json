@@ -12,7 +12,7 @@
     "url": "https://github.com/oncletom/tld.js/issues"
   },
   "engines": {
-    "node": ">=0.9"
+    "node": "0.8.x || 0.10.x"
   },
   "main": "index.js",
   "license": "MIT",
@@ -27,9 +27,6 @@
     "build-browser": "browserify -r ./index.js -s tld > dist/tld.js",
     "build-compress": "uglifyjs -b beautify=false,quote-keys=true dist/tld.js > dist/tld.min.js",
     "prepublish": "npm run build"
-  },
-  "engines": {
-    "node": "0.8.x || 0.10.x"
   },
   "testling": {
     "files": "test/*.js",
@@ -48,7 +45,7 @@
   "devDependencies": {
     "async": "^0.9.0",
     "browserify": "^4.1.5",
-    "chai": "^1.9.1",
+    "expect.js": "^0.3.1",
     "jshint": "^2.5.1",
     "mocha": "^1.19.0",
     "optimist": "^0.6.1",
