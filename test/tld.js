@@ -10,7 +10,7 @@ describe('tld.js', function () {
   describe('Constructor', function () {
     it('should have have rules already loaded', function () {
       expect(tld.rules).to.be.an('object');
-      expect(Object.keys(tld.rules)).not.to.be.empty();
+      expect(tld.rules).not.to.be.empty();
     });
   });
 
