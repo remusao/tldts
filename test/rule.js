@@ -19,23 +19,23 @@ describe('Rule Object', function () {
   });
 
   it('should construct properly against various Rule configurations', function () {
-    expect(rules.tld.secondLevel).to.be.null;
-    expect(rules.tld.wildcard).to.be.false;
-    expect(rules.tld.exception).to.be.false;
+    expect(rules.tld.secondLevel).to.equal(null);
+    expect(rules.tld.wildcard).to.be(false);
+    expect(rules.tld.exception).to.be(false);
 
     expect(rules.sld.secondLevel).to.equal('uk');
 
-    expect(rules.tldWildcard.secondLevel).to.be.null;
-    expect(rules.tldWildcard.wildcard).to.be.true;
-    expect(rules.tldWildcard.exception).to.be.false;
+    expect(rules.tldWildcard.secondLevel).to.equal(null);
+    expect(rules.tldWildcard.wildcard).to.be(true);
+    expect(rules.tldWildcard.exception).to.be(false);
 
     expect(rules.sldException.secondLevel).to.equal('songfest');
-    expect(rules.sldException.wildcard).to.be.false;
-    expect(rules.sldException.exception).to.be.true;
+    expect(rules.sldException.wildcard).to.be(false);
+    expect(rules.sldException.exception).to.be(true);
 
     expect(rules.sldWildcard.secondLevel).to.equal('fake');
-    expect(rules.sldWildcard.wildcard).to.be.true;
-    expect(rules.sldWildcard.exception).to.be.false;
+    expect(rules.sldWildcard.wildcard).to.be(true);
+    expect(rules.sldWildcard.exception).to.be(false);
   });
 
   it('should return valid XLD', function () {

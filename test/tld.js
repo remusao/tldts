@@ -10,36 +10,36 @@ describe('tld.js', function () {
   describe('Constructor', function () {
     it('should have have rules already loaded', function () {
       expect(tld.rules).to.be.an('object');
-      expect(Object.keys(tld.rules)).not.to.be.empty;
+      expect(Object.keys(tld.rules)).not.to.be.empty();
     });
   });
 
   describe('isValid method', function () {
     it('should detect valid hostname', function () {
-      expect(tld.isValid('')).to.be.false;
-      expect(tld.isValid('google.com')).to.be.true;
-      expect(tld.isValid('miam.google.com')).to.be.true;
-      expect(tld.isValid('miam.miam.google.com')).to.be.true;
+      expect(tld.isValid('')).to.be(false);
+      expect(tld.isValid('google.com')).to.be(true);
+      expect(tld.isValid('miam.google.com')).to.be(true);
+      expect(tld.isValid('miam.miam.google.com')).to.be(true);
     });
 
     it('should detect invalid hostname', function () {
-      expect(tld.isValid(null)).to.be.false;
-      expect(tld.isValid(undefined)).to.be.false;
-      expect(tld.isValid(0)).to.be.false;
-      expect(tld.isValid([])).to.be.false;
-      expect(tld.isValid({})).to.be.false;
+      expect(tld.isValid(null)).to.be(false);
+      expect(tld.isValid(undefined)).to.be(false);
+      expect(tld.isValid(0)).to.be(false);
+      expect(tld.isValid([])).to.be(false);
+      expect(tld.isValid({})).to.be(false);
       expect(tld.isValid(function () {
-      })).to.be.false;
+      })).to.be(false);
     });
 
     it('should be falsy on invalid domain syntax', function () {
-      expect(tld.isValid('.google.com')).to.be.false;
-      expect(tld.isValid('.com')).to.be.false;
+      expect(tld.isValid('.google.com')).to.be(false);
+      expect(tld.isValid('.com')).to.be(false);
     });
 
     it('should be falsy on dotless hostname', function () {
-      expect(tld.isValid('localhost')).to.be.false;
-      expect(tld.isValid('google')).to.be.false;
+      expect(tld.isValid('localhost')).to.be(false);
+      expect(tld.isValid('google')).to.be(false);
     });
   });
 
@@ -74,23 +74,23 @@ describe('tld.js', function () {
 
   describe('tldExists method', function () {
     it('should be truthy on existing TLD', function () {
-      expect(tld.tldExists('com')).to.be.true;
-      expect(tld.tldExists('example.com')).to.be.true;
-      expect(tld.tldExists('co.uk')).to.be.true;
-      expect(tld.tldExists('amazon.co.uk')).to.be.true;
-      expect(tld.tldExists('台灣')).to.be.true;
-      expect(tld.tldExists('台灣.台灣')).to.be.true;
+      expect(tld.tldExists('com')).to.be(true);
+      expect(tld.tldExists('example.com')).to.be(true);
+      expect(tld.tldExists('co.uk')).to.be(true);
+      expect(tld.tldExists('amazon.co.uk')).to.be(true);
+      expect(tld.tldExists('台灣')).to.be(true);
+      expect(tld.tldExists('台灣.台灣')).to.be(true);
     });
 
     it('should be falsy on unexisting TLD', function () {
-      expect(tld.tldExists('con')).to.be.false;
-      expect(tld.tldExists('example.con')).to.be.false;
-      expect(tld.tldExists('go')).to.be.false;
-      expect(tld.tldExists('チーズ')).to.be.false;
+      expect(tld.tldExists('con')).to.be(false);
+      expect(tld.tldExists('example.con')).to.be(false);
+      expect(tld.tldExists('go')).to.be(false);
+      expect(tld.tldExists('チーズ')).to.be(false);
     });
 
     it('should be truthy on complex TLD which cannot be verified as long as the gTLD exists', function(){
-      expect(tld.tldExists('uk.com')).to.be.true;
+      expect(tld.tldExists('uk.com')).to.be(true);
     });
   });
 
