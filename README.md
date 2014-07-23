@@ -2,7 +2,7 @@
 
 [![browser support](https://ci.testling.com/oncletom/tld.js.png)](https://ci.testling.com/oncletom/tld.js)
 
-**`tld.js` is JavaScript API to work against complex domain names, subdomains and URIs**.
+> `tld.js` is JavaScript API to work against complex domain names, subdomains and URIs.
 
 It answers with accuracy to questions like *what is the domain/subdomain of `mail.google.com` and `a.b.ide.kyoto.jp`?*
 
@@ -44,24 +44,24 @@ tld.getDomain('mail.google.co.uk');
 
 ## Browser
 
+A browser version is made available thanks to [Browserify CDN](http://wzrd.in/).
+
 ```html
-<script src="bower_components/tld/dist/tld.min.js">
+<script src="http://wzrd.in/standalone/tldjs">
 <script>
-tld.getDomain('mail.google.co.uk');
+tldjs.getDomain('mail.google.co.uk');
 // -> 'google.co.uk'
 </script>
 ```
 
-## Browser with AMD / Require.js
+You can build your own by using [browserify](http://browserify.org/):
 
-```html
-<script>
-require(['tld'], function(tld){
-  tld.getDomain('mail.google.co.uk');
-  // -> 'google.co.uk'
-});
-</script>
+```bash
+npm install --save tldjs
+browserify -s tld -r node_nodules/tldjs/index.js -o tld.js
 ```
+
+An [UMD module](https://github.com/umdjs/umd) will be created as of `tld.js`.
 
 # API
 
@@ -134,7 +134,7 @@ you do manage your own list, you can update it by yourself, painlessly.
 How? By typing this in your console
 
 ```bash
-npm run-script build
+npm run build
 ```
 
 A fresh copy will be located in `src/rules.json`.

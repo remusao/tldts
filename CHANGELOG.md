@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.0
+
+* Browserify CDN is now favoured over shipping static files in the Github repository
+* the legacy rules file format has been removed
+
 ## 1.3.1
 
 * fixed bad tld escaping for `tld.getSubdomain` ([#33](https://github.com/oncletom/tld.js/issue/33))
