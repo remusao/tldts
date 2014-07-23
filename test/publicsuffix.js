@@ -3,7 +3,7 @@
 /* global suite, test, setup */
 
 var tld = require('../index.js');
-var expect = require('chai').expect;
+var expect = require('expect.js');
 var checkPublicSuffix;
 
 describe('PublicSuffix tests', function(){
