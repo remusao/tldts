@@ -4,7 +4,6 @@
 
 var pathJoin = require('path').join;
 
-var defaultConfig = require(pathJoin(__dirname, 'defaults.json'));
-var updater = require(pathJoin(__dirname, '..', 'lib', 'updater', 'rules.js'))(defaultConfig);
+var updater = require(pathJoin(__dirname, '..', 'lib', 'updater', 'rules.js'));
 
-updater.run();
+updater.run(process.env.npm_package_tldjs_providers_publicsuffix);

@@ -1,6 +1,0 @@
-{
-  "providers": {
-    "mozilla": "https://publicsuffix.org/list/effective_tld_names.dat"
-  },
-  "default_provider": "mozilla"
-}
