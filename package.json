@@ -43,7 +43,11 @@
       "android/4.2"
     ]
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash.isarray": "^2.4.1",
+    "lodash.map": "^2.4.1",
+    "lodash.some": "^2.4.1"
+  },
   "devDependencies": {
     "async": "^0.9.0",
     "expect.js": "^0.3.1",
