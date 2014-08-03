@@ -1,7 +1,7 @@
 {
   "name": "tld",
   "main": "index.js",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "homepage": "https://github.com/oncletom/tld.js",
   "authors": [
     "Thomas Parisot (https://oncletom.io)"
