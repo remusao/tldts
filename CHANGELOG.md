@@ -1,9 +1,18 @@
 # Changelog
 
+## 1.4.2
+
+* Reverted back the lodash change, as it is doubling the browser build file size
+
+## 1.4.1
+
+* IE8 functions shims replaced by lodash ones
+
 ## 1.4.0
 
 * Browserify CDN is now favoured over shipping static files in the Github repository
 * the legacy rules file format has been removed
+* Added IE8 compatibility ([#43](https://github.com/oncletom/tld.js/pull/43))
 
 ## 1.3.1
 
