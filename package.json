@@ -20,6 +20,7 @@
     "test": "npm run lint && npm run test-node && npm run test-browser",
     "lint": "jshint --config .jshintrc lib/**/*.js",
     "test-node": "mocha --reporter dot",
+    "coverage": "mocha --reporter html-cov -r blanket > coverage.html",
     "test-watch": "mocha --reporter dot --watch",
     "test-browser": "testling",
     "build": "node ./bin/update.js",
@@ -28,6 +29,11 @@
   "tldjs": {
     "providers": {
       "publicsuffix": "https://publicsuffix.org/list/effective_tld_names.dat"
+    }
+  },
+  "config": {
+    "blanket": {
+      "pattern": "tld.js/lib/"
     }
   },
   "testling": {
@@ -46,11 +52,12 @@
   "dependencies": {},
   "devDependencies": {
     "async": "~0.9.0",
+    "blanket": "~1.1.6",
     "expect.js": "~0.3.1",
     "jshint": "~2.5.1",
-    "mocha": "~1.19.0",
+    "mocha": "~1.21.3",
     "request": "~2.36.0",
-    "testling": "~1.6.1"
+    "testling": "~1.7.0"
   },
   "keywords": [
     "tld",
