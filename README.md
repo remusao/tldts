@@ -65,20 +65,6 @@ An [UMD module](https://github.com/umdjs/umd) will be created as of `tld.js`.
 
 # API
 
-## getDomain()
-
-Returns the fully qualified domain from a host string.
-
-```javascript
-tld.getDomain('google.com'); // returns `google.com`
-tld.getDomain('fr.google.com'); // returns `google.com`
-tld.getDomain('fr.google.google'); // returns `google.google`
-tld.getDomain('foo.google.co.uk'); // returns `google.co.uk`
-tld.getDomain('t.co'); // returns `t.co`
-tld.getDomain('fr.t.co'); // returns `t.co`
-tld.getDomain('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `example.co.uk`
-```
-
 ## tldExists()
 
 Checks if the TLD is valid for a given host.
@@ -94,6 +80,20 @@ tld.tldExists('amazon.co.uk'); // returns `true` (still because `uk` is a valid 
 tld.tldExists('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `true`
 ```
 
+## getDomain()
+
+Returns the fully qualified domain from a host string.
+
+```javascript
+tld.getDomain('google.com'); // returns `google.com`
+tld.getDomain('fr.google.com'); // returns `google.com`
+tld.getDomain('fr.google.google'); // returns `google.google`
+tld.getDomain('foo.google.co.uk'); // returns `google.co.uk`
+tld.getDomain('t.co'); // returns `t.co`
+tld.getDomain('fr.t.co'); // returns `t.co`
+tld.getDomain('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `example.co.uk`
+```
+
 ## getSubdomain()
 
 Returns the complete subdomain for a given host.
@@ -107,6 +107,17 @@ tld.getSubdomain('moar.foo.google.co.uk'); // returns `moar.foo`
 tld.getSubdomain('t.co'); // returns ``
 tld.getSubdomain('fr.t.co'); // returns `fr`
 tld.getSubdomain('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns ``
+```
+
+## getPublicSuffix()
+
+Returns the public suffix for a given host.
+
+```javascript
+tld.getPublicSuffix('google.com'); // returns `com`
+tld.getPublicSuffix('fr.google.com'); // returns `com`
+tld.getPublicSuffix('google.co.uk'); // returns `co.uk`
+tld.getPublicSuffix('s3.amazonaws.com'); // returns `s3.amazonaws.com`
 ```
 
 ## isValid()
@@ -137,7 +148,7 @@ How? By typing this in your console
 npm run build
 ```
 
-A fresh copy will be located in `src/rules.json`.
+A fresh copy will be made available as `./rules.json`.
 
 Open an issue to request an update in all package systems (or do a PR with a bugfix version bump).
 
