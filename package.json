@@ -12,7 +12,7 @@
     "url": "https://github.com/oncletom/tld.js/issues"
   },
   "engines": {
-    "node": "0.8.x || 0.10.x"
+    "node": "0.10.x"
   },
   "main": "index.js",
   "license": "MIT",
