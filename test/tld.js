@@ -102,13 +102,21 @@ describe('tld.js', function () {
   });
 
   describe('#getPublicSuffix', function () {
+    it('should return co.uk if google.co.uk', function () {
+      expect(tld.getPublicSuffix('google.co.uk')).to.be('co.uk');
+    });
+
+    it('should return www.ck if www.www.ck', function () {
+      expect(tld.getPublicSuffix('www.www.ck')).to.be('www.ck');
+    });
+
     //@see https://github.com/oncletom/tld.js/issues/30
-    it('existing rule constraint', function () {
+    it('should return s3.amazonaws.com if s3.amazonaws.com', function () {
       expect(tld.getPublicSuffix('s3.amazonaws.com')).to.be('s3.amazonaws.com');
     });
 
-    it('existing rule constraint', function () {
-      expect(tld.getPublicSuffix('www.google.co.uk')).to.be('google.co.uk');
+    it('should return s3.amazonaws.com if www.s3.amazonaws.com', function () {
+      expect(tld.getPublicSuffix('s3.amazonaws.com')).to.be('s3.amazonaws.com');
     });
   });
 
