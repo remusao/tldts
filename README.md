@@ -58,7 +58,7 @@ You can build your own by using [browserify](http://browserify.org/):
 
 ```bash
 npm install --save tldjs
-browserify -s tld -r node_nodules/tldjs/index.js -o tld.js
+browserify -s tld -r node_modules/tldjs/index.js -o tld.js
 ```
 
 An [UMD module](https://github.com/umdjs/umd) will be created as of `tld.js`.
