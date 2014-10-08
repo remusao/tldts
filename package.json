@@ -19,9 +19,10 @@
   "scripts": {
     "test": "npm run lint && npm run test-node && npm run test-browser",
     "lint": "jshint --config .jshintrc lib/**/*.js",
-    "test-node": "mocha --reporter dot",
-    "coverage": "mocha --reporter html-cov -r blanket > coverage.html",
-    "test-watch": "mocha --reporter dot --watch",
+    "test-node": "mocha -R dot",
+    "test-coverage": "mocha -R travis-cov -r blanket",
+    "coverage": "mocha -R html-cov -r blanket > coverage.html",
+    "test-watch": "mocha -R dot --watch",
     "test-browser": "testling",
     "build": "node ./bin/update.js",
     "prepublish": "npm run build"
@@ -34,6 +35,9 @@
   "config": {
     "blanket": {
       "pattern": "tld.js/lib/"
+    },
+    "travis-cov": {
+      "threshold": 97
     }
   },
   "testling": {
@@ -51,13 +55,14 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "async": "~0.9.0",
-    "blanket": "~1.1.6",
-    "expect.js": "~0.3.1",
-    "jshint": "~2.5.1",
-    "mocha": "~1.21.3",
-    "request": "~2.36.0",
-    "testling": "~1.7.0"
+    "async": "^0.9.0",
+    "blanket": "^1.1.5",
+    "expect.js": "^0.3.1",
+    "jshint": "^2.5.1",
+    "mocha": "^1.21.3",
+    "request": "^2.36.0",
+    "testling": "^1.7.0",
+    "travis-cov": "^0.2.5"
   },
   "keywords": [
     "tld",
