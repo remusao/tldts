@@ -122,6 +122,14 @@ describe('tld.js', function () {
     it('should return s3.amazonaws.com if www.s3.amazonaws.com', function () {
       expect(tld.getPublicSuffix('s3.amazonaws.com')).to.be('s3.amazonaws.com');
     });
+
+    it('should directly return the suffix if it matches a rule key', function(){
+      expect(tld.getPublicSuffix('youtube')).to.be('youtube');
+    });
+
+    it('should return null if the publicsuffix does not exist', function(){
+      expect(tld.getPublicSuffix('www.freedom.nsa')).to.be(null);
+    });
   });
 
   describe('cleanHostValue', function(){
@@ -179,6 +187,10 @@ describe('tld.js', function () {
   });
 
   describe('getSubdomain method', function(){
+    it('should return null if the domain cannot be found', function(){
+      expect(tld.getSubdomain('localhost')).to.equal(null);
+    });
+
     it('should return the relevant subdomain of a hostname', function(){
       expect(tld.getSubdomain('google.com')).to.equal('');
       expect(tld.getSubdomain('fr.google.com')).to.equal('fr');
