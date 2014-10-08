@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.5.1
+
+ * Increased code coverage to 97% ([#50](https://github.com/oncletom/tld.js/pull/50))
+ * An URL in the path portion would return an invalid host value ([#48](https://github.com/oncletom/tld.js/issues/48))
+
+## 1.5.0
+
+ * Added `getPublicSuffix` method ([#30](https://github.com/oncletom/tld.js/pull/30))
+ * Removed Node 0.8 compatiblity
+
 ## 1.4.2
 
 * Reverted back the lodash change, as it is doubling the browser build file size
