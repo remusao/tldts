@@ -77,6 +77,10 @@ describe('tld.js', function () {
       expect(tld.getDomain('s3.amazonaws.com')).to.be(null);
       expect(tld.getDomain('blogspot.co.uk')).to.be(null);
     });
+
+    it('should return nytimes.com even in a whole valid', function(){
+      expect(tld.getDomain('http://www.nytimes.com/')).to.be('nytimes.com');
+    });
   });
 
   describe('tldExists method', function () {
@@ -137,20 +141,40 @@ describe('tld.js', function () {
       expect(tldLib.cleanHostValue('user:password@example.co.uk/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
+    it('should return the hostname of a scheme-less + passwordless URL', function(){
+      expect(tldLib.cleanHostValue('user@example.co.uk/some/path?and&query#hash')).to.equal('example.co.uk');
+    });
+
     it('should return the hostname of a scheme-less + authentication + port URL', function(){
       expect(tldLib.cleanHostValue('user:password@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
-    it('should return the hostname of a same-scheme URL', function(){
+    it('should return the hostname of a scheme-less + passwordless + port URL', function(){
+      expect(tldLib.cleanHostValue('user@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
+    });
+
+    it('should return the hostname of a user-password same-scheme URL', function(){
       expect(tldLib.cleanHostValue('//user:password@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
-    it('should return the hostname of a complex scheme URL', function(){
+    it('should return the hostname of a passwordless same-scheme URL', function(){
+      expect(tldLib.cleanHostValue('//user@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
+    });
+
+    it('should return the hostname of a complex user-password scheme URL', function(){
       expect(tldLib.cleanHostValue('git+ssh://user:password@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
+    });
+
+    it('should return the hostname of a complex passwordless scheme URL', function(){
+      expect(tldLib.cleanHostValue('git+ssh://user@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the initial value if it is not a valid hostname', function(){
       expect(tldLib.cleanHostValue(42)).to.equal('42');
+    });
+
+    it('should return www.nytimes.com even with an URL as a parameter', function(){
+      expect(tldLib.cleanHostValue('http://www.nytimes.com/glogin?URI=http://www.notnytimes.com/2010/03/26/us/politics/26court.html&OQ=_rQ3D1Q26&OP=45263736Q2FKgi!KQ7Dr!K@@@Ko!fQ24KJg(Q3FQ5Cgg!Q60KQ60W.WKWQ22KQ60IKyQ3FKigQ24Q26!Q26(Q3FKQ60I(gyQ5C!Q2Ao!fQ24')).to.equal('www.nytimes.com');
     });
   });
 
