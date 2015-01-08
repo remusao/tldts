@@ -127,6 +127,11 @@ describe('tld.js', function () {
       expect(tld.getPublicSuffix('youtube')).to.be('youtube');
     });
 
+    it('should return the suffix if a rule exists that has no exceptions', function(){
+      expect(tld.rules.eu).to.be('');
+      expect(tld.getPublicSuffix('microsoft.eu')).to.be('eu');
+    });
+
     it('should return null if the publicsuffix does not exist', function(){
       expect(tld.getPublicSuffix('www.freedom.nsa')).to.be(null);
     });
