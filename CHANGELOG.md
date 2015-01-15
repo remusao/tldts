@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.2
+
+ * Make rules with no exceptions valid ([#52](https://github.com/oncletom/tld.js/pull/52))
+
 ## 1.5.1
 
  * Increased code coverage to 97% ([#50](https://github.com/oncletom/tld.js/pull/50))
