@@ -72,6 +72,12 @@ describe('tld.js', function () {
       }).not.to.throwError();
     });
 
+    //@see https://github.com/oncletom/tld.js/issues/53
+    it('should correctly extract domain from paths including "@" in the path', function () {
+      var domain = tld.getDomain('http://cdn.jsdelivr.net/g/jquery@1.8.2,jquery.waypoints@2.0.2,qtip2@2.2.1,typeahead.js@0.9.3,sisyphus@0.1,jquery.slick@1.3.15,fastclick@1.0.3');
+      expect(domain).to.equal('jsdelivr.net');
+    });
+
     it('should provide consistent results', function(){
       expect(tld.getDomain('www.bl.uk')).to.equal('bl.uk');
       expect(tld.getDomain('www.majestic12.co.uk')).to.equal('majestic12.co.uk');
@@ -244,6 +250,12 @@ describe('tld.js', function () {
       }).not.to.throwError();
     });
 
+    //@see https://github.com/oncletom/tld.js/issues/53
+    it('should correctly extract domain from paths including "@" in the path', function () {
+      var domain = tld.getDomain('http://cdn.jsdelivr.net/g/jquery@1.8.2,jquery.waypoints@2.0.2,qtip2@2.2.1,typeahead.js@0.9.3,sisyphus@0.1,jquery.slick@1.3.15,fastclick@1.0.3');
+      expect(domain).to.equal('cdn');
+    });
+    
     //@see https://github.com/oncletom/tld.js/issues/35
     it('should provide consistent results', function(){
       expect(tld.getSubdomain('www.bl.uk')).to.equal('www');
