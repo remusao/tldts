@@ -63,7 +63,11 @@ describe('tld.js', function () {
 
     //@see https://github.com/oncletom/tld.js/issues/33
     it('should not break on specific RegExp characters', function () {
-      expect(tld.getDomain('www.weir)domain.com')).to.equal('weir)domain.com');
+      expect(function () {
+        // this is not a valid url, so behavior is undefined
+        // but it shouldn't throw an error
+        tld.getDomain('www.weir)domain.com');
+      }).not.to.throwError();
     });
 
     it('should provide consistent results', function(){
@@ -229,7 +233,9 @@ describe('tld.js', function () {
 
     //@see https://github.com/oncletom/tld.js/issues/33
     it('should not break on specific RegExp characters', function () {
-      expect(tld.getSubdomain('www.weir)domain.com')).to.equal('www');
+      expect(function () {
+        tld.getSubdomain('www.weir)domain.com');
+      }).to.not.throwError();
     });
 
     //@see https://github.com/oncletom/tld.js/issues/35
