@@ -61,12 +61,14 @@ describe('tld.js', function () {
       expect(tld.getDomain('fr.t.co')).to.equal('t.co');
     });
 
-    //@see https://github.com/oncletom/tld.js/issues/33
     it('should not break on specific RegExp characters', function () {
       expect(function () {
-        // this is not a valid url, so behavior is undefined
-        // but it shouldn't throw an error
+        //@see https://github.com/oncletom/tld.js/issues/33
         tld.getDomain('www.weir)domain.com');
+      }).not.to.throwError();
+      expect(function () {
+        //@see https://github.com/oncletom/tld.js/issues/53
+        tld.getDomain("http://('4drsteve.com', [], ['54.213.246.177'])/xmlrpc.php");
       }).not.to.throwError();
     });
 
@@ -231,11 +233,15 @@ describe('tld.js', function () {
       expect(tld.getSubdomain('emergency.blogspot.co.uk')).to.equal('emergency');
     });
 
-    //@see https://github.com/oncletom/tld.js/issues/33
     it('should not break on specific RegExp characters', function () {
       expect(function () {
+        //@see https://github.com/oncletom/tld.js/issues/33
         tld.getSubdomain('www.weir)domain.com');
-      }).to.not.throwError();
+      }).not.to.throwError();
+      expect(function () {
+        //@see https://github.com/oncletom/tld.js/issues/53
+        tld.getSubdomain("http://('4drsteve.com', [], ['54.213.246.177'])/xmlrpc.php");
+      }).not.to.throwError();
     });
 
     //@see https://github.com/oncletom/tld.js/issues/35
