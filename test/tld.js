@@ -61,9 +61,21 @@ describe('tld.js', function () {
       expect(tld.getDomain('fr.t.co')).to.equal('t.co');
     });
 
-    //@see https://github.com/oncletom/tld.js/issues/33
-    it('should not break on specific RegExp characters', function () {
-      expect(tld.getDomain('www.weir)domain.com')).to.equal('weir)domain.com');
+    it('should not break on specific RegExp characters', function (){
+      expect(function (){
+        //@see https://github.com/oncletom/tld.js/issues/33
+        tld.getDomain('www.weir)domain.com');
+      }).not.to.throwError();
+      expect(function (){
+        //@see https://github.com/oncletom/tld.js/issues/53
+        tld.getDomain("http://('4drsteve.com', [], ['54.213.246.177'])/xmlrpc.php");
+      }).not.to.throwError();
+    });
+
+    //@see https://github.com/oncletom/tld.js/issues/53
+    it('should correctly extract domain from paths including "@" in the path', function (){
+      var domain = tld.getDomain('http://cdn.jsdelivr.net/g/jquery@1.8.2,jquery.waypoints@2.0.2,qtip2@2.2.1,typeahead.js@0.9.3,sisyphus@0.1,jquery.slick@1.3.15,fastclick@1.0.3');
+      expect(domain).to.equal('jsdelivr.net');
     });
 
     it('should provide consistent results', function(){
@@ -189,6 +201,10 @@ describe('tld.js', function () {
     it('should return www.nytimes.com even with an URL as a parameter', function(){
       expect(tldLib.cleanHostValue('http://www.nytimes.com/glogin?URI=http://www.notnytimes.com/2010/03/26/us/politics/26court.html&OQ=_rQ3D1Q26&OP=45263736Q2FKgi!KQ7Dr!K@@@Ko!fQ24KJg(Q3FQ5Cgg!Q60KQ60W.WKWQ22KQ60IKyQ3FKigQ24Q26!Q26(Q3FKQ60I(gyQ5C!Q2Ao!fQ24')).to.equal('www.nytimes.com');
     });
+    
+    it('should return punycode for international hostnames', function() {
+      expect(tldLib.cleanHostValue('台灣')).to.equal('xn--kpry57d');
+    });
   });
 
   describe('getSubdomain method', function(){
@@ -227,11 +243,23 @@ describe('tld.js', function () {
       expect(tld.getSubdomain('emergency.blogspot.co.uk')).to.equal('emergency');
     });
 
-    //@see https://github.com/oncletom/tld.js/issues/33
-    it('should not break on specific RegExp characters', function () {
-      expect(tld.getSubdomain('www.weir)domain.com')).to.equal('www');
+    it('should not break on specific RegExp characters', function (){
+      expect(function (){
+        //@see https://github.com/oncletom/tld.js/issues/33
+        tld.getSubdomain('www.weir)domain.com');
+      }).not.to.throwError();
+      expect(function (){
+        //@see https://github.com/oncletom/tld.js/issues/53
+        tld.getSubdomain("http://('4drsteve.com', [], ['54.213.246.177'])/xmlrpc.php");
+      }).not.to.throwError();
     });
 
+    //@see https://github.com/oncletom/tld.js/issues/53
+    it('should correctly extract domain from paths including "@" in the path', function (){
+      var domain = tld.getSubdomain('http://cdn.jsdelivr.net/g/jquery@1.8.2,jquery.waypoints@2.0.2,qtip2@2.2.1,typeahead.js@0.9.3,sisyphus@0.1,jquery.slick@1.3.15,fastclick@1.0.3');
+      expect(domain).to.equal('cdn');
+    });
+    
     //@see https://github.com/oncletom/tld.js/issues/35
     it('should provide consistent results', function(){
       expect(tld.getSubdomain('www.bl.uk')).to.equal('www');
