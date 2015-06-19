@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.3
+
+ * Punycode decoding of hostname strings ([#55](https://github.com/oncletom/tld.js/pull/55))
+ * Domain extraction bug fixed ([#53](https://github.com/oncletom/tld.js/issues/53))
+ * Dealing with invalid host name fixed ([#54](https://github.com/oncletom/tld.js/issues/54))
+
 ## 1.5.2
 
  * Make rules with no exceptions valid ([#52](https://github.com/oncletom/tld.js/pull/52))
