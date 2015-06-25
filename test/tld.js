@@ -70,6 +70,10 @@ describe('tld.js', function () {
         //@see https://github.com/oncletom/tld.js/issues/53
         tld.getDomain("http://('4drsteve.com', [], ['54.213.246.177'])/xmlrpc.php");
       }).not.to.throwError();
+      expect(function (){
+        //@see https://github.com/oncletom/tld.js/issues/53
+        tld.getDomain("('4drsteve.com', [], ['54.213.246.177'])");
+      }).not.to.throwError();
     });
 
     //@see https://github.com/oncletom/tld.js/issues/53
@@ -251,6 +255,10 @@ describe('tld.js', function () {
       expect(function (){
         //@see https://github.com/oncletom/tld.js/issues/53
         tld.getSubdomain("http://('4drsteve.com', [], ['54.213.246.177'])/xmlrpc.php");
+      }).not.to.throwError();
+      expect(function (){
+        //@see https://github.com/oncletom/tld.js/issues/53
+        tld.getSubdomain("('4drsteve.com', [], ['54.213.246.177'])");
       }).not.to.throwError();
     });
 
