@@ -12,7 +12,8 @@
     "url": "https://github.com/oncletom/tld.js/issues"
   },
   "engines": {
-    "node": ">= 0.10"
+    "node": ">= 0.10",
+    "npm": ">= 2.13.0"
   },
   "main": "index.js",
   "license": "MIT",
@@ -25,7 +26,8 @@
     "test-watch": "mocha -R dot --watch",
     "test-browser": "testling",
     "build": "node ./bin/update.js",
-    "prepublish": "npm run build"
+    "generate-changelog": "github-changes -o oncletom -r 'tld.js' -n ${npm_package_version} -a --only-pulls --use-commit-body",
+    "version": "npm run build && npm test && npm run generate-changelog && git add CHANGELOG.md rules.json"
   },
   "tldjs": {
     "providers": {
@@ -58,6 +60,7 @@
     "async": "^0.9.0",
     "blanket": "^1.1.5",
     "expect.js": "^0.3.1",
+    "github-changes": "^1.0.0",
     "jshint": "^2.5.1",
     "mocha": "^1.21.3",
     "request": "^2.36.0",
