@@ -66,10 +66,10 @@ checkPublicSuffix('test.ac', 'test.ac');
   });
 
   it('should return the TLD with 1 (wildcard) rule', function(){
-checkPublicSuffix('il', null);
-checkPublicSuffix('c.il', null);
-checkPublicSuffix('b.c.il', 'b.c.il');
-checkPublicSuffix('a.b.c.il', 'b.c.il');
+checkPublicSuffix('mm', null);
+checkPublicSuffix('c.mm', null);
+checkPublicSuffix('b.c.mm', 'b.c.mm');
+checkPublicSuffix('a.b.c.mm', 'b.c.mm');
   });
 
   it('should handle complex TLD', function(){
