@@ -1,6 +1,9 @@
 ## Change Log
 
-### 1.5.4 (2015/09/17 10:59 +00:00)
+### 1.5.5 (2015/10/13 21:04 +00:00)
+- [#65](https://github.com/oncletom/tld.js/pull/65) Make sure we do not commit bower_components folder (@oncletom)
+
+### v1.5.4 (2015/09/17 10:59 +00:00)
 - [#60](https://github.com/oncletom/tld.js/pull/60) Update cleanHostValue so it never returns invalid hostname characters (@myndzi)
 - [#62](https://github.com/oncletom/tld.js/pull/62) Adding tests for `getPublicSuffix` (@oncletom)
 - [#61](https://github.com/oncletom/tld.js/pull/61) Build against all major nodejs and iojs versions (@jdesboeufs)
@@ -17,7 +20,7 @@
 - [#44](https://github.com/oncletom/tld.js/pull/44) Fix typo in README. (@ghostwords)
 
 ### 1.3.3 (2014/05/21 14:39 +00:00)
-- [#41](https://github.com/oncletom/tld.js/pull/41) Remove url fragments from host name (@oncletom, @jhnns)
+- [#41](https://github.com/oncletom/tld.js/pull/41) Remove url fragments from host name (@jhnns)
 
 ### 1.3.2 (2014/05/07 08:35 +00:00)
 - [#39](https://github.com/oncletom/tld.js/pull/39) Use publicsuffix.org instead of hg.mozilla.org (@Krinkle)
