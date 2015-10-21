@@ -17,6 +17,7 @@ describe('tld.js', function () {
   describe('isValid method', function () {
     it('should detect valid hostname', function () {
       expect(tld.isValid('')).to.be(false);
+      expect(tld.isValid('localhost')).to.be(false);
       expect(tld.isValid('google.com')).to.be(true);
       expect(tld.isValid('miam.google.com')).to.be(true);
       expect(tld.isValid('miam.miam.google.com')).to.be(true);
@@ -33,6 +34,7 @@ describe('tld.js', function () {
     });
 
     it('should be falsy on invalid domain syntax', function () {
+      expect(tld.isValid('.localhost')).to.be(false);
       expect(tld.isValid('.google.com')).to.be(false);
       expect(tld.isValid('.com')).to.be(false);
     });
@@ -205,7 +207,7 @@ describe('tld.js', function () {
     it('should return www.nytimes.com even with an URL as a parameter', function(){
       expect(tldLib.cleanHostValue('http://www.nytimes.com/glogin?URI=http://www.notnytimes.com/2010/03/26/us/politics/26court.html&OQ=_rQ3D1Q26&OP=45263736Q2FKgi!KQ7Dr!K@@@Ko!fQ24KJg(Q3FQ5Cgg!Q60KQ60W.WKWQ22KQ60IKyQ3FKigQ24Q26!Q26(Q3FKQ60I(gyQ5C!Q2Ao!fQ24')).to.equal('www.nytimes.com');
     });
-    
+
     it('should return punycode for international hostnames', function() {
       expect(tldLib.cleanHostValue('台灣')).to.equal('xn--kpry57d');
     });
@@ -213,10 +215,11 @@ describe('tld.js', function () {
 
   describe('getSubdomain method', function(){
     it('should return null if the domain cannot be found', function(){
-      expect(tld.getSubdomain('localhost')).to.equal(null);
+      expect(tld.getSubdomain('not-a-validHost')).to.equal(null);
     });
 
     it('should return the relevant subdomain of a hostname', function(){
+      expect(tld.getSubdomain('localhost')).to.equal(null);
       expect(tld.getSubdomain('google.com')).to.equal('');
       expect(tld.getSubdomain('fr.google.com')).to.equal('fr');
       expect(tld.getSubdomain('random.fr.google.com')).to.equal('random.fr');
@@ -267,11 +270,33 @@ describe('tld.js', function () {
       var domain = tld.getSubdomain('http://cdn.jsdelivr.net/g/jquery@1.8.2,jquery.waypoints@2.0.2,qtip2@2.2.1,typeahead.js@0.9.3,sisyphus@0.1,jquery.slick@1.3.15,fastclick@1.0.3');
       expect(domain).to.equal('cdn');
     });
-    
+
     //@see https://github.com/oncletom/tld.js/issues/35
     it('should provide consistent results', function(){
       expect(tld.getSubdomain('www.bl.uk')).to.equal('www');
       expect(tld.getSubdomain('www.majestic12.co.uk')).to.equal('www');
+    });
+  });
+
+  describe('validHosts', function(){
+    before(function(){
+      tld.validHosts = ['localhost'];
+    });
+
+    it('should now be a valid host', function(){
+      expect(tld.isValid('localhost')).to.be(true);
+    });
+
+    it('should return the known valid host', function () {
+      expect(tld.getDomain('localhost')).to.equal('localhost');
+      expect(tld.getDomain('subdomain.localhost')).to.equal('localhost');
+      expect(tld.getDomain('subdomain.notlocalhost')).to.equal('subdomain.notlocalhost');
+      expect(tld.getDomain('subdomain.not-localhost')).to.equal('subdomain.not-localhost');
+    });
+
+    //@see https://github.com/oncletom/tld.js/issues/66
+    it('should return the subdomain of a validHost', function(){
+      expect(tld.getSubdomain('vhost.localhost')).to.equal('vhost');
     });
   });
 });
