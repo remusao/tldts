@@ -168,6 +168,15 @@ How? By typing this in your console
 npm run build
 ```
 
+Alternatively, you can launch the updater through its API:
+
+```js
+var updater = require('tldjs/lib/updater');
+updater.run(function done(){
+  // do something when update is performed
+});
+```
+
 A fresh copy will be made available as `./rules.json`.
 
 Open an issue to request an update in all package systems (or do a PR with a bugfix version bump).

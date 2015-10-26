@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 
-"use strict";
+'use strict';
 
 var pathJoin = require('path').join;
+var updater = require(pathJoin(__dirname, '..', 'lib', 'updater'));
 
-var updater = require(pathJoin(__dirname, '..', 'lib', 'updater', 'rules.js'));
+console.log('Requesting tld data...');
 
-updater.run(process.env.npm_package_tldjs_providers_publicsuffix);
+updater.run(function(){
+  console.log('Update complete.');
+});
