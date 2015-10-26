@@ -18,16 +18,17 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "npm run lint && npm run test-node && npm run test-browser",
     "lint": "jshint --config .jshintrc lib/**/*.js",
-    "test-node": "mocha -R dot -r env-test",
+    "test": "mocha -R dot -r env-test",
+    "posttest": "npm run lint && npm run test-browser",
     "test-coverage": "mocha -R travis-cov -r blanket -r env-test",
     "coverage": "mocha -R html-cov -r blanket -r env-test > coverage.html",
     "test-watch": "mocha -R dot -r env-test --watch",
     "test-browser": "testling",
     "build": "node ./bin/update.js",
     "generate-changelog": "github-changes -o oncletom -r 'tld.js' -n ${npm_package_version} -a --only-pulls --use-commit-body",
-    "version": "npm run build && npm test && npm run generate-changelog && git add CHANGELOG.md rules.json"
+    "version": "npm run build && npm test && npm run generate-changelog && git add CHANGELOG.md rules.json",
+    "prepublish": "npm test"
   },
   "tldjs": {
     "providers": {
