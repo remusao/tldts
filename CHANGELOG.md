@@ -1,6 +1,10 @@
 ## Change Log
 
-### 1.5.5 (2015/10/13 21:04 +00:00)
+### 1.6.0 (2015/10/26 18:31 +00:00)
+- [#67](https://github.com/oncletom/tld.js/pull/67) Expose the updater as a lib function (@oncletom)
+- [#68](https://github.com/oncletom/tld.js/pull/68) Add tld.validHosts (@oncletom)
+
+### v1.5.5 (2015/10/13 21:04 +00:00)
 - [#65](https://github.com/oncletom/tld.js/pull/65) Make sure we do not commit bower_components folder (@oncletom)
 
 ### v1.5.4 (2015/09/17 10:59 +00:00)
