@@ -135,6 +135,26 @@ tld.isValid('https://user:password@example.co.uk:8080/some/path?and&query#hash')
 
 # Troubleshouting
 
+## Retrieving subdomain of `localhost` and custom hostnames
+
+`tld.js` methods `getDomain` and `getSubdomain` are designed to **work only with *valid* TLDs**.
+This way, you can trust what a domain is.
+
+Unfortunately, `localhost` is a valid hostname but it is not a TLD.
+`tld.js` has a concept of `validHosts` you declare
+
+```js
+var tld = require('tldjs');
+
+tld.getDomain('localhost');           // returns null
+tld.getSubdomain('vhost.localhost');  // returns null
+
+tld.validHosts = ['localhost'];
+
+tld.getDomain('localhost');           // returns 'localhost'
+tld.getSubdomain('vhost.localhost');  // returns 'vhost'
+```
+
 ## Updating the TLDs List
 
 Many libraries offer a list of TLDs. But, are they up-to-date? And how to update them?
