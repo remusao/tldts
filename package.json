@@ -19,6 +19,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "jshint --config .jshintrc lib/**/*.js",
+    "pretest": "npm run build",
     "test": "mocha -R dot -r env-test",
     "posttest": "npm run lint && npm run test-browser",
     "test-coverage": "mocha -R travis-cov -r blanket -r env-test",
@@ -27,8 +28,7 @@
     "test-browser": "testling",
     "build": "node ./bin/update.js",
     "generate-changelog": "github-changes -o oncletom -r 'tld.js' -n ${npm_package_version} -a --only-pulls --use-commit-body",
-    "version": "npm run build && npm test && npm run generate-changelog && git add CHANGELOG.md rules.json",
-    "prepublish": "npm test"
+    "version": "npm test && npm run generate-changelog && git add CHANGELOG.md rules.json"
   },
   "tldjs": {
     "providers": {
