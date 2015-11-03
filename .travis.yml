@@ -7,6 +7,7 @@ node_js:
     - "iojs-2"
     - "iojs-3"
     - "v4"
+    - "v5"
 
 sudo: false
 
