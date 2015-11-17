@@ -1,6 +1,6 @@
 ## Change Log
 
-### 1.6.1 (2015/11/03 09:12 +00:00)
+### v1.6.1 (2015/11/03 09:12 +00:00)
 - [#70](https://github.com/oncletom/tld.js/pull/70) Update rules.json (@Kureev)
 
 ### v1.6.0 (2015/10/26 18:31 +00:00)
