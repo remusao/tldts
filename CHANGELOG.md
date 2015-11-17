@@ -1,5 +1,8 @@
 ## Change Log
 
+### v1.6.2 (2015/11/17 16:21 +00:00)
+- [#72](https://github.com/oncletom/tld.js/pull/72) Update rules to remove support for .an TLD (@oncletom)
+
 ### v1.6.1 (2015/11/03 09:12 +00:00)
 - [#70](https://github.com/oncletom/tld.js/pull/70) Update rules.json (@Kureev)
 
