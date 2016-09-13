@@ -1,21 +1,28 @@
-language: "node_js"
-
-node_js:
-    - "0.10"
-    - "0.12"
-    - "v4"
-    - "v5"
-    - "v6"
-
 sudo: false
+language: node_js
+node_js:
+- '0.10'
+- '0.12'
+- v4
+- v5
+- v6
 
 notifications:
   email:
     on_failure: change
 
-before_install:
-  - npm install -g npm
-
 script:
-  - xvfb-run -a npm test
-  - npm run test-coverage
+- xvfb-run -a npm test
+- npm run test-coverage
+
+deploy:
+  provider: npm
+  email: hi@oncletom.io
+  skip_cleanup: true
+  api_key:
+    secure: D+AvrtOi8eox2H+j6T1EmaRrFThTDRlfRDQjDdCs7D1WnPoSs0wMcnd0lVi0lEj68URkm/4fDmHVtLXt1V8BLyfHwt3bZUsF1pe77qUTZZkmfDI5TRxp/mni6TrpFTlYaqytyunPKm19FciWj/IE2epVhWmJ8kQx/oB/lSq9SFo=
+  on:
+    tags: true
+    node: v6
+    branch: master
+    repo: oncletom/tld.js
