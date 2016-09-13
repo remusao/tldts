@@ -12,8 +12,7 @@
     "url": "https://github.com/oncletom/tld.js/issues"
   },
   "engines": {
-    "node": ">= 0.10",
-    "npm": ">= 2.13.0"
+    "node": ">= 0.10"
   },
   "main": "index.js",
   "license": "MIT",
@@ -23,12 +22,12 @@
     "test": "mocha -R dot -r env-test",
     "posttest": "npm run lint && npm run test-browser",
     "test-coverage": "mocha -R travis-cov -r blanket -r env-test",
-    "coverage": "mocha -R html-cov -r blanket -r env-test > coverage.html",
+    "coverage": "npm run test-coverage -- > coverage.html",
     "test-watch": "mocha -R dot -r env-test --watch",
     "test-browser": "testling",
     "build": "node ./bin/update.js",
-    "generate-changelog": "github-changes -o oncletom -r 'tld.js' -n ${npm_package_version} -a --only-pulls --use-commit-body",
-    "version": "npm test && npm run generate-changelog && git add CHANGELOG.md rules.json"
+    "generate-changelog": "github-changes -o oncletom -r 'tld.js' -n ${npm_package_version} --only-pulls --use-commit-body",
+    "version": "npm run generate-changelog && git add CHANGELOG.md rules.json"
   },
   "tldjs": {
     "providers": {
@@ -59,7 +58,7 @@
   "dependencies": {},
   "devDependencies": {
     "async": "^1.4.2",
-    "blanket": "^1.1.5",
+    "blanket": "1.1.9",
     "env-test": "^1.0.0",
     "expect.js": "^0.3.1",
     "github-changes": "^1.0.0",

@@ -3,17 +3,11 @@ language: "node_js"
 node_js:
     - "0.10"
     - "0.12"
-    - "iojs-1"
-    - "iojs-2"
-    - "iojs-3"
     - "v4"
     - "v5"
+    - "v6"
 
 sudo: false
-
-cache:
-  directories:
-    - node_modules
 
 notifications:
   email:
@@ -22,11 +16,6 @@ notifications:
 before_install:
   - npm install -g npm
 
-before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3
-
 script:
-  - npm test
+  - xvfb-run -a npm test
   - npm run test-coverage
