@@ -71,7 +71,7 @@ Checks if the TLD is valid for a given host.
 
 ```javascript
 tld.tldExists('google.com'); // returns `true`
-tld.tldExists('google.google'); // returns `false` (not an explicit registered TLD)
+tld.tldExists('google.local'); // returns `false` (not an explicit registered TLD)
 tld.tldExists('com'); // returns `true`
 tld.tldExists('uk'); // returns `true`
 tld.tldExists('co.uk'); // returns `true` (because `uk` is a valid TLD)
