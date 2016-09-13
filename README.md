@@ -159,27 +159,25 @@ tld.getSubdomain('vhost.localhost');  // returns 'vhost'
 
 Many libraries offer a list of TLDs. But, are they up-to-date? And how to update them?
 
+`tldjs` bundles a list of known TLDs but this list can become outdated.
+This is especially true if the package have not been updated on npm for a while.
+
 Hopefully for you, even if I'm flying over the world, if I've lost my Internet connection or even if
 you do manage your own list, you can update it by yourself, painlessly.
 
-How? By typing this in your console
+How? By passing the `--tldjs-update-rules` to your `npm install` command:
 
 ```bash
-npm run build
+# anytime you reinstall your project
+npm install --tldjs-update-rules
+
+# or if you add the dependency to your project
+npm install --save tldjs --tldjs-update-rules
 ```
 
-Alternatively, you can launch the updater through its API:
-
-```js
-var updater = require('tldjs/lib/updater');
-updater.run(function done(){
-  // do something when update is performed
-});
-```
-
-A fresh copy will be made available as `./rules.json`.
-
-Open an issue to request an update in all package systems (or do a PR with a bugfix version bump).
+Open an issue to request an update of the bundled rules.
+Or else, fork the project and open a PR after having run `npm version patch`.
+Once merged, the `tldjs` package will be published on npmjs.com.
 
 
 # Contributing

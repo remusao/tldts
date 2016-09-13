@@ -5,8 +5,12 @@
 var pathJoin = require('path').join;
 var updater = require(pathJoin(__dirname, '..', 'lib', 'updater'));
 
-console.log('Requesting tld data...');
+module.exports = updater;
 
-updater.run(function(){
-  console.log('Update complete.');
-});
+if (process.mainModule === module) {
+  console.log('Requesting tld data...');
+
+  updater.run(function(){
+    console.log('Update complete.');
+  });
+}

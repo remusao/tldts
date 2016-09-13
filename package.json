@@ -18,14 +18,14 @@
   "license": "MIT",
   "scripts": {
     "lint": "jshint --config .jshintrc lib/**/*.js",
-    "pretest": "npm run build",
     "test": "mocha -R dot -r env-test",
     "posttest": "npm run lint && npm run test-browser",
     "test-coverage": "mocha -R travis-cov -r blanket -r env-test",
     "coverage": "npm run test-coverage -- > coverage.html",
     "test-watch": "mocha -R dot -r env-test --watch",
     "test-browser": "testling",
-    "build": "node ./bin/update.js",
+    "update": "node ./bin/update.js",
+    "postinstall": "node ./bin/postinstall.js",
     "generate-changelog": "github-changes -o oncletom -r 'tld.js' -n ${npm_package_version} --only-pulls --use-commit-body",
     "version": "npm run generate-changelog && git add CHANGELOG.md rules.json"
   },
@@ -55,9 +55,10 @@
       "android/4.2"
     ]
   },
-  "dependencies": {},
+  "dependencies": {
+    "punycode": "^1.4.1"
+  },
   "devDependencies": {
-    "async": "^1.4.2",
     "blanket": "1.1.9",
     "env-test": "^1.0.0",
     "expect.js": "^0.3.1",
@@ -65,7 +66,6 @@
     "jshint": "^2.5.1",
     "mocha": "^2.3.3",
     "phantomjs": "^1.9.18",
-    "request": "^2.36.0",
     "testling": "^1.7.0",
     "travis-cov": "^0.2.5"
   },
