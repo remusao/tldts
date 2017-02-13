@@ -15,9 +15,7 @@ install:
 - rm rules.json
 - npm install --tldjs-update-rules
 
-script:
-- xvfb-run -a npm test
-- npm run test-coverage
+script: xvfb-run -a npm test
 
 deploy:
   provider: npm

@@ -18,10 +18,8 @@
   "license": "MIT",
   "scripts": {
     "lint": "jshint --config .jshintrc lib/**/*.js",
-    "test": "mocha -R dot -r env-test",
+    "test": "nyc mocha -R dot -r env-test",
     "posttest": "npm run lint && npm run test-browser",
-    "test-coverage": "mocha -R travis-cov -r blanket -r env-test",
-    "coverage": "npm run test-coverage -- > coverage.html",
     "test-watch": "mocha -R dot -r env-test --watch",
     "test-browser": "testling",
     "update": "node ./bin/update.js",
@@ -34,13 +32,12 @@
       "publicsuffix-org": "https://publicsuffix.org/list/effective_tld_names.dat"
     }
   },
-  "config": {
-    "blanket": {
-      "pattern": "tld.js/lib/"
-    },
-    "travis-cov": {
-      "threshold": 97
-    }
+  "nyc": {
+    "check-coverage": true,
+    "reporter": [
+      "text",
+      "html"
+    ]
   },
   "testling": {
     "files": "test/*.js",
@@ -59,15 +56,14 @@
     "punycode": "^1.4.1"
   },
   "devDependencies": {
-    "blanket": "1.1.9",
     "env-test": "^1.0.0",
     "expect.js": "^0.3.1",
     "github-changes": "^1.0.0",
     "jshint": "^2.5.1",
-    "mocha": "^2.3.3",
-    "phantomjs": "^1.9.18",
-    "testling": "^1.7.0",
-    "travis-cov": "^0.2.5"
+    "mocha": "^3.2.0",
+    "nyc": "^10.1.2",
+    "phantomjs-prebuilt": "^2.1.7",
+    "testling": "^1.7.0"
   },
   "keywords": [
     "tld",

@@ -146,7 +146,7 @@ describe('tld.js', function () {
     });
 
     it('should return the suffix if a rule exists that has no exceptions', function(){
-      expect(tld.rules.eu).to.be('mycd');
+      expect(tld.rules.eu).to.not.contain('!');
       expect(tld.getPublicSuffix('microsoft.eu')).to.be('eu');
     });
 
