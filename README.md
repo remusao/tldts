@@ -36,9 +36,9 @@ Thanks Mozilla!
 ## Node.js
 
 ```javascript
-var tld = require('tldjs');
+const { getDomain } = require('tldjs');
 
-tld.getDomain('mail.google.co.uk');
+getDomain('mail.google.co.uk');
 // -> 'google.co.uk'
 ```
 
@@ -65,19 +65,33 @@ An [UMD module](https://github.com/umdjs/umd) will be created as of `tld.js`.
 
 # API
 
+`tldjs` can be use either as a whole, or using *destructuring*.
+
+```js
+// ES2015 modules syntax
+import tldjs from 'tldjs';
+import { getDomain } from 'tldjs';
+
+// Node/CommonJS modules syntax
+const tldjs = require('tldjs');
+const { getDomain } = require('tldjs');
+```
+
 ## tldExists()
 
 Checks if the TLD is valid for a given host.
 
 ```javascript
-tld.tldExists('google.com'); // returns `true`
-tld.tldExists('google.local'); // returns `false` (not an explicit registered TLD)
-tld.tldExists('com'); // returns `true`
-tld.tldExists('uk'); // returns `true`
-tld.tldExists('co.uk'); // returns `true` (because `uk` is a valid TLD)
-tld.tldExists('amazon.fancy.uk'); // returns `true` (still because `uk` is a valid TLD)
-tld.tldExists('amazon.co.uk'); // returns `true` (still because `uk` is a valid TLD)
-tld.tldExists('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `true`
+const { tldExists } = tldjs;
+
+tldExists('google.com'); // returns `true`
+tldExists('google.local'); // returns `false` (not an explicit registered TLD)
+tldExists('com'); // returns `true`
+tldExists('uk'); // returns `true`
+tldExists('co.uk'); // returns `true` (because `uk` is a valid TLD)
+tldExists('amazon.fancy.uk'); // returns `true` (still because `uk` is a valid TLD)
+tldExists('amazon.co.uk'); // returns `true` (still because `uk` is a valid TLD)
+tldExists('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `true`
 ```
 
 ## getDomain()
@@ -85,13 +99,15 @@ tld.tldExists('https://user:password@example.co.uk:8080/some/path?and&query#hash
 Returns the fully qualified domain from a host string.
 
 ```javascript
-tld.getDomain('google.com'); // returns `google.com`
-tld.getDomain('fr.google.com'); // returns `google.com`
-tld.getDomain('fr.google.google'); // returns `google.google`
-tld.getDomain('foo.google.co.uk'); // returns `google.co.uk`
-tld.getDomain('t.co'); // returns `t.co`
-tld.getDomain('fr.t.co'); // returns `t.co`
-tld.getDomain('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `example.co.uk`
+const { getDomain } = tldjs;
+
+getDomain('google.com'); // returns `google.com`
+getDomain('fr.google.com'); // returns `google.com`
+getDomain('fr.google.google'); // returns `google.google`
+getDomain('foo.google.co.uk'); // returns `google.co.uk`
+getDomain('t.co'); // returns `t.co`
+getDomain('fr.t.co'); // returns `t.co`
+getDomain('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `example.co.uk`
 ```
 
 ## getSubdomain()
@@ -99,14 +115,16 @@ tld.getDomain('https://user:password@example.co.uk:8080/some/path?and&query#hash
 Returns the complete subdomain for a given host.
 
 ```javascript
-tld.getSubdomain('google.com'); // returns ``
-tld.getSubdomain('fr.google.com'); // returns `fr`
-tld.getSubdomain('google.co.uk'); // returns ``
-tld.getSubdomain('foo.google.co.uk'); // returns `foo`
-tld.getSubdomain('moar.foo.google.co.uk'); // returns `moar.foo`
-tld.getSubdomain('t.co'); // returns ``
-tld.getSubdomain('fr.t.co'); // returns `fr`
-tld.getSubdomain('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns ``
+const { getSubdomain } = tldjs;
+
+getSubdomain('google.com'); // returns ``
+getSubdomain('fr.google.com'); // returns `fr`
+getSubdomain('google.co.uk'); // returns ``
+getSubdomain('foo.google.co.uk'); // returns `foo`
+getSubdomain('moar.foo.google.co.uk'); // returns `moar.foo`
+getSubdomain('t.co'); // returns ``
+getSubdomain('fr.t.co'); // returns `fr`
+getSubdomain('https://user:password@secure.example.co.uk:443/some/path?and&query#hash'); // returns `secure`
 ```
 
 ## getPublicSuffix()
@@ -114,10 +132,12 @@ tld.getSubdomain('https://user:password@example.co.uk:8080/some/path?and&query#h
 Returns the public suffix for a given host.
 
 ```javascript
-tld.getPublicSuffix('google.com'); // returns `com`
-tld.getPublicSuffix('fr.google.com'); // returns `com`
-tld.getPublicSuffix('google.co.uk'); // returns `co.uk`
-tld.getPublicSuffix('s3.amazonaws.com'); // returns `s3.amazonaws.com`
+const { getPublicSuffix } = tldjs;
+
+getPublicSuffix('google.com'); // returns `com`
+getPublicSuffix('fr.google.com'); // returns `com`
+getPublicSuffix('google.co.uk'); // returns `co.uk`
+getPublicSuffix('s3.amazonaws.com'); // returns `s3.amazonaws.com`
 ```
 
 ## isValid()
@@ -126,40 +146,43 @@ Checks if the host string is valid.
 It does not check if the *tld* exists.
 
 ```javascript
-tld.isValid('google.com'); // returns `true`
-tld.isValid('.google.com'); // returns `false`
-tld.isValid('my.fake.domain'); // returns `true`
-tld.isValid('localhost'); // returns `false`
-tld.isValid('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `true`
+const { isValid } = tldjs;
+
+isValid('google.com'); // returns `true`
+isValid('.google.com'); // returns `false`
+isValid('my.fake.domain'); // returns `true`
+isValid('localhost'); // returns `false`
+isValid('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `true`
 ```
 
 # Troubleshouting
 
 ## Retrieving subdomain of `localhost` and custom hostnames
 
-`tld.js` methods `getDomain` and `getSubdomain` are designed to **work only with *valid* TLDs**.
+`tld.js` methods `getDomain` and `getSubdomain` are designed to **work only with *known and valid* TLDs**.
 This way, you can trust what a domain is.
 
-Unfortunately, `localhost` is a valid hostname but it is not a TLD.
-`tld.js` has a concept of `validHosts` you declare
+`localhost` is a valid hostname but not a TLD. Although you can instanciate your own flavour of `tld.js` with *additional valid hosts*:
 
 ```js
-var tld = require('tldjs');
+const tldjs = require('tldjs');
 
-tld.getDomain('localhost');           // returns null
-tld.getSubdomain('vhost.localhost');  // returns null
+tldjs.getDomain('localhost');           // returns null
+tldjs.getSubdomain('vhost.localhost');  // returns null
 
-tld.validHosts = ['localhost'];
+const myTldjs = tldjs.fromUserSettings({
+  validHosts: ['localhost']
+});
 
-tld.getDomain('localhost');           // returns 'localhost'
-tld.getSubdomain('vhost.localhost');  // returns 'vhost'
+myTldjs.getDomain('localhost');           // returns 'localhost'
+myTldjs.getSubdomain('vhost.localhost');  // returns 'vhost'
 ```
 
 ## Updating the TLDs List
 
 Many libraries offer a list of TLDs. But, are they up-to-date? And how to update them?
 
-`tldjs` bundles a list of known TLDs but this list can become outdated.
+`tld.js` bundles a list of known TLDs but this list can become outdated.
 This is especially true if the package have not been updated on npm for a while.
 
 Hopefully for you, even if I'm flying over the world, if I've lost my Internet connection or even if
@@ -175,9 +198,7 @@ npm install --tldjs-update-rules
 npm install --save tldjs --tldjs-update-rules
 ```
 
-Open an issue to request an update of the bundled rules.
-Or else, fork the project and open a PR after having run `npm version patch`.
-Once merged, the `tldjs` package will be published on npmjs.com.
+Open an issue to request an update of the bundled TLDs.
 
 
 # Contributing

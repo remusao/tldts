@@ -3,14 +3,27 @@
 /* global suite, test */
 
 var tld = require('../index.js');
-var tldLib = require('../lib/tld.js');
 var expect = require('expect.js');
 
 describe('tld.js', function () {
   describe('Constructor', function () {
-    it('should have have rules already loaded', function () {
-      expect(tld.rules).to.be.an('object');
-      expect(tld.rules).not.to.be.empty();
+    it('should be a pure object', function () {
+      expect(tld.constructor.name).to.be('Object');
+    });
+
+    it('should have .rules map', function () {
+      expect(tld.rules).to.be(undefined);
+    });
+
+    it('should not have any .validHosts property', function () {
+      expect(tld.validHosts).to.be(undefined);
+    });
+
+    it('should export bound methods', function () {
+      var getDomain = tld.getDomain;
+      var domain = 'fr.google.com';
+
+      expect(tld.getDomain(domain)).to.equal(getDomain(domain));
     });
   });
 
@@ -146,7 +159,6 @@ describe('tld.js', function () {
     });
 
     it('should return the suffix if a rule exists that has no exceptions', function(){
-      expect(tld.rules.eu).to.not.contain('!');
       expect(tld.getPublicSuffix('microsoft.eu')).to.be('eu');
     });
 
@@ -157,59 +169,59 @@ describe('tld.js', function () {
 
   describe('cleanHostValue', function(){
     it('should return a valid hostname as is', function(){
-      expect(tldLib.cleanHostValue(' example.CO.uk ')).to.equal('example.co.uk');
+      expect(tld.cleanHostValue(' example.CO.uk ')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a scheme-less URL', function(){
-      expect(tldLib.cleanHostValue('example.co.uk/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.cleanHostValue('example.co.uk/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a scheme-less + port URL', function(){
-      expect(tldLib.cleanHostValue('example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.cleanHostValue('example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a scheme-less + authentication URL', function(){
-      expect(tldLib.cleanHostValue('user:password@example.co.uk/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.cleanHostValue('user:password@example.co.uk/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a scheme-less + passwordless URL', function(){
-      expect(tldLib.cleanHostValue('user@example.co.uk/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.cleanHostValue('user@example.co.uk/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a scheme-less + authentication + port URL', function(){
-      expect(tldLib.cleanHostValue('user:password@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.cleanHostValue('user:password@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a scheme-less + passwordless + port URL', function(){
-      expect(tldLib.cleanHostValue('user@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.cleanHostValue('user@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a user-password same-scheme URL', function(){
-      expect(tldLib.cleanHostValue('//user:password@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.cleanHostValue('//user:password@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a passwordless same-scheme URL', function(){
-      expect(tldLib.cleanHostValue('//user@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.cleanHostValue('//user@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a complex user-password scheme URL', function(){
-      expect(tldLib.cleanHostValue('git+ssh://user:password@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.cleanHostValue('git+ssh://user:password@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a complex passwordless scheme URL', function(){
-      expect(tldLib.cleanHostValue('git+ssh://user@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.cleanHostValue('git+ssh://user@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the initial value if it is not a valid hostname', function(){
-      expect(tldLib.cleanHostValue(42)).to.equal('42');
+      expect(tld.cleanHostValue(42)).to.equal('42');
     });
 
     it('should return www.nytimes.com even with an URL as a parameter', function(){
-      expect(tldLib.cleanHostValue('http://www.nytimes.com/glogin?URI=http://www.notnytimes.com/2010/03/26/us/politics/26court.html&OQ=_rQ3D1Q26&OP=45263736Q2FKgi!KQ7Dr!K@@@Ko!fQ24KJg(Q3FQ5Cgg!Q60KQ60W.WKWQ22KQ60IKyQ3FKigQ24Q26!Q26(Q3FKQ60I(gyQ5C!Q2Ao!fQ24')).to.equal('www.nytimes.com');
+      expect(tld.cleanHostValue('http://www.nytimes.com/glogin?URI=http://www.notnytimes.com/2010/03/26/us/politics/26court.html&OQ=_rQ3D1Q26&OP=45263736Q2FKgi!KQ7Dr!K@@@Ko!fQ24KJg(Q3FQ5Cgg!Q60KQ60W.WKWQ22KQ60IKyQ3FKigQ24Q26!Q26(Q3FKQ60I(gyQ5C!Q2Ao!fQ24')).to.equal('www.nytimes.com');
     });
 
     it('should return punycode for international hostnames', function() {
-      expect(tldLib.cleanHostValue('台灣')).to.equal('xn--kpry57d');
+      expect(tld.cleanHostValue('台灣')).to.equal('xn--kpry57d');
     });
   });
 
@@ -279,24 +291,28 @@ describe('tld.js', function () {
   });
 
   describe('validHosts', function(){
+    var customTld;
+
     before(function(){
-      tld.validHosts = ['localhost'];
+      customTld = tld.fromUserSettings({
+        validHosts: ['localhost']
+      });
     });
 
     it('should now be a valid host', function(){
-      expect(tld.isValid('localhost')).to.be(true);
+      expect(customTld.isValid('localhost')).to.be(true);
     });
 
     it('should return the known valid host', function () {
-      expect(tld.getDomain('localhost')).to.equal('localhost');
-      expect(tld.getDomain('subdomain.localhost')).to.equal('localhost');
-      expect(tld.getDomain('subdomain.notlocalhost')).to.equal('subdomain.notlocalhost');
-      expect(tld.getDomain('subdomain.not-localhost')).to.equal('subdomain.not-localhost');
+      expect(customTld.getDomain('localhost')).to.equal('localhost');
+      expect(customTld.getDomain('subdomain.localhost')).to.equal('localhost');
+      expect(customTld.getDomain('subdomain.notlocalhost')).to.equal('subdomain.notlocalhost');
+      expect(customTld.getDomain('subdomain.not-localhost')).to.equal('subdomain.not-localhost');
     });
 
     //@see https://github.com/oncletom/tld.js/issues/66
     it('should return the subdomain of a validHost', function(){
-      expect(tld.getSubdomain('vhost.localhost')).to.equal('vhost');
+      expect(customTld.getSubdomain('vhost.localhost')).to.equal('vhost');
     });
   });
 });
