@@ -1,35 +1,25 @@
-# tld.js [![Build Status](https://secure.travis-ci.org/oncletom/tld.js.png?branch=master)](http://travis-ci.org/oncletom/tld.js)
-
-[![browser support](https://ci.testling.com/oncletom/tld.js.png)](https://ci.testling.com/oncletom/tld.js)
+# tld.js [![Build Status](https://secure.travis-ci.org/oncletom/tld.js.svg?branch=master)](http://travis-ci.org/oncletom/tld.js)
 
 > `tld.js` is JavaScript API to work against complex domain names, subdomains and URIs.
 
 It answers with accuracy to questions like *what is the domain/subdomain of `mail.google.com` and `a.b.ide.kyoto.jp`?*
 
 `tld.js` is fully tested, works in Node.js and in the browser, with or without AMD.
-Its database keeps up to date thanks to Mozilla's [public suffix list](http://publicsuffix.org/list/) to have and keep up to date with domain names.
+A database of valid Top Level Domains is kept up to date thanks to Mozilla's [public suffix list](http://publicsuffix.org/list/).
 
 Thanks Mozilla!
 
 # Install
 
-<table>
-  <thead>
-    <tr>
-      <th>npm</th>
-      <th>bower</th>
-      <th>component</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>npm install --save tldjs</code></td>
-      <td><code>bower install --save tld</code></td>
-      <td><code>component install tld</code></td>
-    </tr>
-  </tbody>
-</table>
+```bash
+# With bundled Top Level Domains list
+npm install --save tldjs
 
+# Update Top Level Domains list during install
+npm install --save tldjs --tldjs-update-rules
+```
+
+The latter is useful if this package has not been published for a while on _npm_.
 
 # Using It
 
@@ -58,7 +48,7 @@ You can build your own by using [browserify](http://browserify.org/):
 
 ```bash
 npm install --save tldjs
-browserify -s tld -r node_modules/tldjs/index.js -o tld.js
+browserify -s tld -r tldjs -o tld.js
 ```
 
 An [UMD module](https://github.com/umdjs/umd) will be created as of `tld.js`.
