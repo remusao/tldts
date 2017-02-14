@@ -15,5 +15,3 @@ node_modules
 coverage*
 .idea
 .nyc_output
-
-rules.json

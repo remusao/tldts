@@ -25,7 +25,8 @@
     "update": "node ./bin/update.js",
     "postinstall": "node ./bin/postinstall.js",
     "generate-changelog": "github-changes -o oncletom -r 'tld.js' -n ${npm_package_version} --only-pulls --use-commit-body",
-    "version": "npm run generate-changelog && git add CHANGELOG.md rules.json"
+    "prepublish": "npm run update",
+    "version": "npm run generate-changelog && git add CHANGELOG.md"
   },
   "tldjs": {
     "providers": {

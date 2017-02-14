@@ -13,7 +13,6 @@ var tldExists = require('./lib/tld-exists.js');
 
 /**
  * Creates a new instance of tldjs
- * 
  * @param  {Object.<rules,validHosts>} options [description]
  * @return {tldjs|Object}                      [description]
  */
