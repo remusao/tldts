@@ -34,6 +34,9 @@ describe('tld.js', function () {
       expect(tld.isValid('google.com')).to.be(true);
       expect(tld.isValid('miam.google.com')).to.be(true);
       expect(tld.isValid('miam.miam.google.com')).to.be(true);
+
+      //@see https://github.com/oncletom/tld.js/issues/95
+      expect(tld.isValid('miam.miam.google.com.')).to.be(true);
     });
 
     it('should detect invalid hostname', function () {
@@ -112,6 +115,11 @@ describe('tld.js', function () {
     it('should return nytimes.com even in a whole valid', function(){
       expect(tld.getDomain('http://www.nytimes.com/')).to.be('nytimes.com');
     });
+
+    //@see https://github.com/oncletom/tld.js/issues/95
+    it('should ignore the trailing dot in a domain', function () {
+      expect(tld.getDomain('https://www.google.co.uk./maps')).to.equal('google.co.uk');
+    });
   });
 
   describe('tldExists method', function () {
@@ -133,6 +141,11 @@ describe('tld.js', function () {
 
     it('should be truthy on complex TLD which cannot be verified as long as the gTLD exists', function(){
       expect(tld.tldExists('uk.com')).to.be(true);
+    });
+
+    //@see https://github.com/oncletom/tld.js/issues/95
+    it('should ignore the trailing dot in a domain', function () {
+      expect(tld.tldExists('https://www.google.co.uk./maps')).to.be(true);
     });
   });
 
@@ -164,6 +177,11 @@ describe('tld.js', function () {
 
     it('should return null if the publicsuffix does not exist', function(){
       expect(tld.getPublicSuffix('www.freedom.nsa')).to.be(null);
+    });
+
+    //@see https://github.com/oncletom/tld.js/issues/95
+    it('should ignore the trailing dot in a domain', function () {
+      expect(tld.getPublicSuffix('https://www.google.co.uk./maps')).to.equal('co.uk');
     });
   });
 
@@ -222,6 +240,11 @@ describe('tld.js', function () {
 
     it('should return punycode for international hostnames', function() {
       expect(tld.cleanHostValue('台灣')).to.equal('xn--kpry57d');
+    });
+
+    //@see https://github.com/oncletom/tld.js/issues/95
+    it('should ignore the trailing dot in a domain', function () {
+      expect(tld.cleanHostValue('http://example.co.uk./some/path?and&query#hash')).to.equal('example.co.uk');
     });
   });
 
@@ -287,6 +310,11 @@ describe('tld.js', function () {
     it('should provide consistent results', function(){
       expect(tld.getSubdomain('www.bl.uk')).to.equal('www');
       expect(tld.getSubdomain('www.majestic12.co.uk')).to.equal('www');
+    });
+
+    //@see https://github.com/oncletom/tld.js/issues/95
+    it('should ignore the trailing dot in a domain', function () {
+      expect(tld.getSubdomain('random.fr.google.co.uk.')).to.equal('random.fr');
     });
   });
 
