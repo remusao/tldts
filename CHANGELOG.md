@@ -1,5 +1,21 @@
 ## Change Log
 
+### 2.0.0 (2017/07/19 08:36 +00:00)
+- [#92](https://github.com/oncletom/tld.js/pull/92) Remove polyfills (#92) (@oncletom)
+- [#96](https://github.com/oncletom/tld.js/pull/96) Add support for fully qualified domains (trailing dot in domain name) (#96) (@remusao)
+- [#91](https://github.com/oncletom/tld.js/pull/91) Bundle rules.json on prepublish (#91) (@oncletom)
+- [#90](https://github.com/oncletom/tld.js/pull/90) Remove bower and component support (#90) (@oncletom)
+- [#87](https://github.com/oncletom/tld.js/pull/87) Expose bound methods (#87) (@oncletom)
+- [#88](https://github.com/oncletom/tld.js/pull/88) Upgrade development dependencies (#88) (@oncletom)
+
+### v1.7.0 (2016/09/13 19:44 +00:00)
+- [#84](https://github.com/oncletom/tld.js/pull/84) Add an interactive update system (#84) (@oncletom)
+- [#83](https://github.com/oncletom/tld.js/pull/83) Rectify the `tldExists("google.google")` README example (#83) (@oncletom)
+
+### v1.6.3 (2016/09/13 17:07 +00:00)
+- [#81](https://github.com/oncletom/tld.js/pull/81) Publish to npm via Travis CI (#81) (@oncletom)
+- [#80](https://github.com/oncletom/tld.js/pull/80) Do not require end-users to have `npm@2` (#80) (@oncletom)
+
 ### v1.6.2 (2015/11/17 16:24 +00:00)
 - [#72](https://github.com/oncletom/tld.js/pull/72) Update rules to remove support for .an TLD (@oncletom)
 
