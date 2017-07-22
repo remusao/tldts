@@ -1,10 +1,10 @@
 "use strict";
 
-var allRules = require('./rules.json');
+// Load rules
+var Trie = require('./lib/suffix-trie.js');
+var allRules = Trie.fromJson(require('./rules.json'));
 
 var cleanHostValue = require('./lib/clean-host.js');
-var escapeRegExp = require('./lib/escape-regexp.js');
-var getRulesForTld = require('./lib/tld-rules.js');
 var getDomain = require('./lib/domain.js');
 var getSubdomain = require('./lib/subdomain.js');
 var isValid = require('./lib/is-valid.js');
@@ -22,8 +22,6 @@ function factory(options) {
 
   return {
     cleanHostValue: cleanHostValue,
-    escapeRegExp: escapeRegExp,
-    getRulesForTld: getRulesForTld,
     getDomain: function (host) {
       return getDomain(rules, validHosts, host);
     },
