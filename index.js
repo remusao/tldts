@@ -22,20 +22,20 @@ function factory(options) {
 
   return {
     cleanHostValue: cleanHostValue,
-    getDomain: function (host) {
-      return getDomain(rules, validHosts, host);
+    getDomain: function (host, isHostClean) {
+      return getDomain(rules, validHosts, host, isHostClean);
     },
-    getSubdomain: function (host) {
-      return getSubdomain(rules, validHosts, host);
+    getSubdomain: function (host, isHostClean) {
+      return getSubdomain(rules, validHosts, host, isHostClean);
     },
     isValid: function (host) {
       return isValid(validHosts, host);
     },
-    getPublicSuffix: function (host) {
-      return getPublicSuffix(rules, host);
+    getPublicSuffix: function (host, isHostClean) {
+      return getPublicSuffix(rules, host, isHostClean);
     },
-    tldExists: function (tld) {
-      return tldExists(rules, tld);
+    tldExists: function (tld, isHostClean) {
+      return tldExists(rules, tld, isHostClean);
     },
     fromUserSettings: factory
   };
