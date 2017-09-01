@@ -1,13 +1,17 @@
-# tld.js [![Build Status](https://secure.travis-ci.org/oncletom/tld.js.svg?branch=master)](http://travis-ci.org/oncletom/tld.js)
+# tld.js [![Build Status][badge-ci]](http://travis-ci.org/oncletom/tld.js) ![][badge-downloads]
 
-> `tld.js` is JavaScript API to work against complex domain names, subdomains and URIs.
+> `tld.js` is JavaScript API to work against complex domain names, subdomains and well-known TLDs.
 
-It answers with accuracy to questions like *what is the domain/subdomain of `mail.google.com` and `a.b.ide.kyoto.jp`?*
+It answers with accuracy to questions like _what is `mail.google.com` domain?_,  _what is `a.b.ide.kyoto.jp` subdomain?_ and _is `https://big.data` TLD a well-known one?_.
 
-`tld.js` is fully tested, works in Node.js and in the browser, with or without AMD.
-A database of valid Top Level Domains is kept up to date thanks to Mozilla's [public suffix list](http://publicsuffix.org/list/).
+`tld.js` is fully tested, works in Node.js, in the browser and relies on Mozilla's [public suffix list][]. _Thank you_ Mozilla!
 
-Thanks Mozilla!
+```
+tldjs#tldExists x 3,265 ops/sec ±0.83% (92 runs sampled)
+tldjs#getDomain x 2,030 ops/sec ±3.08% (84 runs sampled)
+tldjs#getSubdomain x 2,037 ops/sec ±2.85% (85 runs sampled)
+tldjs#getPublicSuffix x 2,195 ops/sec ±3.53% (83 runs sampled)
+```
 
 # Install
 
@@ -15,7 +19,7 @@ Thanks Mozilla!
 # With bundled Top Level Domains list
 npm install --save tldjs
 
-# Update Top Level Domains list during install
+# You can get an up-to-date Top Level Domains list during the install
 npm install --save tldjs --tldjs-update-rules
 ```
 
@@ -34,20 +38,20 @@ getDomain('mail.google.co.uk');
 
 ## Browser
 
-A browser version is made available thanks to [Browserify CDN](http://wzrd.in/).
+A browser version is made available thanks to [browserify CDN][].
 
 ```html
-<script src="http://wzrd.in/standalone/tldjs">
+<script src="https://wzrd.in/standalone/tldjs">
 <script>
 tldjs.getDomain('mail.google.co.uk');
 // -> 'google.co.uk'
 </script>
 ```
 
-You can build your own by using [browserify](http://browserify.org/):
+You can build your own browser bundle with [browserify][]:
 
 ```bash
-npm install --save tldjs
+npm install --save browserify
 browserify -s tld -r tldjs -o tld.js
 ```
 
@@ -69,83 +73,84 @@ const { getDomain } = require('tldjs');
 
 ## tldExists()
 
-Checks if the TLD is valid for a given host.
+Checks if the TLD is _well-known_ for a given string — parseable with [`require('url').parse`][].
 
 ```javascript
 const { tldExists } = tldjs;
 
-tldExists('google.com'); // returns `true`
-tldExists('google.local'); // returns `false` (not an explicit registered TLD)
-tldExists('com'); // returns `true`
-tldExists('uk'); // returns `true`
-tldExists('co.uk'); // returns `true` (because `uk` is a valid TLD)
+tldExists('google.com');      // returns `true`
+tldExists('google.local');    // returns `false` (not an explicit registered TLD)
+tldExists('com');             // returns `true`
+tldExists('uk');              // returns `true`
+tldExists('co.uk');           // returns `true` (because `uk` is a valid TLD)
 tldExists('amazon.fancy.uk'); // returns `true` (still because `uk` is a valid TLD)
-tldExists('amazon.co.uk'); // returns `true` (still because `uk` is a valid TLD)
+tldExists('amazon.co.uk');    // returns `true` (still because `uk` is a valid TLD)
 tldExists('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `true`
 ```
 
 ## getDomain()
 
-Returns the fully qualified domain from a host string.
+Returns the fully qualified domain from a given string — parseable with [`require('url').parse`][].
 
 ```javascript
 const { getDomain } = tldjs;
 
-getDomain('google.com'); // returns `google.com`
-getDomain('fr.google.com'); // returns `google.com`
-getDomain('fr.google.google'); // returns `google.google`
-getDomain('foo.google.co.uk'); // returns `google.co.uk`
-getDomain('t.co'); // returns `t.co`
-getDomain('fr.t.co'); // returns `t.co`
+getDomain('google.com');        // returns `google.com`
+getDomain('fr.google.com');     // returns `google.com`
+getDomain('fr.google.google');  // returns `google.google`
+getDomain('foo.google.co.uk');  // returns `google.co.uk`
+getDomain('t.co');              // returns `t.co`
+getDomain('fr.t.co');           // returns `t.co`
 getDomain('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `example.co.uk`
 ```
 
 ## getSubdomain()
 
-Returns the complete subdomain for a given host.
+Returns the complete subdomain for a given string — parseable with [`require('url').parse`][].
 
 ```javascript
 const { getSubdomain } = tldjs;
 
-getSubdomain('google.com'); // returns ``
-getSubdomain('fr.google.com'); // returns `fr`
-getSubdomain('google.co.uk'); // returns ``
-getSubdomain('foo.google.co.uk'); // returns `foo`
-getSubdomain('moar.foo.google.co.uk'); // returns `moar.foo`
-getSubdomain('t.co'); // returns ``
-getSubdomain('fr.t.co'); // returns `fr`
+getSubdomain('google.com');             // returns ``
+getSubdomain('fr.google.com');          // returns `fr`
+getSubdomain('google.co.uk');           // returns ``
+getSubdomain('foo.google.co.uk');       // returns `foo`
+getSubdomain('moar.foo.google.co.uk');  // returns `moar.foo`
+getSubdomain('t.co');                   // returns ``
+getSubdomain('fr.t.co');                // returns `fr`
 getSubdomain('https://user:password@secure.example.co.uk:443/some/path?and&query#hash'); // returns `secure`
 ```
 
 ## getPublicSuffix()
 
-Returns the public suffix for a given host.
+Returns the [public suffix][] for a given string — parseable with [`require('url').parse`][].
 
 ```javascript
 const { getPublicSuffix } = tldjs;
 
-getPublicSuffix('google.com'); // returns `com`
-getPublicSuffix('fr.google.com'); // returns `com`
-getPublicSuffix('google.co.uk'); // returns `co.uk`
+getPublicSuffix('google.com');       // returns `com`
+getPublicSuffix('fr.google.com');    // returns `com`
+getPublicSuffix('google.co.uk');     // returns `co.uk`
 getPublicSuffix('s3.amazonaws.com'); // returns `s3.amazonaws.com`
+getPublicSuffix('tld.is.unknown');   // returns `unknown`
 ```
 
 ## isValid()
 
-Checks if the host string is valid.
-It does not check if the *tld* exists.
+Checks the validity of a given string — parseable with [`require('url').parse`][].
+It does not check if the TLD is _well-known_.
 
 ```javascript
 const { isValid } = tldjs;
 
-isValid('google.com'); // returns `true`
-isValid('.google.com'); // returns `false`
-isValid('my.fake.domain'); // returns `true`
-isValid('localhost'); // returns `false`
+isValid('google.com');      // returns `true`
+isValid('.google.com');     // returns `false`
+isValid('my.fake.domain');  // returns `true`
+isValid('localhost');       // returns `false`
 isValid('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `true`
 ```
 
-# Troubleshouting
+# Troubleshooting
 
 ## Retrieving subdomain of `localhost` and custom hostnames
 
@@ -195,3 +200,13 @@ Open an issue to request an update of the bundled TLDs.
 
 Provide a pull request (with tested code) to include your work in this main project.
 Issues may be awaiting for help so feel free to give a hand, with code or ideas.
+
+[badge-ci]: https://secure.travis-ci.org/oncletom/tld.js.svg?branch=master
+[badge-downloads]: https://img.shields.io/npm/dm/tldjs.svg
+
+[public suffix list]: https://publicsuffix.org/list/
+[browserify CDN]: https://wzrd.in/
+[browserify]: http://browserify.org/
+
+[`require('url').parse`]: https://nodejs.org/api/url.html#url_url_parse_urlstring_parsequerystring_slashesdenotehost
+[public suffix]: https://publicsuffix.org/learn/
