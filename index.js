@@ -1,15 +1,16 @@
 "use strict";
 
-var allRules = require('./rules.json');
+// Load rules
+var Trie = require('./lib/suffix-trie.js');
+var allRules = Trie.fromJson(require('./rules.json'));
 
 var cleanHostValue = require('./lib/clean-host.js');
-var escapeRegExp = require('./lib/escape-regexp.js');
-var getRulesForTld = require('./lib/tld-rules.js');
 var getDomain = require('./lib/domain.js');
+var getPublicSuffix = require('./lib/public-suffix.js');
 var getSubdomain = require('./lib/subdomain.js');
 var isValid = require('./lib/is-valid.js');
-var getPublicSuffix = require('./lib/public-suffix.js');
 var tldExists = require('./lib/tld-exists.js');
+
 
 /**
  * Creates a new instance of tldjs
@@ -22,19 +23,17 @@ function factory(options) {
 
   return {
     cleanHostValue: cleanHostValue,
-    escapeRegExp: escapeRegExp,
-    getRulesForTld: getRulesForTld,
-    getDomain: function (host) {
-      return getDomain(rules, validHosts, host);
+    getDomain: function (hostname) {
+      return getDomain(rules, validHosts, hostname);
     },
-    getSubdomain: function (host) {
-      return getSubdomain(rules, validHosts, host);
+    getSubdomain: function (hostname) {
+      return getSubdomain(rules, validHosts, hostname);
     },
-    isValid: function (host) {
-      return isValid(validHosts, host);
+    isValid: function (hostname) {
+      return isValid(validHosts, hostname);
     },
-    getPublicSuffix: function (host) {
-      return getPublicSuffix(rules, host);
+    getPublicSuffix: function (hostname) {
+      return getPublicSuffix(rules, hostname);
     },
     tldExists: function (tld) {
       return tldExists(rules, tld);
@@ -42,5 +41,6 @@ function factory(options) {
     fromUserSettings: factory
   };
 }
+
 
 module.exports = factory({ validHosts: [], rules: allRules });
