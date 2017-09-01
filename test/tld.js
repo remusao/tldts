@@ -3,6 +3,7 @@
 /* global suite, test */
 
 var tld = require('../index.js');
+var parser = require('../lib/parsers/publicsuffix-org.js');
 var expect = require('expect.js');
 
 describe('tld.js', function () {
@@ -154,8 +155,9 @@ describe('tld.js', function () {
       expect(tld.getPublicSuffix('google.co.uk')).to.be('co.uk');
     });
 
+    // @see https://github.com/oncletom/tld.js/pull/97
     it('should return www.ck if www.www.ck', function () {
-      expect(tld.getPublicSuffix('www.www.ck')).to.be('www.ck');
+      expect(tld.getPublicSuffix('www.www.ck')).to.be('ck');
     });
 
     //@see https://github.com/oncletom/tld.js/issues/30
@@ -175,11 +177,12 @@ describe('tld.js', function () {
       expect(tld.getPublicSuffix('microsoft.eu')).to.be('eu');
     });
 
+    // @see https://github.com/oncletom/tld.js/pull/97
     it('should return null if the publicsuffix does not exist', function(){
-      expect(tld.getPublicSuffix('www.freedom.nsa')).to.be(null);
+      expect(tld.getPublicSuffix('www.freedom.nsa')).to.be('nsa');
     });
 
-    //@see https://github.com/oncletom/tld.js/issues/95
+    // @see https://github.com/oncletom/tld.js/issues/95
     it('should ignore the trailing dot in a domain', function () {
       expect(tld.getPublicSuffix('https://www.google.co.uk./maps')).to.equal('co.uk');
     });
@@ -321,26 +324,148 @@ describe('tld.js', function () {
   describe('validHosts', function(){
     var customTld;
 
-    before(function(){
-      customTld = tld.fromUserSettings({
-        validHosts: ['localhost']
+    context('non-empty array', function () {
+      before(function(){
+        customTld = tld.fromUserSettings({
+          validHosts: ['localhost']
+        });
+      });
+
+      it('should now be a valid host', function(){
+        expect(customTld.isValid('localhost')).to.be(true);
+      });
+
+      it('should return the known valid host', function () {
+        expect(customTld.getDomain('localhost')).to.equal('localhost');
+        expect(customTld.getDomain('subdomain.localhost')).to.equal('localhost');
+        expect(customTld.getDomain('subdomain.notlocalhost')).to.equal('subdomain.notlocalhost');
+        expect(customTld.getDomain('subdomain.not-localhost')).to.equal('subdomain.not-localhost');
+      });
+
+      //@see https://github.com/oncletom/tld.js/issues/66
+      it('should return the subdomain of a validHost', function(){
+        expect(customTld.getSubdomain('vhost.localhost')).to.equal('vhost');
+      });
+
+      it('should fallback to normal extraction if no match in validHost', function(){
+        expect(customTld.getSubdomain('vhost.evil.com')).to.equal('vhost');
       });
     });
 
-    it('should now be a valid host', function(){
-      expect(customTld.isValid('localhost')).to.be(true);
+    context('empty value', function () {
+      it('falls-back to empty array', function () {
+        expect(function () {
+          customTld = tld.fromUserSettings({ validHosts: null });
+        }).not.to.throwError();
+        expect(function () {
+          customTld = tld.fromUserSettings({ validHosts: undefined });
+        }).not.to.throwError();
+        expect(function () {
+          customTld = tld.fromUserSettings({ validHosts: [] });
+        }).not.to.throwError();
+      });
+    });
+  });
+
+  describe('SuffixTrie', function () {
+    it('should ignore empty line', function () {
+      var tlds = parser.parse('\n');
+      expect(tlds.exceptions).to.eql({});
+      expect(tlds.rules).to.eql({});
     });
 
-    it('should return the known valid host', function () {
-      expect(customTld.getDomain('localhost')).to.equal('localhost');
-      expect(customTld.getDomain('subdomain.localhost')).to.equal('localhost');
-      expect(customTld.getDomain('subdomain.notlocalhost')).to.equal('subdomain.notlocalhost');
-      expect(customTld.getDomain('subdomain.not-localhost')).to.equal('subdomain.not-localhost');
+    it('should ignore comment', function () {
+      var tlds = parser.parse('// \n');
+      expect(tlds.exceptions).to.eql({});
+      expect(tlds.rules).to.eql({});
     });
 
-    //@see https://github.com/oncletom/tld.js/issues/66
-    it('should return the subdomain of a validHost', function(){
-      expect(customTld.getSubdomain('vhost.localhost')).to.equal('vhost');
+    it('should parse up to the first space', function () {
+      var tlds = parser.parse('co.uk .evil');
+      expect(tlds.exceptions).to.eql({});
+      expect(tlds.rules).to.eql({ uk: { co: { $: 0 } } });
+    });
+
+    it('should parse normal rule', function () {
+      var tlds = parser.parse('co.uk');
+      expect(tlds.exceptions).to.eql({});
+      expect(tlds.rules).to.eql({ uk: { co: { $: 0 } } });
+    });
+
+    it('should parse exception', function () {
+      var tlds = parser.parse('!co.uk');
+      expect(tlds.exceptions).to.eql({ uk: { co: { $: 0 } } });
+      expect(tlds.rules).to.eql({});
+    });
+
+    it('should parse wildcard', function () {
+      var tlds = parser.parse('*');
+      expect(tlds.exceptions).to.eql({});
+      expect(tlds.rules).to.eql({ '*': { $: 0 } });
+      expect(tlds.suffixLookup('foo')).to.equal('foo');
+
+      tlds = parser.parse('*.uk');
+      expect(tlds.exceptions).to.eql({});
+      expect(tlds.rules).to.eql({ uk: { '*': { $: 0 } } });
+      expect(tlds.suffixLookup('bar.uk')).to.equal('bar.uk');
+      expect(tlds.suffixLookup('bar.baz')).to.equal(null);
+
+      tlds = parser.parse('foo.*.baz');
+      expect(tlds.exceptions).to.eql({});
+      expect(tlds.rules).to.eql({ baz: { '*': { foo: { $: 0 } } } });
+      expect(tlds.suffixLookup('foo.bar.baz')).to.equal('foo.bar.baz');
+      expect(tlds.suffixLookup('foo.foo.bar')).to.equal(null);
+      expect(tlds.suffixLookup('bar.foo.baz')).to.equal(null);
+      expect(tlds.suffixLookup('foo.baz')).to.equal(null);
+      expect(tlds.suffixLookup('baz')).to.equal(null);
+
+      tlds = parser.parse('foo.bar.*');
+      expect(tlds.exceptions).to.eql({});
+      expect(tlds.rules).to.eql({ '*': { bar: { foo: { $: 0 } } } });
+      expect(tlds.suffixLookup('foo.bar.baz')).to.equal('foo.bar.baz');
+      expect(tlds.suffixLookup('foo.foo.bar')).to.equal(null);
+
+      tlds = parser.parse('foo.*.*');
+      expect(tlds.exceptions).to.eql({});
+      expect(tlds.rules).to.eql({ '*': { '*': { foo: { $: 0 } } } });
+      expect(tlds.suffixLookup('foo.bar.baz')).to.equal('foo.bar.baz');
+      expect(tlds.suffixLookup('foo.foo.bar')).to.equal('foo.foo.bar');
+      expect(tlds.suffixLookup('baz.foo.bar')).to.equal(null);
+
+      tlds = parser.parse('fo.bar.*\nfoo.bar.baz');
+      expect(tlds.exceptions).to.eql({});
+      expect(tlds.rules).to.eql({
+        baz: {
+          bar: { foo: { $: 0 } },
+        },
+        '*': {
+          bar: { fo: { $: 0 } },
+        }
+      });
+      expect(tlds.suffixLookup('foo.bar.baz')).to.equal('foo.bar.baz');
+
+      tlds = parser.parse('bar.*\nfoo.bar.baz');
+      expect(tlds.exceptions).to.eql({});
+      expect(tlds.rules).to.eql({
+        baz: {
+          bar: { foo: { $: 0 } },
+        },
+        '*': {
+          bar: { $: 0 },
+        }
+      });
+      expect(tlds.suffixLookup('foo.bar.baz')).to.equal('foo.bar.baz');
+    });
+
+    it('should insert rules with same TLD', function () {
+      var tlds = parser.parse('co.uk\nca.uk');
+      expect(tlds.exceptions).to.eql({});
+      expect(tlds.rules).to.eql({
+        uk: {
+          ca: { $: 0 },
+          co: { $: 0 }
+        }
+      });
     });
   });
 });

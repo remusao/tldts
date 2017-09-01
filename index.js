@@ -6,10 +6,11 @@ var allRules = Trie.fromJson(require('./rules.json'));
 
 var cleanHostValue = require('./lib/clean-host.js');
 var getDomain = require('./lib/domain.js');
+var getPublicSuffix = require('./lib/public-suffix.js');
 var getSubdomain = require('./lib/subdomain.js');
 var isValid = require('./lib/is-valid.js');
-var getPublicSuffix = require('./lib/public-suffix.js');
 var tldExists = require('./lib/tld-exists.js');
+
 
 /**
  * Creates a new instance of tldjs
@@ -22,23 +23,24 @@ function factory(options) {
 
   return {
     cleanHostValue: cleanHostValue,
-    getDomain: function (host, isHostClean) {
-      return getDomain(rules, validHosts, host, isHostClean);
+    getDomain: function (hostname) {
+      return getDomain(rules, validHosts, hostname);
     },
-    getSubdomain: function (host, isHostClean) {
-      return getSubdomain(rules, validHosts, host, isHostClean);
+    getSubdomain: function (hostname) {
+      return getSubdomain(rules, validHosts, hostname);
     },
-    isValid: function (host) {
-      return isValid(validHosts, host);
+    isValid: function (hostname) {
+      return isValid(validHosts, hostname);
     },
-    getPublicSuffix: function (host, isHostClean) {
-      return getPublicSuffix(rules, host, isHostClean);
+    getPublicSuffix: function (hostname) {
+      return getPublicSuffix(rules, hostname);
     },
-    tldExists: function (tld, isHostClean) {
-      return tldExists(rules, tld, isHostClean);
+    tldExists: function (tld) {
+      return tldExists(rules, tld);
     },
     fromUserSettings: factory
   };
 }
+
 
 module.exports = factory({ validHosts: [], rules: allRules });
