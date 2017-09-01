@@ -1,6 +1,9 @@
 ## Change Log
 
-### 2.0.0 (2017/07/19 08:36 +00:00)
+### 2.1.0 (2017/09/01 18:23 +00:00)
+- [#97](https://github.com/oncletom/tld.js/pull/97) Implement rules using a trie data structure. (@remusao)
+
+### v2.0.0 (2017/07/19 08:36 +00:00)
 - [#92](https://github.com/oncletom/tld.js/pull/92) Remove polyfills (#92) (@oncletom)
 - [#96](https://github.com/oncletom/tld.js/pull/96) Add support for fully qualified domains (trailing dot in domain name) (#96) (@remusao)
 - [#91](https://github.com/oncletom/tld.js/pull/91) Bundle rules.json on prepublish (#91) (@oncletom)
