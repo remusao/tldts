@@ -178,7 +178,7 @@ describe('tld.js', function () {
     });
 
     // @see https://github.com/oncletom/tld.js/pull/97
-    it('should return null if the publicsuffix does not exist', function(){
+    it('should return the string TLD if the publicsuffix does not exist', function(){
       expect(tld.getPublicSuffix('www.freedom.nsa')).to.be('nsa');
     });
 
