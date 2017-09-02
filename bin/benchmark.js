@@ -3,6 +3,7 @@
 'use strict';
 
 var tld = require('../index.js');
+var isIp = require('../lib/is-ip.js');
 var Benchmark = require('benchmark');
 
 
@@ -67,7 +68,7 @@ function bench(values) {
   new Benchmark.Suite()
     .add('tldjs#isIp', () => {
       for (var i = 0; i < values.length; i += 1) {
-        tld.isIp(values[i]);
+        isIp(values[i]);
       }
     })
     .add('tldjs#isValid', () => {

@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-/* global suite, test */
+/* global describe, it, context, before */
 
 var tld = require('../index.js');
 // `isIp` is not exposed as part of the public API because it only works on
@@ -232,7 +232,7 @@ describe('tld.js', function () {
     });
 
     it('should return s3.amazonaws.com if www.s3.amazonaws.com', function () {
-      expect(tld.getPublicSuffix('s3.amazonaws.com')).to.be('s3.amazonaws.com');
+      expect(tld.getPublicSuffix('www.s3.amazonaws.com')).to.be('s3.amazonaws.com');
     });
 
     it('should directly return the suffix if it matches a rule key', function(){
@@ -251,6 +251,44 @@ describe('tld.js', function () {
     // @see https://github.com/oncletom/tld.js/issues/95
     it('should ignore the trailing dot in a domain', function () {
       expect(tld.getPublicSuffix('https://www.google.co.uk./maps')).to.equal('co.uk');
+    });
+
+    describe('ignoring Private domains', function () {
+      var customTld;
+      before(function () {
+        customTld = tld.fromUserSettings({ allowPrivate: false });
+      });
+
+      it('should return com if www.s3.amazonaws.com', function () {
+        expect(customTld.getPublicSuffix('www.s3.amazonaws.com')).to.be('com');
+      });
+
+      it('should return net if global.prod.fastly.net', function () {
+        expect(customTld.getPublicSuffix('https://global.prod.fastly.net')).to.equal('net');
+      });
+
+      it('should return co.uk if google.co.uk', function () {
+        expect(customTld.getPublicSuffix('google.co.uk')).to.be('co.uk');
+      });
+    });
+
+    describe('ignoring ICANN domains', function () {
+      var customTld;
+      before(function () {
+        customTld = tld.fromUserSettings({ allowIcann: false });
+      });
+
+      it('should return s3.amazonaws.com if www.s3.amazonaws.com', function () {
+        expect(customTld.getPublicSuffix('www.s3.amazonaws.com')).to.be('s3.amazonaws.com');
+      });
+
+      it('should return global.prod.fastly.net if global.prod.fastly.net', function () {
+        expect(customTld.getPublicSuffix('https://global.prod.fastly.net')).to.equal('global.prod.fastly.net');
+      });
+
+      it('should return co.uk if google.co.uk', function () {
+        expect(customTld.getPublicSuffix('google.co.uk')).to.be('uk');
+      });
     });
   });
 
@@ -514,37 +552,37 @@ describe('tld.js', function () {
     it('should parse up to the first space', function () {
       var tlds = parser.parse('co.uk .evil');
       expect(tlds.exceptions).to.eql({});
-      expect(tlds.rules).to.eql({ uk: { co: { $: 0 } } });
+      expect(tlds.rules).to.eql({ uk: { co: { $: 1 } } });
     });
 
     it('should parse normal rule', function () {
       var tlds = parser.parse('co.uk');
       expect(tlds.exceptions).to.eql({});
-      expect(tlds.rules).to.eql({ uk: { co: { $: 0 } } });
+      expect(tlds.rules).to.eql({ uk: { co: { $: 1 } } });
     });
 
     it('should parse exception', function () {
       var tlds = parser.parse('!co.uk');
-      expect(tlds.exceptions).to.eql({ uk: { co: { $: 0 } } });
+      expect(tlds.exceptions).to.eql({ uk: { co: { $: 1 } } });
       expect(tlds.rules).to.eql({});
     });
 
     it('should parse wildcard', function () {
       var tlds = parser.parse('*');
       expect(tlds.exceptions).to.eql({});
-      expect(tlds.rules).to.eql({ '*': { $: 0 } });
-      expect(tlds.suffixLookup('foo')).to.equal('foo');
+      expect(tlds.rules).to.eql({ '*': { $: 1 } });
+      expect(tlds.suffixLookup('foo').publicSuffix).to.equal('foo');
 
       tlds = parser.parse('*.uk');
       expect(tlds.exceptions).to.eql({});
-      expect(tlds.rules).to.eql({ uk: { '*': { $: 0 } } });
-      expect(tlds.suffixLookup('bar.uk')).to.equal('bar.uk');
+      expect(tlds.rules).to.eql({ uk: { '*': { $: 1 } } });
+      expect(tlds.suffixLookup('bar.uk').publicSuffix).to.equal('bar.uk');
       expect(tlds.suffixLookup('bar.baz')).to.equal(null);
 
       tlds = parser.parse('foo.*.baz');
       expect(tlds.exceptions).to.eql({});
-      expect(tlds.rules).to.eql({ baz: { '*': { foo: { $: 0 } } } });
-      expect(tlds.suffixLookup('foo.bar.baz')).to.equal('foo.bar.baz');
+      expect(tlds.rules).to.eql({ baz: { '*': { foo: { $: 1 } } } });
+      expect(tlds.suffixLookup('foo.bar.baz').publicSuffix).to.equal('foo.bar.baz');
       expect(tlds.suffixLookup('foo.foo.bar')).to.equal(null);
       expect(tlds.suffixLookup('bar.foo.baz')).to.equal(null);
       expect(tlds.suffixLookup('foo.baz')).to.equal(null);
@@ -552,40 +590,40 @@ describe('tld.js', function () {
 
       tlds = parser.parse('foo.bar.*');
       expect(tlds.exceptions).to.eql({});
-      expect(tlds.rules).to.eql({ '*': { bar: { foo: { $: 0 } } } });
-      expect(tlds.suffixLookup('foo.bar.baz')).to.equal('foo.bar.baz');
+      expect(tlds.rules).to.eql({ '*': { bar: { foo: { $: 1 } } } });
+      expect(tlds.suffixLookup('foo.bar.baz').publicSuffix).to.equal('foo.bar.baz');
       expect(tlds.suffixLookup('foo.foo.bar')).to.equal(null);
 
       tlds = parser.parse('foo.*.*');
       expect(tlds.exceptions).to.eql({});
-      expect(tlds.rules).to.eql({ '*': { '*': { foo: { $: 0 } } } });
-      expect(tlds.suffixLookup('foo.bar.baz')).to.equal('foo.bar.baz');
-      expect(tlds.suffixLookup('foo.foo.bar')).to.equal('foo.foo.bar');
+      expect(tlds.rules).to.eql({ '*': { '*': { foo: { $: 1 } } } });
+      expect(tlds.suffixLookup('foo.bar.baz').publicSuffix).to.equal('foo.bar.baz');
+      expect(tlds.suffixLookup('foo.foo.bar').publicSuffix).to.equal('foo.foo.bar');
       expect(tlds.suffixLookup('baz.foo.bar')).to.equal(null);
 
       tlds = parser.parse('fo.bar.*\nfoo.bar.baz');
       expect(tlds.exceptions).to.eql({});
       expect(tlds.rules).to.eql({
         baz: {
-          bar: { foo: { $: 0 } },
+          bar: { foo: { $: 1 } },
         },
         '*': {
-          bar: { fo: { $: 0 } },
+          bar: { fo: { $: 1 } },
         }
       });
-      expect(tlds.suffixLookup('foo.bar.baz')).to.equal('foo.bar.baz');
+      expect(tlds.suffixLookup('foo.bar.baz').publicSuffix).to.equal('foo.bar.baz');
 
       tlds = parser.parse('bar.*\nfoo.bar.baz');
       expect(tlds.exceptions).to.eql({});
       expect(tlds.rules).to.eql({
         baz: {
-          bar: { foo: { $: 0 } },
+          bar: { foo: { $: 1 } },
         },
         '*': {
-          bar: { $: 0 },
+          bar: { $: 1 },
         }
       });
-      expect(tlds.suffixLookup('foo.bar.baz')).to.equal('foo.bar.baz');
+      expect(tlds.suffixLookup('foo.bar.baz').publicSuffix).to.equal('foo.bar.baz');
     });
 
     it('should insert rules with same TLD', function () {
@@ -593,9 +631,24 @@ describe('tld.js', function () {
       expect(tlds.exceptions).to.eql({});
       expect(tlds.rules).to.eql({
         uk: {
-          ca: { $: 0 },
-          co: { $: 0 }
+          ca: { $: 1 },
+          co: { $: 1 }
         }
+      });
+    });
+
+    it('should make the distinction between Private and ICANN', function () {
+      var tlds = parser.parse([
+        'co.uk',
+        '// comment',
+        '// ===BEGIN PRIVATE DOMAINS===',
+        'ca.ul',
+        '!foo.bar',
+      ].join('\n'));
+      expect(tlds.exceptions).to.eql({ bar: { foo: { $: 2 } } });
+      expect(tlds.rules).to.eql({
+        uk: { co: { $: 1 } },
+        ul: { ca: { $: 2 } },
       });
     });
   });

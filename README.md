@@ -169,12 +169,37 @@ isValidHostname('192.168.0.0')      // returns `true`
 
 # Troubleshooting
 
+## Ignoring Private domain section of public suffix list
+
+Because `tld.js` relies on public suffix list to parse URLs and hostnames, you
+might encounter counter-intuitive results from time to time. Most of these
+results stems from the fact that public suffix list contains two sections: ICANN
+domains and Private domains. The *ICANN* section defines what you would expect to
+see as top-level domains most of the time: `.com`, `.net`, `co.uk`, etc. On the
+other hand, the *Private* section contains rules such as: `global.prod.fastly.net`
+or `s3.amazonaws.com`. This means that these values can appear as `publicSuffix`.
+
+Fortunately, you can ask `tld.js` to ignore the *Private* section completely:
+```js
+const tldjs = require('tldjs');
+
+tldjs.getDomain('www.s3.amazonaws.com');  // returns 'www.s3.amazonaws.com'
+tldjs.getDomain('https://global.prod.fastly.net'); // returns null
+
+const myTldjs = tldjs.fromUserSettings({
+  allowPrivate: false,
+});
+
+myTldjs.getDomain('www.s3.amazonaws.com');  // returns 'amazonaws.com'
+myTldjs.getDomain('https://global.prod.fastly.net'); // returns 'fastly.net'
+```
+
 ## Retrieving subdomain of `localhost` and custom hostnames
 
 `tld.js` methods `getDomain` and `getSubdomain` are designed to **work only with *known and valid* TLDs**.
 This way, you can trust what a domain is.
 
-`localhost` is a valid hostname but not a TLD. Although you can instanciate your own flavour of `tld.js` with *additional valid hosts*:
+`localhost` is a valid hostname but not a TLD. Although you can instantiate your own flavour of `tld.js` with *additional valid hosts*:
 
 ```js
 const tldjs = require('tldjs');
@@ -225,28 +250,28 @@ use-case. Because the library tried to be smart, the speed can be drastically
 different depending on the input (it will be faster if you provide an already
 cleaned hostname, compared to a random URL).
 
-On an Intel i7-6600U (2,60-3,40 GHz):
+On an Intel i7-6600U (2,60-3,40 GHz) using Node.js `v9.8.0`:
 
 ## For already cleaned hostnames
 
-| Methods           | ops/sec      |
-| ---               | ---          |
-| `isValidHostname` | ~`8,700,000` |
-| `extractHostname` | ~`8,100,000` |
-| `tldExists`       | ~`2,000,000` |
-| `getPublicSuffix` | ~`1,130,000` |
-| `getDomain`       | ~`1,000,000` |
-| `getSubdomain`    | ~`1,000,000` |
-| `parse`           | ~`850,000`   |
+| Methods           | ops/sec       |
+| ---               | ---           |
+| `isValidHostname` | ~`25,300,000` |
+| `extractHostname` | ~`20,000,000` |
+| `tldExists`       | ~`3,200,000`  |
+| `getPublicSuffix` | ~`1,200,000`  |
+| `getDomain`       | ~`1,100,000`  |
+| `getSubdomain`    | ~`1,100,000`  |
+| `parse`           | ~`870,000`    |
 
 
 ## For random URLs
 
 | Methods           | ops/sec       |
 | ---               | ---           |
-| `isValidHostname` | ~`25,400,000` |
-| `extractHostname` | ~`400,000`    |
-| `tldExists`       | ~`310,000`    |
+| `isValidHostname` | ~`50,000,000` |
+| `extractHostname` | ~`360,000`    |
+| `tldExists`       | ~`300,000`    |
 | `getPublicSuffix` | ~`240,000`    |
 | `getDomain`       | ~`240,000`    |
 | `getSubdomain`    | ~`240,000`    |
