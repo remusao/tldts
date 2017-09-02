@@ -17,15 +17,16 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "lint": "jshint --config .jshintrc lib/**/*.js",
-    "test": "nyc mocha -R dot -r env-test",
-    "posttest": "npm run lint && npm run test-browser",
-    "test-watch": "mocha -R dot -r env-test --watch",
-    "test-browser": "testling",
-    "update": "node ./bin/update.js",
-    "postinstall": "node ./bin/postinstall.js",
+    "benchmark": "node ./bin/benchmark.js",
     "generate-changelog": "github-changes -o oncletom -r 'tld.js' -n ${npm_package_version} --only-pulls --use-commit-body",
+    "lint": "jshint --config .jshintrc lib/**/*.js",
+    "postinstall": "node ./bin/postinstall.js",
+    "posttest": "npm run lint && npm run test-browser",
     "prepublish": "npm run update",
+    "test": "nyc mocha -R dot -r env-test",
+    "test-browser": "testling",
+    "test-watch": "mocha -R dot -r env-test --watch",
+    "update": "node ./bin/update.js",
     "version": "npm run generate-changelog && git add CHANGELOG.md"
   },
   "tldjs": {
@@ -57,6 +58,7 @@
     "punycode": "^1.4.1"
   },
   "devDependencies": {
+    "benchmark": "^2.1.4",
     "env-test": "^1.0.0",
     "expect.js": "^0.3.1",
     "github-changes": "^1.0.0",
