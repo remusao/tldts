@@ -64,9 +64,9 @@ function main() {
         tld.isValid(DOMAINS[i]);
       }
     })
-    .add('tldjs#cleanHost', () => {
+    .add('tldjs#extractHostname', () => {
       for (var i = 0; i < DOMAINS.length; i += 1) {
-        tld.cleanHostValue(DOMAINS[i]);
+        tld.extractHostname(DOMAINS[i]);
       }
     })
     .add('tldjs#tldExists', () => {

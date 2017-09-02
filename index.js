@@ -1,15 +1,39 @@
-"use strict";
+'use strict';
 
 // Load rules
 var Trie = require('./lib/suffix-trie.js');
 var allRules = Trie.fromJson(require('./rules.json'));
 
-var cleanHostValue = require('./lib/clean-host.js');
+// Internals
+var extractHostname = require('./lib/clean-host.js');
 var getDomain = require('./lib/domain.js');
 var getPublicSuffix = require('./lib/public-suffix.js');
 var getSubdomain = require('./lib/subdomain.js');
 var isValid = require('./lib/is-valid.js');
 var tldExists = require('./lib/tld-exists.js');
+
+
+function parse(url, validHosts, rules, _extractHostname) {
+  var hostname = _extractHostname(validHosts, url);
+  var valid = isValid(validHosts, hostname);
+  var suffix = null;
+  var domain = null;
+  var subdomain = null;
+
+  if (valid) {
+    suffix = getPublicSuffix(rules, hostname);
+    domain = getDomain(validHosts, suffix, hostname);
+    subdomain = getSubdomain(hostname, domain);
+  }
+
+  return {
+    valid,
+    hostname,
+    suffix,
+    domain,
+    subdomain,
+  };
+}
 
 
 /**
@@ -20,27 +44,34 @@ var tldExists = require('./lib/tld-exists.js');
 function factory(options) {
   var rules = options.rules || allRules || {};
   var validHosts = options.validHosts || [];
+  var _extractHostname = options.extractHostname || extractHostname;
 
   return {
-    cleanHostValue: cleanHostValue,
-    getDomain: function (hostname) {
-      return getDomain(rules, validHosts, hostname);
-    },
-    getSubdomain: function (hostname) {
-      return getSubdomain(rules, validHosts, hostname);
+    extractHostname: function (url) {
+      return _extractHostname(validHosts, url);
     },
     isValid: function (hostname) {
       return isValid(validHosts, hostname);
     },
-    getPublicSuffix: function (hostname) {
-      return getPublicSuffix(rules, hostname);
+    tldExists: function (url) {
+      var hostname = _extractHostname(validHosts, url);
+      return tldExists(rules, hostname);
     },
-    tldExists: function (tld) {
-      return tldExists(rules, tld);
+    getPublicSuffix: function (url) {
+      return parse(url, validHosts, rules, _extractHostname).suffix;
+    },
+    getDomain: function (url) {
+      return parse(url, validHosts, rules, _extractHostname).domain;
+    },
+    getSubdomain: function (url) {
+      return parse(url, validHosts, rules, _extractHostname).subdomain;
+    },
+    parse: function (url) {
+      return parse(url, validHosts, rules, _extractHostname);
     },
     fromUserSettings: factory
   };
 }
 
 
-module.exports = factory({ validHosts: [], rules: allRules });
+module.exports = factory({});
