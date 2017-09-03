@@ -15,6 +15,8 @@ install: npm install --tldjs-update-rules
 
 script: xvfb-run -a npm test
 
+post_script: npm run benchmark
+
 deploy:
   provider: npm
   email: hi@oncletom.io

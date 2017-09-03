@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+
+'use strict';
 
 var tld = require('../index.js');
 var Benchmark = require('benchmark');
