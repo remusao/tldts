@@ -4,13 +4,13 @@
 
 It answers with accuracy to questions like _what is `mail.google.com` domain?_,  _what is `a.b.ide.kyoto.jp` subdomain?_ and _is `https://big.data` TLD a well-known one?_.
 
-`tld.js` is fully tested, works in Node.js, in the browser and relies on Mozilla's [public suffix list][]. _Thank you_ Mozilla!
+`tld.js` runs fast and is fully tested, works both in Node.js and in the browser. Because it relies on Mozilla's [public suffix list][], now is a good time to say _thank you_ Mozilla!
 
 ```
-tldjs#tldExists x 3,265 ops/sec ±0.83% (92 runs sampled)
-tldjs#getDomain x 2,030 ops/sec ±3.08% (84 runs sampled)
-tldjs#getSubdomain x 2,037 ops/sec ±2.85% (85 runs sampled)
-tldjs#getPublicSuffix x 2,195 ops/sec ±3.53% (83 runs sampled)
+tldjs#tldExists x 326,500 ops/sec ±0.83% (92 runs sampled)
+tldjs#getDomain x 203,000 ops/sec ±3.08% (84 runs sampled)
+tldjs#getSubdomain x 203,700 ops/sec ±2.85% (85 runs sampled)
+tldjs#getPublicSuffix x 219,500 ops/sec ±3.53% (83 runs sampled)
 ```
 
 # Install
