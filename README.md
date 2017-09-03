@@ -4,14 +4,7 @@
 
 It answers with accuracy to questions like _what is `mail.google.com` domain?_,  _what is `a.b.ide.kyoto.jp` subdomain?_ and _is `https://big.data` TLD a well-known one?_.
 
-`tld.js` runs fast and is fully tested, works both in Node.js and in the browser. Because it relies on Mozilla's [public suffix list][], now is a good time to say _thank you_ Mozilla!
-
-```
-tldjs#tldExists x 326,500 ops/sec ±0.83% (92 runs sampled)
-tldjs#getDomain x 203,000 ops/sec ±3.08% (84 runs sampled)
-tldjs#getSubdomain x 203,700 ops/sec ±2.85% (85 runs sampled)
-tldjs#getPublicSuffix x 219,500 ops/sec ±3.53% (83 runs sampled)
-```
+`tld.js` [runs fast](#performances), is fully tested and works both in Node.js and in the browser. Because it relies on Mozilla's [public suffix list][], now is a good time to say _thank you_ Mozilla!
 
 # Install
 
@@ -200,6 +193,28 @@ Open an issue to request an update of the bundled TLDs.
 
 Provide a pull request (with tested code) to include your work in this main project.
 Issues may be awaiting for help so feel free to give a hand, with code or ideas.
+
+# Performances
+
+```
+While interpreting the results, keep in mind that each "op" reported by the benchmark is processing 24 domains
+tldjs#isValid x 1,952,688 ops/sec ±1.27% (86 runs sampled)
+tldjs#cleanHost x 11,901 ops/sec ±1.53% (84 runs sampled)
+tldjs#tldExists x 10,030 ops/sec ±2.20% (83 runs sampled)
+tldjs#getDomain x 3,705 ops/sec ±4.86% (71 runs sampled)
+tldjs#getSubdomain x 3,035 ops/sec ±1.58% (81 runs sampled)
+tldjs#getPublicSuffix x 7,038 ops/sec ±1.88% (83 runs sampled)
+```
+
+You can measure the performance of `tld.js` on your hardware by running the following command:
+
+```bash
+npx tldjs -c './bin/benchmark.js'
+```
+
+# License
+
+[MIT License](LICENSE).
 
 [badge-ci]: https://secure.travis-ci.org/oncletom/tld.js.svg?branch=master
 [badge-downloads]: https://img.shields.io/npm/dm/tldjs.svg
