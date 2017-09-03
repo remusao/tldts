@@ -7,6 +7,10 @@ node_js:
 - v6
 - node
 
+cache:
+  directories:
+  - node_modules
+
 notifications:
   email:
     on_failure: change
@@ -14,6 +18,8 @@ notifications:
 install: npm install --tldjs-update-rules
 
 script: xvfb-run -a npm test
+
+post_script: npm run benchmark
 
 deploy:
   provider: npm
@@ -23,6 +29,6 @@ deploy:
     secure: D+AvrtOi8eox2H+j6T1EmaRrFThTDRlfRDQjDdCs7D1WnPoSs0wMcnd0lVi0lEj68URkm/4fDmHVtLXt1V8BLyfHwt3bZUsF1pe77qUTZZkmfDI5TRxp/mni6TrpFTlYaqytyunPKm19FciWj/IE2epVhWmJ8kQx/oB/lSq9SFo=
   on:
     tags: true
-    node: v6
+    node: node
     branch: master
     repo: oncletom/tld.js
