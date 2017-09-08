@@ -1,4 +1,4 @@
-# tld.js [![Build Status][badge-ci]](http://travis-ci.org/oncletom/tld.js) ![][badge-downloads]
+# tld.js [![Backers on Open Collective](https://opencollective.com/tldjs/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/tldjs/sponsors/badge.svg)](#sponsors) [![Build Status][badge-ci]](http://travis-ci.org/oncletom/tld.js) ![][badge-downloads]
 
 > `tld.js` is JavaScript API to work against complex domain names, subdomains and well-known TLDs.
 
@@ -211,6 +211,36 @@ You can measure the performance of `tld.js` on your hardware by running the foll
 ```bash
 npx tldjs -c './bin/benchmark.js'
 ```
+
+## Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute]](CONTRIBUTING.md).
+<a href="graphs/contributors"><img src="https://opencollective.com/tldjs/contributors.svg?width=890" /></a>
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/tldjs#backer)]
+
+<a href="https://opencollective.com/tldjs#backers" target="_blank"><img src="https://opencollective.com/tldjs/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/tldjs#sponsor)]
+
+<a href="https://opencollective.com/tldjs/sponsor/0/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/tldjs/sponsor/1/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/tldjs/sponsor/2/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/tldjs/sponsor/3/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/tldjs/sponsor/4/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/tldjs/sponsor/5/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/tldjs/sponsor/6/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/tldjs/sponsor/7/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/tldjs/sponsor/8/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/tldjs/sponsor/9/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/9/avatar.svg"></a>
+
+
 
 # License
 
