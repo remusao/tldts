@@ -16,20 +16,20 @@ var tldExists = require('./lib/tld-exists.js');
 function parse(url, validHosts, rules, _extractHostname) {
   var hostname = _extractHostname(url);
   var valid = isValid(hostname);
-  var suffix = null;
+  var publicSuffix = null;
   var domain = null;
   var subdomain = null;
 
   if (valid) {
-    suffix = getPublicSuffix(rules, hostname);
-    domain = getDomain(validHosts, suffix, hostname);
+    publicSuffix = getPublicSuffix(rules, hostname);
+    domain = getDomain(validHosts, publicSuffix, hostname);
     subdomain = getSubdomain(hostname, domain);
   }
 
   return {
     valid,
     hostname,
-    suffix,
+    publicSuffix,
     domain,
     subdomain,
   };
@@ -54,7 +54,7 @@ function factory(options) {
       return tldExists(rules, hostname);
     },
     getPublicSuffix: function (url) {
-      return parse(url, validHosts, rules, _extractHostname).suffix;
+      return parse(url, validHosts, rules, _extractHostname).publicSuffix;
     },
     getDomain: function (url) {
       return parse(url, validHosts, rules, _extractHostname).domain;
