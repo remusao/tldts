@@ -74,6 +74,11 @@ function main() {
         tld.tldExists(DOMAINS[i]);
       }
     })
+    .add('tldjs#getPublicSuffix', () => {
+      for (var i = 0; i < DOMAINS.length; i += 1) {
+        tld.getPublicSuffix(DOMAINS[i]);
+      }
+    })
     .add('tldjs#getDomain', () => {
       for (var i = 0; i < DOMAINS.length; i += 1) {
         tld.getDomain(DOMAINS[i]);
@@ -84,9 +89,9 @@ function main() {
         tld.getSubdomain(DOMAINS[i]);
       }
     })
-    .add('tldjs#getPublicSuffix', () => {
+    .add('tldjs#parse', () => {
       for (var i = 0; i < DOMAINS.length; i += 1) {
-        tld.getPublicSuffix(DOMAINS[i]);
+        tld.parse(DOMAINS[i]);
       }
     })
     .on('cycle', function (event) {
