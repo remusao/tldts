@@ -78,11 +78,6 @@ describe('tld.js', function () {
       expect(tld.isValid('.google.com')).to.be(false);
       expect(tld.isValid('.com')).to.be(false);
     });
-
-    it.skip('should be falsy on dotless hostname', function () {
-      expect(tld.isValid('localhost')).to.be(false);
-      expect(tld.isValid('google')).to.be(false);
-    });
   });
 
   describe('getDomain method', function () {

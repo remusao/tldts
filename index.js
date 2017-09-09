@@ -13,7 +13,10 @@ var isValid = require('./lib/is-valid.js');
 var tldExists = require('./lib/tld-exists.js');
 
 
-var IS_VALID = 0;
+// Flags representing steps in the `parse` function. They are used to implement
+// a early stop mechanism (simulating some form of laziness) to avoid doing more
+// work than necessary to perform a given action (e.g.: we don't need to extract
+// the domain and subdomain if we are only interested in public suffix).
 var TLD_EXISTS = 1;
 var PUBLIC_SUFFIX = 2;
 var DOMAIN = 3;
