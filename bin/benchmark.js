@@ -64,14 +64,19 @@ function main() {
         tld.isValid(DOMAINS[i]);
       }
     })
-    .add('tldjs#cleanHost', () => {
+    .add('tldjs#extractHostname', () => {
       for (var i = 0; i < DOMAINS.length; i += 1) {
-        tld.cleanHostValue(DOMAINS[i]);
+        tld.extractHostname(DOMAINS[i]);
       }
     })
     .add('tldjs#tldExists', () => {
       for (var i = 0; i < DOMAINS.length; i += 1) {
         tld.tldExists(DOMAINS[i]);
+      }
+    })
+    .add('tldjs#getPublicSuffix', () => {
+      for (var i = 0; i < DOMAINS.length; i += 1) {
+        tld.getPublicSuffix(DOMAINS[i]);
       }
     })
     .add('tldjs#getDomain', () => {
@@ -84,9 +89,9 @@ function main() {
         tld.getSubdomain(DOMAINS[i]);
       }
     })
-    .add('tldjs#getPublicSuffix', () => {
+    .add('tldjs#parse', () => {
       for (var i = 0; i < DOMAINS.length; i += 1) {
-        tld.getPublicSuffix(DOMAINS[i]);
+        tld.parse(DOMAINS[i]);
       }
     })
     .on('cycle', function (event) {
