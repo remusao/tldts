@@ -90,6 +90,31 @@ describe('tld.js', function () {
     });
   });
 
+  describe('isIp method', function () {
+    it('should return false on incorrect inputs', function () {
+      expect(tld.isIp('')).to.be(false);
+      expect(tld.isIp(null)).to.be(false);
+      expect(tld.isIp(undefined)).to.be(false);
+      expect(tld.isIp({})).to.be(false);
+    });
+
+    it('should return true on valid ip addresses', function () {
+      expect(tld.isIp('::1')).to.be(true);
+      expect(tld.isIp('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).to.be(true);
+      expect(tld.isIp('192.168.0.1')).to.be(true);
+    });
+
+    it('should return false on invalid ip addresses', function () {
+      expect(tld.isIp('::1-')).to.be(false);
+      expect(tld.isIp('[::1]')).to.be(false);
+      expect(tld.isIp('[2001:0db8:85a3:0000:0000:8a2e:0370:7334]')).to.be(false);
+      expect(tld.isIp('192.168.0.1.')).to.be(false);
+      expect(tld.isIp('192.168.0')).to.be(false);
+      expect(tld.isIp('192.168.0.')).to.be(false);
+      expect(tld.isIp('192.16-8.0.1')).to.be(false);
+    });
+  });
+
   describe('getDomain method', function () {
     it('should return the expected domain from a simple string', function () {
       expect(tld.getDomain('google.com')).to.equal('google.com');
@@ -346,6 +371,71 @@ describe('tld.js', function () {
     //@see https://github.com/oncletom/tld.js/issues/95
     it('should ignore the trailing dot in a domain', function () {
       expect(tld.getSubdomain('random.fr.google.co.uk.')).to.equal('random.fr');
+    });
+  });
+
+  describe('#parse', function () {
+    it('should handle ipv6 addresses properly', function () {
+      expect(tld.parse('http://[2001:0db8:85a3:0000:0000:8a2e:0370:7334]')).to.eql({
+        hostname: '2001:0db8:85a3:0000:0000:8a2e:0370:7334',
+        isValid: true,
+        isIp: true,
+        tldExists: false,
+        publicSuffix: null,
+        domain: null,
+        subdomain: null
+      });
+      expect(tld.parse('http://user:pass@[::1]/segment/index.html?query#frag')).to.eql({
+        hostname: '::1',
+        isValid: true,
+        isIp: true,
+        tldExists: false,
+        publicSuffix: null,
+        domain: null,
+        subdomain: null
+      });
+      expect(tld.parse('https://[::1]')).to.eql({
+        hostname: '::1',
+        isValid: true,
+        isIp: true,
+        tldExists: false,
+        publicSuffix: null,
+        domain: null,
+        subdomain: null
+      });
+      expect(tld.parse('http://[1080::8:800:200C:417A]/foo')).to.eql({
+        hostname: '1080::8:800:200c:417a',
+        isValid: true,
+        isIp: true,
+        tldExists: false,
+        publicSuffix: null,
+        domain: null,
+        subdomain: null
+      });
+    });
+
+
+    it('should handle ipv4 addresses properly', function () {
+      expect(tld.parse('http://192.168.0.1/')).to.eql({
+        hostname: '192.168.0.1',
+        isValid: true,
+        isIp: true,
+        tldExists: false,
+        publicSuffix: null,
+        domain: null,
+        subdomain: null,
+      });
+
+      // `url.parse` currently does not support decoding urls (whatwg-url does)
+      // expect(tld.parse('http://%30%78%63%30%2e%30%32%35%30.01%2e')).to.eql({
+      //   hostname: '192.168.0.1',
+      //   isValid: true,
+      //   isIp: true,
+      //   tldExists: false,
+      //   publicSuffix: null,
+      //   domain: null,
+      //   subdomain: null,
+      // });
     });
   });
 
