@@ -6,6 +6,16 @@ var tld = require('../index.js');
 var parser = require('../lib/parsers/publicsuffix-org.js');
 var expect = require('expect.js');
 
+
+function repeat(str, n) {
+  var res = '';
+  for (var i = 0; i < n; i += 1) {
+    res += str;
+  }
+  return res;
+}
+
+
 describe('tld.js', function () {
   describe('Constructor', function () {
     it('should be a pure object', function () {
@@ -43,8 +53,8 @@ describe('tld.js', function () {
       expect(tld.isValid('.google.com')).to.be(false);
       expect(tld.isValid('google..com')).to.be(false);
       expect(tld.isValid('google.com..')).to.be(false);
-      expect(tld.isValid('example.' + 'a'.repeat(64) + '.')).to.be(false);
-      expect(tld.isValid('example.' + 'a'.repeat(64))).to.be(false);
+      expect(tld.isValid('example.' + repeat('a', 64) + '.')).to.be(false);
+      expect(tld.isValid('example.' + repeat('a', 64))).to.be(false);
       expect(tld.isValid('googl@.com..')).to.be(false);
 
       // Length of 256 (too long)
@@ -53,8 +63,8 @@ describe('tld.js', function () {
       expect(tld.isValid('google.com')).to.be(true);
       expect(tld.isValid('miam.google.com')).to.be(true);
       expect(tld.isValid('miam.miam.google.com')).to.be(true);
-      expect(tld.isValid('example.' + 'a'.repeat(63) + '.')).to.be(true);
-      expect(tld.isValid('example.' + 'a'.repeat(63))).to.be(true);
+      expect(tld.isValid('example.' + repeat('a', 63) + '.')).to.be(true);
+      expect(tld.isValid('example.' + repeat('a', 63))).to.be(true);
 
       //@see https://github.com/oncletom/tld.js/issues/95
       expect(tld.isValid('miam.miam.google.com.')).to.be(true);
