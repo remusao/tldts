@@ -6,10 +6,6 @@ node_js:
 - v6
 - node
 
-cache:
-  directories:
-  - node_modules
-
 notifications:
   email:
     on_failure: change
