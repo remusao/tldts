@@ -1,78 +1,39 @@
 # tld.js [![Build Status][badge-ci]](http://travis-ci.org/oncletom/tld.js) ![][badge-downloads]
 
-> `tld.js` is JavaScript API to work against complex domain names, subdomains and well-known TLDs.
+> `tld.js` is a Node.js module written in JavaScript to work against complex domain names, subdomains and well-known TLDs.
 
 It answers with accuracy to questions like _what is `mail.google.com` domain?_,  _what is `a.b.ide.kyoto.jp` subdomain?_ and _is `https://big.data` TLD a well-known one?_.
 
-`tld.js` [runs fast](#performances), is fully tested and works both in Node.js and in the browser. Because it relies on Mozilla's [public suffix list][], now is a good time to say _thank you_ Mozilla!
+`tld.js` [runs fast](#performances), is fully tested and is safe to use in the browser (with [browserify][], webpack and others). Because it relies on Mozilla's [public suffix list][], now is a good time to say _thank you_ Mozilla!
 
 # Install
 
 ```bash
-# With bundled Top Level Domains list
+# Regular install
 npm install --save tldjs
 
-# You can get an up-to-date Top Level Domains list during the install
+# You can update the list of well-known TLD during the install
 npm install --save tldjs --tldjs-update-rules
 ```
 
-The latter is useful if this package has not been published for a while on _npm_.
+The latter is useful if you significantly rely on an up-to-date list of TLDs. You can [list the recent changes][] ([changes Atom Feed][]) to get a better idea of what is going on in the Public Suffix world.
 
 # Using It
 
-## Node.js
-
-```javascript
-const { parse } = require('tldjs');
-
-parse('mail.google.co.uk');
-{ hostname: 'mail.google.co.uk',
-  isValid: true,
-  tldExists: true,
-  publicSuffix: 'co.uk',
-  domain: 'google.co.uk',
-  subdomain: 'mail' }
-```
-
-## Browser
-
-A browser version is made available thanks to [browserify CDN][].
-
-```html
-<script src="https://wzrd.in/standalone/tldjs">
-<script>
-tldjs.parse('mail.google.co.uk');
-// { hostname: 'mail.google.co.uk',
-//   isValid: true,
-//   tldExists: true,
-//   publicSuffix: 'co.uk',
-//   domain: 'google.co.uk',
-//   subdomain: 'mail' }
-</script>
-```
-
-You can build your own browser bundle with [browserify][]:
-
-```bash
-npm install --save browserify
-browserify -s tld -r tldjs -o tld.js
-```
-
-An [UMD module](https://github.com/umdjs/umd) will be created as of `tld.js`.
-
-# API
-
-`tldjs` can be use either as a whole, or using *destructuring*.
-
 ```js
-// ES2015 modules syntax
-import tldjs from 'tldjs';
-import { parse } from 'tldjs';
+const {parse, tldExists} = require('tldjs');
 
-// Node/CommonJS modules syntax
-const tldjs = require('tldjs');
-const { parse } = require('tldjs');
+// Checking only if TLD exists in URL or hostname
+// First TLD exists; the second does not.
+console.log(tldExists('https://www.bbc'));
+console.log(tldExists('tld.unknown'));
+
+// Retrieving hostname related informations of a given URL
+parse('http://www.writethedocs.org/conf/eu/2017/');
 ```
+
+👋 [Try it your browser to see how it works][interactive-example].
+⬇️ Read the documentation _below_ to find out the available _functions_.
 
 ## `tldjs.parse()`
 
@@ -81,30 +42,25 @@ This methods returns handy **properties about a URL or a hostname**.
 ```js
 const tldjs = require('tldjs');
 
-tldjs.parse('https://www.npmjs.com/package/tldjs');
-// { hostname: 'www.npmjs.com',
-//   isValid: true,
-//   tldExists: true,
-//   publicSuffix: 'com',
-//   domain: 'npmjs.com',
-//   subdomain: 'www' }
+tldjs.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv');
+// {
+//   "hostname": "spark-public.s3.amazonaws.com",
+//   "isValid": true,
+//   "tldExists": true,
+//   "publicSuffix": "s3.amazonaws.com",
+//   "domain": "spark-public.s3.amazonaws.com",
+//   "subdomain": ""
+// }
 
 tldjs.parse('gopher://domain.unknown/');
-// { hostname: 'domain.unknown',
-//   isValid: true,
-//   tldExists: false,
-//   publicSuffix: 'unknown',
-//   domain: 'domain.unknown',
-//   subdomain: '' }
-//
-
-tldjs.parse('community.brave.com');
-// { hostname: 'community.brave.com',
-//   isValid: true,
-//   tldExists: true,
-//   publicSuffix: 'com',
-//   domain: 'brave.com',
-//   subdomain: 'community' }
+// {
+//   "hostname": "domain.unknown",
+//   "isValid": true,
+//   "tldExists": false,
+//   "publicSuffix": "unknown",
+//   "domain": "domain.unknown",
+//   "subdomain": ""
+// }
 ```
 
 | Property Name | Type | |
@@ -119,7 +75,7 @@ tldjs.parse('community.brave.com');
 
 ## Single purpose methods
 
-These methods are shorthands if you want to retrieve only a single value
+These methods are shorthands if you want to retrieve only a single value.
 
 ### tldExists()
 
@@ -278,8 +234,11 @@ npx tldjs -c './bin/benchmark.js'
 [badge-downloads]: https://img.shields.io/npm/dm/tldjs.svg
 
 [public suffix list]: https://publicsuffix.org/list/
+[list the recent changes]: https://github.com/publicsuffix/list/commits/master
+[changes Atom Feed]: https://github.com/publicsuffix/list/commits/master.atom
 [browserify CDN]: https://wzrd.in/
 [browserify]: http://browserify.org/
+[interactive-example]: https://runkit.com/oncletom/tld.js-runkit-example
 
 [`require('url').parse`]: https://nodejs.org/api/url.html#url_url_parse_urlstring_parsequerystring_slashesdenotehost
 [public suffix]: https://publicsuffix.org/learn/
