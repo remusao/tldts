@@ -32,7 +32,7 @@ console.log(tldExists('tld.unknown'));
 parse('http://www.writethedocs.org/conf/eu/2017/');
 ```
 
-👋 [Try it your browser to see how it works][interactive-example].
+👋 [Try it your browser to see how it works][interactive-example].<br>
 ⬇️ Read the documentation _below_ to find out the available _functions_.
 
 ## `tldjs.parse()`
