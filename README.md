@@ -2,7 +2,7 @@
 
 > `tld.js` is a Node.js module written in JavaScript to work against complex domain names, subdomains and well-known TLDs.
 
-It answers with accuracy to questions like _what is `mail.google.com` domain?_,  _what is `a.b.ide.kyoto.jp` subdomain?_ and _is `https://big.data` TLD a well-known one?_.
+It answers with accuracy to questions like _what is `mail.google.com`'s domain?_,  _what is `a.b.ide.kyoto.jp`'s subdomain?_ and _is `https://big.data`'s TLD a well-known one?_.
 
 `tld.js` [runs fast](#performances), is fully tested and is safe to use in the browser (with [browserify][], webpack and others). Because it relies on Mozilla's [public suffix list][], now is a good time to say _thank you_ Mozilla!
 
@@ -43,23 +43,33 @@ This methods returns handy **properties about a URL or a hostname**.
 const tldjs = require('tldjs');
 
 tldjs.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv');
-// {
-//   "hostname": "spark-public.s3.amazonaws.com",
-//   "isValid": true,
-//   "tldExists": true,
-//   "publicSuffix": "s3.amazonaws.com",
-//   "domain": "spark-public.s3.amazonaws.com",
-//   "subdomain": ""
+// { hostname: 'spark-public.s3.amazonaws.com',
+//   isValid: true,
+//   isIp: false,
+//   tldExists: true,
+//   publicSuffix: 's3.amazonaws.com',
+//   domain: 'spark-public.s3.amazonaws.com',
+//   subdomain: ''
 // }
 
 tldjs.parse('gopher://domain.unknown/');
-// {
-//   "hostname": "domain.unknown",
-//   "isValid": true,
-//   "tldExists": false,
-//   "publicSuffix": "unknown",
-//   "domain": "domain.unknown",
-//   "subdomain": ""
+// { hostname: 'domain.unknown',
+//   isValid: true,
+//   isIp: false,
+//   tldExists: false,
+//   publicSuffix: 'unknown',
+//   domain: 'domain.unknown',
+//   subdomain: ''
+// }
+
+tldjs.parse('https://192.168.0.0')
+// { hostname: '192.168.0.0',
+//   isValid: true,
+//   isIp: true,
+//   tldExists: false,
+//   publicSuffix: null,
+//   domain: null,
+//   subdomain: null
 // }
 ```
 
@@ -154,6 +164,7 @@ isValid('.google.com');     // returns `false`
 isValid('my.fake.domain');  // returns `true`
 isValid('localhost');       // returns `false`
 isValid('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `true`
+isValid('192.168.0.0')      // returns `true`
 ```
 
 # Troubleshooting
@@ -209,22 +220,48 @@ Issues may be awaiting for help so feel free to give a hand, with code or ideas.
 
 # Performances
 
-```
-While interpreting the results, keep in mind that each "op" reported by the benchmark is processing 24 domains
-tldjs#isValid x 230,353 ops/sec ±10.99% (44 runs sampled)
-tldjs#extractHostname x 42,333 ops/sec ±2.82% (85 runs sampled)
-tldjs#tldExists x 15,083 ops/sec ±8.76% (54 runs sampled)
-tldjs#getPublicSuffix x 14,334 ops/sec ±8.00% (80 runs sampled)
-tldjs#getDomain x 15,092 ops/sec ±1.92% (84 runs sampled)
-tldjs#getSubdomain x 13,202 ops/sec ±3.66% (72 runs sampled)
-tldjs#parse x 8,561 ops/sec ±11.78% (55 runs sampled)
-```
+`tld.js` is fast, but keep in mind that it might vary depending on your own
+use-case. Because the library tried to be smart, the speed can be drastically
+different depending on the input (it will be faster if you provide an already
+cleaned hostname, compared to a random URL).
+
+On an Intel i7-6600U (2,60-3,40 GHz):
+
+## For already cleaned hostnames
+
+| Methods           | ops/sec      |
+| ---               | ---          |
+| `isValid`         | ~`8,700,000` |
+| `extractHostname` | ~`8,100,000` |
+| `tldExists`       | ~`2,000,000` |
+| `getPublicSuffix` | ~`1,130,000` |
+| `getDomain`       | ~`1,000,000` |
+| `getSubdomain`    | ~`1,000,000` |
+| `parse`           | ~`850,000`   |
+
+
+## For random URLs
+
+| Methods           | ops/sec       |
+| ---               | ---           |
+| `isValid`         | ~`25,400,000` |
+| `extractHostname` | ~`400,000`    |
+| `tldExists`       | ~`310,000`    |
+| `getPublicSuffix` | ~`240,000`    |
+| `getDomain`       | ~`240,000`    |
+| `getSubdomain`    | ~`240,000`    |
+| `parse`           | ~`230,000`    |
+
 
 You can measure the performance of `tld.js` on your hardware by running the following command:
 
 ```bash
-npx tldjs -c './bin/benchmark.js'
+npm run benchmark
 ```
+
+If this is not fast enough for your use-case, keep in mind that you can
+provide your own `extractHostname` function (which is the bottle-neck in
+this benchmark) to `tld.js`.
 
 # License
 
