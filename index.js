@@ -99,7 +99,6 @@ function factory(options) {
 
   return {
     extractHostname: _extractHostname,
-    isIp: isIp,
     isValid: isValid,
     parse: parse,
     tldExists: function (url) {
