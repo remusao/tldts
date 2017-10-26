@@ -3,6 +3,10 @@
 /* global suite, test */
 
 var tld = require('../index.js');
+// `isIp` is not exposed as part of the public API because it only works on
+// valid hostname. Hence, we only use it internally.
+
+var isIp = require('../lib/is-ip.js');
 var parser = require('../lib/parsers/publicsuffix-org.js');
 var expect = require('expect.js');
 
@@ -92,26 +96,26 @@ describe('tld.js', function () {
 
   describe('isIp method', function () {
     it('should return false on incorrect inputs', function () {
-      expect(tld.isIp('')).to.be(false);
-      expect(tld.isIp(null)).to.be(false);
-      expect(tld.isIp(undefined)).to.be(false);
-      expect(tld.isIp({})).to.be(false);
+      expect(isIp('')).to.be(false);
+      expect(isIp(null)).to.be(false);
+      expect(isIp(undefined)).to.be(false);
+      expect(isIp({})).to.be(false);
     });
 
     it('should return true on valid ip addresses', function () {
-      expect(tld.isIp('::1')).to.be(true);
-      expect(tld.isIp('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).to.be(true);
-      expect(tld.isIp('192.168.0.1')).to.be(true);
+      expect(isIp('::1')).to.be(true);
+      expect(isIp('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).to.be(true);
+      expect(isIp('192.168.0.1')).to.be(true);
     });
 
     it('should return false on invalid ip addresses', function () {
-      expect(tld.isIp('::1-')).to.be(false);
-      expect(tld.isIp('[::1]')).to.be(false);
-      expect(tld.isIp('[2001:0db8:85a3:0000:0000:8a2e:0370:7334]')).to.be(false);
-      expect(tld.isIp('192.168.0.1.')).to.be(false);
-      expect(tld.isIp('192.168.0')).to.be(false);
-      expect(tld.isIp('192.168.0.')).to.be(false);
-      expect(tld.isIp('192.16-8.0.1')).to.be(false);
+      expect(isIp('::1-')).to.be(false);
+      expect(isIp('[::1]')).to.be(false);
+      expect(isIp('[2001:0db8:85a3:0000:0000:8a2e:0370:7334]')).to.be(false);
+      expect(isIp('192.168.0.1.')).to.be(false);
+      expect(isIp('192.168.0')).to.be(false);
+      expect(isIp('192.168.0.')).to.be(false);
+      expect(isIp('192.16-8.0.1')).to.be(false);
     });
   });
 
