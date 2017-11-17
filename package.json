@@ -20,7 +20,7 @@
     "benchmark": "node ./bin/benchmark.js",
     "generate-changelog": "github-changes -o oncletom -r 'tld.js' -n ${npm_package_version} --only-pulls --use-commit-body",
     "lint": "jshint --config .jshintrc lib/**/*.js",
-    "postinstall": "node ./bin/postinstall.js && npm run build && npm run build-min",
+    "postinstall": "node ./bin/postinstall.js",
     "posttest": "npm run lint && npm run test-browser",
     "prepublish": "npm run update",
     "test": "nyc mocha -R dot -r env-test",
@@ -28,8 +28,8 @@
     "test-watch": "mocha -R dot -r env-test --watch",
     "update": "node ./bin/update.js",
     "version": "npm run generate-changelog && git add CHANGELOG.md",
-    "build": "browserify index.js --s tldjs > tld.js",
-    "build-min": "browserify index.js --s tldjs | uglifyjs -c > tld.min.js"
+    "build": "npm run update && browserify index.js --s tldjs > tld.js",
+    "build-min": "npm run update && browserify index.js --s tldjs | uglifyjs -c > tld.min.js"
   },
   "tldjs": {
     "providers": {
