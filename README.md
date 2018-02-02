@@ -1,72 +1,85 @@
 # tld.js [![Backers on Open Collective](https://opencollective.com/tldjs/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/tldjs/sponsors/badge.svg)](#sponsors) [![Build Status][badge-ci]](http://travis-ci.org/oncletom/tld.js) ![][badge-downloads]
 
-> `tld.js` is JavaScript API to work against complex domain names, subdomains and well-known TLDs.
+> `tld.js` is a Node.js module written in JavaScript to work against complex domain names, subdomains and well-known TLDs.
 
 It answers with accuracy to questions like _what is `mail.google.com` domain?_,  _what is `a.b.ide.kyoto.jp` subdomain?_ and _is `https://big.data` TLD a well-known one?_.
 
-`tld.js` [runs fast](#performances), is fully tested and works both in Node.js and in the browser. Because it relies on Mozilla's [public suffix list][], now is a good time to say _thank you_ Mozilla!
+`tld.js` [runs fast](#performances), is fully tested and is safe to use in the browser (with [browserify][], webpack and others). Because it relies on Mozilla's [public suffix list][], now is a good time to say _thank you_ Mozilla!
 
 # Install
 
 ```bash
-# With bundled Top Level Domains list
+# Regular install
 npm install --save tldjs
 
-# You can get an up-to-date Top Level Domains list during the install
+# You can update the list of well-known TLD during the install
 npm install --save tldjs --tldjs-update-rules
 ```
 
-The latter is useful if this package has not been published for a while on _npm_.
+The latter is useful if you significantly rely on an up-to-date list of TLDs. You can [list the recent changes][] ([changes Atom Feed][]) to get a better idea of what is going on in the Public Suffix world.
 
 # Using It
 
-## Node.js
+```js
+const {parse, tldExists} = require('tldjs');
 
-```javascript
-const { getDomain } = require('tldjs');
+// Checking only if TLD exists in URL or hostname
+// First TLD exists; the second does not.
+console.log(tldExists('https://www.bbc'));
+console.log(tldExists('tld.unknown'));
 
-getDomain('mail.google.co.uk');
-// -> 'google.co.uk'
+// Retrieving hostname related informations of a given URL
+parse('http://www.writethedocs.org/conf/eu/2017/');
 ```
 
-## Browser
+👋 [Try it your browser to see how it works][interactive-example].<br>
+⬇️ Read the documentation _below_ to find out the available _functions_.
 
-A browser version is made available thanks to [browserify CDN][].
+## `tldjs.parse()`
 
-```html
-<script src="https://wzrd.in/standalone/tldjs">
-<script>
-tldjs.getDomain('mail.google.co.uk');
-// -> 'google.co.uk'
-</script>
-```
-
-You can build your own browser bundle with [browserify][]:
-
-```bash
-npm install --save browserify
-browserify -s tld -r tldjs -o tld.js
-```
-
-An [UMD module](https://github.com/umdjs/umd) will be created as of `tld.js`.
-
-# API
-
-`tldjs` can be use either as a whole, or using *destructuring*.
+This methods returns handy **properties about a URL or a hostname**.
 
 ```js
-// ES2015 modules syntax
-import tldjs from 'tldjs';
-import { getDomain } from 'tldjs';
-
-// Node/CommonJS modules syntax
 const tldjs = require('tldjs');
-const { getDomain } = require('tldjs');
+
+tldjs.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv');
+// {
+//   "hostname": "spark-public.s3.amazonaws.com",
+//   "isValid": true,
+//   "tldExists": true,
+//   "publicSuffix": "s3.amazonaws.com",
+//   "domain": "spark-public.s3.amazonaws.com",
+//   "subdomain": ""
+// }
+
+tldjs.parse('gopher://domain.unknown/');
+// {
+//   "hostname": "domain.unknown",
+//   "isValid": true,
+//   "tldExists": false,
+//   "publicSuffix": "unknown",
+//   "domain": "domain.unknown",
+//   "subdomain": ""
+// }
 ```
 
-## tldExists()
+| Property Name | Type | |
+| ---           | ---       | --- |
+| `hostname`    | `String`  |   |
+| `isValid`     | `Boolean` | Is the hostname valid according to the RFC?  |
+| `tldExists`   | `Boolean` | Is the TLD well-known or not?  |
+| `publicSuffix`| `String`  |   |
+| `domain`      | `String`  |   |
+| `subdomain`   | `String`  |   |
 
-Checks if the TLD is _well-known_ for a given string — parseable with [`require('url').parse`][].
+
+## Single purpose methods
+
+These methods are shorthands if you want to retrieve only a single value.
+
+### tldExists()
+
+Checks if the TLD is _well-known_ for a given hostname — parseable with [`require('url').parse`][].
 
 ```javascript
 const { tldExists } = tldjs;
@@ -81,7 +94,7 @@ tldExists('amazon.co.uk');    // returns `true` (still because `uk` is a valid T
 tldExists('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `true`
 ```
 
-## getDomain()
+### getDomain()
 
 Returns the fully qualified domain from a given string — parseable with [`require('url').parse`][].
 
@@ -97,7 +110,7 @@ getDomain('fr.t.co');           // returns `t.co`
 getDomain('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `example.co.uk`
 ```
 
-## getSubdomain()
+### getSubdomain()
 
 Returns the complete subdomain for a given string — parseable with [`require('url').parse`][].
 
@@ -114,7 +127,7 @@ getSubdomain('fr.t.co');                // returns `fr`
 getSubdomain('https://user:password@secure.example.co.uk:443/some/path?and&query#hash'); // returns `secure`
 ```
 
-## getPublicSuffix()
+### getPublicSuffix()
 
 Returns the [public suffix][] for a given string — parseable with [`require('url').parse`][].
 
@@ -128,7 +141,7 @@ getPublicSuffix('s3.amazonaws.com'); // returns `s3.amazonaws.com`
 getPublicSuffix('tld.is.unknown');   // returns `unknown`
 ```
 
-## isValid()
+### isValid()
 
 Checks the validity of a given string — parseable with [`require('url').parse`][].
 It does not check if the TLD is _well-known_.
@@ -198,12 +211,13 @@ Issues may be awaiting for help so feel free to give a hand, with code or ideas.
 
 ```
 While interpreting the results, keep in mind that each "op" reported by the benchmark is processing 24 domains
-tldjs#isValid x 1,952,688 ops/sec ±1.27% (86 runs sampled)
-tldjs#cleanHost x 11,901 ops/sec ±1.53% (84 runs sampled)
-tldjs#tldExists x 10,030 ops/sec ±2.20% (83 runs sampled)
-tldjs#getDomain x 3,705 ops/sec ±4.86% (71 runs sampled)
-tldjs#getSubdomain x 3,035 ops/sec ±1.58% (81 runs sampled)
-tldjs#getPublicSuffix x 7,038 ops/sec ±1.88% (83 runs sampled)
+tldjs#isValid x 230,353 ops/sec ±10.99% (44 runs sampled)
+tldjs#extractHostname x 42,333 ops/sec ±2.82% (85 runs sampled)
+tldjs#tldExists x 15,083 ops/sec ±8.76% (54 runs sampled)
+tldjs#getPublicSuffix x 14,334 ops/sec ±8.00% (80 runs sampled)
+tldjs#getDomain x 15,092 ops/sec ±1.92% (84 runs sampled)
+tldjs#getSubdomain x 13,202 ops/sec ±3.66% (72 runs sampled)
+tldjs#parse x 8,561 ops/sec ±11.78% (55 runs sampled)
 ```
 
 You can measure the performance of `tld.js` on your hardware by running the following command:
@@ -250,8 +264,11 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 [badge-downloads]: https://img.shields.io/npm/dm/tldjs.svg
 
 [public suffix list]: https://publicsuffix.org/list/
+[list the recent changes]: https://github.com/publicsuffix/list/commits/master
+[changes Atom Feed]: https://github.com/publicsuffix/list/commits/master.atom
 [browserify CDN]: https://wzrd.in/
 [browserify]: http://browserify.org/
+[interactive-example]: https://runkit.com/oncletom/tld.js-runkit-example
 
 [`require('url').parse`]: https://nodejs.org/api/url.html#url_url_parse_urlstring_parsequerystring_slashesdenotehost
 [public suffix]: https://publicsuffix.org/learn/

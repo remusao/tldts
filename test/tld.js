@@ -6,6 +6,16 @@ var tld = require('../index.js');
 var parser = require('../lib/parsers/publicsuffix-org.js');
 var expect = require('expect.js');
 
+
+function repeat(str, n) {
+  var res = '';
+  for (var i = 0; i < n; i += 1) {
+    res += str;
+  }
+  return res;
+}
+
+
 describe('tld.js', function () {
   describe('Constructor', function () {
     it('should be a pure object', function () {
@@ -29,15 +39,38 @@ describe('tld.js', function () {
   });
 
   describe('isValid method', function () {
+    // That's a 255 characters long hostname
+    var maxSizeHostname = 'a';
+    for (var i = 0; i < 127; i += 1) {
+      maxSizeHostname += '.a';
+    }
+
     it('should detect valid hostname', function () {
       expect(tld.isValid('')).to.be(false);
-      expect(tld.isValid('localhost')).to.be(false);
+      expect(tld.isValid('-google.com')).to.be(false);
+      expect(tld.isValid('google-.com')).to.be(false);
+      expect(tld.isValid('google.com-')).to.be(false);
+      expect(tld.isValid('.google.com')).to.be(false);
+      expect(tld.isValid('google..com')).to.be(false);
+      expect(tld.isValid('google.com..')).to.be(false);
+      expect(tld.isValid('example.' + repeat('a', 64) + '.')).to.be(false);
+      expect(tld.isValid('example.' + repeat('a', 64))).to.be(false);
+      expect(tld.isValid('googl@.com..')).to.be(false);
+
+      // Length of 256 (too long)
+      expect(tld.isValid(maxSizeHostname + 'a')).to.be(false);
+
       expect(tld.isValid('google.com')).to.be(true);
       expect(tld.isValid('miam.google.com')).to.be(true);
       expect(tld.isValid('miam.miam.google.com')).to.be(true);
+      expect(tld.isValid('example.' + repeat('a', 63) + '.')).to.be(true);
+      expect(tld.isValid('example.' + repeat('a', 63))).to.be(true);
 
       //@see https://github.com/oncletom/tld.js/issues/95
       expect(tld.isValid('miam.miam.google.com.')).to.be(true);
+
+      // Length of 255 (maximum allowed)
+      expect(tld.isValid(maxSizeHostname)).to.be(true);
     });
 
     it('should detect invalid hostname', function () {
@@ -54,11 +87,6 @@ describe('tld.js', function () {
       expect(tld.isValid('.localhost')).to.be(false);
       expect(tld.isValid('.google.com')).to.be(false);
       expect(tld.isValid('.com')).to.be(false);
-    });
-
-    it('should be falsy on dotless hostname', function () {
-      expect(tld.isValid('localhost')).to.be(false);
-      expect(tld.isValid('google')).to.be(false);
     });
   });
 
@@ -188,66 +216,66 @@ describe('tld.js', function () {
     });
   });
 
-  describe('cleanHostValue', function(){
+  describe('extractHostname', function(){
     it('should return a valid hostname as is', function(){
-      expect(tld.cleanHostValue(' example.CO.uk ')).to.equal('example.co.uk');
+      expect(tld.extractHostname(' example.CO.uk ')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a scheme-less URL', function(){
-      expect(tld.cleanHostValue('example.co.uk/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.extractHostname('example.co.uk/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a scheme-less + port URL', function(){
-      expect(tld.cleanHostValue('example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.extractHostname('example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a scheme-less + authentication URL', function(){
-      expect(tld.cleanHostValue('user:password@example.co.uk/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.extractHostname('user:password@example.co.uk/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a scheme-less + passwordless URL', function(){
-      expect(tld.cleanHostValue('user@example.co.uk/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.extractHostname('user@example.co.uk/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a scheme-less + authentication + port URL', function(){
-      expect(tld.cleanHostValue('user:password@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.extractHostname('user:password@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a scheme-less + passwordless + port URL', function(){
-      expect(tld.cleanHostValue('user@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.extractHostname('user@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a user-password same-scheme URL', function(){
-      expect(tld.cleanHostValue('//user:password@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.extractHostname('//user:password@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a passwordless same-scheme URL', function(){
-      expect(tld.cleanHostValue('//user@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.extractHostname('//user@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a complex user-password scheme URL', function(){
-      expect(tld.cleanHostValue('git+ssh://user:password@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.extractHostname('git+ssh://user:password@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the hostname of a complex passwordless scheme URL', function(){
-      expect(tld.cleanHostValue('git+ssh://user@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.extractHostname('git+ssh://user@example.co.uk:8080/some/path?and&query#hash')).to.equal('example.co.uk');
     });
 
     it('should return the initial value if it is not a valid hostname', function(){
-      expect(tld.cleanHostValue(42)).to.equal('42');
+      expect(tld.extractHostname(42)).to.equal('42');
     });
 
     it('should return www.nytimes.com even with an URL as a parameter', function(){
-      expect(tld.cleanHostValue('http://www.nytimes.com/glogin?URI=http://www.notnytimes.com/2010/03/26/us/politics/26court.html&OQ=_rQ3D1Q26&OP=45263736Q2FKgi!KQ7Dr!K@@@Ko!fQ24KJg(Q3FQ5Cgg!Q60KQ60W.WKWQ22KQ60IKyQ3FKigQ24Q26!Q26(Q3FKQ60I(gyQ5C!Q2Ao!fQ24')).to.equal('www.nytimes.com');
+      expect(tld.extractHostname('http://www.nytimes.com/glogin?URI=http://www.notnytimes.com/2010/03/26/us/politics/26court.html&OQ=_rQ3D1Q26&OP=45263736Q2FKgi!KQ7Dr!K@@@Ko!fQ24KJg(Q3FQ5Cgg!Q60KQ60W.WKWQ22KQ60IKyQ3FKigQ24Q26!Q26(Q3FKQ60I(gyQ5C!Q2Ao!fQ24')).to.equal('www.nytimes.com');
     });
 
     it('should return punycode for international hostnames', function() {
-      expect(tld.cleanHostValue('台灣')).to.equal('xn--kpry57d');
+      expect(tld.extractHostname('台灣')).to.equal('xn--kpry57d');
     });
 
     //@see https://github.com/oncletom/tld.js/issues/95
     it('should ignore the trailing dot in a domain', function () {
-      expect(tld.cleanHostValue('http://example.co.uk./some/path?and&query#hash')).to.equal('example.co.uk');
+      expect(tld.extractHostname('http://example.co.uk./some/path?and&query#hash')).to.equal('example.co.uk');
     });
   });
 

@@ -2,7 +2,7 @@
   "author": "Thomas Parisot (https://oncletom.io)",
   "name": "tldjs",
   "description": "JavaScript API to work against complex domain names, subdomains and URIs.",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "homepage": "https://github.com/oncletom/tld.js",
   "repository": {
     "type": "git",
@@ -66,7 +66,6 @@
     "jshint": "^2.5.1",
     "mocha": "^3.5.0",
     "nyc": "^11.1.0",
-    "phantomjs-prebuilt": "^2.1.15",
     "testling": "^1.7.0"
   },
   "keywords": [

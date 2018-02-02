@@ -1,6 +1,10 @@
 ## Change Log
 
-### 2.1.0 (2017/09/01 18:23 +00:00)
+### 2.2.0 (2017/09/10 08:44 +00:00)
+- [#103](https://github.com/oncletom/tld.js/pull/103) API addition proposal + remove redundancy (@remusao)
+- [#98](https://github.com/oncletom/tld.js/pull/98) Add a benchmark script to tld.js to measure performance evolution (@remusao, @oncletom)
+
+### v2.1.0 (2017/09/01 18:32 +00:00)
 - [#97](https://github.com/oncletom/tld.js/pull/97) Implement rules using a trie data structure. (@remusao)
 
 ### v2.0.0 (2017/07/19 08:36 +00:00)
