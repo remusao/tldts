@@ -65,7 +65,6 @@
     "jshint": "^2.5.1",
     "mocha": "^3.5.0",
     "nyc": "^11.1.0",
-    "phantomjs-prebuilt": "^2.1.15",
     "testling": "^1.7.0"
   },
   "keywords": [
