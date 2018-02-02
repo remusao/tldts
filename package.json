@@ -63,14 +63,14 @@
   },
   "devDependencies": {
     "benchmark": "^2.1.4",
+    "browserify": "^15.2.0",
     "env-test": "^1.0.0",
     "expect.js": "^0.3.1",
-    "github-changes": "^1.0.0",
+    "github-changes": "^1.1.2",
     "jshint": "^2.5.1",
-    "mocha": "^3.5.0",
-    "nyc": "^11.1.0",
+    "mocha": "^5.0.0",
+    "nyc": "^11.4.1",
     "testling": "^1.7.0",
-    "browserify": "^14.5.0",
     "uglify-js": "^3.1.9"
   },
   "keywords": [
