@@ -17,3 +17,5 @@ coverage*
 .nyc_output
 
 rules.json
+tld.js
+tld.min.js
