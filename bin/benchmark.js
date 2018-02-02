@@ -6,7 +6,7 @@ var tld = require('../index.js');
 var Benchmark = require('benchmark');
 
 
-var DOMAINS = [
+var HOSTNAMES = [
   // No public suffix
   'example.foo.edu.au', // null
   'example.foo.edu.sh', // null
@@ -30,7 +30,10 @@ var DOMAINS = [
   'example.www.ck', // !www.ck
   'foo.bar.baz.city.yokohama.jp', // !city.yokohama.jp
   'example.city.kobe.jp', // !city.kobe.jp
+];
 
+
+var URLS = [
   // IDN labels
   'example.北海道.jp', // 北海道.jp
   'example.和歌山.jp', // 和歌山.jp
@@ -44,60 +47,83 @@ var DOMAINS = [
   'FOO.bar.BAZ.ortsinfo.AT', // null
 
   // Full URLs
-  // '2001:0DB8:0100:F101:0210:A4FF:FEE3:9566',
-  // 'http://user:pass@www.examplegoogle.com:21/blah#baz',
-  // 'http://iris.test.ing/&#x1E0B;&#x0323;/?&#x1E0B;&#x0323;#&#x1E0B;&#x0323;',
-  // 'http://0000000000000300.0xffffffffFFFFFFFF.3022415481470977',
+  '2001:0DB8:0100:F101:0210:A4FF:FEE3:9566',
+  'http://user:pass@www.examplegoogle.com:21/blah#baz',
+  'http://iris.test.ing/&#x1E0B;&#x0323;/?&#x1E0B;&#x0323;#&#x1E0B;&#x0323;',
+  'http://0000000000000300.0xffffffffFFFFFFFF.3022415481470977',
+  'http://192.168.0.1/',
+  'http://%30%78%63%30%2e%30%32%35%30.01%2e',
+  'http://user:pass@[::1]/segment/index.html?query#frag',
+  'https://[::1]',
 ];
 
 
-// TODO - Compare to other libraries
-function main() {
+function bench(values) {
   console.log(
     'While interpreting the results, keep in mind that each "op" reported' +
-    ' by the benchmark is processing ' + DOMAINS.length + ' domains'
+    ' by the benchmark is processing ' + values.length + ' domains'
   );
 
   new Benchmark.Suite()
+    .add('tldjs#isIp', () => {
+      for (var i = 0; i < values.length; i += 1) {
+        tld.isIp(values[i]);
+      }
+    })
     .add('tldjs#isValid', () => {
-      for (var i = 0; i < DOMAINS.length; i += 1) {
-        tld.isValid(DOMAINS[i]);
+      for (var i = 0; i < values.length; i += 1) {
+        tld.isValid(values[i]);
       }
     })
     .add('tldjs#extractHostname', () => {
-      for (var i = 0; i < DOMAINS.length; i += 1) {
-        tld.extractHostname(DOMAINS[i]);
+      for (var i = 0; i < values.length; i += 1) {
+        tld.extractHostname(values[i]);
       }
     })
     .add('tldjs#tldExists', () => {
-      for (var i = 0; i < DOMAINS.length; i += 1) {
-        tld.tldExists(DOMAINS[i]);
+      for (var i = 0; i < values.length; i += 1) {
+        tld.tldExists(values[i]);
       }
     })
     .add('tldjs#getPublicSuffix', () => {
-      for (var i = 0; i < DOMAINS.length; i += 1) {
-        tld.getPublicSuffix(DOMAINS[i]);
+      for (var i = 0; i < values.length; i += 1) {
+        tld.getPublicSuffix(values[i]);
       }
     })
     .add('tldjs#getDomain', () => {
-      for (var i = 0; i < DOMAINS.length; i += 1) {
-        tld.getDomain(DOMAINS[i]);
+      for (var i = 0; i < values.length; i += 1) {
+        tld.getDomain(values[i]);
       }
     })
     .add('tldjs#getSubdomain', () => {
-      for (var i = 0; i < DOMAINS.length; i += 1) {
-        tld.getSubdomain(DOMAINS[i]);
+      for (var i = 0; i < values.length; i += 1) {
+        tld.getSubdomain(values[i]);
       }
     })
     .add('tldjs#parse', () => {
-      for (var i = 0; i < DOMAINS.length; i += 1) {
-        tld.parse(DOMAINS[i]);
+      for (var i = 0; i < values.length; i += 1) {
+        tld.parse(values[i]);
       }
     })
     .on('cycle', function (event) {
       console.log(String(event.target));
     })
     .run();
+}
+
+
+// TODO - Compare to other libraries
+function main() {
+  console.log('>>> -------------------- <<<');
+  console.log('>>> Only valid hostnames <<<');
+  console.log('>>> -------------------- <<<');
+  bench(HOSTNAMES);
+
+  console.log();
+  console.log('>>> ----------- <<<');
+  console.log('>>> Random URLs <<<');
+  console.log('>>> ----------- <<<');
+  bench(URLS);
 }
 
 

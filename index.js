@@ -1,5 +1,6 @@
 'use strict';
 
+
 // Load rules
 var Trie = require('./lib/suffix-trie.js');
 var allRules = Trie.fromJson(require('./rules.json'));
@@ -10,6 +11,7 @@ var getDomain = require('./lib/domain.js');
 var getPublicSuffix = require('./lib/public-suffix.js');
 var getSubdomain = require('./lib/subdomain.js');
 var isValid = require('./lib/is-valid.js');
+var isIp = require('./lib/is-ip.js');
 var tldExists = require('./lib/tld-exists.js');
 
 
@@ -50,11 +52,25 @@ function factory(options) {
     var result = {
       hostname: _extractHostname(url),
       isValid: null,
-      tldExists: null,
+      isIp: null,
+      tldExists: false,
       publicSuffix: null,
       domain: null,
       subdomain: null,
     };
+
+    if (result.hostname === null) {
+      result.isIp = false;
+      result.isValid = false;
+      return result;
+    }
+
+    // Check if `hostname` is a valid ip address
+    result.isIp = isIp(result.hostname);
+    if (result.isIp) {
+      result.isValid = true;
+      return result;
+    }
 
     // Check if `hostname` is valid
     result.isValid = isValid(result.hostname);
