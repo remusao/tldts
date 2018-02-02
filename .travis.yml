@@ -2,9 +2,13 @@ sudo: false
 dist: trusty
 language: node_js
 node_js:
-- v4
 - v6
 - node
+
+env:
+- MOZ_HEADLESS=1
+addons:
+  firefox: latest
 
 notifications:
   email:
