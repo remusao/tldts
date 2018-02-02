@@ -28,8 +28,10 @@
     "test-watch": "mocha -R dot -r env-test --watch",
     "update": "node ./bin/update.js",
     "version": "npm run generate-changelog && git add CHANGELOG.md",
-    "build": "npm run update && browserify index.js --s tldjs > tld.js",
-    "build-min": "npm run update && browserify index.js --s tldjs | uglifyjs -c > tld.min.js"
+    "prebuild": "npm run update",
+    "build": "browserify index.js --s tldjs > tld.js",
+    "prebuild-min": "npm run update",
+    "build-min": "browserify index.js --s tldjs | uglifyjs -c > tld.min.js"
   },
   "tldjs": {
     "providers": {
@@ -67,7 +69,6 @@
     "jshint": "^2.5.1",
     "mocha": "^3.5.0",
     "nyc": "^11.1.0",
-    "phantomjs-prebuilt": "^2.1.15",
     "testling": "^1.7.0",
     "browserify": "^14.5.0",
     "uglify-js": "^3.1.9"
