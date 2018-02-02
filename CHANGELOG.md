@@ -1,6 +1,12 @@
 ## Change Log
 
-### 2.2.0 (2017/09/10 08:44 +00:00)
+### 2.3.0 (2018/02/02 14:13 +00:00)
+- [#108](https://github.com/oncletom/tld.js/pull/108) Add ip validation (@remusao)
+- [#113](https://github.com/oncletom/tld.js/pull/113) bundles it for the browser (@srashid5)
+- [#105](https://github.com/oncletom/tld.js/pull/105) Activating Open Collective (@oncletom, @xdamman)
+- [#115](https://github.com/oncletom/tld.js/pull/115) Use Firefox Headless for CI testing (@oncletom)
+
+### v2.2.0 (2017/09/10 08:45 +00:00)
 - [#103](https://github.com/oncletom/tld.js/pull/103) API addition proposal + remove redundancy (@remusao)
 - [#98](https://github.com/oncletom/tld.js/pull/98) Add a benchmark script to tld.js to measure performance evolution (@remusao, @oncletom)
 
