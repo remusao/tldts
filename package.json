@@ -77,5 +77,10 @@
     "domain name",
     "subdomain",
     "public suffix"
-  ]
+  ],
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/tldjs",
+    "logo": "https://opencollective.com/opencollective/logo.txt"
+  }
 }
