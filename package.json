@@ -20,7 +20,7 @@
     "benchmark": "node ./bin/benchmark.js",
     "generate-changelog": "github-changes -o oncletom -r 'tld.js' -n ${npm_package_version} --only-pulls --use-commit-body",
     "lint": "jshint --config .jshintrc lib/**/*.js",
-    "postinstall": "node ./bin/postinstall.js && opencollective postinstall",
+    "postinstall": "node ./bin/postinstall.js",
     "posttest": "npm run lint && npm run test-browser",
     "prepublish": "npm run update",
     "test": "nyc mocha -R dot -r env-test",
@@ -55,7 +55,6 @@
     ]
   },
   "dependencies": {
-    "opencollective": "^1.0.3",
     "punycode": "^1.4.1"
   },
   "devDependencies": {
