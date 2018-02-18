@@ -22,6 +22,7 @@
     "lint": "jshint --config .jshintrc lib/**/*.js",
     "postinstall": "node ./bin/postinstall.js",
     "posttest": "npm run lint && npm run test-browser",
+    "prepack": "npm run build && npm run build-min",
     "prepublish": "npm run update",
     "test": "nyc mocha -R dot -r env-test",
     "test-browser": "testling",
