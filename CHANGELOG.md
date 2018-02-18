@@ -1,6 +1,9 @@
 ## Change Log
 
-### 2.3.0 (2018/02/02 14:13 +00:00)
+### 2.3.1 (2018/02/18 17:59 +00:00)
+- [#116](https://github.com/oncletom/tld.js/pull/116) Publish bundles to npm (@chrmod)
+
+### v2.3.0 (2018/02/02 14:13 +00:00)
 - [#108](https://github.com/oncletom/tld.js/pull/108) Add ip validation (@remusao)
 - [#113](https://github.com/oncletom/tld.js/pull/113) bundles it for the browser (@srashid5)
 - [#105](https://github.com/oncletom/tld.js/pull/105) Activating Open Collective (@oncletom, @xdamman)
