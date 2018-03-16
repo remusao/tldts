@@ -1,6 +1,5 @@
 'use strict';
 
-
 // Load rules
 var Trie = require('./lib/suffix-trie.js');
 var allRules = Trie.fromJson(require('./rules.json'));
@@ -100,7 +99,11 @@ function factory(options) {
   return {
     extractHostname: _extractHostname,
     isValidHostname: isValidHostname,
-    isValid: isValidHostname,
+    isValid: function (hostname) {
+      // eslint-disable-next-line
+      console.error('DeprecationWarning: "isValid" is deprecated, please use "isValidHostname" instead.');
+      return isValidHostname(hostname);
+    },
     parse: parse,
     tldExists: function (url) {
       return parse(url, TLD_EXISTS).tldExists;
