@@ -9,7 +9,7 @@ var extractHostname = require('./lib/clean-host.js');
 var getDomain = require('./lib/domain.js');
 var getPublicSuffix = require('./lib/public-suffix.js');
 var getSubdomain = require('./lib/subdomain.js');
-var isValidHostname = require('./lib/is-valid.js');
+var isValid = require('./lib/is-valid.js');
 var isIp = require('./lib/is-ip.js');
 var tldExists = require('./lib/tld-exists.js');
 
@@ -33,7 +33,22 @@ var ALL = 5;
 function factory(options) {
   var rules = options.rules || allRules || {};
   var validHosts = options.validHosts || [];
+  var lenientHostnameValidation = options.lenientHostnameValidation === true;
   var _extractHostname = options.extractHostname || extractHostname;
+
+  // @see https://github.com/oncletom/tld.js/pull/122
+  var isValidHostname = isValid;
+  if (lenientHostnameValidation) {
+    // If 'lenient' mode is enabled, then underscores are allowed to appear in
+    // hostnames. By default, only alphanumeric characters as well as '-' is
+    // allowed.
+    isValidHostname = function (hostname) {
+      return isValid(hostname, function (code) {
+        return code === 45 || code === 95;
+        //              ^ - (dash)     ^ _ (underscore)
+      });
+    };
+  }
 
   /**
    * Process a given url and extract all information. This is a higher level API

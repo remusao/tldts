@@ -70,6 +70,9 @@ describe('tld.js', function () {
       expect(tld.isValid('example.' + repeat('a', 63) + '.')).to.be(true);
       expect(tld.isValid('example.' + repeat('a', 63))).to.be(true);
 
+      // Rejects domains with '_'
+      expect(tld.isValid('foo.bar_baz.com')).to.be(false);
+
       //@see https://github.com/oncletom/tld.js/issues/95
       expect(tld.isValid('miam.miam.google.com.')).to.be(true);
 
@@ -91,6 +94,12 @@ describe('tld.js', function () {
       expect(tld.isValid('.localhost')).to.be(false);
       expect(tld.isValid('.google.com')).to.be(false);
       expect(tld.isValid('.com')).to.be(false);
+    });
+
+    it('should accept extra code points in domain with lenien mode', function () {
+      // @see https://github.com/oncletom/tld.js/pull/122
+      var customTld = tld.fromUserSettings({ lenientHostnameValidation: true });
+      expect(customTld.isValid('foo.bar_baz.com')).to.be(true);
     });
   });
 
