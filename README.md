@@ -151,20 +151,20 @@ getPublicSuffix('s3.amazonaws.com'); // returns `s3.amazonaws.com`
 getPublicSuffix('tld.is.unknown');   // returns `unknown`
 ```
 
-### isValid()
+### isValidHostname()
 
-Checks the validity of a given string — parseable with [`require('url').parse`][].
+Checks if the given string is a valid hostname according to [RFC 1035](https://tools.ietf.org/html/rfc1035).
 It does not check if the TLD is _well-known_.
 
 ```javascript
-const { isValid } = tldjs;
+const { isValidHostname } = tldjs;
 
-isValid('google.com');      // returns `true`
-isValid('.google.com');     // returns `false`
-isValid('my.fake.domain');  // returns `true`
-isValid('localhost');       // returns `false`
-isValid('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `true`
-isValid('192.168.0.0')      // returns `true`
+isValidHostname('google.com');      // returns `true`
+isValidHostname('.google.com');     // returns `false`
+isValidHostname('my.fake.domain');  // returns `true`
+isValidHostname('localhost');       // returns `false`
+isValidHostname('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `false`
+isValidHostname('192.168.0.0')      // returns `true`
 ```
 
 # Troubleshooting
@@ -231,7 +231,7 @@ On an Intel i7-6600U (2,60-3,40 GHz):
 
 | Methods           | ops/sec      |
 | ---               | ---          |
-| `isValid`         | ~`8,700,000` |
+| `isValidHostname` | ~`8,700,000` |
 | `extractHostname` | ~`8,100,000` |
 | `tldExists`       | ~`2,000,000` |
 | `getPublicSuffix` | ~`1,130,000` |
@@ -244,7 +244,7 @@ On an Intel i7-6600U (2,60-3,40 GHz):
 
 | Methods           | ops/sec       |
 | ---               | ---           |
-| `isValid`         | ~`25,400,000` |
+| `isValidHostname` | ~`25,400,000` |
 | `extractHostname` | ~`400,000`    |
 | `tldExists`       | ~`310,000`    |
 | `getPublicSuffix` | ~`240,000`    |

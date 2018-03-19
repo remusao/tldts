@@ -1,6 +1,5 @@
 'use strict';
 
-
 // Load rules
 var Trie = require('./lib/suffix-trie.js');
 var allRules = Trie.fromJson(require('./rules.json'));
@@ -10,7 +9,7 @@ var extractHostname = require('./lib/clean-host.js');
 var getDomain = require('./lib/domain.js');
 var getPublicSuffix = require('./lib/public-suffix.js');
 var getSubdomain = require('./lib/subdomain.js');
-var isValid = require('./lib/is-valid.js');
+var isValidHostname = require('./lib/is-valid.js');
 var isIp = require('./lib/is-ip.js');
 var tldExists = require('./lib/tld-exists.js');
 
@@ -73,22 +72,22 @@ function factory(options) {
     }
 
     // Check if `hostname` is valid
-    result.isValid = isValid(result.hostname);
-    if (result.isValid === false) return result;
+    result.isValid = isValidHostname(result.hostname);
+    if (result.isValid === false) { return result; }
 
     // Check if tld exists
     if (step === ALL || step === TLD_EXISTS) {
       result.tldExists = tldExists(rules, result.hostname);
     }
-    if (step === TLD_EXISTS) return result;
+    if (step === TLD_EXISTS) { return result; }
 
     // Extract public suffix
     result.publicSuffix = getPublicSuffix(rules, result.hostname);
-    if (step === PUBLIC_SUFFIX) return result;
+    if (step === PUBLIC_SUFFIX) { return result; }
 
     // Extract domain
     result.domain = getDomain(validHosts, result.publicSuffix, result.hostname);
-    if (step === DOMAIN) return result;
+    if (step === DOMAIN) { return result; }
 
     // Extract subdomain
     result.subdomain = getSubdomain(result.hostname, result.domain);
@@ -99,7 +98,12 @@ function factory(options) {
 
   return {
     extractHostname: _extractHostname,
-    isValid: isValid,
+    isValidHostname: isValidHostname,
+    isValid: function (hostname) {
+      // eslint-disable-next-line
+      console.error('DeprecationWarning: "isValid" is deprecated, please use "isValidHostname" instead.');
+      return isValidHostname(hostname);
+    },
     parse: parse,
     tldExists: function (url) {
       return parse(url, TLD_EXISTS).tldExists;
