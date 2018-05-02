@@ -60,7 +60,7 @@
     ]
   },
   "dependencies": {
-    "punycode": "^1.4.1"
+    "punycode": "~1.4.1"
   },
   "devDependencies": {
     "benchmark": "^2.1.4",
