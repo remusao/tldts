@@ -71,14 +71,14 @@ function bench(values) {
         isIp(values[i]);
       }
     })
-    .add('tldjs#isValid', () => {
+    .add('tldjs#isValidHostname', () => {
       for (var i = 0; i < values.length; i += 1) {
-        tld.isValid(values[i]);
+        tld.isValidHostname(values[i]);
       }
     })
-    .add('tldjs#extractHostname', () => {
+    .add('tldjs#getHostname', () => {
       for (var i = 0; i < values.length; i += 1) {
-        tld.extractHostname(values[i]);
+        tld.getHostname(values[i]);
       }
     })
     .add('tldjs#tldExists', () => {

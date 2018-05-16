@@ -60,7 +60,8 @@
     ]
   },
   "dependencies": {
-    "punycode": "~1.4.1"
+    "punycode": "~1.4.1",
+    "whatwg-url": "^6.5.0"
   },
   "devDependencies": {
     "benchmark": "^2.1.4",

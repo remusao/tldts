@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-/* global suite, test, setup */
+/* global describe, beforeEach, it */
 
 var tld = require('../index.js');
 var expect = require('expect.js');
@@ -8,10 +8,13 @@ var checkPublicSuffix;
 
 describe('PublicSuffix tests', function(){
   beforeEach(function(){
-    //ease testing by simply copy/pasting tests from Mozilla Central
-    //@see http://mxr.mozilla.org/mozilla-central/source/netwerk/test/unit/data/test_psl.txt?raw=1
+    // Ease testing by simply copy/pasting tests from Mozilla Central
+    // @see http://mxr.mozilla.org/mozilla-central/source/netwerk/test/unit/data/test_psl.txt?raw=1
     checkPublicSuffix = function(testDomain, expectedResult){
-      expect(tld.getDomain(testDomain)).to.equal(expectedResult);
+      expect(tld.getDomain(testDomain, {
+        allowPrivateDomains: true,
+        allowIcannDomains: true
+      })).to.equal(expectedResult);
     };
   });
 
@@ -113,15 +116,15 @@ describe('PublicSuffix tests', function(){
   });
 
   it('IDN labels.', function(){
-    // checkPublicSuffix('食狮.com.cn', '食狮.com.cn');
-    // checkPublicSuffix('食狮.公司.cn', '食狮.公司.cn');
-    // checkPublicSuffix('www.食狮.公司.cn', '食狮.公司.cn');
-    // checkPublicSuffix('shishi.公司.cn', 'shishi.公司.cn');
-    // checkPublicSuffix('公司.cn', null);
-    // checkPublicSuffix('食狮.中国', '食狮.中国');
-    // checkPublicSuffix('www.食狮.中国', '食狮.中国');
-    // checkPublicSuffix('shishi.中国', 'shishi.中国');
-    // checkPublicSuffix('中国', null);
+    checkPublicSuffix('食狮.com.cn', '食狮.com.cn');
+    checkPublicSuffix('食狮.公司.cn', '食狮.公司.cn');
+    checkPublicSuffix('www.食狮.公司.cn', '食狮.公司.cn');
+    checkPublicSuffix('shishi.公司.cn', 'shishi.公司.cn');
+    checkPublicSuffix('公司.cn', null);
+    checkPublicSuffix('食狮.中国', '食狮.中国');
+    checkPublicSuffix('www.食狮.中国', '食狮.中国');
+    checkPublicSuffix('shishi.中国', 'shishi.中国');
+    checkPublicSuffix('中国', null);
   });
 
   it('Same as above, but punycoded.', function(){

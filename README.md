@@ -21,7 +21,7 @@ The latter is useful if you significantly rely on an up-to-date list of TLDs. Yo
 # Using It
 
 ```js
-const {parse, tldExists} = require('tldjs');
+const { parse, tldExists } = require('tldjs');
 
 // Checking only if TLD exists in URL or hostname
 // First TLD exists; the second does not.
@@ -44,43 +44,59 @@ const tldjs = require('tldjs');
 
 tldjs.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv');
 // { hostname: 'spark-public.s3.amazonaws.com',
-//   isValid: true,
+//   isValidHostname: true,
+//   isIp: false,
+//   tldExists: true,
+//   publicSuffix: 'com',
+//   isIcann: true,
+//   isPrivate: false,
+//   domain: 'amazonaws.com',
+//   subdomain: 'spark-public.s3' }
+
+tld.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv', { allowPrivateDomains: true })
+// { hostname: 'spark-public.s3.amazonaws.com',
+//   isValidHostname: true,
 //   isIp: false,
 //   tldExists: true,
 //   publicSuffix: 's3.amazonaws.com',
+//   isIcann: false,
+//   isPrivate: true,
 //   domain: 'spark-public.s3.amazonaws.com',
-//   subdomain: ''
-// }
+//   subdomain: '' }
 
 tldjs.parse('gopher://domain.unknown/');
 // { hostname: 'domain.unknown',
-//   isValid: true,
+//   isValidHostname: true,
 //   isIp: false,
 //   tldExists: false,
 //   publicSuffix: 'unknown',
+//   isIcann: false,
+//   isPrivate: false,
 //   domain: 'domain.unknown',
-//   subdomain: ''
-// }
+//   subdomain: '' }
 
 tldjs.parse('https://192.168.0.0')
 // { hostname: '192.168.0.0',
-//   isValid: true,
+//   isValidHostname: true,
 //   isIp: true,
-//   tldExists: false,
+//   tldExists: null,
 //   publicSuffix: null,
+//   isIcann: null,
+//   isPrivate: null,
 //   domain: null,
-//   subdomain: null
-// }
+//   subdomain: null }
 ```
 
-| Property Name | Type | |
-| ---           | ---       | --- |
-| `hostname`    | `String`  |   |
-| `isValid`     | `Boolean` | Is the hostname valid according to the RFC?  |
-| `tldExists`   | `Boolean` | Is the TLD well-known or not?  |
-| `publicSuffix`| `String`  |   |
-| `domain`      | `String`  |   |
-| `subdomain`   | `String`  |   |
+| Property Name     | Type | |
+| ---               | ---       | --- |
+| `hostname`        | `String`  |   |
+| `isValidHostname` | `Boolean` | Is the hostname valid according to the RFC?  |
+| `tldExists`       | `Boolean` | Is the TLD well-known or not?  |
+| `publicSuffix`    | `String`  |   |
+| `isIcann`         | `Boolean` | Does TLD come from public part of the list  |
+| `isPrivate`       | `Boolean` | Does TLD come from private part of the list |
+| `domain`          | `String`  |   |
+| `subdomain`       | `String`  |   |
 
 
 ## Single purpose methods
@@ -147,7 +163,8 @@ const { getPublicSuffix } = tldjs;
 getPublicSuffix('google.com');       // returns `com`
 getPublicSuffix('fr.google.com');    // returns `com`
 getPublicSuffix('google.co.uk');     // returns `co.uk`
-getPublicSuffix('s3.amazonaws.com'); // returns `s3.amazonaws.com`
+getPublicSuffix('s3.amazonaws.com'); // returns `com`
+getPublicSuffix('s3.amazonaws.com', { allowPrivateDomains: true }); // returns `s3.amazonaws.com`
 getPublicSuffix('tld.is.unknown');   // returns `unknown`
 ```
 
@@ -162,37 +179,12 @@ const { isValidHostname } = tldjs;
 isValidHostname('google.com');      // returns `true`
 isValidHostname('.google.com');     // returns `false`
 isValidHostname('my.fake.domain');  // returns `true`
-isValidHostname('localhost');       // returns `false`
+isValidHostname('localhost');       // returns `true`
 isValidHostname('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `false`
 isValidHostname('192.168.0.0')      // returns `true`
 ```
 
 # Troubleshooting
-
-## Ignoring Private domain section of public suffix list
-
-Because `tld.js` relies on public suffix list to parse URLs and hostnames, you
-might encounter counter-intuitive results from time to time. Most of these
-results stems from the fact that public suffix list contains two sections: ICANN
-domains and Private domains. The *ICANN* section defines what you would expect to
-see as top-level domains most of the time: `.com`, `.net`, `co.uk`, etc. On the
-other hand, the *Private* section contains rules such as: `global.prod.fastly.net`
-or `s3.amazonaws.com`. This means that these values can appear as `publicSuffix`.
-
-Fortunately, you can ask `tld.js` to ignore the *Private* section completely:
-```js
-const tldjs = require('tldjs');
-
-tldjs.getDomain('www.s3.amazonaws.com');  // returns 'www.s3.amazonaws.com'
-tldjs.getDomain('https://global.prod.fastly.net'); // returns null
-
-const myTldjs = tldjs.fromUserSettings({
-  allowPrivate: false,
-});
-
-myTldjs.getDomain('www.s3.amazonaws.com');  // returns 'amazonaws.com'
-myTldjs.getDomain('https://global.prod.fastly.net'); // returns 'fastly.net'
-```
 
 ## Retrieving subdomain of `localhost` and custom hostnames
 
