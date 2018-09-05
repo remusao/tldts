@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
-'use strict';
-
-var tld = require('../index.js');
-var isIp = require('../lib/is-ip.js');
+var path = require('path');
+var tld = require(path.resolve(__dirname, '../dist/index.js'));
 var Benchmark = require('benchmark');
 
 
@@ -68,7 +66,7 @@ function bench(values) {
   new Benchmark.Suite()
     .add('tldjs#isIp', () => {
       for (var i = 0; i < values.length; i += 1) {
-        isIp(values[i]);
+        tld.isIp(values[i]);
       }
     })
     .add('tldjs#isValidHostname', () => {

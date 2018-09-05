@@ -1,18 +1,11 @@
-'use strict';
+import isValidIDNA from './idna';
+import { IOptions } from './options';
 
-var isValidIDNA = require('./idna.js');
-
-
-function containsUnderscore(hostname) {
+function containsUnderscore(hostname: string): boolean {
   return hostname.indexOf('_') !== -1;
 }
 
-
-function isValidHostname(hostname) {
-  if (typeof hostname !== 'string') {
-    return false;
-  }
-
+function isValidHostname(hostname: string): boolean {
   if (hostname.length > 255) {
     return false;
   }
@@ -22,21 +15,25 @@ function isValidHostname(hostname) {
   }
 
   // Check first character
-  var firstCharCode = hostname.codePointAt(0);
+  const firstCharCode: number | undefined = hostname.codePointAt(0);
+  if (firstCharCode === undefined) {
+    return false;
+  }
+
   if (!isValidIDNA(firstCharCode)) {
     return false;
   }
 
   // Validate hostname according to RFC
-  var lastDotIndex = -1;
-  var lastCharCode;
-  var code;
-  var len = hostname.length;
+  let lastDotIndex = -1;
+  let lastCharCode;
+  const len = hostname.length;
 
-  for (var i = 0; i < len; i += 1) {
-    code = hostname.codePointAt(i);
-
-    if (code === 46) { // '.'
+  for (let i = 0; i < len; i += 1) {
+    const code = hostname.codePointAt(i);
+    if (code === undefined) {
+      return false;
+    } else if (code === 46) { // '.'
       if (
         // Check that previous label is < 63 bytes long (64 = 63 + '.')
         (i - lastDotIndex) > 64 ||
@@ -75,15 +72,11 @@ function isValidHostname(hostname) {
  * preliminary check before trying to use getDomain or anything else.
  *
  * Beware: it does not check if the TLD exists.
- *
- * @api
- * @param {string} hostname
- * @return {boolean}
  */
-module.exports = function (hostname, options) {
+export default function isValid(hostname: string, options: IOptions): boolean {
   return (
     isValidHostname(hostname) && (
       options.strictHostnameValidation === false || !containsUnderscore(hostname)
     )
   );
-};
+}

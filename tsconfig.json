@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "dist",
+    "types": ["node", "jest"],
+    "target": "ES3",
+    "lib": ["ES6"],
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "downlevelIteration": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true
+  },
+  "files": [
+    "./lib/clean-host.ts",
+    "./lib/domain.ts",
+    "./lib/from-host.ts",
+    "./lib/idna.ts",
+    "./lib/index.ts",
+    "./lib/is-ip.ts",
+    "./lib/is-valid.ts",
+    "./lib/options.ts",
+    "./lib/parsers/publicsuffix-org.ts",
+    "./lib/polyfill.ts",
+    "./lib/public-suffix.ts",
+    "./lib/rules.ts",
+    "./lib/subdomain.ts",
+    "./lib/suffix-trie.ts",
+    "./lib/tld-exists.ts"
+  ]
+}

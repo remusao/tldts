@@ -1,6 +1,6 @@
 
 function buildLookupTable() {
-  var codes = [
+  const codes = [
     48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70, 71, 72, 73,
     74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98,
     99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113,
@@ -4861,16 +4861,15 @@ function buildLookupTable() {
   ];
 
   // eslint-disable-next-line no-undef
-  var lookup = new Uint8Array(24388);
+  const lookup = new Uint8Array(24388);
 
-  for (var i = 0; i < codes.length; i += 1) {
-    var x = codes[i];
+  for (let i = 0; i < codes.length; i += 1) {
+    const x = codes[i];
     lookup[x >>> 3] |= (1 << (x % 8));
   }
 
   return lookup;
 }
-
 
 /**
  * This function allows to quickly check if a given unicode code point is
@@ -4889,12 +4888,10 @@ function buildLookupTable() {
  *
  * The implementation mainly consists in a bit-vector for characters.
  */
-module.exports = (function () {
-  var lookup = buildLookupTable();
-  return function (x) {
-    return (
-      (x > 917759 && x < 918000) ||
+export default (() => {
+  const lookup = buildLookupTable();
+  return (x: number) => (
+    (x > 917759 && x < 918000) ||
       (x < 195102 && (lookup[x >>> 3] & (1 << (x % 8))) !== 0)
-    );
-  };
+  );
 })();

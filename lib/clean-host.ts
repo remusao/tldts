@@ -1,26 +1,21 @@
-'use strict';
-
-var isValidHostname = require('./is-valid.js');
+import isValidHostname from './is-valid';
+import { IOptions } from './options';
+import { startsWith } from './polyfill';
 
 /**
  * @see https://github.com/oncletom/tld.js/issues/95
- *
- * @param {string} value
  */
-function trimTrailingDots(value) {
+function trimTrailingDots(value: string): string {
   if (value[value.length - 1] === '.') {
     return value.substr(0, value.length - 1);
   }
   return value;
 }
 
-
 /**
  * Fast check to avoid calling `trim` when not needed.
- *
- * @param {string} value
  */
-function isTrimmingNeeded(value) {
+function isTrimmingNeeded(value: string): boolean {
   return (
     value.length > 0 && (
       value.charCodeAt(0) <= 32 ||
@@ -29,12 +24,11 @@ function isTrimmingNeeded(value) {
   );
 }
 
-
 /**
  * Return `true` if `code` is a character which can be part of a scheme.
  */
-function isSchemeChar(code) {
-  var lowerCaseCode = code | 32;
+function isSchemeChar(code: number): boolean {
+  const lowerCaseCode = code | 32;
   return (
     (lowerCaseCode >= 97 && lowerCaseCode <= 122) || // alpha
     (lowerCaseCode >= 48 && lowerCaseCode <= 57) || // digit
@@ -44,8 +38,7 @@ function isSchemeChar(code) {
   );
 }
 
-
-module.exports = function (url, options) {
+export default function(url: string, options: IOptions): string | null {
   if (typeof url !== 'string') {
     return '' + url;
   }
@@ -61,17 +54,17 @@ module.exports = function (url, options) {
   }
 
   // Extract hostname
-  var start = 0;
-  var end = url.length;
+  let start = 0;
+  let end = url.length;
 
   // Skip scheme.
-  if (url.startsWith('//')) {
+  if (startsWith(url, '//')) {
     start = 2;
   } else {
-    var indexOfProtocol = url.indexOf('://');
+    const indexOfProtocol = url.indexOf('://');
     if (indexOfProtocol !== -1) {
       start = indexOfProtocol + 3;
-      for (var i = 0; i < indexOfProtocol; i += 1) {
+      for (let i = 0; i < indexOfProtocol; i += 1) {
         if (!isSchemeChar(url.charCodeAt(i))) {
           // This is not a valid scheme
           start = 0;
@@ -82,43 +75,43 @@ module.exports = function (url, options) {
   }
 
   // Detect first slash
-  var indexOfSlash = url.indexOf('/', start);
+  const indexOfSlash = url.indexOf('/', start);
   if (indexOfSlash !== -1) {
     end = indexOfSlash;
   }
 
   // Detect parameters: '?'
-  var indexOfParams = url.indexOf('?', start);
+  const indexOfParams = url.indexOf('?', start);
   if (indexOfParams !== -1 && indexOfParams < end) {
     end = indexOfParams;
   }
 
   // Detect fragments: '#'
-  var indexOfFragments = url.indexOf('#', start);
+  const indexOfFragments = url.indexOf('#', start);
   if (indexOfFragments !== -1 && indexOfFragments < end) {
     end = indexOfFragments;
   }
 
   // Detect identifier: '@'
-  var indexOfIdentifier = url.indexOf('@', start);
+  const indexOfIdentifier = url.indexOf('@', start);
   if (indexOfIdentifier !== -1 && indexOfIdentifier < end) {
     start = indexOfIdentifier + 1;
   }
 
-  // Detect port: ':'
-  var indexOfPort = url.indexOf(':', start);
-  if (indexOfPort !== -1 && indexOfPort < end) {
-    end = indexOfPort;
-  }
-
   // Handle ipv6 addresses
   if (url.charAt(start) === '[') {
-    var indexOfClosingBracket = url.indexOf(']', start);
+    const indexOfClosingBracket = url.indexOf(']', start);
     if (indexOfClosingBracket !== -1) {
       return url.substring(start + 1, indexOfClosingBracket).toLowerCase();
     }
     return null;
+  } else {
+    // Detect port: ':'
+    const indexOfPort = url.indexOf(':', start);
+    if (indexOfPort !== -1 && indexOfPort < end) {
+      end = indexOfPort;
+    }
   }
 
   return trimTrailingDots(url.substring(start, end)).toLowerCase();
-};
+}

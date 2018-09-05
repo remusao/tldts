@@ -1,28 +1,27 @@
-'use strict';
+import extractTldFromHost from './from-host';
+import { IOptions } from './options';
+import Trie from './suffix-trie';
 
-
-var extractTldFromHost = require('./from-host.js');
-
+export interface IPublicSuffix {
+  isIcann: boolean;
+  isPrivate: boolean;
+  publicSuffix: string | null;
+}
 
 /**
  * Returns the public suffix (including exact matches)
- *
- * @api
- * @since 1.5
- * @param {string} hostname
- * @return {string}
  */
-module.exports = function getPublicSuffix(rules, hostname, options) {
+export default function getPublicSuffix(rules: Trie, hostname: string, options: IOptions): IPublicSuffix {
   // First check if `hostname` is already a valid top-level Domain.
   if (rules.hasTld(hostname)) {
     return {
-      publicSuffix: hostname,
       isIcann: false,
       isPrivate: false,
+      publicSuffix: hostname,
     };
   }
 
-  var candidate = rules.suffixLookup(hostname, options);
+  const candidate = rules.suffixLookup(hostname, options);
   if (candidate === null) {
     // Prevailing rule is '*' so we consider the top-level domain to be the
     // public suffix of `hostname` (e.g.: 'example.org' => 'org').
@@ -34,4 +33,4 @@ module.exports = function getPublicSuffix(rules, hostname, options) {
   }
 
   return candidate;
-};
+}

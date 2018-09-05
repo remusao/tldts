@@ -1,62 +1,57 @@
-'use strict';
+import * as tld from '../lib/index';
 
-/* global describe, beforeEach, it */
-
-var tld = require('../index.js');
-var expect = require('expect.js');
-var checkPublicSuffix;
-
-describe('PublicSuffix tests', function(){
-  beforeEach(function(){
+describe('PublicSuffix tests', () => {
+  let checkPublicSuffix: any;
+  beforeEach(() => {
     // Ease testing by simply copy/pasting tests from Mozilla Central
     // @see http://mxr.mozilla.org/mozilla-central/source/netwerk/test/unit/data/test_psl.txt?raw=1
-    checkPublicSuffix = function(testDomain, expectedResult){
+    checkPublicSuffix = (testDomain: string, expectedResult: string | null) => {
       expect(tld.getDomain(testDomain, {
+        allowIcannDomains: true,
         allowPrivateDomains: true,
-        allowIcannDomains: true
-      })).to.equal(expectedResult);
+      })).toEqual(expectedResult);
     };
   });
 
-  it('null input.', function(){
+  it('null input.', () => {
     checkPublicSuffix(null, null);
   });
 
-  it('Mixed case.', function(){
+  it('Mixed case.', () => {
     checkPublicSuffix('COM', null);
     checkPublicSuffix('example.COM', 'example.com');
     checkPublicSuffix('WwW.example.COM', 'example.com');
   });
 
-  it('Leading dot.', function(){
+  it('Leading dot.', () => {
     checkPublicSuffix('.com', null);
     checkPublicSuffix('.example', null);
     checkPublicSuffix('.example.com', null);
     checkPublicSuffix('.example.example', null);
   });
 
-  it('Unlisted TLD.', function(){
+  it('Unlisted TLD.', () => {
     checkPublicSuffix('example', null);
     checkPublicSuffix('example.example', 'example.example');
     checkPublicSuffix('b.example.example', 'example.example');
     checkPublicSuffix('a.b.example.example', 'example.example');
   });
 
-  it.skip('Listed, but non-Internet, TLD.', function(){
+  it.skip('Listed, but non-Internet, TLD.', () => {
     checkPublicSuffix('local', null);
     checkPublicSuffix('example.local', null);
     checkPublicSuffix('b.example.local', null);
     checkPublicSuffix('a.b.example.local', null);
   });
 
-  it('TLD with only 1 rule.', function(){
+  it('TLD with only 1 rule.', () => {
     checkPublicSuffix('biz', null);
     checkPublicSuffix('domain.biz', 'domain.biz');
     checkPublicSuffix('b.domain.biz', 'domain.biz');
     checkPublicSuffix('a.b.domain.biz', 'domain.biz');
   });
 
-  it('TLD with some 2-level rules.', function(){
+  it('TLD with some 2-level rules.', () => {
     checkPublicSuffix('com', null);
     checkPublicSuffix('example.com', 'example.com');
     checkPublicSuffix('b.example.com', 'example.com');
@@ -68,14 +63,14 @@ describe('PublicSuffix tests', function(){
     checkPublicSuffix('test.ac', 'test.ac');
   });
 
-  it('TLD with only 1 (wildcard) rule.', function(){
+  it('TLD with only 1 (wildcard) rule.', () => {
     checkPublicSuffix('mm', null);
     checkPublicSuffix('c.mm', null);
     checkPublicSuffix('b.c.mm', 'b.c.mm');
     checkPublicSuffix('a.b.c.mm', 'b.c.mm');
   });
 
-  it('More complex TLD.', function(){
+  it('More complex TLD.', () => {
     checkPublicSuffix('jp', null);
     checkPublicSuffix('test.jp', 'test.jp');
     checkPublicSuffix('www.test.jp', 'test.jp');
@@ -94,7 +89,7 @@ describe('PublicSuffix tests', function(){
     checkPublicSuffix('www.city.kobe.jp', 'city.kobe.jp');
   });
 
-  it('TLD with a wildcard rule and exceptions.', function(){
+  it('TLD with a wildcard rule and exceptions.', () => {
     checkPublicSuffix('ck', null);
     checkPublicSuffix('test.ck', null);
     checkPublicSuffix('b.test.ck', 'b.test.ck');
@@ -103,7 +98,7 @@ describe('PublicSuffix tests', function(){
     checkPublicSuffix('www.www.ck', 'www.ck');
   });
 
-  it('US K12.', function(){
+  it('US K12.', () => {
     checkPublicSuffix('us', null);
     checkPublicSuffix('test.us', 'test.us');
     checkPublicSuffix('www.test.us', 'test.us');
@@ -115,7 +110,7 @@ describe('PublicSuffix tests', function(){
     checkPublicSuffix('www.test.k12.ak.us', 'test.k12.ak.us');
   });
 
-  it('IDN labels.', function(){
+  it('IDN labels.', () => {
     checkPublicSuffix('食狮.com.cn', '食狮.com.cn');
     checkPublicSuffix('食狮.公司.cn', '食狮.公司.cn');
     checkPublicSuffix('www.食狮.公司.cn', '食狮.公司.cn');
@@ -127,7 +122,7 @@ describe('PublicSuffix tests', function(){
     checkPublicSuffix('中国', null);
   });
 
-  it('Same as above, but punycoded.', function(){
+  it('Same as above, but punycoded.', () => {
     checkPublicSuffix('xn--85x722f.com.cn', 'xn--85x722f.com.cn');
     checkPublicSuffix('xn--85x722f.xn--55qx5d.cn', 'xn--85x722f.xn--55qx5d.cn');
     checkPublicSuffix('www.xn--85x722f.xn--55qx5d.cn', 'xn--85x722f.xn--55qx5d.cn');
