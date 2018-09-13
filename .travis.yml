@@ -2,30 +2,27 @@ sudo: false
 dist: trusty
 language: node_js
 node_js:
-- v6
-- node
+  - 6
+  - 8
+  - 9
+  - node
 
-env:
-- MOZ_HEADLESS=1
-addons:
-  firefox: latest
+cache:
+  directories:
+    - node_modules
 
 notifications:
   email:
     on_failure: change
 
-install: npm install --tldjs-update-rules
+before_install:
+  - npm install -g npm@latest
 
-post_script: npm run benchmark
+install:
+  - npm ci
 
-deploy:
-  provider: npm
-  email: hi@oncletom.io
-  skip_cleanup: true
-  api_key:
-    secure: D+AvrtOi8eox2H+j6T1EmaRrFThTDRlfRDQjDdCs7D1WnPoSs0wMcnd0lVi0lEj68URkm/4fDmHVtLXt1V8BLyfHwt3bZUsF1pe77qUTZZkmfDI5TRxp/mni6TrpFTlYaqytyunPKm19FciWj/IE2epVhWmJ8kQx/oB/lSq9SFo=
-  on:
-    tags: true
-    node: node
-    branch: master
-    repo: oncletom/tld.js
+script:
+  - npm run clean
+  - npm run build
+  - npm run bundle
+  - npm run test
