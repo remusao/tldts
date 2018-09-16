@@ -30,7 +30,7 @@
     "clean": "rm -rfv dist build",
     "update": "git submodule foreach git pull origin master && node ./bin/update.js",
     "build": "tsc -p . --module ES6 --outDir build",
-    "bundle": "rollup -c rollup.config.js",
+    "bundle": "rollup -c rollup.config.js && google-closure-compiler --js=./dist/index.js --js_output_file=./dist/index.min.js",
     "test": "jest --coverage"
   },
   "jest": {
@@ -57,8 +57,10 @@
     "@types/node": "^10.9.4",
     "benchmark": "^2.1.4",
     "concurrently": "^4.0.1",
+    "google-closure-compiler": "20180805.0.0",
     "jest": "^23.5.0",
     "rollup": "^0.65.2",
+    "rollup-plugin-cleanup": "^3.0.0",
     "rollup-plugin-node-resolve": "^3.4.0",
     "ts-jest": "^23.10.0-beta.5",
     "tslint": "^5.11.0",

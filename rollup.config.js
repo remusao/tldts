@@ -1,4 +1,5 @@
 import resolve from 'rollup-plugin-node-resolve';
+import cleanup from 'rollup-plugin-cleanup';
 import pkg from './package.json';
 
 
@@ -10,6 +11,7 @@ const plugins = [
     preferBuiltins: false,
     modulesOnly: true,
   }),
+  cleanup(),
 ];
 
 

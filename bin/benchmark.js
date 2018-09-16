@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var path = require('path');
-var tld = require(path.resolve(__dirname, '../dist/index.js'));
+var tld = require(path.resolve(__dirname, '../dist/optimized.js'));
 var Benchmark = require('benchmark');
 
 
@@ -64,24 +64,16 @@ function bench(values) {
   );
 
   new Benchmark.Suite()
-    .add('tldjs#isIp', () => {
-      for (var i = 0; i < values.length; i += 1) {
-        tld.isIp(values[i]);
-      }
-    })
     .add('tldjs#isValidHostname', () => {
+      try {
       for (var i = 0; i < values.length; i += 1) {
         tld.isValidHostname(values[i]);
       }
+      } catch (ex) { console.error(ex); }
     })
     .add('tldjs#getHostname', () => {
       for (var i = 0; i < values.length; i += 1) {
         tld.getHostname(values[i]);
-      }
-    })
-    .add('tldjs#tldExists', () => {
-      for (var i = 0; i < values.length; i += 1) {
-        tld.tldExists(values[i]);
       }
     })
     .add('tldjs#getPublicSuffix', () => {

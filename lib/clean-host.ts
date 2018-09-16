@@ -7,7 +7,7 @@ import { startsWith } from './polyfill';
  */
 function trimTrailingDots(value: string): string {
   if (value[value.length - 1] === '.') {
-    return value.substr(0, value.length - 1);
+    return value.slice(0, value.length - 1);
   }
   return value;
 }
@@ -38,11 +38,7 @@ function isSchemeChar(code: number): boolean {
   );
 }
 
-export default function(url: string, options: IOptions): string | null {
-  if (typeof url !== 'string') {
-    return '' + url;
-  }
-
+export default function extractHostname(url: string, options: IOptions): string | null {
   // Trim spaces in `url` if needed.
   if (isTrimmingNeeded(url)) {
     url = url.trim();
@@ -50,7 +46,7 @@ export default function(url: string, options: IOptions): string | null {
 
   // First check if `url` is already a valid hostname.
   if (isValidHostname(url, options)) {
-    return trimTrailingDots(url).toLowerCase();
+    return trimTrailingDots(url);
   }
 
   // Extract hostname
@@ -64,10 +60,10 @@ export default function(url: string, options: IOptions): string | null {
     const indexOfProtocol = url.indexOf('://');
     if (indexOfProtocol !== -1) {
       start = indexOfProtocol + 3;
+
+      // Check that scheme is valid
       for (let i = 0; i < indexOfProtocol; i += 1) {
         if (!isSchemeChar(url.charCodeAt(i))) {
-          // This is not a valid scheme
-          start = 0;
           return null;
         }
       }
@@ -102,7 +98,7 @@ export default function(url: string, options: IOptions): string | null {
   if (url.charAt(start) === '[') {
     const indexOfClosingBracket = url.indexOf(']', start);
     if (indexOfClosingBracket !== -1) {
-      return url.substring(start + 1, indexOfClosingBracket).toLowerCase();
+      return url.slice(start + 1, indexOfClosingBracket);
     }
     return null;
   } else {
@@ -113,5 +109,5 @@ export default function(url: string, options: IOptions): string | null {
     }
   }
 
-  return trimTrailingDots(url.substring(start, end)).toLowerCase();
+  return trimTrailingDots(url.slice(start, end));
 }

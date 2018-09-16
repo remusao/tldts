@@ -8,19 +8,26 @@ import isValidHostnameImpl from './is-valid';
 import { IOptions, setDefaults } from './options';
 import getPublicSuffixImpl from './public-suffix';
 import getSubdomainImpl from './subdomain';
-import tldExistsImpl from './tld-exists';
 
 interface IResult {
-  domain: string | null;
-  hostname: string | null;
-  isIcann: boolean | null;
+  // `host` is either a registered name (including but not limited to a
+  // hostname), or an IP address. IPv4 addresses must be in dot-decimal
+  // notation, and IPv6 addresses must be enclosed in brackets ([]). This is
+  // directly extracted from the input URL.
+  host: string | null;
+  // Is `host` a valid hostname?
+  isValid: boolean | null;
+  // Is `host` an IP? (IPv4 or IPv6)
   isIp: boolean;
-  isPrivate: boolean | null;
-  isValidHostname: boolean | null;
-  publicSuffix: string | null;
-  subdomain: string | null;
-  tldExists: boolean | null;
 
+  // `host` split between subdomain, domain and its public suffix (if any)
+  subdomain: string | null;
+  domain: string | null;
+  publicSuffix: string | null;
+
+  // Specifies if `publicSuffix` comes from the ICANN or PRIVATE section of the list
+  isIcann: boolean | null;
+  isPrivate: boolean | null;
 }
 
 // Flags representing steps in the `parse` function. They are used to implement
@@ -28,8 +35,7 @@ interface IResult {
 // more work than necessary to perform a given action (e.g.: we don't need to
 // extract the domain and subdomain if we are only interested in public suffix).
 const enum FLAG {
-  HOSTNAME,
-  TLD_EXISTS,
+  HOST,
   PUBLIC_SUFFIX,
   DOMAIN,
   SUB_DOMAIN,
@@ -39,13 +45,9 @@ const enum FLAG {
 /**
  * Process a given url and extract all information. This is a higher level API
  * around private functions of `tld.js`. It allows to remove duplication (only
- * extract hostname from url once for all operations) and implement some early
+ * extract host from url once for all operations) and implement some early
  * termination mechanism to not pay the price of what we don't need (this
  * simulates laziness at a lower cost).
- *
- * @param {string} url
- * @param {number|undefined} _step - where should we stop processing
- * @return {object}
  */
 const parseImpl = (() => {
   const trie: Trie = getRules();
@@ -54,42 +56,40 @@ const parseImpl = (() => {
 
     const result: IResult = {
       domain: null,
-      hostname: options.extractHostname(url, options),
+      host: null,
       isIcann: null,
       isIp: false,
       isPrivate: null,
-      isValidHostname: null,
+      isValid: null,
       publicSuffix: null,
       subdomain: null,
-      tldExists: null,
     };
 
-    if (result.hostname === null) {
+    const host = options.extractHostname(url, options);
+    if (host === null) {
       result.isIp = false;
-      result.isValidHostname = false;
+      result.isValid = false;
       return result;
     }
 
-    // Check if `hostname` is a valid ip address
-    result.isIp = isIpImpl(result.hostname);
+    result.host = host.toLowerCase();
+
+    // Check if `host` is a valid ip address
+    result.isIp = isIpImpl(result.host);
     if (result.isIp) {
-      result.isValidHostname = true;
+      result.isValid = true;
       return result;
     }
 
-    // Check if `hostname` is valid
-    result.isValidHostname = isValidHostnameImpl(result.hostname, options);
-    if (result.isValidHostname === false) { return result; }
-    if (step === FLAG.HOSTNAME) { return result; }
-
-    // Check if tld exists
-    result.tldExists = tldExistsImpl(trie, result.hostname);
-    if (step === FLAG.TLD_EXISTS) { return result; }
+    // Check if `host` is valid
+    result.isValid = isValidHostnameImpl(result.host, options);
+    if (result.isValid === false) { return result; }
+    if (step === FLAG.HOST) { return result; }
 
     // Extract public suffix
     const publicSuffixResult = getPublicSuffixImpl(
       trie,
-      result.hostname,
+      result.host,
       options,
     );
 
@@ -99,11 +99,11 @@ const parseImpl = (() => {
     if (step === FLAG.PUBLIC_SUFFIX) { return result; }
 
     // Extract domain
-    result.domain = getDomainImpl(result.publicSuffix, result.hostname, options);
+    result.domain = getDomainImpl(result.publicSuffix, result.host, options);
     if (step === FLAG.DOMAIN) { return result; }
 
     // Extract subdomain
-    result.subdomain = getSubdomainImpl(result.hostname, result.domain);
+    result.subdomain = getSubdomainImpl(result.host, result.domain);
 
     return result;
   };
@@ -115,10 +115,6 @@ export function parse(url: string, options?: Partial<IOptions>) {
 
 export function isValidHostname(url: string, options ?: Partial<IOptions>): boolean {
   return isValidHostnameImpl(url, setDefaults(options));
-}
-
-export function tldExists(url: string, options ?: Partial<IOptions>): boolean | null {
-  return parseImpl(url, options, FLAG.TLD_EXISTS).tldExists;
 }
 
 export function getPublicSuffix(url: string, options ?: Partial<IOptions>): string | null {
@@ -134,5 +130,5 @@ export function getSubdomain(url: string, options ?: Partial<IOptions>): string 
 }
 
 export function getHostname(url: string, options ?: Partial<IOptions>): string | null {
-  return parseImpl(url, options, FLAG.HOSTNAME).hostname;
+  return parseImpl(url, options, FLAG.HOST).host;
 }

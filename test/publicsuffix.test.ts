@@ -1,22 +1,15 @@
 import * as tld from '../lib/index';
 
+// Ease testing by simply copy/pasting tests from Mozilla Central
+// @see http://mxr.mozilla.org/mozilla-central/source/netwerk/test/unit/data/test_psl.txt?raw=1
+function checkPublicSuffix(testDomain: string, expectedResult: string | null) {
+  expect(tld.getDomain(testDomain, {
+    allowIcannDomains: true,
+    allowPrivateDomains: true,
+  })).toEqual(expectedResult);
+}
+
 describe('PublicSuffix tests', () => {
-  let checkPublicSuffix: any;
-  beforeEach(() => {
-    // Ease testing by simply copy/pasting tests from Mozilla Central
-    // @see http://mxr.mozilla.org/mozilla-central/source/netwerk/test/unit/data/test_psl.txt?raw=1
-    checkPublicSuffix = (testDomain: string, expectedResult: string | null) => {
-      expect(tld.getDomain(testDomain, {
-        allowIcannDomains: true,
-        allowPrivateDomains: true,
-      })).toEqual(expectedResult);
-    };
-  });
-
-  it('null input.', () => {
-    checkPublicSuffix(null, null);
-  });
-
   it('Mixed case.', () => {
     checkPublicSuffix('COM', null);
     checkPublicSuffix('example.COM', 'example.com');

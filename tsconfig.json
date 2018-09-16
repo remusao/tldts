@@ -5,6 +5,7 @@
     "types": ["node", "jest"],
     "target": "ES3",
     "lib": ["ES6"],
+    "removeComments": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -27,7 +28,6 @@
     "./lib/public-suffix.ts",
     "./lib/rules.ts",
     "./lib/subdomain.ts",
-    "./lib/suffix-trie.ts",
-    "./lib/tld-exists.ts"
+    "./lib/suffix-trie.ts"
   ]
 }

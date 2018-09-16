@@ -4,9 +4,6 @@ import SuffixTrie from '../suffix-trie';
 
 /**
  * Parse a one-domain-per-line file
- *
- * @param body {String}
- * @return {Array}
  */
 export default function parse(body: string) {
   const beginPrivateDomains = '// ===BEGIN PRIVATE DOMAINS===';
@@ -46,6 +43,10 @@ export default function parse(body: string) {
     }
 
     const parts = line.split('.').reverse();
+
+    // There should be no rule puny-encoded, but this allows users of the
+    // library to specify custom rules which could be encoded. This will make
+    // sure that all rules are decoded.
     for (let j = 0; j < parts.length; j += 1) {
       const part = parts[j];
       if (startsWith(part, 'xn--')) {

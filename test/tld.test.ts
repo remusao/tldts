@@ -163,33 +163,6 @@ describe('tld.js', () => {
     });
   });
 
-  describe('#tldExists', () => {
-    it('should be truthy on existing TLD', () => {
-      expect(tld.tldExists('com')).toEqual(true);
-      expect(tld.tldExists('example.com')).toEqual(true);
-      expect(tld.tldExists('co.uk')).toEqual(true);
-      expect(tld.tldExists('amazon.co.uk')).toEqual(true);
-      expect(tld.tldExists('台灣')).toEqual(true);
-      expect(tld.tldExists('台灣.台灣')).toEqual(true);
-    });
-
-    it('should be falsy on unexisting TLD', () => {
-      expect(tld.tldExists('con')).toEqual(false);
-      expect(tld.tldExists('example.con')).toEqual(false);
-      expect(tld.tldExists('go')).toEqual(false);
-      expect(tld.tldExists('チーズ')).toEqual(false);
-    });
-
-    it('should be truthy on complex TLD which cannot be verified as long as the gTLD exists', () => {
-      expect(tld.tldExists('uk.com')).toEqual(true);
-    });
-
-    // @see https://github.com/oncletom/tld.js/issues/95
-    it('should ignore the trailing dot in a domain', () => {
-      expect(tld.tldExists('https://www.google.co.uk./maps')).toEqual(true);
-    });
-  });
-
   describe('#getPublicSuffix', () => {
     describe('allowPrivateDomains', () => {
       const getPublicSuffix = (url: string) => {
@@ -425,17 +398,16 @@ describe('tld.js', () => {
   });
 
   describe('#parse', () => {
-    const mockResponse = (hostname: string) => {
+    const mockResponse = (host: string) => {
       return {
         domain: null,
-        hostname,
+        host,
         isIcann: null,
         isIp: true,
         isPrivate: null,
-        isValidHostname: true,
+        isValid: true,
         publicSuffix: null,
         subdomain: null,
-        tldExists: null,
       };
     };
 

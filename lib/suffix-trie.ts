@@ -7,8 +7,10 @@ interface IOptions {
 }
 
 // Flags used to know if a rule is ICANN or Private
-const ICANN_HOSTNAME = 1;
-const PRIVATE_HOSTNAME = 2;
+const enum RULE_TYPE {
+  ICANN = 1,
+  PRIVATE = 2,
+}
 
 export interface IRule {
   exception: boolean;
@@ -20,11 +22,10 @@ export interface IRule {
 interface IMatch {
   index: number;
   isIcann: boolean;
-  isPrivate: boolean;
 }
 
 interface ITrieObject {
-  [s: string]: ITrieObject | string;
+  [s: string]: ITrieObject;
 }
 
 /**
@@ -35,13 +36,16 @@ function longestMatch(a: IMatch, b: IMatch): IMatch {
     return b;
   } else if (b.index === -1) {
     return a;
+  } else if (a.index < b.index) {
+    return a;
   }
 
-  return a.index < b.index ? a : b;
+  return b;
 }
 
 /**
  * Insert a public suffix rule in the `trie`.
+ * TODO - transform into an array of nodes with static indices
  */
 function insertInTrie(rule: IRule, trie: any): any {
   const parts = rule.parts;
@@ -58,35 +62,27 @@ function insertInTrie(rule: IRule, trie: any): any {
     node = nextNode;
   }
 
-  node.$ = rule.isIcann ? ICANN_HOSTNAME : PRIVATE_HOSTNAME;
+  node.$ = rule.isIcann ? RULE_TYPE.ICANN : RULE_TYPE.PRIVATE;
 
   return trie;
 }
 
 /**
  * Recursive lookup of `parts` (starting at `index`) in the tree.
- *
- * @param {array} parts
- * @param {object} trie
- * @param {number} index - when to start in `parts` (initially: length - 1)
- * @return {number} size of the suffix found (in number of parts matched)
+ * TODO - make iterative using a fixed-size simulated stack for intermediary
+ * results?
  */
 function lookupInTrie(parts: string[], trie: any, index: number, allowedMask: number): IMatch {
-  let part;
   let nextNode;
   let lookupResult = {
     index: -1,
     isIcann: false,
-    isPrivate: false,
   };
 
   // We have a match!
   if (trie.$ !== undefined && (trie.$ & allowedMask) !== 0) {
-    lookupResult = {
-      index: index + 1,
-      isIcann: trie.$ === ICANN_HOSTNAME,
-      isPrivate: trie.$ === PRIVATE_HOSTNAME,
-    };
+    lookupResult.index = index + 1;
+    lookupResult.isIcann = trie.$ === RULE_TYPE.ICANN;
   }
 
   // No more `parts` to look for
@@ -94,10 +90,8 @@ function lookupInTrie(parts: string[], trie: any, index: number, allowedMask: nu
     return lookupResult;
   }
 
-  part = parts[index];
-
   // Check branch corresponding to next part of hostname
-  nextNode = trie[part];
+  nextNode = trie[parts[index]];
   if (nextNode !== undefined) {
     lookupResult = longestMatch(
       lookupResult,
@@ -115,6 +109,25 @@ function lookupInTrie(parts: string[], trie: any, index: number, allowedMask: nu
   }
 
   return lookupResult;
+}
+
+function hasPunycode(parts: string[]): boolean {
+  for (let i = 0; i < parts.length; i += 1) {
+    if (startsWith(parts[i], 'xn--')) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function decodePunycodeLabels(parts: string[]): string[] {
+  const decoded = parts.slice();
+  for (let i = 0; i < parts.length; i += 1) {
+    if (startsWith(parts[i], 'xn--')) {
+      decoded[i] = punycode.toUnicode(parts[i]);
+    }
+  }
+  return decoded;
 }
 
 /**
@@ -148,32 +161,31 @@ export default class SuffixTrie {
 
   /**
    * Check if `hostname` has a valid public suffix in `trie`.
-   *
-   * @param {string} hostname
-   * @return {string|null} public suffix
    */
   public suffixLookup(hostname: string, options: IOptions): any {
     const allowIcannDomains = options.allowIcannDomains;
     const allowPrivateDomains = options.allowPrivateDomains;
 
     const hostnameParts = hostname.split('.');
-    const parts = [];
-    for (let i = 0; i < hostnameParts.length; i += 1) {
-      let part = hostnameParts[i];
-      if (startsWith(part, 'xn--')) {
-        part = punycode.toUnicode(part);
-      }
-      parts.push(part);
+    let parts = hostnameParts;
+
+    // Check if at least one label is puny-encoded. If so, then copy `parts` and
+    // decode all label which it contains. The original encoded version will
+    // still be accessed through `hostnameParts`. This is done lazily with the
+    // assumption that most hostnames will not contain punycode in their labels,
+    // hence, we save an array copy.
+    if (hasPunycode(parts)) {
+      parts = decodePunycodeLabels(parts);
     }
 
     let allowedMask = 0;
 
     // Define set of accepted public suffix (ICANN, PRIVATE)
     if (allowPrivateDomains === true) {
-      allowedMask |= PRIVATE_HOSTNAME;
+      allowedMask |= RULE_TYPE.PRIVATE;
     }
     if (allowIcannDomains === true) {
-      allowedMask |= ICANN_HOSTNAME;
+      allowedMask |= RULE_TYPE.ICANN;
     }
 
     // Look for a match in rules
@@ -199,14 +211,12 @@ export default class SuffixTrie {
     if (exceptionLookupResult.index !== -1) {
       return {
         isIcann: exceptionLookupResult.isIcann,
-        isPrivate: exceptionLookupResult.isPrivate,
         publicSuffix: hostnameParts.slice(exceptionLookupResult.index + 1).join('.'),
       };
     }
 
     return {
       isIcann: lookupResult.isIcann,
-      isPrivate: lookupResult.isPrivate,
       publicSuffix: hostnameParts.slice(lookupResult.index).join('.'),
     };
   }
