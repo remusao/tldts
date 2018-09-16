@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 var path = require('path');
-var tld = require(path.resolve(__dirname, '../dist/optimized.js'));
 var Benchmark = require('benchmark');
+var tld = require(path.resolve(__dirname, '../dist/index.min.js'));
 
 
 var HOSTNAMES = [
