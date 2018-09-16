@@ -15,19 +15,6 @@
     "strict": true
   },
   "files": [
-    "./lib/clean-host.ts",
-    "./lib/domain.ts",
-    "./lib/from-host.ts",
-    "./lib/idna.ts",
-    "./lib/index.ts",
-    "./lib/is-ip.ts",
-    "./lib/is-valid.ts",
-    "./lib/options.ts",
-    "./lib/parsers/publicsuffix-org.ts",
-    "./lib/polyfill.ts",
-    "./lib/public-suffix.ts",
-    "./lib/rules.ts",
-    "./lib/subdomain.ts",
-    "./lib/suffix-trie.ts"
+    "./lib/index.ts"
   ]
 }
