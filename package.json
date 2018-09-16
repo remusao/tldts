@@ -1,7 +1,7 @@
 {
   "name": "tldts",
   "description": "JavaScript API to work against complex domain names, subdomains and URIs.",
-  "version": "3.0.0-alpha.1",
+  "version": "3.0.0",
   "homepage": "https://github.com/remusao/tld.js",
   "author": "Rémi Berson",
   "contributors": [
