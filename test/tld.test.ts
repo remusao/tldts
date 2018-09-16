@@ -1,6 +1,6 @@
-import * as tld from '../lib/index';
 import isIp from '../lib/is-ip';
 import parse from '../lib/parsers/publicsuffix-org';
+import * as tld from '../tldts';
 
 function repeat(str: string, n: number): string {
   let res = '';

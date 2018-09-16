@@ -1,14 +1,14 @@
-import parseRules from './parsers/publicsuffix-org';
-import getRules from './rules';
-import Trie from './suffix-trie';
+import parseRules from './lib/parsers/publicsuffix-org';
+import getRules from './lib/rules';
+import Trie from './lib/suffix-trie';
 
 // Internals
-import getDomainImpl from './domain';
-import isIpImpl from './is-ip';
-import isValidHostnameImpl from './is-valid';
-import { IOptions, setDefaults } from './options';
-import getPublicSuffixImpl from './public-suffix';
-import getSubdomainImpl from './subdomain';
+import getDomainImpl from './lib/domain';
+import isIpImpl from './lib/is-ip';
+import isValidHostnameImpl from './lib/is-valid';
+import { IOptions, setDefaults } from './lib/options';
+import getPublicSuffixImpl from './lib/public-suffix';
+import getSubdomainImpl from './lib/subdomain';
 
 interface IResult {
   // `host` is either a registered name (including but not limited to a

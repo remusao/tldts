@@ -17,7 +17,7 @@ const plugins = [
 
 export default [
   {
-    input: './build/index.js',
+    input: './build/tldts.js',
     output: {
       file: pkg.main,
       name: pkg.name,
@@ -26,7 +26,7 @@ export default [
     plugins,
   },
   {
-    input: './build/index.js',
+    input: './build/tldts.js',
     output: {
       file: pkg.module,
       format: 'es',

@@ -1,4 +1,4 @@
-import { IOptions } from './options';
+import { IOptions } from './lib/options';
 interface IResult {
     host: string | null;
     isValid: boolean | null;

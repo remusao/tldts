@@ -1,4 +1,4 @@
-import * as tld from '../lib/index';
+import * as tld from '../tldts';
 
 // Ease testing by simply copy/pasting tests from Mozilla Central
 // @see http://mxr.mozilla.org/mozilla-central/source/netwerk/test/unit/data/test_psl.txt?raw=1
