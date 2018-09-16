@@ -1,6 +1,7 @@
 sudo: false
 dist: trusty
 language: node_js
+
 node_js:
   - 6
   - 8
@@ -9,7 +10,7 @@ node_js:
 
 cache:
   directories:
-    - node_modules
+  - node_modules
 
 notifications:
   email:
@@ -26,3 +27,14 @@ script:
   - npm run build
   - npm run bundle
   - npm run test
+
+deploy:
+  provider: npm
+  email: remi@cliqz.com
+  skip_cleanup: true
+  api_key:
+    secure: rr3B10h5RPAM+Lbqsqcvwvrhe6qOhnEiTt103lZ/QPtJC+ie1oQugrAxLK6eTn0DeYaSupDfRGIUHL7M6otM0TAwBp652YX+Yjs5lUXbrMu8wRS5L3txx0DUTa7rHs6CgQ17GgQESnAnt5CL4WOcLLZt3BVI7+aIYv4ayr0TmRZh3zokX8e39bQ5rU252ypK4ynCPr0GePjvjWowtnGrNw8vZeV0TGRlb04+DqnabgJq/+e02o/dzTR/Lo9R/uoUC2RTiQ9FcVKF/VdUwiHjL7+TEYhPp4q62Yspa9IAA7i9l+18Woi6WtoqHwGIQkUTQLgkHfjz7kl7ib2hTDmZnv7Qj9QVZ34BScI64igHHER26bNbrwl93XCT3RLpKVHWaTW8QI+O7+Rfpx0xuq7/cWrzwTlh7miFQlFPuV++lbnGFif3AJW+XMqQ0CFt6B7ITOaWuRs6gciB4e08bjDPKNIuuBpdDWkzhRzBfkSwfqd+heLzmt+nkn3xE+hEUSs7631eUchPFUBBoF9DfASES8JYh8QlGqBq9qxnH0KWDBEAT88OvKZa++PIv7Fys+12Dpo7Vnbf4K+3uqs0HodvpxEDT102Gvmyn8a3AdFeH8L9+Fouq4BKS6/ukVuUYkIsdiUsgyOq8sZV4M4iBTyCY7zdzcTyqTgw6z0NvTUSBH0=
+  on:
+    branch: master
+    tags: true
+    repo: remusao/tld.js

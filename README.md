@@ -1,85 +1,74 @@
-# tld.js [![Backers on Open Collective](https://opencollective.com/tldjs/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/tldjs/sponsors/badge.svg)](#sponsors) [![Build Status][badge-ci]](http://travis-ci.org/oncletom/tld.js) ![][badge-downloads]
+# tldts [![Build Status][badge-ci]](http://travis-ci.org/remusao/tld.js) ![][badge-downloads]
 
-> `tld.js` is a Node.js module written in JavaScript to work against complex domain names, subdomains and well-known TLDs.
+> `tldts` is a Typescript library to work against complex domain names, subdomains and well-known TLDs. It is a fork of the very good [tld.js](https://github.com/oncletom/tld.js) JavaScript library.
 
 It answers with accuracy to questions like _what is `mail.google.com`'s domain?_,  _what is `a.b.ide.kyoto.jp`'s subdomain?_ and _is `https://big.data`'s TLD a well-known one?_.
 
-`tld.js` [runs fast](#performances), is fully tested and is safe to use in the browser (with [browserify][], webpack and others). Because it relies on Mozilla's [public suffix list][], now is a good time to say _thank you_ Mozilla!
+`tldts` [runs fast](#performances) (even faster than the original tld.js library thanks to additional optimizations), is fully tested and is safe to use in the browser (UMD bundles are provided as well as an ES6 module version and Typescripts type declarations). Because it relies on Mozilla's [public suffix list][], now is a good time to say _thank you_ Mozilla!
 
 # Install
 
 ```bash
 # Regular install
-npm install --save tldjs
-
-# You can update the list of well-known TLD during the install
-npm install --save tldjs --tldjs-update-rules
+npm install --save tldts
 ```
 
-The latter is useful if you significantly rely on an up-to-date list of TLDs. You can [list the recent changes][] ([changes Atom Feed][]) to get a better idea of what is going on in the Public Suffix world.
+It ships by default with the latest version of the public suffix lists, but you
+can provide your own version (more up-to-date or modified) using the `update`
+method.
 
 # Using It
 
 ```js
-const { parse, tldExists } = require('tldjs');
-
-// Checking only if TLD exists in URL or hostname
-// First TLD exists; the second does not.
-console.log(tldExists('https://www.bbc'));
-console.log(tldExists('tld.unknown'));
+const { parse } = require('tldts');
 
 // Retrieving hostname related informations of a given URL
 parse('http://www.writethedocs.org/conf/eu/2017/');
 ```
 
-👋 [Try it your browser to see how it works][interactive-example].<br>
 ⬇️ Read the documentation _below_ to find out the available _functions_.
 
-## `tldjs.parse()`
+## `tldts.parse()`
 
 This methods returns handy **properties about a URL or a hostname**.
 
 ```js
-const tldjs = require('tldjs');
+const tldts = require('tldts');
 
-tldjs.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv');
-// { hostname: 'spark-public.s3.amazonaws.com',
-//   isValidHostname: true,
+tldts.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv');
+// { host: 'spark-public.s3.amazonaws.com',
+//   isValid: true,
 //   isIp: false,
-//   tldExists: true,
 //   publicSuffix: 'com',
 //   isIcann: true,
 //   isPrivate: false,
 //   domain: 'amazonaws.com',
 //   subdomain: 'spark-public.s3' }
 
-tld.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv', { allowPrivateDomains: true })
-// { hostname: 'spark-public.s3.amazonaws.com',
-//   isValidHostname: true,
+tldts.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv', { allowPrivateDomains: true })
+// { host: 'spark-public.s3.amazonaws.com',
+//   isValid: true,
 //   isIp: false,
-//   tldExists: true,
 //   publicSuffix: 's3.amazonaws.com',
 //   isIcann: false,
 //   isPrivate: true,
 //   domain: 'spark-public.s3.amazonaws.com',
 //   subdomain: '' }
 
-tldjs.parse('gopher://domain.unknown/');
-// { hostname: 'domain.unknown',
-//   isValidHostname: true,
+tldts.parse('gopher://domain.unknown/');
+// { host: 'domain.unknown',
+//   isValid: true,
 //   isIp: false,
-//   tldExists: false,
 //   publicSuffix: 'unknown',
 //   isIcann: false,
 //   isPrivate: false,
 //   domain: 'domain.unknown',
 //   subdomain: '' }
 
-tldjs.parse('https://192.168.0.0')
-// { hostname: '192.168.0.0',
-//   isValidHostname: true,
+tldts.parse('https://192.168.0.0')
+// { host: '192.168.0.0',
+//   isValid: true,
 //   isIp: true,
-//   tldExists: null,
 //   publicSuffix: null,
 //   isIcann: null,
 //   isPrivate: null,
@@ -89,9 +78,8 @@ tldjs.parse('https://192.168.0.0')
 
 | Property Name     | Type | |
 | ---               | ---       | --- |
-| `hostname`        | `String`  |   |
-| `isValidHostname` | `Boolean` | Is the hostname valid according to the RFC?  |
-| `tldExists`       | `Boolean` | Is the TLD well-known or not?  |
+| `host`            | `String`  | `host` part of the input extracted automatically  |
+| `isValid`         | `Boolean` | Is the hostname valid according to the RFC? |
 | `publicSuffix`    | `String`  |   |
 | `isIcann`         | `Boolean` | Does TLD come from public part of the list  |
 | `isPrivate`       | `Boolean` | Does TLD come from private part of the list |
@@ -101,31 +89,15 @@ tldjs.parse('https://192.168.0.0')
 
 ## Single purpose methods
 
-These methods are shorthands if you want to retrieve only a single value.
-
-### tldExists()
-
-Checks if the TLD is _well-known_ for a given hostname — parseable with [`require('url').parse`][].
-
-```javascript
-const { tldExists } = tldjs;
-
-tldExists('google.com');      // returns `true`
-tldExists('google.local');    // returns `false` (not an explicit registered TLD)
-tldExists('com');             // returns `true`
-tldExists('uk');              // returns `true`
-tldExists('co.uk');           // returns `true` (because `uk` is a valid TLD)
-tldExists('amazon.fancy.uk'); // returns `true` (still because `uk` is a valid TLD)
-tldExists('amazon.co.uk');    // returns `true` (still because `uk` is a valid TLD)
-tldExists('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `true`
-```
+These methods are shorthands if you want to retrieve only a single value (and
+will perform better than `parse` because less work will be needed).
 
 ### getDomain()
 
-Returns the fully qualified domain from a given string — parseable with [`require('url').parse`][].
+Returns the fully qualified domain from a given string.
 
 ```javascript
-const { getDomain } = tldjs;
+const { getDomain } = tldts;
 
 getDomain('google.com');        // returns `google.com`
 getDomain('fr.google.com');     // returns `google.com`
@@ -138,10 +110,10 @@ getDomain('https://user:password@example.co.uk:8080/some/path?and&query#hash'); 
 
 ### getSubdomain()
 
-Returns the complete subdomain for a given string — parseable with [`require('url').parse`][].
+Returns the complete subdomain for a given string.
 
 ```javascript
-const { getSubdomain } = tldjs;
+const { getSubdomain } = tldts;
 
 getSubdomain('google.com');             // returns ``
 getSubdomain('fr.google.com');          // returns `fr`
@@ -155,10 +127,10 @@ getSubdomain('https://user:password@secure.example.co.uk:443/some/path?and&query
 
 ### getPublicSuffix()
 
-Returns the [public suffix][] for a given string — parseable with [`require('url').parse`][].
+Returns the [public suffix][] for a given string.
 
 ```javascript
-const { getPublicSuffix } = tldjs;
+const { getPublicSuffix } = tldts;
 
 getPublicSuffix('google.com');       // returns `com`
 getPublicSuffix('fr.google.com');    // returns `com`
@@ -174,7 +146,7 @@ Checks if the given string is a valid hostname according to [RFC 1035](https://t
 It does not check if the TLD is _well-known_.
 
 ```javascript
-const { isValidHostname } = tldjs;
+const { isValidHostname } = tldts;
 
 isValidHostname('google.com');      // returns `true`
 isValidHostname('.google.com');     // returns `false`
@@ -188,47 +160,40 @@ isValidHostname('192.168.0.0')      // returns `true`
 
 ## Retrieving subdomain of `localhost` and custom hostnames
 
-`tld.js` methods `getDomain` and `getSubdomain` are designed to **work only with *known and valid* TLDs**.
+`tldts` methods `getDomain` and `getSubdomain` are designed to **work only with *known and valid* TLDs**.
 This way, you can trust what a domain is.
 
-`localhost` is a valid hostname but not a TLD. Although you can instantiate your own flavour of `tld.js` with *additional valid hosts*:
+`localhost` is a valid hostname but not a TLD. You can pass additional options to each method exposed by `tldts`:
 
 ```js
-const tldjs = require('tldjs');
+const tldts = require('tldts');
 
-tldjs.getDomain('localhost');           // returns null
-tldjs.getSubdomain('vhost.localhost');  // returns null
+tldts.getDomain('localhost');           // returns null
+tldts.getSubdomain('vhost.localhost');  // returns null
 
-const myTldjs = tldjs.fromUserSettings({
-  validHosts: ['localhost']
-});
-
-myTldjs.getDomain('localhost');           // returns 'localhost'
-myTldjs.getSubdomain('vhost.localhost');  // returns 'vhost'
+tldts.getDomain('localhost', { validHosts: ['localhost'] }); // returns 'localhost'
+tldts.getSubdomain('vhost.localhost', { validHosts: ['localhost'] });  // returns 'vhost'
 ```
 
 ## Updating the TLDs List
 
 Many libraries offer a list of TLDs. But, are they up-to-date? And how to update them?
 
-`tld.js` bundles a list of known TLDs but this list can become outdated.
+`tldts` bundles a list of known TLDs but this list can become outdated.
 This is especially true if the package have not been updated on npm for a while.
 
-Hopefully for you, even if I'm flying over the world, if I've lost my Internet connection or even if
-you do manage your own list, you can update it by yourself, painlessly.
+Thankfully for you, you can pass your own version of the list to the `update`
+method of `tldts`. It can be fetched from `https://publicsuffix.org/list/public_suffix_list.dat`:
 
-How? By passing the `--tldjs-update-rules` to your `npm install` command:
+```js
+const { update } = require('tldts');
 
-```bash
-# anytime you reinstall your project
-npm install --tldjs-update-rules
-
-# or if you add the dependency to your project
-npm install --save tldjs --tldjs-update-rules
+// `tldts` will not fetch the lists for you at the moment, so depending on your
+// platform your might use either `fetch` or something else.
+update(lists_as_a_string);
 ```
 
 Open an issue to request an update of the bundled TLDs.
-
 
 # Contributing
 
@@ -237,91 +202,59 @@ Issues may be awaiting for help so feel free to give a hand, with code or ideas.
 
 # Performances
 
-`tld.js` is fast, but keep in mind that it might vary depending on your own
-use-case. Because the library tried to be smart, the speed can be drastically
-different depending on the input (it will be faster if you provide an already
-cleaned hostname, compared to a random URL).
+`tldts` is fast, but keep in mind that it might vary depending on your
+own use-case. Because the library tried to be smart, the speed can be
+drastically different depending on the input (it will be faster if you
+provide an already cleaned hostname, compared to a random URL).
 
-On an Intel i7-6600U (2,60-3,40 GHz) using Node.js `v9.8.0`:
+On an Intel i7-6600U (2,60-3,40 GHz) using Node.js `v10.9.0`:
 
 ## For already cleaned hostnames
 
-| Methods           | ops/sec       |
-| ---               | ---           |
-| `isValidHostname` | ~`25,300,000` |
-| `extractHostname` | ~`20,000,000` |
-| `tldExists`       | ~`3,200,000`  |
-| `getPublicSuffix` | ~`1,200,000`  |
-| `getDomain`       | ~`1,100,000`  |
-| `getSubdomain`    | ~`1,100,000`  |
-| `parse`           | ~`870,000`    |
+| Methods           | ops/sec      |
+| ---               | ---          |
+| `isValidHostname` | ~`7,500,000` |
+| `getHostname`     | ~`3,200,000` |
+| `getPublicSuffix` | ~`1,100,000` |
+| `getDomain`       | ~`1,100,000` |
+| `getSubdomain`    | ~`1,100,000` |
+| `parse`           | ~`1,000,000` |
 
 
 ## For random URLs
 
 | Methods           | ops/sec       |
 | ---               | ---           |
-| `isValidHostname` | ~`50,000,000` |
-| `extractHostname` | ~`360,000`    |
-| `tldExists`       | ~`300,000`    |
-| `getPublicSuffix` | ~`240,000`    |
-| `getDomain`       | ~`240,000`    |
-| `getSubdomain`    | ~`240,000`    |
-| `parse`           | ~`230,000`    |
+| `isValidHostname` | ~`12,000,000` |
+| `getHostname`     | ~`2,640,000`  |
+| `getPublicSuffix` | ~`800,000`    |
+| `getDomain`       | ~`760,000`    |
+| `getSubdomain`    | ~`760,000`    |
+| `parse`           | ~`750,000`    |
 
 
-You can measure the performance of `tld.js` on your hardware by running the following command:
+You can measure the performance of `tldts` on your hardware by running the following command:
 
 ```bash
 npm run benchmark
 ```
 
-_Notice_: if this is not fast enough for your use-case, keep in mind that you can
-provide your own `extractHostname` function (which is the bottleneck in
-this benchmark) to `tld.js`.
+_Notice_: if this is not fast enough for your use-case, please get in touch via an issue so that we can analyze that this is so.
 
 ## Contributors
 
-This project exists thanks to all the people who contribute. [[Contribute]](CONTRIBUTING.md).
+This project exists thanks to all the people who contributed to `tld.js` as well as `tldts`. [[Contribute]](CONTRIBUTING.md).
 <a href="graphs/contributors"><img src="https://opencollective.com/tldjs/contributors.svg?width=890" /></a>
-
-
-## Backers
-
-Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/tldjs#backer)]
-
-<a href="https://opencollective.com/tldjs#backers" target="_blank"><img src="https://opencollective.com/tldjs/backers.svg?width=890"></a>
-
-
-## Sponsors
-
-Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/tldjs#sponsor)]
-
-<a href="https://opencollective.com/tldjs/sponsor/0/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/0/avatar.svg"></a>
-<a href="https://opencollective.com/tldjs/sponsor/1/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/1/avatar.svg"></a>
-<a href="https://opencollective.com/tldjs/sponsor/2/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/2/avatar.svg"></a>
-<a href="https://opencollective.com/tldjs/sponsor/3/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/3/avatar.svg"></a>
-<a href="https://opencollective.com/tldjs/sponsor/4/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/4/avatar.svg"></a>
-<a href="https://opencollective.com/tldjs/sponsor/5/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/5/avatar.svg"></a>
-<a href="https://opencollective.com/tldjs/sponsor/6/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/6/avatar.svg"></a>
-<a href="https://opencollective.com/tldjs/sponsor/7/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/7/avatar.svg"></a>
-<a href="https://opencollective.com/tldjs/sponsor/8/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/8/avatar.svg"></a>
-<a href="https://opencollective.com/tldjs/sponsor/9/website" target="_blank"><img src="https://opencollective.com/tldjs/sponsor/9/avatar.svg"></a>
-
 
 # License
 
 [MIT License](LICENSE).
 
-[badge-ci]: https://secure.travis-ci.org/oncletom/tld.js.svg?branch=master
-[badge-downloads]: https://img.shields.io/npm/dm/tldjs.svg
+[badge-ci]: https://secure.travis-ci.org/remusao/tld.js.svg?branch=master
+[badge-downloads]: https://img.shields.io/npm/dm/tldts.svg
 
 [public suffix list]: https://publicsuffix.org/list/
 [list the recent changes]: https://github.com/publicsuffix/list/commits/master
 [changes Atom Feed]: https://github.com/publicsuffix/list/commits/master.atom
-[browserify CDN]: https://wzrd.in/
-[browserify]: http://browserify.org/
-[interactive-example]: https://runkit.com/oncletom/tld.js-runkit-example
 
-[`require('url').parse`]: https://nodejs.org/api/url.html#url_url_parse_urlstring_parsequerystring_slashesdenotehost
 [public suffix]: https://publicsuffix.org/learn/

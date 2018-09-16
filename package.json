@@ -31,6 +31,7 @@
     "update": "git submodule foreach git pull origin master && node ./bin/update.js",
     "build": "tsc -p . --module ES6 --outDir build",
     "bundle": "rollup -c rollup.config.js && google-closure-compiler --js=./dist/index.js --js_output_file=./dist/index.min.js",
+    "benchmark": "./bin/benchmark.js",
     "test": "jest --coverage"
   },
   "jest": {
