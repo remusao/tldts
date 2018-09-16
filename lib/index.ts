@@ -1,3 +1,4 @@
+import parseRules from './parsers/publicsuffix-org';
 import getRules from './rules';
 import Trie from './suffix-trie';
 
@@ -42,15 +43,7 @@ const enum FLAG {
   ALL,
 }
 
-/**
- * Process a given url and extract all information. This is a higher level API
- * around private functions of `tld.js`. It allows to remove duplication (only
- * extract host from url once for all operations) and implement some early
- * termination mechanism to not pay the price of what we don't need (this
- * simulates laziness at a lower cost).
- */
-const parseImpl = (() => {
-  const trie: Trie = getRules();
+function parseImplFactory(trie: Trie = getRules()) {
   return (url: string, partialOptions?: Partial<IOptions>, step: FLAG = FLAG.ALL): IResult => {
     const options: IOptions = setDefaults(partialOptions);
 
@@ -107,7 +100,24 @@ const parseImpl = (() => {
 
     return result;
   };
-})();
+}
+
+/**
+ * Process a given url and extract all information. This is a higher level API
+ * around private functions of `tld.js`. It allows to remove duplication (only
+ * extract host from url once for all operations) and implement some early
+ * termination mechanism to not pay the price of what we don't need (this
+ * simulates laziness at a lower cost).
+ */
+let parseImpl = parseImplFactory();
+
+export function update(rules: string) {
+  parseImpl = parseImplFactory(parseRules(rules));
+}
+
+export function reset() {
+  parseImpl = parseImplFactory();
+}
 
 export function parse(url: string, options?: Partial<IOptions>) {
   return parseImpl(url, options);

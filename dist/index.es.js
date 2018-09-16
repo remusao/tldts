@@ -537,8 +537,8 @@ function getSubdomain(hostname, domain) {
     return hostname.substr(0, hostname.length - domain.length - 1);
 }
 
-var parseImpl = (function () {
-    var trie = getRules();
+function parseImplFactory(trie) {
+    if (trie === void 0) { trie = getRules(); }
     return function (url, partialOptions, step) {
         if (step === void 0) { step = 4; }
         var options = setDefaults(partialOptions);
@@ -585,7 +585,14 @@ var parseImpl = (function () {
         result.subdomain = getSubdomain(result.host, result.domain);
         return result;
     };
-})();
+}
+var parseImpl = parseImplFactory();
+function update(rules) {
+    parseImpl = parseImplFactory(parse(rules));
+}
+function reset() {
+    parseImpl = parseImplFactory();
+}
 function parse$1(url, options) {
     return parseImpl(url, options);
 }
@@ -605,4 +612,4 @@ function getHostname(url, options) {
     return parseImpl(url, options, 0).host;
 }
 
-export { parse$1 as parse, isValidHostname$1 as isValidHostname, getPublicSuffix$1 as getPublicSuffix, getDomain$1 as getDomain, getSubdomain$1 as getSubdomain, getHostname };
+export { update, reset, parse$1 as parse, isValidHostname$1 as isValidHostname, getPublicSuffix$1 as getPublicSuffix, getDomain$1 as getDomain, getSubdomain$1 as getSubdomain, getHostname };

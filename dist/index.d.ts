@@ -9,6 +9,8 @@ interface IResult {
     isIcann: boolean | null;
     isPrivate: boolean | null;
 }
+export declare function update(rules: string): void;
+export declare function reset(): void;
 export declare function parse(url: string, options?: Partial<IOptions>): IResult;
 export declare function isValidHostname(url: string, options?: Partial<IOptions>): boolean;
 export declare function getPublicSuffix(url: string, options?: Partial<IOptions>): string | null;

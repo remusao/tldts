@@ -543,8 +543,8 @@
 	    return hostname.substr(0, hostname.length - domain.length - 1);
 	}
 
-	var parseImpl = (function () {
-	    var trie = getRules();
+	function parseImplFactory(trie) {
+	    if (trie === void 0) { trie = getRules(); }
 	    return function (url, partialOptions, step) {
 	        if (step === void 0) { step = 4; }
 	        var options = setDefaults(partialOptions);
@@ -591,7 +591,14 @@
 	        result.subdomain = getSubdomain(result.host, result.domain);
 	        return result;
 	    };
-	})();
+	}
+	var parseImpl = parseImplFactory();
+	function update(rules) {
+	    parseImpl = parseImplFactory(parse(rules));
+	}
+	function reset() {
+	    parseImpl = parseImplFactory();
+	}
 	function parse$1(url, options) {
 	    return parseImpl(url, options);
 	}
@@ -611,6 +618,8 @@
 	    return parseImpl(url, options, 0).host;
 	}
 
+	exports.update = update;
+	exports.reset = reset;
 	exports.parse = parse$1;
 	exports.isValidHostname = isValidHostname$1;
 	exports.getPublicSuffix = getPublicSuffix$1;
