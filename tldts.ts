@@ -104,7 +104,7 @@ function parseImplFactory(trie: Trie = getRules()) {
 
 /**
  * Process a given url and extract all information. This is a higher level API
- * around private functions of `tld.js`. It allows to remove duplication (only
+ * around private functions of `tldts`. It allows to remove duplication (only
  * extract host from url once for all operations) and implement some early
  * termination mechanism to not pay the price of what we don't need (this
  * simulates laziness at a lower cost).

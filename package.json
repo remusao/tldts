@@ -1,18 +1,18 @@
 {
   "name": "tldts",
-  "description": "JavaScript API to work against complex domain names, subdomains and URIs.",
+  "description": "Library to work against complex domain names, subdomains and URIs.",
   "version": "3.0.0",
-  "homepage": "https://github.com/remusao/tld.js",
+  "homepage": "https://github.com/remusao/tldts",
   "author": "Rémi Berson",
   "contributors": [
     "Thomas Parisot (https://oncletom.io)"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/remusao/tld.js.git"
+    "url": "git://github.com/remusao/tldts.git"
   },
   "bugs": {
-    "url": "https://github.com/remusao/tld.js/issues"
+    "url": "https://github.com/remusao/tldts/issues"
   },
   "engines": {
     "node": ">= 6"

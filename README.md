@@ -1,4 +1,4 @@
-# tldts [![Build Status][badge-ci]](http://travis-ci.org/remusao/tld.js) ![][badge-downloads]
+# tldts [![Build Status][badge-ci]](http://travis-ci.org/remusao/tldts) ![][badge-downloads]
 
 > `tldts` is a Typescript library to work against complex domain names, subdomains and well-known TLDs. It is a fork of the very good [tld.js](https://github.com/oncletom/tld.js) JavaScript library.
 
@@ -250,7 +250,7 @@ This project exists thanks to all the people who contributed to `tld.js` as well
 
 [MIT License](LICENSE).
 
-[badge-ci]: https://secure.travis-ci.org/remusao/tld.js.svg?branch=master
+[badge-ci]: https://secure.travis-ci.org/remusao/tldts.svg?branch=master
 [badge-downloads]: https://img.shields.io/npm/dm/tldts.svg
 
 [public suffix list]: https://publicsuffix.org/list/
