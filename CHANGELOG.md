@@ -1,5 +1,18 @@
 ## Change Log
 
+### 3.0.0 (2018/09/18 11:42 +00:00)
+- [#1](https://github.com/remusao/tld.js/pull/1) Tldts - typescript rewrite
+  * Introduce two new options to enabled/disabled the Private/ICANN domains.
+  * 'allowIcann' set to 'false' will ignore the ICANN section of the list.
+  * 'allowPrivate' set to 'false' will ignore the PRIVATE section of the list.
+  * Introduce 'lenient' mode for hostname validation.
+  * typescript rewrite + toolchain improvements
+  * Update travis config
+  * Optimizations + idna compaction
+  * Allow updating the rules
+  * Use minified/optimized version in benchmark
+  * Simplify tsconfig
+
 ### 2.3.1 (2018/02/18 17:59 +00:00)
 - [#116](https://github.com/oncletom/tld.js/pull/116) Publish bundles to npm (@chrmod)
 
