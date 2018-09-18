@@ -1,18 +1,12 @@
-'use strict';
-
-
 /**
  * Check if a hostname is an IP. You should be aware that this only works
  * because `hostname` is already garanteed to be a valid hostname!
- *
- * @param {string} hostname
- * @return {boolean}
  */
-function isProbablyIpv4(hostname) {
-  var numberOfDots = 0;
+function isProbablyIpv4(hostname: string): boolean {
+  let numberOfDots = 0;
 
-  for (var i = 0; i < hostname.length; i += 1) {
-    var code = hostname.charCodeAt(i);
+  for (let i = 0; i < hostname.length; i += 1) {
+    const code = hostname.charCodeAt(i);
 
     if (code === 46) { // '.'
       numberOfDots += 1;
@@ -30,18 +24,14 @@ function isProbablyIpv4(hostname) {
   );
 }
 
-
 /**
  * Similar to isProbablyIpv4.
- *
- * @param {string} hostname
- * @return {boolean}
  */
-function isProbablyIpv6(hostname) {
-  var hasColon = false;
+function isProbablyIpv6(hostname: string): boolean {
+  let hasColon = false;
 
-  for (var i = 0; i < hostname.length; i += 1) {
-    var code = hostname.charCodeAt(i);
+  for (let i = 0; i < hostname.length; i += 1) {
+    const code = hostname.charCodeAt(i);
 
     if (code === 58) { // ':'
       hasColon = true;
@@ -56,23 +46,11 @@ function isProbablyIpv6(hostname) {
   return hasColon;
 }
 
-
 /**
  * Check if `hostname` is *probably* a valid ip addr (either ipv6 or ipv4).
  * This *will not* work on any string. We need `hostname` to be a valid
  * hostname.
- *
- * @param {string} hostname
- * @return {boolean}
  */
-module.exports = function isIp(hostname) {
-  if (typeof hostname !== 'string') {
-    return false;
-  }
-
-  if (hostname.length === 0) {
-    return false;
-  }
-
+export default function isIp(hostname: string): boolean {
   return (isProbablyIpv6(hostname) || isProbablyIpv4(hostname));
-};
+}

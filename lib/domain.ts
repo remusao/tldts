@@ -1,19 +1,13 @@
-'use strict';
-
+import { IOptions } from './options';
 
 /**
  * Polyfill for `endsWith`
- *
- * @param {string} str
- * @param {string} pattern
- * @return {boolean}
  */
-function endsWith(str, pattern) {
+function endsWith(str: string, pattern: string): boolean {
   return (
     str.lastIndexOf(pattern) === (str.length - pattern.length)
   );
 }
-
 
 /**
  * Check if `vhost` is a valid suffix of `hostname` (top-domain)
@@ -25,12 +19,8 @@ function endsWith(str, pattern) {
  * * hostname = 'not.evil.com' and vhost = 'vil.com'      => not ok
  * * hostname = 'not.evil.com' and vhost = 'evil.com'     => ok
  * * hostname = 'not.evil.com' and vhost = 'not.evil.com' => ok
- *
- * @param {string} hostname
- * @param {string} vhost
- * @return {boolean}
  */
-function shareSameDomainSuffix(hostname, vhost) {
+function shareSameDomainSuffix(hostname: string, vhost: string): boolean {
   if (endsWith(hostname, vhost)) {
     return (
       hostname.length === vhost.length ||
@@ -41,15 +31,10 @@ function shareSameDomainSuffix(hostname, vhost) {
   return false;
 }
 
-
 /**
  * Given a hostname and its public suffix, extract the general domain.
- *
- *  @param {string} hostname
- *  @param {string} publicSuffix
- *  @return {string}
  */
-function extractDomainWithSuffix(hostname, publicSuffix) {
+function extractDomainWithSuffix(hostname: string, publicSuffix: string): string {
   // Locate the index of the last '.' in the part of the `hostname` preceding
   // the public suffix.
   //
@@ -64,8 +49,8 @@ function extractDomainWithSuffix(hostname, publicSuffix) {
   //     |       | start of public suffix
   //     |
   //     | (-1) no dot found before the public suffix
-  var publicSuffixIndex = hostname.length - publicSuffix.length - 2;
-  var lastDotBeforeSuffixIndex = hostname.lastIndexOf('.', publicSuffixIndex);
+  const publicSuffixIndex = hostname.length - publicSuffix.length - 2;
+  const lastDotBeforeSuffixIndex = hostname.lastIndexOf('.', publicSuffixIndex);
 
   // No '.' found, then `hostname` is the general domain (no sub-domain)
   if (lastDotBeforeSuffixIndex === -1) {
@@ -76,18 +61,14 @@ function extractDomainWithSuffix(hostname, publicSuffix) {
   return hostname.substr(lastDotBeforeSuffixIndex + 1);
 }
 
-
 /**
  * Detects the domain based on rules and upon and a host string
- *
- * @api
- * @param {string} host
- * @return {String}
  */
-module.exports = function getDomain(validHosts, suffix, hostname) {
+export default function getDomain(suffix: string | null, hostname: string, options: IOptions): string | null {
+  const validHosts = options.validHosts;
   // Check if `hostname` ends with a member of `validHosts`.
-  for (var i = 0; i < validHosts.length; i += 1) {
-    var vhost = validHosts[i];
+  for (let i = 0; i < validHosts.length; i += 1) {
+    const vhost = validHosts[i];
     if (shareSameDomainSuffix(hostname, vhost)) {
       return vhost;
     }
@@ -112,4 +93,4 @@ module.exports = function getDomain(validHosts, suffix, hostname) {
   // `co.uk`, then we take one more level: `evil`, giving the final result:
   // `evil.co.uk`).
   return extractDomainWithSuffix(hostname, suffix);
-};
+}

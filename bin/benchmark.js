@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 
-'use strict';
-
-var tld = require('../index.js');
+var path = require('path');
 var Benchmark = require('benchmark');
+var tld = require(path.resolve(__dirname, '../dist/index.min.js'));
 
 
 var HOSTNAMES = [
@@ -65,24 +64,16 @@ function bench(values) {
   );
 
   new Benchmark.Suite()
-    .add('tldjs#isIp', () => {
+    .add('tldjs#isValidHostname', () => {
+      try {
       for (var i = 0; i < values.length; i += 1) {
-        tld.isIp(values[i]);
+        tld.isValidHostname(values[i]);
       }
+      } catch (ex) { console.error(ex); }
     })
-    .add('tldjs#isValid', () => {
+    .add('tldjs#getHostname', () => {
       for (var i = 0; i < values.length; i += 1) {
-        tld.isValid(values[i]);
-      }
-    })
-    .add('tldjs#extractHostname', () => {
-      for (var i = 0; i < values.length; i += 1) {
-        tld.extractHostname(values[i]);
-      }
-    })
-    .add('tldjs#tldExists', () => {
-      for (var i = 0; i < values.length; i += 1) {
-        tld.tldExists(values[i]);
+        tld.getHostname(values[i]);
       }
     })
     .add('tldjs#getPublicSuffix', () => {

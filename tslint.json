@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "tslint:recommended"
+    ],
+    "rules": {
+      "arrow-parens": [2, "as-needed", { "requireForBlockBody": true }],
+      "no-console": false,
+      "no-bitwise": false,
+      "prefer-for-of": false,
+      "quotemark": [true, "single", "avoid-escape", "avoid-template"]
+    }
+}

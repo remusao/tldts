@@ -1,16 +1,22 @@
 #!/usr/bin/env node
 
-'use strict';
+const fs = require('fs');
+const path = require('path');
 
-var pathJoin = require('path').join;
-var updater = require(pathJoin(__dirname, '..', 'lib', 'updater'));
+(function run() {
+  console.log('Updating rules...');
+  const publicSuffixList = fs.readFileSync(
+    path.resolve(__dirname, '../publicsuffix/public_suffix_list.dat'),
+    { encoding: 'utf-8' },
+  );
+  const tsCode = `
+import parse from './parsers/publicsuffix-org';
 
-module.exports = updater;
-
-if (process.mainModule === module) {
-  console.log('Requesting tld data...');
-
-  updater.run(function(){
-    console.log('Update complete.');
-  });
+export default function getRules() {
+  return parse(\`
+${publicSuffixList}
+  \`);
 }
+  `;
+  fs.writeFileSync(path.resolve(__dirname, '../lib/rules.ts'), tsCode, 'utf-8');
+})();

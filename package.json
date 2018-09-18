@@ -1,78 +1,73 @@
 {
-  "author": "Thomas Parisot (https://oncletom.io)",
-  "name": "tldjs",
+  "name": "tldts",
   "description": "JavaScript API to work against complex domain names, subdomains and URIs.",
-  "version": "2.3.1",
-  "homepage": "https://github.com/oncletom/tld.js",
+  "version": "3.0.0",
+  "homepage": "https://github.com/remusao/tld.js",
+  "author": "Rémi Berson",
+  "contributors": [
+    "Thomas Parisot (https://oncletom.io)"
+  ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/oncletom/tld.js.git"
+    "url": "git://github.com/remusao/tld.js.git"
   },
   "bugs": {
-    "url": "https://github.com/oncletom/tld.js/issues"
+    "url": "https://github.com/remusao/tld.js/issues"
   },
   "engines": {
-    "node": ">= 4"
+    "node": ">= 6"
   },
-  "main": "index.js",
+  "main": "dist/tldts.js",
+  "module": "dist/tldts.es.js",
+  "jsnext:main": "dist/tldts.es.js",
+  "types": "dist/tldts.d.ts",
+  "files": [
+    "dist",
+    "lib",
+    "tldts.ts"
+  ],
   "license": "MIT",
   "scripts": {
-    "benchmark": "node ./bin/benchmark.js",
-    "generate-changelog": "github-changes -o oncletom -r 'tld.js' -n ${npm_package_version} --only-pulls --use-commit-body",
-    "lint": "eslint ./lib",
-    "postinstall": "node ./bin/postinstall.js",
-    "posttest": "npm run lint && npm run test-browser",
-    "prepack": "npm run build && npm run build-min",
-    "prepublish": "npm run update",
-    "test": "nyc mocha -R dot -r env-test",
-    "test-browser": "testling",
-    "test-watch": "mocha -R dot -r env-test --watch",
-    "update": "node ./bin/update.js",
-    "version": "npm run generate-changelog && git add CHANGELOG.md",
-    "prebuild": "npm run update",
-    "build": "browserify index.js --s tldjs > tld.js",
-    "prebuild-min": "npm run update",
-    "build-min": "browserify index.js --s tldjs | uglifyjs -c > tld.min.js"
+    "lint": "tslint -c tslint.json 'lib/**/*.ts'",
+    "clean": "rm -rfv dist build",
+    "update": "git submodule foreach git pull origin master && node ./bin/update.js",
+    "build": "tsc -p . --module ES6 --outDir build",
+    "bundle": "rollup -c rollup.config.js && google-closure-compiler --js=./dist/tldts.js --js_output_file=./dist/tldts.min.js",
+    "benchmark": "./bin/benchmark.js",
+    "test": "jest --coverage"
   },
-  "tldjs": {
-    "providers": {
-      "publicsuffix-org": "https://publicsuffix.org/list/effective_tld_names.dat"
-    }
-  },
-  "nyc": {
-    "check-coverage": true,
-    "reporter": [
-      "text",
-      "html"
-    ]
-  },
-  "testling": {
-    "files": "test/*.js",
-    "harness": "mocha-bdd",
-    "browsers": [
-      "ie/7..10",
-      "ff/latest..nightly",
-      "chrome/latest..canary",
-      "opera/latest..next",
-      "safari/6.0",
-      "iphone/6.0",
-      "android/4.2"
-    ]
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "diagnostics": {
+          "warnOnly": true
+        }
+      }
+    },
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "node",
+      "ts"
+    ],
+    "preset": "ts-jest"
   },
   "dependencies": {
-    "punycode": "~1.4.1"
+    "punycode": "^2.1.1"
   },
   "devDependencies": {
+    "@types/jest": "^23.3.2",
+    "@types/node": "^10.9.4",
     "benchmark": "^2.1.4",
-    "browserify": "^15.2.0",
-    "env-test": "^1.0.0",
-    "eslint": "^4.18.2",
-    "expect.js": "^0.3.1",
-    "github-changes": "^1.1.2",
-    "mocha": "^5.0.0",
-    "nyc": "^11.4.1",
-    "testling": "^1.7.0",
-    "uglify-js": "^3.1.9"
+    "concurrently": "^4.0.1",
+    "google-closure-compiler": "20180805.0.0",
+    "jest": "^23.5.0",
+    "rollup": "^0.65.2",
+    "rollup-plugin-cleanup": "^3.0.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "ts-jest": "^23.10.0-beta.5",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.3"
   },
   "keywords": [
     "tld",
@@ -84,10 +79,5 @@
     "domain name",
     "subdomain",
     "public suffix"
-  ],
-  "collective": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/tldjs",
-    "logo": "https://opencollective.com/opencollective/logo.txt"
-  }
+  ]
 }
