@@ -1,5 +1,8 @@
 ## Change Log
 
+### *not released*
+- [#2](https://github.com/remusao/tldts/pull/2) Fix isPrivate being undefined
+
 ### 3.0.2 (2018/10/03 15h46)
 
 - [#6](https://github.com/remusao/tldts/pull/6) Update Public Suffix Lists

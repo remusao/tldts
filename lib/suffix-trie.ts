@@ -6,6 +6,12 @@ interface IOptions {
   allowPrivateDomains: boolean;
 }
 
+export interface IPublicSuffix {
+  isIcann: boolean;
+  isPrivate: boolean;
+  publicSuffix: string | null;
+}
+
 // Flags used to know if a rule is ICANN or Private
 const enum RULE_TYPE {
   ICANN = 1,
@@ -162,7 +168,7 @@ export default class SuffixTrie {
   /**
    * Check if `hostname` has a valid public suffix in `trie`.
    */
-  public suffixLookup(hostname: string, options: IOptions): any {
+  public suffixLookup(hostname: string, options: IOptions): IPublicSuffix | null {
     const allowIcannDomains = options.allowIcannDomains;
     const allowPrivateDomains = options.allowPrivateDomains;
 
@@ -211,12 +217,14 @@ export default class SuffixTrie {
     if (exceptionLookupResult.index !== -1) {
       return {
         isIcann: exceptionLookupResult.isIcann,
+        isPrivate: !exceptionLookupResult.isIcann,
         publicSuffix: hostnameParts.slice(exceptionLookupResult.index + 1).join('.'),
       };
     }
 
     return {
       isIcann: lookupResult.isIcann,
+      isPrivate: !lookupResult.isIcann,
       publicSuffix: hostnameParts.slice(lookupResult.index).join('.'),
     };
   }
