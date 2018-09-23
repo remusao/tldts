@@ -23,9 +23,6 @@ install:
   - npm ci
 
 script:
-  - npm run clean
-  - npm run build
-  - npm run bundle
   - npm run test
 
 deploy:

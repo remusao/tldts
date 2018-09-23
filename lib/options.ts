@@ -3,7 +3,7 @@ import extractHostnameDefault from './clean-host';
 export interface IOptions {
   allowIcannDomains: boolean;
   allowPrivateDomains: boolean;
-  extractHostname: (url: string, options: IOptions) => string | null;
+  extractHostname: (url: string) => string | null;
   strictHostnameValidation: boolean;
   validHosts: string[];
 }

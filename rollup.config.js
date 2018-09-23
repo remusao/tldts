@@ -1,17 +1,13 @@
 import resolve from 'rollup-plugin-node-resolve';
-import cleanup from 'rollup-plugin-cleanup';
+import commonjs from 'rollup-plugin-commonjs';
 import pkg from './package.json';
 
 
 const plugins = [
   resolve({
-    module: true,
-    jsnext: true,
-    main: false,
     preferBuiltins: false,
-    modulesOnly: true,
   }),
-  cleanup(),
+  commonjs(),
 ];
 
 
@@ -19,7 +15,7 @@ export default [
   {
     input: './build/tldts.js',
     output: {
-      file: pkg.main,
+      file: './dist/tldts.umd.js',
       name: pkg.name,
       format: 'umd',
     },
@@ -27,10 +23,10 @@ export default [
   },
   {
     input: './build/tldts.js',
-    output: {
-      file: pkg.module,
-      format: 'es',
-    },
-    plugins,
+    external: ['punycode'],
+    output: [
+      { file: pkg.module, format: 'es' },
+      { file: pkg.main, format: 'cjs' },
+    ],
   },
 ];

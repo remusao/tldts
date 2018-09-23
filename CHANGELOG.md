@@ -1,7 +1,19 @@
 ## Change Log
 
-### *not released*
+### Not Released
+
+### 3.1.0
+
+- [#3](https://github.com/remusao/tldts/pull/3) Various optimizations
+  * Rules are now shipped in a parsed form in the bundle
+  * Rules cannot be updated (opinionated)
+  * Trie matching is now iterative
+  * All rules are stored in their ASCII form instead of Unicode
+  * Use ts-jest to run tests
+  * Remove dist folder from source tree
+  * Hostname parsing has been optimized
 - [#2](https://github.com/remusao/tldts/pull/2) Fix isPrivate being undefined
+- [#4](https://github.com/remusao/tldts/pull/4) Optimize the implementation of options' setDefaults
 
 ### 3.0.2 (2018/10/03 15h46)
 

@@ -1,13 +1,16 @@
 import extractTldFromHost from './from-host';
 import { IOptions } from './options';
-import Trie, { IPublicSuffix } from './suffix-trie';
+import { hasTld, IPublicSuffix, suffixLookup } from './suffix-trie';
 
 /**
  * Returns the public suffix (including exact matches)
  */
-export default function getPublicSuffix(rules: Trie, hostname: string, options: IOptions): IPublicSuffix {
+export default function getPublicSuffix(
+  hostname: string,
+  options: IOptions,
+): IPublicSuffix {
   // First check if `hostname` is already a valid top-level Domain.
-  if (rules.hasTld(hostname)) {
+  if (hasTld(hostname)) {
     return {
       isIcann: false,
       isPrivate: false,
@@ -15,7 +18,7 @@ export default function getPublicSuffix(rules: Trie, hostname: string, options: 
     };
   }
 
-  const candidate = rules.suffixLookup(hostname, options);
+  const candidate = suffixLookup(hostname, options);
   if (candidate === null) {
     // Prevailing rule is '*' so we consider the top-level domain to be the
     // public suffix of `hostname` (e.g.: 'example.org' => 'org').

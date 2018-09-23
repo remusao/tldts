@@ -1,12659 +1,8795 @@
-
-import parse from './parsers/publicsuffix-org';
-
-export default function getRules() {
-  return parse(`
-// This Source Code Form is subject to the terms of the Mozilla Public
-// License, v. 2.0. If a copy of the MPL was not distributed with this
-// file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
-// Please pull this list from, and only from https://publicsuffix.org/list/public_suffix_list.dat,
-// rather than any other VCS sites. Pulling from any other URL is not guaranteed to be supported.
-
-// Instructions on pulling and using this list can be found at https://publicsuffix.org/list/.
-
-// ===BEGIN ICANN DOMAINS===
-
-// ac : https://en.wikipedia.org/wiki/.ac
-ac
-com.ac
-edu.ac
-gov.ac
-net.ac
-mil.ac
-org.ac
-
-// ad : https://en.wikipedia.org/wiki/.ad
-ad
-nom.ad
-
-// ae : https://en.wikipedia.org/wiki/.ae
-// see also: "Domain Name Eligibility Policy" at http://www.aeda.ae/eng/aepolicy.php
-ae
-co.ae
-net.ae
-org.ae
-sch.ae
-ac.ae
-gov.ae
-mil.ae
-
-// aero : see https://www.information.aero/index.php?id=66
-aero
-accident-investigation.aero
-accident-prevention.aero
-aerobatic.aero
-aeroclub.aero
-aerodrome.aero
-agents.aero
-aircraft.aero
-airline.aero
-airport.aero
-air-surveillance.aero
-airtraffic.aero
-air-traffic-control.aero
-ambulance.aero
-amusement.aero
-association.aero
-author.aero
-ballooning.aero
-broker.aero
-caa.aero
-cargo.aero
-catering.aero
-certification.aero
-championship.aero
-charter.aero
-civilaviation.aero
-club.aero
-conference.aero
-consultant.aero
-consulting.aero
-control.aero
-council.aero
-crew.aero
-design.aero
-dgca.aero
-educator.aero
-emergency.aero
-engine.aero
-engineer.aero
-entertainment.aero
-equipment.aero
-exchange.aero
-express.aero
-federation.aero
-flight.aero
-freight.aero
-fuel.aero
-gliding.aero
-government.aero
-groundhandling.aero
-group.aero
-hanggliding.aero
-homebuilt.aero
-insurance.aero
-journal.aero
-journalist.aero
-leasing.aero
-logistics.aero
-magazine.aero
-maintenance.aero
-media.aero
-microlight.aero
-modelling.aero
-navigation.aero
-parachuting.aero
-paragliding.aero
-passenger-association.aero
-pilot.aero
-press.aero
-production.aero
-recreation.aero
-repbody.aero
-res.aero
-research.aero
-rotorcraft.aero
-safety.aero
-scientist.aero
-services.aero
-show.aero
-skydiving.aero
-software.aero
-student.aero
-trader.aero
-trading.aero
-trainer.aero
-union.aero
-workinggroup.aero
-works.aero
-
-// af : http://www.nic.af/help.jsp
-af
-gov.af
-com.af
-org.af
-net.af
-edu.af
-
-// ag : http://www.nic.ag/prices.htm
-ag
-com.ag
-org.ag
-net.ag
-co.ag
-nom.ag
-
-// ai : http://nic.com.ai/
-ai
-off.ai
-com.ai
-net.ai
-org.ai
-
-// al : http://www.ert.gov.al/ert_alb/faq_det.html?Id=31
-al
-com.al
-edu.al
-gov.al
-mil.al
-net.al
-org.al
-
-// am : https://en.wikipedia.org/wiki/.am
-am
-
-// ao : https://en.wikipedia.org/wiki/.ao
-// http://www.dns.ao/REGISTR.DOC
-ao
-ed.ao
-gv.ao
-og.ao
-co.ao
-pb.ao
-it.ao
-
-// aq : https://en.wikipedia.org/wiki/.aq
-aq
-
-// ar : https://nic.ar/nic-argentina/normativa-vigente
-ar
-com.ar
-edu.ar
-gob.ar
-gov.ar
-int.ar
-mil.ar
-musica.ar
-net.ar
-org.ar
-tur.ar
-
-// arpa : https://en.wikipedia.org/wiki/.arpa
-// Confirmed by registry <iana-questions@icann.org> 2008-06-18
-arpa
-e164.arpa
-in-addr.arpa
-ip6.arpa
-iris.arpa
-uri.arpa
-urn.arpa
-
-// as : https://en.wikipedia.org/wiki/.as
-as
-gov.as
-
-// asia : https://en.wikipedia.org/wiki/.asia
-asia
-
-// at : https://en.wikipedia.org/wiki/.at
-// Confirmed by registry <it@nic.at> 2008-06-17
-at
-ac.at
-co.at
-gv.at
-or.at
-
-// au : https://en.wikipedia.org/wiki/.au
-// http://www.auda.org.au/
-au
-// 2LDs
-com.au
-net.au
-org.au
-edu.au
-gov.au
-asn.au
-id.au
-// Historic 2LDs (closed to new registration, but sites still exist)
-info.au
-conf.au
-oz.au
-// CGDNs - http://www.cgdn.org.au/
-act.au
-nsw.au
-nt.au
-qld.au
-sa.au
-tas.au
-vic.au
-wa.au
-// 3LDs
-act.edu.au
-nsw.edu.au
-nt.edu.au
-qld.edu.au
-sa.edu.au
-tas.edu.au
-vic.edu.au
-wa.edu.au
-// act.gov.au  Bug 984824 - Removed at request of Greg Tankard
-// nsw.gov.au  Bug 547985 - Removed at request of <Shae.Donelan@services.nsw.gov.au>
-// nt.gov.au  Bug 940478 - Removed at request of Greg Connors <Greg.Connors@nt.gov.au>
-qld.gov.au
-sa.gov.au
-tas.gov.au
-vic.gov.au
-wa.gov.au
-
-// aw : https://en.wikipedia.org/wiki/.aw
-aw
-com.aw
-
-// ax : https://en.wikipedia.org/wiki/.ax
-ax
-
-// az : https://en.wikipedia.org/wiki/.az
-az
-com.az
-net.az
-int.az
-gov.az
-org.az
-edu.az
-info.az
-pp.az
-mil.az
-name.az
-pro.az
-biz.az
-
-// ba : http://nic.ba/users_data/files/pravilnik_o_registraciji.pdf
-ba
-com.ba
-edu.ba
-gov.ba
-mil.ba
-net.ba
-org.ba
-
-// bb : https://en.wikipedia.org/wiki/.bb
-bb
-biz.bb
-co.bb
-com.bb
-edu.bb
-gov.bb
-info.bb
-net.bb
-org.bb
-store.bb
-tv.bb
-
-// bd : https://en.wikipedia.org/wiki/.bd
-*.bd
-
-// be : https://en.wikipedia.org/wiki/.be
-// Confirmed by registry <tech@dns.be> 2008-06-08
-be
-ac.be
-
-// bf : https://en.wikipedia.org/wiki/.bf
-bf
-gov.bf
-
-// bg : https://en.wikipedia.org/wiki/.bg
-// https://www.register.bg/user/static/rules/en/index.html
-bg
-a.bg
-b.bg
-c.bg
-d.bg
-e.bg
-f.bg
-g.bg
-h.bg
-i.bg
-j.bg
-k.bg
-l.bg
-m.bg
-n.bg
-o.bg
-p.bg
-q.bg
-r.bg
-s.bg
-t.bg
-u.bg
-v.bg
-w.bg
-x.bg
-y.bg
-z.bg
-0.bg
-1.bg
-2.bg
-3.bg
-4.bg
-5.bg
-6.bg
-7.bg
-8.bg
-9.bg
-
-// bh : https://en.wikipedia.org/wiki/.bh
-bh
-com.bh
-edu.bh
-net.bh
-org.bh
-gov.bh
-
-// bi : https://en.wikipedia.org/wiki/.bi
-// http://whois.nic.bi/
-bi
-co.bi
-com.bi
-edu.bi
-or.bi
-org.bi
-
-// biz : https://en.wikipedia.org/wiki/.biz
-biz
-
-// bj : https://en.wikipedia.org/wiki/.bj
-bj
-asso.bj
-barreau.bj
-gouv.bj
-
-// bm : http://www.bermudanic.bm/dnr-text.txt
-bm
-com.bm
-edu.bm
-gov.bm
-net.bm
-org.bm
-
-// bn : http://www.bnnic.bn/faqs
-bn
-com.bn
-edu.bn
-gov.bn
-net.bn
-org.bn
-
-// bo : https://nic.bo/delegacion2015.php#h-1.10
-bo
-com.bo
-edu.bo
-gob.bo
-int.bo
-org.bo
-net.bo
-mil.bo
-tv.bo
-web.bo
-// Social Domains
-academia.bo
-agro.bo
-arte.bo
-blog.bo
-bolivia.bo
-ciencia.bo
-cooperativa.bo
-democracia.bo
-deporte.bo
-ecologia.bo
-economia.bo
-empresa.bo
-indigena.bo
-industria.bo
-info.bo
-medicina.bo
-movimiento.bo
-musica.bo
-natural.bo
-nombre.bo
-noticias.bo
-patria.bo
-politica.bo
-profesional.bo
-plurinacional.bo
-pueblo.bo
-revista.bo
-salud.bo
-tecnologia.bo
-tksat.bo
-transporte.bo
-wiki.bo
-
-// br : http://registro.br/dominio/categoria.html
-// Submitted by registry <fneves@registro.br>
-br
-9guacu.br
-abc.br
-adm.br
-adv.br
-agr.br
-aju.br
-am.br
-anani.br
-aparecida.br
-arq.br
-art.br
-ato.br
-b.br
-barueri.br
-belem.br
-bhz.br
-bio.br
-blog.br
-bmd.br
-boavista.br
-bsb.br
-campinagrande.br
-campinas.br
-caxias.br
-cim.br
-cng.br
-cnt.br
-com.br
-contagem.br
-coop.br
-cri.br
-cuiaba.br
-curitiba.br
-def.br
-ecn.br
-eco.br
-edu.br
-emp.br
-eng.br
-esp.br
-etc.br
-eti.br
-far.br
-feira.br
-flog.br
-floripa.br
-fm.br
-fnd.br
-fortal.br
-fot.br
-foz.br
-fst.br
-g12.br
-ggf.br
-goiania.br
-gov.br
-// gov.br 26 states + df https://en.wikipedia.org/wiki/States_of_Brazil
-ac.gov.br
-al.gov.br
-am.gov.br
-ap.gov.br
-ba.gov.br
-ce.gov.br
-df.gov.br
-es.gov.br
-go.gov.br
-ma.gov.br
-mg.gov.br
-ms.gov.br
-mt.gov.br
-pa.gov.br
-pb.gov.br
-pe.gov.br
-pi.gov.br
-pr.gov.br
-rj.gov.br
-rn.gov.br
-ro.gov.br
-rr.gov.br
-rs.gov.br
-sc.gov.br
-se.gov.br
-sp.gov.br
-to.gov.br
-gru.br
-imb.br
-ind.br
-inf.br
-jab.br
-jampa.br
-jdf.br
-joinville.br
-jor.br
-jus.br
-leg.br
-lel.br
-londrina.br
-macapa.br
-maceio.br
-manaus.br
-maringa.br
-mat.br
-med.br
-mil.br
-morena.br
-mp.br
-mus.br
-natal.br
-net.br
-niteroi.br
-*.nom.br
-not.br
-ntr.br
-odo.br
-ong.br
-org.br
-osasco.br
-palmas.br
-poa.br
-ppg.br
-pro.br
-psc.br
-psi.br
-pvh.br
-qsl.br
-radio.br
-rec.br
-recife.br
-ribeirao.br
-rio.br
-riobranco.br
-riopreto.br
-salvador.br
-sampa.br
-santamaria.br
-santoandre.br
-saobernardo.br
-saogonca.br
-sjc.br
-slg.br
-slz.br
-sorocaba.br
-srv.br
-taxi.br
-teo.br
-the.br
-tmp.br
-trd.br
-tur.br
-tv.br
-udi.br
-vet.br
-vix.br
-vlog.br
-wiki.br
-zlg.br
-
-// bs : http://www.nic.bs/rules.html
-bs
-com.bs
-net.bs
-org.bs
-edu.bs
-gov.bs
-
-// bt : https://en.wikipedia.org/wiki/.bt
-bt
-com.bt
-edu.bt
-gov.bt
-net.bt
-org.bt
-
-// bv : No registrations at this time.
-// Submitted by registry <jarle@uninett.no>
-bv
-
-// bw : https://en.wikipedia.org/wiki/.bw
-// http://www.gobin.info/domainname/bw.doc
-// list of other 2nd level tlds ?
-bw
-co.bw
-org.bw
-
-// by : https://en.wikipedia.org/wiki/.by
-// http://tld.by/rules_2006_en.html
-// list of other 2nd level tlds ?
-by
-gov.by
-mil.by
-// Official information does not indicate that com.by is a reserved
-// second-level domain, but it's being used as one (see www.google.com.by and
-// www.yahoo.com.by, for example), so we list it here for safety's sake.
-com.by
-
-// http://hoster.by/
-of.by
-
-// bz : https://en.wikipedia.org/wiki/.bz
-// http://www.belizenic.bz/
-bz
-com.bz
-net.bz
-org.bz
-edu.bz
-gov.bz
-
-// ca : https://en.wikipedia.org/wiki/.ca
-ca
-// ca geographical names
-ab.ca
-bc.ca
-mb.ca
-nb.ca
-nf.ca
-nl.ca
-ns.ca
-nt.ca
-nu.ca
-on.ca
-pe.ca
-qc.ca
-sk.ca
-yk.ca
-// gc.ca: https://en.wikipedia.org/wiki/.gc.ca
-// see also: http://registry.gc.ca/en/SubdomainFAQ
-gc.ca
-
-// cat : https://en.wikipedia.org/wiki/.cat
-cat
-
-// cc : https://en.wikipedia.org/wiki/.cc
-cc
-
-// cd : https://en.wikipedia.org/wiki/.cd
-// see also: https://www.nic.cd/domain/insertDomain_2.jsp?act=1
-cd
-gov.cd
-
-// cf : https://en.wikipedia.org/wiki/.cf
-cf
-
-// cg : https://en.wikipedia.org/wiki/.cg
-cg
-
-// ch : https://en.wikipedia.org/wiki/.ch
-ch
-
-// ci : https://en.wikipedia.org/wiki/.ci
-// http://www.nic.ci/index.php?page=charte
-ci
-org.ci
-or.ci
-com.ci
-co.ci
-edu.ci
-ed.ci
-ac.ci
-net.ci
-go.ci
-asso.ci
-aéroport.ci
-int.ci
-presse.ci
-md.ci
-gouv.ci
-
-// ck : https://en.wikipedia.org/wiki/.ck
-*.ck
-!www.ck
-
-// cl : https://en.wikipedia.org/wiki/.cl
-cl
-gov.cl
-gob.cl
-co.cl
-mil.cl
-
-// cm : https://en.wikipedia.org/wiki/.cm plus bug 981927
-cm
-co.cm
-com.cm
-gov.cm
-net.cm
-
-// cn : https://en.wikipedia.org/wiki/.cn
-// Submitted by registry <tanyaling@cnnic.cn>
-cn
-ac.cn
-com.cn
-edu.cn
-gov.cn
-net.cn
-org.cn
-mil.cn
-公司.cn
-网络.cn
-網絡.cn
-// cn geographic names
-ah.cn
-bj.cn
-cq.cn
-fj.cn
-gd.cn
-gs.cn
-gz.cn
-gx.cn
-ha.cn
-hb.cn
-he.cn
-hi.cn
-hl.cn
-hn.cn
-jl.cn
-js.cn
-jx.cn
-ln.cn
-nm.cn
-nx.cn
-qh.cn
-sc.cn
-sd.cn
-sh.cn
-sn.cn
-sx.cn
-tj.cn
-xj.cn
-xz.cn
-yn.cn
-zj.cn
-hk.cn
-mo.cn
-tw.cn
-
-// co : https://en.wikipedia.org/wiki/.co
-// Submitted by registry <tecnico@uniandes.edu.co>
-co
-arts.co
-com.co
-edu.co
-firm.co
-gov.co
-info.co
-int.co
-mil.co
-net.co
-nom.co
-org.co
-rec.co
-web.co
-
-// com : https://en.wikipedia.org/wiki/.com
-com
-
-// coop : https://en.wikipedia.org/wiki/.coop
-coop
-
-// cr : http://www.nic.cr/niccr_publico/showRegistroDominiosScreen.do
-cr
-ac.cr
-co.cr
-ed.cr
-fi.cr
-go.cr
-or.cr
-sa.cr
-
-// cu : https://en.wikipedia.org/wiki/.cu
-cu
-com.cu
-edu.cu
-org.cu
-net.cu
-gov.cu
-inf.cu
-
-// cv : https://en.wikipedia.org/wiki/.cv
-cv
-
-// cw : http://www.una.cw/cw_registry/
-// Confirmed by registry <registry@una.net> 2013-03-26
-cw
-com.cw
-edu.cw
-net.cw
-org.cw
-
-// cx : https://en.wikipedia.org/wiki/.cx
-// list of other 2nd level tlds ?
-cx
-gov.cx
-
-// cy : http://www.nic.cy/
-// Submitted by registry Panayiotou Fotia <cydns@ucy.ac.cy>
-cy
-ac.cy
-biz.cy
-com.cy
-ekloges.cy
-gov.cy
-ltd.cy
-name.cy
-net.cy
-org.cy
-parliament.cy
-press.cy
-pro.cy
-tm.cy
-
-// cz : https://en.wikipedia.org/wiki/.cz
-cz
-
-// de : https://en.wikipedia.org/wiki/.de
-// Confirmed by registry <ops@denic.de> (with technical
-// reservations) 2008-07-01
-de
-
-// dj : https://en.wikipedia.org/wiki/.dj
-dj
-
-// dk : https://en.wikipedia.org/wiki/.dk
-// Confirmed by registry <robert@dk-hostmaster.dk> 2008-06-17
-dk
-
-// dm : https://en.wikipedia.org/wiki/.dm
-dm
-com.dm
-net.dm
-org.dm
-edu.dm
-gov.dm
-
-// do : https://en.wikipedia.org/wiki/.do
-do
-art.do
-com.do
-edu.do
-gob.do
-gov.do
-mil.do
-net.do
-org.do
-sld.do
-web.do
-
-// dz : https://en.wikipedia.org/wiki/.dz
-dz
-com.dz
-org.dz
-net.dz
-gov.dz
-edu.dz
-asso.dz
-pol.dz
-art.dz
-
-// ec : http://www.nic.ec/reg/paso1.asp
-// Submitted by registry <vabboud@nic.ec>
-ec
-com.ec
-info.ec
-net.ec
-fin.ec
-k12.ec
-med.ec
-pro.ec
-org.ec
-edu.ec
-gov.ec
-gob.ec
-mil.ec
-
-// edu : https://en.wikipedia.org/wiki/.edu
-edu
-
-// ee : http://www.eenet.ee/EENet/dom_reeglid.html#lisa_B
-ee
-edu.ee
-gov.ee
-riik.ee
-lib.ee
-med.ee
-com.ee
-pri.ee
-aip.ee
-org.ee
-fie.ee
-
-// eg : https://en.wikipedia.org/wiki/.eg
-eg
-com.eg
-edu.eg
-eun.eg
-gov.eg
-mil.eg
-name.eg
-net.eg
-org.eg
-sci.eg
-
-// er : https://en.wikipedia.org/wiki/.er
-*.er
-
-// es : https://www.nic.es/site_ingles/ingles/dominios/index.html
-es
-com.es
-nom.es
-org.es
-gob.es
-edu.es
-
-// et : https://en.wikipedia.org/wiki/.et
-et
-com.et
-gov.et
-org.et
-edu.et
-biz.et
-name.et
-info.et
-net.et
-
-// eu : https://en.wikipedia.org/wiki/.eu
-eu
-
-// fi : https://en.wikipedia.org/wiki/.fi
-fi
-// aland.fi : https://en.wikipedia.org/wiki/.ax
-// This domain is being phased out in favor of .ax. As there are still many
-// domains under aland.fi, we still keep it on the list until aland.fi is
-// completely removed.
-// TODO: Check for updates (expected to be phased out around Q1/2009)
-aland.fi
-
-// fj : https://en.wikipedia.org/wiki/.fj
-*.fj
-
-// fk : https://en.wikipedia.org/wiki/.fk
-*.fk
-
-// fm : https://en.wikipedia.org/wiki/.fm
-fm
-
-// fo : https://en.wikipedia.org/wiki/.fo
-fo
-
-// fr : http://www.afnic.fr/
-// domaines descriptifs : http://www.afnic.fr/obtenir/chartes/nommage-fr/annexe-descriptifs
-fr
-com.fr
-asso.fr
-nom.fr
-prd.fr
-presse.fr
-tm.fr
-// domaines sectoriels : http://www.afnic.fr/obtenir/chartes/nommage-fr/annexe-sectoriels
-aeroport.fr
-assedic.fr
-avocat.fr
-avoues.fr
-cci.fr
-chambagri.fr
-chirurgiens-dentistes.fr
-experts-comptables.fr
-geometre-expert.fr
-gouv.fr
-greta.fr
-huissier-justice.fr
-medecin.fr
-notaires.fr
-pharmacien.fr
-port.fr
-veterinaire.fr
-
-// ga : https://en.wikipedia.org/wiki/.ga
-ga
-
-// gb : This registry is effectively dormant
-// Submitted by registry <Damien.Shaw@ja.net>
-gb
-
-// gd : https://en.wikipedia.org/wiki/.gd
-gd
-
-// ge : http://www.nic.net.ge/policy_en.pdf
-ge
-com.ge
-edu.ge
-gov.ge
-org.ge
-mil.ge
-net.ge
-pvt.ge
-
-// gf : https://en.wikipedia.org/wiki/.gf
-gf
-
-// gg : http://www.channelisles.net/register-domains/
-// Confirmed by registry <nigel@channelisles.net> 2013-11-28
-gg
-co.gg
-net.gg
-org.gg
-
-// gh : https://en.wikipedia.org/wiki/.gh
-// see also: http://www.nic.gh/reg_now.php
-// Although domains directly at second level are not possible at the moment,
-// they have been possible for some time and may come back.
-gh
-com.gh
-edu.gh
-gov.gh
-org.gh
-mil.gh
-
-// gi : http://www.nic.gi/rules.html
-gi
-com.gi
-ltd.gi
-gov.gi
-mod.gi
-edu.gi
-org.gi
-
-// gl : https://en.wikipedia.org/wiki/.gl
-// http://nic.gl
-gl
-co.gl
-com.gl
-edu.gl
-net.gl
-org.gl
-
-// gm : http://www.nic.gm/htmlpages%5Cgm-policy.htm
-gm
-
-// gn : http://psg.com/dns/gn/gn.txt
-// Submitted by registry <randy@psg.com>
-gn
-ac.gn
-com.gn
-edu.gn
-gov.gn
-org.gn
-net.gn
-
-// gov : https://en.wikipedia.org/wiki/.gov
-gov
-
-// gp : http://www.nic.gp/index.php?lang=en
-gp
-com.gp
-net.gp
-mobi.gp
-edu.gp
-org.gp
-asso.gp
-
-// gq : https://en.wikipedia.org/wiki/.gq
-gq
-
-// gr : https://grweb.ics.forth.gr/english/1617-B-2005.html
-// Submitted by registry <segred@ics.forth.gr>
-gr
-com.gr
-edu.gr
-net.gr
-org.gr
-gov.gr
-
-// gs : https://en.wikipedia.org/wiki/.gs
-gs
-
-// gt : http://www.gt/politicas_de_registro.html
-gt
-com.gt
-edu.gt
-gob.gt
-ind.gt
-mil.gt
-net.gt
-org.gt
-
-// gu : http://gadao.gov.gu/register.html
-// University of Guam : https://www.uog.edu
-// Submitted by uognoc@triton.uog.edu
-gu
-com.gu
-edu.gu
-gov.gu
-guam.gu
-info.gu
-net.gu
-org.gu
-web.gu
-
-// gw : https://en.wikipedia.org/wiki/.gw
-gw
-
-// gy : https://en.wikipedia.org/wiki/.gy
-// http://registry.gy/
-gy
-co.gy
-com.gy
-edu.gy
-gov.gy
-net.gy
-org.gy
-
-// hk : https://www.hkirc.hk
-// Submitted by registry <hk.tech@hkirc.hk>
-hk
-com.hk
-edu.hk
-gov.hk
-idv.hk
-net.hk
-org.hk
-公司.hk
-教育.hk
-敎育.hk
-政府.hk
-個人.hk
-个人.hk
-箇人.hk
-網络.hk
-网络.hk
-组織.hk
-網絡.hk
-网絡.hk
-组织.hk
-組織.hk
-組织.hk
-
-// hm : https://en.wikipedia.org/wiki/.hm
-hm
-
-// hn : http://www.nic.hn/politicas/ps02,,05.html
-hn
-com.hn
-edu.hn
-org.hn
-net.hn
-mil.hn
-gob.hn
-
-// hr : http://www.dns.hr/documents/pdf/HRTLD-regulations.pdf
-hr
-iz.hr
-from.hr
-name.hr
-com.hr
-
-// ht : http://www.nic.ht/info/charte.cfm
-ht
-com.ht
-shop.ht
-firm.ht
-info.ht
-adult.ht
-net.ht
-pro.ht
-org.ht
-med.ht
-art.ht
-coop.ht
-pol.ht
-asso.ht
-edu.ht
-rel.ht
-gouv.ht
-perso.ht
-
-// hu : http://www.domain.hu/domain/English/sld.html
-// Confirmed by registry <pasztor@iszt.hu> 2008-06-12
-hu
-co.hu
-info.hu
-org.hu
-priv.hu
-sport.hu
-tm.hu
-2000.hu
-agrar.hu
-bolt.hu
-casino.hu
-city.hu
-erotica.hu
-erotika.hu
-film.hu
-forum.hu
-games.hu
-hotel.hu
-ingatlan.hu
-jogasz.hu
-konyvelo.hu
-lakas.hu
-media.hu
-news.hu
-reklam.hu
-sex.hu
-shop.hu
-suli.hu
-szex.hu
-tozsde.hu
-utazas.hu
-video.hu
-
-// id : https://pandi.id/en/domain/registration-requirements/
-id
-ac.id
-biz.id
-co.id
-desa.id
-go.id
-mil.id
-my.id
-net.id
-or.id
-ponpes.id
-sch.id
-web.id
-
-// ie : https://en.wikipedia.org/wiki/.ie
-ie
-gov.ie
-
-// il : http://www.isoc.org.il/domains/
-il
-ac.il
-co.il
-gov.il
-idf.il
-k12.il
-muni.il
-net.il
-org.il
-
-// im : https://www.nic.im/
-// Submitted by registry <info@nic.im>
-im
-ac.im
-co.im
-com.im
-ltd.co.im
-net.im
-org.im
-plc.co.im
-tt.im
-tv.im
-
-// in : https://en.wikipedia.org/wiki/.in
-// see also: https://registry.in/Policies
-// Please note, that nic.in is not an official eTLD, but used by most
-// government institutions.
-in
-co.in
-firm.in
-net.in
-org.in
-gen.in
-ind.in
-nic.in
-ac.in
-edu.in
-res.in
-gov.in
-mil.in
-
-// info : https://en.wikipedia.org/wiki/.info
-info
-
-// int : https://en.wikipedia.org/wiki/.int
-// Confirmed by registry <iana-questions@icann.org> 2008-06-18
-int
-eu.int
-
-// io : http://www.nic.io/rules.html
-// list of other 2nd level tlds ?
-io
-com.io
-
-// iq : http://www.cmc.iq/english/iq/iqregister1.htm
-iq
-gov.iq
-edu.iq
-mil.iq
-com.iq
-org.iq
-net.iq
-
-// ir : http://www.nic.ir/Terms_and_Conditions_ir,_Appendix_1_Domain_Rules
-// Also see http://www.nic.ir/Internationalized_Domain_Names
-// Two <iran>.ir entries added at request of <tech-team@nic.ir>, 2010-04-16
-ir
-ac.ir
-co.ir
-gov.ir
-id.ir
-net.ir
-org.ir
-sch.ir
-// xn--mgba3a4f16a.ir (<iran>.ir, Persian YEH)
-ایران.ir
-// xn--mgba3a4fra.ir (<iran>.ir, Arabic YEH)
-ايران.ir
-
-// is : http://www.isnic.is/domain/rules.php
-// Confirmed by registry <marius@isgate.is> 2008-12-06
-is
-net.is
-com.is
-edu.is
-gov.is
-org.is
-int.is
-
-// it : https://en.wikipedia.org/wiki/.it
-it
-gov.it
-edu.it
-// Reserved geo-names (regions and provinces):
-// http://www.nic.it/sites/default/files/docs/Regulation_assignation_v7.1.pdf
-// Regions
-abr.it
-abruzzo.it
-aosta-valley.it
-aostavalley.it
-bas.it
-basilicata.it
-cal.it
-calabria.it
-cam.it
-campania.it
-emilia-romagna.it
-emiliaromagna.it
-emr.it
-friuli-v-giulia.it
-friuli-ve-giulia.it
-friuli-vegiulia.it
-friuli-venezia-giulia.it
-friuli-veneziagiulia.it
-friuli-vgiulia.it
-friuliv-giulia.it
-friulive-giulia.it
-friulivegiulia.it
-friulivenezia-giulia.it
-friuliveneziagiulia.it
-friulivgiulia.it
-fvg.it
-laz.it
-lazio.it
-lig.it
-liguria.it
-lom.it
-lombardia.it
-lombardy.it
-lucania.it
-mar.it
-marche.it
-mol.it
-molise.it
-piedmont.it
-piemonte.it
-pmn.it
-pug.it
-puglia.it
-sar.it
-sardegna.it
-sardinia.it
-sic.it
-sicilia.it
-sicily.it
-taa.it
-tos.it
-toscana.it
-trentin-sud-tirol.it
-trentin-süd-tirol.it
-trentin-sudtirol.it
-trentin-südtirol.it
-trentin-sued-tirol.it
-trentin-suedtirol.it
-trentino-a-adige.it
-trentino-aadige.it
-trentino-alto-adige.it
-trentino-altoadige.it
-trentino-s-tirol.it
-trentino-stirol.it
-trentino-sud-tirol.it
-trentino-süd-tirol.it
-trentino-sudtirol.it
-trentino-südtirol.it
-trentino-sued-tirol.it
-trentino-suedtirol.it
-trentino.it
-trentinoa-adige.it
-trentinoaadige.it
-trentinoalto-adige.it
-trentinoaltoadige.it
-trentinos-tirol.it
-trentinostirol.it
-trentinosud-tirol.it
-trentinosüd-tirol.it
-trentinosudtirol.it
-trentinosüdtirol.it
-trentinosued-tirol.it
-trentinosuedtirol.it
-trentinsud-tirol.it
-trentinsüd-tirol.it
-trentinsudtirol.it
-trentinsüdtirol.it
-trentinsued-tirol.it
-trentinsuedtirol.it
-tuscany.it
-umb.it
-umbria.it
-val-d-aosta.it
-val-daosta.it
-vald-aosta.it
-valdaosta.it
-valle-aosta.it
-valle-d-aosta.it
-valle-daosta.it
-valleaosta.it
-valled-aosta.it
-valledaosta.it
-vallee-aoste.it
-vallée-aoste.it
-vallee-d-aoste.it
-vallée-d-aoste.it
-valleeaoste.it
-valléeaoste.it
-valleedaoste.it
-valléedaoste.it
-vao.it
-vda.it
-ven.it
-veneto.it
-// Provinces
-ag.it
-agrigento.it
-al.it
-alessandria.it
-alto-adige.it
-altoadige.it
-an.it
-ancona.it
-andria-barletta-trani.it
-andria-trani-barletta.it
-andriabarlettatrani.it
-andriatranibarletta.it
-ao.it
-aosta.it
-aoste.it
-ap.it
-aq.it
-aquila.it
-ar.it
-arezzo.it
-ascoli-piceno.it
-ascolipiceno.it
-asti.it
-at.it
-av.it
-avellino.it
-ba.it
-balsan-sudtirol.it
-balsan-südtirol.it
-balsan-suedtirol.it
-balsan.it
-bari.it
-barletta-trani-andria.it
-barlettatraniandria.it
-belluno.it
-benevento.it
-bergamo.it
-bg.it
-bi.it
-biella.it
-bl.it
-bn.it
-bo.it
-bologna.it
-bolzano-altoadige.it
-bolzano.it
-bozen-sudtirol.it
-bozen-südtirol.it
-bozen-suedtirol.it
-bozen.it
-br.it
-brescia.it
-brindisi.it
-bs.it
-bt.it
-bulsan-sudtirol.it
-bulsan-südtirol.it
-bulsan-suedtirol.it
-bulsan.it
-bz.it
-ca.it
-cagliari.it
-caltanissetta.it
-campidano-medio.it
-campidanomedio.it
-campobasso.it
-carbonia-iglesias.it
-carboniaiglesias.it
-carrara-massa.it
-carraramassa.it
-caserta.it
-catania.it
-catanzaro.it
-cb.it
-ce.it
-cesena-forli.it
-cesena-forlì.it
-cesenaforli.it
-cesenaforlì.it
-ch.it
-chieti.it
-ci.it
-cl.it
-cn.it
-co.it
-como.it
-cosenza.it
-cr.it
-cremona.it
-crotone.it
-cs.it
-ct.it
-cuneo.it
-cz.it
-dell-ogliastra.it
-dellogliastra.it
-en.it
-enna.it
-fc.it
-fe.it
-fermo.it
-ferrara.it
-fg.it
-fi.it
-firenze.it
-florence.it
-fm.it
-foggia.it
-forli-cesena.it
-forlì-cesena.it
-forlicesena.it
-forlìcesena.it
-fr.it
-frosinone.it
-ge.it
-genoa.it
-genova.it
-go.it
-gorizia.it
-gr.it
-grosseto.it
-iglesias-carbonia.it
-iglesiascarbonia.it
-im.it
-imperia.it
-is.it
-isernia.it
-kr.it
-la-spezia.it
-laquila.it
-laspezia.it
-latina.it
-lc.it
-le.it
-lecce.it
-lecco.it
-li.it
-livorno.it
-lo.it
-lodi.it
-lt.it
-lu.it
-lucca.it
-macerata.it
-mantova.it
-massa-carrara.it
-massacarrara.it
-matera.it
-mb.it
-mc.it
-me.it
-medio-campidano.it
-mediocampidano.it
-messina.it
-mi.it
-milan.it
-milano.it
-mn.it
-mo.it
-modena.it
-monza-brianza.it
-monza-e-della-brianza.it
-monza.it
-monzabrianza.it
-monzaebrianza.it
-monzaedellabrianza.it
-ms.it
-mt.it
-na.it
-naples.it
-napoli.it
-no.it
-novara.it
-nu.it
-nuoro.it
-og.it
-ogliastra.it
-olbia-tempio.it
-olbiatempio.it
-or.it
-oristano.it
-ot.it
-pa.it
-padova.it
-padua.it
-palermo.it
-parma.it
-pavia.it
-pc.it
-pd.it
-pe.it
-perugia.it
-pesaro-urbino.it
-pesarourbino.it
-pescara.it
-pg.it
-pi.it
-piacenza.it
-pisa.it
-pistoia.it
-pn.it
-po.it
-pordenone.it
-potenza.it
-pr.it
-prato.it
-pt.it
-pu.it
-pv.it
-pz.it
-ra.it
-ragusa.it
-ravenna.it
-rc.it
-re.it
-reggio-calabria.it
-reggio-emilia.it
-reggiocalabria.it
-reggioemilia.it
-rg.it
-ri.it
-rieti.it
-rimini.it
-rm.it
-rn.it
-ro.it
-roma.it
-rome.it
-rovigo.it
-sa.it
-salerno.it
-sassari.it
-savona.it
-si.it
-siena.it
-siracusa.it
-so.it
-sondrio.it
-sp.it
-sr.it
-ss.it
-suedtirol.it
-südtirol.it
-sv.it
-ta.it
-taranto.it
-te.it
-tempio-olbia.it
-tempioolbia.it
-teramo.it
-terni.it
-tn.it
-to.it
-torino.it
-tp.it
-tr.it
-trani-andria-barletta.it
-trani-barletta-andria.it
-traniandriabarletta.it
-tranibarlettaandria.it
-trapani.it
-trento.it
-treviso.it
-trieste.it
-ts.it
-turin.it
-tv.it
-ud.it
-udine.it
-urbino-pesaro.it
-urbinopesaro.it
-va.it
-varese.it
-vb.it
-vc.it
-ve.it
-venezia.it
-venice.it
-verbania.it
-vercelli.it
-verona.it
-vi.it
-vibo-valentia.it
-vibovalentia.it
-vicenza.it
-viterbo.it
-vr.it
-vs.it
-vt.it
-vv.it
-
-// je : http://www.channelisles.net/register-domains/
-// Confirmed by registry <nigel@channelisles.net> 2013-11-28
-je
-co.je
-net.je
-org.je
-
-// jm : http://www.com.jm/register.html
-*.jm
-
-// jo : http://www.dns.jo/Registration_policy.aspx
-jo
-com.jo
-org.jo
-net.jo
-edu.jo
-sch.jo
-gov.jo
-mil.jo
-name.jo
-
-// jobs : https://en.wikipedia.org/wiki/.jobs
-jobs
-
-// jp : https://en.wikipedia.org/wiki/.jp
-// http://jprs.co.jp/en/jpdomain.html
-// Submitted by registry <info@jprs.jp>
-jp
-// jp organizational type names
-ac.jp
-ad.jp
-co.jp
-ed.jp
-go.jp
-gr.jp
-lg.jp
-ne.jp
-or.jp
-// jp prefecture type names
-aichi.jp
-akita.jp
-aomori.jp
-chiba.jp
-ehime.jp
-fukui.jp
-fukuoka.jp
-fukushima.jp
-gifu.jp
-gunma.jp
-hiroshima.jp
-hokkaido.jp
-hyogo.jp
-ibaraki.jp
-ishikawa.jp
-iwate.jp
-kagawa.jp
-kagoshima.jp
-kanagawa.jp
-kochi.jp
-kumamoto.jp
-kyoto.jp
-mie.jp
-miyagi.jp
-miyazaki.jp
-nagano.jp
-nagasaki.jp
-nara.jp
-niigata.jp
-oita.jp
-okayama.jp
-okinawa.jp
-osaka.jp
-saga.jp
-saitama.jp
-shiga.jp
-shimane.jp
-shizuoka.jp
-tochigi.jp
-tokushima.jp
-tokyo.jp
-tottori.jp
-toyama.jp
-wakayama.jp
-yamagata.jp
-yamaguchi.jp
-yamanashi.jp
-栃木.jp
-愛知.jp
-愛媛.jp
-兵庫.jp
-熊本.jp
-茨城.jp
-北海道.jp
-千葉.jp
-和歌山.jp
-長崎.jp
-長野.jp
-新潟.jp
-青森.jp
-静岡.jp
-東京.jp
-石川.jp
-埼玉.jp
-三重.jp
-京都.jp
-佐賀.jp
-大分.jp
-大阪.jp
-奈良.jp
-宮城.jp
-宮崎.jp
-富山.jp
-山口.jp
-山形.jp
-山梨.jp
-岩手.jp
-岐阜.jp
-岡山.jp
-島根.jp
-広島.jp
-徳島.jp
-沖縄.jp
-滋賀.jp
-神奈川.jp
-福井.jp
-福岡.jp
-福島.jp
-秋田.jp
-群馬.jp
-香川.jp
-高知.jp
-鳥取.jp
-鹿児島.jp
-// jp geographic type names
-// http://jprs.jp/doc/rule/saisoku-1.html
-*.kawasaki.jp
-*.kitakyushu.jp
-*.kobe.jp
-*.nagoya.jp
-*.sapporo.jp
-*.sendai.jp
-*.yokohama.jp
-!city.kawasaki.jp
-!city.kitakyushu.jp
-!city.kobe.jp
-!city.nagoya.jp
-!city.sapporo.jp
-!city.sendai.jp
-!city.yokohama.jp
-// 4th level registration
-aisai.aichi.jp
-ama.aichi.jp
-anjo.aichi.jp
-asuke.aichi.jp
-chiryu.aichi.jp
-chita.aichi.jp
-fuso.aichi.jp
-gamagori.aichi.jp
-handa.aichi.jp
-hazu.aichi.jp
-hekinan.aichi.jp
-higashiura.aichi.jp
-ichinomiya.aichi.jp
-inazawa.aichi.jp
-inuyama.aichi.jp
-isshiki.aichi.jp
-iwakura.aichi.jp
-kanie.aichi.jp
-kariya.aichi.jp
-kasugai.aichi.jp
-kira.aichi.jp
-kiyosu.aichi.jp
-komaki.aichi.jp
-konan.aichi.jp
-kota.aichi.jp
-mihama.aichi.jp
-miyoshi.aichi.jp
-nishio.aichi.jp
-nisshin.aichi.jp
-obu.aichi.jp
-oguchi.aichi.jp
-oharu.aichi.jp
-okazaki.aichi.jp
-owariasahi.aichi.jp
-seto.aichi.jp
-shikatsu.aichi.jp
-shinshiro.aichi.jp
-shitara.aichi.jp
-tahara.aichi.jp
-takahama.aichi.jp
-tobishima.aichi.jp
-toei.aichi.jp
-togo.aichi.jp
-tokai.aichi.jp
-tokoname.aichi.jp
-toyoake.aichi.jp
-toyohashi.aichi.jp
-toyokawa.aichi.jp
-toyone.aichi.jp
-toyota.aichi.jp
-tsushima.aichi.jp
-yatomi.aichi.jp
-akita.akita.jp
-daisen.akita.jp
-fujisato.akita.jp
-gojome.akita.jp
-hachirogata.akita.jp
-happou.akita.jp
-higashinaruse.akita.jp
-honjo.akita.jp
-honjyo.akita.jp
-ikawa.akita.jp
-kamikoani.akita.jp
-kamioka.akita.jp
-katagami.akita.jp
-kazuno.akita.jp
-kitaakita.akita.jp
-kosaka.akita.jp
-kyowa.akita.jp
-misato.akita.jp
-mitane.akita.jp
-moriyoshi.akita.jp
-nikaho.akita.jp
-noshiro.akita.jp
-odate.akita.jp
-oga.akita.jp
-ogata.akita.jp
-semboku.akita.jp
-yokote.akita.jp
-yurihonjo.akita.jp
-aomori.aomori.jp
-gonohe.aomori.jp
-hachinohe.aomori.jp
-hashikami.aomori.jp
-hiranai.aomori.jp
-hirosaki.aomori.jp
-itayanagi.aomori.jp
-kuroishi.aomori.jp
-misawa.aomori.jp
-mutsu.aomori.jp
-nakadomari.aomori.jp
-noheji.aomori.jp
-oirase.aomori.jp
-owani.aomori.jp
-rokunohe.aomori.jp
-sannohe.aomori.jp
-shichinohe.aomori.jp
-shingo.aomori.jp
-takko.aomori.jp
-towada.aomori.jp
-tsugaru.aomori.jp
-tsuruta.aomori.jp
-abiko.chiba.jp
-asahi.chiba.jp
-chonan.chiba.jp
-chosei.chiba.jp
-choshi.chiba.jp
-chuo.chiba.jp
-funabashi.chiba.jp
-futtsu.chiba.jp
-hanamigawa.chiba.jp
-ichihara.chiba.jp
-ichikawa.chiba.jp
-ichinomiya.chiba.jp
-inzai.chiba.jp
-isumi.chiba.jp
-kamagaya.chiba.jp
-kamogawa.chiba.jp
-kashiwa.chiba.jp
-katori.chiba.jp
-katsuura.chiba.jp
-kimitsu.chiba.jp
-kisarazu.chiba.jp
-kozaki.chiba.jp
-kujukuri.chiba.jp
-kyonan.chiba.jp
-matsudo.chiba.jp
-midori.chiba.jp
-mihama.chiba.jp
-minamiboso.chiba.jp
-mobara.chiba.jp
-mutsuzawa.chiba.jp
-nagara.chiba.jp
-nagareyama.chiba.jp
-narashino.chiba.jp
-narita.chiba.jp
-noda.chiba.jp
-oamishirasato.chiba.jp
-omigawa.chiba.jp
-onjuku.chiba.jp
-otaki.chiba.jp
-sakae.chiba.jp
-sakura.chiba.jp
-shimofusa.chiba.jp
-shirako.chiba.jp
-shiroi.chiba.jp
-shisui.chiba.jp
-sodegaura.chiba.jp
-sosa.chiba.jp
-tako.chiba.jp
-tateyama.chiba.jp
-togane.chiba.jp
-tohnosho.chiba.jp
-tomisato.chiba.jp
-urayasu.chiba.jp
-yachimata.chiba.jp
-yachiyo.chiba.jp
-yokaichiba.chiba.jp
-yokoshibahikari.chiba.jp
-yotsukaido.chiba.jp
-ainan.ehime.jp
-honai.ehime.jp
-ikata.ehime.jp
-imabari.ehime.jp
-iyo.ehime.jp
-kamijima.ehime.jp
-kihoku.ehime.jp
-kumakogen.ehime.jp
-masaki.ehime.jp
-matsuno.ehime.jp
-matsuyama.ehime.jp
-namikata.ehime.jp
-niihama.ehime.jp
-ozu.ehime.jp
-saijo.ehime.jp
-seiyo.ehime.jp
-shikokuchuo.ehime.jp
-tobe.ehime.jp
-toon.ehime.jp
-uchiko.ehime.jp
-uwajima.ehime.jp
-yawatahama.ehime.jp
-echizen.fukui.jp
-eiheiji.fukui.jp
-fukui.fukui.jp
-ikeda.fukui.jp
-katsuyama.fukui.jp
-mihama.fukui.jp
-minamiechizen.fukui.jp
-obama.fukui.jp
-ohi.fukui.jp
-ono.fukui.jp
-sabae.fukui.jp
-sakai.fukui.jp
-takahama.fukui.jp
-tsuruga.fukui.jp
-wakasa.fukui.jp
-ashiya.fukuoka.jp
-buzen.fukuoka.jp
-chikugo.fukuoka.jp
-chikuho.fukuoka.jp
-chikujo.fukuoka.jp
-chikushino.fukuoka.jp
-chikuzen.fukuoka.jp
-chuo.fukuoka.jp
-dazaifu.fukuoka.jp
-fukuchi.fukuoka.jp
-hakata.fukuoka.jp
-higashi.fukuoka.jp
-hirokawa.fukuoka.jp
-hisayama.fukuoka.jp
-iizuka.fukuoka.jp
-inatsuki.fukuoka.jp
-kaho.fukuoka.jp
-kasuga.fukuoka.jp
-kasuya.fukuoka.jp
-kawara.fukuoka.jp
-keisen.fukuoka.jp
-koga.fukuoka.jp
-kurate.fukuoka.jp
-kurogi.fukuoka.jp
-kurume.fukuoka.jp
-minami.fukuoka.jp
-miyako.fukuoka.jp
-miyama.fukuoka.jp
-miyawaka.fukuoka.jp
-mizumaki.fukuoka.jp
-munakata.fukuoka.jp
-nakagawa.fukuoka.jp
-nakama.fukuoka.jp
-nishi.fukuoka.jp
-nogata.fukuoka.jp
-ogori.fukuoka.jp
-okagaki.fukuoka.jp
-okawa.fukuoka.jp
-oki.fukuoka.jp
-omuta.fukuoka.jp
-onga.fukuoka.jp
-onojo.fukuoka.jp
-oto.fukuoka.jp
-saigawa.fukuoka.jp
-sasaguri.fukuoka.jp
-shingu.fukuoka.jp
-shinyoshitomi.fukuoka.jp
-shonai.fukuoka.jp
-soeda.fukuoka.jp
-sue.fukuoka.jp
-tachiarai.fukuoka.jp
-tagawa.fukuoka.jp
-takata.fukuoka.jp
-toho.fukuoka.jp
-toyotsu.fukuoka.jp
-tsuiki.fukuoka.jp
-ukiha.fukuoka.jp
-umi.fukuoka.jp
-usui.fukuoka.jp
-yamada.fukuoka.jp
-yame.fukuoka.jp
-yanagawa.fukuoka.jp
-yukuhashi.fukuoka.jp
-aizubange.fukushima.jp
-aizumisato.fukushima.jp
-aizuwakamatsu.fukushima.jp
-asakawa.fukushima.jp
-bandai.fukushima.jp
-date.fukushima.jp
-fukushima.fukushima.jp
-furudono.fukushima.jp
-futaba.fukushima.jp
-hanawa.fukushima.jp
-higashi.fukushima.jp
-hirata.fukushima.jp
-hirono.fukushima.jp
-iitate.fukushima.jp
-inawashiro.fukushima.jp
-ishikawa.fukushima.jp
-iwaki.fukushima.jp
-izumizaki.fukushima.jp
-kagamiishi.fukushima.jp
-kaneyama.fukushima.jp
-kawamata.fukushima.jp
-kitakata.fukushima.jp
-kitashiobara.fukushima.jp
-koori.fukushima.jp
-koriyama.fukushima.jp
-kunimi.fukushima.jp
-miharu.fukushima.jp
-mishima.fukushima.jp
-namie.fukushima.jp
-nango.fukushima.jp
-nishiaizu.fukushima.jp
-nishigo.fukushima.jp
-okuma.fukushima.jp
-omotego.fukushima.jp
-ono.fukushima.jp
-otama.fukushima.jp
-samegawa.fukushima.jp
-shimogo.fukushima.jp
-shirakawa.fukushima.jp
-showa.fukushima.jp
-soma.fukushima.jp
-sukagawa.fukushima.jp
-taishin.fukushima.jp
-tamakawa.fukushima.jp
-tanagura.fukushima.jp
-tenei.fukushima.jp
-yabuki.fukushima.jp
-yamato.fukushima.jp
-yamatsuri.fukushima.jp
-yanaizu.fukushima.jp
-yugawa.fukushima.jp
-anpachi.gifu.jp
-ena.gifu.jp
-gifu.gifu.jp
-ginan.gifu.jp
-godo.gifu.jp
-gujo.gifu.jp
-hashima.gifu.jp
-hichiso.gifu.jp
-hida.gifu.jp
-higashishirakawa.gifu.jp
-ibigawa.gifu.jp
-ikeda.gifu.jp
-kakamigahara.gifu.jp
-kani.gifu.jp
-kasahara.gifu.jp
-kasamatsu.gifu.jp
-kawaue.gifu.jp
-kitagata.gifu.jp
-mino.gifu.jp
-minokamo.gifu.jp
-mitake.gifu.jp
-mizunami.gifu.jp
-motosu.gifu.jp
-nakatsugawa.gifu.jp
-ogaki.gifu.jp
-sakahogi.gifu.jp
-seki.gifu.jp
-sekigahara.gifu.jp
-shirakawa.gifu.jp
-tajimi.gifu.jp
-takayama.gifu.jp
-tarui.gifu.jp
-toki.gifu.jp
-tomika.gifu.jp
-wanouchi.gifu.jp
-yamagata.gifu.jp
-yaotsu.gifu.jp
-yoro.gifu.jp
-annaka.gunma.jp
-chiyoda.gunma.jp
-fujioka.gunma.jp
-higashiagatsuma.gunma.jp
-isesaki.gunma.jp
-itakura.gunma.jp
-kanna.gunma.jp
-kanra.gunma.jp
-katashina.gunma.jp
-kawaba.gunma.jp
-kiryu.gunma.jp
-kusatsu.gunma.jp
-maebashi.gunma.jp
-meiwa.gunma.jp
-midori.gunma.jp
-minakami.gunma.jp
-naganohara.gunma.jp
-nakanojo.gunma.jp
-nanmoku.gunma.jp
-numata.gunma.jp
-oizumi.gunma.jp
-ora.gunma.jp
-ota.gunma.jp
-shibukawa.gunma.jp
-shimonita.gunma.jp
-shinto.gunma.jp
-showa.gunma.jp
-takasaki.gunma.jp
-takayama.gunma.jp
-tamamura.gunma.jp
-tatebayashi.gunma.jp
-tomioka.gunma.jp
-tsukiyono.gunma.jp
-tsumagoi.gunma.jp
-ueno.gunma.jp
-yoshioka.gunma.jp
-asaminami.hiroshima.jp
-daiwa.hiroshima.jp
-etajima.hiroshima.jp
-fuchu.hiroshima.jp
-fukuyama.hiroshima.jp
-hatsukaichi.hiroshima.jp
-higashihiroshima.hiroshima.jp
-hongo.hiroshima.jp
-jinsekikogen.hiroshima.jp
-kaita.hiroshima.jp
-kui.hiroshima.jp
-kumano.hiroshima.jp
-kure.hiroshima.jp
-mihara.hiroshima.jp
-miyoshi.hiroshima.jp
-naka.hiroshima.jp
-onomichi.hiroshima.jp
-osakikamijima.hiroshima.jp
-otake.hiroshima.jp
-saka.hiroshima.jp
-sera.hiroshima.jp
-seranishi.hiroshima.jp
-shinichi.hiroshima.jp
-shobara.hiroshima.jp
-takehara.hiroshima.jp
-abashiri.hokkaido.jp
-abira.hokkaido.jp
-aibetsu.hokkaido.jp
-akabira.hokkaido.jp
-akkeshi.hokkaido.jp
-asahikawa.hokkaido.jp
-ashibetsu.hokkaido.jp
-ashoro.hokkaido.jp
-assabu.hokkaido.jp
-atsuma.hokkaido.jp
-bibai.hokkaido.jp
-biei.hokkaido.jp
-bifuka.hokkaido.jp
-bihoro.hokkaido.jp
-biratori.hokkaido.jp
-chippubetsu.hokkaido.jp
-chitose.hokkaido.jp
-date.hokkaido.jp
-ebetsu.hokkaido.jp
-embetsu.hokkaido.jp
-eniwa.hokkaido.jp
-erimo.hokkaido.jp
-esan.hokkaido.jp
-esashi.hokkaido.jp
-fukagawa.hokkaido.jp
-fukushima.hokkaido.jp
-furano.hokkaido.jp
-furubira.hokkaido.jp
-haboro.hokkaido.jp
-hakodate.hokkaido.jp
-hamatonbetsu.hokkaido.jp
-hidaka.hokkaido.jp
-higashikagura.hokkaido.jp
-higashikawa.hokkaido.jp
-hiroo.hokkaido.jp
-hokuryu.hokkaido.jp
-hokuto.hokkaido.jp
-honbetsu.hokkaido.jp
-horokanai.hokkaido.jp
-horonobe.hokkaido.jp
-ikeda.hokkaido.jp
-imakane.hokkaido.jp
-ishikari.hokkaido.jp
-iwamizawa.hokkaido.jp
-iwanai.hokkaido.jp
-kamifurano.hokkaido.jp
-kamikawa.hokkaido.jp
-kamishihoro.hokkaido.jp
-kamisunagawa.hokkaido.jp
-kamoenai.hokkaido.jp
-kayabe.hokkaido.jp
-kembuchi.hokkaido.jp
-kikonai.hokkaido.jp
-kimobetsu.hokkaido.jp
-kitahiroshima.hokkaido.jp
-kitami.hokkaido.jp
-kiyosato.hokkaido.jp
-koshimizu.hokkaido.jp
-kunneppu.hokkaido.jp
-kuriyama.hokkaido.jp
-kuromatsunai.hokkaido.jp
-kushiro.hokkaido.jp
-kutchan.hokkaido.jp
-kyowa.hokkaido.jp
-mashike.hokkaido.jp
-matsumae.hokkaido.jp
-mikasa.hokkaido.jp
-minamifurano.hokkaido.jp
-mombetsu.hokkaido.jp
-moseushi.hokkaido.jp
-mukawa.hokkaido.jp
-muroran.hokkaido.jp
-naie.hokkaido.jp
-nakagawa.hokkaido.jp
-nakasatsunai.hokkaido.jp
-nakatombetsu.hokkaido.jp
-nanae.hokkaido.jp
-nanporo.hokkaido.jp
-nayoro.hokkaido.jp
-nemuro.hokkaido.jp
-niikappu.hokkaido.jp
-niki.hokkaido.jp
-nishiokoppe.hokkaido.jp
-noboribetsu.hokkaido.jp
-numata.hokkaido.jp
-obihiro.hokkaido.jp
-obira.hokkaido.jp
-oketo.hokkaido.jp
-okoppe.hokkaido.jp
-otaru.hokkaido.jp
-otobe.hokkaido.jp
-otofuke.hokkaido.jp
-otoineppu.hokkaido.jp
-oumu.hokkaido.jp
-ozora.hokkaido.jp
-pippu.hokkaido.jp
-rankoshi.hokkaido.jp
-rebun.hokkaido.jp
-rikubetsu.hokkaido.jp
-rishiri.hokkaido.jp
-rishirifuji.hokkaido.jp
-saroma.hokkaido.jp
-sarufutsu.hokkaido.jp
-shakotan.hokkaido.jp
-shari.hokkaido.jp
-shibecha.hokkaido.jp
-shibetsu.hokkaido.jp
-shikabe.hokkaido.jp
-shikaoi.hokkaido.jp
-shimamaki.hokkaido.jp
-shimizu.hokkaido.jp
-shimokawa.hokkaido.jp
-shinshinotsu.hokkaido.jp
-shintoku.hokkaido.jp
-shiranuka.hokkaido.jp
-shiraoi.hokkaido.jp
-shiriuchi.hokkaido.jp
-sobetsu.hokkaido.jp
-sunagawa.hokkaido.jp
-taiki.hokkaido.jp
-takasu.hokkaido.jp
-takikawa.hokkaido.jp
-takinoue.hokkaido.jp
-teshikaga.hokkaido.jp
-tobetsu.hokkaido.jp
-tohma.hokkaido.jp
-tomakomai.hokkaido.jp
-tomari.hokkaido.jp
-toya.hokkaido.jp
-toyako.hokkaido.jp
-toyotomi.hokkaido.jp
-toyoura.hokkaido.jp
-tsubetsu.hokkaido.jp
-tsukigata.hokkaido.jp
-urakawa.hokkaido.jp
-urausu.hokkaido.jp
-uryu.hokkaido.jp
-utashinai.hokkaido.jp
-wakkanai.hokkaido.jp
-wassamu.hokkaido.jp
-yakumo.hokkaido.jp
-yoichi.hokkaido.jp
-aioi.hyogo.jp
-akashi.hyogo.jp
-ako.hyogo.jp
-amagasaki.hyogo.jp
-aogaki.hyogo.jp
-asago.hyogo.jp
-ashiya.hyogo.jp
-awaji.hyogo.jp
-fukusaki.hyogo.jp
-goshiki.hyogo.jp
-harima.hyogo.jp
-himeji.hyogo.jp
-ichikawa.hyogo.jp
-inagawa.hyogo.jp
-itami.hyogo.jp
-kakogawa.hyogo.jp
-kamigori.hyogo.jp
-kamikawa.hyogo.jp
-kasai.hyogo.jp
-kasuga.hyogo.jp
-kawanishi.hyogo.jp
-miki.hyogo.jp
-minamiawaji.hyogo.jp
-nishinomiya.hyogo.jp
-nishiwaki.hyogo.jp
-ono.hyogo.jp
-sanda.hyogo.jp
-sannan.hyogo.jp
-sasayama.hyogo.jp
-sayo.hyogo.jp
-shingu.hyogo.jp
-shinonsen.hyogo.jp
-shiso.hyogo.jp
-sumoto.hyogo.jp
-taishi.hyogo.jp
-taka.hyogo.jp
-takarazuka.hyogo.jp
-takasago.hyogo.jp
-takino.hyogo.jp
-tamba.hyogo.jp
-tatsuno.hyogo.jp
-toyooka.hyogo.jp
-yabu.hyogo.jp
-yashiro.hyogo.jp
-yoka.hyogo.jp
-yokawa.hyogo.jp
-ami.ibaraki.jp
-asahi.ibaraki.jp
-bando.ibaraki.jp
-chikusei.ibaraki.jp
-daigo.ibaraki.jp
-fujishiro.ibaraki.jp
-hitachi.ibaraki.jp
-hitachinaka.ibaraki.jp
-hitachiomiya.ibaraki.jp
-hitachiota.ibaraki.jp
-ibaraki.ibaraki.jp
-ina.ibaraki.jp
-inashiki.ibaraki.jp
-itako.ibaraki.jp
-iwama.ibaraki.jp
-joso.ibaraki.jp
-kamisu.ibaraki.jp
-kasama.ibaraki.jp
-kashima.ibaraki.jp
-kasumigaura.ibaraki.jp
-koga.ibaraki.jp
-miho.ibaraki.jp
-mito.ibaraki.jp
-moriya.ibaraki.jp
-naka.ibaraki.jp
-namegata.ibaraki.jp
-oarai.ibaraki.jp
-ogawa.ibaraki.jp
-omitama.ibaraki.jp
-ryugasaki.ibaraki.jp
-sakai.ibaraki.jp
-sakuragawa.ibaraki.jp
-shimodate.ibaraki.jp
-shimotsuma.ibaraki.jp
-shirosato.ibaraki.jp
-sowa.ibaraki.jp
-suifu.ibaraki.jp
-takahagi.ibaraki.jp
-tamatsukuri.ibaraki.jp
-tokai.ibaraki.jp
-tomobe.ibaraki.jp
-tone.ibaraki.jp
-toride.ibaraki.jp
-tsuchiura.ibaraki.jp
-tsukuba.ibaraki.jp
-uchihara.ibaraki.jp
-ushiku.ibaraki.jp
-yachiyo.ibaraki.jp
-yamagata.ibaraki.jp
-yawara.ibaraki.jp
-yuki.ibaraki.jp
-anamizu.ishikawa.jp
-hakui.ishikawa.jp
-hakusan.ishikawa.jp
-kaga.ishikawa.jp
-kahoku.ishikawa.jp
-kanazawa.ishikawa.jp
-kawakita.ishikawa.jp
-komatsu.ishikawa.jp
-nakanoto.ishikawa.jp
-nanao.ishikawa.jp
-nomi.ishikawa.jp
-nonoichi.ishikawa.jp
-noto.ishikawa.jp
-shika.ishikawa.jp
-suzu.ishikawa.jp
-tsubata.ishikawa.jp
-tsurugi.ishikawa.jp
-uchinada.ishikawa.jp
-wajima.ishikawa.jp
-fudai.iwate.jp
-fujisawa.iwate.jp
-hanamaki.iwate.jp
-hiraizumi.iwate.jp
-hirono.iwate.jp
-ichinohe.iwate.jp
-ichinoseki.iwate.jp
-iwaizumi.iwate.jp
-iwate.iwate.jp
-joboji.iwate.jp
-kamaishi.iwate.jp
-kanegasaki.iwate.jp
-karumai.iwate.jp
-kawai.iwate.jp
-kitakami.iwate.jp
-kuji.iwate.jp
-kunohe.iwate.jp
-kuzumaki.iwate.jp
-miyako.iwate.jp
-mizusawa.iwate.jp
-morioka.iwate.jp
-ninohe.iwate.jp
-noda.iwate.jp
-ofunato.iwate.jp
-oshu.iwate.jp
-otsuchi.iwate.jp
-rikuzentakata.iwate.jp
-shiwa.iwate.jp
-shizukuishi.iwate.jp
-sumita.iwate.jp
-tanohata.iwate.jp
-tono.iwate.jp
-yahaba.iwate.jp
-yamada.iwate.jp
-ayagawa.kagawa.jp
-higashikagawa.kagawa.jp
-kanonji.kagawa.jp
-kotohira.kagawa.jp
-manno.kagawa.jp
-marugame.kagawa.jp
-mitoyo.kagawa.jp
-naoshima.kagawa.jp
-sanuki.kagawa.jp
-tadotsu.kagawa.jp
-takamatsu.kagawa.jp
-tonosho.kagawa.jp
-uchinomi.kagawa.jp
-utazu.kagawa.jp
-zentsuji.kagawa.jp
-akune.kagoshima.jp
-amami.kagoshima.jp
-hioki.kagoshima.jp
-isa.kagoshima.jp
-isen.kagoshima.jp
-izumi.kagoshima.jp
-kagoshima.kagoshima.jp
-kanoya.kagoshima.jp
-kawanabe.kagoshima.jp
-kinko.kagoshima.jp
-kouyama.kagoshima.jp
-makurazaki.kagoshima.jp
-matsumoto.kagoshima.jp
-minamitane.kagoshima.jp
-nakatane.kagoshima.jp
-nishinoomote.kagoshima.jp
-satsumasendai.kagoshima.jp
-soo.kagoshima.jp
-tarumizu.kagoshima.jp
-yusui.kagoshima.jp
-aikawa.kanagawa.jp
-atsugi.kanagawa.jp
-ayase.kanagawa.jp
-chigasaki.kanagawa.jp
-ebina.kanagawa.jp
-fujisawa.kanagawa.jp
-hadano.kanagawa.jp
-hakone.kanagawa.jp
-hiratsuka.kanagawa.jp
-isehara.kanagawa.jp
-kaisei.kanagawa.jp
-kamakura.kanagawa.jp
-kiyokawa.kanagawa.jp
-matsuda.kanagawa.jp
-minamiashigara.kanagawa.jp
-miura.kanagawa.jp
-nakai.kanagawa.jp
-ninomiya.kanagawa.jp
-odawara.kanagawa.jp
-oi.kanagawa.jp
-oiso.kanagawa.jp
-sagamihara.kanagawa.jp
-samukawa.kanagawa.jp
-tsukui.kanagawa.jp
-yamakita.kanagawa.jp
-yamato.kanagawa.jp
-yokosuka.kanagawa.jp
-yugawara.kanagawa.jp
-zama.kanagawa.jp
-zushi.kanagawa.jp
-aki.kochi.jp
-geisei.kochi.jp
-hidaka.kochi.jp
-higashitsuno.kochi.jp
-ino.kochi.jp
-kagami.kochi.jp
-kami.kochi.jp
-kitagawa.kochi.jp
-kochi.kochi.jp
-mihara.kochi.jp
-motoyama.kochi.jp
-muroto.kochi.jp
-nahari.kochi.jp
-nakamura.kochi.jp
-nankoku.kochi.jp
-nishitosa.kochi.jp
-niyodogawa.kochi.jp
-ochi.kochi.jp
-okawa.kochi.jp
-otoyo.kochi.jp
-otsuki.kochi.jp
-sakawa.kochi.jp
-sukumo.kochi.jp
-susaki.kochi.jp
-tosa.kochi.jp
-tosashimizu.kochi.jp
-toyo.kochi.jp
-tsuno.kochi.jp
-umaji.kochi.jp
-yasuda.kochi.jp
-yusuhara.kochi.jp
-amakusa.kumamoto.jp
-arao.kumamoto.jp
-aso.kumamoto.jp
-choyo.kumamoto.jp
-gyokuto.kumamoto.jp
-kamiamakusa.kumamoto.jp
-kikuchi.kumamoto.jp
-kumamoto.kumamoto.jp
-mashiki.kumamoto.jp
-mifune.kumamoto.jp
-minamata.kumamoto.jp
-minamioguni.kumamoto.jp
-nagasu.kumamoto.jp
-nishihara.kumamoto.jp
-oguni.kumamoto.jp
-ozu.kumamoto.jp
-sumoto.kumamoto.jp
-takamori.kumamoto.jp
-uki.kumamoto.jp
-uto.kumamoto.jp
-yamaga.kumamoto.jp
-yamato.kumamoto.jp
-yatsushiro.kumamoto.jp
-ayabe.kyoto.jp
-fukuchiyama.kyoto.jp
-higashiyama.kyoto.jp
-ide.kyoto.jp
-ine.kyoto.jp
-joyo.kyoto.jp
-kameoka.kyoto.jp
-kamo.kyoto.jp
-kita.kyoto.jp
-kizu.kyoto.jp
-kumiyama.kyoto.jp
-kyotamba.kyoto.jp
-kyotanabe.kyoto.jp
-kyotango.kyoto.jp
-maizuru.kyoto.jp
-minami.kyoto.jp
-minamiyamashiro.kyoto.jp
-miyazu.kyoto.jp
-muko.kyoto.jp
-nagaokakyo.kyoto.jp
-nakagyo.kyoto.jp
-nantan.kyoto.jp
-oyamazaki.kyoto.jp
-sakyo.kyoto.jp
-seika.kyoto.jp
-tanabe.kyoto.jp
-uji.kyoto.jp
-ujitawara.kyoto.jp
-wazuka.kyoto.jp
-yamashina.kyoto.jp
-yawata.kyoto.jp
-asahi.mie.jp
-inabe.mie.jp
-ise.mie.jp
-kameyama.mie.jp
-kawagoe.mie.jp
-kiho.mie.jp
-kisosaki.mie.jp
-kiwa.mie.jp
-komono.mie.jp
-kumano.mie.jp
-kuwana.mie.jp
-matsusaka.mie.jp
-meiwa.mie.jp
-mihama.mie.jp
-minamiise.mie.jp
-misugi.mie.jp
-miyama.mie.jp
-nabari.mie.jp
-shima.mie.jp
-suzuka.mie.jp
-tado.mie.jp
-taiki.mie.jp
-taki.mie.jp
-tamaki.mie.jp
-toba.mie.jp
-tsu.mie.jp
-udono.mie.jp
-ureshino.mie.jp
-watarai.mie.jp
-yokkaichi.mie.jp
-furukawa.miyagi.jp
-higashimatsushima.miyagi.jp
-ishinomaki.miyagi.jp
-iwanuma.miyagi.jp
-kakuda.miyagi.jp
-kami.miyagi.jp
-kawasaki.miyagi.jp
-marumori.miyagi.jp
-matsushima.miyagi.jp
-minamisanriku.miyagi.jp
-misato.miyagi.jp
-murata.miyagi.jp
-natori.miyagi.jp
-ogawara.miyagi.jp
-ohira.miyagi.jp
-onagawa.miyagi.jp
-osaki.miyagi.jp
-rifu.miyagi.jp
-semine.miyagi.jp
-shibata.miyagi.jp
-shichikashuku.miyagi.jp
-shikama.miyagi.jp
-shiogama.miyagi.jp
-shiroishi.miyagi.jp
-tagajo.miyagi.jp
-taiwa.miyagi.jp
-tome.miyagi.jp
-tomiya.miyagi.jp
-wakuya.miyagi.jp
-watari.miyagi.jp
-yamamoto.miyagi.jp
-zao.miyagi.jp
-aya.miyazaki.jp
-ebino.miyazaki.jp
-gokase.miyazaki.jp
-hyuga.miyazaki.jp
-kadogawa.miyazaki.jp
-kawaminami.miyazaki.jp
-kijo.miyazaki.jp
-kitagawa.miyazaki.jp
-kitakata.miyazaki.jp
-kitaura.miyazaki.jp
-kobayashi.miyazaki.jp
-kunitomi.miyazaki.jp
-kushima.miyazaki.jp
-mimata.miyazaki.jp
-miyakonojo.miyazaki.jp
-miyazaki.miyazaki.jp
-morotsuka.miyazaki.jp
-nichinan.miyazaki.jp
-nishimera.miyazaki.jp
-nobeoka.miyazaki.jp
-saito.miyazaki.jp
-shiiba.miyazaki.jp
-shintomi.miyazaki.jp
-takaharu.miyazaki.jp
-takanabe.miyazaki.jp
-takazaki.miyazaki.jp
-tsuno.miyazaki.jp
-achi.nagano.jp
-agematsu.nagano.jp
-anan.nagano.jp
-aoki.nagano.jp
-asahi.nagano.jp
-azumino.nagano.jp
-chikuhoku.nagano.jp
-chikuma.nagano.jp
-chino.nagano.jp
-fujimi.nagano.jp
-hakuba.nagano.jp
-hara.nagano.jp
-hiraya.nagano.jp
-iida.nagano.jp
-iijima.nagano.jp
-iiyama.nagano.jp
-iizuna.nagano.jp
-ikeda.nagano.jp
-ikusaka.nagano.jp
-ina.nagano.jp
-karuizawa.nagano.jp
-kawakami.nagano.jp
-kiso.nagano.jp
-kisofukushima.nagano.jp
-kitaaiki.nagano.jp
-komagane.nagano.jp
-komoro.nagano.jp
-matsukawa.nagano.jp
-matsumoto.nagano.jp
-miasa.nagano.jp
-minamiaiki.nagano.jp
-minamimaki.nagano.jp
-minamiminowa.nagano.jp
-minowa.nagano.jp
-miyada.nagano.jp
-miyota.nagano.jp
-mochizuki.nagano.jp
-nagano.nagano.jp
-nagawa.nagano.jp
-nagiso.nagano.jp
-nakagawa.nagano.jp
-nakano.nagano.jp
-nozawaonsen.nagano.jp
-obuse.nagano.jp
-ogawa.nagano.jp
-okaya.nagano.jp
-omachi.nagano.jp
-omi.nagano.jp
-ookuwa.nagano.jp
-ooshika.nagano.jp
-otaki.nagano.jp
-otari.nagano.jp
-sakae.nagano.jp
-sakaki.nagano.jp
-saku.nagano.jp
-sakuho.nagano.jp
-shimosuwa.nagano.jp
-shinanomachi.nagano.jp
-shiojiri.nagano.jp
-suwa.nagano.jp
-suzaka.nagano.jp
-takagi.nagano.jp
-takamori.nagano.jp
-takayama.nagano.jp
-tateshina.nagano.jp
-tatsuno.nagano.jp
-togakushi.nagano.jp
-togura.nagano.jp
-tomi.nagano.jp
-ueda.nagano.jp
-wada.nagano.jp
-yamagata.nagano.jp
-yamanouchi.nagano.jp
-yasaka.nagano.jp
-yasuoka.nagano.jp
-chijiwa.nagasaki.jp
-futsu.nagasaki.jp
-goto.nagasaki.jp
-hasami.nagasaki.jp
-hirado.nagasaki.jp
-iki.nagasaki.jp
-isahaya.nagasaki.jp
-kawatana.nagasaki.jp
-kuchinotsu.nagasaki.jp
-matsuura.nagasaki.jp
-nagasaki.nagasaki.jp
-obama.nagasaki.jp
-omura.nagasaki.jp
-oseto.nagasaki.jp
-saikai.nagasaki.jp
-sasebo.nagasaki.jp
-seihi.nagasaki.jp
-shimabara.nagasaki.jp
-shinkamigoto.nagasaki.jp
-togitsu.nagasaki.jp
-tsushima.nagasaki.jp
-unzen.nagasaki.jp
-ando.nara.jp
-gose.nara.jp
-heguri.nara.jp
-higashiyoshino.nara.jp
-ikaruga.nara.jp
-ikoma.nara.jp
-kamikitayama.nara.jp
-kanmaki.nara.jp
-kashiba.nara.jp
-kashihara.nara.jp
-katsuragi.nara.jp
-kawai.nara.jp
-kawakami.nara.jp
-kawanishi.nara.jp
-koryo.nara.jp
-kurotaki.nara.jp
-mitsue.nara.jp
-miyake.nara.jp
-nara.nara.jp
-nosegawa.nara.jp
-oji.nara.jp
-ouda.nara.jp
-oyodo.nara.jp
-sakurai.nara.jp
-sango.nara.jp
-shimoichi.nara.jp
-shimokitayama.nara.jp
-shinjo.nara.jp
-soni.nara.jp
-takatori.nara.jp
-tawaramoto.nara.jp
-tenkawa.nara.jp
-tenri.nara.jp
-uda.nara.jp
-yamatokoriyama.nara.jp
-yamatotakada.nara.jp
-yamazoe.nara.jp
-yoshino.nara.jp
-aga.niigata.jp
-agano.niigata.jp
-gosen.niigata.jp
-itoigawa.niigata.jp
-izumozaki.niigata.jp
-joetsu.niigata.jp
-kamo.niigata.jp
-kariwa.niigata.jp
-kashiwazaki.niigata.jp
-minamiuonuma.niigata.jp
-mitsuke.niigata.jp
-muika.niigata.jp
-murakami.niigata.jp
-myoko.niigata.jp
-nagaoka.niigata.jp
-niigata.niigata.jp
-ojiya.niigata.jp
-omi.niigata.jp
-sado.niigata.jp
-sanjo.niigata.jp
-seiro.niigata.jp
-seirou.niigata.jp
-sekikawa.niigata.jp
-shibata.niigata.jp
-tagami.niigata.jp
-tainai.niigata.jp
-tochio.niigata.jp
-tokamachi.niigata.jp
-tsubame.niigata.jp
-tsunan.niigata.jp
-uonuma.niigata.jp
-yahiko.niigata.jp
-yoita.niigata.jp
-yuzawa.niigata.jp
-beppu.oita.jp
-bungoono.oita.jp
-bungotakada.oita.jp
-hasama.oita.jp
-hiji.oita.jp
-himeshima.oita.jp
-hita.oita.jp
-kamitsue.oita.jp
-kokonoe.oita.jp
-kuju.oita.jp
-kunisaki.oita.jp
-kusu.oita.jp
-oita.oita.jp
-saiki.oita.jp
-taketa.oita.jp
-tsukumi.oita.jp
-usa.oita.jp
-usuki.oita.jp
-yufu.oita.jp
-akaiwa.okayama.jp
-asakuchi.okayama.jp
-bizen.okayama.jp
-hayashima.okayama.jp
-ibara.okayama.jp
-kagamino.okayama.jp
-kasaoka.okayama.jp
-kibichuo.okayama.jp
-kumenan.okayama.jp
-kurashiki.okayama.jp
-maniwa.okayama.jp
-misaki.okayama.jp
-nagi.okayama.jp
-niimi.okayama.jp
-nishiawakura.okayama.jp
-okayama.okayama.jp
-satosho.okayama.jp
-setouchi.okayama.jp
-shinjo.okayama.jp
-shoo.okayama.jp
-soja.okayama.jp
-takahashi.okayama.jp
-tamano.okayama.jp
-tsuyama.okayama.jp
-wake.okayama.jp
-yakage.okayama.jp
-aguni.okinawa.jp
-ginowan.okinawa.jp
-ginoza.okinawa.jp
-gushikami.okinawa.jp
-haebaru.okinawa.jp
-higashi.okinawa.jp
-hirara.okinawa.jp
-iheya.okinawa.jp
-ishigaki.okinawa.jp
-ishikawa.okinawa.jp
-itoman.okinawa.jp
-izena.okinawa.jp
-kadena.okinawa.jp
-kin.okinawa.jp
-kitadaito.okinawa.jp
-kitanakagusuku.okinawa.jp
-kumejima.okinawa.jp
-kunigami.okinawa.jp
-minamidaito.okinawa.jp
-motobu.okinawa.jp
-nago.okinawa.jp
-naha.okinawa.jp
-nakagusuku.okinawa.jp
-nakijin.okinawa.jp
-nanjo.okinawa.jp
-nishihara.okinawa.jp
-ogimi.okinawa.jp
-okinawa.okinawa.jp
-onna.okinawa.jp
-shimoji.okinawa.jp
-taketomi.okinawa.jp
-tarama.okinawa.jp
-tokashiki.okinawa.jp
-tomigusuku.okinawa.jp
-tonaki.okinawa.jp
-urasoe.okinawa.jp
-uruma.okinawa.jp
-yaese.okinawa.jp
-yomitan.okinawa.jp
-yonabaru.okinawa.jp
-yonaguni.okinawa.jp
-zamami.okinawa.jp
-abeno.osaka.jp
-chihayaakasaka.osaka.jp
-chuo.osaka.jp
-daito.osaka.jp
-fujiidera.osaka.jp
-habikino.osaka.jp
-hannan.osaka.jp
-higashiosaka.osaka.jp
-higashisumiyoshi.osaka.jp
-higashiyodogawa.osaka.jp
-hirakata.osaka.jp
-ibaraki.osaka.jp
-ikeda.osaka.jp
-izumi.osaka.jp
-izumiotsu.osaka.jp
-izumisano.osaka.jp
-kadoma.osaka.jp
-kaizuka.osaka.jp
-kanan.osaka.jp
-kashiwara.osaka.jp
-katano.osaka.jp
-kawachinagano.osaka.jp
-kishiwada.osaka.jp
-kita.osaka.jp
-kumatori.osaka.jp
-matsubara.osaka.jp
-minato.osaka.jp
-minoh.osaka.jp
-misaki.osaka.jp
-moriguchi.osaka.jp
-neyagawa.osaka.jp
-nishi.osaka.jp
-nose.osaka.jp
-osakasayama.osaka.jp
-sakai.osaka.jp
-sayama.osaka.jp
-sennan.osaka.jp
-settsu.osaka.jp
-shijonawate.osaka.jp
-shimamoto.osaka.jp
-suita.osaka.jp
-tadaoka.osaka.jp
-taishi.osaka.jp
-tajiri.osaka.jp
-takaishi.osaka.jp
-takatsuki.osaka.jp
-tondabayashi.osaka.jp
-toyonaka.osaka.jp
-toyono.osaka.jp
-yao.osaka.jp
-ariake.saga.jp
-arita.saga.jp
-fukudomi.saga.jp
-genkai.saga.jp
-hamatama.saga.jp
-hizen.saga.jp
-imari.saga.jp
-kamimine.saga.jp
-kanzaki.saga.jp
-karatsu.saga.jp
-kashima.saga.jp
-kitagata.saga.jp
-kitahata.saga.jp
-kiyama.saga.jp
-kouhoku.saga.jp
-kyuragi.saga.jp
-nishiarita.saga.jp
-ogi.saga.jp
-omachi.saga.jp
-ouchi.saga.jp
-saga.saga.jp
-shiroishi.saga.jp
-taku.saga.jp
-tara.saga.jp
-tosu.saga.jp
-yoshinogari.saga.jp
-arakawa.saitama.jp
-asaka.saitama.jp
-chichibu.saitama.jp
-fujimi.saitama.jp
-fujimino.saitama.jp
-fukaya.saitama.jp
-hanno.saitama.jp
-hanyu.saitama.jp
-hasuda.saitama.jp
-hatogaya.saitama.jp
-hatoyama.saitama.jp
-hidaka.saitama.jp
-higashichichibu.saitama.jp
-higashimatsuyama.saitama.jp
-honjo.saitama.jp
-ina.saitama.jp
-iruma.saitama.jp
-iwatsuki.saitama.jp
-kamiizumi.saitama.jp
-kamikawa.saitama.jp
-kamisato.saitama.jp
-kasukabe.saitama.jp
-kawagoe.saitama.jp
-kawaguchi.saitama.jp
-kawajima.saitama.jp
-kazo.saitama.jp
-kitamoto.saitama.jp
-koshigaya.saitama.jp
-kounosu.saitama.jp
-kuki.saitama.jp
-kumagaya.saitama.jp
-matsubushi.saitama.jp
-minano.saitama.jp
-misato.saitama.jp
-miyashiro.saitama.jp
-miyoshi.saitama.jp
-moroyama.saitama.jp
-nagatoro.saitama.jp
-namegawa.saitama.jp
-niiza.saitama.jp
-ogano.saitama.jp
-ogawa.saitama.jp
-ogose.saitama.jp
-okegawa.saitama.jp
-omiya.saitama.jp
-otaki.saitama.jp
-ranzan.saitama.jp
-ryokami.saitama.jp
-saitama.saitama.jp
-sakado.saitama.jp
-satte.saitama.jp
-sayama.saitama.jp
-shiki.saitama.jp
-shiraoka.saitama.jp
-soka.saitama.jp
-sugito.saitama.jp
-toda.saitama.jp
-tokigawa.saitama.jp
-tokorozawa.saitama.jp
-tsurugashima.saitama.jp
-urawa.saitama.jp
-warabi.saitama.jp
-yashio.saitama.jp
-yokoze.saitama.jp
-yono.saitama.jp
-yorii.saitama.jp
-yoshida.saitama.jp
-yoshikawa.saitama.jp
-yoshimi.saitama.jp
-aisho.shiga.jp
-gamo.shiga.jp
-higashiomi.shiga.jp
-hikone.shiga.jp
-koka.shiga.jp
-konan.shiga.jp
-kosei.shiga.jp
-koto.shiga.jp
-kusatsu.shiga.jp
-maibara.shiga.jp
-moriyama.shiga.jp
-nagahama.shiga.jp
-nishiazai.shiga.jp
-notogawa.shiga.jp
-omihachiman.shiga.jp
-otsu.shiga.jp
-ritto.shiga.jp
-ryuoh.shiga.jp
-takashima.shiga.jp
-takatsuki.shiga.jp
-torahime.shiga.jp
-toyosato.shiga.jp
-yasu.shiga.jp
-akagi.shimane.jp
-ama.shimane.jp
-gotsu.shimane.jp
-hamada.shimane.jp
-higashiizumo.shimane.jp
-hikawa.shimane.jp
-hikimi.shimane.jp
-izumo.shimane.jp
-kakinoki.shimane.jp
-masuda.shimane.jp
-matsue.shimane.jp
-misato.shimane.jp
-nishinoshima.shimane.jp
-ohda.shimane.jp
-okinoshima.shimane.jp
-okuizumo.shimane.jp
-shimane.shimane.jp
-tamayu.shimane.jp
-tsuwano.shimane.jp
-unnan.shimane.jp
-yakumo.shimane.jp
-yasugi.shimane.jp
-yatsuka.shimane.jp
-arai.shizuoka.jp
-atami.shizuoka.jp
-fuji.shizuoka.jp
-fujieda.shizuoka.jp
-fujikawa.shizuoka.jp
-fujinomiya.shizuoka.jp
-fukuroi.shizuoka.jp
-gotemba.shizuoka.jp
-haibara.shizuoka.jp
-hamamatsu.shizuoka.jp
-higashiizu.shizuoka.jp
-ito.shizuoka.jp
-iwata.shizuoka.jp
-izu.shizuoka.jp
-izunokuni.shizuoka.jp
-kakegawa.shizuoka.jp
-kannami.shizuoka.jp
-kawanehon.shizuoka.jp
-kawazu.shizuoka.jp
-kikugawa.shizuoka.jp
-kosai.shizuoka.jp
-makinohara.shizuoka.jp
-matsuzaki.shizuoka.jp
-minamiizu.shizuoka.jp
-mishima.shizuoka.jp
-morimachi.shizuoka.jp
-nishiizu.shizuoka.jp
-numazu.shizuoka.jp
-omaezaki.shizuoka.jp
-shimada.shizuoka.jp
-shimizu.shizuoka.jp
-shimoda.shizuoka.jp
-shizuoka.shizuoka.jp
-susono.shizuoka.jp
-yaizu.shizuoka.jp
-yoshida.shizuoka.jp
-ashikaga.tochigi.jp
-bato.tochigi.jp
-haga.tochigi.jp
-ichikai.tochigi.jp
-iwafune.tochigi.jp
-kaminokawa.tochigi.jp
-kanuma.tochigi.jp
-karasuyama.tochigi.jp
-kuroiso.tochigi.jp
-mashiko.tochigi.jp
-mibu.tochigi.jp
-moka.tochigi.jp
-motegi.tochigi.jp
-nasu.tochigi.jp
-nasushiobara.tochigi.jp
-nikko.tochigi.jp
-nishikata.tochigi.jp
-nogi.tochigi.jp
-ohira.tochigi.jp
-ohtawara.tochigi.jp
-oyama.tochigi.jp
-sakura.tochigi.jp
-sano.tochigi.jp
-shimotsuke.tochigi.jp
-shioya.tochigi.jp
-takanezawa.tochigi.jp
-tochigi.tochigi.jp
-tsuga.tochigi.jp
-ujiie.tochigi.jp
-utsunomiya.tochigi.jp
-yaita.tochigi.jp
-aizumi.tokushima.jp
-anan.tokushima.jp
-ichiba.tokushima.jp
-itano.tokushima.jp
-kainan.tokushima.jp
-komatsushima.tokushima.jp
-matsushige.tokushima.jp
-mima.tokushima.jp
-minami.tokushima.jp
-miyoshi.tokushima.jp
-mugi.tokushima.jp
-nakagawa.tokushima.jp
-naruto.tokushima.jp
-sanagochi.tokushima.jp
-shishikui.tokushima.jp
-tokushima.tokushima.jp
-wajiki.tokushima.jp
-adachi.tokyo.jp
-akiruno.tokyo.jp
-akishima.tokyo.jp
-aogashima.tokyo.jp
-arakawa.tokyo.jp
-bunkyo.tokyo.jp
-chiyoda.tokyo.jp
-chofu.tokyo.jp
-chuo.tokyo.jp
-edogawa.tokyo.jp
-fuchu.tokyo.jp
-fussa.tokyo.jp
-hachijo.tokyo.jp
-hachioji.tokyo.jp
-hamura.tokyo.jp
-higashikurume.tokyo.jp
-higashimurayama.tokyo.jp
-higashiyamato.tokyo.jp
-hino.tokyo.jp
-hinode.tokyo.jp
-hinohara.tokyo.jp
-inagi.tokyo.jp
-itabashi.tokyo.jp
-katsushika.tokyo.jp
-kita.tokyo.jp
-kiyose.tokyo.jp
-kodaira.tokyo.jp
-koganei.tokyo.jp
-kokubunji.tokyo.jp
-komae.tokyo.jp
-koto.tokyo.jp
-kouzushima.tokyo.jp
-kunitachi.tokyo.jp
-machida.tokyo.jp
-meguro.tokyo.jp
-minato.tokyo.jp
-mitaka.tokyo.jp
-mizuho.tokyo.jp
-musashimurayama.tokyo.jp
-musashino.tokyo.jp
-nakano.tokyo.jp
-nerima.tokyo.jp
-ogasawara.tokyo.jp
-okutama.tokyo.jp
-ome.tokyo.jp
-oshima.tokyo.jp
-ota.tokyo.jp
-setagaya.tokyo.jp
-shibuya.tokyo.jp
-shinagawa.tokyo.jp
-shinjuku.tokyo.jp
-suginami.tokyo.jp
-sumida.tokyo.jp
-tachikawa.tokyo.jp
-taito.tokyo.jp
-tama.tokyo.jp
-toshima.tokyo.jp
-chizu.tottori.jp
-hino.tottori.jp
-kawahara.tottori.jp
-koge.tottori.jp
-kotoura.tottori.jp
-misasa.tottori.jp
-nanbu.tottori.jp
-nichinan.tottori.jp
-sakaiminato.tottori.jp
-tottori.tottori.jp
-wakasa.tottori.jp
-yazu.tottori.jp
-yonago.tottori.jp
-asahi.toyama.jp
-fuchu.toyama.jp
-fukumitsu.toyama.jp
-funahashi.toyama.jp
-himi.toyama.jp
-imizu.toyama.jp
-inami.toyama.jp
-johana.toyama.jp
-kamiichi.toyama.jp
-kurobe.toyama.jp
-nakaniikawa.toyama.jp
-namerikawa.toyama.jp
-nanto.toyama.jp
-nyuzen.toyama.jp
-oyabe.toyama.jp
-taira.toyama.jp
-takaoka.toyama.jp
-tateyama.toyama.jp
-toga.toyama.jp
-tonami.toyama.jp
-toyama.toyama.jp
-unazuki.toyama.jp
-uozu.toyama.jp
-yamada.toyama.jp
-arida.wakayama.jp
-aridagawa.wakayama.jp
-gobo.wakayama.jp
-hashimoto.wakayama.jp
-hidaka.wakayama.jp
-hirogawa.wakayama.jp
-inami.wakayama.jp
-iwade.wakayama.jp
-kainan.wakayama.jp
-kamitonda.wakayama.jp
-katsuragi.wakayama.jp
-kimino.wakayama.jp
-kinokawa.wakayama.jp
-kitayama.wakayama.jp
-koya.wakayama.jp
-koza.wakayama.jp
-kozagawa.wakayama.jp
-kudoyama.wakayama.jp
-kushimoto.wakayama.jp
-mihama.wakayama.jp
-misato.wakayama.jp
-nachikatsuura.wakayama.jp
-shingu.wakayama.jp
-shirahama.wakayama.jp
-taiji.wakayama.jp
-tanabe.wakayama.jp
-wakayama.wakayama.jp
-yuasa.wakayama.jp
-yura.wakayama.jp
-asahi.yamagata.jp
-funagata.yamagata.jp
-higashine.yamagata.jp
-iide.yamagata.jp
-kahoku.yamagata.jp
-kaminoyama.yamagata.jp
-kaneyama.yamagata.jp
-kawanishi.yamagata.jp
-mamurogawa.yamagata.jp
-mikawa.yamagata.jp
-murayama.yamagata.jp
-nagai.yamagata.jp
-nakayama.yamagata.jp
-nanyo.yamagata.jp
-nishikawa.yamagata.jp
-obanazawa.yamagata.jp
-oe.yamagata.jp
-oguni.yamagata.jp
-ohkura.yamagata.jp
-oishida.yamagata.jp
-sagae.yamagata.jp
-sakata.yamagata.jp
-sakegawa.yamagata.jp
-shinjo.yamagata.jp
-shirataka.yamagata.jp
-shonai.yamagata.jp
-takahata.yamagata.jp
-tendo.yamagata.jp
-tozawa.yamagata.jp
-tsuruoka.yamagata.jp
-yamagata.yamagata.jp
-yamanobe.yamagata.jp
-yonezawa.yamagata.jp
-yuza.yamagata.jp
-abu.yamaguchi.jp
-hagi.yamaguchi.jp
-hikari.yamaguchi.jp
-hofu.yamaguchi.jp
-iwakuni.yamaguchi.jp
-kudamatsu.yamaguchi.jp
-mitou.yamaguchi.jp
-nagato.yamaguchi.jp
-oshima.yamaguchi.jp
-shimonoseki.yamaguchi.jp
-shunan.yamaguchi.jp
-tabuse.yamaguchi.jp
-tokuyama.yamaguchi.jp
-toyota.yamaguchi.jp
-ube.yamaguchi.jp
-yuu.yamaguchi.jp
-chuo.yamanashi.jp
-doshi.yamanashi.jp
-fuefuki.yamanashi.jp
-fujikawa.yamanashi.jp
-fujikawaguchiko.yamanashi.jp
-fujiyoshida.yamanashi.jp
-hayakawa.yamanashi.jp
-hokuto.yamanashi.jp
-ichikawamisato.yamanashi.jp
-kai.yamanashi.jp
-kofu.yamanashi.jp
-koshu.yamanashi.jp
-kosuge.yamanashi.jp
-minami-alps.yamanashi.jp
-minobu.yamanashi.jp
-nakamichi.yamanashi.jp
-nanbu.yamanashi.jp
-narusawa.yamanashi.jp
-nirasaki.yamanashi.jp
-nishikatsura.yamanashi.jp
-oshino.yamanashi.jp
-otsuki.yamanashi.jp
-showa.yamanashi.jp
-tabayama.yamanashi.jp
-tsuru.yamanashi.jp
-uenohara.yamanashi.jp
-yamanakako.yamanashi.jp
-yamanashi.yamanashi.jp
-
-// ke : http://www.kenic.or.ke/index.php/en/ke-domains/ke-domains
-ke
-ac.ke
-co.ke
-go.ke
-info.ke
-me.ke
-mobi.ke
-ne.ke
-or.ke
-sc.ke
-
-// kg : http://www.domain.kg/dmn_n.html
-kg
-org.kg
-net.kg
-com.kg
-edu.kg
-gov.kg
-mil.kg
-
-// kh : http://www.mptc.gov.kh/dns_registration.htm
-*.kh
-
-// ki : http://www.ki/dns/index.html
-ki
-edu.ki
-biz.ki
-net.ki
-org.ki
-gov.ki
-info.ki
-com.ki
-
-// km : https://en.wikipedia.org/wiki/.km
-// http://www.domaine.km/documents/charte.doc
-km
-org.km
-nom.km
-gov.km
-prd.km
-tm.km
-edu.km
-mil.km
-ass.km
-com.km
-// These are only mentioned as proposed suggestions at domaine.km, but
-// https://en.wikipedia.org/wiki/.km says they're available for registration:
-coop.km
-asso.km
-presse.km
-medecin.km
-notaires.km
-pharmaciens.km
-veterinaire.km
-gouv.km
-
-// kn : https://en.wikipedia.org/wiki/.kn
-// http://www.dot.kn/domainRules.html
-kn
-net.kn
-org.kn
-edu.kn
-gov.kn
-
-// kp : http://www.kcce.kp/en_index.php
-kp
-com.kp
-edu.kp
-gov.kp
-org.kp
-rep.kp
-tra.kp
-
-// kr : https://en.wikipedia.org/wiki/.kr
-// see also: http://domain.nida.or.kr/eng/registration.jsp
-kr
-ac.kr
-co.kr
-es.kr
-go.kr
-hs.kr
-kg.kr
-mil.kr
-ms.kr
-ne.kr
-or.kr
-pe.kr
-re.kr
-sc.kr
-// kr geographical names
-busan.kr
-chungbuk.kr
-chungnam.kr
-daegu.kr
-daejeon.kr
-gangwon.kr
-gwangju.kr
-gyeongbuk.kr
-gyeonggi.kr
-gyeongnam.kr
-incheon.kr
-jeju.kr
-jeonbuk.kr
-jeonnam.kr
-seoul.kr
-ulsan.kr
-
-// kw : https://www.nic.kw/policies/
-// Confirmed by registry <nic.tech@citra.gov.kw>
-kw
-com.kw
-edu.kw
-emb.kw
-gov.kw
-ind.kw
-net.kw
-org.kw
-
-// ky : http://www.icta.ky/da_ky_reg_dom.php
-// Confirmed by registry <kysupport@perimeterusa.com> 2008-06-17
-ky
-edu.ky
-gov.ky
-com.ky
-org.ky
-net.ky
-
-// kz : https://en.wikipedia.org/wiki/.kz
-// see also: http://www.nic.kz/rules/index.jsp
-kz
-org.kz
-edu.kz
-net.kz
-gov.kz
-mil.kz
-com.kz
-
-// la : https://en.wikipedia.org/wiki/.la
-// Submitted by registry <gavin.brown@nic.la>
-la
-int.la
-net.la
-info.la
-edu.la
-gov.la
-per.la
-com.la
-org.la
-
-// lb : https://en.wikipedia.org/wiki/.lb
-// Submitted by registry <randy@psg.com>
-lb
-com.lb
-edu.lb
-gov.lb
-net.lb
-org.lb
-
-// lc : https://en.wikipedia.org/wiki/.lc
-// see also: http://www.nic.lc/rules.htm
-lc
-com.lc
-net.lc
-co.lc
-org.lc
-edu.lc
-gov.lc
-
-// li : https://en.wikipedia.org/wiki/.li
-li
-
-// lk : http://www.nic.lk/seclevpr.html
-lk
-gov.lk
-sch.lk
-net.lk
-int.lk
-com.lk
-org.lk
-edu.lk
-ngo.lk
-soc.lk
-web.lk
-ltd.lk
-assn.lk
-grp.lk
-hotel.lk
-ac.lk
-
-// lr : http://psg.com/dns/lr/lr.txt
-// Submitted by registry <randy@psg.com>
-lr
-com.lr
-edu.lr
-gov.lr
-org.lr
-net.lr
-
-// ls : https://en.wikipedia.org/wiki/.ls
-ls
-co.ls
-org.ls
-
-// lt : https://en.wikipedia.org/wiki/.lt
-lt
-// gov.lt : http://www.gov.lt/index_en.php
-gov.lt
-
-// lu : http://www.dns.lu/en/
-lu
-
-// lv : http://www.nic.lv/DNS/En/generic.php
-lv
-com.lv
-edu.lv
-gov.lv
-org.lv
-mil.lv
-id.lv
-net.lv
-asn.lv
-conf.lv
-
-// ly : http://www.nic.ly/regulations.php
-ly
-com.ly
-net.ly
-gov.ly
-plc.ly
-edu.ly
-sch.ly
-med.ly
-org.ly
-id.ly
-
-// ma : https://en.wikipedia.org/wiki/.ma
-// http://www.anrt.ma/fr/admin/download/upload/file_fr782.pdf
-ma
-co.ma
-net.ma
-gov.ma
-org.ma
-ac.ma
-press.ma
-
-// mc : http://www.nic.mc/
-mc
-tm.mc
-asso.mc
-
-// md : https://en.wikipedia.org/wiki/.md
-md
-
-// me : https://en.wikipedia.org/wiki/.me
-me
-co.me
-net.me
-org.me
-edu.me
-ac.me
-gov.me
-its.me
-priv.me
-
-// mg : http://nic.mg/nicmg/?page_id=39
-mg
-org.mg
-nom.mg
-gov.mg
-prd.mg
-tm.mg
-edu.mg
-mil.mg
-com.mg
-co.mg
-
-// mh : https://en.wikipedia.org/wiki/.mh
-mh
-
-// mil : https://en.wikipedia.org/wiki/.mil
-mil
-
-// mk : https://en.wikipedia.org/wiki/.mk
-// see also: http://dns.marnet.net.mk/postapka.php
-mk
-com.mk
-org.mk
-net.mk
-edu.mk
-gov.mk
-inf.mk
-name.mk
-
-// ml : http://www.gobin.info/domainname/ml-template.doc
-// see also: https://en.wikipedia.org/wiki/.ml
-ml
-com.ml
-edu.ml
-gouv.ml
-gov.ml
-net.ml
-org.ml
-presse.ml
-
-// mm : https://en.wikipedia.org/wiki/.mm
-*.mm
-
-// mn : https://en.wikipedia.org/wiki/.mn
-mn
-gov.mn
-edu.mn
-org.mn
-
-// mo : http://www.monic.net.mo/
-mo
-com.mo
-net.mo
-org.mo
-edu.mo
-gov.mo
-
-// mobi : https://en.wikipedia.org/wiki/.mobi
-mobi
-
-// mp : http://www.dot.mp/
-// Confirmed by registry <dcamacho@saipan.com> 2008-06-17
-mp
-
-// mq : https://en.wikipedia.org/wiki/.mq
-mq
-
-// mr : https://en.wikipedia.org/wiki/.mr
-mr
-gov.mr
-
-// ms : http://www.nic.ms/pdf/MS_Domain_Name_Rules.pdf
-ms
-com.ms
-edu.ms
-gov.ms
-net.ms
-org.ms
-
-// mt : https://www.nic.org.mt/go/policy
-// Submitted by registry <help@nic.org.mt>
-mt
-com.mt
-edu.mt
-net.mt
-org.mt
-
-// mu : https://en.wikipedia.org/wiki/.mu
-mu
-com.mu
-net.mu
-org.mu
-gov.mu
-ac.mu
-co.mu
-or.mu
-
-// museum : http://about.museum/naming/
-// http://index.museum/
-museum
-academy.museum
-agriculture.museum
-air.museum
-airguard.museum
-alabama.museum
-alaska.museum
-amber.museum
-ambulance.museum
-american.museum
-americana.museum
-americanantiques.museum
-americanart.museum
-amsterdam.museum
-and.museum
-annefrank.museum
-anthro.museum
-anthropology.museum
-antiques.museum
-aquarium.museum
-arboretum.museum
-archaeological.museum
-archaeology.museum
-architecture.museum
-art.museum
-artanddesign.museum
-artcenter.museum
-artdeco.museum
-arteducation.museum
-artgallery.museum
-arts.museum
-artsandcrafts.museum
-asmatart.museum
-assassination.museum
-assisi.museum
-association.museum
-astronomy.museum
-atlanta.museum
-austin.museum
-australia.museum
-automotive.museum
-aviation.museum
-axis.museum
-badajoz.museum
-baghdad.museum
-bahn.museum
-bale.museum
-baltimore.museum
-barcelona.museum
-baseball.museum
-basel.museum
-baths.museum
-bauern.museum
-beauxarts.museum
-beeldengeluid.museum
-bellevue.museum
-bergbau.museum
-berkeley.museum
-berlin.museum
-bern.museum
-bible.museum
-bilbao.museum
-bill.museum
-birdart.museum
-birthplace.museum
-bonn.museum
-boston.museum
-botanical.museum
-botanicalgarden.museum
-botanicgarden.museum
-botany.museum
-brandywinevalley.museum
-brasil.museum
-bristol.museum
-british.museum
-britishcolumbia.museum
-broadcast.museum
-brunel.museum
-brussel.museum
-brussels.museum
-bruxelles.museum
-building.museum
-burghof.museum
-bus.museum
-bushey.museum
-cadaques.museum
-california.museum
-cambridge.museum
-can.museum
-canada.museum
-capebreton.museum
-carrier.museum
-cartoonart.museum
-casadelamoneda.museum
-castle.museum
-castres.museum
-celtic.museum
-center.museum
-chattanooga.museum
-cheltenham.museum
-chesapeakebay.museum
-chicago.museum
-children.museum
-childrens.museum
-childrensgarden.museum
-chiropractic.museum
-chocolate.museum
-christiansburg.museum
-cincinnati.museum
-cinema.museum
-circus.museum
-civilisation.museum
-civilization.museum
-civilwar.museum
-clinton.museum
-clock.museum
-coal.museum
-coastaldefence.museum
-cody.museum
-coldwar.museum
-collection.museum
-colonialwilliamsburg.museum
-coloradoplateau.museum
-columbia.museum
-columbus.museum
-communication.museum
-communications.museum
-community.museum
-computer.museum
-computerhistory.museum
-comunicações.museum
-contemporary.museum
-contemporaryart.museum
-convent.museum
-copenhagen.museum
-corporation.museum
-correios-e-telecomunicações.museum
-corvette.museum
-costume.museum
-countryestate.museum
-county.museum
-crafts.museum
-cranbrook.museum
-creation.museum
-cultural.museum
-culturalcenter.museum
-culture.museum
-cyber.museum
-cymru.museum
-dali.museum
-dallas.museum
-database.museum
-ddr.museum
-decorativearts.museum
-delaware.museum
-delmenhorst.museum
-denmark.museum
-depot.museum
-design.museum
-detroit.museum
-dinosaur.museum
-discovery.museum
-dolls.museum
-donostia.museum
-durham.museum
-eastafrica.museum
-eastcoast.museum
-education.museum
-educational.museum
-egyptian.museum
-eisenbahn.museum
-elburg.museum
-elvendrell.museum
-embroidery.museum
-encyclopedic.museum
-england.museum
-entomology.museum
-environment.museum
-environmentalconservation.museum
-epilepsy.museum
-essex.museum
-estate.museum
-ethnology.museum
-exeter.museum
-exhibition.museum
-family.museum
-farm.museum
-farmequipment.museum
-farmers.museum
-farmstead.museum
-field.museum
-figueres.museum
-filatelia.museum
-film.museum
-fineart.museum
-finearts.museum
-finland.museum
-flanders.museum
-florida.museum
-force.museum
-fortmissoula.museum
-fortworth.museum
-foundation.museum
-francaise.museum
-frankfurt.museum
-franziskaner.museum
-freemasonry.museum
-freiburg.museum
-fribourg.museum
-frog.museum
-fundacio.museum
-furniture.museum
-gallery.museum
-garden.museum
-gateway.museum
-geelvinck.museum
-gemological.museum
-geology.museum
-georgia.museum
-giessen.museum
-glas.museum
-glass.museum
-gorge.museum
-grandrapids.museum
-graz.museum
-guernsey.museum
-halloffame.museum
-hamburg.museum
-handson.museum
-harvestcelebration.museum
-hawaii.museum
-health.museum
-heimatunduhren.museum
-hellas.museum
-helsinki.museum
-hembygdsforbund.museum
-heritage.museum
-histoire.museum
-historical.museum
-historicalsociety.museum
-historichouses.museum
-historisch.museum
-historisches.museum
-history.museum
-historyofscience.museum
-horology.museum
-house.museum
-humanities.museum
-illustration.museum
-imageandsound.museum
-indian.museum
-indiana.museum
-indianapolis.museum
-indianmarket.museum
-intelligence.museum
-interactive.museum
-iraq.museum
-iron.museum
-isleofman.museum
-jamison.museum
-jefferson.museum
-jerusalem.museum
-jewelry.museum
-jewish.museum
-jewishart.museum
-jfk.museum
-journalism.museum
-judaica.museum
-judygarland.museum
-juedisches.museum
-juif.museum
-karate.museum
-karikatur.museum
-kids.museum
-koebenhavn.museum
-koeln.museum
-kunst.museum
-kunstsammlung.museum
-kunstunddesign.museum
-labor.museum
-labour.museum
-lajolla.museum
-lancashire.museum
-landes.museum
-lans.museum
-läns.museum
-larsson.museum
-lewismiller.museum
-lincoln.museum
-linz.museum
-living.museum
-livinghistory.museum
-localhistory.museum
-london.museum
-losangeles.museum
-louvre.museum
-loyalist.museum
-lucerne.museum
-luxembourg.museum
-luzern.museum
-mad.museum
-madrid.museum
-mallorca.museum
-manchester.museum
-mansion.museum
-mansions.museum
-manx.museum
-marburg.museum
-maritime.museum
-maritimo.museum
-maryland.museum
-marylhurst.museum
-media.museum
-medical.museum
-medizinhistorisches.museum
-meeres.museum
-memorial.museum
-mesaverde.museum
-michigan.museum
-midatlantic.museum
-military.museum
-mill.museum
-miners.museum
-mining.museum
-minnesota.museum
-missile.museum
-missoula.museum
-modern.museum
-moma.museum
-money.museum
-monmouth.museum
-monticello.museum
-montreal.museum
-moscow.museum
-motorcycle.museum
-muenchen.museum
-muenster.museum
-mulhouse.museum
-muncie.museum
-museet.museum
-museumcenter.museum
-museumvereniging.museum
-music.museum
-national.museum
-nationalfirearms.museum
-nationalheritage.museum
-nativeamerican.museum
-naturalhistory.museum
-naturalhistorymuseum.museum
-naturalsciences.museum
-nature.museum
-naturhistorisches.museum
-natuurwetenschappen.museum
-naumburg.museum
-naval.museum
-nebraska.museum
-neues.museum
-newhampshire.museum
-newjersey.museum
-newmexico.museum
-newport.museum
-newspaper.museum
-newyork.museum
-niepce.museum
-norfolk.museum
-north.museum
-nrw.museum
-nuernberg.museum
-nuremberg.museum
-nyc.museum
-nyny.museum
-oceanographic.museum
-oceanographique.museum
-omaha.museum
-online.museum
-ontario.museum
-openair.museum
-oregon.museum
-oregontrail.museum
-otago.museum
-oxford.museum
-pacific.museum
-paderborn.museum
-palace.museum
-paleo.museum
-palmsprings.museum
-panama.museum
-paris.museum
-pasadena.museum
-pharmacy.museum
-philadelphia.museum
-philadelphiaarea.museum
-philately.museum
-phoenix.museum
-photography.museum
-pilots.museum
-pittsburgh.museum
-planetarium.museum
-plantation.museum
-plants.museum
-plaza.museum
-portal.museum
-portland.museum
-portlligat.museum
-posts-and-telecommunications.museum
-preservation.museum
-presidio.museum
-press.museum
-project.museum
-public.museum
-pubol.museum
-quebec.museum
-railroad.museum
-railway.museum
-research.museum
-resistance.museum
-riodejaneiro.museum
-rochester.museum
-rockart.museum
-roma.museum
-russia.museum
-saintlouis.museum
-salem.museum
-salvadordali.museum
-salzburg.museum
-sandiego.museum
-sanfrancisco.museum
-santabarbara.museum
-santacruz.museum
-santafe.museum
-saskatchewan.museum
-satx.museum
-savannahga.museum
-schlesisches.museum
-schoenbrunn.museum
-schokoladen.museum
-school.museum
-schweiz.museum
-science.museum
-scienceandhistory.museum
-scienceandindustry.museum
-sciencecenter.museum
-sciencecenters.museum
-science-fiction.museum
-sciencehistory.museum
-sciences.museum
-sciencesnaturelles.museum
-scotland.museum
-seaport.museum
-settlement.museum
-settlers.museum
-shell.museum
-sherbrooke.museum
-sibenik.museum
-silk.museum
-ski.museum
-skole.museum
-society.museum
-sologne.museum
-soundandvision.museum
-southcarolina.museum
-southwest.museum
-space.museum
-spy.museum
-square.museum
-stadt.museum
-stalbans.museum
-starnberg.museum
-state.museum
-stateofdelaware.museum
-station.museum
-steam.museum
-steiermark.museum
-stjohn.museum
-stockholm.museum
-stpetersburg.museum
-stuttgart.museum
-suisse.museum
-surgeonshall.museum
-surrey.museum
-svizzera.museum
-sweden.museum
-sydney.museum
-tank.museum
-tcm.museum
-technology.museum
-telekommunikation.museum
-television.museum
-texas.museum
-textile.museum
-theater.museum
-time.museum
-timekeeping.museum
-topology.museum
-torino.museum
-touch.museum
-town.museum
-transport.museum
-tree.museum
-trolley.museum
-trust.museum
-trustee.museum
-uhren.museum
-ulm.museum
-undersea.museum
-university.museum
-usa.museum
-usantiques.museum
-usarts.museum
-uscountryestate.museum
-usculture.museum
-usdecorativearts.museum
-usgarden.museum
-ushistory.museum
-ushuaia.museum
-uslivinghistory.museum
-utah.museum
-uvic.museum
-valley.museum
-vantaa.museum
-versailles.museum
-viking.museum
-village.museum
-virginia.museum
-virtual.museum
-virtuel.museum
-vlaanderen.museum
-volkenkunde.museum
-wales.museum
-wallonie.museum
-war.museum
-washingtondc.museum
-watchandclock.museum
-watch-and-clock.museum
-western.museum
-westfalen.museum
-whaling.museum
-wildlife.museum
-williamsburg.museum
-windmill.museum
-workshop.museum
-york.museum
-yorkshire.museum
-yosemite.museum
-youth.museum
-zoological.museum
-zoology.museum
-ירושלים.museum
-иком.museum
-
-// mv : https://en.wikipedia.org/wiki/.mv
-// "mv" included because, contra Wikipedia, google.mv exists.
-mv
-aero.mv
-biz.mv
-com.mv
-coop.mv
-edu.mv
-gov.mv
-info.mv
-int.mv
-mil.mv
-museum.mv
-name.mv
-net.mv
-org.mv
-pro.mv
-
-// mw : http://www.registrar.mw/
-mw
-ac.mw
-biz.mw
-co.mw
-com.mw
-coop.mw
-edu.mw
-gov.mw
-int.mw
-museum.mw
-net.mw
-org.mw
-
-// mx : http://www.nic.mx/
-// Submitted by registry <farias@nic.mx>
-mx
-com.mx
-org.mx
-gob.mx
-edu.mx
-net.mx
-
-// my : http://www.mynic.net.my/
-my
-com.my
-net.my
-org.my
-gov.my
-edu.my
-mil.my
-name.my
-
-// mz : http://www.uem.mz/
-// Submitted by registry <antonio@uem.mz>
-mz
-ac.mz
-adv.mz
-co.mz
-edu.mz
-gov.mz
-mil.mz
-net.mz
-org.mz
-
-// na : http://www.na-nic.com.na/
-// http://www.info.na/domain/
-na
-info.na
-pro.na
-name.na
-school.na
-or.na
-dr.na
-us.na
-mx.na
-ca.na
-in.na
-cc.na
-tv.na
-ws.na
-mobi.na
-co.na
-com.na
-org.na
-
-// name : has 2nd-level tlds, but there's no list of them
-name
-
-// nc : http://www.cctld.nc/
-nc
-asso.nc
-nom.nc
-
-// ne : https://en.wikipedia.org/wiki/.ne
-ne
-
-// net : https://en.wikipedia.org/wiki/.net
-net
-
-// nf : https://en.wikipedia.org/wiki/.nf
-nf
-com.nf
-net.nf
-per.nf
-rec.nf
-web.nf
-arts.nf
-firm.nf
-info.nf
-other.nf
-store.nf
-
-// ng : http://www.nira.org.ng/index.php/join-us/register-ng-domain/189-nira-slds
-ng
-com.ng
-edu.ng
-gov.ng
-i.ng
-mil.ng
-mobi.ng
-name.ng
-net.ng
-org.ng
-sch.ng
-
-// ni : http://www.nic.ni/
-ni
-ac.ni
-biz.ni
-co.ni
-com.ni
-edu.ni
-gob.ni
-in.ni
-info.ni
-int.ni
-mil.ni
-net.ni
-nom.ni
-org.ni
-web.ni
-
-// nl : https://en.wikipedia.org/wiki/.nl
-//      https://www.sidn.nl/
-//      ccTLD for the Netherlands
-nl
-
-// BV.nl will be a registry for dutch BV's (besloten vennootschap)
-bv.nl
-
-// no : http://www.norid.no/regelverk/index.en.html
-// The Norwegian registry has declined to notify us of updates. The web pages
-// referenced below are the official source of the data. There is also an
-// announce mailing list:
-// https://postlister.uninett.no/sympa/info/norid-diskusjon
-no
-// Norid generic domains : http://www.norid.no/regelverk/vedlegg-c.en.html
-fhs.no
-vgs.no
-fylkesbibl.no
-folkebibl.no
-museum.no
-idrett.no
-priv.no
-// Non-Norid generic domains : http://www.norid.no/regelverk/vedlegg-d.en.html
-mil.no
-stat.no
-dep.no
-kommune.no
-herad.no
-// no geographical names : http://www.norid.no/regelverk/vedlegg-b.en.html
-// counties
-aa.no
-ah.no
-bu.no
-fm.no
-hl.no
-hm.no
-jan-mayen.no
-mr.no
-nl.no
-nt.no
-of.no
-ol.no
-oslo.no
-rl.no
-sf.no
-st.no
-svalbard.no
-tm.no
-tr.no
-va.no
-vf.no
-// primary and lower secondary schools per county
-gs.aa.no
-gs.ah.no
-gs.bu.no
-gs.fm.no
-gs.hl.no
-gs.hm.no
-gs.jan-mayen.no
-gs.mr.no
-gs.nl.no
-gs.nt.no
-gs.of.no
-gs.ol.no
-gs.oslo.no
-gs.rl.no
-gs.sf.no
-gs.st.no
-gs.svalbard.no
-gs.tm.no
-gs.tr.no
-gs.va.no
-gs.vf.no
-// cities
-akrehamn.no
-åkrehamn.no
-algard.no
-ålgård.no
-arna.no
-brumunddal.no
-bryne.no
-bronnoysund.no
-brønnøysund.no
-drobak.no
-drøbak.no
-egersund.no
-fetsund.no
-floro.no
-florø.no
-fredrikstad.no
-hokksund.no
-honefoss.no
-hønefoss.no
-jessheim.no
-jorpeland.no
-jørpeland.no
-kirkenes.no
-kopervik.no
-krokstadelva.no
-langevag.no
-langevåg.no
-leirvik.no
-mjondalen.no
-mjøndalen.no
-mo-i-rana.no
-mosjoen.no
-mosjøen.no
-nesoddtangen.no
-orkanger.no
-osoyro.no
-osøyro.no
-raholt.no
-råholt.no
-sandnessjoen.no
-sandnessjøen.no
-skedsmokorset.no
-slattum.no
-spjelkavik.no
-stathelle.no
-stavern.no
-stjordalshalsen.no
-stjørdalshalsen.no
-tananger.no
-tranby.no
-vossevangen.no
-// communities
-afjord.no
-åfjord.no
-agdenes.no
-al.no
-ål.no
-alesund.no
-ålesund.no
-alstahaug.no
-alta.no
-áltá.no
-alaheadju.no
-álaheadju.no
-alvdal.no
-amli.no
-åmli.no
-amot.no
-åmot.no
-andebu.no
-andoy.no
-andøy.no
-andasuolo.no
-ardal.no
-årdal.no
-aremark.no
-arendal.no
-ås.no
-aseral.no
-åseral.no
-asker.no
-askim.no
-askvoll.no
-askoy.no
-askøy.no
-asnes.no
-åsnes.no
-audnedaln.no
-aukra.no
-aure.no
-aurland.no
-aurskog-holand.no
-aurskog-høland.no
-austevoll.no
-austrheim.no
-averoy.no
-averøy.no
-balestrand.no
-ballangen.no
-balat.no
-bálát.no
-balsfjord.no
-bahccavuotna.no
-báhccavuotna.no
-bamble.no
-bardu.no
-beardu.no
-beiarn.no
-bajddar.no
-bájddar.no
-baidar.no
-báidár.no
-berg.no
-bergen.no
-berlevag.no
-berlevåg.no
-bearalvahki.no
-bearalváhki.no
-bindal.no
-birkenes.no
-bjarkoy.no
-bjarkøy.no
-bjerkreim.no
-bjugn.no
-bodo.no
-bodø.no
-badaddja.no
-bådåddjå.no
-budejju.no
-bokn.no
-bremanger.no
-bronnoy.no
-brønnøy.no
-bygland.no
-bykle.no
-barum.no
-bærum.no
-bo.telemark.no
-bø.telemark.no
-bo.nordland.no
-bø.nordland.no
-bievat.no
-bievát.no
-bomlo.no
-bømlo.no
-batsfjord.no
-båtsfjord.no
-bahcavuotna.no
-báhcavuotna.no
-dovre.no
-drammen.no
-drangedal.no
-dyroy.no
-dyrøy.no
-donna.no
-dønna.no
-eid.no
-eidfjord.no
-eidsberg.no
-eidskog.no
-eidsvoll.no
-eigersund.no
-elverum.no
-enebakk.no
-engerdal.no
-etne.no
-etnedal.no
-evenes.no
-evenassi.no
-evenášši.no
-evje-og-hornnes.no
-farsund.no
-fauske.no
-fuossko.no
-fuoisku.no
-fedje.no
-fet.no
-finnoy.no
-finnøy.no
-fitjar.no
-fjaler.no
-fjell.no
-flakstad.no
-flatanger.no
-flekkefjord.no
-flesberg.no
-flora.no
-fla.no
-flå.no
-folldal.no
-forsand.no
-fosnes.no
-frei.no
-frogn.no
-froland.no
-frosta.no
-frana.no
-fræna.no
-froya.no
-frøya.no
-fusa.no
-fyresdal.no
-forde.no
-førde.no
-gamvik.no
-gangaviika.no
-gáŋgaviika.no
-gaular.no
-gausdal.no
-gildeskal.no
-gildeskål.no
-giske.no
-gjemnes.no
-gjerdrum.no
-gjerstad.no
-gjesdal.no
-gjovik.no
-gjøvik.no
-gloppen.no
-gol.no
-gran.no
-grane.no
-granvin.no
-gratangen.no
-grimstad.no
-grong.no
-kraanghke.no
-kråanghke.no
-grue.no
-gulen.no
-hadsel.no
-halden.no
-halsa.no
-hamar.no
-hamaroy.no
-habmer.no
-hábmer.no
-hapmir.no
-hápmir.no
-hammerfest.no
-hammarfeasta.no
-hámmárfeasta.no
-haram.no
-hareid.no
-harstad.no
-hasvik.no
-aknoluokta.no
-ákŋoluokta.no
-hattfjelldal.no
-aarborte.no
-haugesund.no
-hemne.no
-hemnes.no
-hemsedal.no
-heroy.more-og-romsdal.no
-herøy.møre-og-romsdal.no
-heroy.nordland.no
-herøy.nordland.no
-hitra.no
-hjartdal.no
-hjelmeland.no
-hobol.no
-hobøl.no
-hof.no
-hol.no
-hole.no
-holmestrand.no
-holtalen.no
-holtålen.no
-hornindal.no
-horten.no
-hurdal.no
-hurum.no
-hvaler.no
-hyllestad.no
-hagebostad.no
-hægebostad.no
-hoyanger.no
-høyanger.no
-hoylandet.no
-høylandet.no
-ha.no
-hå.no
-ibestad.no
-inderoy.no
-inderøy.no
-iveland.no
-jevnaker.no
-jondal.no
-jolster.no
-jølster.no
-karasjok.no
-karasjohka.no
-kárášjohka.no
-karlsoy.no
-galsa.no
-gálsá.no
-karmoy.no
-karmøy.no
-kautokeino.no
-guovdageaidnu.no
-klepp.no
-klabu.no
-klæbu.no
-kongsberg.no
-kongsvinger.no
-kragero.no
-kragerø.no
-kristiansand.no
-kristiansund.no
-krodsherad.no
-krødsherad.no
-kvalsund.no
-rahkkeravju.no
-ráhkkerávju.no
-kvam.no
-kvinesdal.no
-kvinnherad.no
-kviteseid.no
-kvitsoy.no
-kvitsøy.no
-kvafjord.no
-kvæfjord.no
-giehtavuoatna.no
-kvanangen.no
-kvænangen.no
-navuotna.no
-návuotna.no
-kafjord.no
-kåfjord.no
-gaivuotna.no
-gáivuotna.no
-larvik.no
-lavangen.no
-lavagis.no
-loabat.no
-loabát.no
-lebesby.no
-davvesiida.no
-leikanger.no
-leirfjord.no
-leka.no
-leksvik.no
-lenvik.no
-leangaviika.no
-leaŋgaviika.no
-lesja.no
-levanger.no
-lier.no
-lierne.no
-lillehammer.no
-lillesand.no
-lindesnes.no
-lindas.no
-lindås.no
-lom.no
-loppa.no
-lahppi.no
-láhppi.no
-lund.no
-lunner.no
-luroy.no
-lurøy.no
-luster.no
-lyngdal.no
-lyngen.no
-ivgu.no
-lardal.no
-lerdal.no
-lærdal.no
-lodingen.no
-lødingen.no
-lorenskog.no
-lørenskog.no
-loten.no
-løten.no
-malvik.no
-masoy.no
-måsøy.no
-muosat.no
-muosát.no
-mandal.no
-marker.no
-marnardal.no
-masfjorden.no
-meland.no
-meldal.no
-melhus.no
-meloy.no
-meløy.no
-meraker.no
-meråker.no
-moareke.no
-moåreke.no
-midsund.no
-midtre-gauldal.no
-modalen.no
-modum.no
-molde.no
-moskenes.no
-moss.no
-mosvik.no
-malselv.no
-målselv.no
-malatvuopmi.no
-málatvuopmi.no
-namdalseid.no
-aejrie.no
-namsos.no
-namsskogan.no
-naamesjevuemie.no
-nååmesjevuemie.no
-laakesvuemie.no
-nannestad.no
-narvik.no
-narviika.no
-naustdal.no
-nedre-eiker.no
-nes.akershus.no
-nes.buskerud.no
-nesna.no
-nesodden.no
-nesseby.no
-unjarga.no
-unjárga.no
-nesset.no
-nissedal.no
-nittedal.no
-nord-aurdal.no
-nord-fron.no
-nord-odal.no
-norddal.no
-nordkapp.no
-davvenjarga.no
-davvenjárga.no
-nordre-land.no
-nordreisa.no
-raisa.no
-ráisa.no
-nore-og-uvdal.no
-notodden.no
-naroy.no
-nærøy.no
-notteroy.no
-nøtterøy.no
-odda.no
-oksnes.no
-øksnes.no
-oppdal.no
-oppegard.no
-oppegård.no
-orkdal.no
-orland.no
-ørland.no
-orskog.no
-ørskog.no
-orsta.no
-ørsta.no
-os.hedmark.no
-os.hordaland.no
-osen.no
-osteroy.no
-osterøy.no
-ostre-toten.no
-østre-toten.no
-overhalla.no
-ovre-eiker.no
-øvre-eiker.no
-oyer.no
-øyer.no
-oygarden.no
-øygarden.no
-oystre-slidre.no
-øystre-slidre.no
-porsanger.no
-porsangu.no
-porsáŋgu.no
-porsgrunn.no
-radoy.no
-radøy.no
-rakkestad.no
-rana.no
-ruovat.no
-randaberg.no
-rauma.no
-rendalen.no
-rennebu.no
-rennesoy.no
-rennesøy.no
-rindal.no
-ringebu.no
-ringerike.no
-ringsaker.no
-rissa.no
-risor.no
-risør.no
-roan.no
-rollag.no
-rygge.no
-ralingen.no
-rælingen.no
-rodoy.no
-rødøy.no
-romskog.no
-rømskog.no
-roros.no
-røros.no
-rost.no
-røst.no
-royken.no
-røyken.no
-royrvik.no
-røyrvik.no
-rade.no
-råde.no
-salangen.no
-siellak.no
-saltdal.no
-salat.no
-sálát.no
-sálat.no
-samnanger.no
-sande.more-og-romsdal.no
-sande.møre-og-romsdal.no
-sande.vestfold.no
-sandefjord.no
-sandnes.no
-sandoy.no
-sandøy.no
-sarpsborg.no
-sauda.no
-sauherad.no
-sel.no
-selbu.no
-selje.no
-seljord.no
-sigdal.no
-siljan.no
-sirdal.no
-skaun.no
-skedsmo.no
-ski.no
-skien.no
-skiptvet.no
-skjervoy.no
-skjervøy.no
-skierva.no
-skiervá.no
-skjak.no
-skjåk.no
-skodje.no
-skanland.no
-skånland.no
-skanit.no
-skánit.no
-smola.no
-smøla.no
-snillfjord.no
-snasa.no
-snåsa.no
-snoasa.no
-snaase.no
-snåase.no
-sogndal.no
-sokndal.no
-sola.no
-solund.no
-songdalen.no
-sortland.no
-spydeberg.no
-stange.no
-stavanger.no
-steigen.no
-steinkjer.no
-stjordal.no
-stjørdal.no
-stokke.no
-stor-elvdal.no
-stord.no
-stordal.no
-storfjord.no
-omasvuotna.no
-strand.no
-stranda.no
-stryn.no
-sula.no
-suldal.no
-sund.no
-sunndal.no
-surnadal.no
-sveio.no
-svelvik.no
-sykkylven.no
-sogne.no
-søgne.no
-somna.no
-sømna.no
-sondre-land.no
-søndre-land.no
-sor-aurdal.no
-sør-aurdal.no
-sor-fron.no
-sør-fron.no
-sor-odal.no
-sør-odal.no
-sor-varanger.no
-sør-varanger.no
-matta-varjjat.no
-mátta-várjjat.no
-sorfold.no
-sørfold.no
-sorreisa.no
-sørreisa.no
-sorum.no
-sørum.no
-tana.no
-deatnu.no
-time.no
-tingvoll.no
-tinn.no
-tjeldsund.no
-dielddanuorri.no
-tjome.no
-tjøme.no
-tokke.no
-tolga.no
-torsken.no
-tranoy.no
-tranøy.no
-tromso.no
-tromsø.no
-tromsa.no
-romsa.no
-trondheim.no
-troandin.no
-trysil.no
-trana.no
-træna.no
-trogstad.no
-trøgstad.no
-tvedestrand.no
-tydal.no
-tynset.no
-tysfjord.no
-divtasvuodna.no
-divttasvuotna.no
-tysnes.no
-tysvar.no
-tysvær.no
-tonsberg.no
-tønsberg.no
-ullensaker.no
-ullensvang.no
-ulvik.no
-utsira.no
-vadso.no
-vadsø.no
-cahcesuolo.no
-čáhcesuolo.no
-vaksdal.no
-valle.no
-vang.no
-vanylven.no
-vardo.no
-vardø.no
-varggat.no
-várggát.no
-vefsn.no
-vaapste.no
-vega.no
-vegarshei.no
-vegårshei.no
-vennesla.no
-verdal.no
-verran.no
-vestby.no
-vestnes.no
-vestre-slidre.no
-vestre-toten.no
-vestvagoy.no
-vestvågøy.no
-vevelstad.no
-vik.no
-vikna.no
-vindafjord.no
-volda.no
-voss.no
-varoy.no
-værøy.no
-vagan.no
-vågan.no
-voagat.no
-vagsoy.no
-vågsøy.no
-vaga.no
-vågå.no
-valer.ostfold.no
-våler.østfold.no
-valer.hedmark.no
-våler.hedmark.no
-
-// np : http://www.mos.com.np/register.html
-*.np
-
-// nr : http://cenpac.net.nr/dns/index.html
-// Submitted by registry <technician@cenpac.net.nr>
-nr
-biz.nr
-info.nr
-gov.nr
-edu.nr
-org.nr
-net.nr
-com.nr
-
-// nu : https://en.wikipedia.org/wiki/.nu
-nu
-
-// nz : https://en.wikipedia.org/wiki/.nz
-// Submitted by registry <jay@nzrs.net.nz>
-nz
-ac.nz
-co.nz
-cri.nz
-geek.nz
-gen.nz
-govt.nz
-health.nz
-iwi.nz
-kiwi.nz
-maori.nz
-mil.nz
-māori.nz
-net.nz
-org.nz
-parliament.nz
-school.nz
-
-// om : https://en.wikipedia.org/wiki/.om
-om
-co.om
-com.om
-edu.om
-gov.om
-med.om
-museum.om
-net.om
-org.om
-pro.om
-
-// onion : https://tools.ietf.org/html/rfc7686
-onion
-
-// org : https://en.wikipedia.org/wiki/.org
-org
-
-// pa : http://www.nic.pa/
-// Some additional second level "domains" resolve directly as hostnames, such as
-// pannet.pa, so we add a rule for "pa".
-pa
-ac.pa
-gob.pa
-com.pa
-org.pa
-sld.pa
-edu.pa
-net.pa
-ing.pa
-abo.pa
-med.pa
-nom.pa
-
-// pe : https://www.nic.pe/InformeFinalComision.pdf
-pe
-edu.pe
-gob.pe
-nom.pe
-mil.pe
-org.pe
-com.pe
-net.pe
-
-// pf : http://www.gobin.info/domainname/formulaire-pf.pdf
-pf
-com.pf
-org.pf
-edu.pf
-
-// pg : https://en.wikipedia.org/wiki/.pg
-*.pg
-
-// ph : http://www.domains.ph/FAQ2.asp
-// Submitted by registry <jed@email.com.ph>
-ph
-com.ph
-net.ph
-org.ph
-gov.ph
-edu.ph
-ngo.ph
-mil.ph
-i.ph
-
-// pk : http://pk5.pknic.net.pk/pk5/msgNamepk.PK
-pk
-com.pk
-net.pk
-edu.pk
-org.pk
-fam.pk
-biz.pk
-web.pk
-gov.pk
-gob.pk
-gok.pk
-gon.pk
-gop.pk
-gos.pk
-info.pk
-
-// pl http://www.dns.pl/english/index.html
-// Submitted by registry
-pl
-com.pl
-net.pl
-org.pl
-// pl functional domains (http://www.dns.pl/english/index.html)
-aid.pl
-agro.pl
-atm.pl
-auto.pl
-biz.pl
-edu.pl
-gmina.pl
-gsm.pl
-info.pl
-mail.pl
-miasta.pl
-media.pl
-mil.pl
-nieruchomosci.pl
-nom.pl
-pc.pl
-powiat.pl
-priv.pl
-realestate.pl
-rel.pl
-sex.pl
-shop.pl
-sklep.pl
-sos.pl
-szkola.pl
-targi.pl
-tm.pl
-tourism.pl
-travel.pl
-turystyka.pl
-// Government domains
-gov.pl
-ap.gov.pl
-ic.gov.pl
-is.gov.pl
-us.gov.pl
-kmpsp.gov.pl
-kppsp.gov.pl
-kwpsp.gov.pl
-psp.gov.pl
-wskr.gov.pl
-kwp.gov.pl
-mw.gov.pl
-ug.gov.pl
-um.gov.pl
-umig.gov.pl
-ugim.gov.pl
-upow.gov.pl
-uw.gov.pl
-starostwo.gov.pl
-pa.gov.pl
-po.gov.pl
-psse.gov.pl
-pup.gov.pl
-rzgw.gov.pl
-sa.gov.pl
-so.gov.pl
-sr.gov.pl
-wsa.gov.pl
-sko.gov.pl
-uzs.gov.pl
-wiih.gov.pl
-winb.gov.pl
-pinb.gov.pl
-wios.gov.pl
-witd.gov.pl
-wzmiuw.gov.pl
-piw.gov.pl
-wiw.gov.pl
-griw.gov.pl
-wif.gov.pl
-oum.gov.pl
-sdn.gov.pl
-zp.gov.pl
-uppo.gov.pl
-mup.gov.pl
-wuoz.gov.pl
-konsulat.gov.pl
-oirm.gov.pl
-// pl regional domains (http://www.dns.pl/english/index.html)
-augustow.pl
-babia-gora.pl
-bedzin.pl
-beskidy.pl
-bialowieza.pl
-bialystok.pl
-bielawa.pl
-bieszczady.pl
-boleslawiec.pl
-bydgoszcz.pl
-bytom.pl
-cieszyn.pl
-czeladz.pl
-czest.pl
-dlugoleka.pl
-elblag.pl
-elk.pl
-glogow.pl
-gniezno.pl
-gorlice.pl
-grajewo.pl
-ilawa.pl
-jaworzno.pl
-jelenia-gora.pl
-jgora.pl
-kalisz.pl
-kazimierz-dolny.pl
-karpacz.pl
-kartuzy.pl
-kaszuby.pl
-katowice.pl
-kepno.pl
-ketrzyn.pl
-klodzko.pl
-kobierzyce.pl
-kolobrzeg.pl
-konin.pl
-konskowola.pl
-kutno.pl
-lapy.pl
-lebork.pl
-legnica.pl
-lezajsk.pl
-limanowa.pl
-lomza.pl
-lowicz.pl
-lubin.pl
-lukow.pl
-malbork.pl
-malopolska.pl
-mazowsze.pl
-mazury.pl
-mielec.pl
-mielno.pl
-mragowo.pl
-naklo.pl
-nowaruda.pl
-nysa.pl
-olawa.pl
-olecko.pl
-olkusz.pl
-olsztyn.pl
-opoczno.pl
-opole.pl
-ostroda.pl
-ostroleka.pl
-ostrowiec.pl
-ostrowwlkp.pl
-pila.pl
-pisz.pl
-podhale.pl
-podlasie.pl
-polkowice.pl
-pomorze.pl
-pomorskie.pl
-prochowice.pl
-pruszkow.pl
-przeworsk.pl
-pulawy.pl
-radom.pl
-rawa-maz.pl
-rybnik.pl
-rzeszow.pl
-sanok.pl
-sejny.pl
-slask.pl
-slupsk.pl
-sosnowiec.pl
-stalowa-wola.pl
-skoczow.pl
-starachowice.pl
-stargard.pl
-suwalki.pl
-swidnica.pl
-swiebodzin.pl
-swinoujscie.pl
-szczecin.pl
-szczytno.pl
-tarnobrzeg.pl
-tgory.pl
-turek.pl
-tychy.pl
-ustka.pl
-walbrzych.pl
-warmia.pl
-warszawa.pl
-waw.pl
-wegrow.pl
-wielun.pl
-wlocl.pl
-wloclawek.pl
-wodzislaw.pl
-wolomin.pl
-wroclaw.pl
-zachpomor.pl
-zagan.pl
-zarow.pl
-zgora.pl
-zgorzelec.pl
-
-// pm : http://www.afnic.fr/medias/documents/AFNIC-naming-policy2012.pdf
-pm
-
-// pn : http://www.government.pn/PnRegistry/policies.htm
-pn
-gov.pn
-co.pn
-org.pn
-edu.pn
-net.pn
-
-// post : https://en.wikipedia.org/wiki/.post
-post
-
-// pr : http://www.nic.pr/index.asp?f=1
-pr
-com.pr
-net.pr
-org.pr
-gov.pr
-edu.pr
-isla.pr
-pro.pr
-biz.pr
-info.pr
-name.pr
-// these aren't mentioned on nic.pr, but on https://en.wikipedia.org/wiki/.pr
-est.pr
-prof.pr
-ac.pr
-
-// pro : http://registry.pro/get-pro
-pro
-aaa.pro
-aca.pro
-acct.pro
-avocat.pro
-bar.pro
-cpa.pro
-eng.pro
-jur.pro
-law.pro
-med.pro
-recht.pro
-
-// ps : https://en.wikipedia.org/wiki/.ps
-// http://www.nic.ps/registration/policy.html#reg
-ps
-edu.ps
-gov.ps
-sec.ps
-plo.ps
-com.ps
-org.ps
-net.ps
-
-// pt : http://online.dns.pt/dns/start_dns
-pt
-net.pt
-gov.pt
-org.pt
-edu.pt
-int.pt
-publ.pt
-com.pt
-nome.pt
-
-// pw : https://en.wikipedia.org/wiki/.pw
-pw
-co.pw
-ne.pw
-or.pw
-ed.pw
-go.pw
-belau.pw
-
-// py : http://www.nic.py/pautas.html#seccion_9
-// Submitted by registry
-py
-com.py
-coop.py
-edu.py
-gov.py
-mil.py
-net.py
-org.py
-
-// qa : http://domains.qa/en/
-qa
-com.qa
-edu.qa
-gov.qa
-mil.qa
-name.qa
-net.qa
-org.qa
-sch.qa
-
-// re : http://www.afnic.re/obtenir/chartes/nommage-re/annexe-descriptifs
-re
-asso.re
-com.re
-nom.re
-
-// ro : http://www.rotld.ro/
-ro
-arts.ro
-com.ro
-firm.ro
-info.ro
-nom.ro
-nt.ro
-org.ro
-rec.ro
-store.ro
-tm.ro
-www.ro
-
-// rs : https://www.rnids.rs/en/domains/national-domains
-rs
-ac.rs
-co.rs
-edu.rs
-gov.rs
-in.rs
-org.rs
-
-// ru : https://cctld.ru/en/domains/domens_ru/reserved/
-ru
-ac.ru
-edu.ru
-gov.ru
-int.ru
-mil.ru
-test.ru
-
-// rw : http://www.nic.rw/cgi-bin/policy.pl
-rw
-gov.rw
-net.rw
-edu.rw
-ac.rw
-com.rw
-co.rw
-int.rw
-mil.rw
-gouv.rw
-
-// sa : http://www.nic.net.sa/
-sa
-com.sa
-net.sa
-org.sa
-gov.sa
-med.sa
-pub.sa
-edu.sa
-sch.sa
-
-// sb : http://www.sbnic.net.sb/
-// Submitted by registry <lee.humphries@telekom.com.sb>
-sb
-com.sb
-edu.sb
-gov.sb
-net.sb
-org.sb
-
-// sc : http://www.nic.sc/
-sc
-com.sc
-gov.sc
-net.sc
-org.sc
-edu.sc
-
-// sd : http://www.isoc.sd/sudanic.isoc.sd/billing_pricing.htm
-// Submitted by registry <admin@isoc.sd>
-sd
-com.sd
-net.sd
-org.sd
-edu.sd
-med.sd
-tv.sd
-gov.sd
-info.sd
-
-// se : https://en.wikipedia.org/wiki/.se
-// Submitted by registry <patrik.wallstrom@iis.se>
-se
-a.se
-ac.se
-b.se
-bd.se
-brand.se
-c.se
-d.se
-e.se
-f.se
-fh.se
-fhsk.se
-fhv.se
-g.se
-h.se
-i.se
-k.se
-komforb.se
-kommunalforbund.se
-komvux.se
-l.se
-lanbib.se
-m.se
-n.se
-naturbruksgymn.se
-o.se
-org.se
-p.se
-parti.se
-pp.se
-press.se
-r.se
-s.se
-t.se
-tm.se
-u.se
-w.se
-x.se
-y.se
-z.se
-
-// sg : http://www.nic.net.sg/page/registration-policies-procedures-and-guidelines
-sg
-com.sg
-net.sg
-org.sg
-gov.sg
-edu.sg
-per.sg
-
-// sh : http://www.nic.sh/registrar.html
-sh
-com.sh
-net.sh
-gov.sh
-org.sh
-mil.sh
-
-// si : https://en.wikipedia.org/wiki/.si
-si
-
-// sj : No registrations at this time.
-// Submitted by registry <jarle@uninett.no>
-sj
-
-// sk : https://en.wikipedia.org/wiki/.sk
-// list of 2nd level domains ?
-sk
-
-// sl : http://www.nic.sl
-// Submitted by registry <adam@neoip.com>
-sl
-com.sl
-net.sl
-edu.sl
-gov.sl
-org.sl
-
-// sm : https://en.wikipedia.org/wiki/.sm
-sm
-
-// sn : https://en.wikipedia.org/wiki/.sn
-sn
-art.sn
-com.sn
-edu.sn
-gouv.sn
-org.sn
-perso.sn
-univ.sn
-
-// so : http://www.soregistry.com/
-so
-com.so
-net.so
-org.so
-
-// sr : https://en.wikipedia.org/wiki/.sr
-sr
-
-// st : http://www.nic.st/html/policyrules/
-st
-co.st
-com.st
-consulado.st
-edu.st
-embaixada.st
-gov.st
-mil.st
-net.st
-org.st
-principe.st
-saotome.st
-store.st
-
-// su : https://en.wikipedia.org/wiki/.su
-su
-
-// sv : http://www.svnet.org.sv/niveldos.pdf
-sv
-com.sv
-edu.sv
-gob.sv
-org.sv
-red.sv
-
-// sx : https://en.wikipedia.org/wiki/.sx
-// Submitted by registry <jcvignes@openregistry.com>
-sx
-gov.sx
-
-// sy : https://en.wikipedia.org/wiki/.sy
-// see also: http://www.gobin.info/domainname/sy.doc
-sy
-edu.sy
-gov.sy
-net.sy
-mil.sy
-com.sy
-org.sy
-
-// sz : https://en.wikipedia.org/wiki/.sz
-// http://www.sispa.org.sz/
-sz
-co.sz
-ac.sz
-org.sz
-
-// tc : https://en.wikipedia.org/wiki/.tc
-tc
-
-// td : https://en.wikipedia.org/wiki/.td
-td
-
-// tel: https://en.wikipedia.org/wiki/.tel
-// http://www.telnic.org/
-tel
-
-// tf : https://en.wikipedia.org/wiki/.tf
-tf
-
-// tg : https://en.wikipedia.org/wiki/.tg
-// http://www.nic.tg/
-tg
-
-// th : https://en.wikipedia.org/wiki/.th
-// Submitted by registry <krit@thains.co.th>
-th
-ac.th
-co.th
-go.th
-in.th
-mi.th
-net.th
-or.th
-
-// tj : http://www.nic.tj/policy.html
-tj
-ac.tj
-biz.tj
-co.tj
-com.tj
-edu.tj
-go.tj
-gov.tj
-int.tj
-mil.tj
-name.tj
-net.tj
-nic.tj
-org.tj
-test.tj
-web.tj
-
-// tk : https://en.wikipedia.org/wiki/.tk
-tk
-
-// tl : https://en.wikipedia.org/wiki/.tl
-tl
-gov.tl
-
-// tm : http://www.nic.tm/local.html
-tm
-com.tm
-co.tm
-org.tm
-net.tm
-nom.tm
-gov.tm
-mil.tm
-edu.tm
-
-// tn : https://en.wikipedia.org/wiki/.tn
-// http://whois.ati.tn/
-tn
-com.tn
-ens.tn
-fin.tn
-gov.tn
-ind.tn
-intl.tn
-nat.tn
-net.tn
-org.tn
-info.tn
-perso.tn
-tourism.tn
-edunet.tn
-rnrt.tn
-rns.tn
-rnu.tn
-mincom.tn
-agrinet.tn
-defense.tn
-turen.tn
-
-// to : https://en.wikipedia.org/wiki/.to
-// Submitted by registry <egullich@colo.to>
-to
-com.to
-gov.to
-net.to
-org.to
-edu.to
-mil.to
-
-// subTLDs: https://www.nic.tr/forms/eng/policies.pdf
-//     and: https://www.nic.tr/forms/politikalar.pdf
-// Submitted by <mehmetgurevin@gmail.com>
-tr
-com.tr
-info.tr
-biz.tr
-net.tr
-org.tr
-web.tr
-gen.tr
-tv.tr
-av.tr
-dr.tr
-bbs.tr
-name.tr
-tel.tr
-gov.tr
-bel.tr
-pol.tr
-mil.tr
-k12.tr
-edu.tr
-kep.tr
-
-// Used by Northern Cyprus
-nc.tr
-
-// Used by government agencies of Northern Cyprus
-gov.nc.tr
-
-// tt : http://www.nic.tt/
-tt
-co.tt
-com.tt
-org.tt
-net.tt
-biz.tt
-info.tt
-pro.tt
-int.tt
-coop.tt
-jobs.tt
-mobi.tt
-travel.tt
-museum.tt
-aero.tt
-name.tt
-gov.tt
-edu.tt
-
-// tv : https://en.wikipedia.org/wiki/.tv
-// Not listing any 2LDs as reserved since none seem to exist in practice,
-// Wikipedia notwithstanding.
-tv
-
-// tw : https://en.wikipedia.org/wiki/.tw
-tw
-edu.tw
-gov.tw
-mil.tw
-com.tw
-net.tw
-org.tw
-idv.tw
-game.tw
-ebiz.tw
-club.tw
-網路.tw
-組織.tw
-商業.tw
-
-// tz : http://www.tznic.or.tz/index.php/domains
-// Submitted by registry <manager@tznic.or.tz>
-tz
-ac.tz
-co.tz
-go.tz
-hotel.tz
-info.tz
-me.tz
-mil.tz
-mobi.tz
-ne.tz
-or.tz
-sc.tz
-tv.tz
-
-// ua : https://hostmaster.ua/policy/?ua
-// Submitted by registry <dk@cctld.ua>
-ua
-// ua 2LD
-com.ua
-edu.ua
-gov.ua
-in.ua
-net.ua
-org.ua
-// ua geographic names
-// https://hostmaster.ua/2ld/
-cherkassy.ua
-cherkasy.ua
-chernigov.ua
-chernihiv.ua
-chernivtsi.ua
-chernovtsy.ua
-ck.ua
-cn.ua
-cr.ua
-crimea.ua
-cv.ua
-dn.ua
-dnepropetrovsk.ua
-dnipropetrovsk.ua
-dominic.ua
-donetsk.ua
-dp.ua
-if.ua
-ivano-frankivsk.ua
-kh.ua
-kharkiv.ua
-kharkov.ua
-kherson.ua
-khmelnitskiy.ua
-khmelnytskyi.ua
-kiev.ua
-kirovograd.ua
-km.ua
-kr.ua
-krym.ua
-ks.ua
-kv.ua
-kyiv.ua
-lg.ua
-lt.ua
-lugansk.ua
-lutsk.ua
-lv.ua
-lviv.ua
-mk.ua
-mykolaiv.ua
-nikolaev.ua
-od.ua
-odesa.ua
-odessa.ua
-pl.ua
-poltava.ua
-rivne.ua
-rovno.ua
-rv.ua
-sb.ua
-sebastopol.ua
-sevastopol.ua
-sm.ua
-sumy.ua
-te.ua
-ternopil.ua
-uz.ua
-uzhgorod.ua
-vinnica.ua
-vinnytsia.ua
-vn.ua
-volyn.ua
-yalta.ua
-zaporizhzhe.ua
-zaporizhzhia.ua
-zhitomir.ua
-zhytomyr.ua
-zp.ua
-zt.ua
-
-// ug : https://www.registry.co.ug/
-ug
-co.ug
-or.ug
-ac.ug
-sc.ug
-go.ug
-ne.ug
-com.ug
-org.ug
-
-// uk : https://en.wikipedia.org/wiki/.uk
-// Submitted by registry <Michael.Daly@nominet.org.uk>
-uk
-ac.uk
-co.uk
-gov.uk
-ltd.uk
-me.uk
-net.uk
-nhs.uk
-org.uk
-plc.uk
-police.uk
-*.sch.uk
-
-// us : https://en.wikipedia.org/wiki/.us
-us
-dni.us
-fed.us
-isa.us
-kids.us
-nsn.us
-// us geographic names
-ak.us
-al.us
-ar.us
-as.us
-az.us
-ca.us
-co.us
-ct.us
-dc.us
-de.us
-fl.us
-ga.us
-gu.us
-hi.us
-ia.us
-id.us
-il.us
-in.us
-ks.us
-ky.us
-la.us
-ma.us
-md.us
-me.us
-mi.us
-mn.us
-mo.us
-ms.us
-mt.us
-nc.us
-nd.us
-ne.us
-nh.us
-nj.us
-nm.us
-nv.us
-ny.us
-oh.us
-ok.us
-or.us
-pa.us
-pr.us
-ri.us
-sc.us
-sd.us
-tn.us
-tx.us
-ut.us
-vi.us
-vt.us
-va.us
-wa.us
-wi.us
-wv.us
-wy.us
-// The registrar notes several more specific domains available in each state,
-// such as state.*.us, dst.*.us, etc., but resolution of these is somewhat
-// haphazard; in some states these domains resolve as addresses, while in others
-// only subdomains are available, or even nothing at all. We include the
-// most common ones where it's clear that different sites are different
-// entities.
-k12.ak.us
-k12.al.us
-k12.ar.us
-k12.as.us
-k12.az.us
-k12.ca.us
-k12.co.us
-k12.ct.us
-k12.dc.us
-k12.de.us
-k12.fl.us
-k12.ga.us
-k12.gu.us
-// k12.hi.us  Bug 614565 - Hawaii has a state-wide DOE login
-k12.ia.us
-k12.id.us
-k12.il.us
-k12.in.us
-k12.ks.us
-k12.ky.us
-k12.la.us
-k12.ma.us
-k12.md.us
-k12.me.us
-k12.mi.us
-k12.mn.us
-k12.mo.us
-k12.ms.us
-k12.mt.us
-k12.nc.us
-// k12.nd.us  Bug 1028347 - Removed at request of Travis Rosso <trossow@nd.gov>
-k12.ne.us
-k12.nh.us
-k12.nj.us
-k12.nm.us
-k12.nv.us
-k12.ny.us
-k12.oh.us
-k12.ok.us
-k12.or.us
-k12.pa.us
-k12.pr.us
-k12.ri.us
-k12.sc.us
-// k12.sd.us  Bug 934131 - Removed at request of James Booze <James.Booze@k12.sd.us>
-k12.tn.us
-k12.tx.us
-k12.ut.us
-k12.vi.us
-k12.vt.us
-k12.va.us
-k12.wa.us
-k12.wi.us
-// k12.wv.us  Bug 947705 - Removed at request of Verne Britton <verne@wvnet.edu>
-k12.wy.us
-cc.ak.us
-cc.al.us
-cc.ar.us
-cc.as.us
-cc.az.us
-cc.ca.us
-cc.co.us
-cc.ct.us
-cc.dc.us
-cc.de.us
-cc.fl.us
-cc.ga.us
-cc.gu.us
-cc.hi.us
-cc.ia.us
-cc.id.us
-cc.il.us
-cc.in.us
-cc.ks.us
-cc.ky.us
-cc.la.us
-cc.ma.us
-cc.md.us
-cc.me.us
-cc.mi.us
-cc.mn.us
-cc.mo.us
-cc.ms.us
-cc.mt.us
-cc.nc.us
-cc.nd.us
-cc.ne.us
-cc.nh.us
-cc.nj.us
-cc.nm.us
-cc.nv.us
-cc.ny.us
-cc.oh.us
-cc.ok.us
-cc.or.us
-cc.pa.us
-cc.pr.us
-cc.ri.us
-cc.sc.us
-cc.sd.us
-cc.tn.us
-cc.tx.us
-cc.ut.us
-cc.vi.us
-cc.vt.us
-cc.va.us
-cc.wa.us
-cc.wi.us
-cc.wv.us
-cc.wy.us
-lib.ak.us
-lib.al.us
-lib.ar.us
-lib.as.us
-lib.az.us
-lib.ca.us
-lib.co.us
-lib.ct.us
-lib.dc.us
-// lib.de.us  Issue #243 - Moved to Private section at request of Ed Moore <Ed.Moore@lib.de.us>
-lib.fl.us
-lib.ga.us
-lib.gu.us
-lib.hi.us
-lib.ia.us
-lib.id.us
-lib.il.us
-lib.in.us
-lib.ks.us
-lib.ky.us
-lib.la.us
-lib.ma.us
-lib.md.us
-lib.me.us
-lib.mi.us
-lib.mn.us
-lib.mo.us
-lib.ms.us
-lib.mt.us
-lib.nc.us
-lib.nd.us
-lib.ne.us
-lib.nh.us
-lib.nj.us
-lib.nm.us
-lib.nv.us
-lib.ny.us
-lib.oh.us
-lib.ok.us
-lib.or.us
-lib.pa.us
-lib.pr.us
-lib.ri.us
-lib.sc.us
-lib.sd.us
-lib.tn.us
-lib.tx.us
-lib.ut.us
-lib.vi.us
-lib.vt.us
-lib.va.us
-lib.wa.us
-lib.wi.us
-// lib.wv.us  Bug 941670 - Removed at request of Larry W Arnold <arnold@wvlc.lib.wv.us>
-lib.wy.us
-// k12.ma.us contains school districts in Massachusetts. The 4LDs are
-//  managed independently except for private (PVT), charter (CHTR) and
-//  parochial (PAROCH) schools.  Those are delegated directly to the
-//  5LD operators.   <k12-ma-hostmaster _ at _ rsuc.gweep.net>
-pvt.k12.ma.us
-chtr.k12.ma.us
-paroch.k12.ma.us
-// Merit Network, Inc. maintains the registry for =~ /(k12|cc|lib).mi.us/ and the following
-//    see also: http://domreg.merit.edu
-//    see also: whois -h whois.domreg.merit.edu help
-ann-arbor.mi.us
-cog.mi.us
-dst.mi.us
-eaton.mi.us
-gen.mi.us
-mus.mi.us
-tec.mi.us
-washtenaw.mi.us
-
-// uy : http://www.nic.org.uy/
-uy
-com.uy
-edu.uy
-gub.uy
-mil.uy
-net.uy
-org.uy
-
-// uz : http://www.reg.uz/
-uz
-co.uz
-com.uz
-net.uz
-org.uz
-
-// va : https://en.wikipedia.org/wiki/.va
-va
-
-// vc : https://en.wikipedia.org/wiki/.vc
-// Submitted by registry <kshah@ca.afilias.info>
-vc
-com.vc
-net.vc
-org.vc
-gov.vc
-mil.vc
-edu.vc
-
-// ve : https://registro.nic.ve/
-// Submitted by registry
-ve
-arts.ve
-co.ve
-com.ve
-e12.ve
-edu.ve
-firm.ve
-gob.ve
-gov.ve
-info.ve
-int.ve
-mil.ve
-net.ve
-org.ve
-rec.ve
-store.ve
-tec.ve
-web.ve
-
-// vg : https://en.wikipedia.org/wiki/.vg
-vg
-
-// vi : http://www.nic.vi/newdomainform.htm
-// http://www.nic.vi/Domain_Rules/body_domain_rules.html indicates some other
-// TLDs are "reserved", such as edu.vi and gov.vi, but doesn't actually say they
-// are available for registration (which they do not seem to be).
-vi
-co.vi
-com.vi
-k12.vi
-net.vi
-org.vi
-
-// vn : https://www.dot.vn/vnnic/vnnic/domainregistration.jsp
-vn
-com.vn
-net.vn
-org.vn
-edu.vn
-gov.vn
-int.vn
-ac.vn
-biz.vn
-info.vn
-name.vn
-pro.vn
-health.vn
-
-// vu : https://en.wikipedia.org/wiki/.vu
-// http://www.vunic.vu/
-vu
-com.vu
-edu.vu
-net.vu
-org.vu
-
-// wf : http://www.afnic.fr/medias/documents/AFNIC-naming-policy2012.pdf
-wf
-
-// ws : https://en.wikipedia.org/wiki/.ws
-// http://samoanic.ws/index.dhtml
-ws
-com.ws
-net.ws
-org.ws
-gov.ws
-edu.ws
-
-// yt : http://www.afnic.fr/medias/documents/AFNIC-naming-policy2012.pdf
-yt
-
-// IDN ccTLDs
-// When submitting patches, please maintain a sort by ISO 3166 ccTLD, then
-// U-label, and follow this format:
-// // A-Label ("<Latin renderings>", <language name>[, variant info]) : <ISO 3166 ccTLD>
-// // [sponsoring org]
-// U-Label
-
-// xn--mgbaam7a8h ("Emerat", Arabic) : AE
-// http://nic.ae/english/arabicdomain/rules.jsp
-امارات
-
-// xn--y9a3aq ("hye", Armenian) : AM
-// ISOC AM (operated by .am Registry)
-հայ
-
-// xn--54b7fta0cc ("Bangla", Bangla) : BD
-বাংলা
-
-// xn--90ae ("bg", Bulgarian) : BG
-бг
-
-// xn--90ais ("bel", Belarusian/Russian Cyrillic) : BY
-// Operated by .by registry
-бел
-
-// xn--fiqs8s ("Zhongguo/China", Chinese, Simplified) : CN
-// CNNIC
-// http://cnnic.cn/html/Dir/2005/10/11/3218.htm
-中国
-
-// xn--fiqz9s ("Zhongguo/China", Chinese, Traditional) : CN
-// CNNIC
-// http://cnnic.cn/html/Dir/2005/10/11/3218.htm
-中國
-
-// xn--lgbbat1ad8j ("Algeria/Al Jazair", Arabic) : DZ
-الجزائر
-
-// xn--wgbh1c ("Egypt/Masr", Arabic) : EG
-// http://www.dotmasr.eg/
-مصر
-
-// xn--e1a4c ("eu", Cyrillic) : EU
-ею
-
-// xn--node ("ge", Georgian Mkhedruli) : GE
-გე
-
-// xn--qxam ("el", Greek) : GR
-// Hellenic Ministry of Infrastructure, Transport, and Networks
-ελ
-
-// xn--j6w193g ("Hong Kong", Chinese) : HK
-// https://www.hkirc.hk
-// Submitted by registry <hk.tech@hkirc.hk>
-// https://www.hkirc.hk/content.jsp?id=30#!/34
-香港
-公司.香港
-教育.香港
-政府.香港
-個人.香港
-網絡.香港
-組織.香港
-
-// xn--2scrj9c ("Bharat", Kannada) : IN
-// India
-ಭಾರತ
-
-// xn--3hcrj9c ("Bharat", Oriya) : IN
-// India
-ଭାରତ
-
-// xn--45br5cyl ("Bharatam", Assamese) : IN
-// India
-ভাৰত
-
-// xn--h2breg3eve ("Bharatam", Sanskrit) : IN
-// India
-भारतम्
-
-// xn--h2brj9c8c ("Bharot", Santali) : IN
-// India
-भारोत
-
-// xn--mgbgu82a ("Bharat", Sindhi) : IN
-// India
-ڀارت
-
-// xn--rvc1e0am3e ("Bharatam", Malayalam) : IN
-// India
-ഭാരതം
-
-// xn--h2brj9c ("Bharat", Devanagari) : IN
-// India
-भारत
-
-// xn--mgbbh1a ("Bharat", Kashmiri) : IN
-// India
-بارت
-
-// xn--mgbbh1a71e ("Bharat", Arabic) : IN
-// India
-بھارت
-
-// xn--fpcrj9c3d ("Bharat", Telugu) : IN
-// India
-భారత్
-
-// xn--gecrj9c ("Bharat", Gujarati) : IN
-// India
-ભારત
-
-// xn--s9brj9c ("Bharat", Gurmukhi) : IN
-// India
-ਭਾਰਤ
-
-// xn--45brj9c ("Bharat", Bengali) : IN
-// India
-ভারত
-
-// xn--xkc2dl3a5ee0h ("India", Tamil) : IN
-// India
-இந்தியா
-
-// xn--mgba3a4f16a ("Iran", Persian) : IR
-ایران
-
-// xn--mgba3a4fra ("Iran", Arabic) : IR
-ايران
-
-// xn--mgbtx2b ("Iraq", Arabic) : IQ
-// Communications and Media Commission
-عراق
-
-// xn--mgbayh7gpa ("al-Ordon", Arabic) : JO
-// National Information Technology Center (NITC)
-// Royal Scientific Society, Al-Jubeiha
-الاردن
-
-// xn--3e0b707e ("Republic of Korea", Hangul) : KR
-한국
-
-// xn--80ao21a ("Kaz", Kazakh) : KZ
-қаз
-
-// xn--fzc2c9e2c ("Lanka", Sinhalese-Sinhala) : LK
-// http://nic.lk
-ලංකා
-
-// xn--xkc2al3hye2a ("Ilangai", Tamil) : LK
-// http://nic.lk
-இலங்கை
-
-// xn--mgbc0a9azcg ("Morocco/al-Maghrib", Arabic) : MA
-المغرب
-
-// xn--d1alf ("mkd", Macedonian) : MK
-// MARnet
-мкд
-
-// xn--l1acc ("mon", Mongolian) : MN
-мон
-
-// xn--mix891f ("Macao", Chinese, Traditional) : MO
-// MONIC / HNET Asia (Registry Operator for .mo)
-澳門
-
-// xn--mix082f ("Macao", Chinese, Simplified) : MO
-澳门
-
-// xn--mgbx4cd0ab ("Malaysia", Malay) : MY
-مليسيا
-
-// xn--mgb9awbf ("Oman", Arabic) : OM
-عمان
-
-// xn--mgbai9azgqp6j ("Pakistan", Urdu/Arabic) : PK
-پاکستان
-
-// xn--mgbai9a5eva00b ("Pakistan", Urdu/Arabic, variant) : PK
-پاكستان
-
-// xn--ygbi2ammx ("Falasteen", Arabic) : PS
-// The Palestinian National Internet Naming Authority (PNINA)
-// http://www.pnina.ps
-فلسطين
-
-// xn--90a3ac ("srb", Cyrillic) : RS
-// https://www.rnids.rs/en/domains/national-domains
-срб
-пр.срб
-орг.срб
-обр.срб
-од.срб
-упр.срб
-ак.срб
-
-// xn--p1ai ("rf", Russian-Cyrillic) : RU
-// http://www.cctld.ru/en/docs/rulesrf.php
-рф
-
-// xn--wgbl6a ("Qatar", Arabic) : QA
-// http://www.ict.gov.qa/
-قطر
-
-// xn--mgberp4a5d4ar ("AlSaudiah", Arabic) : SA
-// http://www.nic.net.sa/
-السعودية
-
-// xn--mgberp4a5d4a87g ("AlSaudiah", Arabic, variant)  : SA
-السعودیة
-
-// xn--mgbqly7c0a67fbc ("AlSaudiah", Arabic, variant) : SA
-السعودیۃ
-
-// xn--mgbqly7cvafr ("AlSaudiah", Arabic, variant) : SA
-السعوديه
-
-// xn--mgbpl2fh ("sudan", Arabic) : SD
-// Operated by .sd registry
-سودان
-
-// xn--yfro4i67o Singapore ("Singapore", Chinese) : SG
-新加坡
-
-// xn--clchc0ea0b2g2a9gcd ("Singapore", Tamil) : SG
-சிங்கப்பூர்
-
-// xn--ogbpf8fl ("Syria", Arabic) : SY
-سورية
-
-// xn--mgbtf8fl ("Syria", Arabic, variant) : SY
-سوريا
-
-// xn--o3cw4h ("Thai", Thai) : TH
-// http://www.thnic.co.th
-ไทย
-ศึกษา.ไทย
-ธุรกิจ.ไทย
-รัฐบาล.ไทย
-ทหาร.ไทย
-เน็ต.ไทย
-องค์กร.ไทย
-
-// xn--pgbs0dh ("Tunisia", Arabic) : TN
-// http://nic.tn
-تونس
-
-// xn--kpry57d ("Taiwan", Chinese, Traditional) : TW
-// http://www.twnic.net/english/dn/dn_07a.htm
-台灣
-
-// xn--kprw13d ("Taiwan", Chinese, Simplified) : TW
-// http://www.twnic.net/english/dn/dn_07a.htm
-台湾
-
-// xn--nnx388a ("Taiwan", Chinese, variant) : TW
-臺灣
-
-// xn--j1amh ("ukr", Cyrillic) : UA
-укр
-
-// xn--mgb2ddes ("AlYemen", Arabic) : YE
-اليمن
-
-// xxx : http://icmregistry.com
-xxx
-
-// ye : http://www.y.net.ye/services/domain_name.htm
-*.ye
-
-// za : http://www.zadna.org.za/content/page/domain-information
-ac.za
-agric.za
-alt.za
-co.za
-edu.za
-gov.za
-grondar.za
-law.za
-mil.za
-net.za
-ngo.za
-nis.za
-nom.za
-org.za
-school.za
-tm.za
-web.za
-
-// zm : https://zicta.zm/
-// Submitted by registry <info@zicta.zm>
-zm
-ac.zm
-biz.zm
-co.zm
-com.zm
-edu.zm
-gov.zm
-info.zm
-mil.zm
-net.zm
-org.zm
-sch.zm
-
-// zw : https://www.potraz.gov.zw/
-// Confirmed by registry <bmtengwa@potraz.gov.zw> 2017-01-25
-zw
-ac.zw
-co.zw
-gov.zw
-mil.zw
-org.zw
-
-
-// newGTLDs
-// List of new gTLDs imported from https://newgtlds.icann.org/newgtlds.csv on 2018-05-08T19:40:37Z
-// This list is auto-generated, don't edit it manually.
-
-// aaa : 2015-02-26 American Automobile Association, Inc.
-aaa
-
-// aarp : 2015-05-21 AARP
-aarp
-
-// abarth : 2015-07-30 Fiat Chrysler Automobiles N.V.
-abarth
-
-// abb : 2014-10-24 ABB Ltd
-abb
-
-// abbott : 2014-07-24 Abbott Laboratories, Inc.
-abbott
-
-// abbvie : 2015-07-30 AbbVie Inc.
-abbvie
-
-// abc : 2015-07-30 Disney Enterprises, Inc.
-abc
-
-// able : 2015-06-25 Able Inc.
-able
-
-// abogado : 2014-04-24 Minds + Machines Group Limited
-abogado
-
-// abudhabi : 2015-07-30 Abu Dhabi Systems and Information Centre
-abudhabi
-
-// academy : 2013-11-07 Binky Moon, LLC
-academy
-
-// accenture : 2014-08-15 Accenture plc
-accenture
-
-// accountant : 2014-11-20 dot Accountant Limited
-accountant
-
-// accountants : 2014-03-20 Binky Moon, LLC
-accountants
-
-// aco : 2015-01-08 ACO Severin Ahlmann GmbH & Co. KG
-aco
-
-// active : 2014-05-01 Active Network, LLC
-active
-
-// actor : 2013-12-12 United TLD Holdco Ltd.
-actor
-
-// adac : 2015-07-16 Allgemeiner Deutscher Automobil-Club e.V. (ADAC)
-adac
-
-// ads : 2014-12-04 Charleston Road Registry Inc.
-ads
-
-// adult : 2014-10-16 ICM Registry AD LLC
-adult
-
-// aeg : 2015-03-19 Aktiebolaget Electrolux
-aeg
-
-// aetna : 2015-05-21 Aetna Life Insurance Company
-aetna
-
-// afamilycompany : 2015-07-23 Johnson Shareholdings, Inc.
-afamilycompany
-
-// afl : 2014-10-02 Australian Football League
-afl
-
-// africa : 2014-03-24 ZA Central Registry NPC trading as Registry.Africa
-africa
-
-// agakhan : 2015-04-23 Fondation Aga Khan (Aga Khan Foundation)
-agakhan
-
-// agency : 2013-11-14 Binky Moon, LLC
-agency
-
-// aig : 2014-12-18 American International Group, Inc.
-aig
-
-// aigo : 2015-08-06 aigo Digital Technology Co,Ltd.
-aigo
-
-// airbus : 2015-07-30 Airbus S.A.S.
-airbus
-
-// airforce : 2014-03-06 United TLD Holdco Ltd.
-airforce
-
-// airtel : 2014-10-24 Bharti Airtel Limited
-airtel
-
-// akdn : 2015-04-23 Fondation Aga Khan (Aga Khan Foundation)
-akdn
-
-// alfaromeo : 2015-07-31 Fiat Chrysler Automobiles N.V.
-alfaromeo
-
-// alibaba : 2015-01-15 Alibaba Group Holding Limited
-alibaba
-
-// alipay : 2015-01-15 Alibaba Group Holding Limited
-alipay
-
-// allfinanz : 2014-07-03 Allfinanz Deutsche Vermögensberatung Aktiengesellschaft
-allfinanz
-
-// allstate : 2015-07-31 Allstate Fire and Casualty Insurance Company
-allstate
-
-// ally : 2015-06-18 Ally Financial Inc.
-ally
-
-// alsace : 2014-07-02 Region Grand Est
-alsace
-
-// alstom : 2015-07-30 ALSTOM
-alstom
-
-// americanexpress : 2015-07-31 American Express Travel Related Services Company, Inc.
-americanexpress
-
-// americanfamily : 2015-07-23 AmFam, Inc.
-americanfamily
-
-// amex : 2015-07-31 American Express Travel Related Services Company, Inc.
-amex
-
-// amfam : 2015-07-23 AmFam, Inc.
-amfam
-
-// amica : 2015-05-28 Amica Mutual Insurance Company
-amica
-
-// amsterdam : 2014-07-24 Gemeente Amsterdam
-amsterdam
-
-// analytics : 2014-12-18 Campus IP LLC
-analytics
-
-// android : 2014-08-07 Charleston Road Registry Inc.
-android
-
-// anquan : 2015-01-08 QIHOO 360 TECHNOLOGY CO. LTD.
-anquan
-
-// anz : 2015-07-31 Australia and New Zealand Banking Group Limited
-anz
-
-// aol : 2015-09-17 Oath Inc.
-aol
-
-// apartments : 2014-12-11 Binky Moon, LLC
-apartments
-
-// app : 2015-05-14 Charleston Road Registry Inc.
-app
-
-// apple : 2015-05-14 Apple Inc.
-apple
-
-// aquarelle : 2014-07-24 Aquarelle.com
-aquarelle
-
-// arab : 2015-11-12 League of Arab States
-arab
-
-// aramco : 2014-11-20 Aramco Services Company
-aramco
-
-// archi : 2014-02-06 Afilias plc
-archi
-
-// army : 2014-03-06 United TLD Holdco Ltd.
-army
-
-// art : 2016-03-24 UK Creative Ideas Limited
-art
-
-// arte : 2014-12-11 Association Relative à la Télévision Européenne G.E.I.E.
-arte
-
-// asda : 2015-07-31 Wal-Mart Stores, Inc.
-asda
-
-// associates : 2014-03-06 Binky Moon, LLC
-associates
-
-// athleta : 2015-07-30 The Gap, Inc.
-athleta
-
-// attorney : 2014-03-20 United TLD Holdco Ltd.
-attorney
-
-// auction : 2014-03-20 United TLD Holdco Ltd.
-auction
-
-// audi : 2015-05-21 AUDI Aktiengesellschaft
-audi
-
-// audible : 2015-06-25 Amazon Registry Services, Inc.
-audible
-
-// audio : 2014-03-20 Uniregistry, Corp.
-audio
-
-// auspost : 2015-08-13 Australian Postal Corporation
-auspost
-
-// author : 2014-12-18 Amazon Registry Services, Inc.
-author
-
-// auto : 2014-11-13 Cars Registry Limited
-auto
-
-// autos : 2014-01-09 DERAutos, LLC
-autos
-
-// avianca : 2015-01-08 Aerovias del Continente Americano S.A. Avianca
-avianca
-
-// aws : 2015-06-25 Amazon Registry Services, Inc.
-aws
-
-// axa : 2013-12-19 AXA SA
-axa
-
-// azure : 2014-12-18 Microsoft Corporation
-azure
-
-// baby : 2015-04-09 Johnson & Johnson Services, Inc.
-baby
-
-// baidu : 2015-01-08 Baidu, Inc.
-baidu
-
-// banamex : 2015-07-30 Citigroup Inc.
-banamex
-
-// bananarepublic : 2015-07-31 The Gap, Inc.
-bananarepublic
-
-// band : 2014-06-12 United TLD Holdco Ltd.
-band
-
-// bank : 2014-09-25 fTLD Registry Services LLC
-bank
-
-// bar : 2013-12-12 Punto 2012 Sociedad Anonima Promotora de Inversion de Capital Variable
-bar
-
-// barcelona : 2014-07-24 Municipi de Barcelona
-barcelona
-
-// barclaycard : 2014-11-20 Barclays Bank PLC
-barclaycard
-
-// barclays : 2014-11-20 Barclays Bank PLC
-barclays
-
-// barefoot : 2015-06-11 Gallo Vineyards, Inc.
-barefoot
-
-// bargains : 2013-11-14 Binky Moon, LLC
-bargains
-
-// baseball : 2015-10-29 MLB Advanced Media DH, LLC
-baseball
-
-// basketball : 2015-08-20 Fédération Internationale de Basketball (FIBA)
-basketball
-
-// bauhaus : 2014-04-17 Werkhaus GmbH
-bauhaus
-
-// bayern : 2014-01-23 Bayern Connect GmbH
-bayern
-
-// bbc : 2014-12-18 British Broadcasting Corporation
-bbc
-
-// bbt : 2015-07-23 BB&T Corporation
-bbt
-
-// bbva : 2014-10-02 BANCO BILBAO VIZCAYA ARGENTARIA, S.A.
-bbva
-
-// bcg : 2015-04-02 The Boston Consulting Group, Inc.
-bcg
-
-// bcn : 2014-07-24 Municipi de Barcelona
-bcn
-
-// beats : 2015-05-14 Beats Electronics, LLC
-beats
-
-// beauty : 2015-12-03 L'Oréal
-beauty
-
-// beer : 2014-01-09 Minds + Machines Group Limited
-beer
-
-// bentley : 2014-12-18 Bentley Motors Limited
-bentley
-
-// berlin : 2013-10-31 dotBERLIN GmbH & Co. KG
-berlin
-
-// best : 2013-12-19 BestTLD Pty Ltd
-best
-
-// bestbuy : 2015-07-31 BBY Solutions, Inc.
-bestbuy
-
-// bet : 2015-05-07 Afilias plc
-bet
-
-// bharti : 2014-01-09 Bharti Enterprises (Holding) Private Limited
-bharti
-
-// bible : 2014-06-19 American Bible Society
-bible
-
-// bid : 2013-12-19 dot Bid Limited
-bid
-
-// bike : 2013-08-27 Binky Moon, LLC
-bike
-
-// bing : 2014-12-18 Microsoft Corporation
-bing
-
-// bingo : 2014-12-04 Binky Moon, LLC
-bingo
-
-// bio : 2014-03-06 Afilias plc
-bio
-
-// black : 2014-01-16 Afilias plc
-black
-
-// blackfriday : 2014-01-16 Uniregistry, Corp.
-blackfriday
-
-// blanco : 2015-07-16 BLANCO GmbH + Co KG
-blanco
-
-// blockbuster : 2015-07-30 Dish DBS Corporation
-blockbuster
-
-// blog : 2015-05-14 Knock Knock WHOIS There, LLC
-blog
-
-// bloomberg : 2014-07-17 Bloomberg IP Holdings LLC
-bloomberg
-
-// blue : 2013-11-07 Afilias plc
-blue
-
-// bms : 2014-10-30 Bristol-Myers Squibb Company
-bms
-
-// bmw : 2014-01-09 Bayerische Motoren Werke Aktiengesellschaft
-bmw
-
-// bnl : 2014-07-24 Banca Nazionale del Lavoro
-bnl
-
-// bnpparibas : 2014-05-29 BNP Paribas
-bnpparibas
-
-// boats : 2014-12-04 DERBoats, LLC
-boats
-
-// boehringer : 2015-07-09 Boehringer Ingelheim International GmbH
-boehringer
-
-// bofa : 2015-07-31 Bank of America Corporation
-bofa
-
-// bom : 2014-10-16 Núcleo de Informação e Coordenação do Ponto BR - NIC.br
-bom
-
-// bond : 2014-06-05 Bond University Limited
-bond
-
-// boo : 2014-01-30 Charleston Road Registry Inc.
-boo
-
-// book : 2015-08-27 Amazon Registry Services, Inc.
-book
-
-// booking : 2015-07-16 Booking.com B.V.
-booking
-
-// bosch : 2015-06-18 Robert Bosch GMBH
-bosch
-
-// bostik : 2015-05-28 Bostik SA
-bostik
-
-// boston : 2015-12-10 Boston TLD Management, LLC
-boston
-
-// bot : 2014-12-18 Amazon Registry Services, Inc.
-bot
-
-// boutique : 2013-11-14 Binky Moon, LLC
-boutique
-
-// box : 2015-11-12 NS1 Limited
-box
-
-// bradesco : 2014-12-18 Banco Bradesco S.A.
-bradesco
-
-// bridgestone : 2014-12-18 Bridgestone Corporation
-bridgestone
-
-// broadway : 2014-12-22 Celebrate Broadway, Inc.
-broadway
-
-// broker : 2014-12-11 Dotbroker Registry Limited
-broker
-
-// brother : 2015-01-29 Brother Industries, Ltd.
-brother
-
-// brussels : 2014-02-06 DNS.be vzw
-brussels
-
-// budapest : 2013-11-21 Minds + Machines Group Limited
-budapest
-
-// bugatti : 2015-07-23 Bugatti International SA
-bugatti
-
-// build : 2013-11-07 Plan Bee LLC
-build
-
-// builders : 2013-11-07 Binky Moon, LLC
-builders
-
-// business : 2013-11-07 Binky Moon, LLC
-business
-
-// buy : 2014-12-18 Amazon Registry Services, Inc.
-buy
-
-// buzz : 2013-10-02 DOTSTRATEGY CO.
-buzz
-
-// bzh : 2014-02-27 Association www.bzh
-bzh
-
-// cab : 2013-10-24 Binky Moon, LLC
-cab
-
-// cafe : 2015-02-11 Binky Moon, LLC
-cafe
-
-// cal : 2014-07-24 Charleston Road Registry Inc.
-cal
-
-// call : 2014-12-18 Amazon Registry Services, Inc.
-call
-
-// calvinklein : 2015-07-30 PVH gTLD Holdings LLC
-calvinklein
-
-// cam : 2016-04-21 AC Webconnecting Holding B.V.
-cam
-
-// camera : 2013-08-27 Binky Moon, LLC
-camera
-
-// camp : 2013-11-07 Binky Moon, LLC
-camp
-
-// cancerresearch : 2014-05-15 Australian Cancer Research Foundation
-cancerresearch
-
-// canon : 2014-09-12 Canon Inc.
-canon
-
-// capetown : 2014-03-24 ZA Central Registry NPC trading as ZA Central Registry
-capetown
-
-// capital : 2014-03-06 Binky Moon, LLC
-capital
-
-// capitalone : 2015-08-06 Capital One Financial Corporation
-capitalone
-
-// car : 2015-01-22 Cars Registry Limited
-car
-
-// caravan : 2013-12-12 Caravan International, Inc.
-caravan
-
-// cards : 2013-12-05 Binky Moon, LLC
-cards
-
-// care : 2014-03-06 Binky Moon, LLC
-care
-
-// career : 2013-10-09 dotCareer LLC
-career
-
-// careers : 2013-10-02 Binky Moon, LLC
-careers
-
-// cars : 2014-11-13 Cars Registry Limited
-cars
-
-// cartier : 2014-06-23 Richemont DNS Inc.
-cartier
-
-// casa : 2013-11-21 Minds + Machines Group Limited
-casa
-
-// case : 2015-09-03 CNH Industrial N.V.
-case
-
-// caseih : 2015-09-03 CNH Industrial N.V.
-caseih
-
-// cash : 2014-03-06 Binky Moon, LLC
-cash
-
-// casino : 2014-12-18 Binky Moon, LLC
-casino
-
-// catering : 2013-12-05 Binky Moon, LLC
-catering
-
-// catholic : 2015-10-21 Pontificium Consilium de Comunicationibus Socialibus (PCCS) (Pontifical Council for Social Communication)
-catholic
-
-// cba : 2014-06-26 COMMONWEALTH BANK OF AUSTRALIA
-cba
-
-// cbn : 2014-08-22 The Christian Broadcasting Network, Inc.
-cbn
-
-// cbre : 2015-07-02 CBRE, Inc.
-cbre
-
-// cbs : 2015-08-06 CBS Domains Inc.
-cbs
-
-// ceb : 2015-04-09 The Corporate Executive Board Company
-ceb
-
-// center : 2013-11-07 Binky Moon, LLC
-center
-
-// ceo : 2013-11-07 CEOTLD Pty Ltd
-ceo
-
-// cern : 2014-06-05 European Organization for Nuclear Research ("CERN")
-cern
-
-// cfa : 2014-08-28 CFA Institute
-cfa
-
-// cfd : 2014-12-11 DotCFD Registry Limited
-cfd
-
-// chanel : 2015-04-09 Chanel International B.V.
-chanel
-
-// channel : 2014-05-08 Charleston Road Registry Inc.
-channel
-
-// charity : 2018-04-11 Corn Lake, LLC
-charity
-
-// chase : 2015-04-30 JPMorgan Chase Bank, National Association
-chase
-
-// chat : 2014-12-04 Binky Moon, LLC
-chat
-
-// cheap : 2013-11-14 Binky Moon, LLC
-cheap
-
-// chintai : 2015-06-11 CHINTAI Corporation
-chintai
-
-// christmas : 2013-11-21 Uniregistry, Corp.
-christmas
-
-// chrome : 2014-07-24 Charleston Road Registry Inc.
-chrome
-
-// chrysler : 2015-07-30 FCA US LLC.
-chrysler
-
-// church : 2014-02-06 Binky Moon, LLC
-church
-
-// cipriani : 2015-02-19 Hotel Cipriani Srl
-cipriani
-
-// circle : 2014-12-18 Amazon Registry Services, Inc.
-circle
-
-// cisco : 2014-12-22 Cisco Technology, Inc.
-cisco
-
-// citadel : 2015-07-23 Citadel Domain LLC
-citadel
-
-// citi : 2015-07-30 Citigroup Inc.
-citi
-
-// citic : 2014-01-09 CITIC Group Corporation
-citic
-
-// city : 2014-05-29 Binky Moon, LLC
-city
-
-// cityeats : 2014-12-11 Lifestyle Domain Holdings, Inc.
-cityeats
-
-// claims : 2014-03-20 Binky Moon, LLC
-claims
-
-// cleaning : 2013-12-05 Binky Moon, LLC
-cleaning
-
-// click : 2014-06-05 Uniregistry, Corp.
-click
-
-// clinic : 2014-03-20 Binky Moon, LLC
-clinic
-
-// clinique : 2015-10-01 The Estée Lauder Companies Inc.
-clinique
-
-// clothing : 2013-08-27 Binky Moon, LLC
-clothing
-
-// cloud : 2015-04-16 Aruba PEC S.p.A.
-cloud
-
-// club : 2013-11-08 .CLUB DOMAINS, LLC
-club
-
-// clubmed : 2015-06-25 Club Méditerranée S.A.
-clubmed
-
-// coach : 2014-10-09 Binky Moon, LLC
-coach
-
-// codes : 2013-10-31 Binky Moon, LLC
-codes
-
-// coffee : 2013-10-17 Binky Moon, LLC
-coffee
-
-// college : 2014-01-16 XYZ.COM LLC
-college
-
-// cologne : 2014-02-05 punkt.wien GmbH
-cologne
-
-// comcast : 2015-07-23 Comcast IP Holdings I, LLC
-comcast
-
-// commbank : 2014-06-26 COMMONWEALTH BANK OF AUSTRALIA
-commbank
-
-// community : 2013-12-05 Binky Moon, LLC
-community
-
-// company : 2013-11-07 Binky Moon, LLC
-company
-
-// compare : 2015-10-08 iSelect Ltd
-compare
-
-// computer : 2013-10-24 Binky Moon, LLC
-computer
-
-// comsec : 2015-01-08 VeriSign, Inc.
-comsec
-
-// condos : 2013-12-05 Binky Moon, LLC
-condos
-
-// construction : 2013-09-16 Binky Moon, LLC
-construction
-
-// consulting : 2013-12-05 United TLD Holdco Ltd.
-consulting
-
-// contact : 2015-01-08 Top Level Spectrum, Inc.
-contact
-
-// contractors : 2013-09-10 Binky Moon, LLC
-contractors
-
-// cooking : 2013-11-21 Minds + Machines Group Limited
-cooking
-
-// cookingchannel : 2015-07-02 Lifestyle Domain Holdings, Inc.
-cookingchannel
-
-// cool : 2013-11-14 Binky Moon, LLC
-cool
-
-// corsica : 2014-09-25 Collectivité de Corse
-corsica
-
-// country : 2013-12-19 DotCountry LLC
-country
-
-// coupon : 2015-02-26 Amazon Registry Services, Inc.
-coupon
-
-// coupons : 2015-03-26 Binky Moon, LLC
-coupons
-
-// courses : 2014-12-04 OPEN UNIVERSITIES AUSTRALIA PTY LTD
-courses
-
-// credit : 2014-03-20 Binky Moon, LLC
-credit
-
-// creditcard : 2014-03-20 Binky Moon, LLC
-creditcard
-
-// creditunion : 2015-01-22 CUNA Performance Resources, LLC
-creditunion
-
-// cricket : 2014-10-09 dot Cricket Limited
-cricket
-
-// crown : 2014-10-24 Crown Equipment Corporation
-crown
-
-// crs : 2014-04-03 Federated Co-operatives Limited
-crs
-
-// cruise : 2015-12-10 Viking River Cruises (Bermuda) Ltd.
-cruise
-
-// cruises : 2013-12-05 Binky Moon, LLC
-cruises
-
-// csc : 2014-09-25 Alliance-One Services, Inc.
-csc
-
-// cuisinella : 2014-04-03 SALM S.A.S.
-cuisinella
-
-// cymru : 2014-05-08 Nominet UK
-cymru
-
-// cyou : 2015-01-22 Beijing Gamease Age Digital Technology Co., Ltd.
-cyou
-
-// dabur : 2014-02-06 Dabur India Limited
-dabur
-
-// dad : 2014-01-23 Charleston Road Registry Inc.
-dad
-
-// dance : 2013-10-24 United TLD Holdco Ltd.
-dance
-
-// data : 2016-06-02 Dish DBS Corporation
-data
-
-// date : 2014-11-20 dot Date Limited
-date
-
-// dating : 2013-12-05 Binky Moon, LLC
-dating
-
-// datsun : 2014-03-27 NISSAN MOTOR CO., LTD.
-datsun
-
-// day : 2014-01-30 Charleston Road Registry Inc.
-day
-
-// dclk : 2014-11-20 Charleston Road Registry Inc.
-dclk
-
-// dds : 2015-05-07 Minds + Machines Group Limited
-dds
-
-// deal : 2015-06-25 Amazon Registry Services, Inc.
-deal
-
-// dealer : 2014-12-22 Dealer Dot Com, Inc.
-dealer
-
-// deals : 2014-05-22 Binky Moon, LLC
-deals
-
-// degree : 2014-03-06 United TLD Holdco Ltd.
-degree
-
-// delivery : 2014-09-11 Binky Moon, LLC
-delivery
-
-// dell : 2014-10-24 Dell Inc.
-dell
-
-// deloitte : 2015-07-31 Deloitte Touche Tohmatsu
-deloitte
-
-// delta : 2015-02-19 Delta Air Lines, Inc.
-delta
-
-// democrat : 2013-10-24 United TLD Holdco Ltd.
-democrat
-
-// dental : 2014-03-20 Binky Moon, LLC
-dental
-
-// dentist : 2014-03-20 United TLD Holdco Ltd.
-dentist
-
-// desi : 2013-11-14 Desi Networks LLC
-desi
-
-// design : 2014-11-07 Top Level Design, LLC
-design
-
-// dev : 2014-10-16 Charleston Road Registry Inc.
-dev
-
-// dhl : 2015-07-23 Deutsche Post AG
-dhl
-
-// diamonds : 2013-09-22 Binky Moon, LLC
-diamonds
-
-// diet : 2014-06-26 Uniregistry, Corp.
-diet
-
-// digital : 2014-03-06 Binky Moon, LLC
-digital
-
-// direct : 2014-04-10 Binky Moon, LLC
-direct
-
-// directory : 2013-09-20 Binky Moon, LLC
-directory
-
-// discount : 2014-03-06 Binky Moon, LLC
-discount
-
-// discover : 2015-07-23 Discover Financial Services
-discover
-
-// dish : 2015-07-30 Dish DBS Corporation
-dish
-
-// diy : 2015-11-05 Lifestyle Domain Holdings, Inc.
-diy
-
-// dnp : 2013-12-13 Dai Nippon Printing Co., Ltd.
-dnp
-
-// docs : 2014-10-16 Charleston Road Registry Inc.
-docs
-
-// doctor : 2016-06-02 Binky Moon, LLC
-doctor
-
-// dodge : 2015-07-30 FCA US LLC.
-dodge
-
-// dog : 2014-12-04 Binky Moon, LLC
-dog
-
-// doha : 2014-09-18 Communications Regulatory Authority (CRA)
-doha
-
-// domains : 2013-10-17 Binky Moon, LLC
-domains
-
-// dot : 2015-05-21 Dish DBS Corporation
-dot
-
-// download : 2014-11-20 dot Support Limited
-download
-
-// drive : 2015-03-05 Charleston Road Registry Inc.
-drive
-
-// dtv : 2015-06-04 Dish DBS Corporation
-dtv
-
-// dubai : 2015-01-01 Dubai Smart Government Department
-dubai
-
-// duck : 2015-07-23 Johnson Shareholdings, Inc.
-duck
-
-// dunlop : 2015-07-02 The Goodyear Tire & Rubber Company
-dunlop
-
-// duns : 2015-08-06 The Dun & Bradstreet Corporation
-duns
-
-// dupont : 2015-06-25 E. I. du Pont de Nemours and Company
-dupont
-
-// durban : 2014-03-24 ZA Central Registry NPC trading as ZA Central Registry
-durban
-
-// dvag : 2014-06-23 Deutsche Vermögensberatung Aktiengesellschaft DVAG
-dvag
-
-// dvr : 2016-05-26 Hughes Satellite Systems Corporation
-dvr
-
-// earth : 2014-12-04 Interlink Co., Ltd.
-earth
-
-// eat : 2014-01-23 Charleston Road Registry Inc.
-eat
-
-// eco : 2016-07-08 Big Room Inc.
-eco
-
-// edeka : 2014-12-18 EDEKA Verband kaufmännischer Genossenschaften e.V.
-edeka
-
-// education : 2013-11-07 Binky Moon, LLC
-education
-
-// email : 2013-10-31 Binky Moon, LLC
-email
-
-// emerck : 2014-04-03 Merck KGaA
-emerck
-
-// energy : 2014-09-11 Binky Moon, LLC
-energy
-
-// engineer : 2014-03-06 United TLD Holdco Ltd.
-engineer
-
-// engineering : 2014-03-06 Binky Moon, LLC
-engineering
-
-// enterprises : 2013-09-20 Binky Moon, LLC
-enterprises
-
-// epost : 2015-07-23 Deutsche Post AG
-epost
-
-// epson : 2014-12-04 Seiko Epson Corporation
-epson
-
-// equipment : 2013-08-27 Binky Moon, LLC
-equipment
-
-// ericsson : 2015-07-09 Telefonaktiebolaget L M Ericsson
-ericsson
-
-// erni : 2014-04-03 ERNI Group Holding AG
-erni
-
-// esq : 2014-05-08 Charleston Road Registry Inc.
-esq
-
-// estate : 2013-08-27 Binky Moon, LLC
-estate
-
-// esurance : 2015-07-23 Esurance Insurance Company
-esurance
-
-// etisalat : 2015-09-03 Emirates Telecommunications Corporation (trading as Etisalat)
-etisalat
-
-// eurovision : 2014-04-24 European Broadcasting Union (EBU)
-eurovision
-
-// eus : 2013-12-12 Puntueus Fundazioa
-eus
-
-// events : 2013-12-05 Binky Moon, LLC
-events
-
-// everbank : 2014-05-15 EverBank
-everbank
-
-// exchange : 2014-03-06 Binky Moon, LLC
-exchange
-
-// expert : 2013-11-21 Binky Moon, LLC
-expert
-
-// exposed : 2013-12-05 Binky Moon, LLC
-exposed
-
-// express : 2015-02-11 Binky Moon, LLC
-express
-
-// extraspace : 2015-05-14 Extra Space Storage LLC
-extraspace
-
-// fage : 2014-12-18 Fage International S.A.
-fage
-
-// fail : 2014-03-06 Binky Moon, LLC
-fail
-
-// fairwinds : 2014-11-13 FairWinds Partners, LLC
-fairwinds
-
-// faith : 2014-11-20 dot Faith Limited
-faith
-
-// family : 2015-04-02 United TLD Holdco Ltd.
-family
-
-// fan : 2014-03-06 Asiamix Digital Limited
-fan
-
-// fans : 2014-11-07 Asiamix Digital Limited
-fans
-
-// farm : 2013-11-07 Binky Moon, LLC
-farm
-
-// farmers : 2015-07-09 Farmers Insurance Exchange
-farmers
-
-// fashion : 2014-07-03 Minds + Machines Group Limited
-fashion
-
-// fast : 2014-12-18 Amazon Registry Services, Inc.
-fast
-
-// fedex : 2015-08-06 Federal Express Corporation
-fedex
-
-// feedback : 2013-12-19 Top Level Spectrum, Inc.
-feedback
-
-// ferrari : 2015-07-31 Fiat Chrysler Automobiles N.V.
-ferrari
-
-// ferrero : 2014-12-18 Ferrero Trading Lux S.A.
-ferrero
-
-// fiat : 2015-07-31 Fiat Chrysler Automobiles N.V.
-fiat
-
-// fidelity : 2015-07-30 Fidelity Brokerage Services LLC
-fidelity
-
-// fido : 2015-08-06 Rogers Communications Canada Inc.
-fido
-
-// film : 2015-01-08 Motion Picture Domain Registry Pty Ltd
-film
-
-// final : 2014-10-16 Núcleo de Informação e Coordenação do Ponto BR - NIC.br
-final
-
-// finance : 2014-03-20 Binky Moon, LLC
-finance
-
-// financial : 2014-03-06 Binky Moon, LLC
-financial
-
-// fire : 2015-06-25 Amazon Registry Services, Inc.
-fire
-
-// firestone : 2014-12-18 Bridgestone Licensing Services, Inc
-firestone
-
-// firmdale : 2014-03-27 Firmdale Holdings Limited
-firmdale
-
-// fish : 2013-12-12 Binky Moon, LLC
-fish
-
-// fishing : 2013-11-21 Minds + Machines Group Limited
-fishing
-
-// fit : 2014-11-07 Minds + Machines Group Limited
-fit
-
-// fitness : 2014-03-06 Binky Moon, LLC
-fitness
-
-// flickr : 2015-04-02 Yahoo! Domain Services Inc.
-flickr
-
-// flights : 2013-12-05 Binky Moon, LLC
-flights
-
-// flir : 2015-07-23 FLIR Systems, Inc.
-flir
-
-// florist : 2013-11-07 Binky Moon, LLC
-florist
-
-// flowers : 2014-10-09 Uniregistry, Corp.
-flowers
-
-// fly : 2014-05-08 Charleston Road Registry Inc.
-fly
-
-// foo : 2014-01-23 Charleston Road Registry Inc.
-foo
-
-// food : 2016-04-21 Lifestyle Domain Holdings, Inc.
-food
-
-// foodnetwork : 2015-07-02 Lifestyle Domain Holdings, Inc.
-foodnetwork
-
-// football : 2014-12-18 Binky Moon, LLC
-football
-
-// ford : 2014-11-13 Ford Motor Company
-ford
-
-// forex : 2014-12-11 Dotforex Registry Limited
-forex
-
-// forsale : 2014-05-22 United TLD Holdco Ltd.
-forsale
-
-// forum : 2015-04-02 Fegistry, LLC
-forum
-
-// foundation : 2013-12-05 Binky Moon, LLC
-foundation
-
-// fox : 2015-09-11 FOX Registry, LLC
-fox
-
-// free : 2015-12-10 Amazon Registry Services, Inc.
-free
-
-// fresenius : 2015-07-30 Fresenius Immobilien-Verwaltungs-GmbH
-fresenius
-
-// frl : 2014-05-15 FRLregistry B.V.
-frl
-
-// frogans : 2013-12-19 OP3FT
-frogans
-
-// frontdoor : 2015-07-02 Lifestyle Domain Holdings, Inc.
-frontdoor
-
-// frontier : 2015-02-05 Frontier Communications Corporation
-frontier
-
-// ftr : 2015-07-16 Frontier Communications Corporation
-ftr
-
-// fujitsu : 2015-07-30 Fujitsu Limited
-fujitsu
-
-// fujixerox : 2015-07-23 Xerox DNHC LLC
-fujixerox
-
-// fun : 2016-01-14 DotSpace Inc.
-fun
-
-// fund : 2014-03-20 Binky Moon, LLC
-fund
-
-// furniture : 2014-03-20 Binky Moon, LLC
-furniture
-
-// futbol : 2013-09-20 United TLD Holdco Ltd.
-futbol
-
-// fyi : 2015-04-02 Binky Moon, LLC
-fyi
-
-// gal : 2013-11-07 Asociación puntoGAL
-gal
-
-// gallery : 2013-09-13 Binky Moon, LLC
-gallery
-
-// gallo : 2015-06-11 Gallo Vineyards, Inc.
-gallo
-
-// gallup : 2015-02-19 Gallup, Inc.
-gallup
-
-// game : 2015-05-28 Uniregistry, Corp.
-game
-
-// games : 2015-05-28 United TLD Holdco Ltd.
-games
-
-// gap : 2015-07-31 The Gap, Inc.
-gap
-
-// garden : 2014-06-26 Minds + Machines Group Limited
-garden
-
-// gbiz : 2014-07-17 Charleston Road Registry Inc.
-gbiz
-
-// gdn : 2014-07-31 Joint Stock Company "Navigation-information systems"
-gdn
-
-// gea : 2014-12-04 GEA Group Aktiengesellschaft
-gea
-
-// gent : 2014-01-23 COMBELL NV
-gent
-
-// genting : 2015-03-12 Resorts World Inc Pte. Ltd.
-genting
-
-// george : 2015-07-31 Wal-Mart Stores, Inc.
-george
-
-// ggee : 2014-01-09 GMO Internet, Inc.
-ggee
-
-// gift : 2013-10-17 DotGift, LLC
-gift
-
-// gifts : 2014-07-03 Binky Moon, LLC
-gifts
-
-// gives : 2014-03-06 United TLD Holdco Ltd.
-gives
-
-// giving : 2014-11-13 Giving Limited
-giving
-
-// glade : 2015-07-23 Johnson Shareholdings, Inc.
-glade
-
-// glass : 2013-11-07 Binky Moon, LLC
-glass
-
-// gle : 2014-07-24 Charleston Road Registry Inc.
-gle
-
-// global : 2014-04-17 Dot Global Domain Registry Limited
-global
-
-// globo : 2013-12-19 Globo Comunicação e Participações S.A
-globo
-
-// gmail : 2014-05-01 Charleston Road Registry Inc.
-gmail
-
-// gmbh : 2016-01-29 Binky Moon, LLC
-gmbh
-
-// gmo : 2014-01-09 GMO Internet Pte. Ltd.
-gmo
-
-// gmx : 2014-04-24 1&1 Mail & Media GmbH
-gmx
-
-// godaddy : 2015-07-23 Go Daddy East, LLC
-godaddy
-
-// gold : 2015-01-22 Binky Moon, LLC
-gold
-
-// goldpoint : 2014-11-20 YODOBASHI CAMERA CO.,LTD.
-goldpoint
-
-// golf : 2014-12-18 Binky Moon, LLC
-golf
-
-// goo : 2014-12-18 NTT Resonant Inc.
-goo
-
-// goodyear : 2015-07-02 The Goodyear Tire & Rubber Company
-goodyear
-
-// goog : 2014-11-20 Charleston Road Registry Inc.
-goog
-
-// google : 2014-07-24 Charleston Road Registry Inc.
-google
-
-// gop : 2014-01-16 Republican State Leadership Committee, Inc.
-gop
-
-// got : 2014-12-18 Amazon Registry Services, Inc.
-got
-
-// grainger : 2015-05-07 Grainger Registry Services, LLC
-grainger
-
-// graphics : 2013-09-13 Binky Moon, LLC
-graphics
-
-// gratis : 2014-03-20 Binky Moon, LLC
-gratis
-
-// green : 2014-05-08 Afilias plc
-green
-
-// gripe : 2014-03-06 Binky Moon, LLC
-gripe
-
-// grocery : 2016-06-16 Wal-Mart Stores, Inc.
-grocery
-
-// group : 2014-08-15 Binky Moon, LLC
-group
-
-// guardian : 2015-07-30 The Guardian Life Insurance Company of America
-guardian
-
-// gucci : 2014-11-13 Guccio Gucci S.p.a.
-gucci
-
-// guge : 2014-08-28 Charleston Road Registry Inc.
-guge
-
-// guide : 2013-09-13 Binky Moon, LLC
-guide
-
-// guitars : 2013-11-14 Uniregistry, Corp.
-guitars
-
-// guru : 2013-08-27 Binky Moon, LLC
-guru
-
-// hair : 2015-12-03 L'Oréal
-hair
-
-// hamburg : 2014-02-20 Hamburg Top-Level-Domain GmbH
-hamburg
-
-// hangout : 2014-11-13 Charleston Road Registry Inc.
-hangout
-
-// haus : 2013-12-05 United TLD Holdco Ltd.
-haus
-
-// hbo : 2015-07-30 HBO Registry Services, Inc.
-hbo
-
-// hdfc : 2015-07-30 HOUSING DEVELOPMENT FINANCE CORPORATION LIMITED
-hdfc
-
-// hdfcbank : 2015-02-12 HDFC Bank Limited
-hdfcbank
-
-// health : 2015-02-11 DotHealth, LLC
-health
-
-// healthcare : 2014-06-12 Binky Moon, LLC
-healthcare
-
-// help : 2014-06-26 Uniregistry, Corp.
-help
-
-// helsinki : 2015-02-05 City of Helsinki
-helsinki
-
-// here : 2014-02-06 Charleston Road Registry Inc.
-here
-
-// hermes : 2014-07-10 HERMES INTERNATIONAL
-hermes
-
-// hgtv : 2015-07-02 Lifestyle Domain Holdings, Inc.
-hgtv
-
-// hiphop : 2014-03-06 Uniregistry, Corp.
-hiphop
-
-// hisamitsu : 2015-07-16 Hisamitsu Pharmaceutical Co.,Inc.
-hisamitsu
-
-// hitachi : 2014-10-31 Hitachi, Ltd.
-hitachi
-
-// hiv : 2014-03-13 Uniregistry, Corp.
-hiv
-
-// hkt : 2015-05-14 PCCW-HKT DataCom Services Limited
-hkt
-
-// hockey : 2015-03-19 Binky Moon, LLC
-hockey
-
-// holdings : 2013-08-27 Binky Moon, LLC
-holdings
-
-// holiday : 2013-11-07 Binky Moon, LLC
-holiday
-
-// homedepot : 2015-04-02 Home Depot Product Authority, LLC
-homedepot
-
-// homegoods : 2015-07-16 The TJX Companies, Inc.
-homegoods
-
-// homes : 2014-01-09 DERHomes, LLC
-homes
-
-// homesense : 2015-07-16 The TJX Companies, Inc.
-homesense
-
-// honda : 2014-12-18 Honda Motor Co., Ltd.
-honda
-
-// honeywell : 2015-07-23 Honeywell GTLD LLC
-honeywell
-
-// horse : 2013-11-21 Minds + Machines Group Limited
-horse
-
-// hospital : 2016-10-20 Binky Moon, LLC
-hospital
-
-// host : 2014-04-17 DotHost Inc.
-host
-
-// hosting : 2014-05-29 Uniregistry, Corp.
-hosting
-
-// hot : 2015-08-27 Amazon Registry Services, Inc.
-hot
-
-// hoteles : 2015-03-05 Travel Reservations SRL
-hoteles
-
-// hotels : 2016-04-07 Booking.com B.V.
-hotels
-
-// hotmail : 2014-12-18 Microsoft Corporation
-hotmail
-
-// house : 2013-11-07 Binky Moon, LLC
-house
-
-// how : 2014-01-23 Charleston Road Registry Inc.
-how
-
-// hsbc : 2014-10-24 HSBC Global Services (UK) Limited
-hsbc
-
-// hughes : 2015-07-30 Hughes Satellite Systems Corporation
-hughes
-
-// hyatt : 2015-07-30 Hyatt GTLD, L.L.C.
-hyatt
-
-// hyundai : 2015-07-09 Hyundai Motor Company
-hyundai
-
-// ibm : 2014-07-31 International Business Machines Corporation
-ibm
-
-// icbc : 2015-02-19 Industrial and Commercial Bank of China Limited
-icbc
-
-// ice : 2014-10-30 IntercontinentalExchange, Inc.
-ice
-
-// icu : 2015-01-08 ShortDot SA
-icu
-
-// ieee : 2015-07-23 IEEE Global LLC
-ieee
-
-// ifm : 2014-01-30 ifm electronic gmbh
-ifm
-
-// ikano : 2015-07-09 Ikano S.A.
-ikano
-
-// imamat : 2015-08-06 Fondation Aga Khan (Aga Khan Foundation)
-imamat
-
-// imdb : 2015-06-25 Amazon Registry Services, Inc.
-imdb
-
-// immo : 2014-07-10 Binky Moon, LLC
-immo
-
-// immobilien : 2013-11-07 United TLD Holdco Ltd.
-immobilien
-
-// inc : 2018-03-10 GTLD Limited
-inc
-
-// industries : 2013-12-05 Binky Moon, LLC
-industries
-
-// infiniti : 2014-03-27 NISSAN MOTOR CO., LTD.
-infiniti
-
-// ing : 2014-01-23 Charleston Road Registry Inc.
-ing
-
-// ink : 2013-12-05 Top Level Design, LLC
-ink
-
-// institute : 2013-11-07 Binky Moon, LLC
-institute
-
-// insurance : 2015-02-19 fTLD Registry Services LLC
-insurance
-
-// insure : 2014-03-20 Binky Moon, LLC
-insure
-
-// intel : 2015-08-06 Intel Corporation
-intel
-
-// international : 2013-11-07 Binky Moon, LLC
-international
-
-// intuit : 2015-07-30 Intuit Administrative Services, Inc.
-intuit
-
-// investments : 2014-03-20 Binky Moon, LLC
-investments
-
-// ipiranga : 2014-08-28 Ipiranga Produtos de Petroleo S.A.
-ipiranga
-
-// irish : 2014-08-07 Binky Moon, LLC
-irish
-
-// iselect : 2015-02-11 iSelect Ltd
-iselect
-
-// ismaili : 2015-08-06 Fondation Aga Khan (Aga Khan Foundation)
-ismaili
-
-// ist : 2014-08-28 Istanbul Metropolitan Municipality
-ist
-
-// istanbul : 2014-08-28 Istanbul Metropolitan Municipality
-istanbul
-
-// itau : 2014-10-02 Itau Unibanco Holding S.A.
-itau
-
-// itv : 2015-07-09 ITV Services Limited
-itv
-
-// iveco : 2015-09-03 CNH Industrial N.V.
-iveco
-
-// jaguar : 2014-11-13 Jaguar Land Rover Ltd
-jaguar
-
-// java : 2014-06-19 Oracle Corporation
-java
-
-// jcb : 2014-11-20 JCB Co., Ltd.
-jcb
-
-// jcp : 2015-04-23 JCP Media, Inc.
-jcp
-
-// jeep : 2015-07-30 FCA US LLC.
-jeep
-
-// jetzt : 2014-01-09 Binky Moon, LLC
-jetzt
-
-// jewelry : 2015-03-05 Binky Moon, LLC
-jewelry
-
-// jio : 2015-04-02 Reliance Industries Limited
-jio
-
-// jll : 2015-04-02 Jones Lang LaSalle Incorporated
-jll
-
-// jmp : 2015-03-26 Matrix IP LLC
-jmp
-
-// jnj : 2015-06-18 Johnson & Johnson Services, Inc.
-jnj
-
-// joburg : 2014-03-24 ZA Central Registry NPC trading as ZA Central Registry
-joburg
-
-// jot : 2014-12-18 Amazon Registry Services, Inc.
-jot
-
-// joy : 2014-12-18 Amazon Registry Services, Inc.
-joy
-
-// jpmorgan : 2015-04-30 JPMorgan Chase Bank, National Association
-jpmorgan
-
-// jprs : 2014-09-18 Japan Registry Services Co., Ltd.
-jprs
-
-// juegos : 2014-03-20 Uniregistry, Corp.
-juegos
-
-// juniper : 2015-07-30 JUNIPER NETWORKS, INC.
-juniper
-
-// kaufen : 2013-11-07 United TLD Holdco Ltd.
-kaufen
-
-// kddi : 2014-09-12 KDDI CORPORATION
-kddi
-
-// kerryhotels : 2015-04-30 Kerry Trading Co. Limited
-kerryhotels
-
-// kerrylogistics : 2015-04-09 Kerry Trading Co. Limited
-kerrylogistics
-
-// kerryproperties : 2015-04-09 Kerry Trading Co. Limited
-kerryproperties
-
-// kfh : 2014-12-04 Kuwait Finance House
-kfh
-
-// kia : 2015-07-09 KIA MOTORS CORPORATION
-kia
-
-// kim : 2013-09-23 Afilias plc
-kim
-
-// kinder : 2014-11-07 Ferrero Trading Lux S.A.
-kinder
-
-// kindle : 2015-06-25 Amazon Registry Services, Inc.
-kindle
-
-// kitchen : 2013-09-20 Binky Moon, LLC
-kitchen
-
-// kiwi : 2013-09-20 DOT KIWI LIMITED
-kiwi
-
-// koeln : 2014-01-09 punkt.wien GmbH
-koeln
-
-// komatsu : 2015-01-08 Komatsu Ltd.
-komatsu
-
-// kosher : 2015-08-20 Kosher Marketing Assets LLC
-kosher
-
-// kpmg : 2015-04-23 KPMG International Cooperative (KPMG International Genossenschaft)
-kpmg
-
-// kpn : 2015-01-08 Koninklijke KPN N.V.
-kpn
-
-// krd : 2013-12-05 KRG Department of Information Technology
-krd
-
-// kred : 2013-12-19 KredTLD Pty Ltd
-kred
-
-// kuokgroup : 2015-04-09 Kerry Trading Co. Limited
-kuokgroup
-
-// kyoto : 2014-11-07 Academic Institution: Kyoto Jyoho Gakuen
-kyoto
-
-// lacaixa : 2014-01-09 Fundación Bancaria Caixa d’Estalvis i Pensions de Barcelona, “la Caixa”
-lacaixa
-
-// ladbrokes : 2015-08-06 LADBROKES INTERNATIONAL PLC
-ladbrokes
-
-// lamborghini : 2015-06-04 Automobili Lamborghini S.p.A.
-lamborghini
-
-// lamer : 2015-10-01 The Estée Lauder Companies Inc.
-lamer
-
-// lancaster : 2015-02-12 LANCASTER
-lancaster
-
-// lancia : 2015-07-31 Fiat Chrysler Automobiles N.V.
-lancia
-
-// lancome : 2015-07-23 L'Oréal
-lancome
-
-// land : 2013-09-10 Binky Moon, LLC
-land
-
-// landrover : 2014-11-13 Jaguar Land Rover Ltd
-landrover
-
-// lanxess : 2015-07-30 LANXESS Corporation
-lanxess
-
-// lasalle : 2015-04-02 Jones Lang LaSalle Incorporated
-lasalle
-
-// lat : 2014-10-16 ECOM-LAC Federaciòn de Latinoamèrica y el Caribe para Internet y el Comercio Electrònico
-lat
-
-// latino : 2015-07-30 Dish DBS Corporation
-latino
-
-// latrobe : 2014-06-16 La Trobe University
-latrobe
-
-// law : 2015-01-22 Minds + Machines Group Limited
-law
-
-// lawyer : 2014-03-20 United TLD Holdco Ltd.
-lawyer
-
-// lds : 2014-03-20 IRI Domain Management, LLC ("Applicant")
-lds
-
-// lease : 2014-03-06 Binky Moon, LLC
-lease
-
-// leclerc : 2014-08-07 A.C.D. LEC Association des Centres Distributeurs Edouard Leclerc
-leclerc
-
-// lefrak : 2015-07-16 LeFrak Organization, Inc.
-lefrak
-
-// legal : 2014-10-16 Binky Moon, LLC
-legal
-
-// lego : 2015-07-16 LEGO Juris A/S
-lego
-
-// lexus : 2015-04-23 TOYOTA MOTOR CORPORATION
-lexus
-
-// lgbt : 2014-05-08 Afilias plc
-lgbt
-
-// liaison : 2014-10-02 Liaison Technologies, Incorporated
-liaison
-
-// lidl : 2014-09-18 Schwarz Domains und Services GmbH & Co. KG
-lidl
-
-// life : 2014-02-06 Binky Moon, LLC
-life
-
-// lifeinsurance : 2015-01-15 American Council of Life Insurers
-lifeinsurance
-
-// lifestyle : 2014-12-11 Lifestyle Domain Holdings, Inc.
-lifestyle
-
-// lighting : 2013-08-27 Binky Moon, LLC
-lighting
-
-// like : 2014-12-18 Amazon Registry Services, Inc.
-like
-
-// lilly : 2015-07-31 Eli Lilly and Company
-lilly
-
-// limited : 2014-03-06 Binky Moon, LLC
-limited
-
-// limo : 2013-10-17 Binky Moon, LLC
-limo
-
-// lincoln : 2014-11-13 Ford Motor Company
-lincoln
-
-// linde : 2014-12-04 Linde Aktiengesellschaft
-linde
-
-// link : 2013-11-14 Uniregistry, Corp.
-link
-
-// lipsy : 2015-06-25 Lipsy Ltd
-lipsy
-
-// live : 2014-12-04 United TLD Holdco Ltd.
-live
-
-// living : 2015-07-30 Lifestyle Domain Holdings, Inc.
-living
-
-// lixil : 2015-03-19 LIXIL Group Corporation
-lixil
-
-// llc : 2017-12-14 Afilias plc
-llc
-
-// loan : 2014-11-20 dot Loan Limited
-loan
-
-// loans : 2014-03-20 Binky Moon, LLC
-loans
-
-// locker : 2015-06-04 Dish DBS Corporation
-locker
-
-// locus : 2015-06-25 Locus Analytics LLC
-locus
-
-// loft : 2015-07-30 Annco, Inc.
-loft
-
-// lol : 2015-01-30 Uniregistry, Corp.
-lol
-
-// london : 2013-11-14 Dot London Domains Limited
-london
-
-// lotte : 2014-11-07 Lotte Holdings Co., Ltd.
-lotte
-
-// lotto : 2014-04-10 Afilias plc
-lotto
-
-// love : 2014-12-22 Merchant Law Group LLP
-love
-
-// lpl : 2015-07-30 LPL Holdings, Inc.
-lpl
-
-// lplfinancial : 2015-07-30 LPL Holdings, Inc.
-lplfinancial
-
-// ltd : 2014-09-25 Binky Moon, LLC
-ltd
-
-// ltda : 2014-04-17 InterNetX, Corp
-ltda
-
-// lundbeck : 2015-08-06 H. Lundbeck A/S
-lundbeck
-
-// lupin : 2014-11-07 LUPIN LIMITED
-lupin
-
-// luxe : 2014-01-09 Minds + Machines Group Limited
-luxe
-
-// luxury : 2013-10-17 Luxury Partners, LLC
-luxury
-
-// macys : 2015-07-31 Macys, Inc.
-macys
-
-// madrid : 2014-05-01 Comunidad de Madrid
-madrid
-
-// maif : 2014-10-02 Mutuelle Assurance Instituteur France (MAIF)
-maif
-
-// maison : 2013-12-05 Binky Moon, LLC
-maison
-
-// makeup : 2015-01-15 L'Oréal
-makeup
-
-// man : 2014-12-04 MAN SE
-man
-
-// management : 2013-11-07 Binky Moon, LLC
-management
-
-// mango : 2013-10-24 PUNTO FA S.L.
-mango
-
-// map : 2016-06-09 Charleston Road Registry Inc.
-map
-
-// market : 2014-03-06 United TLD Holdco Ltd.
-market
-
-// marketing : 2013-11-07 Binky Moon, LLC
-marketing
-
-// markets : 2014-12-11 Dotmarkets Registry Limited
-markets
-
-// marriott : 2014-10-09 Marriott Worldwide Corporation
-marriott
-
-// marshalls : 2015-07-16 The TJX Companies, Inc.
-marshalls
-
-// maserati : 2015-07-31 Fiat Chrysler Automobiles N.V.
-maserati
-
-// mattel : 2015-08-06 Mattel Sites, Inc.
-mattel
-
-// mba : 2015-04-02 Binky Moon, LLC
-mba
-
-// mckinsey : 2015-07-31 McKinsey Holdings, Inc.
-mckinsey
-
-// med : 2015-08-06 Medistry LLC
-med
-
-// media : 2014-03-06 Binky Moon, LLC
-media
-
-// meet : 2014-01-16 Charleston Road Registry Inc.
-meet
-
-// melbourne : 2014-05-29 The Crown in right of the State of Victoria, represented by its Department of State Development, Business and Innovation
-melbourne
-
-// meme : 2014-01-30 Charleston Road Registry Inc.
-meme
-
-// memorial : 2014-10-16 Dog Beach, LLC
-memorial
-
-// men : 2015-02-26 Exclusive Registry Limited
-men
-
-// menu : 2013-09-11 Wedding TLD2, LLC
-menu
-
-// merckmsd : 2016-07-14 MSD Registry Holdings, Inc.
-merckmsd
-
-// metlife : 2015-05-07 MetLife Services and Solutions, LLC
-metlife
-
-// miami : 2013-12-19 Minds + Machines Group Limited
-miami
-
-// microsoft : 2014-12-18 Microsoft Corporation
-microsoft
-
-// mini : 2014-01-09 Bayerische Motoren Werke Aktiengesellschaft
-mini
-
-// mint : 2015-07-30 Intuit Administrative Services, Inc.
-mint
-
-// mit : 2015-07-02 Massachusetts Institute of Technology
-mit
-
-// mitsubishi : 2015-07-23 Mitsubishi Corporation
-mitsubishi
-
-// mlb : 2015-05-21 MLB Advanced Media DH, LLC
-mlb
-
-// mls : 2015-04-23 The Canadian Real Estate Association
-mls
-
-// mma : 2014-11-07 MMA IARD
-mma
-
-// mobile : 2016-06-02 Dish DBS Corporation
-mobile
-
-// mobily : 2014-12-18 GreenTech Consultancy Company W.L.L.
-mobily
-
-// moda : 2013-11-07 United TLD Holdco Ltd.
-moda
-
-// moe : 2013-11-13 Interlink Co., Ltd.
-moe
-
-// moi : 2014-12-18 Amazon Registry Services, Inc.
-moi
-
-// mom : 2015-04-16 Uniregistry, Corp.
-mom
-
-// monash : 2013-09-30 Monash University
-monash
-
-// money : 2014-10-16 Binky Moon, LLC
-money
-
-// monster : 2015-09-11 Monster Worldwide, Inc.
-monster
-
-// mopar : 2015-07-30 FCA US LLC.
-mopar
-
-// mormon : 2013-12-05 IRI Domain Management, LLC ("Applicant")
-mormon
-
-// mortgage : 2014-03-20 United TLD Holdco Ltd.
-mortgage
-
-// moscow : 2013-12-19 Foundation for Assistance for Internet Technologies and Infrastructure Development (FAITID)
-moscow
-
-// moto : 2015-06-04 Motorola Trademark Holdings, LLC
-moto
-
-// motorcycles : 2014-01-09 DERMotorcycles, LLC
-motorcycles
-
-// mov : 2014-01-30 Charleston Road Registry Inc.
-mov
-
-// movie : 2015-02-05 Binky Moon, LLC
-movie
-
-// movistar : 2014-10-16 Telefónica S.A.
-movistar
-
-// msd : 2015-07-23 MSD Registry Holdings, Inc.
-msd
-
-// mtn : 2014-12-04 MTN Dubai Limited
-mtn
-
-// mtr : 2015-03-12 MTR Corporation Limited
-mtr
-
-// mutual : 2015-04-02 Northwestern Mutual MU TLD Registry, LLC
-mutual
-
-// nab : 2015-08-20 National Australia Bank Limited
-nab
-
-// nadex : 2014-12-11 Nadex Domains, Inc.
-nadex
-
-// nagoya : 2013-10-24 GMO Registry, Inc.
-nagoya
-
-// nationwide : 2015-07-23 Nationwide Mutual Insurance Company
-nationwide
-
-// natura : 2015-03-12 NATURA COSMÉTICOS S.A.
-natura
-
-// navy : 2014-03-06 United TLD Holdco Ltd.
-navy
-
-// nba : 2015-07-31 NBA REGISTRY, LLC
-nba
-
-// nec : 2015-01-08 NEC Corporation
-nec
-
-// netbank : 2014-06-26 COMMONWEALTH BANK OF AUSTRALIA
-netbank
-
-// netflix : 2015-06-18 Netflix, Inc.
-netflix
-
-// network : 2013-11-14 Binky Moon, LLC
-network
-
-// neustar : 2013-12-05 Registry Services, LLC
-neustar
-
-// new : 2014-01-30 Charleston Road Registry Inc.
-new
-
-// newholland : 2015-09-03 CNH Industrial N.V.
-newholland
-
-// news : 2014-12-18 United TLD Holdco Ltd.
-news
-
-// next : 2015-06-18 Next plc
-next
-
-// nextdirect : 2015-06-18 Next plc
-nextdirect
-
-// nexus : 2014-07-24 Charleston Road Registry Inc.
-nexus
-
-// nfl : 2015-07-23 NFL Reg Ops LLC
-nfl
-
-// ngo : 2014-03-06 Public Interest Registry
-ngo
-
-// nhk : 2014-02-13 Japan Broadcasting Corporation (NHK)
-nhk
-
-// nico : 2014-12-04 DWANGO Co., Ltd.
-nico
-
-// nike : 2015-07-23 NIKE, Inc.
-nike
-
-// nikon : 2015-05-21 NIKON CORPORATION
-nikon
-
-// ninja : 2013-11-07 United TLD Holdco Ltd.
-ninja
-
-// nissan : 2014-03-27 NISSAN MOTOR CO., LTD.
-nissan
-
-// nissay : 2015-10-29 Nippon Life Insurance Company
-nissay
-
-// nokia : 2015-01-08 Nokia Corporation
-nokia
-
-// northwesternmutual : 2015-06-18 Northwestern Mutual Registry, LLC
-northwesternmutual
-
-// norton : 2014-12-04 Symantec Corporation
-norton
-
-// now : 2015-06-25 Amazon Registry Services, Inc.
-now
-
-// nowruz : 2014-09-04 Asia Green IT System Bilgisayar San. ve Tic. Ltd. Sti.
-nowruz
-
-// nowtv : 2015-05-14 Starbucks (HK) Limited
-nowtv
-
-// nra : 2014-05-22 NRA Holdings Company, INC.
-nra
-
-// nrw : 2013-11-21 Minds + Machines GmbH
-nrw
-
-// ntt : 2014-10-31 NIPPON TELEGRAPH AND TELEPHONE CORPORATION
-ntt
-
-// nyc : 2014-01-23 The City of New York by and through the New York City Department of Information Technology & Telecommunications
-nyc
-
-// obi : 2014-09-25 OBI Group Holding SE & Co. KGaA
-obi
-
-// observer : 2015-04-30 Top Level Spectrum, Inc.
-observer
-
-// off : 2015-07-23 Johnson Shareholdings, Inc.
-off
-
-// office : 2015-03-12 Microsoft Corporation
-office
-
-// okinawa : 2013-12-05 BRregistry, Inc.
-okinawa
-
-// olayan : 2015-05-14 Crescent Holding GmbH
-olayan
-
-// olayangroup : 2015-05-14 Crescent Holding GmbH
-olayangroup
-
-// oldnavy : 2015-07-31 The Gap, Inc.
-oldnavy
-
-// ollo : 2015-06-04 Dish DBS Corporation
-ollo
-
-// omega : 2015-01-08 The Swatch Group Ltd
-omega
-
-// one : 2014-11-07 One.com A/S
-one
-
-// ong : 2014-03-06 Public Interest Registry
-ong
-
-// onl : 2013-09-16 I-Registry Ltd.
-onl
-
-// online : 2015-01-15 DotOnline Inc.
-online
-
-// onyourside : 2015-07-23 Nationwide Mutual Insurance Company
-onyourside
-
-// ooo : 2014-01-09 INFIBEAM INCORPORATION LIMITED
-ooo
-
-// open : 2015-07-31 American Express Travel Related Services Company, Inc.
-open
-
-// oracle : 2014-06-19 Oracle Corporation
-oracle
-
-// orange : 2015-03-12 Orange Brand Services Limited
-orange
-
-// organic : 2014-03-27 Afilias plc
-organic
-
-// origins : 2015-10-01 The Estée Lauder Companies Inc.
-origins
-
-// osaka : 2014-09-04 Osaka Registry Co., Ltd.
-osaka
-
-// otsuka : 2013-10-11 Otsuka Holdings Co., Ltd.
-otsuka
-
-// ott : 2015-06-04 Dish DBS Corporation
-ott
-
-// ovh : 2014-01-16 OVH SAS
-ovh
-
-// page : 2014-12-04 Charleston Road Registry Inc.
-page
-
-// panasonic : 2015-07-30 Panasonic Corporation
-panasonic
-
-// paris : 2014-01-30 City of Paris
-paris
-
-// pars : 2014-09-04 Asia Green IT System Bilgisayar San. ve Tic. Ltd. Sti.
-pars
-
-// partners : 2013-12-05 Binky Moon, LLC
-partners
-
-// parts : 2013-12-05 Binky Moon, LLC
-parts
-
-// party : 2014-09-11 Blue Sky Registry Limited
-party
-
-// passagens : 2015-03-05 Travel Reservations SRL
-passagens
-
-// pay : 2015-08-27 Amazon Registry Services, Inc.
-pay
-
-// pccw : 2015-05-14 PCCW Enterprises Limited
-pccw
-
-// pet : 2015-05-07 Afilias plc
-pet
-
-// pfizer : 2015-09-11 Pfizer Inc.
-pfizer
-
-// pharmacy : 2014-06-19 National Association of Boards of Pharmacy
-pharmacy
-
-// phd : 2016-07-28 Charleston Road Registry Inc.
-phd
-
-// philips : 2014-11-07 Koninklijke Philips N.V.
-philips
-
-// phone : 2016-06-02 Dish DBS Corporation
-phone
-
-// photo : 2013-11-14 Uniregistry, Corp.
-photo
-
-// photography : 2013-09-20 Binky Moon, LLC
-photography
-
-// photos : 2013-10-17 Binky Moon, LLC
-photos
-
-// physio : 2014-05-01 PhysBiz Pty Ltd
-physio
-
-// piaget : 2014-10-16 Richemont DNS Inc.
-piaget
-
-// pics : 2013-11-14 Uniregistry, Corp.
-pics
-
-// pictet : 2014-06-26 Pictet Europe S.A.
-pictet
-
-// pictures : 2014-03-06 Binky Moon, LLC
-pictures
-
-// pid : 2015-01-08 Top Level Spectrum, Inc.
-pid
-
-// pin : 2014-12-18 Amazon Registry Services, Inc.
-pin
-
-// ping : 2015-06-11 Ping Registry Provider, Inc.
-ping
-
-// pink : 2013-10-01 Afilias plc
-pink
-
-// pioneer : 2015-07-16 Pioneer Corporation
-pioneer
-
-// pizza : 2014-06-26 Binky Moon, LLC
-pizza
-
-// place : 2014-04-24 Binky Moon, LLC
-place
-
-// play : 2015-03-05 Charleston Road Registry Inc.
-play
-
-// playstation : 2015-07-02 Sony Computer Entertainment Inc.
-playstation
-
-// plumbing : 2013-09-10 Binky Moon, LLC
-plumbing
-
-// plus : 2015-02-05 Binky Moon, LLC
-plus
-
-// pnc : 2015-07-02 PNC Domain Co., LLC
-pnc
-
-// pohl : 2014-06-23 Deutsche Vermögensberatung Aktiengesellschaft DVAG
-pohl
-
-// poker : 2014-07-03 Afilias plc
-poker
-
-// politie : 2015-08-20 Politie Nederland
-politie
-
-// porn : 2014-10-16 ICM Registry PN LLC
-porn
-
-// pramerica : 2015-07-30 Prudential Financial, Inc.
-pramerica
-
-// praxi : 2013-12-05 Praxi S.p.A.
-praxi
-
-// press : 2014-04-03 DotPress Inc.
-press
-
-// prime : 2015-06-25 Amazon Registry Services, Inc.
-prime
-
-// prod : 2014-01-23 Charleston Road Registry Inc.
-prod
-
-// productions : 2013-12-05 Binky Moon, LLC
-productions
-
-// prof : 2014-07-24 Charleston Road Registry Inc.
-prof
-
-// progressive : 2015-07-23 Progressive Casualty Insurance Company
-progressive
-
-// promo : 2014-12-18 Afilias plc
-promo
-
-// properties : 2013-12-05 Binky Moon, LLC
-properties
-
-// property : 2014-05-22 Uniregistry, Corp.
-property
-
-// protection : 2015-04-23 XYZ.COM LLC
-protection
-
-// pru : 2015-07-30 Prudential Financial, Inc.
-pru
-
-// prudential : 2015-07-30 Prudential Financial, Inc.
-prudential
-
-// pub : 2013-12-12 United TLD Holdco Ltd.
-pub
-
-// pwc : 2015-10-29 PricewaterhouseCoopers LLP
-pwc
-
-// qpon : 2013-11-14 dotCOOL, Inc.
-qpon
-
-// quebec : 2013-12-19 PointQuébec Inc
-quebec
-
-// quest : 2015-03-26 Quest ION Limited
-quest
-
-// qvc : 2015-07-30 QVC, Inc.
-qvc
-
-// racing : 2014-12-04 Premier Registry Limited
-racing
-
-// radio : 2016-07-21 European Broadcasting Union (EBU)
-radio
-
-// raid : 2015-07-23 Johnson Shareholdings, Inc.
-raid
-
-// read : 2014-12-18 Amazon Registry Services, Inc.
-read
-
-// realestate : 2015-09-11 dotRealEstate LLC
-realestate
-
-// realtor : 2014-05-29 Real Estate Domains LLC
-realtor
-
-// realty : 2015-03-19 Fegistry, LLC
-realty
-
-// recipes : 2013-10-17 Binky Moon, LLC
-recipes
-
-// red : 2013-11-07 Afilias plc
-red
-
-// redstone : 2014-10-31 Redstone Haute Couture Co., Ltd.
-redstone
-
-// redumbrella : 2015-03-26 Travelers TLD, LLC
-redumbrella
-
-// rehab : 2014-03-06 United TLD Holdco Ltd.
-rehab
-
-// reise : 2014-03-13 Binky Moon, LLC
-reise
-
-// reisen : 2014-03-06 Binky Moon, LLC
-reisen
-
-// reit : 2014-09-04 National Association of Real Estate Investment Trusts, Inc.
-reit
-
-// reliance : 2015-04-02 Reliance Industries Limited
-reliance
-
-// ren : 2013-12-12 Beijing Qianxiang Wangjing Technology Development Co., Ltd.
-ren
-
-// rent : 2014-12-04 XYZ.COM LLC
-rent
-
-// rentals : 2013-12-05 Binky Moon, LLC
-rentals
-
-// repair : 2013-11-07 Binky Moon, LLC
-repair
-
-// report : 2013-12-05 Binky Moon, LLC
-report
-
-// republican : 2014-03-20 United TLD Holdco Ltd.
-republican
-
-// rest : 2013-12-19 Punto 2012 Sociedad Anonima Promotora de Inversion de Capital Variable
-rest
-
-// restaurant : 2014-07-03 Binky Moon, LLC
-restaurant
-
-// review : 2014-11-20 dot Review Limited
-review
-
-// reviews : 2013-09-13 United TLD Holdco Ltd.
-reviews
-
-// rexroth : 2015-06-18 Robert Bosch GMBH
-rexroth
-
-// rich : 2013-11-21 I-Registry Ltd.
-rich
-
-// richardli : 2015-05-14 Pacific Century Asset Management (HK) Limited
-richardli
-
-// ricoh : 2014-11-20 Ricoh Company, Ltd.
-ricoh
-
-// rightathome : 2015-07-23 Johnson Shareholdings, Inc.
-rightathome
-
-// ril : 2015-04-02 Reliance Industries Limited
-ril
-
-// rio : 2014-02-27 Empresa Municipal de Informática SA - IPLANRIO
-rio
-
-// rip : 2014-07-10 United TLD Holdco Ltd.
-rip
-
-// rmit : 2015-11-19 Royal Melbourne Institute of Technology
-rmit
-
-// rocher : 2014-12-18 Ferrero Trading Lux S.A.
-rocher
-
-// rocks : 2013-11-14 United TLD Holdco Ltd.
-rocks
-
-// rodeo : 2013-12-19 Minds + Machines Group Limited
-rodeo
-
-// rogers : 2015-08-06 Rogers Communications Canada Inc.
-rogers
-
-// room : 2014-12-18 Amazon Registry Services, Inc.
-room
-
-// rsvp : 2014-05-08 Charleston Road Registry Inc.
-rsvp
-
-// rugby : 2016-12-15 World Rugby Strategic Developments Limited
-rugby
-
-// ruhr : 2013-10-02 regiodot GmbH & Co. KG
-ruhr
-
-// run : 2015-03-19 Binky Moon, LLC
-run
-
-// rwe : 2015-04-02 RWE AG
-rwe
-
-// ryukyu : 2014-01-09 BRregistry, Inc.
-ryukyu
-
-// saarland : 2013-12-12 dotSaarland GmbH
-saarland
-
-// safe : 2014-12-18 Amazon Registry Services, Inc.
-safe
-
-// safety : 2015-01-08 Safety Registry Services, LLC.
-safety
-
-// sakura : 2014-12-18 SAKURA Internet Inc.
-sakura
-
-// sale : 2014-10-16 United TLD Holdco Ltd.
-sale
-
-// salon : 2014-12-11 Binky Moon, LLC
-salon
-
-// samsclub : 2015-07-31 Wal-Mart Stores, Inc.
-samsclub
-
-// samsung : 2014-04-03 SAMSUNG SDS CO., LTD
-samsung
-
-// sandvik : 2014-11-13 Sandvik AB
-sandvik
-
-// sandvikcoromant : 2014-11-07 Sandvik AB
-sandvikcoromant
-
-// sanofi : 2014-10-09 Sanofi
-sanofi
-
-// sap : 2014-03-27 SAP AG
-sap
-
-// sarl : 2014-07-03 Binky Moon, LLC
-sarl
-
-// sas : 2015-04-02 Research IP LLC
-sas
-
-// save : 2015-06-25 Amazon Registry Services, Inc.
-save
-
-// saxo : 2014-10-31 Saxo Bank A/S
-saxo
-
-// sbi : 2015-03-12 STATE BANK OF INDIA
-sbi
-
-// sbs : 2014-11-07 SPECIAL BROADCASTING SERVICE CORPORATION
-sbs
-
-// sca : 2014-03-13 SVENSKA CELLULOSA AKTIEBOLAGET SCA (publ)
-sca
-
-// scb : 2014-02-20 The Siam Commercial Bank Public Company Limited ("SCB")
-scb
-
-// schaeffler : 2015-08-06 Schaeffler Technologies AG & Co. KG
-schaeffler
-
-// schmidt : 2014-04-03 SALM S.A.S.
-schmidt
-
-// scholarships : 2014-04-24 Scholarships.com, LLC
-scholarships
-
-// school : 2014-12-18 Binky Moon, LLC
-school
-
-// schule : 2014-03-06 Binky Moon, LLC
-schule
-
-// schwarz : 2014-09-18 Schwarz Domains und Services GmbH & Co. KG
-schwarz
-
-// science : 2014-09-11 dot Science Limited
-science
-
-// scjohnson : 2015-07-23 Johnson Shareholdings, Inc.
-scjohnson
-
-// scor : 2014-10-31 SCOR SE
-scor
-
-// scot : 2014-01-23 Dot Scot Registry Limited
-scot
-
-// search : 2016-06-09 Charleston Road Registry Inc.
-search
-
-// seat : 2014-05-22 SEAT, S.A. (Sociedad Unipersonal)
-seat
-
-// secure : 2015-08-27 Amazon Registry Services, Inc.
-secure
-
-// security : 2015-05-14 XYZ.COM LLC
-security
-
-// seek : 2014-12-04 Seek Limited
-seek
-
-// select : 2015-10-08 iSelect Ltd
-select
-
-// sener : 2014-10-24 Sener Ingeniería y Sistemas, S.A.
-sener
-
-// services : 2014-02-27 Binky Moon, LLC
-services
-
-// ses : 2015-07-23 SES
-ses
-
-// seven : 2015-08-06 Seven West Media Ltd
-seven
-
-// sew : 2014-07-17 SEW-EURODRIVE GmbH & Co KG
-sew
-
-// sex : 2014-11-13 ICM Registry SX LLC
-sex
-
-// sexy : 2013-09-11 Uniregistry, Corp.
-sexy
-
-// sfr : 2015-08-13 Societe Francaise du Radiotelephone - SFR
-sfr
-
-// shangrila : 2015-09-03 Shangri‐La International Hotel Management Limited
-shangrila
-
-// sharp : 2014-05-01 Sharp Corporation
-sharp
-
-// shaw : 2015-04-23 Shaw Cablesystems G.P.
-shaw
-
-// shell : 2015-07-30 Shell Information Technology International Inc
-shell
-
-// shia : 2014-09-04 Asia Green IT System Bilgisayar San. ve Tic. Ltd. Sti.
-shia
-
-// shiksha : 2013-11-14 Afilias plc
-shiksha
-
-// shoes : 2013-10-02 Binky Moon, LLC
-shoes
-
-// shop : 2016-04-08 GMO Registry, Inc.
-shop
-
-// shopping : 2016-03-31 Binky Moon, LLC
-shopping
-
-// shouji : 2015-01-08 QIHOO 360 TECHNOLOGY CO. LTD.
-shouji
-
-// show : 2015-03-05 Binky Moon, LLC
-show
-
-// showtime : 2015-08-06 CBS Domains Inc.
-showtime
-
-// shriram : 2014-01-23 Shriram Capital Ltd.
-shriram
-
-// silk : 2015-06-25 Amazon Registry Services, Inc.
-silk
-
-// sina : 2015-03-12 Sina Corporation
-sina
-
-// singles : 2013-08-27 Binky Moon, LLC
-singles
-
-// site : 2015-01-15 DotSite Inc.
-site
-
-// ski : 2015-04-09 Afilias plc
-ski
-
-// skin : 2015-01-15 L'Oréal
-skin
-
-// sky : 2014-06-19 Sky International AG
-sky
-
-// skype : 2014-12-18 Microsoft Corporation
-skype
-
-// sling : 2015-07-30 Hughes Satellite Systems Corporation
-sling
-
-// smart : 2015-07-09 Smart Communications, Inc. (SMART)
-smart
-
-// smile : 2014-12-18 Amazon Registry Services, Inc.
-smile
-
-// sncf : 2015-02-19 Société Nationale des Chemins de fer Francais S N C F
-sncf
-
-// soccer : 2015-03-26 Binky Moon, LLC
-soccer
-
-// social : 2013-11-07 United TLD Holdco Ltd.
-social
-
-// softbank : 2015-07-02 SoftBank Corp.
-softbank
-
-// software : 2014-03-20 United TLD Holdco Ltd.
-software
-
-// sohu : 2013-12-19 Sohu.com Limited
-sohu
-
-// solar : 2013-11-07 Binky Moon, LLC
-solar
-
-// solutions : 2013-11-07 Binky Moon, LLC
-solutions
-
-// song : 2015-02-26 Amazon Registry Services, Inc.
-song
-
-// sony : 2015-01-08 Sony Corporation
-sony
-
-// soy : 2014-01-23 Charleston Road Registry Inc.
-soy
-
-// space : 2014-04-03 DotSpace Inc.
-space
-
-// spiegel : 2014-02-05 SPIEGEL-Verlag Rudolf Augstein GmbH & Co. KG
-spiegel
-
-// sport : 2017-11-16 Global Association of International Sports Federations (GAISF)
-sport
-
-// spot : 2015-02-26 Amazon Registry Services, Inc.
-spot
-
-// spreadbetting : 2014-12-11 Dotspreadbetting Registry Limited
-spreadbetting
-
-// srl : 2015-05-07 InterNetX, Corp
-srl
-
-// srt : 2015-07-30 FCA US LLC.
-srt
-
-// stada : 2014-11-13 STADA Arzneimittel AG
-stada
-
-// staples : 2015-07-30 Staples, Inc.
-staples
-
-// star : 2015-01-08 Star India Private Limited
-star
-
-// starhub : 2015-02-05 StarHub Ltd
-starhub
-
-// statebank : 2015-03-12 STATE BANK OF INDIA
-statebank
-
-// statefarm : 2015-07-30 State Farm Mutual Automobile Insurance Company
-statefarm
-
-// statoil : 2014-12-04 Statoil ASA
-statoil
-
-// stc : 2014-10-09 Saudi Telecom Company
-stc
-
-// stcgroup : 2014-10-09 Saudi Telecom Company
-stcgroup
-
-// stockholm : 2014-12-18 Stockholms kommun
-stockholm
-
-// storage : 2014-12-22 XYZ.COM LLC
-storage
-
-// store : 2015-04-09 DotStore Inc.
-store
-
-// stream : 2016-01-08 dot Stream Limited
-stream
-
-// studio : 2015-02-11 United TLD Holdco Ltd.
-studio
-
-// study : 2014-12-11 OPEN UNIVERSITIES AUSTRALIA PTY LTD
-study
-
-// style : 2014-12-04 Binky Moon, LLC
-style
-
-// sucks : 2014-12-22 Vox Populi Registry Ltd.
-sucks
-
-// supplies : 2013-12-19 Binky Moon, LLC
-supplies
-
-// supply : 2013-12-19 Binky Moon, LLC
-supply
-
-// support : 2013-10-24 Binky Moon, LLC
-support
-
-// surf : 2014-01-09 Minds + Machines Group Limited
-surf
-
-// surgery : 2014-03-20 Binky Moon, LLC
-surgery
-
-// suzuki : 2014-02-20 SUZUKI MOTOR CORPORATION
-suzuki
-
-// swatch : 2015-01-08 The Swatch Group Ltd
-swatch
-
-// swiftcover : 2015-07-23 Swiftcover Insurance Services Limited
-swiftcover
-
-// swiss : 2014-10-16 Swiss Confederation
-swiss
-
-// sydney : 2014-09-18 State of New South Wales, Department of Premier and Cabinet
-sydney
-
-// symantec : 2014-12-04 Symantec Corporation
-symantec
-
-// systems : 2013-11-07 Binky Moon, LLC
-systems
-
-// tab : 2014-12-04 Tabcorp Holdings Limited
-tab
-
-// taipei : 2014-07-10 Taipei City Government
-taipei
-
-// talk : 2015-04-09 Amazon Registry Services, Inc.
-talk
-
-// taobao : 2015-01-15 Alibaba Group Holding Limited
-taobao
-
-// target : 2015-07-31 Target Domain Holdings, LLC
-target
-
-// tatamotors : 2015-03-12 Tata Motors Ltd
-tatamotors
-
-// tatar : 2014-04-24 Limited Liability Company "Coordination Center of Regional Domain of Tatarstan Republic"
-tatar
-
-// tattoo : 2013-08-30 Uniregistry, Corp.
-tattoo
-
-// tax : 2014-03-20 Binky Moon, LLC
-tax
-
-// taxi : 2015-03-19 Binky Moon, LLC
-taxi
-
-// tci : 2014-09-12 Asia Green IT System Bilgisayar San. ve Tic. Ltd. Sti.
-tci
-
-// tdk : 2015-06-11 TDK Corporation
-tdk
-
-// team : 2015-03-05 Binky Moon, LLC
-team
-
-// tech : 2015-01-30 Personals TLD Inc.
-tech
-
-// technology : 2013-09-13 Binky Moon, LLC
-technology
-
-// telefonica : 2014-10-16 Telefónica S.A.
-telefonica
-
-// temasek : 2014-08-07 Temasek Holdings (Private) Limited
-temasek
-
-// tennis : 2014-12-04 Binky Moon, LLC
-tennis
-
-// teva : 2015-07-02 Teva Pharmaceutical Industries Limited
-teva
-
-// thd : 2015-04-02 Home Depot Product Authority, LLC
-thd
-
-// theater : 2015-03-19 Binky Moon, LLC
-theater
-
-// theatre : 2015-05-07 XYZ.COM LLC
-theatre
-
-// tiaa : 2015-07-23 Teachers Insurance and Annuity Association of America
-tiaa
-
-// tickets : 2015-02-05 Accent Media Limited
-tickets
-
-// tienda : 2013-11-14 Binky Moon, LLC
-tienda
-
-// tiffany : 2015-01-30 Tiffany and Company
-tiffany
-
-// tips : 2013-09-20 Binky Moon, LLC
-tips
-
-// tires : 2014-11-07 Binky Moon, LLC
-tires
-
-// tirol : 2014-04-24 punkt Tirol GmbH
-tirol
-
-// tjmaxx : 2015-07-16 The TJX Companies, Inc.
-tjmaxx
-
-// tjx : 2015-07-16 The TJX Companies, Inc.
-tjx
-
-// tkmaxx : 2015-07-16 The TJX Companies, Inc.
-tkmaxx
-
-// tmall : 2015-01-15 Alibaba Group Holding Limited
-tmall
-
-// today : 2013-09-20 Binky Moon, LLC
-today
-
-// tokyo : 2013-11-13 GMO Registry, Inc.
-tokyo
-
-// tools : 2013-11-21 Binky Moon, LLC
-tools
-
-// top : 2014-03-20 .TOP Registry
-top
-
-// toray : 2014-12-18 Toray Industries, Inc.
-toray
-
-// toshiba : 2014-04-10 TOSHIBA Corporation
-toshiba
-
-// total : 2015-08-06 Total SA
-total
-
-// tours : 2015-01-22 Binky Moon, LLC
-tours
-
-// town : 2014-03-06 Binky Moon, LLC
-town
-
-// toyota : 2015-04-23 TOYOTA MOTOR CORPORATION
-toyota
-
-// toys : 2014-03-06 Binky Moon, LLC
-toys
-
-// trade : 2014-01-23 Elite Registry Limited
-trade
-
-// trading : 2014-12-11 Dottrading Registry Limited
-trading
-
-// training : 2013-11-07 Binky Moon, LLC
-training
-
-// travel :  Dog Beach, LLC
-travel
-
-// travelchannel : 2015-07-02 Lifestyle Domain Holdings, Inc.
-travelchannel
-
-// travelers : 2015-03-26 Travelers TLD, LLC
-travelers
-
-// travelersinsurance : 2015-03-26 Travelers TLD, LLC
-travelersinsurance
-
-// trust : 2014-10-16 NCC Group Inc.
-trust
-
-// trv : 2015-03-26 Travelers TLD, LLC
-trv
-
-// tube : 2015-06-11 Latin American Telecom LLC
-tube
-
-// tui : 2014-07-03 TUI AG
-tui
-
-// tunes : 2015-02-26 Amazon Registry Services, Inc.
-tunes
-
-// tushu : 2014-12-18 Amazon Registry Services, Inc.
-tushu
-
-// tvs : 2015-02-19 T V SUNDRAM IYENGAR  & SONS LIMITED
-tvs
-
-// ubank : 2015-08-20 National Australia Bank Limited
-ubank
-
-// ubs : 2014-12-11 UBS AG
-ubs
-
-// uconnect : 2015-07-30 FCA US LLC.
-uconnect
-
-// unicom : 2015-10-15 China United Network Communications Corporation Limited
-unicom
-
-// university : 2014-03-06 Binky Moon, LLC
-university
-
-// uno : 2013-09-11 Dot Latin LLC
-uno
-
-// uol : 2014-05-01 UBN INTERNET LTDA.
-uol
-
-// ups : 2015-06-25 UPS Market Driver, Inc.
-ups
-
-// vacations : 2013-12-05 Binky Moon, LLC
-vacations
-
-// vana : 2014-12-11 Lifestyle Domain Holdings, Inc.
-vana
-
-// vanguard : 2015-09-03 The Vanguard Group, Inc.
-vanguard
-
-// vegas : 2014-01-16 Dot Vegas, Inc.
-vegas
-
-// ventures : 2013-08-27 Binky Moon, LLC
-ventures
-
-// verisign : 2015-08-13 VeriSign, Inc.
-verisign
-
-// versicherung : 2014-03-20 TLD-BOX Registrydienstleistungen GmbH
-versicherung
-
-// vet : 2014-03-06 United TLD Holdco Ltd.
-vet
-
-// viajes : 2013-10-17 Binky Moon, LLC
-viajes
-
-// video : 2014-10-16 United TLD Holdco Ltd.
-video
-
-// vig : 2015-05-14 VIENNA INSURANCE GROUP AG Wiener Versicherung Gruppe
-vig
-
-// viking : 2015-04-02 Viking River Cruises (Bermuda) Ltd.
-viking
-
-// villas : 2013-12-05 Binky Moon, LLC
-villas
-
-// vin : 2015-06-18 Binky Moon, LLC
-vin
-
-// vip : 2015-01-22 Minds + Machines Group Limited
-vip
-
-// virgin : 2014-09-25 Virgin Enterprises Limited
-virgin
-
-// visa : 2015-07-30 Visa Worldwide Pte. Limited
-visa
-
-// vision : 2013-12-05 Binky Moon, LLC
-vision
-
-// vistaprint : 2014-09-18 Vistaprint Limited
-vistaprint
-
-// viva : 2014-11-07 Saudi Telecom Company
-viva
-
-// vivo : 2015-07-31 Telefonica Brasil S.A.
-vivo
-
-// vlaanderen : 2014-02-06 DNS.be vzw
-vlaanderen
-
-// vodka : 2013-12-19 Minds + Machines Group Limited
-vodka
-
-// volkswagen : 2015-05-14 Volkswagen Group of America Inc.
-volkswagen
-
-// volvo : 2015-11-12 Volvo Holding Sverige Aktiebolag
-volvo
-
-// vote : 2013-11-21 Monolith Registry LLC
-vote
-
-// voting : 2013-11-13 Valuetainment Corp.
-voting
-
-// voto : 2013-11-21 Monolith Registry LLC
-voto
-
-// voyage : 2013-08-27 Binky Moon, LLC
-voyage
-
-// vuelos : 2015-03-05 Travel Reservations SRL
-vuelos
-
-// wales : 2014-05-08 Nominet UK
-wales
-
-// walmart : 2015-07-31 Wal-Mart Stores, Inc.
-walmart
-
-// walter : 2014-11-13 Sandvik AB
-walter
-
-// wang : 2013-10-24 Zodiac Wang Limited
-wang
-
-// wanggou : 2014-12-18 Amazon Registry Services, Inc.
-wanggou
-
-// warman : 2015-06-18 Weir Group IP Limited
-warman
-
-// watch : 2013-11-14 Binky Moon, LLC
-watch
-
-// watches : 2014-12-22 Richemont DNS Inc.
-watches
-
-// weather : 2015-01-08 International Business Machines Corporation
-weather
-
-// weatherchannel : 2015-03-12 International Business Machines Corporation
-weatherchannel
-
-// webcam : 2014-01-23 dot Webcam Limited
-webcam
-
-// weber : 2015-06-04 Saint-Gobain Weber SA
-weber
-
-// website : 2014-04-03 DotWebsite Inc.
-website
-
-// wed : 2013-10-01 Atgron, Inc.
-wed
-
-// wedding : 2014-04-24 Minds + Machines Group Limited
-wedding
-
-// weibo : 2015-03-05 Sina Corporation
-weibo
-
-// weir : 2015-01-29 Weir Group IP Limited
-weir
-
-// whoswho : 2014-02-20 Who's Who Registry
-whoswho
-
-// wien : 2013-10-28 punkt.wien GmbH
-wien
-
-// wiki : 2013-11-07 Top Level Design, LLC
-wiki
-
-// williamhill : 2014-03-13 William Hill Organization Limited
-williamhill
-
-// win : 2014-11-20 First Registry Limited
-win
-
-// windows : 2014-12-18 Microsoft Corporation
-windows
-
-// wine : 2015-06-18 Binky Moon, LLC
-wine
-
-// winners : 2015-07-16 The TJX Companies, Inc.
-winners
-
-// wme : 2014-02-13 William Morris Endeavor Entertainment, LLC
-wme
-
-// wolterskluwer : 2015-08-06 Wolters Kluwer N.V.
-wolterskluwer
-
-// woodside : 2015-07-09 Woodside Petroleum Limited
-woodside
-
-// work : 2013-12-19 Minds + Machines Group Limited
-work
-
-// works : 2013-11-14 Binky Moon, LLC
-works
-
-// world : 2014-06-12 Binky Moon, LLC
-world
-
-// wow : 2015-10-08 Amazon Registry Services, Inc.
-wow
-
-// wtc : 2013-12-19 World Trade Centers Association, Inc.
-wtc
-
-// wtf : 2014-03-06 Binky Moon, LLC
-wtf
-
-// xbox : 2014-12-18 Microsoft Corporation
-xbox
-
-// xerox : 2014-10-24 Xerox DNHC LLC
-xerox
-
-// xfinity : 2015-07-09 Comcast IP Holdings I, LLC
-xfinity
-
-// xihuan : 2015-01-08 QIHOO 360 TECHNOLOGY CO. LTD.
-xihuan
-
-// xin : 2014-12-11 Elegant Leader Limited
-xin
-
-// xn--11b4c3d : 2015-01-15 VeriSign Sarl
-कॉम
-
-// xn--1ck2e1b : 2015-02-26 Amazon Registry Services, Inc.
-セール
-
-// xn--1qqw23a : 2014-01-09 Guangzhou YU Wei Information Technology Co., Ltd.
-佛山
-
-// xn--30rr7y : 2014-06-12 Excellent First Limited
-慈善
-
-// xn--3bst00m : 2013-09-13 Eagle Horizon Limited
-集团
-
-// xn--3ds443g : 2013-09-08 TLD REGISTRY LIMITED
-在线
-
-// xn--3oq18vl8pn36a : 2015-07-02 Volkswagen (China) Investment Co., Ltd.
-大众汽车
-
-// xn--3pxu8k : 2015-01-15 VeriSign Sarl
-点看
-
-// xn--42c2d9a : 2015-01-15 VeriSign Sarl
-คอม
-
-// xn--45q11c : 2013-11-21 Zodiac Gemini Ltd
-八卦
-
-// xn--4gbrim : 2013-10-04 Suhub Electronic Establishment
-موقع
-
-// xn--55qw42g : 2013-11-08 China Organizational Name Administration Center
-公益
-
-// xn--55qx5d : 2013-11-14 China Internet Network Information Center (CNNIC)
-公司
-
-// xn--5su34j936bgsg : 2015-09-03 Shangri‐La International Hotel Management Limited
-香格里拉
-
-// xn--5tzm5g : 2014-12-22 Global Website TLD Asia Limited
-网站
-
-// xn--6frz82g : 2013-09-23 Afilias plc
-移动
-
-// xn--6qq986b3xl : 2013-09-13 Tycoon Treasure Limited
-我爱你
-
-// xn--80adxhks : 2013-12-19 Foundation for Assistance for Internet Technologies and Infrastructure Development (FAITID)
-москва
-
-// xn--80aqecdr1a : 2015-10-21 Pontificium Consilium de Comunicationibus Socialibus (PCCS) (Pontifical Council for Social Communication)
-католик
-
-// xn--80asehdb : 2013-07-14 CORE Association
-онлайн
-
-// xn--80aswg : 2013-07-14 CORE Association
-сайт
-
-// xn--8y0a063a : 2015-03-26 China United Network Communications Corporation Limited
-联通
-
-// xn--9dbq2a : 2015-01-15 VeriSign Sarl
-קום
-
-// xn--9et52u : 2014-06-12 RISE VICTORY LIMITED
-时尚
-
-// xn--9krt00a : 2015-03-12 Sina Corporation
-微博
-
-// xn--b4w605ferd : 2014-08-07 Temasek Holdings (Private) Limited
-淡马锡
-
-// xn--bck1b9a5dre4c : 2015-02-26 Amazon Registry Services, Inc.
-ファッション
-
-// xn--c1avg : 2013-11-14 Public Interest Registry
-орг
-
-// xn--c2br7g : 2015-01-15 VeriSign Sarl
-नेट
-
-// xn--cck2b3b : 2015-02-26 Amazon Registry Services, Inc.
-ストア
-
-// xn--cg4bki : 2013-09-27 SAMSUNG SDS CO., LTD
-삼성
-
-// xn--czr694b : 2014-01-16 Dot Trademark TLD Holding Company Limited
-商标
-
-// xn--czrs0t : 2013-12-19 Binky Moon, LLC
-商店
-
-// xn--czru2d : 2013-11-21 Zodiac Aquarius Limited
-商城
-
-// xn--d1acj3b : 2013-11-20 The Foundation for Network Initiatives “The Smart Internet”
-дети
-
-// xn--eckvdtc9d : 2014-12-18 Amazon Registry Services, Inc.
-ポイント
-
-// xn--efvy88h : 2014-08-22 Guangzhou YU Wei Information Technology Co., Ltd.
-新闻
-
-// xn--estv75g : 2015-02-19 Industrial and Commercial Bank of China Limited
-工行
-
-// xn--fct429k : 2015-04-09 Amazon Registry Services, Inc.
-家電
-
-// xn--fhbei : 2015-01-15 VeriSign Sarl
-كوم
-
-// xn--fiq228c5hs : 2013-09-08 TLD REGISTRY LIMITED
-中文网
-
-// xn--fiq64b : 2013-10-14 CITIC Group Corporation
-中信
-
-// xn--fjq720a : 2014-05-22 Binky Moon, LLC
-娱乐
-
-// xn--flw351e : 2014-07-31 Charleston Road Registry Inc.
-谷歌
-
-// xn--fzys8d69uvgm : 2015-05-14 PCCW Enterprises Limited
-電訊盈科
-
-// xn--g2xx48c : 2015-01-30 Minds + Machines Group Limited
-购物
-
-// xn--gckr3f0f : 2015-02-26 Amazon Registry Services, Inc.
-クラウド
-
-// xn--gk3at1e : 2015-10-08 Amazon Registry Services, Inc.
-通販
-
-// xn--hxt814e : 2014-05-15 Zodiac Taurus Limited
-网店
-
-// xn--i1b6b1a6a2e : 2013-11-14 Public Interest Registry
-संगठन
-
-// xn--imr513n : 2014-12-11 Dot Trademark TLD Holding Company Limited
-餐厅
-
-// xn--io0a7i : 2013-11-14 China Internet Network Information Center (CNNIC)
-网络
-
-// xn--j1aef : 2015-01-15 VeriSign Sarl
-ком
-
-// xn--jlq61u9w7b : 2015-01-08 Nokia Corporation
-诺基亚
-
-// xn--jvr189m : 2015-02-26 Amazon Registry Services, Inc.
-食品
-
-// xn--kcrx77d1x4a : 2014-11-07 Koninklijke Philips N.V.
-飞利浦
-
-// xn--kpu716f : 2014-12-22 Richemont DNS Inc.
-手表
-
-// xn--kput3i : 2014-02-13 Beijing RITT-Net Technology Development Co., Ltd
-手机
-
-// xn--mgba3a3ejt : 2014-11-20 Aramco Services Company
-ارامكو
-
-// xn--mgba7c0bbn0a : 2015-05-14 Crescent Holding GmbH
-العليان
-
-// xn--mgbaakc7dvf : 2015-09-03 Emirates Telecommunications Corporation (trading as Etisalat)
-اتصالات
-
-// xn--mgbab2bd : 2013-10-31 CORE Association
-بازار
-
-// xn--mgbb9fbpob : 2014-12-18 GreenTech Consultancy Company W.L.L.
-موبايلي
-
-// xn--mgbca7dzdo : 2015-07-30 Abu Dhabi Systems and Information Centre
-ابوظبي
-
-// xn--mgbi4ecexp : 2015-10-21 Pontificium Consilium de Comunicationibus Socialibus (PCCS) (Pontifical Council for Social Communication)
-كاثوليك
-
-// xn--mgbt3dhd : 2014-09-04 Asia Green IT System Bilgisayar San. ve Tic. Ltd. Sti.
-همراه
-
-// xn--mk1bu44c : 2015-01-15 VeriSign Sarl
-닷컴
-
-// xn--mxtq1m : 2014-03-06 Net-Chinese Co., Ltd.
-政府
-
-// xn--ngbc5azd : 2013-07-13 International Domain Registry Pty. Ltd.
-شبكة
-
-// xn--ngbe9e0a : 2014-12-04 Kuwait Finance House
-بيتك
-
-// xn--ngbrx : 2015-11-12 League of Arab States
-عرب
-
-// xn--nqv7f : 2013-11-14 Public Interest Registry
-机构
-
-// xn--nqv7fs00ema : 2013-11-14 Public Interest Registry
-组织机构
-
-// xn--nyqy26a : 2014-11-07 Stable Tone Limited
-健康
-
-// xn--otu796d : 2017-08-06 Dot Trademark TLD Holding Company Limited
-招聘
-
-// xn--p1acf : 2013-12-12 Rusnames Limited
-рус
-
-// xn--pbt977c : 2014-12-22 Richemont DNS Inc.
-珠宝
-
-// xn--pssy2u : 2015-01-15 VeriSign Sarl
-大拿
-
-// xn--q9jyb4c : 2013-09-17 Charleston Road Registry Inc.
-みんな
-
-// xn--qcka1pmc : 2014-07-31 Charleston Road Registry Inc.
-グーグル
-
-// xn--rhqv96g : 2013-09-11 Stable Tone Limited
-世界
-
-// xn--rovu88b : 2015-02-26 Amazon Registry Services, Inc.
-書籍
-
-// xn--ses554g : 2014-01-16 KNET Co., Ltd.
-网址
-
-// xn--t60b56a : 2015-01-15 VeriSign Sarl
-닷넷
-
-// xn--tckwe : 2015-01-15 VeriSign Sarl
-コム
-
-// xn--tiq49xqyj : 2015-10-21 Pontificium Consilium de Comunicationibus Socialibus (PCCS) (Pontifical Council for Social Communication)
-天主教
-
-// xn--unup4y : 2013-07-14 Binky Moon, LLC
-游戏
-
-// xn--vermgensberater-ctb : 2014-06-23 Deutsche Vermögensberatung Aktiengesellschaft DVAG
-vermögensberater
-
-// xn--vermgensberatung-pwb : 2014-06-23 Deutsche Vermögensberatung Aktiengesellschaft DVAG
-vermögensberatung
-
-// xn--vhquv : 2013-08-27 Binky Moon, LLC
-企业
-
-// xn--vuq861b : 2014-10-16 Beijing Tele-info Network Technology Co., Ltd.
-信息
-
-// xn--w4r85el8fhu5dnra : 2015-04-30 Kerry Trading Co. Limited
-嘉里大酒店
-
-// xn--w4rs40l : 2015-07-30 Kerry Trading Co. Limited
-嘉里
-
-// xn--xhq521b : 2013-11-14 Guangzhou YU Wei Information Technology Co., Ltd.
-广东
-
-// xn--zfr164b : 2013-11-08 China Organizational Name Administration Center
-政务
-
-// xyz : 2013-12-05 XYZ.COM LLC
-xyz
-
-// yachts : 2014-01-09 DERYachts, LLC
-yachts
-
-// yahoo : 2015-04-02 Yahoo! Domain Services Inc.
-yahoo
-
-// yamaxun : 2014-12-18 Amazon Registry Services, Inc.
-yamaxun
-
-// yandex : 2014-04-10 YANDEX, LLC
-yandex
-
-// yodobashi : 2014-11-20 YODOBASHI CAMERA CO.,LTD.
-yodobashi
-
-// yoga : 2014-05-29 Minds + Machines Group Limited
-yoga
-
-// yokohama : 2013-12-12 GMO Registry, Inc.
-yokohama
-
-// you : 2015-04-09 Amazon Registry Services, Inc.
-you
-
-// youtube : 2014-05-01 Charleston Road Registry Inc.
-youtube
-
-// yun : 2015-01-08 QIHOO 360 TECHNOLOGY CO. LTD.
-yun
-
-// zappos : 2015-06-25 Amazon Registry Services, Inc.
-zappos
-
-// zara : 2014-11-07 Industria de Diseño Textil, S.A. (INDITEX, S.A.)
-zara
-
-// zero : 2014-12-18 Amazon Registry Services, Inc.
-zero
-
-// zip : 2014-05-08 Charleston Road Registry Inc.
-zip
-
-// zippo : 2015-07-02 Zadco Company
-zippo
-
-// zone : 2013-11-14 Binky Moon, LLC
-zone
-
-// zuerich : 2014-11-07 Kanton Zürich (Canton of Zurich)
-zuerich
-
-
-// ===END ICANN DOMAINS===
-// ===BEGIN PRIVATE DOMAINS===
-// (Note: these are in alphabetical order by company name)
-
-// 1GB LLC : https://www.1gb.ua/
-// Submitted by 1GB LLC <noc@1gb.com.ua>
-cc.ua
-inf.ua
-ltd.ua
-
-// Agnat sp. z o.o. : https://domena.pl
-// Submitted by Przemyslaw Plewa <it-admin@domena.pl>
-beep.pl
-
-// Alces Software Ltd : http://alces-software.com
-// Submitted by Mark J. Titorenko <mark.titorenko@alces-software.com>
-*.compute.estate
-*.alces.network
-
-// alwaysdata : https://www.alwaysdata.com
-// Submitted by Cyril <admin@alwaysdata.com>
-alwaysdata.net
-
-// Amazon CloudFront : https://aws.amazon.com/cloudfront/
-// Submitted by Donavan Miller <donavanm@amazon.com>
-cloudfront.net
-
-// Amazon Elastic Compute Cloud : https://aws.amazon.com/ec2/
-// Submitted by Luke Wells <psl-maintainers@amazon.com>
-*.compute.amazonaws.com
-*.compute-1.amazonaws.com
-*.compute.amazonaws.com.cn
-us-east-1.amazonaws.com
-
-// Amazon Elastic Beanstalk : https://aws.amazon.com/elasticbeanstalk/
-// Submitted by Luke Wells <psl-maintainers@amazon.com>
-cn-north-1.eb.amazonaws.com.cn
-cn-northwest-1.eb.amazonaws.com.cn
-elasticbeanstalk.com
-ap-northeast-1.elasticbeanstalk.com
-ap-northeast-2.elasticbeanstalk.com
-ap-northeast-3.elasticbeanstalk.com
-ap-south-1.elasticbeanstalk.com
-ap-southeast-1.elasticbeanstalk.com
-ap-southeast-2.elasticbeanstalk.com
-ca-central-1.elasticbeanstalk.com
-eu-central-1.elasticbeanstalk.com
-eu-west-1.elasticbeanstalk.com
-eu-west-2.elasticbeanstalk.com
-eu-west-3.elasticbeanstalk.com
-sa-east-1.elasticbeanstalk.com
-us-east-1.elasticbeanstalk.com
-us-east-2.elasticbeanstalk.com
-us-gov-west-1.elasticbeanstalk.com
-us-west-1.elasticbeanstalk.com
-us-west-2.elasticbeanstalk.com
-
-// Amazon Elastic Load Balancing : https://aws.amazon.com/elasticloadbalancing/
-// Submitted by Luke Wells <psl-maintainers@amazon.com>
-*.elb.amazonaws.com
-*.elb.amazonaws.com.cn
-
-// Amazon S3 : https://aws.amazon.com/s3/
-// Submitted by Luke Wells <psl-maintainers@amazon.com>
-s3.amazonaws.com
-s3-ap-northeast-1.amazonaws.com
-s3-ap-northeast-2.amazonaws.com
-s3-ap-south-1.amazonaws.com
-s3-ap-southeast-1.amazonaws.com
-s3-ap-southeast-2.amazonaws.com
-s3-ca-central-1.amazonaws.com
-s3-eu-central-1.amazonaws.com
-s3-eu-west-1.amazonaws.com
-s3-eu-west-2.amazonaws.com
-s3-eu-west-3.amazonaws.com
-s3-external-1.amazonaws.com
-s3-fips-us-gov-west-1.amazonaws.com
-s3-sa-east-1.amazonaws.com
-s3-us-gov-west-1.amazonaws.com
-s3-us-east-2.amazonaws.com
-s3-us-west-1.amazonaws.com
-s3-us-west-2.amazonaws.com
-s3.ap-northeast-2.amazonaws.com
-s3.ap-south-1.amazonaws.com
-s3.cn-north-1.amazonaws.com.cn
-s3.ca-central-1.amazonaws.com
-s3.eu-central-1.amazonaws.com
-s3.eu-west-2.amazonaws.com
-s3.eu-west-3.amazonaws.com
-s3.us-east-2.amazonaws.com
-s3.dualstack.ap-northeast-1.amazonaws.com
-s3.dualstack.ap-northeast-2.amazonaws.com
-s3.dualstack.ap-south-1.amazonaws.com
-s3.dualstack.ap-southeast-1.amazonaws.com
-s3.dualstack.ap-southeast-2.amazonaws.com
-s3.dualstack.ca-central-1.amazonaws.com
-s3.dualstack.eu-central-1.amazonaws.com
-s3.dualstack.eu-west-1.amazonaws.com
-s3.dualstack.eu-west-2.amazonaws.com
-s3.dualstack.eu-west-3.amazonaws.com
-s3.dualstack.sa-east-1.amazonaws.com
-s3.dualstack.us-east-1.amazonaws.com
-s3.dualstack.us-east-2.amazonaws.com
-s3-website-us-east-1.amazonaws.com
-s3-website-us-west-1.amazonaws.com
-s3-website-us-west-2.amazonaws.com
-s3-website-ap-northeast-1.amazonaws.com
-s3-website-ap-southeast-1.amazonaws.com
-s3-website-ap-southeast-2.amazonaws.com
-s3-website-eu-west-1.amazonaws.com
-s3-website-sa-east-1.amazonaws.com
-s3-website.ap-northeast-2.amazonaws.com
-s3-website.ap-south-1.amazonaws.com
-s3-website.ca-central-1.amazonaws.com
-s3-website.eu-central-1.amazonaws.com
-s3-website.eu-west-2.amazonaws.com
-s3-website.eu-west-3.amazonaws.com
-s3-website.us-east-2.amazonaws.com
-
-// Amune : https://amune.org/
-// Submitted by Team Amune <cert@amune.org>
-t3l3p0rt.net
-tele.amune.org
-
-// Apigee : https://apigee.com/
-// Submitted by Apigee Security Team <security@apigee.com>
-apigee.io
-
-// Aptible : https://www.aptible.com/
-// Submitted by Thomas Orozco <thomas@aptible.com>
-on-aptible.com
-
-// Asociación Amigos de la Informática "Euskalamiga" : http://encounter.eus/
-// Submitted by Hector Martin <marcan@euskalencounter.org>
-user.party.eus
-
-// Association potager.org : https://potager.org/
-// Submitted by Lunar <jardiniers@potager.org>
-pimienta.org
-poivron.org
-potager.org
-sweetpepper.org
-
-// ASUSTOR Inc. : http://www.asustor.com
-// Submitted by Vincent Tseng <vincenttseng@asustor.com>
-myasustor.com
-
-// AVM : https://avm.de
-// Submitted by Andreas Weise <a.weise@avm.de>
-myfritz.net
-
-// AW AdvisorWebsites.com Software Inc : https://advisorwebsites.com
-// Submitted by James Kennedy <domains@advisorwebsites.com>
-*.awdev.ca
-*.advisor.ws
-
-// backplane : https://www.backplane.io
-// Submitted by Anthony Voutas <anthony@backplane.io>
-backplaneapp.io
-
-// BetaInABox
-// Submitted by Adrian <adrian@betainabox.com>
-betainabox.com
-
-// BinaryLane : http://www.binarylane.com
-// Submitted by Nathan O'Sullivan <nathan@mammoth.com.au>
-bnr.la
-
-// Blackbaud, Inc. : https://www.blackbaud.com
-// Submitted by Paul Crowder <paul.crowder@blackbaud.com>
-blackbaudcdn.net
-
-// Boomla : https://boomla.com
-// Submitted by Tibor Halter <thalter@boomla.com>
-boomla.net
-
-// Boxfuse : https://boxfuse.com
-// Submitted by Axel Fontaine <axel@boxfuse.com>
-boxfuse.io
-
-// bplaced : https://www.bplaced.net/
-// Submitted by Miroslav Bozic <security@bplaced.net>
-square7.ch
-bplaced.com
-bplaced.de
-square7.de
-bplaced.net
-square7.net
-
-// BrowserSafetyMark
-// Submitted by Dave Tharp <browsersafetymark.io@quicinc.com>
-browsersafetymark.io
-
-// callidomus : https://www.callidomus.com/
-// Submitted by Marcus Popp <admin@callidomus.com>
-mycd.eu
-
-// CentralNic : http://www.centralnic.com/names/domains
-// Submitted by registry <gavin.brown@centralnic.com>
-ae.org
-ar.com
-br.com
-cn.com
-com.de
-com.se
-de.com
-eu.com
-gb.com
-gb.net
-hu.com
-hu.net
-jp.net
-jpn.com
-kr.com
-mex.com
-no.com
-qc.com
-ru.com
-sa.com
-se.net
-uk.com
-uk.net
-us.com
-uy.com
-za.bz
-za.com
-
-// Africa.com Web Solutions Ltd : https://registry.africa.com
-// Submitted by Gavin Brown <gavin.brown@centralnic.com>
-africa.com
-
-// iDOT Services Limited : http://www.domain.gr.com
-// Submitted by Gavin Brown <gavin.brown@centralnic.com>
-gr.com
-
-// Radix FZC : http://domains.in.net
-// Submitted by Gavin Brown <gavin.brown@centralnic.com>
-in.net
-
-// US REGISTRY LLC : http://us.org
-// Submitted by Gavin Brown <gavin.brown@centralnic.com>
-us.org
-
-// co.com Registry, LLC : https://registry.co.com
-// Submitted by Gavin Brown <gavin.brown@centralnic.com>
-co.com
-
-// c.la : http://www.c.la/
-c.la
-
-// certmgr.org : https://certmgr.org
-// Submitted by B. Blechschmidt <hostmaster@certmgr.org>
-certmgr.org
-
-// Citrix : https://citrix.com
-// Submitted by Alex Stoddard <alex.stoddard@citrix.com>
-xenapponazure.com
-
-// ClearVox : http://www.clearvox.nl/
-// Submitted by Leon Rowland <leon@clearvox.nl>
-virtueeldomein.nl
-
-// Clever Cloud : https://www.clever-cloud.com/
-// Submitted by Quentin Adam <noc@clever-cloud.com>
-cleverapps.io
-
-// Cloud66 : https://www.cloud66.com/
-// Submitted by Khash Sajadi <khash@cloud66.com>
-c66.me
-cloud66.ws
-
-// CloudAccess.net : https://www.cloudaccess.net/
-// Submitted by Pawel Panek <noc@cloudaccess.net>
-jdevcloud.com
-wpdevcloud.com
-cloudaccess.host
-freesite.host
-cloudaccess.net
-
-// cloudControl : https://www.cloudcontrol.com/
-// Submitted by Tobias Wilken <tw@cloudcontrol.com>
-cloudcontrolled.com
-cloudcontrolapp.com
-
-// co.ca : http://registry.co.ca/
-co.ca
-
-// Co & Co : https://co-co.nl/
-// Submitted by Govert Versluis <govert@co-co.nl>
-*.otap.co
-
-// i-registry s.r.o. : http://www.i-registry.cz/
-// Submitted by Martin Semrad <semrad@i-registry.cz>
-co.cz
-
-// CDN77.com : http://www.cdn77.com
-// Submitted by Jan Krpes <jan.krpes@cdn77.com>
-c.cdn77.org
-cdn77-ssl.net
-r.cdn77.net
-rsc.cdn77.org
-ssl.origin.cdn77-secure.org
-
-// Cloud DNS Ltd : http://www.cloudns.net
-// Submitted by Aleksander Hristov <noc@cloudns.net>
-cloudns.asia
-cloudns.biz
-cloudns.club
-cloudns.cc
-cloudns.eu
-cloudns.in
-cloudns.info
-cloudns.org
-cloudns.pro
-cloudns.pw
-cloudns.us
-
-// Cloudeity Inc : https://cloudeity.com
-// Submitted by Stefan Dimitrov <contact@cloudeity.com>
-cloudeity.net
-
-// CNPY : https://cnpy.gdn
-// Submitted by Angelo Gladding <angelo@lahacker.net>
-cnpy.gdn
-
-// CoDNS B.V.
-co.nl
-co.no
-
-// Combell.com : https://www.combell.com
-// Submitted by Thomas Wouters <thomas.wouters@combellgroup.com>
-webhosting.be
-hosting-cluster.nl
-
-// COSIMO GmbH : http://www.cosimo.de
-// Submitted by Rene Marticke <rmarticke@cosimo.de>
-dyn.cosidns.de
-dynamisches-dns.de
-dnsupdater.de
-internet-dns.de
-l-o-g-i-n.de
-dynamic-dns.info
-feste-ip.net
-knx-server.net
-static-access.net
-
-// Craynic, s.r.o. : http://www.craynic.com/
-// Submitted by Ales Krajnik <ales.krajnik@craynic.com>
-realm.cz
-
-// Cryptonomic : https://cryptonomic.net/
-// Submitted by Andrew Cady <public-suffix-list@cryptonomic.net>
-*.cryptonomic.net
-
-// Cupcake : https://cupcake.io/
-// Submitted by Jonathan Rudenberg <jonathan@cupcake.io>
-cupcake.is
-
-// cyon GmbH : https://www.cyon.ch/
-// Submitted by Dominic Luechinger <dol@cyon.ch>
-cyon.link
-cyon.site
-
-// Daplie, Inc : https://daplie.com
-// Submitted by AJ ONeal <aj@daplie.com>
-daplie.me
-localhost.daplie.me
-
-// Datto, Inc. : https://www.datto.com/
-// Submitted by Philipp Heckel <ph@datto.com>
-dattolocal.com
-dattorelay.com
-dattoweb.com
-mydatto.com
-dattolocal.net
-mydatto.net
-
-// Dansk.net : http://www.dansk.net/
-// Submitted by Anani Voule <digital@digital.co.dk>
-biz.dk
-co.dk
-firm.dk
-reg.dk
-store.dk
-
-// Debian : https://www.debian.org/
-// Submitted by Peter Palfrader / Debian Sysadmin Team <dsa-publicsuffixlist@debian.org>
-debian.net
-
-// deSEC : https://desec.io/
-// Submitted by Peter Thomassen <peter@desec.io>
-dedyn.io
-
-// DNShome : https://www.dnshome.de/
-// Submitted by Norbert Auler <mail@dnshome.de>
-dnshome.de
-
-// DrayTek Corp. : https://www.draytek.com/
-// Submitted by Paul Fang <mis@draytek.com>
-drayddns.com
-
-// DreamHost : http://www.dreamhost.com/
-// Submitted by Andrew Farmer <andrew.farmer@dreamhost.com>
-dreamhosters.com
-
-// Drobo : http://www.drobo.com/
-// Submitted by Ricardo Padilha <rpadilha@drobo.com>
-mydrobo.com
-
-// Drud Holdings, LLC. : https://www.drud.com/
-// Submitted by Kevin Bridges <kevin@drud.com>
-drud.io
-drud.us
-
-// DuckDNS : http://www.duckdns.org/
-// Submitted by Richard Harper <richard@duckdns.org>
-duckdns.org
-
-// dy.fi : http://dy.fi/
-// Submitted by Heikki Hannikainen <hessu@hes.iki.fi>
-dy.fi
-tunk.org
-
-// DynDNS.com : http://www.dyndns.com/services/dns/dyndns/
-dyndns-at-home.com
-dyndns-at-work.com
-dyndns-blog.com
-dyndns-free.com
-dyndns-home.com
-dyndns-ip.com
-dyndns-mail.com
-dyndns-office.com
-dyndns-pics.com
-dyndns-remote.com
-dyndns-server.com
-dyndns-web.com
-dyndns-wiki.com
-dyndns-work.com
-dyndns.biz
-dyndns.info
-dyndns.org
-dyndns.tv
-at-band-camp.net
-ath.cx
-barrel-of-knowledge.info
-barrell-of-knowledge.info
-better-than.tv
-blogdns.com
-blogdns.net
-blogdns.org
-blogsite.org
-boldlygoingnowhere.org
-broke-it.net
-buyshouses.net
-cechire.com
-dnsalias.com
-dnsalias.net
-dnsalias.org
-dnsdojo.com
-dnsdojo.net
-dnsdojo.org
-does-it.net
-doesntexist.com
-doesntexist.org
-dontexist.com
-dontexist.net
-dontexist.org
-doomdns.com
-doomdns.org
-dvrdns.org
-dyn-o-saur.com
-dynalias.com
-dynalias.net
-dynalias.org
-dynathome.net
-dyndns.ws
-endofinternet.net
-endofinternet.org
-endoftheinternet.org
-est-a-la-maison.com
-est-a-la-masion.com
-est-le-patron.com
-est-mon-blogueur.com
-for-better.biz
-for-more.biz
-for-our.info
-for-some.biz
-for-the.biz
-forgot.her.name
-forgot.his.name
-from-ak.com
-from-al.com
-from-ar.com
-from-az.net
-from-ca.com
-from-co.net
-from-ct.com
-from-dc.com
-from-de.com
-from-fl.com
-from-ga.com
-from-hi.com
-from-ia.com
-from-id.com
-from-il.com
-from-in.com
-from-ks.com
-from-ky.com
-from-la.net
-from-ma.com
-from-md.com
-from-me.org
-from-mi.com
-from-mn.com
-from-mo.com
-from-ms.com
-from-mt.com
-from-nc.com
-from-nd.com
-from-ne.com
-from-nh.com
-from-nj.com
-from-nm.com
-from-nv.com
-from-ny.net
-from-oh.com
-from-ok.com
-from-or.com
-from-pa.com
-from-pr.com
-from-ri.com
-from-sc.com
-from-sd.com
-from-tn.com
-from-tx.com
-from-ut.com
-from-va.com
-from-vt.com
-from-wa.com
-from-wi.com
-from-wv.com
-from-wy.com
-ftpaccess.cc
-fuettertdasnetz.de
-game-host.org
-game-server.cc
-getmyip.com
-gets-it.net
-go.dyndns.org
-gotdns.com
-gotdns.org
-groks-the.info
-groks-this.info
-ham-radio-op.net
-here-for-more.info
-hobby-site.com
-hobby-site.org
-home.dyndns.org
-homedns.org
-homeftp.net
-homeftp.org
-homeip.net
-homelinux.com
-homelinux.net
-homelinux.org
-homeunix.com
-homeunix.net
-homeunix.org
-iamallama.com
-in-the-band.net
-is-a-anarchist.com
-is-a-blogger.com
-is-a-bookkeeper.com
-is-a-bruinsfan.org
-is-a-bulls-fan.com
-is-a-candidate.org
-is-a-caterer.com
-is-a-celticsfan.org
-is-a-chef.com
-is-a-chef.net
-is-a-chef.org
-is-a-conservative.com
-is-a-cpa.com
-is-a-cubicle-slave.com
-is-a-democrat.com
-is-a-designer.com
-is-a-doctor.com
-is-a-financialadvisor.com
-is-a-geek.com
-is-a-geek.net
-is-a-geek.org
-is-a-green.com
-is-a-guru.com
-is-a-hard-worker.com
-is-a-hunter.com
-is-a-knight.org
-is-a-landscaper.com
-is-a-lawyer.com
-is-a-liberal.com
-is-a-libertarian.com
-is-a-linux-user.org
-is-a-llama.com
-is-a-musician.com
-is-a-nascarfan.com
-is-a-nurse.com
-is-a-painter.com
-is-a-patsfan.org
-is-a-personaltrainer.com
-is-a-photographer.com
-is-a-player.com
-is-a-republican.com
-is-a-rockstar.com
-is-a-socialist.com
-is-a-soxfan.org
-is-a-student.com
-is-a-teacher.com
-is-a-techie.com
-is-a-therapist.com
-is-an-accountant.com
-is-an-actor.com
-is-an-actress.com
-is-an-anarchist.com
-is-an-artist.com
-is-an-engineer.com
-is-an-entertainer.com
-is-by.us
-is-certified.com
-is-found.org
-is-gone.com
-is-into-anime.com
-is-into-cars.com
-is-into-cartoons.com
-is-into-games.com
-is-leet.com
-is-lost.org
-is-not-certified.com
-is-saved.org
-is-slick.com
-is-uberleet.com
-is-very-bad.org
-is-very-evil.org
-is-very-good.org
-is-very-nice.org
-is-very-sweet.org
-is-with-theband.com
-isa-geek.com
-isa-geek.net
-isa-geek.org
-isa-hockeynut.com
-issmarterthanyou.com
-isteingeek.de
-istmein.de
-kicks-ass.net
-kicks-ass.org
-knowsitall.info
-land-4-sale.us
-lebtimnetz.de
-leitungsen.de
-likes-pie.com
-likescandy.com
-merseine.nu
-mine.nu
-misconfused.org
-mypets.ws
-myphotos.cc
-neat-url.com
-office-on-the.net
-on-the-web.tv
-podzone.net
-podzone.org
-readmyblog.org
-saves-the-whales.com
-scrapper-site.net
-scrapping.cc
-selfip.biz
-selfip.com
-selfip.info
-selfip.net
-selfip.org
-sells-for-less.com
-sells-for-u.com
-sells-it.net
-sellsyourhome.org
-servebbs.com
-servebbs.net
-servebbs.org
-serveftp.net
-serveftp.org
-servegame.org
-shacknet.nu
-simple-url.com
-space-to-rent.com
-stuff-4-sale.org
-stuff-4-sale.us
-teaches-yoga.com
-thruhere.net
-traeumtgerade.de
-webhop.biz
-webhop.info
-webhop.net
-webhop.org
-worse-than.tv
-writesthisblog.com
-
-// ddnss.de : https://www.ddnss.de/
-// Submitted by Robert Niedziela <webmaster@ddnss.de>
-ddnss.de
-dyn.ddnss.de
-dyndns.ddnss.de
-dyndns1.de
-dyn-ip24.de
-home-webserver.de
-dyn.home-webserver.de
-myhome-server.de
-ddnss.org
-
-// Definima : http://www.definima.com/
-// Submitted by Maxence Bitterli <maxence@definima.com>
-definima.net
-definima.io
-
-// dnstrace.pro : https://dnstrace.pro/
-// Submitted by Chris Partridge <chris@partridge.tech>
-bci.dnstrace.pro
-
-// Dynu.com : https://www.dynu.com/
-// Submitted by Sue Ye <sue@dynu.com>
-ddnsfree.com
-ddnsgeek.com
-giize.com
-gleeze.com
-kozow.com
-loseyourip.com
-ooguy.com
-theworkpc.com
-casacam.net
-dynu.net
-accesscam.org
-camdvr.org
-freeddns.org
-mywire.org
-webredirect.org
-myddns.rocks
-blogsite.xyz
-
-// dynv6 : https://dynv6.com
-// Submitted by Dominik Menke <dom@digineo.de>
-dynv6.net
-
-// E4YOU spol. s.r.o. : https://e4you.cz/
-// Submitted by Vladimir Dudr <info@e4you.cz>
-e4.cz
-
-// Enalean SAS: https://www.enalean.com
-// Submitted by Thomas Cottier <thomas.cottier@enalean.com>
-mytuleap.com
-
-// Enonic : http://enonic.com/
-// Submitted by Erik Kaareng-Sunde <esu@enonic.com>
-enonic.io
-customer.enonic.io
-
-// EU.org https://eu.org/
-// Submitted by Pierre Beyssac <hostmaster@eu.org>
-eu.org
-al.eu.org
-asso.eu.org
-at.eu.org
-au.eu.org
-be.eu.org
-bg.eu.org
-ca.eu.org
-cd.eu.org
-ch.eu.org
-cn.eu.org
-cy.eu.org
-cz.eu.org
-de.eu.org
-dk.eu.org
-edu.eu.org
-ee.eu.org
-es.eu.org
-fi.eu.org
-fr.eu.org
-gr.eu.org
-hr.eu.org
-hu.eu.org
-ie.eu.org
-il.eu.org
-in.eu.org
-int.eu.org
-is.eu.org
-it.eu.org
-jp.eu.org
-kr.eu.org
-lt.eu.org
-lu.eu.org
-lv.eu.org
-mc.eu.org
-me.eu.org
-mk.eu.org
-mt.eu.org
-my.eu.org
-net.eu.org
-ng.eu.org
-nl.eu.org
-no.eu.org
-nz.eu.org
-paris.eu.org
-pl.eu.org
-pt.eu.org
-q-a.eu.org
-ro.eu.org
-ru.eu.org
-se.eu.org
-si.eu.org
-sk.eu.org
-tr.eu.org
-uk.eu.org
-us.eu.org
-
-// Evennode : http://www.evennode.com/
-// Submitted by Michal Kralik <support@evennode.com>
-eu-1.evennode.com
-eu-2.evennode.com
-eu-3.evennode.com
-eu-4.evennode.com
-us-1.evennode.com
-us-2.evennode.com
-us-3.evennode.com
-us-4.evennode.com
-
-// eDirect Corp. : https://hosting.url.com.tw/
-// Submitted by C.S. chang <cschang@corp.url.com.tw>
-twmail.cc
-twmail.net
-twmail.org
-mymailer.com.tw
-url.tw
-
-// Facebook, Inc.
-// Submitted by Peter Ruibal <public-suffix@fb.com>
-apps.fbsbx.com
-
-// FAITID : https://faitid.org/
-// Submitted by Maxim Alzoba <tech.contact@faitid.org>
-// https://www.flexireg.net/stat_info
-ru.net
-adygeya.ru
-bashkiria.ru
-bir.ru
-cbg.ru
-com.ru
-dagestan.ru
-grozny.ru
-kalmykia.ru
-kustanai.ru
-marine.ru
-mordovia.ru
-msk.ru
-mytis.ru
-nalchik.ru
-nov.ru
-pyatigorsk.ru
-spb.ru
-vladikavkaz.ru
-vladimir.ru
-abkhazia.su
-adygeya.su
-aktyubinsk.su
-arkhangelsk.su
-armenia.su
-ashgabad.su
-azerbaijan.su
-balashov.su
-bashkiria.su
-bryansk.su
-bukhara.su
-chimkent.su
-dagestan.su
-east-kazakhstan.su
-exnet.su
-georgia.su
-grozny.su
-ivanovo.su
-jambyl.su
-kalmykia.su
-kaluga.su
-karacol.su
-karaganda.su
-karelia.su
-khakassia.su
-krasnodar.su
-kurgan.su
-kustanai.su
-lenug.su
-mangyshlak.su
-mordovia.su
-msk.su
-murmansk.su
-nalchik.su
-navoi.su
-north-kazakhstan.su
-nov.su
-obninsk.su
-penza.su
-pokrovsk.su
-sochi.su
-spb.su
-tashkent.su
-termez.su
-togliatti.su
-troitsk.su
-tselinograd.su
-tula.su
-tuva.su
-vladikavkaz.su
-vladimir.su
-vologda.su
-
-// Fancy Bits, LLC : http://getchannels.com
-// Submitted by Aman Gupta <aman@getchannels.com>
-channelsdvr.net
-
-// Fastly Inc. : http://www.fastly.com/
-// Submitted by Fastly Security <security@fastly.com>
-fastlylb.net
-map.fastlylb.net
-freetls.fastly.net
-map.fastly.net
-a.prod.fastly.net
-global.prod.fastly.net
-a.ssl.fastly.net
-b.ssl.fastly.net
-global.ssl.fastly.net
-
-// FASTVPS EESTI OU : https://fastvps.ru/
-// Submitted by Likhachev Vasiliy <lihachev@fastvps.ru>
-fastpanel.direct
-fastvps-server.com
-
-// Featherhead : https://featherhead.xyz/
-// Submitted by Simon Menke <simon@featherhead.xyz>
-fhapp.xyz
-
-// Fedora : https://fedoraproject.org/
-// submitted by Patrick Uiterwijk <puiterwijk@fedoraproject.org>
-fedorainfracloud.org
-fedorapeople.org
-cloud.fedoraproject.org
-app.os.fedoraproject.org
-app.os.stg.fedoraproject.org
-
-// Filegear Inc. : https://www.filegear.com
-// Submitted by Jason Zhu <jason@owtware.com>
-filegear.me
-
-// Firebase, Inc.
-// Submitted by Chris Raynor <chris@firebase.com>
-firebaseapp.com
-
-// Flynn : https://flynn.io
-// Submitted by Jonathan Rudenberg <jonathan@flynn.io>
-flynnhub.com
-flynnhosting.net
-
-// Freebox : http://www.freebox.fr
-// Submitted by Romain Fliedel <rfliedel@freebox.fr>
-freebox-os.com
-freeboxos.com
-fbx-os.fr
-fbxos.fr
-freebox-os.fr
-freeboxos.fr
-
-// freedesktop.org : https://www.freedesktop.org
-// Submitted by Daniel Stone <daniel@fooishbar.org>
-freedesktop.org
-
-// Futureweb OG : http://www.futureweb.at
-// Submitted by Andreas Schnederle-Wagner <schnederle@futureweb.at>
-*.futurecms.at
-*.ex.futurecms.at
-*.in.futurecms.at
-futurehosting.at
-futuremailing.at
-*.ex.ortsinfo.at
-*.kunden.ortsinfo.at
-*.statics.cloud
-
-// GDS : https://www.gov.uk/service-manual/operations/operating-servicegovuk-subdomains
-// Submitted by David Illsley <david.illsley@digital.cabinet-office.gov.uk>
-service.gov.uk
-
-// GitHub, Inc.
-// Submitted by Patrick Toomey <security@github.com>
-github.io
-githubusercontent.com
-
-// GitLab, Inc.
-// Submitted by Alex Hanselka <alex@gitlab.com>
-gitlab.io
-
-// UKHomeOffice : https://www.gov.uk/government/organisations/home-office
-// Submitted by Jon Shanks <jon.shanks@digital.homeoffice.gov.uk>
-homeoffice.gov.uk
-
-// GlobeHosting, Inc.
-// Submitted by Zoltan Egresi <egresi@globehosting.com>
-ro.im
-shop.ro
-
-// GoIP DNS Services : http://www.goip.de
-// Submitted by Christian Poulter <milchstrasse@goip.de>
-goip.de
-
-// Google, Inc.
-// Submitted by Eduardo Vela <evn@google.com>
-*.0emm.com
-appspot.com
-blogspot.ae
-blogspot.al
-blogspot.am
-blogspot.ba
-blogspot.be
-blogspot.bg
-blogspot.bj
-blogspot.ca
-blogspot.cf
-blogspot.ch
-blogspot.cl
-blogspot.co.at
-blogspot.co.id
-blogspot.co.il
-blogspot.co.ke
-blogspot.co.nz
-blogspot.co.uk
-blogspot.co.za
-blogspot.com
-blogspot.com.ar
-blogspot.com.au
-blogspot.com.br
-blogspot.com.by
-blogspot.com.co
-blogspot.com.cy
-blogspot.com.ee
-blogspot.com.eg
-blogspot.com.es
-blogspot.com.mt
-blogspot.com.ng
-blogspot.com.tr
-blogspot.com.uy
-blogspot.cv
-blogspot.cz
-blogspot.de
-blogspot.dk
-blogspot.fi
-blogspot.fr
-blogspot.gr
-blogspot.hk
-blogspot.hr
-blogspot.hu
-blogspot.ie
-blogspot.in
-blogspot.is
-blogspot.it
-blogspot.jp
-blogspot.kr
-blogspot.li
-blogspot.lt
-blogspot.lu
-blogspot.md
-blogspot.mk
-blogspot.mr
-blogspot.mx
-blogspot.my
-blogspot.nl
-blogspot.no
-blogspot.pe
-blogspot.pt
-blogspot.qa
-blogspot.re
-blogspot.ro
-blogspot.rs
-blogspot.ru
-blogspot.se
-blogspot.sg
-blogspot.si
-blogspot.sk
-blogspot.sn
-blogspot.td
-blogspot.tw
-blogspot.ug
-blogspot.vn
-cloudfunctions.net
-cloud.goog
-codespot.com
-googleapis.com
-googlecode.com
-pagespeedmobilizer.com
-publishproxy.com
-withgoogle.com
-withyoutube.com
-
-// Hashbang : https://hashbang.sh
-hashbang.sh
-
-// Hasura : https://hasura.io
-// Submitted by Shahidh K Muhammed <shahidh@hasura.io>
-hasura.app
-hasura-app.io
-
-// Hepforge : https://www.hepforge.org
-// Submitted by David Grellscheid <admin@hepforge.org>
-hepforge.org
-
-// Heroku : https://www.heroku.com/
-// Submitted by Tom Maher <tmaher@heroku.com>
-herokuapp.com
-herokussl.com
-
-// Hibernating Rhinos
-// Submitted by Oren Eini <oren@ravendb.net>
-myravendb.com
-ravendb.community
-ravendb.me
-development.run
-ravendb.run
-
-// Ici la Lune : http://www.icilalune.com/
-// Submitted by Simon Morvan <simon@icilalune.com>
-moonscale.net
-
-// iki.fi
-// Submitted by Hannu Aronsson <haa@iki.fi>
-iki.fi
-
-// info.at : http://www.info.at/
-biz.at
-info.at
-
-// info.cx : http://info.cx
-// Submitted by Jacob Slater <whois@igloo.to>
-info.cx
-
-// Interlegis : http://www.interlegis.leg.br
-// Submitted by Gabriel Ferreira <registrobr@interlegis.leg.br>
-ac.leg.br
-al.leg.br
-am.leg.br
-ap.leg.br
-ba.leg.br
-ce.leg.br
-df.leg.br
-es.leg.br
-go.leg.br
-ma.leg.br
-mg.leg.br
-ms.leg.br
-mt.leg.br
-pa.leg.br
-pb.leg.br
-pe.leg.br
-pi.leg.br
-pr.leg.br
-rj.leg.br
-rn.leg.br
-ro.leg.br
-rr.leg.br
-rs.leg.br
-sc.leg.br
-se.leg.br
-sp.leg.br
-to.leg.br
-
-// intermetrics GmbH : https://pixolino.com/
-// Submitted by Wolfgang Schwarz <admin@intermetrics.de>
-pixolino.com
-
-// IPiFony Systems, Inc. : https://www.ipifony.com/
-// Submitted by Matthew Hardeman <mhardeman@ipifony.com>
-ipifony.net
-
-// IServ GmbH : https://iserv.eu
-// Submitted by Kim-Alexander Brodowski <kim.brodowski@iserv.eu>
-mein-iserv.de
-test-iserv.de
-
-// Jino : https://www.jino.ru
-// Submitted by Sergey Ulyashin <ulyashin@jino.ru>
-myjino.ru
-*.hosting.myjino.ru
-*.landing.myjino.ru
-*.spectrum.myjino.ru
-*.vps.myjino.ru
-
-// Joyent : https://www.joyent.com/
-// Submitted by Brian Bennett <brian.bennett@joyent.com>
-*.triton.zone
-*.cns.joyent.com
-
-// JS.ORG : http://dns.js.org
-// Submitted by Stefan Keim <admin@js.org>
-js.org
-
-// Keyweb AG : https://www.keyweb.de
-// Submitted by Martin Dannehl <postmaster@keymachine.de>
-keymachine.de
-
-// KnightPoint Systems, LLC : http://www.knightpoint.com/
-// Submitted by Roy Keene <rkeene@knightpoint.com>
-knightpoint.systems
-
-// .KRD : http://nic.krd/data/krd/Registration%20Policy.pdf
-co.krd
-edu.krd
-
-// LCube - Professional hosting e.K. : https://www.lcube-webhosting.de
-// Submitted by Lars Laehn <info@lcube.de>
-git-repos.de
-lcube-server.de
-svn-repos.de
-
-// Lightmaker Property Manager, Inc. : https://app.lmpm.com/
-// Submitted by Greg Holland <greg.holland@lmpm.com>
-app.lmpm.com
-
-// Linki Tools UG : https://linki.tools
-// Submitted by Paulo Matos <pmatos@linki.tools>
-linkitools.space
-
-// linkyard ldt: https://www.linkyard.ch/
-// Submitted by Mario Siegenthaler <mario.siegenthaler@linkyard.ch>
-linkyard.cloud
-linkyard-cloud.ch
-
-// LiquidNet Ltd : http://www.liquidnetlimited.com/
-// Submitted by Victor Velchev <admin@liquidnetlimited.com>
-we.bs
-
-// Lug.org.uk : https://lug.org.uk
-// Submitted by Jon Spriggs <admin@lug.org.uk>
-uklugs.org
-glug.org.uk
-lug.org.uk
-lugs.org.uk
-
-// Lukanet Ltd : https://lukanet.com
-// Submitted by Anton Avramov <register@lukanet.com>
-barsy.bg
-barsy.co.uk
-barsyonline.co.uk
-barsycenter.com
-barsyonline.com
-barsy.club
-barsy.de
-barsy.eu
-barsy.in
-barsy.info
-barsy.io
-barsy.me
-barsy.menu
-barsy.mobi
-barsy.net
-barsy.online
-barsy.org
-barsy.pro
-barsy.pub
-barsy.shop
-barsy.site
-barsy.support
-barsy.uk
-
-// Magento Commerce
-// Submitted by Damien Tournoud <dtournoud@magento.cloud>
-*.magentosite.cloud
-
-// May First - People Link : https://mayfirst.org/
-// Submitted by Jamie McClelland <info@mayfirst.org>
-mayfirst.info
-mayfirst.org
-
-// Mail.Ru Group : https://hb.cldmail.ru
-// Submitted by Ilya Zaretskiy <zaretskiy@corp.mail.ru>
-hb.cldmail.ru
-
-// Memset hosting : https://www.memset.com
-// Submitted by Tom Whitwell <domains@memset.com>
-miniserver.com
-memset.net
-
-// MetaCentrum, CESNET z.s.p.o. : https://www.metacentrum.cz/en/
-// Submitted by Zdeněk Šustr <zdenek.sustr@cesnet.cz>
-cloud.metacentrum.cz
-custom.metacentrum.cz
-
-// MetaCentrum, CESNET z.s.p.o. : https://www.metacentrum.cz/en/
-// Submitted by Radim Janča <janca@cesnet.cz>
-flt.cloud.muni.cz
-usr.cloud.muni.cz
-
-// Meteor Development Group : https://www.meteor.com/hosting
-// Submitted by Pierre Carrier <pierre@meteor.com>
-meteorapp.com
-eu.meteorapp.com
-
-// Michau Enterprises Limited : http://www.co.pl/
-co.pl
-
-// Microsoft Corporation : http://microsoft.com
-// Submitted by Justin Luk <juluk@microsoft.com>
-azurecontainer.io
-azurewebsites.net
-azure-mobile.net
-cloudapp.net
-
-// Mozilla Corporation : https://mozilla.com
-// Submitted by Ben Francis <bfrancis@mozilla.com>
-mozilla-iot.org
-
-// Mozilla Foundation : https://mozilla.org/
-// Submitted by glob <glob@mozilla.com>
-bmoattachments.org
-
-// MSK-IX : https://www.msk-ix.ru/
-// Submitted by Khannanov Roman <r.khannanov@msk-ix.ru>
-net.ru
-org.ru
-pp.ru
-
-// Netlify : https://www.netlify.com
-// Submitted by Jessica Parsons <jessica@netlify.com>
-bitballoon.com
-netlify.com
-
-// Neustar Inc.
-// Submitted by Trung Tran <Trung.Tran@neustar.biz>
-4u.com
-
-// ngrok : https://ngrok.com/
-// Submitted by Alan Shreve <alan@ngrok.com>
-ngrok.io
-
-// Nimbus Hosting Ltd. : https://www.nimbushosting.co.uk/
-// Submitted by Nicholas Ford <nick@nimbushosting.co.uk>
-nh-serv.co.uk
-
-// NFSN, Inc. : https://www.NearlyFreeSpeech.NET/
-// Submitted by Jeff Wheelhouse <support@nearlyfreespeech.net>
-nfshost.com
-
-// Now-DNS : https://now-dns.com
-// Submitted by Steve Russell <steve@now-dns.com>
-dnsking.ch
-mypi.co
-n4t.co
-001www.com
-ddnslive.com
-myiphost.com
-forumz.info
-16-b.it
-32-b.it
-64-b.it
-soundcast.me
-tcp4.me
-dnsup.net
-hicam.net
-now-dns.net
-ownip.net
-vpndns.net
-dynserv.org
-now-dns.org
-x443.pw
-now-dns.top
-ntdll.top
-freeddns.us
-crafting.xyz
-zapto.xyz
-
-// nsupdate.info : https://www.nsupdate.info/
-// Submitted by Thomas Waldmann <info@nsupdate.info>
-nsupdate.info
-nerdpol.ovh
-
-// No-IP.com : https://noip.com/
-// Submitted by Deven Reza <publicsuffixlist@noip.com>
-blogsyte.com
-brasilia.me
-cable-modem.org
-ciscofreak.com
-collegefan.org
-couchpotatofries.org
-damnserver.com
-ddns.me
-ditchyourip.com
-dnsfor.me
-dnsiskinky.com
-dvrcam.info
-dynns.com
-eating-organic.net
-fantasyleague.cc
-geekgalaxy.com
-golffan.us
-health-carereform.com
-homesecuritymac.com
-homesecuritypc.com
-hopto.me
-ilovecollege.info
-loginto.me
-mlbfan.org
-mmafan.biz
-myactivedirectory.com
-mydissent.net
-myeffect.net
-mymediapc.net
-mypsx.net
-mysecuritycamera.com
-mysecuritycamera.net
-mysecuritycamera.org
-net-freaks.com
-nflfan.org
-nhlfan.net
-no-ip.ca
-no-ip.co.uk
-no-ip.net
-noip.us
-onthewifi.com
-pgafan.net
-point2this.com
-pointto.us
-privatizehealthinsurance.net
-quicksytes.com
-read-books.org
-securitytactics.com
-serveexchange.com
-servehumour.com
-servep2p.com
-servesarcasm.com
-stufftoread.com
-ufcfan.org
-unusualperson.com
-workisboring.com
-3utilities.com
-bounceme.net
-ddns.net
-ddnsking.com
-gotdns.ch
-hopto.org
-myftp.biz
-myftp.org
-myvnc.com
-no-ip.biz
-no-ip.info
-no-ip.org
-noip.me
-redirectme.net
-servebeer.com
-serveblog.net
-servecounterstrike.com
-serveftp.com
-servegame.com
-servehalflife.com
-servehttp.com
-serveirc.com
-serveminecraft.net
-servemp3.com
-servepics.com
-servequake.com
-sytes.net
-webhop.me
-zapto.org
-
-// NodeArt : https://nodeart.io
-// Submitted by Konstantin Nosov <Nosov@nodeart.io>
-stage.nodeart.io
-
-// Nodum B.V. : https://nodum.io/
-// Submitted by Wietse Wind <hello+publicsuffixlist@nodum.io>
-nodum.co
-nodum.io
-
-// Nucleos Inc. : https://nucleos.com
-// Submitted by Piotr Zduniak <piotr@nucleos.com>
-pcloud.host
-
-// NYC.mn : http://www.information.nyc.mn
-// Submitted by Matthew Brown <mattbrown@nyc.mn>
-nyc.mn
-
-// NymNom : https://nymnom.com/
-// Submitted by Dave McCormack <dave.mccormack@nymnom.com>
-nom.ae
-nom.af
-nom.ai
-nom.al
-nym.by
-nym.bz
-nom.cl
-nom.gd
-nom.ge
-nom.gl
-nym.gr
-nom.gt
-nym.gy
-nom.hn
-nym.ie
-nom.im
-nom.ke
-nym.kz
-nym.la
-nym.lc
-nom.li
-nym.li
-nym.lt
-nym.lu
-nym.me
-nom.mk
-nym.mn
-nym.mx
-nom.nu
-nym.nz
-nym.pe
-nym.pt
-nom.pw
-nom.qa
-nym.ro
-nom.rs
-nom.si
-nym.sk
-nom.st
-nym.su
-nym.sx
-nom.tj
-nym.tw
-nom.ug
-nom.uy
-nom.vc
-nom.vg
-
-// Octopodal Solutions, LLC. : https://ulterius.io/
-// Submitted by Andrew Sampson <andrew@ulterius.io>
-cya.gg
-
-// Omnibond Systems, LLC. : https://www.omnibond.com
-// Submitted by Cole Estep <cole@omnibond.com>
-cloudycluster.net
-
-// One Fold Media : http://www.onefoldmedia.com/
-// Submitted by Eddie Jones <eddie@onefoldmedia.com>
-nid.io
-
-// OpenCraft GmbH : http://opencraft.com/
-// Submitted by Sven Marnach <sven@opencraft.com>
-opencraft.hosting
-
-// Opera Software, A.S.A.
-// Submitted by Yngve Pettersen <yngve@opera.com>
-operaunite.com
-
-// OutSystems
-// Submitted by Duarte Santos <domain-admin@outsystemscloud.com>
-outsystemscloud.com
-
-// OwnProvider GmbH: http://www.ownprovider.com
-// Submitted by Jan Moennich <jan.moennich@ownprovider.com>
-ownprovider.com
-own.pm
-
-// OX : http://www.ox.rs
-// Submitted by Adam Grand <webmaster@mail.ox.rs>
-ox.rs
-
-// oy.lc
-// Submitted by Charly Coste <changaco@changaco.oy.lc>
-oy.lc
-
-// Pagefog : https://pagefog.com/
-// Submitted by Derek Myers <derek@pagefog.com>
-pgfog.com
-
-// Pagefront : https://www.pagefronthq.com/
-// Submitted by Jason Kriss <jason@pagefronthq.com>
-pagefrontapp.com
-
-// .pl domains (grandfathered)
-art.pl
-gliwice.pl
-krakow.pl
-poznan.pl
-wroc.pl
-zakopane.pl
-
-// Pantheon Systems, Inc. : https://pantheon.io/
-// Submitted by Gary Dylina <gary@pantheon.io>
-pantheonsite.io
-gotpantheon.com
-
-// Peplink | Pepwave : http://peplink.com/
-// Submitted by Steve Leung <steveleung@peplink.com>
-mypep.link
-
-// Planet-Work : https://www.planet-work.com/
-// Submitted by Frédéric VANNIÈRE <f.vanniere@planet-work.com>
-on-web.fr
-
-// Platform.sh : https://platform.sh
-// Submitted by Nikola Kotur <nikola@platform.sh>
-*.platform.sh
-*.platformsh.site
-
-// prgmr.com : https://prgmr.com/
-// Submitted by Sarah Newman <owner@prgmr.com>
-xen.prgmr.com
-
-// priv.at : http://www.nic.priv.at/
-// Submitted by registry <lendl@nic.at>
-priv.at
-
-// Protonet GmbH : http://protonet.io
-// Submitted by Martin Meier <admin@protonet.io>
-protonet.io
-
-// Publication Presse Communication SARL : https://ppcom.fr
-// Submitted by Yaacov Akiba Slama <admin@chirurgiens-dentistes-en-france.fr>
-chirurgiens-dentistes-en-france.fr
-byen.site
-
-// Russian Academy of Sciences
-// Submitted by Tech Support <support@rasnet.ru>
-ras.ru
-
-// QA2
-// Submitted by Daniel Dent (https://www.danieldent.com/)
-qa2.com
-
-// QNAP System Inc : https://www.qnap.com
-// Submitted by Nick Chang <nickchang@qnap.com>
-dev-myqnapcloud.com
-alpha-myqnapcloud.com
-myqnapcloud.com
-
-// Quip : https://quip.com
-// Submitted by Patrick Linehan <plinehan@quip.com>
-*.quipelements.com
-
-// Qutheory LLC : http://qutheory.io
-// Submitted by Jonas Schwartz <jonas@qutheory.io>
-vapor.cloud
-vaporcloud.io
-
-// Rackmaze LLC : https://www.rackmaze.com
-// Submitted by Kirill Pertsev <kika@rackmaze.com>
-rackmaze.com
-rackmaze.net
-
-// Red Hat, Inc. OpenShift : https://openshift.redhat.com/
-// Submitted by Tim Kramer <tkramer@rhcloud.com>
-rhcloud.com
-
-// Resin.io : https://resin.io
-// Submitted by Tim Perry <tim@resin.io>
-resindevice.io
-devices.resinstaging.io
-
-// RethinkDB : https://www.rethinkdb.com/
-// Submitted by Chris Kastorff <info@rethinkdb.com>
-hzc.io
-
-// Revitalised Limited : http://www.revitalised.co.uk
-// Submitted by Jack Price <jack@revitalised.co.uk>
-wellbeingzone.eu
-ptplus.fit
-wellbeingzone.co.uk
-
-// Sandstorm Development Group, Inc. : https://sandcats.io/
-// Submitted by Asheesh Laroia <asheesh@sandstorm.io>
-sandcats.io
-
-// SBE network solutions GmbH : https://www.sbe.de/
-// Submitted by Norman Meilick <nm@sbe.de>
-logoip.de
-logoip.com
-
-// schokokeks.org GbR : https://schokokeks.org/
-// Submitted by Hanno Böck <hanno@schokokeks.org>
-schokokeks.net
-
-// Scry Security : http://www.scrysec.com
-// Submitted by Shante Adam <shante@skyhat.io>
-scrysec.com
-
-// Securepoint GmbH : https://www.securepoint.de
-// Submitted by Erik Anders <erik.anders@securepoint.de>
-firewall-gateway.com
-firewall-gateway.de
-my-gateway.de
-my-router.de
-spdns.de
-spdns.eu
-firewall-gateway.net
-my-firewall.org
-myfirewall.org
-spdns.org
-
-// SensioLabs, SAS : https://sensiolabs.com/
-// Submitted by Fabien Potencier <fabien.potencier@sensiolabs.com>
-*.s5y.io
-*.sensiosite.cloud
-
-// Service Online LLC : http://drs.ua/
-// Submitted by Serhii Bulakh <support@drs.ua>
-biz.ua
-co.ua
-pp.ua
-
-// ShiftEdit : https://shiftedit.net/
-// Submitted by Adam Jimenez <adam@shiftcreate.com>
-shiftedit.io
-
-// Shopblocks : http://www.shopblocks.com/
-// Submitted by Alex Bowers <alex@shopblocks.com>
-myshopblocks.com
-
-// SinaAppEngine : http://sae.sina.com.cn/
-// Submitted by SinaAppEngine <saesupport@sinacloud.com>
-1kapp.com
-appchizi.com
-applinzi.com
-sinaapp.com
-vipsinaapp.com
-
-// Skyhat : http://www.skyhat.io
-// Submitted by Shante Adam <shante@skyhat.io>
-bounty-full.com
-alpha.bounty-full.com
-beta.bounty-full.com
-
-// staticland : https://static.land
-// Submitted by Seth Vincent <sethvincent@gmail.com>
-static.land
-dev.static.land
-sites.static.land
-
-// SourceLair PC : https://www.sourcelair.com
-// Submitted by Antonis Kalipetis <akalipetis@sourcelair.com>
-apps.lair.io
-*.stolos.io
-
-// SpaceKit : https://www.spacekit.io/
-// Submitted by Reza Akhavan <spacekit.io@gmail.com>
-spacekit.io
-
-// SpeedPartner GmbH: https://www.speedpartner.de/
-// Submitted by Stefan Neufeind <info@speedpartner.de>
-customer.speedpartner.de
-
-// Storj Labs Inc. : https://storj.io/
-// Submitted by Philip Hutchins <hostmaster@storj.io>
-storj.farm
-
-// Studenten Net Twente : http://www.snt.utwente.nl/
-// Submitted by Silke Hofstra <syscom@snt.utwente.nl>
-utwente.io
-
-// Sub 6 Limited: http://www.sub6.com
-// Submitted by Dan Miller <dm@sub6.com>
-temp-dns.com
-
-// Synology, Inc. : https://www.synology.com/
-// Submitted by Rony Weng <ronyweng@synology.com>
-diskstation.me
-dscloud.biz
-dscloud.me
-dscloud.mobi
-dsmynas.com
-dsmynas.net
-dsmynas.org
-familyds.com
-familyds.net
-familyds.org
-i234.me
-myds.me
-synology.me
-vpnplus.to
-
-// TAIFUN Software AG : http://taifun-software.de
-// Submitted by Bjoern Henke <dev-server@taifun-software.de>
-taifun-dns.de
-
-// TASK geographical domains (www.task.gda.pl/uslugi/dns)
-gda.pl
-gdansk.pl
-gdynia.pl
-med.pl
-sopot.pl
-
-// The Gwiddle Foundation : https://gwiddlefoundation.org.uk
-// Submitted by Joshua Bayfield <joshua.bayfield@gwiddlefoundation.org.uk>
-gwiddle.co.uk
-
-// Thingdust AG : https://thingdust.com/
-// Submitted by Adrian Imboden <adi@thingdust.com>
-cust.dev.thingdust.io
-cust.disrec.thingdust.io
-cust.prod.thingdust.io
-cust.testing.thingdust.io
-
-// TownNews.com : http://www.townnews.com
-// Submitted by Dustin Ward <dward@townnews.com>
-bloxcms.com
-townnews-staging.com
-
-// TrafficPlex GmbH : https://www.trafficplex.de/
-// Submitted by Phillipp Röll <phillipp.roell@trafficplex.de>
-12hp.at
-2ix.at
-4lima.at
-lima-city.at
-12hp.ch
-2ix.ch
-4lima.ch
-lima-city.ch
-trafficplex.cloud
-de.cool
-12hp.de
-2ix.de
-4lima.de
-lima-city.de
-1337.pictures
-clan.rip
-lima-city.rocks
-webspace.rocks
-lima.zone
-
-// TransIP : https://www.transip.nl
-// Submitted by Rory Breuk <rbreuk@transip.nl>
-*.transurl.be
-*.transurl.eu
-*.transurl.nl
-
-// TuxFamily : http://tuxfamily.org
-// Submitted by TuxFamily administrators <adm@staff.tuxfamily.org>
-tuxfamily.org
-
-// TwoDNS : https://www.twodns.de/
-// Submitted by TwoDNS-Support <support@two-dns.de>
-dd-dns.de
-diskstation.eu
-diskstation.org
-dray-dns.de
-draydns.de
-dyn-vpn.de
-dynvpn.de
-mein-vigor.de
-my-vigor.de
-my-wan.de
-syno-ds.de
-synology-diskstation.de
-synology-ds.de
-
-// Uberspace : https://uberspace.de
-// Submitted by Moritz Werner <mwerner@jonaspasche.com>
-uber.space
-*.uberspace.de
-
-// UDR Limited : http://www.udr.hk.com
-// Submitted by registry <hostmaster@udr.hk.com>
-hk.com
-hk.org
-ltd.hk
-inc.hk
-
-// United Gameserver GmbH : https://united-gameserver.de
-// Submitted by Stefan Schwarz <sysadm@united-gameserver.de>
-virtualuser.de
-virtual-user.de
-
-// .US
-// Submitted by Ed Moore <Ed.Moore@lib.de.us>
-lib.de.us
-
-// VeryPositive SIA : http://very.lv
-// Submitted by Danko Aleksejevs <danko@very.lv>
-2038.io
-
-// Viprinet Europe GmbH : http://www.viprinet.com
-// Submitted by Simon Kissel <hostmaster@viprinet.com>
-router.management
-
-// Virtual-Info : https://www.virtual-info.info/
-// Submitted by Adnan RIHAN <hostmaster@v-info.info>
-v-info.info
-
-// WeDeploy by Liferay, Inc. : https://www.wedeploy.com
-// Submitted by Henrique Vicente <security@wedeploy.com>
-wedeploy.io
-wedeploy.me
-wedeploy.sh
-
-// Western Digital Technologies, Inc : https://www.wdc.com
-// Submitted by Jung Jin <jungseok.jin@wdc.com>
-remotewd.com
-
-// Wikimedia Labs : https://wikitech.wikimedia.org
-// Submitted by Yuvi Panda <yuvipanda@wikimedia.org>
-wmflabs.org
-
-// XenonCloud GbR: https://xenoncloud.net
-// Submitted by Julian Uphoff <publicsuffixlist@xenoncloud.net>
-half.host
-
-// XnBay Technology : http://www.xnbay.com/
-// Submitted by XnBay Developer <developer.xncloud@gmail.com>
-xnbay.com
-u2.xnbay.com
-u2-local.xnbay.com
-
-// XS4ALL Internet bv : https://www.xs4all.nl/
-// Submitted by Daniel Mostertman <unixbeheer+publicsuffix@xs4all.net>
-cistron.nl
-demon.nl
-xs4all.space
-
-// YesCourse Pty Ltd : https://yescourse.com
-// Submitted by Atul Bhouraskar <atul@yescourse.com>
-official.academy
-
-// Yola : https://www.yola.com/
-// Submitted by Stefano Rivera <stefano@yola.com>
-yolasite.com
-
-// Yombo : https://yombo.net
-// Submitted by Mitch Schwenk <mitch@yombo.net>
-ybo.faith
-yombo.me
-homelink.one
-ybo.party
-ybo.review
-ybo.science
-ybo.trade
-
-// Yunohost : https://yunohost.org
-// Submitted by Valentin Grimaud <security@yunohost.org>
-nohost.me
-noho.st
-
-// ZaNiC : http://www.za.net/
-// Submitted by registry <hostmaster@nic.za.net>
-za.net
-za.org
-
-// Zeit, Inc. : https://zeit.domains/
-// Submitted by Olli Vanhoja <olli@zeit.co>
-now.sh
-
-// Zone.id : https://zone.id/
-// Submitted by Su Hendro <admin@zone.id>
-zone.id
-
-// ===END PRIVATE DOMAINS===
-
-  `);
-}
-  
+export const rules: any = {
+  ac: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    net: { $: 1 },
+    mil: { $: 1 },
+    org: { $: 1 },
+  },
+  ad: { $: 1, nom: { $: 1 } },
+  ae: {
+    $: 1,
+    co: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    sch: { $: 1 },
+    ac: { $: 1 },
+    gov: { $: 1 },
+    mil: { $: 1 },
+    blogspot: { $: 2 },
+    nom: { $: 2 },
+  },
+  aero: {
+    $: 1,
+    'accident-investigation': { $: 1 },
+    'accident-prevention': { $: 1 },
+    aerobatic: { $: 1 },
+    aeroclub: { $: 1 },
+    aerodrome: { $: 1 },
+    agents: { $: 1 },
+    aircraft: { $: 1 },
+    airline: { $: 1 },
+    airport: { $: 1 },
+    'air-surveillance': { $: 1 },
+    airtraffic: { $: 1 },
+    'air-traffic-control': { $: 1 },
+    ambulance: { $: 1 },
+    amusement: { $: 1 },
+    association: { $: 1 },
+    author: { $: 1 },
+    ballooning: { $: 1 },
+    broker: { $: 1 },
+    caa: { $: 1 },
+    cargo: { $: 1 },
+    catering: { $: 1 },
+    certification: { $: 1 },
+    championship: { $: 1 },
+    charter: { $: 1 },
+    civilaviation: { $: 1 },
+    club: { $: 1 },
+    conference: { $: 1 },
+    consultant: { $: 1 },
+    consulting: { $: 1 },
+    control: { $: 1 },
+    council: { $: 1 },
+    crew: { $: 1 },
+    design: { $: 1 },
+    dgca: { $: 1 },
+    educator: { $: 1 },
+    emergency: { $: 1 },
+    engine: { $: 1 },
+    engineer: { $: 1 },
+    entertainment: { $: 1 },
+    equipment: { $: 1 },
+    exchange: { $: 1 },
+    express: { $: 1 },
+    federation: { $: 1 },
+    flight: { $: 1 },
+    freight: { $: 1 },
+    fuel: { $: 1 },
+    gliding: { $: 1 },
+    government: { $: 1 },
+    groundhandling: { $: 1 },
+    group: { $: 1 },
+    hanggliding: { $: 1 },
+    homebuilt: { $: 1 },
+    insurance: { $: 1 },
+    journal: { $: 1 },
+    journalist: { $: 1 },
+    leasing: { $: 1 },
+    logistics: { $: 1 },
+    magazine: { $: 1 },
+    maintenance: { $: 1 },
+    media: { $: 1 },
+    microlight: { $: 1 },
+    modelling: { $: 1 },
+    navigation: { $: 1 },
+    parachuting: { $: 1 },
+    paragliding: { $: 1 },
+    'passenger-association': { $: 1 },
+    pilot: { $: 1 },
+    press: { $: 1 },
+    production: { $: 1 },
+    recreation: { $: 1 },
+    repbody: { $: 1 },
+    res: { $: 1 },
+    research: { $: 1 },
+    rotorcraft: { $: 1 },
+    safety: { $: 1 },
+    scientist: { $: 1 },
+    services: { $: 1 },
+    show: { $: 1 },
+    skydiving: { $: 1 },
+    software: { $: 1 },
+    student: { $: 1 },
+    trader: { $: 1 },
+    trading: { $: 1 },
+    trainer: { $: 1 },
+    union: { $: 1 },
+    workinggroup: { $: 1 },
+    works: { $: 1 },
+  },
+  af: {
+    $: 1,
+    gov: { $: 1 },
+    com: { $: 1 },
+    org: { $: 1 },
+    net: { $: 1 },
+    edu: { $: 1 },
+    nom: { $: 2 },
+  },
+  ag: {
+    $: 1,
+    com: { $: 1 },
+    org: { $: 1 },
+    net: { $: 1 },
+    co: { $: 1 },
+    nom: { $: 1 },
+  },
+  ai: {
+    $: 1,
+    off: { $: 1 },
+    com: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    nom: { $: 2 },
+  },
+  al: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    mil: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    blogspot: { $: 2 },
+    nom: { $: 2 },
+  },
+  am: { $: 1, blogspot: { $: 2 } },
+  ao: {
+    $: 1,
+    ed: { $: 1 },
+    gv: { $: 1 },
+    og: { $: 1 },
+    co: { $: 1 },
+    pb: { $: 1 },
+    it: { $: 1 },
+  },
+  aq: { $: 1 },
+  ar: {
+    $: 1,
+    com: { $: 1, blogspot: { $: 2 } },
+    edu: { $: 1 },
+    gob: { $: 1 },
+    gov: { $: 1 },
+    int: { $: 1 },
+    mil: { $: 1 },
+    musica: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    tur: { $: 1 },
+  },
+  arpa: {
+    $: 1,
+    e164: { $: 1 },
+    'in-addr': { $: 1 },
+    ip6: { $: 1 },
+    iris: { $: 1 },
+    uri: { $: 1 },
+    urn: { $: 1 },
+  },
+  as: { $: 1, gov: { $: 1 } },
+  asia: { $: 1, cloudns: { $: 2 } },
+  at: {
+    $: 1,
+    ac: { $: 1 },
+    co: { $: 1, blogspot: { $: 2 } },
+    gv: { $: 1 },
+    or: { $: 1 },
+    futurecms: { '*': { $: 2 }, ex: { '*': { $: 2 } }, in: { '*': { $: 2 } } },
+    futurehosting: { $: 2 },
+    futuremailing: { $: 2 },
+    ortsinfo: { ex: { '*': { $: 2 } }, kunden: { '*': { $: 2 } } },
+    biz: { $: 2 },
+    info: { $: 2 },
+    priv: { $: 2 },
+    '12hp': { $: 2 },
+    '2ix': { $: 2 },
+    '4lima': { $: 2 },
+    'lima-city': { $: 2 },
+  },
+  au: {
+    $: 1,
+    com: { $: 1, blogspot: { $: 2 } },
+    net: { $: 1 },
+    org: { $: 1 },
+    edu: {
+      $: 1,
+      act: { $: 1 },
+      nsw: { $: 1 },
+      nt: { $: 1 },
+      qld: { $: 1 },
+      sa: { $: 1 },
+      tas: { $: 1 },
+      vic: { $: 1 },
+      wa: { $: 1 },
+    },
+    gov: {
+      $: 1,
+      qld: { $: 1 },
+      sa: { $: 1 },
+      tas: { $: 1 },
+      vic: { $: 1 },
+      wa: { $: 1 },
+    },
+    asn: { $: 1 },
+    id: { $: 1 },
+    info: { $: 1 },
+    conf: { $: 1 },
+    oz: { $: 1 },
+    act: { $: 1 },
+    nsw: { $: 1 },
+    nt: { $: 1 },
+    qld: { $: 1 },
+    sa: { $: 1 },
+    tas: { $: 1 },
+    vic: { $: 1 },
+    wa: { $: 1 },
+  },
+  aw: { $: 1, com: { $: 1 } },
+  ax: { $: 1 },
+  az: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    int: { $: 1 },
+    gov: { $: 1 },
+    org: { $: 1 },
+    edu: { $: 1 },
+    info: { $: 1 },
+    pp: { $: 1 },
+    mil: { $: 1 },
+    name: { $: 1 },
+    pro: { $: 1 },
+    biz: { $: 1 },
+  },
+  ba: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    mil: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    blogspot: { $: 2 },
+  },
+  bb: {
+    $: 1,
+    biz: { $: 1 },
+    co: { $: 1 },
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    info: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    store: { $: 1 },
+    tv: { $: 1 },
+  },
+  bd: { '*': { $: 1 } },
+  be: {
+    $: 1,
+    ac: { $: 1 },
+    webhosting: { $: 2 },
+    blogspot: { $: 2 },
+    transurl: { '*': { $: 2 } },
+  },
+  bf: { $: 1, gov: { $: 1 } },
+  bg: {
+    '0': { $: 1 },
+    '1': { $: 1 },
+    '2': { $: 1 },
+    '3': { $: 1 },
+    '4': { $: 1 },
+    '5': { $: 1 },
+    '6': { $: 1 },
+    '7': { $: 1 },
+    '8': { $: 1 },
+    '9': { $: 1 },
+    $: 1,
+    a: { $: 1 },
+    b: { $: 1 },
+    c: { $: 1 },
+    d: { $: 1 },
+    e: { $: 1 },
+    f: { $: 1 },
+    g: { $: 1 },
+    h: { $: 1 },
+    i: { $: 1 },
+    j: { $: 1 },
+    k: { $: 1 },
+    l: { $: 1 },
+    m: { $: 1 },
+    n: { $: 1 },
+    o: { $: 1 },
+    p: { $: 1 },
+    q: { $: 1 },
+    r: { $: 1 },
+    s: { $: 1 },
+    t: { $: 1 },
+    u: { $: 1 },
+    v: { $: 1 },
+    w: { $: 1 },
+    x: { $: 1 },
+    y: { $: 1 },
+    z: { $: 1 },
+    blogspot: { $: 2 },
+    barsy: { $: 2 },
+  },
+  bh: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    gov: { $: 1 },
+  },
+  bi: {
+    $: 1,
+    co: { $: 1 },
+    com: { $: 1 },
+    edu: { $: 1 },
+    or: { $: 1 },
+    org: { $: 1 },
+  },
+  biz: {
+    $: 1,
+    cloudns: { $: 2 },
+    dyndns: { $: 2 },
+    'for-better': { $: 2 },
+    'for-more': { $: 2 },
+    'for-some': { $: 2 },
+    'for-the': { $: 2 },
+    selfip: { $: 2 },
+    webhop: { $: 2 },
+    mmafan: { $: 2 },
+    myftp: { $: 2 },
+    'no-ip': { $: 2 },
+    dscloud: { $: 2 },
+  },
+  bj: {
+    $: 1,
+    asso: { $: 1 },
+    barreau: { $: 1 },
+    gouv: { $: 1 },
+    blogspot: { $: 2 },
+  },
+  bm: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+  },
+  bn: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+  },
+  bo: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gob: { $: 1 },
+    int: { $: 1 },
+    org: { $: 1 },
+    net: { $: 1 },
+    mil: { $: 1 },
+    tv: { $: 1 },
+    web: { $: 1 },
+    academia: { $: 1 },
+    agro: { $: 1 },
+    arte: { $: 1 },
+    blog: { $: 1 },
+    bolivia: { $: 1 },
+    ciencia: { $: 1 },
+    cooperativa: { $: 1 },
+    democracia: { $: 1 },
+    deporte: { $: 1 },
+    ecologia: { $: 1 },
+    economia: { $: 1 },
+    empresa: { $: 1 },
+    indigena: { $: 1 },
+    industria: { $: 1 },
+    info: { $: 1 },
+    medicina: { $: 1 },
+    movimiento: { $: 1 },
+    musica: { $: 1 },
+    natural: { $: 1 },
+    nombre: { $: 1 },
+    noticias: { $: 1 },
+    patria: { $: 1 },
+    politica: { $: 1 },
+    profesional: { $: 1 },
+    plurinacional: { $: 1 },
+    pueblo: { $: 1 },
+    revista: { $: 1 },
+    salud: { $: 1 },
+    tecnologia: { $: 1 },
+    tksat: { $: 1 },
+    transporte: { $: 1 },
+    wiki: { $: 1 },
+  },
+  br: {
+    $: 1,
+    '9guacu': { $: 1 },
+    abc: { $: 1 },
+    adm: { $: 1 },
+    adv: { $: 1 },
+    agr: { $: 1 },
+    aju: { $: 1 },
+    am: { $: 1 },
+    anani: { $: 1 },
+    aparecida: { $: 1 },
+    arq: { $: 1 },
+    art: { $: 1 },
+    ato: { $: 1 },
+    b: { $: 1 },
+    barueri: { $: 1 },
+    belem: { $: 1 },
+    bhz: { $: 1 },
+    bio: { $: 1 },
+    blog: { $: 1 },
+    bmd: { $: 1 },
+    boavista: { $: 1 },
+    bsb: { $: 1 },
+    campinagrande: { $: 1 },
+    campinas: { $: 1 },
+    caxias: { $: 1 },
+    cim: { $: 1 },
+    cng: { $: 1 },
+    cnt: { $: 1 },
+    com: { $: 1, blogspot: { $: 2 } },
+    contagem: { $: 1 },
+    coop: { $: 1 },
+    cri: { $: 1 },
+    cuiaba: { $: 1 },
+    curitiba: { $: 1 },
+    def: { $: 1 },
+    ecn: { $: 1 },
+    eco: { $: 1 },
+    edu: { $: 1 },
+    emp: { $: 1 },
+    eng: { $: 1 },
+    esp: { $: 1 },
+    etc: { $: 1 },
+    eti: { $: 1 },
+    far: { $: 1 },
+    feira: { $: 1 },
+    flog: { $: 1 },
+    floripa: { $: 1 },
+    fm: { $: 1 },
+    fnd: { $: 1 },
+    fortal: { $: 1 },
+    fot: { $: 1 },
+    foz: { $: 1 },
+    fst: { $: 1 },
+    g12: { $: 1 },
+    ggf: { $: 1 },
+    goiania: { $: 1 },
+    gov: {
+      $: 1,
+      ac: { $: 1 },
+      al: { $: 1 },
+      am: { $: 1 },
+      ap: { $: 1 },
+      ba: { $: 1 },
+      ce: { $: 1 },
+      df: { $: 1 },
+      es: { $: 1 },
+      go: { $: 1 },
+      ma: { $: 1 },
+      mg: { $: 1 },
+      ms: { $: 1 },
+      mt: { $: 1 },
+      pa: { $: 1 },
+      pb: { $: 1 },
+      pe: { $: 1 },
+      pi: { $: 1 },
+      pr: { $: 1 },
+      rj: { $: 1 },
+      rn: { $: 1 },
+      ro: { $: 1 },
+      rr: { $: 1 },
+      rs: { $: 1 },
+      sc: { $: 1 },
+      se: { $: 1 },
+      sp: { $: 1 },
+      to: { $: 1 },
+    },
+    gru: { $: 1 },
+    imb: { $: 1 },
+    ind: { $: 1 },
+    inf: { $: 1 },
+    jab: { $: 1 },
+    jampa: { $: 1 },
+    jdf: { $: 1 },
+    joinville: { $: 1 },
+    jor: { $: 1 },
+    jus: { $: 1 },
+    leg: {
+      $: 1,
+      ac: { $: 2 },
+      al: { $: 2 },
+      am: { $: 2 },
+      ap: { $: 2 },
+      ba: { $: 2 },
+      ce: { $: 2 },
+      df: { $: 2 },
+      es: { $: 2 },
+      go: { $: 2 },
+      ma: { $: 2 },
+      mg: { $: 2 },
+      ms: { $: 2 },
+      mt: { $: 2 },
+      pa: { $: 2 },
+      pb: { $: 2 },
+      pe: { $: 2 },
+      pi: { $: 2 },
+      pr: { $: 2 },
+      rj: { $: 2 },
+      rn: { $: 2 },
+      ro: { $: 2 },
+      rr: { $: 2 },
+      rs: { $: 2 },
+      sc: { $: 2 },
+      se: { $: 2 },
+      sp: { $: 2 },
+      to: { $: 2 },
+    },
+    lel: { $: 1 },
+    londrina: { $: 1 },
+    macapa: { $: 1 },
+    maceio: { $: 1 },
+    manaus: { $: 1 },
+    maringa: { $: 1 },
+    mat: { $: 1 },
+    med: { $: 1 },
+    mil: { $: 1 },
+    morena: { $: 1 },
+    mp: { $: 1 },
+    mus: { $: 1 },
+    natal: { $: 1 },
+    net: { $: 1 },
+    niteroi: { $: 1 },
+    nom: { '*': { $: 1 } },
+    not: { $: 1 },
+    ntr: { $: 1 },
+    odo: { $: 1 },
+    ong: { $: 1 },
+    org: { $: 1 },
+    osasco: { $: 1 },
+    palmas: { $: 1 },
+    poa: { $: 1 },
+    ppg: { $: 1 },
+    pro: { $: 1 },
+    psc: { $: 1 },
+    psi: { $: 1 },
+    pvh: { $: 1 },
+    qsl: { $: 1 },
+    radio: { $: 1 },
+    rec: { $: 1 },
+    recife: { $: 1 },
+    ribeirao: { $: 1 },
+    rio: { $: 1 },
+    riobranco: { $: 1 },
+    riopreto: { $: 1 },
+    salvador: { $: 1 },
+    sampa: { $: 1 },
+    santamaria: { $: 1 },
+    santoandre: { $: 1 },
+    saobernardo: { $: 1 },
+    saogonca: { $: 1 },
+    sjc: { $: 1 },
+    slg: { $: 1 },
+    slz: { $: 1 },
+    sorocaba: { $: 1 },
+    srv: { $: 1 },
+    taxi: { $: 1 },
+    teo: { $: 1 },
+    the: { $: 1 },
+    tmp: { $: 1 },
+    trd: { $: 1 },
+    tur: { $: 1 },
+    tv: { $: 1 },
+    udi: { $: 1 },
+    vet: { $: 1 },
+    vix: { $: 1 },
+    vlog: { $: 1 },
+    wiki: { $: 1 },
+    zlg: { $: 1 },
+  },
+  bs: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    we: { $: 2 },
+  },
+  bt: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+  },
+  bv: { $: 1 },
+  bw: { $: 1, co: { $: 1 }, org: { $: 1 } },
+  by: {
+    $: 1,
+    gov: { $: 1 },
+    mil: { $: 1 },
+    com: { $: 1, blogspot: { $: 2 } },
+    of: { $: 1 },
+    nym: { $: 2 },
+  },
+  bz: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    za: { $: 2 },
+    nym: { $: 2 },
+  },
+  ca: {
+    $: 1,
+    ab: { $: 1 },
+    bc: { $: 1 },
+    mb: { $: 1 },
+    nb: { $: 1 },
+    nf: { $: 1 },
+    nl: { $: 1 },
+    ns: { $: 1 },
+    nt: { $: 1 },
+    nu: { $: 1 },
+    on: { $: 1 },
+    pe: { $: 1 },
+    qc: { $: 1 },
+    sk: { $: 1 },
+    yk: { $: 1 },
+    gc: { $: 1 },
+    awdev: { '*': { $: 2 } },
+    co: { $: 2 },
+    blogspot: { $: 2 },
+    'no-ip': { $: 2 },
+  },
+  cat: { $: 1 },
+  cc: {
+    $: 1,
+    cloudns: { $: 2 },
+    ftpaccess: { $: 2 },
+    'game-server': { $: 2 },
+    myphotos: { $: 2 },
+    scrapping: { $: 2 },
+    twmail: { $: 2 },
+    fantasyleague: { $: 2 },
+  },
+  cd: { $: 1, gov: { $: 1 } },
+  cf: { $: 1, blogspot: { $: 2 } },
+  cg: { $: 1 },
+  ch: {
+    $: 1,
+    square7: { $: 2 },
+    blogspot: { $: 2 },
+    'linkyard-cloud': { $: 2 },
+    dnsking: { $: 2 },
+    gotdns: { $: 2 },
+    '12hp': { $: 2 },
+    '2ix': { $: 2 },
+    '4lima': { $: 2 },
+    'lima-city': { $: 2 },
+  },
+  ci: {
+    $: 1,
+    org: { $: 1 },
+    or: { $: 1 },
+    com: { $: 1 },
+    co: { $: 1 },
+    edu: { $: 1 },
+    ed: { $: 1 },
+    ac: { $: 1 },
+    net: { $: 1 },
+    go: { $: 1 },
+    asso: { $: 1 },
+    'xn--aroport-bya': { $: 1 },
+    int: { $: 1 },
+    presse: { $: 1 },
+    md: { $: 1 },
+    gouv: { $: 1 },
+  },
+  ck: { '*': { $: 1 } },
+  cl: {
+    $: 1,
+    gov: { $: 1 },
+    gob: { $: 1 },
+    co: { $: 1 },
+    mil: { $: 1 },
+    blogspot: { $: 2 },
+    nom: { $: 2 },
+  },
+  cm: { $: 1, co: { $: 1 }, com: { $: 1 }, gov: { $: 1 }, net: { $: 1 } },
+  cn: {
+    $: 1,
+    ac: { $: 1 },
+    com: {
+      $: 1,
+      amazonaws: {
+        compute: { '*': { $: 2 } },
+        eb: { 'cn-north-1': { $: 2 }, 'cn-northwest-1': { $: 2 } },
+        elb: { '*': { $: 2 } },
+        'cn-north-1': { s3: { $: 2 } },
+      },
+    },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    mil: { $: 1 },
+    'xn--55qx5d': { $: 1 },
+    'xn--io0a7i': { $: 1 },
+    'xn--od0alg': { $: 1 },
+    ah: { $: 1 },
+    bj: { $: 1 },
+    cq: { $: 1 },
+    fj: { $: 1 },
+    gd: { $: 1 },
+    gs: { $: 1 },
+    gz: { $: 1 },
+    gx: { $: 1 },
+    ha: { $: 1 },
+    hb: { $: 1 },
+    he: { $: 1 },
+    hi: { $: 1 },
+    hl: { $: 1 },
+    hn: { $: 1 },
+    jl: { $: 1 },
+    js: { $: 1 },
+    jx: { $: 1 },
+    ln: { $: 1 },
+    nm: { $: 1 },
+    nx: { $: 1 },
+    qh: { $: 1 },
+    sc: { $: 1 },
+    sd: { $: 1 },
+    sh: { $: 1 },
+    sn: { $: 1 },
+    sx: { $: 1 },
+    tj: { $: 1 },
+    xj: { $: 1 },
+    xz: { $: 1 },
+    yn: { $: 1 },
+    zj: { $: 1 },
+    hk: { $: 1 },
+    mo: { $: 1 },
+    tw: { $: 1 },
+    instantcloud: { $: 2 },
+  },
+  co: {
+    $: 1,
+    arts: { $: 1 },
+    com: { $: 1, blogspot: { $: 2 } },
+    edu: { $: 1 },
+    firm: { $: 1 },
+    gov: { $: 1 },
+    info: { $: 1 },
+    int: { $: 1 },
+    mil: { $: 1 },
+    net: { $: 1 },
+    nom: { $: 1 },
+    org: { $: 1 },
+    rec: { $: 1 },
+    web: { $: 1 },
+    'go-vip': { $: 2 },
+    otap: { '*': { $: 2 } },
+    mypi: { $: 2 },
+    n4t: { $: 2 },
+    nodum: { $: 2 },
+  },
+  com: {
+    $: 1,
+    amazonaws: {
+      compute: { '*': { $: 2 } },
+      'compute-1': { '*': { $: 2 } },
+      'us-east-1': { $: 2, dualstack: { s3: { $: 2 } } },
+      elb: { '*': { $: 2 } },
+      s3: { $: 2 },
+      's3-ap-northeast-1': { $: 2 },
+      's3-ap-northeast-2': { $: 2 },
+      's3-ap-south-1': { $: 2 },
+      's3-ap-southeast-1': { $: 2 },
+      's3-ap-southeast-2': { $: 2 },
+      's3-ca-central-1': { $: 2 },
+      's3-eu-central-1': { $: 2 },
+      's3-eu-west-1': { $: 2 },
+      's3-eu-west-2': { $: 2 },
+      's3-eu-west-3': { $: 2 },
+      's3-external-1': { $: 2 },
+      's3-fips-us-gov-west-1': { $: 2 },
+      's3-sa-east-1': { $: 2 },
+      's3-us-gov-west-1': { $: 2 },
+      's3-us-east-2': { $: 2 },
+      's3-us-west-1': { $: 2 },
+      's3-us-west-2': { $: 2 },
+      'ap-northeast-2': {
+        s3: { $: 2 },
+        dualstack: { s3: { $: 2 } },
+        's3-website': { $: 2 },
+      },
+      'ap-south-1': {
+        s3: { $: 2 },
+        dualstack: { s3: { $: 2 } },
+        's3-website': { $: 2 },
+      },
+      'ca-central-1': {
+        s3: { $: 2 },
+        dualstack: { s3: { $: 2 } },
+        's3-website': { $: 2 },
+      },
+      'eu-central-1': {
+        s3: { $: 2 },
+        dualstack: { s3: { $: 2 } },
+        's3-website': { $: 2 },
+      },
+      'eu-west-2': {
+        s3: { $: 2 },
+        dualstack: { s3: { $: 2 } },
+        's3-website': { $: 2 },
+      },
+      'eu-west-3': {
+        s3: { $: 2 },
+        dualstack: { s3: { $: 2 } },
+        's3-website': { $: 2 },
+      },
+      'us-east-2': {
+        s3: { $: 2 },
+        dualstack: { s3: { $: 2 } },
+        's3-website': { $: 2 },
+      },
+      'ap-northeast-1': { dualstack: { s3: { $: 2 } } },
+      'ap-southeast-1': { dualstack: { s3: { $: 2 } } },
+      'ap-southeast-2': { dualstack: { s3: { $: 2 } } },
+      'eu-west-1': { dualstack: { s3: { $: 2 } } },
+      'sa-east-1': { dualstack: { s3: { $: 2 } } },
+      's3-website-us-east-1': { $: 2 },
+      's3-website-us-west-1': { $: 2 },
+      's3-website-us-west-2': { $: 2 },
+      's3-website-ap-northeast-1': { $: 2 },
+      's3-website-ap-southeast-1': { $: 2 },
+      's3-website-ap-southeast-2': { $: 2 },
+      's3-website-eu-west-1': { $: 2 },
+      's3-website-sa-east-1': { $: 2 },
+    },
+    elasticbeanstalk: {
+      $: 2,
+      'ap-northeast-1': { $: 2 },
+      'ap-northeast-2': { $: 2 },
+      'ap-northeast-3': { $: 2 },
+      'ap-south-1': { $: 2 },
+      'ap-southeast-1': { $: 2 },
+      'ap-southeast-2': { $: 2 },
+      'ca-central-1': { $: 2 },
+      'eu-central-1': { $: 2 },
+      'eu-west-1': { $: 2 },
+      'eu-west-2': { $: 2 },
+      'eu-west-3': { $: 2 },
+      'sa-east-1': { $: 2 },
+      'us-east-1': { $: 2 },
+      'us-east-2': { $: 2 },
+      'us-gov-west-1': { $: 2 },
+      'us-west-1': { $: 2 },
+      'us-west-2': { $: 2 },
+    },
+    'on-aptible': { $: 2 },
+    myasustor: { $: 2 },
+    wpcomstaging: { $: 2 },
+    betainabox: { $: 2 },
+    bplaced: { $: 2 },
+    ar: { $: 2 },
+    br: { $: 2 },
+    cn: { $: 2 },
+    de: { $: 2 },
+    eu: { $: 2 },
+    gb: { $: 2 },
+    hu: { $: 2 },
+    jpn: { $: 2 },
+    kr: { $: 2 },
+    mex: { $: 2 },
+    no: { $: 2 },
+    qc: { $: 2 },
+    ru: { $: 2 },
+    sa: { $: 2 },
+    uk: { $: 2 },
+    us: { $: 2 },
+    uy: { $: 2 },
+    za: { $: 2 },
+    africa: { $: 2 },
+    gr: { $: 2 },
+    co: { $: 2 },
+    xenapponazure: { $: 2 },
+    jdevcloud: { $: 2 },
+    wpdevcloud: { $: 2 },
+    cloudcontrolled: { $: 2 },
+    cloudcontrolapp: { $: 2 },
+    dattolocal: { $: 2 },
+    dattorelay: { $: 2 },
+    dattoweb: { $: 2 },
+    mydatto: { $: 2 },
+    drayddns: { $: 2 },
+    dreamhosters: { $: 2 },
+    mydrobo: { $: 2 },
+    'dyndns-at-home': { $: 2 },
+    'dyndns-at-work': { $: 2 },
+    'dyndns-blog': { $: 2 },
+    'dyndns-free': { $: 2 },
+    'dyndns-home': { $: 2 },
+    'dyndns-ip': { $: 2 },
+    'dyndns-mail': { $: 2 },
+    'dyndns-office': { $: 2 },
+    'dyndns-pics': { $: 2 },
+    'dyndns-remote': { $: 2 },
+    'dyndns-server': { $: 2 },
+    'dyndns-web': { $: 2 },
+    'dyndns-wiki': { $: 2 },
+    'dyndns-work': { $: 2 },
+    blogdns: { $: 2 },
+    cechire: { $: 2 },
+    dnsalias: { $: 2 },
+    dnsdojo: { $: 2 },
+    doesntexist: { $: 2 },
+    dontexist: { $: 2 },
+    doomdns: { $: 2 },
+    'dyn-o-saur': { $: 2 },
+    dynalias: { $: 2 },
+    'est-a-la-maison': { $: 2 },
+    'est-a-la-masion': { $: 2 },
+    'est-le-patron': { $: 2 },
+    'est-mon-blogueur': { $: 2 },
+    'from-ak': { $: 2 },
+    'from-al': { $: 2 },
+    'from-ar': { $: 2 },
+    'from-ca': { $: 2 },
+    'from-ct': { $: 2 },
+    'from-dc': { $: 2 },
+    'from-de': { $: 2 },
+    'from-fl': { $: 2 },
+    'from-ga': { $: 2 },
+    'from-hi': { $: 2 },
+    'from-ia': { $: 2 },
+    'from-id': { $: 2 },
+    'from-il': { $: 2 },
+    'from-in': { $: 2 },
+    'from-ks': { $: 2 },
+    'from-ky': { $: 2 },
+    'from-ma': { $: 2 },
+    'from-md': { $: 2 },
+    'from-mi': { $: 2 },
+    'from-mn': { $: 2 },
+    'from-mo': { $: 2 },
+    'from-ms': { $: 2 },
+    'from-mt': { $: 2 },
+    'from-nc': { $: 2 },
+    'from-nd': { $: 2 },
+    'from-ne': { $: 2 },
+    'from-nh': { $: 2 },
+    'from-nj': { $: 2 },
+    'from-nm': { $: 2 },
+    'from-nv': { $: 2 },
+    'from-oh': { $: 2 },
+    'from-ok': { $: 2 },
+    'from-or': { $: 2 },
+    'from-pa': { $: 2 },
+    'from-pr': { $: 2 },
+    'from-ri': { $: 2 },
+    'from-sc': { $: 2 },
+    'from-sd': { $: 2 },
+    'from-tn': { $: 2 },
+    'from-tx': { $: 2 },
+    'from-ut': { $: 2 },
+    'from-va': { $: 2 },
+    'from-vt': { $: 2 },
+    'from-wa': { $: 2 },
+    'from-wi': { $: 2 },
+    'from-wv': { $: 2 },
+    'from-wy': { $: 2 },
+    getmyip: { $: 2 },
+    gotdns: { $: 2 },
+    'hobby-site': { $: 2 },
+    homelinux: { $: 2 },
+    homeunix: { $: 2 },
+    iamallama: { $: 2 },
+    'is-a-anarchist': { $: 2 },
+    'is-a-blogger': { $: 2 },
+    'is-a-bookkeeper': { $: 2 },
+    'is-a-bulls-fan': { $: 2 },
+    'is-a-caterer': { $: 2 },
+    'is-a-chef': { $: 2 },
+    'is-a-conservative': { $: 2 },
+    'is-a-cpa': { $: 2 },
+    'is-a-cubicle-slave': { $: 2 },
+    'is-a-democrat': { $: 2 },
+    'is-a-designer': { $: 2 },
+    'is-a-doctor': { $: 2 },
+    'is-a-financialadvisor': { $: 2 },
+    'is-a-geek': { $: 2 },
+    'is-a-green': { $: 2 },
+    'is-a-guru': { $: 2 },
+    'is-a-hard-worker': { $: 2 },
+    'is-a-hunter': { $: 2 },
+    'is-a-landscaper': { $: 2 },
+    'is-a-lawyer': { $: 2 },
+    'is-a-liberal': { $: 2 },
+    'is-a-libertarian': { $: 2 },
+    'is-a-llama': { $: 2 },
+    'is-a-musician': { $: 2 },
+    'is-a-nascarfan': { $: 2 },
+    'is-a-nurse': { $: 2 },
+    'is-a-painter': { $: 2 },
+    'is-a-personaltrainer': { $: 2 },
+    'is-a-photographer': { $: 2 },
+    'is-a-player': { $: 2 },
+    'is-a-republican': { $: 2 },
+    'is-a-rockstar': { $: 2 },
+    'is-a-socialist': { $: 2 },
+    'is-a-student': { $: 2 },
+    'is-a-teacher': { $: 2 },
+    'is-a-techie': { $: 2 },
+    'is-a-therapist': { $: 2 },
+    'is-an-accountant': { $: 2 },
+    'is-an-actor': { $: 2 },
+    'is-an-actress': { $: 2 },
+    'is-an-anarchist': { $: 2 },
+    'is-an-artist': { $: 2 },
+    'is-an-engineer': { $: 2 },
+    'is-an-entertainer': { $: 2 },
+    'is-certified': { $: 2 },
+    'is-gone': { $: 2 },
+    'is-into-anime': { $: 2 },
+    'is-into-cars': { $: 2 },
+    'is-into-cartoons': { $: 2 },
+    'is-into-games': { $: 2 },
+    'is-leet': { $: 2 },
+    'is-not-certified': { $: 2 },
+    'is-slick': { $: 2 },
+    'is-uberleet': { $: 2 },
+    'is-with-theband': { $: 2 },
+    'isa-geek': { $: 2 },
+    'isa-hockeynut': { $: 2 },
+    issmarterthanyou: { $: 2 },
+    'likes-pie': { $: 2 },
+    likescandy: { $: 2 },
+    'neat-url': { $: 2 },
+    'saves-the-whales': { $: 2 },
+    selfip: { $: 2 },
+    'sells-for-less': { $: 2 },
+    'sells-for-u': { $: 2 },
+    servebbs: { $: 2 },
+    'simple-url': { $: 2 },
+    'space-to-rent': { $: 2 },
+    'teaches-yoga': { $: 2 },
+    writesthisblog: { $: 2 },
+    ddnsfree: { $: 2 },
+    ddnsgeek: { $: 2 },
+    giize: { $: 2 },
+    gleeze: { $: 2 },
+    kozow: { $: 2 },
+    loseyourip: { $: 2 },
+    ooguy: { $: 2 },
+    theworkpc: { $: 2 },
+    mytuleap: { $: 2 },
+    evennode: {
+      'eu-1': { $: 2 },
+      'eu-2': { $: 2 },
+      'eu-3': { $: 2 },
+      'eu-4': { $: 2 },
+      'us-1': { $: 2 },
+      'us-2': { $: 2 },
+      'us-3': { $: 2 },
+      'us-4': { $: 2 },
+    },
+    fbsbx: { apps: { $: 2 } },
+    'fastvps-server': { $: 2 },
+    mydobiss: { $: 2 },
+    firebaseapp: { $: 2 },
+    flynnhub: { $: 2 },
+    'freebox-os': { $: 2 },
+    freeboxos: { $: 2 },
+    githubusercontent: { $: 2 },
+    '0emm': { '*': { $: 2 } },
+    appspot: { $: 2 },
+    blogspot: { $: 2 },
+    codespot: { $: 2 },
+    googleapis: { $: 2 },
+    googlecode: { $: 2 },
+    pagespeedmobilizer: { $: 2 },
+    publishproxy: { $: 2 },
+    withgoogle: { $: 2 },
+    withyoutube: { $: 2 },
+    herokuapp: { $: 2 },
+    herokussl: { $: 2 },
+    myravendb: { $: 2 },
+    pixolino: { $: 2 },
+    joyent: { cns: { '*': { $: 2 } } },
+    lmpm: { app: { $: 2 } },
+    barsycenter: { $: 2 },
+    barsyonline: { $: 2 },
+    miniserver: { $: 2 },
+    meteorapp: { $: 2, eu: { $: 2 } },
+    bitballoon: { $: 2 },
+    netlify: { $: 2 },
+    '4u': { $: 2 },
+    nfshost: { $: 2 },
+    '001www': { $: 2 },
+    ddnslive: { $: 2 },
+    myiphost: { $: 2 },
+    blogsyte: { $: 2 },
+    ciscofreak: { $: 2 },
+    damnserver: { $: 2 },
+    ditchyourip: { $: 2 },
+    dnsiskinky: { $: 2 },
+    dynns: { $: 2 },
+    geekgalaxy: { $: 2 },
+    'health-carereform': { $: 2 },
+    homesecuritymac: { $: 2 },
+    homesecuritypc: { $: 2 },
+    myactivedirectory: { $: 2 },
+    mysecuritycamera: { $: 2 },
+    'net-freaks': { $: 2 },
+    onthewifi: { $: 2 },
+    point2this: { $: 2 },
+    quicksytes: { $: 2 },
+    securitytactics: { $: 2 },
+    serveexchange: { $: 2 },
+    servehumour: { $: 2 },
+    servep2p: { $: 2 },
+    servesarcasm: { $: 2 },
+    stufftoread: { $: 2 },
+    unusualperson: { $: 2 },
+    workisboring: { $: 2 },
+    '3utilities': { $: 2 },
+    ddnsking: { $: 2 },
+    myvnc: { $: 2 },
+    servebeer: { $: 2 },
+    servecounterstrike: { $: 2 },
+    serveftp: { $: 2 },
+    servegame: { $: 2 },
+    servehalflife: { $: 2 },
+    servehttp: { $: 2 },
+    serveirc: { $: 2 },
+    servemp3: { $: 2 },
+    servepics: { $: 2 },
+    servequake: { $: 2 },
+    operaunite: { $: 2 },
+    outsystemscloud: { $: 2 },
+    ownprovider: { $: 2 },
+    pgfog: { $: 2 },
+    pagefrontapp: { $: 2 },
+    gotpantheon: { $: 2 },
+    prgmr: { xen: { $: 2 } },
+    qa2: { $: 2 },
+    'dev-myqnapcloud': { $: 2 },
+    'alpha-myqnapcloud': { $: 2 },
+    myqnapcloud: { $: 2 },
+    quipelements: { '*': { $: 2 } },
+    rackmaze: { $: 2 },
+    rhcloud: { $: 2 },
+    logoip: { $: 2 },
+    scrysec: { $: 2 },
+    'firewall-gateway': { $: 2 },
+    myshopblocks: { $: 2 },
+    '1kapp': { $: 2 },
+    appchizi: { $: 2 },
+    applinzi: { $: 2 },
+    sinaapp: { $: 2 },
+    vipsinaapp: { $: 2 },
+    'bounty-full': { $: 2, alpha: { $: 2 }, beta: { $: 2 } },
+    'temp-dns': { $: 2 },
+    dsmynas: { $: 2 },
+    familyds: { $: 2 },
+    bloxcms: { $: 2 },
+    'townnews-staging': { $: 2 },
+    hk: { $: 2 },
+    remotewd: { $: 2 },
+    xnbay: { $: 2, u2: { $: 2 }, 'u2-local': { $: 2 } },
+    yolasite: { $: 2 },
+  },
+  coop: { $: 1 },
+  cr: {
+    $: 1,
+    ac: { $: 1 },
+    co: { $: 1 },
+    ed: { $: 1 },
+    fi: { $: 1 },
+    go: { $: 1 },
+    or: { $: 1 },
+    sa: { $: 1 },
+  },
+  cu: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    org: { $: 1 },
+    net: { $: 1 },
+    gov: { $: 1 },
+    inf: { $: 1 },
+  },
+  cv: { $: 1, blogspot: { $: 2 } },
+  cw: { $: 1, com: { $: 1 }, edu: { $: 1 }, net: { $: 1 }, org: { $: 1 } },
+  cx: { $: 1, gov: { $: 1 }, ath: { $: 2 }, info: { $: 2 } },
+  cy: {
+    $: 1,
+    ac: { $: 1 },
+    biz: { $: 1 },
+    com: { $: 1, blogspot: { $: 2 } },
+    ekloges: { $: 1 },
+    gov: { $: 1 },
+    ltd: { $: 1 },
+    name: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    parliament: { $: 1 },
+    press: { $: 1 },
+    pro: { $: 1 },
+    tm: { $: 1 },
+  },
+  cz: {
+    $: 1,
+    co: { $: 2 },
+    realm: { $: 2 },
+    e4: { $: 2 },
+    blogspot: { $: 2 },
+    metacentrum: { cloud: { $: 2 }, custom: { $: 2 } },
+    muni: { cloud: { flt: { $: 2 }, usr: { $: 2 } } },
+  },
+  de: {
+    $: 1,
+    bplaced: { $: 2 },
+    square7: { $: 2 },
+    com: { $: 2 },
+    cosidns: { dyn: { $: 2 } },
+    'dynamisches-dns': { $: 2 },
+    dnsupdater: { $: 2 },
+    'internet-dns': { $: 2 },
+    'l-o-g-i-n': { $: 2 },
+    dnshome: { $: 2 },
+    fuettertdasnetz: { $: 2 },
+    isteingeek: { $: 2 },
+    istmein: { $: 2 },
+    lebtimnetz: { $: 2 },
+    leitungsen: { $: 2 },
+    traeumtgerade: { $: 2 },
+    ddnss: { $: 2, dyn: { $: 2 }, dyndns: { $: 2 } },
+    dyndns1: { $: 2 },
+    'dyn-ip24': { $: 2 },
+    'home-webserver': { $: 2, dyn: { $: 2 } },
+    'myhome-server': { $: 2 },
+    goip: { $: 2 },
+    blogspot: { $: 2 },
+    'mein-iserv': { $: 2 },
+    'test-iserv': { $: 2 },
+    keymachine: { $: 2 },
+    'git-repos': { $: 2 },
+    'lcube-server': { $: 2 },
+    'svn-repos': { $: 2 },
+    barsy: { $: 2 },
+    logoip: { $: 2 },
+    'firewall-gateway': { $: 2 },
+    'my-gateway': { $: 2 },
+    'my-router': { $: 2 },
+    spdns: { $: 2 },
+    speedpartner: { customer: { $: 2 } },
+    'taifun-dns': { $: 2 },
+    '12hp': { $: 2 },
+    '2ix': { $: 2 },
+    '4lima': { $: 2 },
+    'lima-city': { $: 2 },
+    'dd-dns': { $: 2 },
+    'dray-dns': { $: 2 },
+    draydns: { $: 2 },
+    'dyn-vpn': { $: 2 },
+    dynvpn: { $: 2 },
+    'mein-vigor': { $: 2 },
+    'my-vigor': { $: 2 },
+    'my-wan': { $: 2 },
+    'syno-ds': { $: 2 },
+    'synology-diskstation': { $: 2 },
+    'synology-ds': { $: 2 },
+    uberspace: { '*': { $: 2 } },
+    virtualuser: { $: 2 },
+    'virtual-user': { $: 2 },
+  },
+  dj: { $: 1 },
+  dk: {
+    $: 1,
+    biz: { $: 2 },
+    co: { $: 2 },
+    firm: { $: 2 },
+    reg: { $: 2 },
+    store: { $: 2 },
+    blogspot: { $: 2 },
+  },
+  dm: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+  },
+  do: {
+    $: 1,
+    art: { $: 1 },
+    com: { $: 1 },
+    edu: { $: 1 },
+    gob: { $: 1 },
+    gov: { $: 1 },
+    mil: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    sld: { $: 1 },
+    web: { $: 1 },
+  },
+  dz: {
+    $: 1,
+    com: { $: 1 },
+    org: { $: 1 },
+    net: { $: 1 },
+    gov: { $: 1 },
+    edu: { $: 1 },
+    asso: { $: 1 },
+    pol: { $: 1 },
+    art: { $: 1 },
+  },
+  ec: {
+    $: 1,
+    com: { $: 1 },
+    info: { $: 1 },
+    net: { $: 1 },
+    fin: { $: 1 },
+    k12: { $: 1 },
+    med: { $: 1 },
+    pro: { $: 1 },
+    org: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    gob: { $: 1 },
+    mil: { $: 1 },
+  },
+  edu: { $: 1 },
+  ee: {
+    $: 1,
+    edu: { $: 1 },
+    gov: { $: 1 },
+    riik: { $: 1 },
+    lib: { $: 1 },
+    med: { $: 1 },
+    com: { $: 1, blogspot: { $: 2 } },
+    pri: { $: 1 },
+    aip: { $: 1 },
+    org: { $: 1 },
+    fie: { $: 1 },
+  },
+  eg: {
+    $: 1,
+    com: { $: 1, blogspot: { $: 2 } },
+    edu: { $: 1 },
+    eun: { $: 1 },
+    gov: { $: 1 },
+    mil: { $: 1 },
+    name: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    sci: { $: 1 },
+  },
+  er: { '*': { $: 1 } },
+  es: {
+    $: 1,
+    com: { $: 1, blogspot: { $: 2 } },
+    nom: { $: 1 },
+    org: { $: 1 },
+    gob: { $: 1 },
+    edu: { $: 1 },
+  },
+  et: {
+    $: 1,
+    com: { $: 1 },
+    gov: { $: 1 },
+    org: { $: 1 },
+    edu: { $: 1 },
+    biz: { $: 1 },
+    name: { $: 1 },
+    info: { $: 1 },
+    net: { $: 1 },
+  },
+  eu: {
+    $: 1,
+    mycd: { $: 2 },
+    cloudns: { $: 2 },
+    barsy: { $: 2 },
+    wellbeingzone: { $: 2 },
+    spdns: { $: 2 },
+    transurl: { '*': { $: 2 } },
+    diskstation: { $: 2 },
+  },
+  fi: {
+    $: 1,
+    aland: { $: 1 },
+    dy: { $: 2 },
+    blogspot: { $: 2 },
+    iki: { $: 2 },
+  },
+  fj: { '*': { $: 1 } },
+  fk: { '*': { $: 1 } },
+  fm: { $: 1 },
+  fo: { $: 1 },
+  fr: {
+    $: 1,
+    com: { $: 1 },
+    asso: { $: 1 },
+    nom: { $: 1 },
+    prd: { $: 1 },
+    presse: { $: 1 },
+    tm: { $: 1 },
+    aeroport: { $: 1 },
+    assedic: { $: 1 },
+    avocat: { $: 1 },
+    avoues: { $: 1 },
+    cci: { $: 1 },
+    chambagri: { $: 1 },
+    'chirurgiens-dentistes': { $: 1 },
+    'experts-comptables': { $: 1 },
+    'geometre-expert': { $: 1 },
+    gouv: { $: 1 },
+    greta: { $: 1 },
+    'huissier-justice': { $: 1 },
+    medecin: { $: 1 },
+    notaires: { $: 1 },
+    pharmacien: { $: 1 },
+    port: { $: 1 },
+    veterinaire: { $: 1 },
+    'fbx-os': { $: 2 },
+    fbxos: { $: 2 },
+    'freebox-os': { $: 2 },
+    freeboxos: { $: 2 },
+    blogspot: { $: 2 },
+    'on-web': { $: 2 },
+    'chirurgiens-dentistes-en-france': { $: 2 },
+  },
+  ga: { $: 1 },
+  gb: { $: 1 },
+  gd: { $: 1, nom: { $: 2 } },
+  ge: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    org: { $: 1 },
+    mil: { $: 1 },
+    net: { $: 1 },
+    pvt: { $: 1 },
+    nom: { $: 2 },
+  },
+  gf: { $: 1 },
+  gg: { $: 1, co: { $: 1 }, net: { $: 1 }, org: { $: 1 }, cya: { $: 2 } },
+  gh: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    org: { $: 1 },
+    mil: { $: 1 },
+  },
+  gi: {
+    $: 1,
+    com: { $: 1 },
+    ltd: { $: 1 },
+    gov: { $: 1 },
+    mod: { $: 1 },
+    edu: { $: 1 },
+    org: { $: 1 },
+  },
+  gl: {
+    $: 1,
+    co: { $: 1 },
+    com: { $: 1 },
+    edu: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    nom: { $: 2 },
+  },
+  gm: { $: 1 },
+  gn: {
+    $: 1,
+    ac: { $: 1 },
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    org: { $: 1 },
+    net: { $: 1 },
+  },
+  gov: { $: 1 },
+  gp: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    mobi: { $: 1 },
+    edu: { $: 1 },
+    org: { $: 1 },
+    asso: { $: 1 },
+  },
+  gq: { $: 1 },
+  gr: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    gov: { $: 1 },
+    blogspot: { $: 2 },
+    nym: { $: 2 },
+  },
+  gs: { $: 1 },
+  gt: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gob: { $: 1 },
+    ind: { $: 1 },
+    mil: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    nom: { $: 2 },
+  },
+  gu: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    guam: { $: 1 },
+    info: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    web: { $: 1 },
+  },
+  gw: { $: 1 },
+  gy: {
+    $: 1,
+    co: { $: 1 },
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    nym: { $: 2 },
+  },
+  hk: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    idv: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    'xn--55qx5d': { $: 1 },
+    'xn--wcvs22d': { $: 1 },
+    'xn--lcvr32d': { $: 1 },
+    'xn--mxtq1m': { $: 1 },
+    'xn--gmqw5a': { $: 1 },
+    'xn--ciqpn': { $: 1 },
+    'xn--gmq050i': { $: 1 },
+    'xn--zf0avx': { $: 1 },
+    'xn--io0a7i': { $: 1 },
+    'xn--mk0axi': { $: 1 },
+    'xn--od0alg': { $: 1 },
+    'xn--od0aq3b': { $: 1 },
+    'xn--tn0ag': { $: 1 },
+    'xn--uc0atv': { $: 1 },
+    'xn--uc0ay4a': { $: 1 },
+    blogspot: { $: 2 },
+    ltd: { $: 2 },
+    inc: { $: 2 },
+  },
+  hm: { $: 1 },
+  hn: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    org: { $: 1 },
+    net: { $: 1 },
+    mil: { $: 1 },
+    gob: { $: 1 },
+    nom: { $: 2 },
+  },
+  hr: {
+    $: 1,
+    iz: { $: 1 },
+    from: { $: 1 },
+    name: { $: 1 },
+    com: { $: 1 },
+    blogspot: { $: 2 },
+  },
+  ht: {
+    $: 1,
+    com: { $: 1 },
+    shop: { $: 1 },
+    firm: { $: 1 },
+    info: { $: 1 },
+    adult: { $: 1 },
+    net: { $: 1 },
+    pro: { $: 1 },
+    org: { $: 1 },
+    med: { $: 1 },
+    art: { $: 1 },
+    coop: { $: 1 },
+    pol: { $: 1 },
+    asso: { $: 1 },
+    edu: { $: 1 },
+    rel: { $: 1 },
+    gouv: { $: 1 },
+    perso: { $: 1 },
+  },
+  hu: {
+    '2000': { $: 1 },
+    $: 1,
+    co: { $: 1 },
+    info: { $: 1 },
+    org: { $: 1 },
+    priv: { $: 1 },
+    sport: { $: 1 },
+    tm: { $: 1 },
+    agrar: { $: 1 },
+    bolt: { $: 1 },
+    casino: { $: 1 },
+    city: { $: 1 },
+    erotica: { $: 1 },
+    erotika: { $: 1 },
+    film: { $: 1 },
+    forum: { $: 1 },
+    games: { $: 1 },
+    hotel: { $: 1 },
+    ingatlan: { $: 1 },
+    jogasz: { $: 1 },
+    konyvelo: { $: 1 },
+    lakas: { $: 1 },
+    media: { $: 1 },
+    news: { $: 1 },
+    reklam: { $: 1 },
+    sex: { $: 1 },
+    shop: { $: 1 },
+    suli: { $: 1 },
+    szex: { $: 1 },
+    tozsde: { $: 1 },
+    utazas: { $: 1 },
+    video: { $: 1 },
+    blogspot: { $: 2 },
+  },
+  id: {
+    $: 1,
+    ac: { $: 1 },
+    biz: { $: 1 },
+    co: { $: 1, blogspot: { $: 2 } },
+    desa: { $: 1 },
+    go: { $: 1 },
+    mil: { $: 1 },
+    my: { $: 1 },
+    net: { $: 1 },
+    or: { $: 1 },
+    ponpes: { $: 1 },
+    sch: { $: 1 },
+    web: { $: 1 },
+    zone: { $: 2 },
+  },
+  ie: { $: 1, gov: { $: 1 }, blogspot: { $: 2 }, nym: { $: 2 } },
+  il: {
+    $: 1,
+    ac: { $: 1 },
+    co: { $: 1, blogspot: { $: 2 } },
+    gov: { $: 1 },
+    idf: { $: 1 },
+    k12: { $: 1 },
+    muni: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+  },
+  im: {
+    $: 1,
+    ac: { $: 1 },
+    co: { $: 1, ltd: { $: 1 }, plc: { $: 1 } },
+    com: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    tt: { $: 1 },
+    tv: { $: 1 },
+    ro: { $: 2 },
+    nom: { $: 2 },
+  },
+  in: {
+    $: 1,
+    co: { $: 1 },
+    firm: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    gen: { $: 1 },
+    ind: { $: 1 },
+    nic: { $: 1 },
+    ac: { $: 1 },
+    edu: { $: 1 },
+    res: { $: 1 },
+    gov: { $: 1 },
+    mil: { $: 1 },
+    cloudns: { $: 2 },
+    blogspot: { $: 2 },
+    barsy: { $: 2 },
+  },
+  info: {
+    $: 1,
+    cloudns: { $: 2 },
+    'dynamic-dns': { $: 2 },
+    dyndns: { $: 2 },
+    'barrel-of-knowledge': { $: 2 },
+    'barrell-of-knowledge': { $: 2 },
+    'for-our': { $: 2 },
+    'groks-the': { $: 2 },
+    'groks-this': { $: 2 },
+    'here-for-more': { $: 2 },
+    knowsitall: { $: 2 },
+    selfip: { $: 2 },
+    webhop: { $: 2 },
+    barsy: { $: 2 },
+    mayfirst: { $: 2 },
+    forumz: { $: 2 },
+    nsupdate: { $: 2 },
+    dvrcam: { $: 2 },
+    ilovecollege: { $: 2 },
+    'no-ip': { $: 2 },
+    'v-info': { $: 2 },
+  },
+  int: { $: 1, eu: { $: 1 } },
+  io: {
+    '2038': { $: 2 },
+    $: 1,
+    com: { $: 1 },
+    apigee: { $: 2 },
+    backplaneapp: { $: 2 },
+    boxfuse: { $: 2 },
+    browsersafetymark: { $: 2 },
+    cleverapps: { $: 2 },
+    dedyn: { $: 2 },
+    drud: { $: 2 },
+    definima: { $: 2 },
+    enonic: { $: 2, customer: { $: 2 } },
+    github: { $: 2 },
+    gitlab: { $: 2 },
+    'hasura-app': { $: 2 },
+    barsy: { $: 2 },
+    azurecontainer: { $: 2 },
+    ngrok: { $: 2 },
+    nodeart: { stage: { $: 2 } },
+    nodum: { $: 2 },
+    nid: { $: 2 },
+    pantheonsite: { $: 2 },
+    protonet: { $: 2 },
+    vaporcloud: { $: 2 },
+    readthedocs: { $: 2 },
+    resindevice: { $: 2 },
+    resinstaging: { devices: { $: 2 } },
+    hzc: { $: 2 },
+    sandcats: { $: 2 },
+    s5y: { '*': { $: 2 } },
+    shiftedit: { $: 2 },
+    lair: { apps: { $: 2 } },
+    stolos: { '*': { $: 2 } },
+    spacekit: { $: 2 },
+    utwente: { $: 2 },
+    thingdust: {
+      dev: { cust: { $: 2 } },
+      disrec: { cust: { $: 2 } },
+      prod: { cust: { $: 2 } },
+      testing: { cust: { $: 2 } },
+    },
+    wedeploy: { $: 2 },
+  },
+  iq: {
+    $: 1,
+    gov: { $: 1 },
+    edu: { $: 1 },
+    mil: { $: 1 },
+    com: { $: 1 },
+    org: { $: 1 },
+    net: { $: 1 },
+  },
+  ir: {
+    $: 1,
+    ac: { $: 1 },
+    co: { $: 1 },
+    gov: { $: 1 },
+    id: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    sch: { $: 1 },
+    'xn--mgba3a4f16a': { $: 1 },
+    'xn--mgba3a4fra': { $: 1 },
+  },
+  is: {
+    $: 1,
+    net: { $: 1 },
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    org: { $: 1 },
+    int: { $: 1 },
+    cupcake: { $: 2 },
+    blogspot: { $: 2 },
+  },
+  it: {
+    $: 1,
+    gov: { $: 1 },
+    edu: { $: 1 },
+    abr: { $: 1 },
+    abruzzo: { $: 1 },
+    'aosta-valley': { $: 1 },
+    aostavalley: { $: 1 },
+    bas: { $: 1 },
+    basilicata: { $: 1 },
+    cal: { $: 1 },
+    calabria: { $: 1 },
+    cam: { $: 1 },
+    campania: { $: 1 },
+    'emilia-romagna': { $: 1 },
+    emiliaromagna: { $: 1 },
+    emr: { $: 1 },
+    'friuli-v-giulia': { $: 1 },
+    'friuli-ve-giulia': { $: 1 },
+    'friuli-vegiulia': { $: 1 },
+    'friuli-venezia-giulia': { $: 1 },
+    'friuli-veneziagiulia': { $: 1 },
+    'friuli-vgiulia': { $: 1 },
+    'friuliv-giulia': { $: 1 },
+    'friulive-giulia': { $: 1 },
+    friulivegiulia: { $: 1 },
+    'friulivenezia-giulia': { $: 1 },
+    friuliveneziagiulia: { $: 1 },
+    friulivgiulia: { $: 1 },
+    fvg: { $: 1 },
+    laz: { $: 1 },
+    lazio: { $: 1 },
+    lig: { $: 1 },
+    liguria: { $: 1 },
+    lom: { $: 1 },
+    lombardia: { $: 1 },
+    lombardy: { $: 1 },
+    lucania: { $: 1 },
+    mar: { $: 1 },
+    marche: { $: 1 },
+    mol: { $: 1 },
+    molise: { $: 1 },
+    piedmont: { $: 1 },
+    piemonte: { $: 1 },
+    pmn: { $: 1 },
+    pug: { $: 1 },
+    puglia: { $: 1 },
+    sar: { $: 1 },
+    sardegna: { $: 1 },
+    sardinia: { $: 1 },
+    sic: { $: 1 },
+    sicilia: { $: 1 },
+    sicily: { $: 1 },
+    taa: { $: 1 },
+    tos: { $: 1 },
+    toscana: { $: 1 },
+    'trentin-sud-tirol': { $: 1 },
+    'xn--trentin-sd-tirol-rzb': { $: 1 },
+    'trentin-sudtirol': { $: 1 },
+    'xn--trentin-sdtirol-7vb': { $: 1 },
+    'trentin-sued-tirol': { $: 1 },
+    'trentin-suedtirol': { $: 1 },
+    'trentino-a-adige': { $: 1 },
+    'trentino-aadige': { $: 1 },
+    'trentino-alto-adige': { $: 1 },
+    'trentino-altoadige': { $: 1 },
+    'trentino-s-tirol': { $: 1 },
+    'trentino-stirol': { $: 1 },
+    'trentino-sud-tirol': { $: 1 },
+    'xn--trentino-sd-tirol-c3b': { $: 1 },
+    'trentino-sudtirol': { $: 1 },
+    'xn--trentino-sdtirol-szb': { $: 1 },
+    'trentino-sued-tirol': { $: 1 },
+    'trentino-suedtirol': { $: 1 },
+    trentino: { $: 1 },
+    'trentinoa-adige': { $: 1 },
+    trentinoaadige: { $: 1 },
+    'trentinoalto-adige': { $: 1 },
+    trentinoaltoadige: { $: 1 },
+    'trentinos-tirol': { $: 1 },
+    trentinostirol: { $: 1 },
+    'trentinosud-tirol': { $: 1 },
+    'xn--trentinosd-tirol-rzb': { $: 1 },
+    trentinosudtirol: { $: 1 },
+    'xn--trentinosdtirol-7vb': { $: 1 },
+    'trentinosued-tirol': { $: 1 },
+    trentinosuedtirol: { $: 1 },
+    'trentinsud-tirol': { $: 1 },
+    'xn--trentinsd-tirol-6vb': { $: 1 },
+    trentinsudtirol: { $: 1 },
+    'xn--trentinsdtirol-nsb': { $: 1 },
+    'trentinsued-tirol': { $: 1 },
+    trentinsuedtirol: { $: 1 },
+    tuscany: { $: 1 },
+    umb: { $: 1 },
+    umbria: { $: 1 },
+    'val-d-aosta': { $: 1 },
+    'val-daosta': { $: 1 },
+    'vald-aosta': { $: 1 },
+    valdaosta: { $: 1 },
+    'valle-aosta': { $: 1 },
+    'valle-d-aosta': { $: 1 },
+    'valle-daosta': { $: 1 },
+    valleaosta: { $: 1 },
+    'valled-aosta': { $: 1 },
+    valledaosta: { $: 1 },
+    'vallee-aoste': { $: 1 },
+    'xn--valle-aoste-ebb': { $: 1 },
+    'vallee-d-aoste': { $: 1 },
+    'xn--valle-d-aoste-ehb': { $: 1 },
+    valleeaoste: { $: 1 },
+    'xn--valleaoste-e7a': { $: 1 },
+    valleedaoste: { $: 1 },
+    'xn--valledaoste-ebb': { $: 1 },
+    vao: { $: 1 },
+    vda: { $: 1 },
+    ven: { $: 1 },
+    veneto: { $: 1 },
+    ag: { $: 1 },
+    agrigento: { $: 1 },
+    al: { $: 1 },
+    alessandria: { $: 1 },
+    'alto-adige': { $: 1 },
+    altoadige: { $: 1 },
+    an: { $: 1 },
+    ancona: { $: 1 },
+    'andria-barletta-trani': { $: 1 },
+    'andria-trani-barletta': { $: 1 },
+    andriabarlettatrani: { $: 1 },
+    andriatranibarletta: { $: 1 },
+    ao: { $: 1 },
+    aosta: { $: 1 },
+    aoste: { $: 1 },
+    ap: { $: 1 },
+    aq: { $: 1 },
+    aquila: { $: 1 },
+    ar: { $: 1 },
+    arezzo: { $: 1 },
+    'ascoli-piceno': { $: 1 },
+    ascolipiceno: { $: 1 },
+    asti: { $: 1 },
+    at: { $: 1 },
+    av: { $: 1 },
+    avellino: { $: 1 },
+    ba: { $: 1 },
+    'balsan-sudtirol': { $: 1 },
+    'xn--balsan-sdtirol-nsb': { $: 1 },
+    'balsan-suedtirol': { $: 1 },
+    balsan: { $: 1 },
+    bari: { $: 1 },
+    'barletta-trani-andria': { $: 1 },
+    barlettatraniandria: { $: 1 },
+    belluno: { $: 1 },
+    benevento: { $: 1 },
+    bergamo: { $: 1 },
+    bg: { $: 1 },
+    bi: { $: 1 },
+    biella: { $: 1 },
+    bl: { $: 1 },
+    bn: { $: 1 },
+    bo: { $: 1 },
+    bologna: { $: 1 },
+    'bolzano-altoadige': { $: 1 },
+    bolzano: { $: 1 },
+    'bozen-sudtirol': { $: 1 },
+    'xn--bozen-sdtirol-2ob': { $: 1 },
+    'bozen-suedtirol': { $: 1 },
+    bozen: { $: 1 },
+    br: { $: 1 },
+    brescia: { $: 1 },
+    brindisi: { $: 1 },
+    bs: { $: 1 },
+    bt: { $: 1 },
+    'bulsan-sudtirol': { $: 1 },
+    'xn--bulsan-sdtirol-nsb': { $: 1 },
+    'bulsan-suedtirol': { $: 1 },
+    bulsan: { $: 1 },
+    bz: { $: 1 },
+    ca: { $: 1 },
+    cagliari: { $: 1 },
+    caltanissetta: { $: 1 },
+    'campidano-medio': { $: 1 },
+    campidanomedio: { $: 1 },
+    campobasso: { $: 1 },
+    'carbonia-iglesias': { $: 1 },
+    carboniaiglesias: { $: 1 },
+    'carrara-massa': { $: 1 },
+    carraramassa: { $: 1 },
+    caserta: { $: 1 },
+    catania: { $: 1 },
+    catanzaro: { $: 1 },
+    cb: { $: 1 },
+    ce: { $: 1 },
+    'cesena-forli': { $: 1 },
+    'xn--cesena-forl-mcb': { $: 1 },
+    cesenaforli: { $: 1 },
+    'xn--cesenaforl-i8a': { $: 1 },
+    ch: { $: 1 },
+    chieti: { $: 1 },
+    ci: { $: 1 },
+    cl: { $: 1 },
+    cn: { $: 1 },
+    co: { $: 1 },
+    como: { $: 1 },
+    cosenza: { $: 1 },
+    cr: { $: 1 },
+    cremona: { $: 1 },
+    crotone: { $: 1 },
+    cs: { $: 1 },
+    ct: { $: 1 },
+    cuneo: { $: 1 },
+    cz: { $: 1 },
+    'dell-ogliastra': { $: 1 },
+    dellogliastra: { $: 1 },
+    en: { $: 1 },
+    enna: { $: 1 },
+    fc: { $: 1 },
+    fe: { $: 1 },
+    fermo: { $: 1 },
+    ferrara: { $: 1 },
+    fg: { $: 1 },
+    fi: { $: 1 },
+    firenze: { $: 1 },
+    florence: { $: 1 },
+    fm: { $: 1 },
+    foggia: { $: 1 },
+    'forli-cesena': { $: 1 },
+    'xn--forl-cesena-fcb': { $: 1 },
+    forlicesena: { $: 1 },
+    'xn--forlcesena-c8a': { $: 1 },
+    fr: { $: 1 },
+    frosinone: { $: 1 },
+    ge: { $: 1 },
+    genoa: { $: 1 },
+    genova: { $: 1 },
+    go: { $: 1 },
+    gorizia: { $: 1 },
+    gr: { $: 1 },
+    grosseto: { $: 1 },
+    'iglesias-carbonia': { $: 1 },
+    iglesiascarbonia: { $: 1 },
+    im: { $: 1 },
+    imperia: { $: 1 },
+    is: { $: 1 },
+    isernia: { $: 1 },
+    kr: { $: 1 },
+    'la-spezia': { $: 1 },
+    laquila: { $: 1 },
+    laspezia: { $: 1 },
+    latina: { $: 1 },
+    lc: { $: 1 },
+    le: { $: 1 },
+    lecce: { $: 1 },
+    lecco: { $: 1 },
+    li: { $: 1 },
+    livorno: { $: 1 },
+    lo: { $: 1 },
+    lodi: { $: 1 },
+    lt: { $: 1 },
+    lu: { $: 1 },
+    lucca: { $: 1 },
+    macerata: { $: 1 },
+    mantova: { $: 1 },
+    'massa-carrara': { $: 1 },
+    massacarrara: { $: 1 },
+    matera: { $: 1 },
+    mb: { $: 1 },
+    mc: { $: 1 },
+    me: { $: 1 },
+    'medio-campidano': { $: 1 },
+    mediocampidano: { $: 1 },
+    messina: { $: 1 },
+    mi: { $: 1 },
+    milan: { $: 1 },
+    milano: { $: 1 },
+    mn: { $: 1 },
+    mo: { $: 1 },
+    modena: { $: 1 },
+    'monza-brianza': { $: 1 },
+    'monza-e-della-brianza': { $: 1 },
+    monza: { $: 1 },
+    monzabrianza: { $: 1 },
+    monzaebrianza: { $: 1 },
+    monzaedellabrianza: { $: 1 },
+    ms: { $: 1 },
+    mt: { $: 1 },
+    na: { $: 1 },
+    naples: { $: 1 },
+    napoli: { $: 1 },
+    no: { $: 1 },
+    novara: { $: 1 },
+    nu: { $: 1 },
+    nuoro: { $: 1 },
+    og: { $: 1 },
+    ogliastra: { $: 1 },
+    'olbia-tempio': { $: 1 },
+    olbiatempio: { $: 1 },
+    or: { $: 1 },
+    oristano: { $: 1 },
+    ot: { $: 1 },
+    pa: { $: 1 },
+    padova: { $: 1 },
+    padua: { $: 1 },
+    palermo: { $: 1 },
+    parma: { $: 1 },
+    pavia: { $: 1 },
+    pc: { $: 1 },
+    pd: { $: 1 },
+    pe: { $: 1 },
+    perugia: { $: 1 },
+    'pesaro-urbino': { $: 1 },
+    pesarourbino: { $: 1 },
+    pescara: { $: 1 },
+    pg: { $: 1 },
+    pi: { $: 1 },
+    piacenza: { $: 1 },
+    pisa: { $: 1 },
+    pistoia: { $: 1 },
+    pn: { $: 1 },
+    po: { $: 1 },
+    pordenone: { $: 1 },
+    potenza: { $: 1 },
+    pr: { $: 1 },
+    prato: { $: 1 },
+    pt: { $: 1 },
+    pu: { $: 1 },
+    pv: { $: 1 },
+    pz: { $: 1 },
+    ra: { $: 1 },
+    ragusa: { $: 1 },
+    ravenna: { $: 1 },
+    rc: { $: 1 },
+    re: { $: 1 },
+    'reggio-calabria': { $: 1 },
+    'reggio-emilia': { $: 1 },
+    reggiocalabria: { $: 1 },
+    reggioemilia: { $: 1 },
+    rg: { $: 1 },
+    ri: { $: 1 },
+    rieti: { $: 1 },
+    rimini: { $: 1 },
+    rm: { $: 1 },
+    rn: { $: 1 },
+    ro: { $: 1 },
+    roma: { $: 1 },
+    rome: { $: 1 },
+    rovigo: { $: 1 },
+    sa: { $: 1 },
+    salerno: { $: 1 },
+    sassari: { $: 1 },
+    savona: { $: 1 },
+    si: { $: 1 },
+    siena: { $: 1 },
+    siracusa: { $: 1 },
+    so: { $: 1 },
+    sondrio: { $: 1 },
+    sp: { $: 1 },
+    sr: { $: 1 },
+    ss: { $: 1 },
+    suedtirol: { $: 1 },
+    'xn--sdtirol-n2a': { $: 1 },
+    sv: { $: 1 },
+    ta: { $: 1 },
+    taranto: { $: 1 },
+    te: { $: 1 },
+    'tempio-olbia': { $: 1 },
+    tempioolbia: { $: 1 },
+    teramo: { $: 1 },
+    terni: { $: 1 },
+    tn: { $: 1 },
+    to: { $: 1 },
+    torino: { $: 1 },
+    tp: { $: 1 },
+    tr: { $: 1 },
+    'trani-andria-barletta': { $: 1 },
+    'trani-barletta-andria': { $: 1 },
+    traniandriabarletta: { $: 1 },
+    tranibarlettaandria: { $: 1 },
+    trapani: { $: 1 },
+    trento: { $: 1 },
+    treviso: { $: 1 },
+    trieste: { $: 1 },
+    ts: { $: 1 },
+    turin: { $: 1 },
+    tv: { $: 1 },
+    ud: { $: 1 },
+    udine: { $: 1 },
+    'urbino-pesaro': { $: 1 },
+    urbinopesaro: { $: 1 },
+    va: { $: 1 },
+    varese: { $: 1 },
+    vb: { $: 1 },
+    vc: { $: 1 },
+    ve: { $: 1 },
+    venezia: { $: 1 },
+    venice: { $: 1 },
+    verbania: { $: 1 },
+    vercelli: { $: 1 },
+    verona: { $: 1 },
+    vi: { $: 1 },
+    'vibo-valentia': { $: 1 },
+    vibovalentia: { $: 1 },
+    vicenza: { $: 1 },
+    viterbo: { $: 1 },
+    vr: { $: 1 },
+    vs: { $: 1 },
+    vt: { $: 1 },
+    vv: { $: 1 },
+    blogspot: { $: 2 },
+    '16-b': { $: 2 },
+    '32-b': { $: 2 },
+    '64-b': { $: 2 },
+  },
+  je: { $: 1, co: { $: 1 }, net: { $: 1 }, org: { $: 1 } },
+  jm: { '*': { $: 1 } },
+  jo: {
+    $: 1,
+    com: { $: 1 },
+    org: { $: 1 },
+    net: { $: 1 },
+    edu: { $: 1 },
+    sch: { $: 1 },
+    gov: { $: 1 },
+    mil: { $: 1 },
+    name: { $: 1 },
+  },
+  jobs: { $: 1 },
+  jp: {
+    $: 1,
+    ac: { $: 1 },
+    ad: { $: 1 },
+    co: { $: 1 },
+    ed: { $: 1 },
+    go: { $: 1 },
+    gr: { $: 1 },
+    lg: { $: 1 },
+    ne: { $: 1 },
+    or: { $: 1 },
+    aichi: {
+      $: 1,
+      aisai: { $: 1 },
+      ama: { $: 1 },
+      anjo: { $: 1 },
+      asuke: { $: 1 },
+      chiryu: { $: 1 },
+      chita: { $: 1 },
+      fuso: { $: 1 },
+      gamagori: { $: 1 },
+      handa: { $: 1 },
+      hazu: { $: 1 },
+      hekinan: { $: 1 },
+      higashiura: { $: 1 },
+      ichinomiya: { $: 1 },
+      inazawa: { $: 1 },
+      inuyama: { $: 1 },
+      isshiki: { $: 1 },
+      iwakura: { $: 1 },
+      kanie: { $: 1 },
+      kariya: { $: 1 },
+      kasugai: { $: 1 },
+      kira: { $: 1 },
+      kiyosu: { $: 1 },
+      komaki: { $: 1 },
+      konan: { $: 1 },
+      kota: { $: 1 },
+      mihama: { $: 1 },
+      miyoshi: { $: 1 },
+      nishio: { $: 1 },
+      nisshin: { $: 1 },
+      obu: { $: 1 },
+      oguchi: { $: 1 },
+      oharu: { $: 1 },
+      okazaki: { $: 1 },
+      owariasahi: { $: 1 },
+      seto: { $: 1 },
+      shikatsu: { $: 1 },
+      shinshiro: { $: 1 },
+      shitara: { $: 1 },
+      tahara: { $: 1 },
+      takahama: { $: 1 },
+      tobishima: { $: 1 },
+      toei: { $: 1 },
+      togo: { $: 1 },
+      tokai: { $: 1 },
+      tokoname: { $: 1 },
+      toyoake: { $: 1 },
+      toyohashi: { $: 1 },
+      toyokawa: { $: 1 },
+      toyone: { $: 1 },
+      toyota: { $: 1 },
+      tsushima: { $: 1 },
+      yatomi: { $: 1 },
+    },
+    akita: {
+      $: 1,
+      akita: { $: 1 },
+      daisen: { $: 1 },
+      fujisato: { $: 1 },
+      gojome: { $: 1 },
+      hachirogata: { $: 1 },
+      happou: { $: 1 },
+      higashinaruse: { $: 1 },
+      honjo: { $: 1 },
+      honjyo: { $: 1 },
+      ikawa: { $: 1 },
+      kamikoani: { $: 1 },
+      kamioka: { $: 1 },
+      katagami: { $: 1 },
+      kazuno: { $: 1 },
+      kitaakita: { $: 1 },
+      kosaka: { $: 1 },
+      kyowa: { $: 1 },
+      misato: { $: 1 },
+      mitane: { $: 1 },
+      moriyoshi: { $: 1 },
+      nikaho: { $: 1 },
+      noshiro: { $: 1 },
+      odate: { $: 1 },
+      oga: { $: 1 },
+      ogata: { $: 1 },
+      semboku: { $: 1 },
+      yokote: { $: 1 },
+      yurihonjo: { $: 1 },
+    },
+    aomori: {
+      $: 1,
+      aomori: { $: 1 },
+      gonohe: { $: 1 },
+      hachinohe: { $: 1 },
+      hashikami: { $: 1 },
+      hiranai: { $: 1 },
+      hirosaki: { $: 1 },
+      itayanagi: { $: 1 },
+      kuroishi: { $: 1 },
+      misawa: { $: 1 },
+      mutsu: { $: 1 },
+      nakadomari: { $: 1 },
+      noheji: { $: 1 },
+      oirase: { $: 1 },
+      owani: { $: 1 },
+      rokunohe: { $: 1 },
+      sannohe: { $: 1 },
+      shichinohe: { $: 1 },
+      shingo: { $: 1 },
+      takko: { $: 1 },
+      towada: { $: 1 },
+      tsugaru: { $: 1 },
+      tsuruta: { $: 1 },
+    },
+    chiba: {
+      $: 1,
+      abiko: { $: 1 },
+      asahi: { $: 1 },
+      chonan: { $: 1 },
+      chosei: { $: 1 },
+      choshi: { $: 1 },
+      chuo: { $: 1 },
+      funabashi: { $: 1 },
+      futtsu: { $: 1 },
+      hanamigawa: { $: 1 },
+      ichihara: { $: 1 },
+      ichikawa: { $: 1 },
+      ichinomiya: { $: 1 },
+      inzai: { $: 1 },
+      isumi: { $: 1 },
+      kamagaya: { $: 1 },
+      kamogawa: { $: 1 },
+      kashiwa: { $: 1 },
+      katori: { $: 1 },
+      katsuura: { $: 1 },
+      kimitsu: { $: 1 },
+      kisarazu: { $: 1 },
+      kozaki: { $: 1 },
+      kujukuri: { $: 1 },
+      kyonan: { $: 1 },
+      matsudo: { $: 1 },
+      midori: { $: 1 },
+      mihama: { $: 1 },
+      minamiboso: { $: 1 },
+      mobara: { $: 1 },
+      mutsuzawa: { $: 1 },
+      nagara: { $: 1 },
+      nagareyama: { $: 1 },
+      narashino: { $: 1 },
+      narita: { $: 1 },
+      noda: { $: 1 },
+      oamishirasato: { $: 1 },
+      omigawa: { $: 1 },
+      onjuku: { $: 1 },
+      otaki: { $: 1 },
+      sakae: { $: 1 },
+      sakura: { $: 1 },
+      shimofusa: { $: 1 },
+      shirako: { $: 1 },
+      shiroi: { $: 1 },
+      shisui: { $: 1 },
+      sodegaura: { $: 1 },
+      sosa: { $: 1 },
+      tako: { $: 1 },
+      tateyama: { $: 1 },
+      togane: { $: 1 },
+      tohnosho: { $: 1 },
+      tomisato: { $: 1 },
+      urayasu: { $: 1 },
+      yachimata: { $: 1 },
+      yachiyo: { $: 1 },
+      yokaichiba: { $: 1 },
+      yokoshibahikari: { $: 1 },
+      yotsukaido: { $: 1 },
+    },
+    ehime: {
+      $: 1,
+      ainan: { $: 1 },
+      honai: { $: 1 },
+      ikata: { $: 1 },
+      imabari: { $: 1 },
+      iyo: { $: 1 },
+      kamijima: { $: 1 },
+      kihoku: { $: 1 },
+      kumakogen: { $: 1 },
+      masaki: { $: 1 },
+      matsuno: { $: 1 },
+      matsuyama: { $: 1 },
+      namikata: { $: 1 },
+      niihama: { $: 1 },
+      ozu: { $: 1 },
+      saijo: { $: 1 },
+      seiyo: { $: 1 },
+      shikokuchuo: { $: 1 },
+      tobe: { $: 1 },
+      toon: { $: 1 },
+      uchiko: { $: 1 },
+      uwajima: { $: 1 },
+      yawatahama: { $: 1 },
+    },
+    fukui: {
+      $: 1,
+      echizen: { $: 1 },
+      eiheiji: { $: 1 },
+      fukui: { $: 1 },
+      ikeda: { $: 1 },
+      katsuyama: { $: 1 },
+      mihama: { $: 1 },
+      minamiechizen: { $: 1 },
+      obama: { $: 1 },
+      ohi: { $: 1 },
+      ono: { $: 1 },
+      sabae: { $: 1 },
+      sakai: { $: 1 },
+      takahama: { $: 1 },
+      tsuruga: { $: 1 },
+      wakasa: { $: 1 },
+    },
+    fukuoka: {
+      $: 1,
+      ashiya: { $: 1 },
+      buzen: { $: 1 },
+      chikugo: { $: 1 },
+      chikuho: { $: 1 },
+      chikujo: { $: 1 },
+      chikushino: { $: 1 },
+      chikuzen: { $: 1 },
+      chuo: { $: 1 },
+      dazaifu: { $: 1 },
+      fukuchi: { $: 1 },
+      hakata: { $: 1 },
+      higashi: { $: 1 },
+      hirokawa: { $: 1 },
+      hisayama: { $: 1 },
+      iizuka: { $: 1 },
+      inatsuki: { $: 1 },
+      kaho: { $: 1 },
+      kasuga: { $: 1 },
+      kasuya: { $: 1 },
+      kawara: { $: 1 },
+      keisen: { $: 1 },
+      koga: { $: 1 },
+      kurate: { $: 1 },
+      kurogi: { $: 1 },
+      kurume: { $: 1 },
+      minami: { $: 1 },
+      miyako: { $: 1 },
+      miyama: { $: 1 },
+      miyawaka: { $: 1 },
+      mizumaki: { $: 1 },
+      munakata: { $: 1 },
+      nakagawa: { $: 1 },
+      nakama: { $: 1 },
+      nishi: { $: 1 },
+      nogata: { $: 1 },
+      ogori: { $: 1 },
+      okagaki: { $: 1 },
+      okawa: { $: 1 },
+      oki: { $: 1 },
+      omuta: { $: 1 },
+      onga: { $: 1 },
+      onojo: { $: 1 },
+      oto: { $: 1 },
+      saigawa: { $: 1 },
+      sasaguri: { $: 1 },
+      shingu: { $: 1 },
+      shinyoshitomi: { $: 1 },
+      shonai: { $: 1 },
+      soeda: { $: 1 },
+      sue: { $: 1 },
+      tachiarai: { $: 1 },
+      tagawa: { $: 1 },
+      takata: { $: 1 },
+      toho: { $: 1 },
+      toyotsu: { $: 1 },
+      tsuiki: { $: 1 },
+      ukiha: { $: 1 },
+      umi: { $: 1 },
+      usui: { $: 1 },
+      yamada: { $: 1 },
+      yame: { $: 1 },
+      yanagawa: { $: 1 },
+      yukuhashi: { $: 1 },
+    },
+    fukushima: {
+      $: 1,
+      aizubange: { $: 1 },
+      aizumisato: { $: 1 },
+      aizuwakamatsu: { $: 1 },
+      asakawa: { $: 1 },
+      bandai: { $: 1 },
+      date: { $: 1 },
+      fukushima: { $: 1 },
+      furudono: { $: 1 },
+      futaba: { $: 1 },
+      hanawa: { $: 1 },
+      higashi: { $: 1 },
+      hirata: { $: 1 },
+      hirono: { $: 1 },
+      iitate: { $: 1 },
+      inawashiro: { $: 1 },
+      ishikawa: { $: 1 },
+      iwaki: { $: 1 },
+      izumizaki: { $: 1 },
+      kagamiishi: { $: 1 },
+      kaneyama: { $: 1 },
+      kawamata: { $: 1 },
+      kitakata: { $: 1 },
+      kitashiobara: { $: 1 },
+      koori: { $: 1 },
+      koriyama: { $: 1 },
+      kunimi: { $: 1 },
+      miharu: { $: 1 },
+      mishima: { $: 1 },
+      namie: { $: 1 },
+      nango: { $: 1 },
+      nishiaizu: { $: 1 },
+      nishigo: { $: 1 },
+      okuma: { $: 1 },
+      omotego: { $: 1 },
+      ono: { $: 1 },
+      otama: { $: 1 },
+      samegawa: { $: 1 },
+      shimogo: { $: 1 },
+      shirakawa: { $: 1 },
+      showa: { $: 1 },
+      soma: { $: 1 },
+      sukagawa: { $: 1 },
+      taishin: { $: 1 },
+      tamakawa: { $: 1 },
+      tanagura: { $: 1 },
+      tenei: { $: 1 },
+      yabuki: { $: 1 },
+      yamato: { $: 1 },
+      yamatsuri: { $: 1 },
+      yanaizu: { $: 1 },
+      yugawa: { $: 1 },
+    },
+    gifu: {
+      $: 1,
+      anpachi: { $: 1 },
+      ena: { $: 1 },
+      gifu: { $: 1 },
+      ginan: { $: 1 },
+      godo: { $: 1 },
+      gujo: { $: 1 },
+      hashima: { $: 1 },
+      hichiso: { $: 1 },
+      hida: { $: 1 },
+      higashishirakawa: { $: 1 },
+      ibigawa: { $: 1 },
+      ikeda: { $: 1 },
+      kakamigahara: { $: 1 },
+      kani: { $: 1 },
+      kasahara: { $: 1 },
+      kasamatsu: { $: 1 },
+      kawaue: { $: 1 },
+      kitagata: { $: 1 },
+      mino: { $: 1 },
+      minokamo: { $: 1 },
+      mitake: { $: 1 },
+      mizunami: { $: 1 },
+      motosu: { $: 1 },
+      nakatsugawa: { $: 1 },
+      ogaki: { $: 1 },
+      sakahogi: { $: 1 },
+      seki: { $: 1 },
+      sekigahara: { $: 1 },
+      shirakawa: { $: 1 },
+      tajimi: { $: 1 },
+      takayama: { $: 1 },
+      tarui: { $: 1 },
+      toki: { $: 1 },
+      tomika: { $: 1 },
+      wanouchi: { $: 1 },
+      yamagata: { $: 1 },
+      yaotsu: { $: 1 },
+      yoro: { $: 1 },
+    },
+    gunma: {
+      $: 1,
+      annaka: { $: 1 },
+      chiyoda: { $: 1 },
+      fujioka: { $: 1 },
+      higashiagatsuma: { $: 1 },
+      isesaki: { $: 1 },
+      itakura: { $: 1 },
+      kanna: { $: 1 },
+      kanra: { $: 1 },
+      katashina: { $: 1 },
+      kawaba: { $: 1 },
+      kiryu: { $: 1 },
+      kusatsu: { $: 1 },
+      maebashi: { $: 1 },
+      meiwa: { $: 1 },
+      midori: { $: 1 },
+      minakami: { $: 1 },
+      naganohara: { $: 1 },
+      nakanojo: { $: 1 },
+      nanmoku: { $: 1 },
+      numata: { $: 1 },
+      oizumi: { $: 1 },
+      ora: { $: 1 },
+      ota: { $: 1 },
+      shibukawa: { $: 1 },
+      shimonita: { $: 1 },
+      shinto: { $: 1 },
+      showa: { $: 1 },
+      takasaki: { $: 1 },
+      takayama: { $: 1 },
+      tamamura: { $: 1 },
+      tatebayashi: { $: 1 },
+      tomioka: { $: 1 },
+      tsukiyono: { $: 1 },
+      tsumagoi: { $: 1 },
+      ueno: { $: 1 },
+      yoshioka: { $: 1 },
+    },
+    hiroshima: {
+      $: 1,
+      asaminami: { $: 1 },
+      daiwa: { $: 1 },
+      etajima: { $: 1 },
+      fuchu: { $: 1 },
+      fukuyama: { $: 1 },
+      hatsukaichi: { $: 1 },
+      higashihiroshima: { $: 1 },
+      hongo: { $: 1 },
+      jinsekikogen: { $: 1 },
+      kaita: { $: 1 },
+      kui: { $: 1 },
+      kumano: { $: 1 },
+      kure: { $: 1 },
+      mihara: { $: 1 },
+      miyoshi: { $: 1 },
+      naka: { $: 1 },
+      onomichi: { $: 1 },
+      osakikamijima: { $: 1 },
+      otake: { $: 1 },
+      saka: { $: 1 },
+      sera: { $: 1 },
+      seranishi: { $: 1 },
+      shinichi: { $: 1 },
+      shobara: { $: 1 },
+      takehara: { $: 1 },
+    },
+    hokkaido: {
+      $: 1,
+      abashiri: { $: 1 },
+      abira: { $: 1 },
+      aibetsu: { $: 1 },
+      akabira: { $: 1 },
+      akkeshi: { $: 1 },
+      asahikawa: { $: 1 },
+      ashibetsu: { $: 1 },
+      ashoro: { $: 1 },
+      assabu: { $: 1 },
+      atsuma: { $: 1 },
+      bibai: { $: 1 },
+      biei: { $: 1 },
+      bifuka: { $: 1 },
+      bihoro: { $: 1 },
+      biratori: { $: 1 },
+      chippubetsu: { $: 1 },
+      chitose: { $: 1 },
+      date: { $: 1 },
+      ebetsu: { $: 1 },
+      embetsu: { $: 1 },
+      eniwa: { $: 1 },
+      erimo: { $: 1 },
+      esan: { $: 1 },
+      esashi: { $: 1 },
+      fukagawa: { $: 1 },
+      fukushima: { $: 1 },
+      furano: { $: 1 },
+      furubira: { $: 1 },
+      haboro: { $: 1 },
+      hakodate: { $: 1 },
+      hamatonbetsu: { $: 1 },
+      hidaka: { $: 1 },
+      higashikagura: { $: 1 },
+      higashikawa: { $: 1 },
+      hiroo: { $: 1 },
+      hokuryu: { $: 1 },
+      hokuto: { $: 1 },
+      honbetsu: { $: 1 },
+      horokanai: { $: 1 },
+      horonobe: { $: 1 },
+      ikeda: { $: 1 },
+      imakane: { $: 1 },
+      ishikari: { $: 1 },
+      iwamizawa: { $: 1 },
+      iwanai: { $: 1 },
+      kamifurano: { $: 1 },
+      kamikawa: { $: 1 },
+      kamishihoro: { $: 1 },
+      kamisunagawa: { $: 1 },
+      kamoenai: { $: 1 },
+      kayabe: { $: 1 },
+      kembuchi: { $: 1 },
+      kikonai: { $: 1 },
+      kimobetsu: { $: 1 },
+      kitahiroshima: { $: 1 },
+      kitami: { $: 1 },
+      kiyosato: { $: 1 },
+      koshimizu: { $: 1 },
+      kunneppu: { $: 1 },
+      kuriyama: { $: 1 },
+      kuromatsunai: { $: 1 },
+      kushiro: { $: 1 },
+      kutchan: { $: 1 },
+      kyowa: { $: 1 },
+      mashike: { $: 1 },
+      matsumae: { $: 1 },
+      mikasa: { $: 1 },
+      minamifurano: { $: 1 },
+      mombetsu: { $: 1 },
+      moseushi: { $: 1 },
+      mukawa: { $: 1 },
+      muroran: { $: 1 },
+      naie: { $: 1 },
+      nakagawa: { $: 1 },
+      nakasatsunai: { $: 1 },
+      nakatombetsu: { $: 1 },
+      nanae: { $: 1 },
+      nanporo: { $: 1 },
+      nayoro: { $: 1 },
+      nemuro: { $: 1 },
+      niikappu: { $: 1 },
+      niki: { $: 1 },
+      nishiokoppe: { $: 1 },
+      noboribetsu: { $: 1 },
+      numata: { $: 1 },
+      obihiro: { $: 1 },
+      obira: { $: 1 },
+      oketo: { $: 1 },
+      okoppe: { $: 1 },
+      otaru: { $: 1 },
+      otobe: { $: 1 },
+      otofuke: { $: 1 },
+      otoineppu: { $: 1 },
+      oumu: { $: 1 },
+      ozora: { $: 1 },
+      pippu: { $: 1 },
+      rankoshi: { $: 1 },
+      rebun: { $: 1 },
+      rikubetsu: { $: 1 },
+      rishiri: { $: 1 },
+      rishirifuji: { $: 1 },
+      saroma: { $: 1 },
+      sarufutsu: { $: 1 },
+      shakotan: { $: 1 },
+      shari: { $: 1 },
+      shibecha: { $: 1 },
+      shibetsu: { $: 1 },
+      shikabe: { $: 1 },
+      shikaoi: { $: 1 },
+      shimamaki: { $: 1 },
+      shimizu: { $: 1 },
+      shimokawa: { $: 1 },
+      shinshinotsu: { $: 1 },
+      shintoku: { $: 1 },
+      shiranuka: { $: 1 },
+      shiraoi: { $: 1 },
+      shiriuchi: { $: 1 },
+      sobetsu: { $: 1 },
+      sunagawa: { $: 1 },
+      taiki: { $: 1 },
+      takasu: { $: 1 },
+      takikawa: { $: 1 },
+      takinoue: { $: 1 },
+      teshikaga: { $: 1 },
+      tobetsu: { $: 1 },
+      tohma: { $: 1 },
+      tomakomai: { $: 1 },
+      tomari: { $: 1 },
+      toya: { $: 1 },
+      toyako: { $: 1 },
+      toyotomi: { $: 1 },
+      toyoura: { $: 1 },
+      tsubetsu: { $: 1 },
+      tsukigata: { $: 1 },
+      urakawa: { $: 1 },
+      urausu: { $: 1 },
+      uryu: { $: 1 },
+      utashinai: { $: 1 },
+      wakkanai: { $: 1 },
+      wassamu: { $: 1 },
+      yakumo: { $: 1 },
+      yoichi: { $: 1 },
+    },
+    hyogo: {
+      $: 1,
+      aioi: { $: 1 },
+      akashi: { $: 1 },
+      ako: { $: 1 },
+      amagasaki: { $: 1 },
+      aogaki: { $: 1 },
+      asago: { $: 1 },
+      ashiya: { $: 1 },
+      awaji: { $: 1 },
+      fukusaki: { $: 1 },
+      goshiki: { $: 1 },
+      harima: { $: 1 },
+      himeji: { $: 1 },
+      ichikawa: { $: 1 },
+      inagawa: { $: 1 },
+      itami: { $: 1 },
+      kakogawa: { $: 1 },
+      kamigori: { $: 1 },
+      kamikawa: { $: 1 },
+      kasai: { $: 1 },
+      kasuga: { $: 1 },
+      kawanishi: { $: 1 },
+      miki: { $: 1 },
+      minamiawaji: { $: 1 },
+      nishinomiya: { $: 1 },
+      nishiwaki: { $: 1 },
+      ono: { $: 1 },
+      sanda: { $: 1 },
+      sannan: { $: 1 },
+      sasayama: { $: 1 },
+      sayo: { $: 1 },
+      shingu: { $: 1 },
+      shinonsen: { $: 1 },
+      shiso: { $: 1 },
+      sumoto: { $: 1 },
+      taishi: { $: 1 },
+      taka: { $: 1 },
+      takarazuka: { $: 1 },
+      takasago: { $: 1 },
+      takino: { $: 1 },
+      tamba: { $: 1 },
+      tatsuno: { $: 1 },
+      toyooka: { $: 1 },
+      yabu: { $: 1 },
+      yashiro: { $: 1 },
+      yoka: { $: 1 },
+      yokawa: { $: 1 },
+    },
+    ibaraki: {
+      $: 1,
+      ami: { $: 1 },
+      asahi: { $: 1 },
+      bando: { $: 1 },
+      chikusei: { $: 1 },
+      daigo: { $: 1 },
+      fujishiro: { $: 1 },
+      hitachi: { $: 1 },
+      hitachinaka: { $: 1 },
+      hitachiomiya: { $: 1 },
+      hitachiota: { $: 1 },
+      ibaraki: { $: 1 },
+      ina: { $: 1 },
+      inashiki: { $: 1 },
+      itako: { $: 1 },
+      iwama: { $: 1 },
+      joso: { $: 1 },
+      kamisu: { $: 1 },
+      kasama: { $: 1 },
+      kashima: { $: 1 },
+      kasumigaura: { $: 1 },
+      koga: { $: 1 },
+      miho: { $: 1 },
+      mito: { $: 1 },
+      moriya: { $: 1 },
+      naka: { $: 1 },
+      namegata: { $: 1 },
+      oarai: { $: 1 },
+      ogawa: { $: 1 },
+      omitama: { $: 1 },
+      ryugasaki: { $: 1 },
+      sakai: { $: 1 },
+      sakuragawa: { $: 1 },
+      shimodate: { $: 1 },
+      shimotsuma: { $: 1 },
+      shirosato: { $: 1 },
+      sowa: { $: 1 },
+      suifu: { $: 1 },
+      takahagi: { $: 1 },
+      tamatsukuri: { $: 1 },
+      tokai: { $: 1 },
+      tomobe: { $: 1 },
+      tone: { $: 1 },
+      toride: { $: 1 },
+      tsuchiura: { $: 1 },
+      tsukuba: { $: 1 },
+      uchihara: { $: 1 },
+      ushiku: { $: 1 },
+      yachiyo: { $: 1 },
+      yamagata: { $: 1 },
+      yawara: { $: 1 },
+      yuki: { $: 1 },
+    },
+    ishikawa: {
+      $: 1,
+      anamizu: { $: 1 },
+      hakui: { $: 1 },
+      hakusan: { $: 1 },
+      kaga: { $: 1 },
+      kahoku: { $: 1 },
+      kanazawa: { $: 1 },
+      kawakita: { $: 1 },
+      komatsu: { $: 1 },
+      nakanoto: { $: 1 },
+      nanao: { $: 1 },
+      nomi: { $: 1 },
+      nonoichi: { $: 1 },
+      noto: { $: 1 },
+      shika: { $: 1 },
+      suzu: { $: 1 },
+      tsubata: { $: 1 },
+      tsurugi: { $: 1 },
+      uchinada: { $: 1 },
+      wajima: { $: 1 },
+    },
+    iwate: {
+      $: 1,
+      fudai: { $: 1 },
+      fujisawa: { $: 1 },
+      hanamaki: { $: 1 },
+      hiraizumi: { $: 1 },
+      hirono: { $: 1 },
+      ichinohe: { $: 1 },
+      ichinoseki: { $: 1 },
+      iwaizumi: { $: 1 },
+      iwate: { $: 1 },
+      joboji: { $: 1 },
+      kamaishi: { $: 1 },
+      kanegasaki: { $: 1 },
+      karumai: { $: 1 },
+      kawai: { $: 1 },
+      kitakami: { $: 1 },
+      kuji: { $: 1 },
+      kunohe: { $: 1 },
+      kuzumaki: { $: 1 },
+      miyako: { $: 1 },
+      mizusawa: { $: 1 },
+      morioka: { $: 1 },
+      ninohe: { $: 1 },
+      noda: { $: 1 },
+      ofunato: { $: 1 },
+      oshu: { $: 1 },
+      otsuchi: { $: 1 },
+      rikuzentakata: { $: 1 },
+      shiwa: { $: 1 },
+      shizukuishi: { $: 1 },
+      sumita: { $: 1 },
+      tanohata: { $: 1 },
+      tono: { $: 1 },
+      yahaba: { $: 1 },
+      yamada: { $: 1 },
+    },
+    kagawa: {
+      $: 1,
+      ayagawa: { $: 1 },
+      higashikagawa: { $: 1 },
+      kanonji: { $: 1 },
+      kotohira: { $: 1 },
+      manno: { $: 1 },
+      marugame: { $: 1 },
+      mitoyo: { $: 1 },
+      naoshima: { $: 1 },
+      sanuki: { $: 1 },
+      tadotsu: { $: 1 },
+      takamatsu: { $: 1 },
+      tonosho: { $: 1 },
+      uchinomi: { $: 1 },
+      utazu: { $: 1 },
+      zentsuji: { $: 1 },
+    },
+    kagoshima: {
+      $: 1,
+      akune: { $: 1 },
+      amami: { $: 1 },
+      hioki: { $: 1 },
+      isa: { $: 1 },
+      isen: { $: 1 },
+      izumi: { $: 1 },
+      kagoshima: { $: 1 },
+      kanoya: { $: 1 },
+      kawanabe: { $: 1 },
+      kinko: { $: 1 },
+      kouyama: { $: 1 },
+      makurazaki: { $: 1 },
+      matsumoto: { $: 1 },
+      minamitane: { $: 1 },
+      nakatane: { $: 1 },
+      nishinoomote: { $: 1 },
+      satsumasendai: { $: 1 },
+      soo: { $: 1 },
+      tarumizu: { $: 1 },
+      yusui: { $: 1 },
+    },
+    kanagawa: {
+      $: 1,
+      aikawa: { $: 1 },
+      atsugi: { $: 1 },
+      ayase: { $: 1 },
+      chigasaki: { $: 1 },
+      ebina: { $: 1 },
+      fujisawa: { $: 1 },
+      hadano: { $: 1 },
+      hakone: { $: 1 },
+      hiratsuka: { $: 1 },
+      isehara: { $: 1 },
+      kaisei: { $: 1 },
+      kamakura: { $: 1 },
+      kiyokawa: { $: 1 },
+      matsuda: { $: 1 },
+      minamiashigara: { $: 1 },
+      miura: { $: 1 },
+      nakai: { $: 1 },
+      ninomiya: { $: 1 },
+      odawara: { $: 1 },
+      oi: { $: 1 },
+      oiso: { $: 1 },
+      sagamihara: { $: 1 },
+      samukawa: { $: 1 },
+      tsukui: { $: 1 },
+      yamakita: { $: 1 },
+      yamato: { $: 1 },
+      yokosuka: { $: 1 },
+      yugawara: { $: 1 },
+      zama: { $: 1 },
+      zushi: { $: 1 },
+    },
+    kochi: {
+      $: 1,
+      aki: { $: 1 },
+      geisei: { $: 1 },
+      hidaka: { $: 1 },
+      higashitsuno: { $: 1 },
+      ino: { $: 1 },
+      kagami: { $: 1 },
+      kami: { $: 1 },
+      kitagawa: { $: 1 },
+      kochi: { $: 1 },
+      mihara: { $: 1 },
+      motoyama: { $: 1 },
+      muroto: { $: 1 },
+      nahari: { $: 1 },
+      nakamura: { $: 1 },
+      nankoku: { $: 1 },
+      nishitosa: { $: 1 },
+      niyodogawa: { $: 1 },
+      ochi: { $: 1 },
+      okawa: { $: 1 },
+      otoyo: { $: 1 },
+      otsuki: { $: 1 },
+      sakawa: { $: 1 },
+      sukumo: { $: 1 },
+      susaki: { $: 1 },
+      tosa: { $: 1 },
+      tosashimizu: { $: 1 },
+      toyo: { $: 1 },
+      tsuno: { $: 1 },
+      umaji: { $: 1 },
+      yasuda: { $: 1 },
+      yusuhara: { $: 1 },
+    },
+    kumamoto: {
+      $: 1,
+      amakusa: { $: 1 },
+      arao: { $: 1 },
+      aso: { $: 1 },
+      choyo: { $: 1 },
+      gyokuto: { $: 1 },
+      kamiamakusa: { $: 1 },
+      kikuchi: { $: 1 },
+      kumamoto: { $: 1 },
+      mashiki: { $: 1 },
+      mifune: { $: 1 },
+      minamata: { $: 1 },
+      minamioguni: { $: 1 },
+      nagasu: { $: 1 },
+      nishihara: { $: 1 },
+      oguni: { $: 1 },
+      ozu: { $: 1 },
+      sumoto: { $: 1 },
+      takamori: { $: 1 },
+      uki: { $: 1 },
+      uto: { $: 1 },
+      yamaga: { $: 1 },
+      yamato: { $: 1 },
+      yatsushiro: { $: 1 },
+    },
+    kyoto: {
+      $: 1,
+      ayabe: { $: 1 },
+      fukuchiyama: { $: 1 },
+      higashiyama: { $: 1 },
+      ide: { $: 1 },
+      ine: { $: 1 },
+      joyo: { $: 1 },
+      kameoka: { $: 1 },
+      kamo: { $: 1 },
+      kita: { $: 1 },
+      kizu: { $: 1 },
+      kumiyama: { $: 1 },
+      kyotamba: { $: 1 },
+      kyotanabe: { $: 1 },
+      kyotango: { $: 1 },
+      maizuru: { $: 1 },
+      minami: { $: 1 },
+      minamiyamashiro: { $: 1 },
+      miyazu: { $: 1 },
+      muko: { $: 1 },
+      nagaokakyo: { $: 1 },
+      nakagyo: { $: 1 },
+      nantan: { $: 1 },
+      oyamazaki: { $: 1 },
+      sakyo: { $: 1 },
+      seika: { $: 1 },
+      tanabe: { $: 1 },
+      uji: { $: 1 },
+      ujitawara: { $: 1 },
+      wazuka: { $: 1 },
+      yamashina: { $: 1 },
+      yawata: { $: 1 },
+    },
+    mie: {
+      $: 1,
+      asahi: { $: 1 },
+      inabe: { $: 1 },
+      ise: { $: 1 },
+      kameyama: { $: 1 },
+      kawagoe: { $: 1 },
+      kiho: { $: 1 },
+      kisosaki: { $: 1 },
+      kiwa: { $: 1 },
+      komono: { $: 1 },
+      kumano: { $: 1 },
+      kuwana: { $: 1 },
+      matsusaka: { $: 1 },
+      meiwa: { $: 1 },
+      mihama: { $: 1 },
+      minamiise: { $: 1 },
+      misugi: { $: 1 },
+      miyama: { $: 1 },
+      nabari: { $: 1 },
+      shima: { $: 1 },
+      suzuka: { $: 1 },
+      tado: { $: 1 },
+      taiki: { $: 1 },
+      taki: { $: 1 },
+      tamaki: { $: 1 },
+      toba: { $: 1 },
+      tsu: { $: 1 },
+      udono: { $: 1 },
+      ureshino: { $: 1 },
+      watarai: { $: 1 },
+      yokkaichi: { $: 1 },
+    },
+    miyagi: {
+      $: 1,
+      furukawa: { $: 1 },
+      higashimatsushima: { $: 1 },
+      ishinomaki: { $: 1 },
+      iwanuma: { $: 1 },
+      kakuda: { $: 1 },
+      kami: { $: 1 },
+      kawasaki: { $: 1 },
+      marumori: { $: 1 },
+      matsushima: { $: 1 },
+      minamisanriku: { $: 1 },
+      misato: { $: 1 },
+      murata: { $: 1 },
+      natori: { $: 1 },
+      ogawara: { $: 1 },
+      ohira: { $: 1 },
+      onagawa: { $: 1 },
+      osaki: { $: 1 },
+      rifu: { $: 1 },
+      semine: { $: 1 },
+      shibata: { $: 1 },
+      shichikashuku: { $: 1 },
+      shikama: { $: 1 },
+      shiogama: { $: 1 },
+      shiroishi: { $: 1 },
+      tagajo: { $: 1 },
+      taiwa: { $: 1 },
+      tome: { $: 1 },
+      tomiya: { $: 1 },
+      wakuya: { $: 1 },
+      watari: { $: 1 },
+      yamamoto: { $: 1 },
+      zao: { $: 1 },
+    },
+    miyazaki: {
+      $: 1,
+      aya: { $: 1 },
+      ebino: { $: 1 },
+      gokase: { $: 1 },
+      hyuga: { $: 1 },
+      kadogawa: { $: 1 },
+      kawaminami: { $: 1 },
+      kijo: { $: 1 },
+      kitagawa: { $: 1 },
+      kitakata: { $: 1 },
+      kitaura: { $: 1 },
+      kobayashi: { $: 1 },
+      kunitomi: { $: 1 },
+      kushima: { $: 1 },
+      mimata: { $: 1 },
+      miyakonojo: { $: 1 },
+      miyazaki: { $: 1 },
+      morotsuka: { $: 1 },
+      nichinan: { $: 1 },
+      nishimera: { $: 1 },
+      nobeoka: { $: 1 },
+      saito: { $: 1 },
+      shiiba: { $: 1 },
+      shintomi: { $: 1 },
+      takaharu: { $: 1 },
+      takanabe: { $: 1 },
+      takazaki: { $: 1 },
+      tsuno: { $: 1 },
+    },
+    nagano: {
+      $: 1,
+      achi: { $: 1 },
+      agematsu: { $: 1 },
+      anan: { $: 1 },
+      aoki: { $: 1 },
+      asahi: { $: 1 },
+      azumino: { $: 1 },
+      chikuhoku: { $: 1 },
+      chikuma: { $: 1 },
+      chino: { $: 1 },
+      fujimi: { $: 1 },
+      hakuba: { $: 1 },
+      hara: { $: 1 },
+      hiraya: { $: 1 },
+      iida: { $: 1 },
+      iijima: { $: 1 },
+      iiyama: { $: 1 },
+      iizuna: { $: 1 },
+      ikeda: { $: 1 },
+      ikusaka: { $: 1 },
+      ina: { $: 1 },
+      karuizawa: { $: 1 },
+      kawakami: { $: 1 },
+      kiso: { $: 1 },
+      kisofukushima: { $: 1 },
+      kitaaiki: { $: 1 },
+      komagane: { $: 1 },
+      komoro: { $: 1 },
+      matsukawa: { $: 1 },
+      matsumoto: { $: 1 },
+      miasa: { $: 1 },
+      minamiaiki: { $: 1 },
+      minamimaki: { $: 1 },
+      minamiminowa: { $: 1 },
+      minowa: { $: 1 },
+      miyada: { $: 1 },
+      miyota: { $: 1 },
+      mochizuki: { $: 1 },
+      nagano: { $: 1 },
+      nagawa: { $: 1 },
+      nagiso: { $: 1 },
+      nakagawa: { $: 1 },
+      nakano: { $: 1 },
+      nozawaonsen: { $: 1 },
+      obuse: { $: 1 },
+      ogawa: { $: 1 },
+      okaya: { $: 1 },
+      omachi: { $: 1 },
+      omi: { $: 1 },
+      ookuwa: { $: 1 },
+      ooshika: { $: 1 },
+      otaki: { $: 1 },
+      otari: { $: 1 },
+      sakae: { $: 1 },
+      sakaki: { $: 1 },
+      saku: { $: 1 },
+      sakuho: { $: 1 },
+      shimosuwa: { $: 1 },
+      shinanomachi: { $: 1 },
+      shiojiri: { $: 1 },
+      suwa: { $: 1 },
+      suzaka: { $: 1 },
+      takagi: { $: 1 },
+      takamori: { $: 1 },
+      takayama: { $: 1 },
+      tateshina: { $: 1 },
+      tatsuno: { $: 1 },
+      togakushi: { $: 1 },
+      togura: { $: 1 },
+      tomi: { $: 1 },
+      ueda: { $: 1 },
+      wada: { $: 1 },
+      yamagata: { $: 1 },
+      yamanouchi: { $: 1 },
+      yasaka: { $: 1 },
+      yasuoka: { $: 1 },
+    },
+    nagasaki: {
+      $: 1,
+      chijiwa: { $: 1 },
+      futsu: { $: 1 },
+      goto: { $: 1 },
+      hasami: { $: 1 },
+      hirado: { $: 1 },
+      iki: { $: 1 },
+      isahaya: { $: 1 },
+      kawatana: { $: 1 },
+      kuchinotsu: { $: 1 },
+      matsuura: { $: 1 },
+      nagasaki: { $: 1 },
+      obama: { $: 1 },
+      omura: { $: 1 },
+      oseto: { $: 1 },
+      saikai: { $: 1 },
+      sasebo: { $: 1 },
+      seihi: { $: 1 },
+      shimabara: { $: 1 },
+      shinkamigoto: { $: 1 },
+      togitsu: { $: 1 },
+      tsushima: { $: 1 },
+      unzen: { $: 1 },
+    },
+    nara: {
+      $: 1,
+      ando: { $: 1 },
+      gose: { $: 1 },
+      heguri: { $: 1 },
+      higashiyoshino: { $: 1 },
+      ikaruga: { $: 1 },
+      ikoma: { $: 1 },
+      kamikitayama: { $: 1 },
+      kanmaki: { $: 1 },
+      kashiba: { $: 1 },
+      kashihara: { $: 1 },
+      katsuragi: { $: 1 },
+      kawai: { $: 1 },
+      kawakami: { $: 1 },
+      kawanishi: { $: 1 },
+      koryo: { $: 1 },
+      kurotaki: { $: 1 },
+      mitsue: { $: 1 },
+      miyake: { $: 1 },
+      nara: { $: 1 },
+      nosegawa: { $: 1 },
+      oji: { $: 1 },
+      ouda: { $: 1 },
+      oyodo: { $: 1 },
+      sakurai: { $: 1 },
+      sango: { $: 1 },
+      shimoichi: { $: 1 },
+      shimokitayama: { $: 1 },
+      shinjo: { $: 1 },
+      soni: { $: 1 },
+      takatori: { $: 1 },
+      tawaramoto: { $: 1 },
+      tenkawa: { $: 1 },
+      tenri: { $: 1 },
+      uda: { $: 1 },
+      yamatokoriyama: { $: 1 },
+      yamatotakada: { $: 1 },
+      yamazoe: { $: 1 },
+      yoshino: { $: 1 },
+    },
+    niigata: {
+      $: 1,
+      aga: { $: 1 },
+      agano: { $: 1 },
+      gosen: { $: 1 },
+      itoigawa: { $: 1 },
+      izumozaki: { $: 1 },
+      joetsu: { $: 1 },
+      kamo: { $: 1 },
+      kariwa: { $: 1 },
+      kashiwazaki: { $: 1 },
+      minamiuonuma: { $: 1 },
+      mitsuke: { $: 1 },
+      muika: { $: 1 },
+      murakami: { $: 1 },
+      myoko: { $: 1 },
+      nagaoka: { $: 1 },
+      niigata: { $: 1 },
+      ojiya: { $: 1 },
+      omi: { $: 1 },
+      sado: { $: 1 },
+      sanjo: { $: 1 },
+      seiro: { $: 1 },
+      seirou: { $: 1 },
+      sekikawa: { $: 1 },
+      shibata: { $: 1 },
+      tagami: { $: 1 },
+      tainai: { $: 1 },
+      tochio: { $: 1 },
+      tokamachi: { $: 1 },
+      tsubame: { $: 1 },
+      tsunan: { $: 1 },
+      uonuma: { $: 1 },
+      yahiko: { $: 1 },
+      yoita: { $: 1 },
+      yuzawa: { $: 1 },
+    },
+    oita: {
+      $: 1,
+      beppu: { $: 1 },
+      bungoono: { $: 1 },
+      bungotakada: { $: 1 },
+      hasama: { $: 1 },
+      hiji: { $: 1 },
+      himeshima: { $: 1 },
+      hita: { $: 1 },
+      kamitsue: { $: 1 },
+      kokonoe: { $: 1 },
+      kuju: { $: 1 },
+      kunisaki: { $: 1 },
+      kusu: { $: 1 },
+      oita: { $: 1 },
+      saiki: { $: 1 },
+      taketa: { $: 1 },
+      tsukumi: { $: 1 },
+      usa: { $: 1 },
+      usuki: { $: 1 },
+      yufu: { $: 1 },
+    },
+    okayama: {
+      $: 1,
+      akaiwa: { $: 1 },
+      asakuchi: { $: 1 },
+      bizen: { $: 1 },
+      hayashima: { $: 1 },
+      ibara: { $: 1 },
+      kagamino: { $: 1 },
+      kasaoka: { $: 1 },
+      kibichuo: { $: 1 },
+      kumenan: { $: 1 },
+      kurashiki: { $: 1 },
+      maniwa: { $: 1 },
+      misaki: { $: 1 },
+      nagi: { $: 1 },
+      niimi: { $: 1 },
+      nishiawakura: { $: 1 },
+      okayama: { $: 1 },
+      satosho: { $: 1 },
+      setouchi: { $: 1 },
+      shinjo: { $: 1 },
+      shoo: { $: 1 },
+      soja: { $: 1 },
+      takahashi: { $: 1 },
+      tamano: { $: 1 },
+      tsuyama: { $: 1 },
+      wake: { $: 1 },
+      yakage: { $: 1 },
+    },
+    okinawa: {
+      $: 1,
+      aguni: { $: 1 },
+      ginowan: { $: 1 },
+      ginoza: { $: 1 },
+      gushikami: { $: 1 },
+      haebaru: { $: 1 },
+      higashi: { $: 1 },
+      hirara: { $: 1 },
+      iheya: { $: 1 },
+      ishigaki: { $: 1 },
+      ishikawa: { $: 1 },
+      itoman: { $: 1 },
+      izena: { $: 1 },
+      kadena: { $: 1 },
+      kin: { $: 1 },
+      kitadaito: { $: 1 },
+      kitanakagusuku: { $: 1 },
+      kumejima: { $: 1 },
+      kunigami: { $: 1 },
+      minamidaito: { $: 1 },
+      motobu: { $: 1 },
+      nago: { $: 1 },
+      naha: { $: 1 },
+      nakagusuku: { $: 1 },
+      nakijin: { $: 1 },
+      nanjo: { $: 1 },
+      nishihara: { $: 1 },
+      ogimi: { $: 1 },
+      okinawa: { $: 1 },
+      onna: { $: 1 },
+      shimoji: { $: 1 },
+      taketomi: { $: 1 },
+      tarama: { $: 1 },
+      tokashiki: { $: 1 },
+      tomigusuku: { $: 1 },
+      tonaki: { $: 1 },
+      urasoe: { $: 1 },
+      uruma: { $: 1 },
+      yaese: { $: 1 },
+      yomitan: { $: 1 },
+      yonabaru: { $: 1 },
+      yonaguni: { $: 1 },
+      zamami: { $: 1 },
+    },
+    osaka: {
+      $: 1,
+      abeno: { $: 1 },
+      chihayaakasaka: { $: 1 },
+      chuo: { $: 1 },
+      daito: { $: 1 },
+      fujiidera: { $: 1 },
+      habikino: { $: 1 },
+      hannan: { $: 1 },
+      higashiosaka: { $: 1 },
+      higashisumiyoshi: { $: 1 },
+      higashiyodogawa: { $: 1 },
+      hirakata: { $: 1 },
+      ibaraki: { $: 1 },
+      ikeda: { $: 1 },
+      izumi: { $: 1 },
+      izumiotsu: { $: 1 },
+      izumisano: { $: 1 },
+      kadoma: { $: 1 },
+      kaizuka: { $: 1 },
+      kanan: { $: 1 },
+      kashiwara: { $: 1 },
+      katano: { $: 1 },
+      kawachinagano: { $: 1 },
+      kishiwada: { $: 1 },
+      kita: { $: 1 },
+      kumatori: { $: 1 },
+      matsubara: { $: 1 },
+      minato: { $: 1 },
+      minoh: { $: 1 },
+      misaki: { $: 1 },
+      moriguchi: { $: 1 },
+      neyagawa: { $: 1 },
+      nishi: { $: 1 },
+      nose: { $: 1 },
+      osakasayama: { $: 1 },
+      sakai: { $: 1 },
+      sayama: { $: 1 },
+      sennan: { $: 1 },
+      settsu: { $: 1 },
+      shijonawate: { $: 1 },
+      shimamoto: { $: 1 },
+      suita: { $: 1 },
+      tadaoka: { $: 1 },
+      taishi: { $: 1 },
+      tajiri: { $: 1 },
+      takaishi: { $: 1 },
+      takatsuki: { $: 1 },
+      tondabayashi: { $: 1 },
+      toyonaka: { $: 1 },
+      toyono: { $: 1 },
+      yao: { $: 1 },
+    },
+    saga: {
+      $: 1,
+      ariake: { $: 1 },
+      arita: { $: 1 },
+      fukudomi: { $: 1 },
+      genkai: { $: 1 },
+      hamatama: { $: 1 },
+      hizen: { $: 1 },
+      imari: { $: 1 },
+      kamimine: { $: 1 },
+      kanzaki: { $: 1 },
+      karatsu: { $: 1 },
+      kashima: { $: 1 },
+      kitagata: { $: 1 },
+      kitahata: { $: 1 },
+      kiyama: { $: 1 },
+      kouhoku: { $: 1 },
+      kyuragi: { $: 1 },
+      nishiarita: { $: 1 },
+      ogi: { $: 1 },
+      omachi: { $: 1 },
+      ouchi: { $: 1 },
+      saga: { $: 1 },
+      shiroishi: { $: 1 },
+      taku: { $: 1 },
+      tara: { $: 1 },
+      tosu: { $: 1 },
+      yoshinogari: { $: 1 },
+    },
+    saitama: {
+      $: 1,
+      arakawa: { $: 1 },
+      asaka: { $: 1 },
+      chichibu: { $: 1 },
+      fujimi: { $: 1 },
+      fujimino: { $: 1 },
+      fukaya: { $: 1 },
+      hanno: { $: 1 },
+      hanyu: { $: 1 },
+      hasuda: { $: 1 },
+      hatogaya: { $: 1 },
+      hatoyama: { $: 1 },
+      hidaka: { $: 1 },
+      higashichichibu: { $: 1 },
+      higashimatsuyama: { $: 1 },
+      honjo: { $: 1 },
+      ina: { $: 1 },
+      iruma: { $: 1 },
+      iwatsuki: { $: 1 },
+      kamiizumi: { $: 1 },
+      kamikawa: { $: 1 },
+      kamisato: { $: 1 },
+      kasukabe: { $: 1 },
+      kawagoe: { $: 1 },
+      kawaguchi: { $: 1 },
+      kawajima: { $: 1 },
+      kazo: { $: 1 },
+      kitamoto: { $: 1 },
+      koshigaya: { $: 1 },
+      kounosu: { $: 1 },
+      kuki: { $: 1 },
+      kumagaya: { $: 1 },
+      matsubushi: { $: 1 },
+      minano: { $: 1 },
+      misato: { $: 1 },
+      miyashiro: { $: 1 },
+      miyoshi: { $: 1 },
+      moroyama: { $: 1 },
+      nagatoro: { $: 1 },
+      namegawa: { $: 1 },
+      niiza: { $: 1 },
+      ogano: { $: 1 },
+      ogawa: { $: 1 },
+      ogose: { $: 1 },
+      okegawa: { $: 1 },
+      omiya: { $: 1 },
+      otaki: { $: 1 },
+      ranzan: { $: 1 },
+      ryokami: { $: 1 },
+      saitama: { $: 1 },
+      sakado: { $: 1 },
+      satte: { $: 1 },
+      sayama: { $: 1 },
+      shiki: { $: 1 },
+      shiraoka: { $: 1 },
+      soka: { $: 1 },
+      sugito: { $: 1 },
+      toda: { $: 1 },
+      tokigawa: { $: 1 },
+      tokorozawa: { $: 1 },
+      tsurugashima: { $: 1 },
+      urawa: { $: 1 },
+      warabi: { $: 1 },
+      yashio: { $: 1 },
+      yokoze: { $: 1 },
+      yono: { $: 1 },
+      yorii: { $: 1 },
+      yoshida: { $: 1 },
+      yoshikawa: { $: 1 },
+      yoshimi: { $: 1 },
+    },
+    shiga: {
+      $: 1,
+      aisho: { $: 1 },
+      gamo: { $: 1 },
+      higashiomi: { $: 1 },
+      hikone: { $: 1 },
+      koka: { $: 1 },
+      konan: { $: 1 },
+      kosei: { $: 1 },
+      koto: { $: 1 },
+      kusatsu: { $: 1 },
+      maibara: { $: 1 },
+      moriyama: { $: 1 },
+      nagahama: { $: 1 },
+      nishiazai: { $: 1 },
+      notogawa: { $: 1 },
+      omihachiman: { $: 1 },
+      otsu: { $: 1 },
+      ritto: { $: 1 },
+      ryuoh: { $: 1 },
+      takashima: { $: 1 },
+      takatsuki: { $: 1 },
+      torahime: { $: 1 },
+      toyosato: { $: 1 },
+      yasu: { $: 1 },
+    },
+    shimane: {
+      $: 1,
+      akagi: { $: 1 },
+      ama: { $: 1 },
+      gotsu: { $: 1 },
+      hamada: { $: 1 },
+      higashiizumo: { $: 1 },
+      hikawa: { $: 1 },
+      hikimi: { $: 1 },
+      izumo: { $: 1 },
+      kakinoki: { $: 1 },
+      masuda: { $: 1 },
+      matsue: { $: 1 },
+      misato: { $: 1 },
+      nishinoshima: { $: 1 },
+      ohda: { $: 1 },
+      okinoshima: { $: 1 },
+      okuizumo: { $: 1 },
+      shimane: { $: 1 },
+      tamayu: { $: 1 },
+      tsuwano: { $: 1 },
+      unnan: { $: 1 },
+      yakumo: { $: 1 },
+      yasugi: { $: 1 },
+      yatsuka: { $: 1 },
+    },
+    shizuoka: {
+      $: 1,
+      arai: { $: 1 },
+      atami: { $: 1 },
+      fuji: { $: 1 },
+      fujieda: { $: 1 },
+      fujikawa: { $: 1 },
+      fujinomiya: { $: 1 },
+      fukuroi: { $: 1 },
+      gotemba: { $: 1 },
+      haibara: { $: 1 },
+      hamamatsu: { $: 1 },
+      higashiizu: { $: 1 },
+      ito: { $: 1 },
+      iwata: { $: 1 },
+      izu: { $: 1 },
+      izunokuni: { $: 1 },
+      kakegawa: { $: 1 },
+      kannami: { $: 1 },
+      kawanehon: { $: 1 },
+      kawazu: { $: 1 },
+      kikugawa: { $: 1 },
+      kosai: { $: 1 },
+      makinohara: { $: 1 },
+      matsuzaki: { $: 1 },
+      minamiizu: { $: 1 },
+      mishima: { $: 1 },
+      morimachi: { $: 1 },
+      nishiizu: { $: 1 },
+      numazu: { $: 1 },
+      omaezaki: { $: 1 },
+      shimada: { $: 1 },
+      shimizu: { $: 1 },
+      shimoda: { $: 1 },
+      shizuoka: { $: 1 },
+      susono: { $: 1 },
+      yaizu: { $: 1 },
+      yoshida: { $: 1 },
+    },
+    tochigi: {
+      $: 1,
+      ashikaga: { $: 1 },
+      bato: { $: 1 },
+      haga: { $: 1 },
+      ichikai: { $: 1 },
+      iwafune: { $: 1 },
+      kaminokawa: { $: 1 },
+      kanuma: { $: 1 },
+      karasuyama: { $: 1 },
+      kuroiso: { $: 1 },
+      mashiko: { $: 1 },
+      mibu: { $: 1 },
+      moka: { $: 1 },
+      motegi: { $: 1 },
+      nasu: { $: 1 },
+      nasushiobara: { $: 1 },
+      nikko: { $: 1 },
+      nishikata: { $: 1 },
+      nogi: { $: 1 },
+      ohira: { $: 1 },
+      ohtawara: { $: 1 },
+      oyama: { $: 1 },
+      sakura: { $: 1 },
+      sano: { $: 1 },
+      shimotsuke: { $: 1 },
+      shioya: { $: 1 },
+      takanezawa: { $: 1 },
+      tochigi: { $: 1 },
+      tsuga: { $: 1 },
+      ujiie: { $: 1 },
+      utsunomiya: { $: 1 },
+      yaita: { $: 1 },
+    },
+    tokushima: {
+      $: 1,
+      aizumi: { $: 1 },
+      anan: { $: 1 },
+      ichiba: { $: 1 },
+      itano: { $: 1 },
+      kainan: { $: 1 },
+      komatsushima: { $: 1 },
+      matsushige: { $: 1 },
+      mima: { $: 1 },
+      minami: { $: 1 },
+      miyoshi: { $: 1 },
+      mugi: { $: 1 },
+      nakagawa: { $: 1 },
+      naruto: { $: 1 },
+      sanagochi: { $: 1 },
+      shishikui: { $: 1 },
+      tokushima: { $: 1 },
+      wajiki: { $: 1 },
+    },
+    tokyo: {
+      $: 1,
+      adachi: { $: 1 },
+      akiruno: { $: 1 },
+      akishima: { $: 1 },
+      aogashima: { $: 1 },
+      arakawa: { $: 1 },
+      bunkyo: { $: 1 },
+      chiyoda: { $: 1 },
+      chofu: { $: 1 },
+      chuo: { $: 1 },
+      edogawa: { $: 1 },
+      fuchu: { $: 1 },
+      fussa: { $: 1 },
+      hachijo: { $: 1 },
+      hachioji: { $: 1 },
+      hamura: { $: 1 },
+      higashikurume: { $: 1 },
+      higashimurayama: { $: 1 },
+      higashiyamato: { $: 1 },
+      hino: { $: 1 },
+      hinode: { $: 1 },
+      hinohara: { $: 1 },
+      inagi: { $: 1 },
+      itabashi: { $: 1 },
+      katsushika: { $: 1 },
+      kita: { $: 1 },
+      kiyose: { $: 1 },
+      kodaira: { $: 1 },
+      koganei: { $: 1 },
+      kokubunji: { $: 1 },
+      komae: { $: 1 },
+      koto: { $: 1 },
+      kouzushima: { $: 1 },
+      kunitachi: { $: 1 },
+      machida: { $: 1 },
+      meguro: { $: 1 },
+      minato: { $: 1 },
+      mitaka: { $: 1 },
+      mizuho: { $: 1 },
+      musashimurayama: { $: 1 },
+      musashino: { $: 1 },
+      nakano: { $: 1 },
+      nerima: { $: 1 },
+      ogasawara: { $: 1 },
+      okutama: { $: 1 },
+      ome: { $: 1 },
+      oshima: { $: 1 },
+      ota: { $: 1 },
+      setagaya: { $: 1 },
+      shibuya: { $: 1 },
+      shinagawa: { $: 1 },
+      shinjuku: { $: 1 },
+      suginami: { $: 1 },
+      sumida: { $: 1 },
+      tachikawa: { $: 1 },
+      taito: { $: 1 },
+      tama: { $: 1 },
+      toshima: { $: 1 },
+    },
+    tottori: {
+      $: 1,
+      chizu: { $: 1 },
+      hino: { $: 1 },
+      kawahara: { $: 1 },
+      koge: { $: 1 },
+      kotoura: { $: 1 },
+      misasa: { $: 1 },
+      nanbu: { $: 1 },
+      nichinan: { $: 1 },
+      sakaiminato: { $: 1 },
+      tottori: { $: 1 },
+      wakasa: { $: 1 },
+      yazu: { $: 1 },
+      yonago: { $: 1 },
+    },
+    toyama: {
+      $: 1,
+      asahi: { $: 1 },
+      fuchu: { $: 1 },
+      fukumitsu: { $: 1 },
+      funahashi: { $: 1 },
+      himi: { $: 1 },
+      imizu: { $: 1 },
+      inami: { $: 1 },
+      johana: { $: 1 },
+      kamiichi: { $: 1 },
+      kurobe: { $: 1 },
+      nakaniikawa: { $: 1 },
+      namerikawa: { $: 1 },
+      nanto: { $: 1 },
+      nyuzen: { $: 1 },
+      oyabe: { $: 1 },
+      taira: { $: 1 },
+      takaoka: { $: 1 },
+      tateyama: { $: 1 },
+      toga: { $: 1 },
+      tonami: { $: 1 },
+      toyama: { $: 1 },
+      unazuki: { $: 1 },
+      uozu: { $: 1 },
+      yamada: { $: 1 },
+    },
+    wakayama: {
+      $: 1,
+      arida: { $: 1 },
+      aridagawa: { $: 1 },
+      gobo: { $: 1 },
+      hashimoto: { $: 1 },
+      hidaka: { $: 1 },
+      hirogawa: { $: 1 },
+      inami: { $: 1 },
+      iwade: { $: 1 },
+      kainan: { $: 1 },
+      kamitonda: { $: 1 },
+      katsuragi: { $: 1 },
+      kimino: { $: 1 },
+      kinokawa: { $: 1 },
+      kitayama: { $: 1 },
+      koya: { $: 1 },
+      koza: { $: 1 },
+      kozagawa: { $: 1 },
+      kudoyama: { $: 1 },
+      kushimoto: { $: 1 },
+      mihama: { $: 1 },
+      misato: { $: 1 },
+      nachikatsuura: { $: 1 },
+      shingu: { $: 1 },
+      shirahama: { $: 1 },
+      taiji: { $: 1 },
+      tanabe: { $: 1 },
+      wakayama: { $: 1 },
+      yuasa: { $: 1 },
+      yura: { $: 1 },
+    },
+    yamagata: {
+      $: 1,
+      asahi: { $: 1 },
+      funagata: { $: 1 },
+      higashine: { $: 1 },
+      iide: { $: 1 },
+      kahoku: { $: 1 },
+      kaminoyama: { $: 1 },
+      kaneyama: { $: 1 },
+      kawanishi: { $: 1 },
+      mamurogawa: { $: 1 },
+      mikawa: { $: 1 },
+      murayama: { $: 1 },
+      nagai: { $: 1 },
+      nakayama: { $: 1 },
+      nanyo: { $: 1 },
+      nishikawa: { $: 1 },
+      obanazawa: { $: 1 },
+      oe: { $: 1 },
+      oguni: { $: 1 },
+      ohkura: { $: 1 },
+      oishida: { $: 1 },
+      sagae: { $: 1 },
+      sakata: { $: 1 },
+      sakegawa: { $: 1 },
+      shinjo: { $: 1 },
+      shirataka: { $: 1 },
+      shonai: { $: 1 },
+      takahata: { $: 1 },
+      tendo: { $: 1 },
+      tozawa: { $: 1 },
+      tsuruoka: { $: 1 },
+      yamagata: { $: 1 },
+      yamanobe: { $: 1 },
+      yonezawa: { $: 1 },
+      yuza: { $: 1 },
+    },
+    yamaguchi: {
+      $: 1,
+      abu: { $: 1 },
+      hagi: { $: 1 },
+      hikari: { $: 1 },
+      hofu: { $: 1 },
+      iwakuni: { $: 1 },
+      kudamatsu: { $: 1 },
+      mitou: { $: 1 },
+      nagato: { $: 1 },
+      oshima: { $: 1 },
+      shimonoseki: { $: 1 },
+      shunan: { $: 1 },
+      tabuse: { $: 1 },
+      tokuyama: { $: 1 },
+      toyota: { $: 1 },
+      ube: { $: 1 },
+      yuu: { $: 1 },
+    },
+    yamanashi: {
+      $: 1,
+      chuo: { $: 1 },
+      doshi: { $: 1 },
+      fuefuki: { $: 1 },
+      fujikawa: { $: 1 },
+      fujikawaguchiko: { $: 1 },
+      fujiyoshida: { $: 1 },
+      hayakawa: { $: 1 },
+      hokuto: { $: 1 },
+      ichikawamisato: { $: 1 },
+      kai: { $: 1 },
+      kofu: { $: 1 },
+      koshu: { $: 1 },
+      kosuge: { $: 1 },
+      'minami-alps': { $: 1 },
+      minobu: { $: 1 },
+      nakamichi: { $: 1 },
+      nanbu: { $: 1 },
+      narusawa: { $: 1 },
+      nirasaki: { $: 1 },
+      nishikatsura: { $: 1 },
+      oshino: { $: 1 },
+      otsuki: { $: 1 },
+      showa: { $: 1 },
+      tabayama: { $: 1 },
+      tsuru: { $: 1 },
+      uenohara: { $: 1 },
+      yamanakako: { $: 1 },
+      yamanashi: { $: 1 },
+    },
+    'xn--4pvxs': { $: 1 },
+    'xn--vgu402c': { $: 1 },
+    'xn--c3s14m': { $: 1 },
+    'xn--f6qx53a': { $: 1 },
+    'xn--8pvr4u': { $: 1 },
+    'xn--uist22h': { $: 1 },
+    'xn--djrs72d6uy': { $: 1 },
+    'xn--mkru45i': { $: 1 },
+    'xn--0trq7p7nn': { $: 1 },
+    'xn--8ltr62k': { $: 1 },
+    'xn--2m4a15e': { $: 1 },
+    'xn--efvn9s': { $: 1 },
+    'xn--32vp30h': { $: 1 },
+    'xn--4it797k': { $: 1 },
+    'xn--1lqs71d': { $: 1 },
+    'xn--5rtp49c': { $: 1 },
+    'xn--5js045d': { $: 1 },
+    'xn--ehqz56n': { $: 1 },
+    'xn--1lqs03n': { $: 1 },
+    'xn--qqqt11m': { $: 1 },
+    'xn--kbrq7o': { $: 1 },
+    'xn--pssu33l': { $: 1 },
+    'xn--ntsq17g': { $: 1 },
+    'xn--uisz3g': { $: 1 },
+    'xn--6btw5a': { $: 1 },
+    'xn--1ctwo': { $: 1 },
+    'xn--6orx2r': { $: 1 },
+    'xn--rht61e': { $: 1 },
+    'xn--rht27z': { $: 1 },
+    'xn--djty4k': { $: 1 },
+    'xn--nit225k': { $: 1 },
+    'xn--rht3d': { $: 1 },
+    'xn--klty5x': { $: 1 },
+    'xn--kltx9a': { $: 1 },
+    'xn--kltp7d': { $: 1 },
+    'xn--uuwu58a': { $: 1 },
+    'xn--zbx025d': { $: 1 },
+    'xn--ntso0iqx3a': { $: 1 },
+    'xn--elqq16h': { $: 1 },
+    'xn--4it168d': { $: 1 },
+    'xn--klt787d': { $: 1 },
+    'xn--rny31h': { $: 1 },
+    'xn--7t0a264c': { $: 1 },
+    'xn--5rtq34k': { $: 1 },
+    'xn--k7yn95e': { $: 1 },
+    'xn--tor131o': { $: 1 },
+    'xn--d5qv7z876c': { $: 1 },
+    kawasaki: { '*': { $: 1 } },
+    kitakyushu: { '*': { $: 1 } },
+    kobe: { '*': { $: 1 } },
+    nagoya: { '*': { $: 1 } },
+    sapporo: { '*': { $: 1 } },
+    sendai: { '*': { $: 1 } },
+    yokohama: { '*': { $: 1 } },
+    blogspot: { $: 2 },
+  },
+  ke: {
+    $: 1,
+    ac: { $: 1 },
+    co: { $: 1, blogspot: { $: 2 } },
+    go: { $: 1 },
+    info: { $: 1 },
+    me: { $: 1 },
+    mobi: { $: 1 },
+    ne: { $: 1 },
+    or: { $: 1 },
+    sc: { $: 1 },
+    nom: { $: 2 },
+  },
+  kg: {
+    $: 1,
+    org: { $: 1 },
+    net: { $: 1 },
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    mil: { $: 1 },
+  },
+  kh: { '*': { $: 1 } },
+  ki: {
+    $: 1,
+    edu: { $: 1 },
+    biz: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    gov: { $: 1 },
+    info: { $: 1 },
+    com: { $: 1 },
+  },
+  km: {
+    $: 1,
+    org: { $: 1 },
+    nom: { $: 1 },
+    gov: { $: 1 },
+    prd: { $: 1 },
+    tm: { $: 1 },
+    edu: { $: 1 },
+    mil: { $: 1 },
+    ass: { $: 1 },
+    com: { $: 1 },
+    coop: { $: 1 },
+    asso: { $: 1 },
+    presse: { $: 1 },
+    medecin: { $: 1 },
+    notaires: { $: 1 },
+    pharmaciens: { $: 1 },
+    veterinaire: { $: 1 },
+    gouv: { $: 1 },
+  },
+  kn: { $: 1, net: { $: 1 }, org: { $: 1 }, edu: { $: 1 }, gov: { $: 1 } },
+  kp: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    org: { $: 1 },
+    rep: { $: 1 },
+    tra: { $: 1 },
+  },
+  kr: {
+    $: 1,
+    ac: { $: 1 },
+    co: { $: 1 },
+    es: { $: 1 },
+    go: { $: 1 },
+    hs: { $: 1 },
+    kg: { $: 1 },
+    mil: { $: 1 },
+    ms: { $: 1 },
+    ne: { $: 1 },
+    or: { $: 1 },
+    pe: { $: 1 },
+    re: { $: 1 },
+    sc: { $: 1 },
+    busan: { $: 1 },
+    chungbuk: { $: 1 },
+    chungnam: { $: 1 },
+    daegu: { $: 1 },
+    daejeon: { $: 1 },
+    gangwon: { $: 1 },
+    gwangju: { $: 1 },
+    gyeongbuk: { $: 1 },
+    gyeonggi: { $: 1 },
+    gyeongnam: { $: 1 },
+    incheon: { $: 1 },
+    jeju: { $: 1 },
+    jeonbuk: { $: 1 },
+    jeonnam: { $: 1 },
+    seoul: { $: 1 },
+    ulsan: { $: 1 },
+    blogspot: { $: 2 },
+  },
+  kw: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    emb: { $: 1 },
+    gov: { $: 1 },
+    ind: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+  },
+  ky: {
+    $: 1,
+    edu: { $: 1 },
+    gov: { $: 1 },
+    com: { $: 1 },
+    org: { $: 1 },
+    net: { $: 1 },
+  },
+  kz: {
+    $: 1,
+    org: { $: 1 },
+    edu: { $: 1 },
+    net: { $: 1 },
+    gov: { $: 1 },
+    mil: { $: 1 },
+    com: { $: 1 },
+    nym: { $: 2 },
+  },
+  la: {
+    $: 1,
+    int: { $: 1 },
+    net: { $: 1 },
+    info: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    per: { $: 1 },
+    com: { $: 1 },
+    org: { $: 1 },
+    bnr: { $: 2 },
+    c: { $: 2 },
+    nym: { $: 2 },
+  },
+  lb: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+  },
+  lc: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    co: { $: 1 },
+    org: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    nym: { $: 2 },
+    oy: { $: 2 },
+  },
+  li: { $: 1, blogspot: { $: 2 }, nom: { $: 2 }, nym: { $: 2 } },
+  lk: {
+    $: 1,
+    gov: { $: 1 },
+    sch: { $: 1 },
+    net: { $: 1 },
+    int: { $: 1 },
+    com: { $: 1 },
+    org: { $: 1 },
+    edu: { $: 1 },
+    ngo: { $: 1 },
+    soc: { $: 1 },
+    web: { $: 1 },
+    ltd: { $: 1 },
+    assn: { $: 1 },
+    grp: { $: 1 },
+    hotel: { $: 1 },
+    ac: { $: 1 },
+  },
+  lr: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    org: { $: 1 },
+    net: { $: 1 },
+  },
+  ls: {
+    $: 1,
+    ac: { $: 1 },
+    biz: { $: 1 },
+    co: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    info: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    sc: { $: 1 },
+  },
+  lt: { $: 1, gov: { $: 1 }, blogspot: { $: 2 }, nym: { $: 2 } },
+  lu: { $: 1, blogspot: { $: 2 }, nym: { $: 2 } },
+  lv: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    org: { $: 1 },
+    mil: { $: 1 },
+    id: { $: 1 },
+    net: { $: 1 },
+    asn: { $: 1 },
+    conf: { $: 1 },
+  },
+  ly: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    gov: { $: 1 },
+    plc: { $: 1 },
+    edu: { $: 1 },
+    sch: { $: 1 },
+    med: { $: 1 },
+    org: { $: 1 },
+    id: { $: 1 },
+  },
+  ma: {
+    $: 1,
+    co: { $: 1 },
+    net: { $: 1 },
+    gov: { $: 1 },
+    org: { $: 1 },
+    ac: { $: 1 },
+    press: { $: 1 },
+  },
+  mc: { $: 1, tm: { $: 1 }, asso: { $: 1 } },
+  md: { $: 1, blogspot: { $: 2 } },
+  me: {
+    $: 1,
+    co: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    edu: { $: 1 },
+    ac: { $: 1 },
+    gov: { $: 1 },
+    its: { $: 1 },
+    priv: { $: 1 },
+    c66: { $: 2 },
+    daplie: { $: 2, localhost: { $: 2 } },
+    filegear: { $: 2 },
+    ravendb: { $: 2 },
+    barsy: { $: 2 },
+    soundcast: { $: 2 },
+    tcp4: { $: 2 },
+    brasilia: { $: 2 },
+    ddns: { $: 2 },
+    dnsfor: { $: 2 },
+    hopto: { $: 2 },
+    loginto: { $: 2 },
+    noip: { $: 2 },
+    webhop: { $: 2 },
+    nym: { $: 2 },
+    diskstation: { $: 2 },
+    dscloud: { $: 2 },
+    i234: { $: 2 },
+    myds: { $: 2 },
+    synology: { $: 2 },
+    wedeploy: { $: 2 },
+    yombo: { $: 2 },
+    nohost: { $: 2 },
+  },
+  mg: {
+    $: 1,
+    org: { $: 1 },
+    nom: { $: 1 },
+    gov: { $: 1 },
+    prd: { $: 1 },
+    tm: { $: 1 },
+    edu: { $: 1 },
+    mil: { $: 1 },
+    com: { $: 1 },
+    co: { $: 1 },
+  },
+  mh: { $: 1 },
+  mil: { $: 1 },
+  mk: {
+    $: 1,
+    com: { $: 1 },
+    org: { $: 1 },
+    net: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    inf: { $: 1 },
+    name: { $: 1 },
+    blogspot: { $: 2 },
+    nom: { $: 2 },
+  },
+  ml: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gouv: { $: 1 },
+    gov: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    presse: { $: 1 },
+  },
+  mm: { '*': { $: 1 } },
+  mn: {
+    $: 1,
+    gov: { $: 1 },
+    edu: { $: 1 },
+    org: { $: 1 },
+    nyc: { $: 2 },
+    nym: { $: 2 },
+  },
+  mo: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+  },
+  mobi: { $: 1, barsy: { $: 2 }, dscloud: { $: 2 } },
+  mp: { $: 1 },
+  mq: { $: 1 },
+  mr: { $: 1, gov: { $: 1 }, blogspot: { $: 2 } },
+  ms: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+  },
+  mt: {
+    $: 1,
+    com: { $: 1, blogspot: { $: 2 } },
+    edu: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+  },
+  mu: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    gov: { $: 1 },
+    ac: { $: 1 },
+    co: { $: 1 },
+    or: { $: 1 },
+  },
+  museum: {
+    $: 1,
+    academy: { $: 1 },
+    agriculture: { $: 1 },
+    air: { $: 1 },
+    airguard: { $: 1 },
+    alabama: { $: 1 },
+    alaska: { $: 1 },
+    amber: { $: 1 },
+    ambulance: { $: 1 },
+    american: { $: 1 },
+    americana: { $: 1 },
+    americanantiques: { $: 1 },
+    americanart: { $: 1 },
+    amsterdam: { $: 1 },
+    and: { $: 1 },
+    annefrank: { $: 1 },
+    anthro: { $: 1 },
+    anthropology: { $: 1 },
+    antiques: { $: 1 },
+    aquarium: { $: 1 },
+    arboretum: { $: 1 },
+    archaeological: { $: 1 },
+    archaeology: { $: 1 },
+    architecture: { $: 1 },
+    art: { $: 1 },
+    artanddesign: { $: 1 },
+    artcenter: { $: 1 },
+    artdeco: { $: 1 },
+    arteducation: { $: 1 },
+    artgallery: { $: 1 },
+    arts: { $: 1 },
+    artsandcrafts: { $: 1 },
+    asmatart: { $: 1 },
+    assassination: { $: 1 },
+    assisi: { $: 1 },
+    association: { $: 1 },
+    astronomy: { $: 1 },
+    atlanta: { $: 1 },
+    austin: { $: 1 },
+    australia: { $: 1 },
+    automotive: { $: 1 },
+    aviation: { $: 1 },
+    axis: { $: 1 },
+    badajoz: { $: 1 },
+    baghdad: { $: 1 },
+    bahn: { $: 1 },
+    bale: { $: 1 },
+    baltimore: { $: 1 },
+    barcelona: { $: 1 },
+    baseball: { $: 1 },
+    basel: { $: 1 },
+    baths: { $: 1 },
+    bauern: { $: 1 },
+    beauxarts: { $: 1 },
+    beeldengeluid: { $: 1 },
+    bellevue: { $: 1 },
+    bergbau: { $: 1 },
+    berkeley: { $: 1 },
+    berlin: { $: 1 },
+    bern: { $: 1 },
+    bible: { $: 1 },
+    bilbao: { $: 1 },
+    bill: { $: 1 },
+    birdart: { $: 1 },
+    birthplace: { $: 1 },
+    bonn: { $: 1 },
+    boston: { $: 1 },
+    botanical: { $: 1 },
+    botanicalgarden: { $: 1 },
+    botanicgarden: { $: 1 },
+    botany: { $: 1 },
+    brandywinevalley: { $: 1 },
+    brasil: { $: 1 },
+    bristol: { $: 1 },
+    british: { $: 1 },
+    britishcolumbia: { $: 1 },
+    broadcast: { $: 1 },
+    brunel: { $: 1 },
+    brussel: { $: 1 },
+    brussels: { $: 1 },
+    bruxelles: { $: 1 },
+    building: { $: 1 },
+    burghof: { $: 1 },
+    bus: { $: 1 },
+    bushey: { $: 1 },
+    cadaques: { $: 1 },
+    california: { $: 1 },
+    cambridge: { $: 1 },
+    can: { $: 1 },
+    canada: { $: 1 },
+    capebreton: { $: 1 },
+    carrier: { $: 1 },
+    cartoonart: { $: 1 },
+    casadelamoneda: { $: 1 },
+    castle: { $: 1 },
+    castres: { $: 1 },
+    celtic: { $: 1 },
+    center: { $: 1 },
+    chattanooga: { $: 1 },
+    cheltenham: { $: 1 },
+    chesapeakebay: { $: 1 },
+    chicago: { $: 1 },
+    children: { $: 1 },
+    childrens: { $: 1 },
+    childrensgarden: { $: 1 },
+    chiropractic: { $: 1 },
+    chocolate: { $: 1 },
+    christiansburg: { $: 1 },
+    cincinnati: { $: 1 },
+    cinema: { $: 1 },
+    circus: { $: 1 },
+    civilisation: { $: 1 },
+    civilization: { $: 1 },
+    civilwar: { $: 1 },
+    clinton: { $: 1 },
+    clock: { $: 1 },
+    coal: { $: 1 },
+    coastaldefence: { $: 1 },
+    cody: { $: 1 },
+    coldwar: { $: 1 },
+    collection: { $: 1 },
+    colonialwilliamsburg: { $: 1 },
+    coloradoplateau: { $: 1 },
+    columbia: { $: 1 },
+    columbus: { $: 1 },
+    communication: { $: 1 },
+    communications: { $: 1 },
+    community: { $: 1 },
+    computer: { $: 1 },
+    computerhistory: { $: 1 },
+    'xn--comunicaes-v6a2o': { $: 1 },
+    contemporary: { $: 1 },
+    contemporaryart: { $: 1 },
+    convent: { $: 1 },
+    copenhagen: { $: 1 },
+    corporation: { $: 1 },
+    'xn--correios-e-telecomunicaes-ghc29a': { $: 1 },
+    corvette: { $: 1 },
+    costume: { $: 1 },
+    countryestate: { $: 1 },
+    county: { $: 1 },
+    crafts: { $: 1 },
+    cranbrook: { $: 1 },
+    creation: { $: 1 },
+    cultural: { $: 1 },
+    culturalcenter: { $: 1 },
+    culture: { $: 1 },
+    cyber: { $: 1 },
+    cymru: { $: 1 },
+    dali: { $: 1 },
+    dallas: { $: 1 },
+    database: { $: 1 },
+    ddr: { $: 1 },
+    decorativearts: { $: 1 },
+    delaware: { $: 1 },
+    delmenhorst: { $: 1 },
+    denmark: { $: 1 },
+    depot: { $: 1 },
+    design: { $: 1 },
+    detroit: { $: 1 },
+    dinosaur: { $: 1 },
+    discovery: { $: 1 },
+    dolls: { $: 1 },
+    donostia: { $: 1 },
+    durham: { $: 1 },
+    eastafrica: { $: 1 },
+    eastcoast: { $: 1 },
+    education: { $: 1 },
+    educational: { $: 1 },
+    egyptian: { $: 1 },
+    eisenbahn: { $: 1 },
+    elburg: { $: 1 },
+    elvendrell: { $: 1 },
+    embroidery: { $: 1 },
+    encyclopedic: { $: 1 },
+    england: { $: 1 },
+    entomology: { $: 1 },
+    environment: { $: 1 },
+    environmentalconservation: { $: 1 },
+    epilepsy: { $: 1 },
+    essex: { $: 1 },
+    estate: { $: 1 },
+    ethnology: { $: 1 },
+    exeter: { $: 1 },
+    exhibition: { $: 1 },
+    family: { $: 1 },
+    farm: { $: 1 },
+    farmequipment: { $: 1 },
+    farmers: { $: 1 },
+    farmstead: { $: 1 },
+    field: { $: 1 },
+    figueres: { $: 1 },
+    filatelia: { $: 1 },
+    film: { $: 1 },
+    fineart: { $: 1 },
+    finearts: { $: 1 },
+    finland: { $: 1 },
+    flanders: { $: 1 },
+    florida: { $: 1 },
+    force: { $: 1 },
+    fortmissoula: { $: 1 },
+    fortworth: { $: 1 },
+    foundation: { $: 1 },
+    francaise: { $: 1 },
+    frankfurt: { $: 1 },
+    franziskaner: { $: 1 },
+    freemasonry: { $: 1 },
+    freiburg: { $: 1 },
+    fribourg: { $: 1 },
+    frog: { $: 1 },
+    fundacio: { $: 1 },
+    furniture: { $: 1 },
+    gallery: { $: 1 },
+    garden: { $: 1 },
+    gateway: { $: 1 },
+    geelvinck: { $: 1 },
+    gemological: { $: 1 },
+    geology: { $: 1 },
+    georgia: { $: 1 },
+    giessen: { $: 1 },
+    glas: { $: 1 },
+    glass: { $: 1 },
+    gorge: { $: 1 },
+    grandrapids: { $: 1 },
+    graz: { $: 1 },
+    guernsey: { $: 1 },
+    halloffame: { $: 1 },
+    hamburg: { $: 1 },
+    handson: { $: 1 },
+    harvestcelebration: { $: 1 },
+    hawaii: { $: 1 },
+    health: { $: 1 },
+    heimatunduhren: { $: 1 },
+    hellas: { $: 1 },
+    helsinki: { $: 1 },
+    hembygdsforbund: { $: 1 },
+    heritage: { $: 1 },
+    histoire: { $: 1 },
+    historical: { $: 1 },
+    historicalsociety: { $: 1 },
+    historichouses: { $: 1 },
+    historisch: { $: 1 },
+    historisches: { $: 1 },
+    history: { $: 1 },
+    historyofscience: { $: 1 },
+    horology: { $: 1 },
+    house: { $: 1 },
+    humanities: { $: 1 },
+    illustration: { $: 1 },
+    imageandsound: { $: 1 },
+    indian: { $: 1 },
+    indiana: { $: 1 },
+    indianapolis: { $: 1 },
+    indianmarket: { $: 1 },
+    intelligence: { $: 1 },
+    interactive: { $: 1 },
+    iraq: { $: 1 },
+    iron: { $: 1 },
+    isleofman: { $: 1 },
+    jamison: { $: 1 },
+    jefferson: { $: 1 },
+    jerusalem: { $: 1 },
+    jewelry: { $: 1 },
+    jewish: { $: 1 },
+    jewishart: { $: 1 },
+    jfk: { $: 1 },
+    journalism: { $: 1 },
+    judaica: { $: 1 },
+    judygarland: { $: 1 },
+    juedisches: { $: 1 },
+    juif: { $: 1 },
+    karate: { $: 1 },
+    karikatur: { $: 1 },
+    kids: { $: 1 },
+    koebenhavn: { $: 1 },
+    koeln: { $: 1 },
+    kunst: { $: 1 },
+    kunstsammlung: { $: 1 },
+    kunstunddesign: { $: 1 },
+    labor: { $: 1 },
+    labour: { $: 1 },
+    lajolla: { $: 1 },
+    lancashire: { $: 1 },
+    landes: { $: 1 },
+    lans: { $: 1 },
+    'xn--lns-qla': { $: 1 },
+    larsson: { $: 1 },
+    lewismiller: { $: 1 },
+    lincoln: { $: 1 },
+    linz: { $: 1 },
+    living: { $: 1 },
+    livinghistory: { $: 1 },
+    localhistory: { $: 1 },
+    london: { $: 1 },
+    losangeles: { $: 1 },
+    louvre: { $: 1 },
+    loyalist: { $: 1 },
+    lucerne: { $: 1 },
+    luxembourg: { $: 1 },
+    luzern: { $: 1 },
+    mad: { $: 1 },
+    madrid: { $: 1 },
+    mallorca: { $: 1 },
+    manchester: { $: 1 },
+    mansion: { $: 1 },
+    mansions: { $: 1 },
+    manx: { $: 1 },
+    marburg: { $: 1 },
+    maritime: { $: 1 },
+    maritimo: { $: 1 },
+    maryland: { $: 1 },
+    marylhurst: { $: 1 },
+    media: { $: 1 },
+    medical: { $: 1 },
+    medizinhistorisches: { $: 1 },
+    meeres: { $: 1 },
+    memorial: { $: 1 },
+    mesaverde: { $: 1 },
+    michigan: { $: 1 },
+    midatlantic: { $: 1 },
+    military: { $: 1 },
+    mill: { $: 1 },
+    miners: { $: 1 },
+    mining: { $: 1 },
+    minnesota: { $: 1 },
+    missile: { $: 1 },
+    missoula: { $: 1 },
+    modern: { $: 1 },
+    moma: { $: 1 },
+    money: { $: 1 },
+    monmouth: { $: 1 },
+    monticello: { $: 1 },
+    montreal: { $: 1 },
+    moscow: { $: 1 },
+    motorcycle: { $: 1 },
+    muenchen: { $: 1 },
+    muenster: { $: 1 },
+    mulhouse: { $: 1 },
+    muncie: { $: 1 },
+    museet: { $: 1 },
+    museumcenter: { $: 1 },
+    museumvereniging: { $: 1 },
+    music: { $: 1 },
+    national: { $: 1 },
+    nationalfirearms: { $: 1 },
+    nationalheritage: { $: 1 },
+    nativeamerican: { $: 1 },
+    naturalhistory: { $: 1 },
+    naturalhistorymuseum: { $: 1 },
+    naturalsciences: { $: 1 },
+    nature: { $: 1 },
+    naturhistorisches: { $: 1 },
+    natuurwetenschappen: { $: 1 },
+    naumburg: { $: 1 },
+    naval: { $: 1 },
+    nebraska: { $: 1 },
+    neues: { $: 1 },
+    newhampshire: { $: 1 },
+    newjersey: { $: 1 },
+    newmexico: { $: 1 },
+    newport: { $: 1 },
+    newspaper: { $: 1 },
+    newyork: { $: 1 },
+    niepce: { $: 1 },
+    norfolk: { $: 1 },
+    north: { $: 1 },
+    nrw: { $: 1 },
+    nuernberg: { $: 1 },
+    nuremberg: { $: 1 },
+    nyc: { $: 1 },
+    nyny: { $: 1 },
+    oceanographic: { $: 1 },
+    oceanographique: { $: 1 },
+    omaha: { $: 1 },
+    online: { $: 1 },
+    ontario: { $: 1 },
+    openair: { $: 1 },
+    oregon: { $: 1 },
+    oregontrail: { $: 1 },
+    otago: { $: 1 },
+    oxford: { $: 1 },
+    pacific: { $: 1 },
+    paderborn: { $: 1 },
+    palace: { $: 1 },
+    paleo: { $: 1 },
+    palmsprings: { $: 1 },
+    panama: { $: 1 },
+    paris: { $: 1 },
+    pasadena: { $: 1 },
+    pharmacy: { $: 1 },
+    philadelphia: { $: 1 },
+    philadelphiaarea: { $: 1 },
+    philately: { $: 1 },
+    phoenix: { $: 1 },
+    photography: { $: 1 },
+    pilots: { $: 1 },
+    pittsburgh: { $: 1 },
+    planetarium: { $: 1 },
+    plantation: { $: 1 },
+    plants: { $: 1 },
+    plaza: { $: 1 },
+    portal: { $: 1 },
+    portland: { $: 1 },
+    portlligat: { $: 1 },
+    'posts-and-telecommunications': { $: 1 },
+    preservation: { $: 1 },
+    presidio: { $: 1 },
+    press: { $: 1 },
+    project: { $: 1 },
+    public: { $: 1 },
+    pubol: { $: 1 },
+    quebec: { $: 1 },
+    railroad: { $: 1 },
+    railway: { $: 1 },
+    research: { $: 1 },
+    resistance: { $: 1 },
+    riodejaneiro: { $: 1 },
+    rochester: { $: 1 },
+    rockart: { $: 1 },
+    roma: { $: 1 },
+    russia: { $: 1 },
+    saintlouis: { $: 1 },
+    salem: { $: 1 },
+    salvadordali: { $: 1 },
+    salzburg: { $: 1 },
+    sandiego: { $: 1 },
+    sanfrancisco: { $: 1 },
+    santabarbara: { $: 1 },
+    santacruz: { $: 1 },
+    santafe: { $: 1 },
+    saskatchewan: { $: 1 },
+    satx: { $: 1 },
+    savannahga: { $: 1 },
+    schlesisches: { $: 1 },
+    schoenbrunn: { $: 1 },
+    schokoladen: { $: 1 },
+    school: { $: 1 },
+    schweiz: { $: 1 },
+    science: { $: 1 },
+    scienceandhistory: { $: 1 },
+    scienceandindustry: { $: 1 },
+    sciencecenter: { $: 1 },
+    sciencecenters: { $: 1 },
+    'science-fiction': { $: 1 },
+    sciencehistory: { $: 1 },
+    sciences: { $: 1 },
+    sciencesnaturelles: { $: 1 },
+    scotland: { $: 1 },
+    seaport: { $: 1 },
+    settlement: { $: 1 },
+    settlers: { $: 1 },
+    shell: { $: 1 },
+    sherbrooke: { $: 1 },
+    sibenik: { $: 1 },
+    silk: { $: 1 },
+    ski: { $: 1 },
+    skole: { $: 1 },
+    society: { $: 1 },
+    sologne: { $: 1 },
+    soundandvision: { $: 1 },
+    southcarolina: { $: 1 },
+    southwest: { $: 1 },
+    space: { $: 1 },
+    spy: { $: 1 },
+    square: { $: 1 },
+    stadt: { $: 1 },
+    stalbans: { $: 1 },
+    starnberg: { $: 1 },
+    state: { $: 1 },
+    stateofdelaware: { $: 1 },
+    station: { $: 1 },
+    steam: { $: 1 },
+    steiermark: { $: 1 },
+    stjohn: { $: 1 },
+    stockholm: { $: 1 },
+    stpetersburg: { $: 1 },
+    stuttgart: { $: 1 },
+    suisse: { $: 1 },
+    surgeonshall: { $: 1 },
+    surrey: { $: 1 },
+    svizzera: { $: 1 },
+    sweden: { $: 1 },
+    sydney: { $: 1 },
+    tank: { $: 1 },
+    tcm: { $: 1 },
+    technology: { $: 1 },
+    telekommunikation: { $: 1 },
+    television: { $: 1 },
+    texas: { $: 1 },
+    textile: { $: 1 },
+    theater: { $: 1 },
+    time: { $: 1 },
+    timekeeping: { $: 1 },
+    topology: { $: 1 },
+    torino: { $: 1 },
+    touch: { $: 1 },
+    town: { $: 1 },
+    transport: { $: 1 },
+    tree: { $: 1 },
+    trolley: { $: 1 },
+    trust: { $: 1 },
+    trustee: { $: 1 },
+    uhren: { $: 1 },
+    ulm: { $: 1 },
+    undersea: { $: 1 },
+    university: { $: 1 },
+    usa: { $: 1 },
+    usantiques: { $: 1 },
+    usarts: { $: 1 },
+    uscountryestate: { $: 1 },
+    usculture: { $: 1 },
+    usdecorativearts: { $: 1 },
+    usgarden: { $: 1 },
+    ushistory: { $: 1 },
+    ushuaia: { $: 1 },
+    uslivinghistory: { $: 1 },
+    utah: { $: 1 },
+    uvic: { $: 1 },
+    valley: { $: 1 },
+    vantaa: { $: 1 },
+    versailles: { $: 1 },
+    viking: { $: 1 },
+    village: { $: 1 },
+    virginia: { $: 1 },
+    virtual: { $: 1 },
+    virtuel: { $: 1 },
+    vlaanderen: { $: 1 },
+    volkenkunde: { $: 1 },
+    wales: { $: 1 },
+    wallonie: { $: 1 },
+    war: { $: 1 },
+    washingtondc: { $: 1 },
+    watchandclock: { $: 1 },
+    'watch-and-clock': { $: 1 },
+    western: { $: 1 },
+    westfalen: { $: 1 },
+    whaling: { $: 1 },
+    wildlife: { $: 1 },
+    williamsburg: { $: 1 },
+    windmill: { $: 1 },
+    workshop: { $: 1 },
+    york: { $: 1 },
+    yorkshire: { $: 1 },
+    yosemite: { $: 1 },
+    youth: { $: 1 },
+    zoological: { $: 1 },
+    zoology: { $: 1 },
+    'xn--9dbhblg6di': { $: 1 },
+    'xn--h1aegh': { $: 1 },
+  },
+  mv: {
+    $: 1,
+    aero: { $: 1 },
+    biz: { $: 1 },
+    com: { $: 1 },
+    coop: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    info: { $: 1 },
+    int: { $: 1 },
+    mil: { $: 1 },
+    museum: { $: 1 },
+    name: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    pro: { $: 1 },
+  },
+  mw: {
+    $: 1,
+    ac: { $: 1 },
+    biz: { $: 1 },
+    co: { $: 1 },
+    com: { $: 1 },
+    coop: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    int: { $: 1 },
+    museum: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+  },
+  mx: {
+    $: 1,
+    com: { $: 1 },
+    org: { $: 1 },
+    gob: { $: 1 },
+    edu: { $: 1 },
+    net: { $: 1 },
+    blogspot: { $: 2 },
+    nym: { $: 2 },
+  },
+  my: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    gov: { $: 1 },
+    edu: { $: 1 },
+    mil: { $: 1 },
+    name: { $: 1 },
+    blogspot: { $: 2 },
+  },
+  mz: {
+    $: 1,
+    ac: { $: 1 },
+    adv: { $: 1 },
+    co: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    mil: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+  },
+  na: {
+    $: 1,
+    info: { $: 1 },
+    pro: { $: 1 },
+    name: { $: 1 },
+    school: { $: 1 },
+    or: { $: 1 },
+    dr: { $: 1 },
+    us: { $: 1 },
+    mx: { $: 1 },
+    ca: { $: 1 },
+    in: { $: 1 },
+    cc: { $: 1 },
+    tv: { $: 1 },
+    ws: { $: 1 },
+    mobi: { $: 1 },
+    co: { $: 1 },
+    com: { $: 1 },
+    org: { $: 1 },
+  },
+  name: { $: 1, her: { forgot: { $: 2 } }, his: { forgot: { $: 2 } } },
+  nc: { $: 1, asso: { $: 1 }, nom: { $: 1 } },
+  ne: { $: 1 },
+  net: {
+    $: 1,
+    alwaysdata: { $: 2 },
+    cloudfront: { $: 2 },
+    t3l3p0rt: { $: 2 },
+    myfritz: { $: 2 },
+    blackbaudcdn: { $: 2 },
+    boomla: { $: 2 },
+    bplaced: { $: 2 },
+    square7: { $: 2 },
+    gb: { $: 2 },
+    hu: { $: 2 },
+    jp: { $: 2 },
+    se: { $: 2 },
+    uk: { $: 2 },
+    in: { $: 2 },
+    cloudaccess: { $: 2 },
+    'cdn77-ssl': { $: 2 },
+    cdn77: { r: { $: 2 } },
+    cloudeity: { $: 2 },
+    'feste-ip': { $: 2 },
+    'knx-server': { $: 2 },
+    'static-access': { $: 2 },
+    cryptonomic: { '*': { $: 2 } },
+    dattolocal: { $: 2 },
+    mydatto: { $: 2 },
+    debian: { $: 2 },
+    'at-band-camp': { $: 2 },
+    blogdns: { $: 2 },
+    'broke-it': { $: 2 },
+    buyshouses: { $: 2 },
+    dnsalias: { $: 2 },
+    dnsdojo: { $: 2 },
+    'does-it': { $: 2 },
+    dontexist: { $: 2 },
+    dynalias: { $: 2 },
+    dynathome: { $: 2 },
+    endofinternet: { $: 2 },
+    'from-az': { $: 2 },
+    'from-co': { $: 2 },
+    'from-la': { $: 2 },
+    'from-ny': { $: 2 },
+    'gets-it': { $: 2 },
+    'ham-radio-op': { $: 2 },
+    homeftp: { $: 2 },
+    homeip: { $: 2 },
+    homelinux: { $: 2 },
+    homeunix: { $: 2 },
+    'in-the-band': { $: 2 },
+    'is-a-chef': { $: 2 },
+    'is-a-geek': { $: 2 },
+    'isa-geek': { $: 2 },
+    'kicks-ass': { $: 2 },
+    'office-on-the': { $: 2 },
+    podzone: { $: 2 },
+    'scrapper-site': { $: 2 },
+    selfip: { $: 2 },
+    'sells-it': { $: 2 },
+    servebbs: { $: 2 },
+    serveftp: { $: 2 },
+    thruhere: { $: 2 },
+    webhop: { $: 2 },
+    definima: { $: 2 },
+    casacam: { $: 2 },
+    dynu: { $: 2 },
+    dynv6: { $: 2 },
+    twmail: { $: 2 },
+    ru: { $: 2 },
+    channelsdvr: { $: 2 },
+    fastlylb: { $: 2, map: { $: 2 } },
+    fastly: {
+      freetls: { $: 2 },
+      map: { $: 2 },
+      prod: { a: { $: 2 }, global: { $: 2 } },
+      ssl: { a: { $: 2 }, b: { $: 2 }, global: { $: 2 } },
+    },
+    flynnhosting: { $: 2 },
+    cloudfunctions: { $: 2 },
+    moonscale: { $: 2 },
+    ipifony: { $: 2 },
+    barsy: { $: 2 },
+    memset: { $: 2 },
+    azurewebsites: { $: 2 },
+    'azure-mobile': { $: 2 },
+    cloudapp: { $: 2 },
+    dnsup: { $: 2 },
+    hicam: { $: 2 },
+    'now-dns': { $: 2 },
+    ownip: { $: 2 },
+    vpndns: { $: 2 },
+    'eating-organic': { $: 2 },
+    mydissent: { $: 2 },
+    myeffect: { $: 2 },
+    mymediapc: { $: 2 },
+    mypsx: { $: 2 },
+    mysecuritycamera: { $: 2 },
+    nhlfan: { $: 2 },
+    'no-ip': { $: 2 },
+    pgafan: { $: 2 },
+    privatizehealthinsurance: { $: 2 },
+    bounceme: { $: 2 },
+    ddns: { $: 2 },
+    redirectme: { $: 2 },
+    serveblog: { $: 2 },
+    serveminecraft: { $: 2 },
+    sytes: { $: 2 },
+    cloudycluster: { $: 2 },
+    rackmaze: { $: 2 },
+    schokokeks: { $: 2 },
+    'firewall-gateway': { $: 2 },
+    siteleaf: { $: 2 },
+    dsmynas: { $: 2 },
+    familyds: { $: 2 },
+    za: { $: 2 },
+  },
+  nf: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    per: { $: 1 },
+    rec: { $: 1 },
+    web: { $: 1 },
+    arts: { $: 1 },
+    firm: { $: 1 },
+    info: { $: 1 },
+    other: { $: 1 },
+    store: { $: 1 },
+  },
+  ng: {
+    $: 1,
+    com: { $: 1, blogspot: { $: 2 } },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    i: { $: 1 },
+    mil: { $: 1 },
+    mobi: { $: 1 },
+    name: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    sch: { $: 1 },
+  },
+  ni: {
+    $: 1,
+    ac: { $: 1 },
+    biz: { $: 1 },
+    co: { $: 1 },
+    com: { $: 1 },
+    edu: { $: 1 },
+    gob: { $: 1 },
+    in: { $: 1 },
+    info: { $: 1 },
+    int: { $: 1 },
+    mil: { $: 1 },
+    net: { $: 1 },
+    nom: { $: 1 },
+    org: { $: 1 },
+    web: { $: 1 },
+  },
+  nl: {
+    $: 1,
+    bv: { $: 1 },
+    virtueeldomein: { $: 2 },
+    co: { $: 2 },
+    'hosting-cluster': { $: 2 },
+    blogspot: { $: 2 },
+    transurl: { '*': { $: 2 } },
+    cistron: { $: 2 },
+    demon: { $: 2 },
+  },
+  no: {
+    $: 1,
+    fhs: { $: 1 },
+    vgs: { $: 1 },
+    fylkesbibl: { $: 1 },
+    folkebibl: { $: 1 },
+    museum: { $: 1 },
+    idrett: { $: 1 },
+    priv: { $: 1 },
+    mil: { $: 1 },
+    stat: { $: 1 },
+    dep: { $: 1 },
+    kommune: { $: 1 },
+    herad: { $: 1 },
+    aa: { $: 1, gs: { $: 1 } },
+    ah: { $: 1, gs: { $: 1 } },
+    bu: { $: 1, gs: { $: 1 } },
+    fm: { $: 1, gs: { $: 1 } },
+    hl: { $: 1, gs: { $: 1 } },
+    hm: { $: 1, gs: { $: 1 } },
+    'jan-mayen': { $: 1, gs: { $: 1 } },
+    mr: { $: 1, gs: { $: 1 } },
+    nl: { $: 1, gs: { $: 1 } },
+    nt: { $: 1, gs: { $: 1 } },
+    of: { $: 1, gs: { $: 1 } },
+    ol: { $: 1, gs: { $: 1 } },
+    oslo: { $: 1, gs: { $: 1 } },
+    rl: { $: 1, gs: { $: 1 } },
+    sf: { $: 1, gs: { $: 1 } },
+    st: { $: 1, gs: { $: 1 } },
+    svalbard: { $: 1, gs: { $: 1 } },
+    tm: { $: 1, gs: { $: 1 } },
+    tr: { $: 1, gs: { $: 1 } },
+    va: { $: 1, gs: { $: 1 } },
+    vf: { $: 1, gs: { $: 1 } },
+    akrehamn: { $: 1 },
+    'xn--krehamn-dxa': { $: 1 },
+    algard: { $: 1 },
+    'xn--lgrd-poac': { $: 1 },
+    arna: { $: 1 },
+    brumunddal: { $: 1 },
+    bryne: { $: 1 },
+    bronnoysund: { $: 1 },
+    'xn--brnnysund-m8ac': { $: 1 },
+    drobak: { $: 1 },
+    'xn--drbak-wua': { $: 1 },
+    egersund: { $: 1 },
+    fetsund: { $: 1 },
+    floro: { $: 1 },
+    'xn--flor-jra': { $: 1 },
+    fredrikstad: { $: 1 },
+    hokksund: { $: 1 },
+    honefoss: { $: 1 },
+    'xn--hnefoss-q1a': { $: 1 },
+    jessheim: { $: 1 },
+    jorpeland: { $: 1 },
+    'xn--jrpeland-54a': { $: 1 },
+    kirkenes: { $: 1 },
+    kopervik: { $: 1 },
+    krokstadelva: { $: 1 },
+    langevag: { $: 1 },
+    'xn--langevg-jxa': { $: 1 },
+    leirvik: { $: 1 },
+    mjondalen: { $: 1 },
+    'xn--mjndalen-64a': { $: 1 },
+    'mo-i-rana': { $: 1 },
+    mosjoen: { $: 1 },
+    'xn--mosjen-eya': { $: 1 },
+    nesoddtangen: { $: 1 },
+    orkanger: { $: 1 },
+    osoyro: { $: 1 },
+    'xn--osyro-wua': { $: 1 },
+    raholt: { $: 1 },
+    'xn--rholt-mra': { $: 1 },
+    sandnessjoen: { $: 1 },
+    'xn--sandnessjen-ogb': { $: 1 },
+    skedsmokorset: { $: 1 },
+    slattum: { $: 1 },
+    spjelkavik: { $: 1 },
+    stathelle: { $: 1 },
+    stavern: { $: 1 },
+    stjordalshalsen: { $: 1 },
+    'xn--stjrdalshalsen-sqb': { $: 1 },
+    tananger: { $: 1 },
+    tranby: { $: 1 },
+    vossevangen: { $: 1 },
+    afjord: { $: 1 },
+    'xn--fjord-lra': { $: 1 },
+    agdenes: { $: 1 },
+    al: { $: 1 },
+    'xn--l-1fa': { $: 1 },
+    alesund: { $: 1 },
+    'xn--lesund-hua': { $: 1 },
+    alstahaug: { $: 1 },
+    alta: { $: 1 },
+    'xn--lt-liac': { $: 1 },
+    alaheadju: { $: 1 },
+    'xn--laheadju-7ya': { $: 1 },
+    alvdal: { $: 1 },
+    amli: { $: 1 },
+    'xn--mli-tla': { $: 1 },
+    amot: { $: 1 },
+    'xn--mot-tla': { $: 1 },
+    andebu: { $: 1 },
+    andoy: { $: 1 },
+    'xn--andy-ira': { $: 1 },
+    andasuolo: { $: 1 },
+    ardal: { $: 1 },
+    'xn--rdal-poa': { $: 1 },
+    aremark: { $: 1 },
+    arendal: { $: 1 },
+    'xn--s-1fa': { $: 1 },
+    aseral: { $: 1 },
+    'xn--seral-lra': { $: 1 },
+    asker: { $: 1 },
+    askim: { $: 1 },
+    askvoll: { $: 1 },
+    askoy: { $: 1 },
+    'xn--asky-ira': { $: 1 },
+    asnes: { $: 1 },
+    'xn--snes-poa': { $: 1 },
+    audnedaln: { $: 1 },
+    aukra: { $: 1 },
+    aure: { $: 1 },
+    aurland: { $: 1 },
+    'aurskog-holand': { $: 1 },
+    'xn--aurskog-hland-jnb': { $: 1 },
+    austevoll: { $: 1 },
+    austrheim: { $: 1 },
+    averoy: { $: 1 },
+    'xn--avery-yua': { $: 1 },
+    balestrand: { $: 1 },
+    ballangen: { $: 1 },
+    balat: { $: 1 },
+    'xn--blt-elab': { $: 1 },
+    balsfjord: { $: 1 },
+    bahccavuotna: { $: 1 },
+    'xn--bhccavuotna-k7a': { $: 1 },
+    bamble: { $: 1 },
+    bardu: { $: 1 },
+    beardu: { $: 1 },
+    beiarn: { $: 1 },
+    bajddar: { $: 1 },
+    'xn--bjddar-pta': { $: 1 },
+    baidar: { $: 1 },
+    'xn--bidr-5nac': { $: 1 },
+    berg: { $: 1 },
+    bergen: { $: 1 },
+    berlevag: { $: 1 },
+    'xn--berlevg-jxa': { $: 1 },
+    bearalvahki: { $: 1 },
+    'xn--bearalvhki-y4a': { $: 1 },
+    bindal: { $: 1 },
+    birkenes: { $: 1 },
+    bjarkoy: { $: 1 },
+    'xn--bjarky-fya': { $: 1 },
+    bjerkreim: { $: 1 },
+    bjugn: { $: 1 },
+    bodo: { $: 1 },
+    'xn--bod-2na': { $: 1 },
+    badaddja: { $: 1 },
+    'xn--bdddj-mrabd': { $: 1 },
+    budejju: { $: 1 },
+    bokn: { $: 1 },
+    bremanger: { $: 1 },
+    bronnoy: { $: 1 },
+    'xn--brnny-wuac': { $: 1 },
+    bygland: { $: 1 },
+    bykle: { $: 1 },
+    barum: { $: 1 },
+    'xn--brum-voa': { $: 1 },
+    telemark: { bo: { $: 1 }, 'xn--b-5ga': { $: 1 } },
+    nordland: {
+      bo: { $: 1 },
+      'xn--b-5ga': { $: 1 },
+      heroy: { $: 1 },
+      'xn--hery-ira': { $: 1 },
+    },
+    bievat: { $: 1 },
+    'xn--bievt-0qa': { $: 1 },
+    bomlo: { $: 1 },
+    'xn--bmlo-gra': { $: 1 },
+    batsfjord: { $: 1 },
+    'xn--btsfjord-9za': { $: 1 },
+    bahcavuotna: { $: 1 },
+    'xn--bhcavuotna-s4a': { $: 1 },
+    dovre: { $: 1 },
+    drammen: { $: 1 },
+    drangedal: { $: 1 },
+    dyroy: { $: 1 },
+    'xn--dyry-ira': { $: 1 },
+    donna: { $: 1 },
+    'xn--dnna-gra': { $: 1 },
+    eid: { $: 1 },
+    eidfjord: { $: 1 },
+    eidsberg: { $: 1 },
+    eidskog: { $: 1 },
+    eidsvoll: { $: 1 },
+    eigersund: { $: 1 },
+    elverum: { $: 1 },
+    enebakk: { $: 1 },
+    engerdal: { $: 1 },
+    etne: { $: 1 },
+    etnedal: { $: 1 },
+    evenes: { $: 1 },
+    evenassi: { $: 1 },
+    'xn--eveni-0qa01ga': { $: 1 },
+    'evje-og-hornnes': { $: 1 },
+    farsund: { $: 1 },
+    fauske: { $: 1 },
+    fuossko: { $: 1 },
+    fuoisku: { $: 1 },
+    fedje: { $: 1 },
+    fet: { $: 1 },
+    finnoy: { $: 1 },
+    'xn--finny-yua': { $: 1 },
+    fitjar: { $: 1 },
+    fjaler: { $: 1 },
+    fjell: { $: 1 },
+    flakstad: { $: 1 },
+    flatanger: { $: 1 },
+    flekkefjord: { $: 1 },
+    flesberg: { $: 1 },
+    flora: { $: 1 },
+    fla: { $: 1 },
+    'xn--fl-zia': { $: 1 },
+    folldal: { $: 1 },
+    forsand: { $: 1 },
+    fosnes: { $: 1 },
+    frei: { $: 1 },
+    frogn: { $: 1 },
+    froland: { $: 1 },
+    frosta: { $: 1 },
+    frana: { $: 1 },
+    'xn--frna-woa': { $: 1 },
+    froya: { $: 1 },
+    'xn--frya-hra': { $: 1 },
+    fusa: { $: 1 },
+    fyresdal: { $: 1 },
+    forde: { $: 1 },
+    'xn--frde-gra': { $: 1 },
+    gamvik: { $: 1 },
+    gangaviika: { $: 1 },
+    'xn--ggaviika-8ya47h': { $: 1 },
+    gaular: { $: 1 },
+    gausdal: { $: 1 },
+    gildeskal: { $: 1 },
+    'xn--gildeskl-g0a': { $: 1 },
+    giske: { $: 1 },
+    gjemnes: { $: 1 },
+    gjerdrum: { $: 1 },
+    gjerstad: { $: 1 },
+    gjesdal: { $: 1 },
+    gjovik: { $: 1 },
+    'xn--gjvik-wua': { $: 1 },
+    gloppen: { $: 1 },
+    gol: { $: 1 },
+    gran: { $: 1 },
+    grane: { $: 1 },
+    granvin: { $: 1 },
+    gratangen: { $: 1 },
+    grimstad: { $: 1 },
+    grong: { $: 1 },
+    kraanghke: { $: 1 },
+    'xn--kranghke-b0a': { $: 1 },
+    grue: { $: 1 },
+    gulen: { $: 1 },
+    hadsel: { $: 1 },
+    halden: { $: 1 },
+    halsa: { $: 1 },
+    hamar: { $: 1 },
+    hamaroy: { $: 1 },
+    habmer: { $: 1 },
+    'xn--hbmer-xqa': { $: 1 },
+    hapmir: { $: 1 },
+    'xn--hpmir-xqa': { $: 1 },
+    hammerfest: { $: 1 },
+    hammarfeasta: { $: 1 },
+    'xn--hmmrfeasta-s4ac': { $: 1 },
+    haram: { $: 1 },
+    hareid: { $: 1 },
+    harstad: { $: 1 },
+    hasvik: { $: 1 },
+    aknoluokta: { $: 1 },
+    'xn--koluokta-7ya57h': { $: 1 },
+    hattfjelldal: { $: 1 },
+    aarborte: { $: 1 },
+    haugesund: { $: 1 },
+    hemne: { $: 1 },
+    hemnes: { $: 1 },
+    hemsedal: { $: 1 },
+    'more-og-romsdal': { heroy: { $: 1 }, sande: { $: 1 } },
+    'xn--mre-og-romsdal-qqb': { 'xn--hery-ira': { $: 1 }, sande: { $: 1 } },
+    hitra: { $: 1 },
+    hjartdal: { $: 1 },
+    hjelmeland: { $: 1 },
+    hobol: { $: 1 },
+    'xn--hobl-ira': { $: 1 },
+    hof: { $: 1 },
+    hol: { $: 1 },
+    hole: { $: 1 },
+    holmestrand: { $: 1 },
+    holtalen: { $: 1 },
+    'xn--holtlen-hxa': { $: 1 },
+    hornindal: { $: 1 },
+    horten: { $: 1 },
+    hurdal: { $: 1 },
+    hurum: { $: 1 },
+    hvaler: { $: 1 },
+    hyllestad: { $: 1 },
+    hagebostad: { $: 1 },
+    'xn--hgebostad-g3a': { $: 1 },
+    hoyanger: { $: 1 },
+    'xn--hyanger-q1a': { $: 1 },
+    hoylandet: { $: 1 },
+    'xn--hylandet-54a': { $: 1 },
+    ha: { $: 1 },
+    'xn--h-2fa': { $: 1 },
+    ibestad: { $: 1 },
+    inderoy: { $: 1 },
+    'xn--indery-fya': { $: 1 },
+    iveland: { $: 1 },
+    jevnaker: { $: 1 },
+    jondal: { $: 1 },
+    jolster: { $: 1 },
+    'xn--jlster-bya': { $: 1 },
+    karasjok: { $: 1 },
+    karasjohka: { $: 1 },
+    'xn--krjohka-hwab49j': { $: 1 },
+    karlsoy: { $: 1 },
+    galsa: { $: 1 },
+    'xn--gls-elac': { $: 1 },
+    karmoy: { $: 1 },
+    'xn--karmy-yua': { $: 1 },
+    kautokeino: { $: 1 },
+    guovdageaidnu: { $: 1 },
+    klepp: { $: 1 },
+    klabu: { $: 1 },
+    'xn--klbu-woa': { $: 1 },
+    kongsberg: { $: 1 },
+    kongsvinger: { $: 1 },
+    kragero: { $: 1 },
+    'xn--krager-gya': { $: 1 },
+    kristiansand: { $: 1 },
+    kristiansund: { $: 1 },
+    krodsherad: { $: 1 },
+    'xn--krdsherad-m8a': { $: 1 },
+    kvalsund: { $: 1 },
+    rahkkeravju: { $: 1 },
+    'xn--rhkkervju-01af': { $: 1 },
+    kvam: { $: 1 },
+    kvinesdal: { $: 1 },
+    kvinnherad: { $: 1 },
+    kviteseid: { $: 1 },
+    kvitsoy: { $: 1 },
+    'xn--kvitsy-fya': { $: 1 },
+    kvafjord: { $: 1 },
+    'xn--kvfjord-nxa': { $: 1 },
+    giehtavuoatna: { $: 1 },
+    kvanangen: { $: 1 },
+    'xn--kvnangen-k0a': { $: 1 },
+    navuotna: { $: 1 },
+    'xn--nvuotna-hwa': { $: 1 },
+    kafjord: { $: 1 },
+    'xn--kfjord-iua': { $: 1 },
+    gaivuotna: { $: 1 },
+    'xn--givuotna-8ya': { $: 1 },
+    larvik: { $: 1 },
+    lavangen: { $: 1 },
+    lavagis: { $: 1 },
+    loabat: { $: 1 },
+    'xn--loabt-0qa': { $: 1 },
+    lebesby: { $: 1 },
+    davvesiida: { $: 1 },
+    leikanger: { $: 1 },
+    leirfjord: { $: 1 },
+    leka: { $: 1 },
+    leksvik: { $: 1 },
+    lenvik: { $: 1 },
+    leangaviika: { $: 1 },
+    'xn--leagaviika-52b': { $: 1 },
+    lesja: { $: 1 },
+    levanger: { $: 1 },
+    lier: { $: 1 },
+    lierne: { $: 1 },
+    lillehammer: { $: 1 },
+    lillesand: { $: 1 },
+    lindesnes: { $: 1 },
+    lindas: { $: 1 },
+    'xn--linds-pra': { $: 1 },
+    lom: { $: 1 },
+    loppa: { $: 1 },
+    lahppi: { $: 1 },
+    'xn--lhppi-xqa': { $: 1 },
+    lund: { $: 1 },
+    lunner: { $: 1 },
+    luroy: { $: 1 },
+    'xn--lury-ira': { $: 1 },
+    luster: { $: 1 },
+    lyngdal: { $: 1 },
+    lyngen: { $: 1 },
+    ivgu: { $: 1 },
+    lardal: { $: 1 },
+    lerdal: { $: 1 },
+    'xn--lrdal-sra': { $: 1 },
+    lodingen: { $: 1 },
+    'xn--ldingen-q1a': { $: 1 },
+    lorenskog: { $: 1 },
+    'xn--lrenskog-54a': { $: 1 },
+    loten: { $: 1 },
+    'xn--lten-gra': { $: 1 },
+    malvik: { $: 1 },
+    masoy: { $: 1 },
+    'xn--msy-ula0h': { $: 1 },
+    muosat: { $: 1 },
+    'xn--muost-0qa': { $: 1 },
+    mandal: { $: 1 },
+    marker: { $: 1 },
+    marnardal: { $: 1 },
+    masfjorden: { $: 1 },
+    meland: { $: 1 },
+    meldal: { $: 1 },
+    melhus: { $: 1 },
+    meloy: { $: 1 },
+    'xn--mely-ira': { $: 1 },
+    meraker: { $: 1 },
+    'xn--merker-kua': { $: 1 },
+    moareke: { $: 1 },
+    'xn--moreke-jua': { $: 1 },
+    midsund: { $: 1 },
+    'midtre-gauldal': { $: 1 },
+    modalen: { $: 1 },
+    modum: { $: 1 },
+    molde: { $: 1 },
+    moskenes: { $: 1 },
+    moss: { $: 1 },
+    mosvik: { $: 1 },
+    malselv: { $: 1 },
+    'xn--mlselv-iua': { $: 1 },
+    malatvuopmi: { $: 1 },
+    'xn--mlatvuopmi-s4a': { $: 1 },
+    namdalseid: { $: 1 },
+    aejrie: { $: 1 },
+    namsos: { $: 1 },
+    namsskogan: { $: 1 },
+    naamesjevuemie: { $: 1 },
+    'xn--nmesjevuemie-tcba': { $: 1 },
+    laakesvuemie: { $: 1 },
+    nannestad: { $: 1 },
+    narvik: { $: 1 },
+    narviika: { $: 1 },
+    naustdal: { $: 1 },
+    'nedre-eiker': { $: 1 },
+    akershus: { nes: { $: 1 } },
+    buskerud: { nes: { $: 1 } },
+    nesna: { $: 1 },
+    nesodden: { $: 1 },
+    nesseby: { $: 1 },
+    unjarga: { $: 1 },
+    'xn--unjrga-rta': { $: 1 },
+    nesset: { $: 1 },
+    nissedal: { $: 1 },
+    nittedal: { $: 1 },
+    'nord-aurdal': { $: 1 },
+    'nord-fron': { $: 1 },
+    'nord-odal': { $: 1 },
+    norddal: { $: 1 },
+    nordkapp: { $: 1 },
+    davvenjarga: { $: 1 },
+    'xn--davvenjrga-y4a': { $: 1 },
+    'nordre-land': { $: 1 },
+    nordreisa: { $: 1 },
+    raisa: { $: 1 },
+    'xn--risa-5na': { $: 1 },
+    'nore-og-uvdal': { $: 1 },
+    notodden: { $: 1 },
+    naroy: { $: 1 },
+    'xn--nry-yla5g': { $: 1 },
+    notteroy: { $: 1 },
+    'xn--nttery-byae': { $: 1 },
+    odda: { $: 1 },
+    oksnes: { $: 1 },
+    'xn--ksnes-uua': { $: 1 },
+    oppdal: { $: 1 },
+    oppegard: { $: 1 },
+    'xn--oppegrd-ixa': { $: 1 },
+    orkdal: { $: 1 },
+    orland: { $: 1 },
+    'xn--rland-uua': { $: 1 },
+    orskog: { $: 1 },
+    'xn--rskog-uua': { $: 1 },
+    orsta: { $: 1 },
+    'xn--rsta-fra': { $: 1 },
+    hedmark: { os: { $: 1 }, valer: { $: 1 }, 'xn--vler-qoa': { $: 1 } },
+    hordaland: { os: { $: 1 } },
+    osen: { $: 1 },
+    osteroy: { $: 1 },
+    'xn--ostery-fya': { $: 1 },
+    'ostre-toten': { $: 1 },
+    'xn--stre-toten-zcb': { $: 1 },
+    overhalla: { $: 1 },
+    'ovre-eiker': { $: 1 },
+    'xn--vre-eiker-k8a': { $: 1 },
+    oyer: { $: 1 },
+    'xn--yer-zna': { $: 1 },
+    oygarden: { $: 1 },
+    'xn--ygarden-p1a': { $: 1 },
+    'oystre-slidre': { $: 1 },
+    'xn--ystre-slidre-ujb': { $: 1 },
+    porsanger: { $: 1 },
+    porsangu: { $: 1 },
+    'xn--porsgu-sta26f': { $: 1 },
+    porsgrunn: { $: 1 },
+    radoy: { $: 1 },
+    'xn--rady-ira': { $: 1 },
+    rakkestad: { $: 1 },
+    rana: { $: 1 },
+    ruovat: { $: 1 },
+    randaberg: { $: 1 },
+    rauma: { $: 1 },
+    rendalen: { $: 1 },
+    rennebu: { $: 1 },
+    rennesoy: { $: 1 },
+    'xn--rennesy-v1a': { $: 1 },
+    rindal: { $: 1 },
+    ringebu: { $: 1 },
+    ringerike: { $: 1 },
+    ringsaker: { $: 1 },
+    rissa: { $: 1 },
+    risor: { $: 1 },
+    'xn--risr-ira': { $: 1 },
+    roan: { $: 1 },
+    rollag: { $: 1 },
+    rygge: { $: 1 },
+    ralingen: { $: 1 },
+    'xn--rlingen-mxa': { $: 1 },
+    rodoy: { $: 1 },
+    'xn--rdy-0nab': { $: 1 },
+    romskog: { $: 1 },
+    'xn--rmskog-bya': { $: 1 },
+    roros: { $: 1 },
+    'xn--rros-gra': { $: 1 },
+    rost: { $: 1 },
+    'xn--rst-0na': { $: 1 },
+    royken: { $: 1 },
+    'xn--ryken-vua': { $: 1 },
+    royrvik: { $: 1 },
+    'xn--ryrvik-bya': { $: 1 },
+    rade: { $: 1 },
+    'xn--rde-ula': { $: 1 },
+    salangen: { $: 1 },
+    siellak: { $: 1 },
+    saltdal: { $: 1 },
+    salat: { $: 1 },
+    'xn--slt-elab': { $: 1 },
+    'xn--slat-5na': { $: 1 },
+    samnanger: { $: 1 },
+    vestfold: { sande: { $: 1 } },
+    sandefjord: { $: 1 },
+    sandnes: { $: 1 },
+    sandoy: { $: 1 },
+    'xn--sandy-yua': { $: 1 },
+    sarpsborg: { $: 1 },
+    sauda: { $: 1 },
+    sauherad: { $: 1 },
+    sel: { $: 1 },
+    selbu: { $: 1 },
+    selje: { $: 1 },
+    seljord: { $: 1 },
+    sigdal: { $: 1 },
+    siljan: { $: 1 },
+    sirdal: { $: 1 },
+    skaun: { $: 1 },
+    skedsmo: { $: 1 },
+    ski: { $: 1 },
+    skien: { $: 1 },
+    skiptvet: { $: 1 },
+    skjervoy: { $: 1 },
+    'xn--skjervy-v1a': { $: 1 },
+    skierva: { $: 1 },
+    'xn--skierv-uta': { $: 1 },
+    skjak: { $: 1 },
+    'xn--skjk-soa': { $: 1 },
+    skodje: { $: 1 },
+    skanland: { $: 1 },
+    'xn--sknland-fxa': { $: 1 },
+    skanit: { $: 1 },
+    'xn--sknit-yqa': { $: 1 },
+    smola: { $: 1 },
+    'xn--smla-hra': { $: 1 },
+    snillfjord: { $: 1 },
+    snasa: { $: 1 },
+    'xn--snsa-roa': { $: 1 },
+    snoasa: { $: 1 },
+    snaase: { $: 1 },
+    'xn--snase-nra': { $: 1 },
+    sogndal: { $: 1 },
+    sokndal: { $: 1 },
+    sola: { $: 1 },
+    solund: { $: 1 },
+    songdalen: { $: 1 },
+    sortland: { $: 1 },
+    spydeberg: { $: 1 },
+    stange: { $: 1 },
+    stavanger: { $: 1 },
+    steigen: { $: 1 },
+    steinkjer: { $: 1 },
+    stjordal: { $: 1 },
+    'xn--stjrdal-s1a': { $: 1 },
+    stokke: { $: 1 },
+    'stor-elvdal': { $: 1 },
+    stord: { $: 1 },
+    stordal: { $: 1 },
+    storfjord: { $: 1 },
+    omasvuotna: { $: 1 },
+    strand: { $: 1 },
+    stranda: { $: 1 },
+    stryn: { $: 1 },
+    sula: { $: 1 },
+    suldal: { $: 1 },
+    sund: { $: 1 },
+    sunndal: { $: 1 },
+    surnadal: { $: 1 },
+    sveio: { $: 1 },
+    svelvik: { $: 1 },
+    sykkylven: { $: 1 },
+    sogne: { $: 1 },
+    'xn--sgne-gra': { $: 1 },
+    somna: { $: 1 },
+    'xn--smna-gra': { $: 1 },
+    'sondre-land': { $: 1 },
+    'xn--sndre-land-0cb': { $: 1 },
+    'sor-aurdal': { $: 1 },
+    'xn--sr-aurdal-l8a': { $: 1 },
+    'sor-fron': { $: 1 },
+    'xn--sr-fron-q1a': { $: 1 },
+    'sor-odal': { $: 1 },
+    'xn--sr-odal-q1a': { $: 1 },
+    'sor-varanger': { $: 1 },
+    'xn--sr-varanger-ggb': { $: 1 },
+    'matta-varjjat': { $: 1 },
+    'xn--mtta-vrjjat-k7af': { $: 1 },
+    sorfold: { $: 1 },
+    'xn--srfold-bya': { $: 1 },
+    sorreisa: { $: 1 },
+    'xn--srreisa-q1a': { $: 1 },
+    sorum: { $: 1 },
+    'xn--srum-gra': { $: 1 },
+    tana: { $: 1 },
+    deatnu: { $: 1 },
+    time: { $: 1 },
+    tingvoll: { $: 1 },
+    tinn: { $: 1 },
+    tjeldsund: { $: 1 },
+    dielddanuorri: { $: 1 },
+    tjome: { $: 1 },
+    'xn--tjme-hra': { $: 1 },
+    tokke: { $: 1 },
+    tolga: { $: 1 },
+    torsken: { $: 1 },
+    tranoy: { $: 1 },
+    'xn--trany-yua': { $: 1 },
+    tromso: { $: 1 },
+    'xn--troms-zua': { $: 1 },
+    tromsa: { $: 1 },
+    romsa: { $: 1 },
+    trondheim: { $: 1 },
+    troandin: { $: 1 },
+    trysil: { $: 1 },
+    trana: { $: 1 },
+    'xn--trna-woa': { $: 1 },
+    trogstad: { $: 1 },
+    'xn--trgstad-r1a': { $: 1 },
+    tvedestrand: { $: 1 },
+    tydal: { $: 1 },
+    tynset: { $: 1 },
+    tysfjord: { $: 1 },
+    divtasvuodna: { $: 1 },
+    divttasvuotna: { $: 1 },
+    tysnes: { $: 1 },
+    tysvar: { $: 1 },
+    'xn--tysvr-vra': { $: 1 },
+    tonsberg: { $: 1 },
+    'xn--tnsberg-q1a': { $: 1 },
+    ullensaker: { $: 1 },
+    ullensvang: { $: 1 },
+    ulvik: { $: 1 },
+    utsira: { $: 1 },
+    vadso: { $: 1 },
+    'xn--vads-jra': { $: 1 },
+    cahcesuolo: { $: 1 },
+    'xn--hcesuolo-7ya35b': { $: 1 },
+    vaksdal: { $: 1 },
+    valle: { $: 1 },
+    vang: { $: 1 },
+    vanylven: { $: 1 },
+    vardo: { $: 1 },
+    'xn--vard-jra': { $: 1 },
+    varggat: { $: 1 },
+    'xn--vrggt-xqad': { $: 1 },
+    vefsn: { $: 1 },
+    vaapste: { $: 1 },
+    vega: { $: 1 },
+    vegarshei: { $: 1 },
+    'xn--vegrshei-c0a': { $: 1 },
+    vennesla: { $: 1 },
+    verdal: { $: 1 },
+    verran: { $: 1 },
+    vestby: { $: 1 },
+    vestnes: { $: 1 },
+    'vestre-slidre': { $: 1 },
+    'vestre-toten': { $: 1 },
+    vestvagoy: { $: 1 },
+    'xn--vestvgy-ixa6o': { $: 1 },
+    vevelstad: { $: 1 },
+    vik: { $: 1 },
+    vikna: { $: 1 },
+    vindafjord: { $: 1 },
+    volda: { $: 1 },
+    voss: { $: 1 },
+    varoy: { $: 1 },
+    'xn--vry-yla5g': { $: 1 },
+    vagan: { $: 1 },
+    'xn--vgan-qoa': { $: 1 },
+    voagat: { $: 1 },
+    vagsoy: { $: 1 },
+    'xn--vgsy-qoa0j': { $: 1 },
+    vaga: { $: 1 },
+    'xn--vg-yiab': { $: 1 },
+    ostfold: { valer: { $: 1 } },
+    'xn--stfold-9xa': { 'xn--vler-qoa': { $: 1 } },
+    co: { $: 2 },
+    blogspot: { $: 2 },
+  },
+  np: { '*': { $: 1 } },
+  nr: {
+    $: 1,
+    biz: { $: 1 },
+    info: { $: 1 },
+    gov: { $: 1 },
+    edu: { $: 1 },
+    org: { $: 1 },
+    net: { $: 1 },
+    com: { $: 1 },
+  },
+  nu: {
+    $: 1,
+    merseine: { $: 2 },
+    mine: { $: 2 },
+    shacknet: { $: 2 },
+    nom: { $: 2 },
+  },
+  nz: {
+    $: 1,
+    ac: { $: 1 },
+    co: { $: 1, blogspot: { $: 2 } },
+    cri: { $: 1 },
+    geek: { $: 1 },
+    gen: { $: 1 },
+    govt: { $: 1 },
+    health: { $: 1 },
+    iwi: { $: 1 },
+    kiwi: { $: 1 },
+    maori: { $: 1 },
+    mil: { $: 1 },
+    'xn--mori-qsa': { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    parliament: { $: 1 },
+    school: { $: 1 },
+    nym: { $: 2 },
+  },
+  om: {
+    $: 1,
+    co: { $: 1 },
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    med: { $: 1 },
+    museum: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    pro: { $: 1 },
+  },
+  onion: { $: 1 },
+  org: {
+    $: 1,
+    amune: { tele: { $: 2 } },
+    pimienta: { $: 2 },
+    poivron: { $: 2 },
+    potager: { $: 2 },
+    sweetpepper: { $: 2 },
+    ae: { $: 2 },
+    us: { $: 2 },
+    certmgr: { $: 2 },
+    cdn77: { c: { $: 2 }, rsc: { $: 2 } },
+    'cdn77-secure': { origin: { ssl: { $: 2 } } },
+    cloudns: { $: 2 },
+    duckdns: { $: 2 },
+    tunk: { $: 2 },
+    dyndns: { $: 2, go: { $: 2 }, home: { $: 2 } },
+    blogdns: { $: 2 },
+    blogsite: { $: 2 },
+    boldlygoingnowhere: { $: 2 },
+    dnsalias: { $: 2 },
+    dnsdojo: { $: 2 },
+    doesntexist: { $: 2 },
+    dontexist: { $: 2 },
+    doomdns: { $: 2 },
+    dvrdns: { $: 2 },
+    dynalias: { $: 2 },
+    endofinternet: { $: 2 },
+    endoftheinternet: { $: 2 },
+    'from-me': { $: 2 },
+    'game-host': { $: 2 },
+    gotdns: { $: 2 },
+    'hobby-site': { $: 2 },
+    homedns: { $: 2 },
+    homeftp: { $: 2 },
+    homelinux: { $: 2 },
+    homeunix: { $: 2 },
+    'is-a-bruinsfan': { $: 2 },
+    'is-a-candidate': { $: 2 },
+    'is-a-celticsfan': { $: 2 },
+    'is-a-chef': { $: 2 },
+    'is-a-geek': { $: 2 },
+    'is-a-knight': { $: 2 },
+    'is-a-linux-user': { $: 2 },
+    'is-a-patsfan': { $: 2 },
+    'is-a-soxfan': { $: 2 },
+    'is-found': { $: 2 },
+    'is-lost': { $: 2 },
+    'is-saved': { $: 2 },
+    'is-very-bad': { $: 2 },
+    'is-very-evil': { $: 2 },
+    'is-very-good': { $: 2 },
+    'is-very-nice': { $: 2 },
+    'is-very-sweet': { $: 2 },
+    'isa-geek': { $: 2 },
+    'kicks-ass': { $: 2 },
+    misconfused: { $: 2 },
+    podzone: { $: 2 },
+    readmyblog: { $: 2 },
+    selfip: { $: 2 },
+    sellsyourhome: { $: 2 },
+    servebbs: { $: 2 },
+    serveftp: { $: 2 },
+    servegame: { $: 2 },
+    'stuff-4-sale': { $: 2 },
+    webhop: { $: 2 },
+    ddnss: { $: 2 },
+    accesscam: { $: 2 },
+    camdvr: { $: 2 },
+    freeddns: { $: 2 },
+    mywire: { $: 2 },
+    webredirect: { $: 2 },
+    eu: {
+      $: 2,
+      al: { $: 2 },
+      asso: { $: 2 },
+      at: { $: 2 },
+      au: { $: 2 },
+      be: { $: 2 },
+      bg: { $: 2 },
+      ca: { $: 2 },
+      cd: { $: 2 },
+      ch: { $: 2 },
+      cn: { $: 2 },
+      cy: { $: 2 },
+      cz: { $: 2 },
+      de: { $: 2 },
+      dk: { $: 2 },
+      edu: { $: 2 },
+      ee: { $: 2 },
+      es: { $: 2 },
+      fi: { $: 2 },
+      fr: { $: 2 },
+      gr: { $: 2 },
+      hr: { $: 2 },
+      hu: { $: 2 },
+      ie: { $: 2 },
+      il: { $: 2 },
+      in: { $: 2 },
+      int: { $: 2 },
+      is: { $: 2 },
+      it: { $: 2 },
+      jp: { $: 2 },
+      kr: { $: 2 },
+      lt: { $: 2 },
+      lu: { $: 2 },
+      lv: { $: 2 },
+      mc: { $: 2 },
+      me: { $: 2 },
+      mk: { $: 2 },
+      mt: { $: 2 },
+      my: { $: 2 },
+      net: { $: 2 },
+      ng: { $: 2 },
+      nl: { $: 2 },
+      no: { $: 2 },
+      nz: { $: 2 },
+      paris: { $: 2 },
+      pl: { $: 2 },
+      pt: { $: 2 },
+      'q-a': { $: 2 },
+      ro: { $: 2 },
+      ru: { $: 2 },
+      se: { $: 2 },
+      si: { $: 2 },
+      sk: { $: 2 },
+      tr: { $: 2 },
+      uk: { $: 2 },
+      us: { $: 2 },
+    },
+    twmail: { $: 2 },
+    fedorainfracloud: { $: 2 },
+    fedorapeople: { $: 2 },
+    fedoraproject: {
+      cloud: { $: 2 },
+      os: { app: { $: 2 } },
+      stg: { os: { app: { $: 2 } } },
+    },
+    freedesktop: { $: 2 },
+    hepforge: { $: 2 },
+    js: { $: 2 },
+    uklugs: { $: 2 },
+    barsy: { $: 2 },
+    mayfirst: { $: 2 },
+    'mozilla-iot': { $: 2 },
+    bmoattachments: { $: 2 },
+    dynserv: { $: 2 },
+    'now-dns': { $: 2 },
+    'cable-modem': { $: 2 },
+    collegefan: { $: 2 },
+    couchpotatofries: { $: 2 },
+    mlbfan: { $: 2 },
+    mysecuritycamera: { $: 2 },
+    nflfan: { $: 2 },
+    'read-books': { $: 2 },
+    ufcfan: { $: 2 },
+    hopto: { $: 2 },
+    myftp: { $: 2 },
+    'no-ip': { $: 2 },
+    zapto: { $: 2 },
+    'my-firewall': { $: 2 },
+    myfirewall: { $: 2 },
+    spdns: { $: 2 },
+    dsmynas: { $: 2 },
+    familyds: { $: 2 },
+    tuxfamily: { $: 2 },
+    diskstation: { $: 2 },
+    hk: { $: 2 },
+    wmflabs: { $: 2 },
+    za: { $: 2 },
+  },
+  pa: {
+    $: 1,
+    ac: { $: 1 },
+    gob: { $: 1 },
+    com: { $: 1 },
+    org: { $: 1 },
+    sld: { $: 1 },
+    edu: { $: 1 },
+    net: { $: 1 },
+    ing: { $: 1 },
+    abo: { $: 1 },
+    med: { $: 1 },
+    nom: { $: 1 },
+  },
+  pe: {
+    $: 1,
+    edu: { $: 1 },
+    gob: { $: 1 },
+    nom: { $: 1 },
+    mil: { $: 1 },
+    org: { $: 1 },
+    com: { $: 1 },
+    net: { $: 1 },
+    blogspot: { $: 2 },
+    nym: { $: 2 },
+  },
+  pf: { $: 1, com: { $: 1 }, org: { $: 1 }, edu: { $: 1 } },
+  pg: { '*': { $: 1 } },
+  ph: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    gov: { $: 1 },
+    edu: { $: 1 },
+    ngo: { $: 1 },
+    mil: { $: 1 },
+    i: { $: 1 },
+  },
+  pk: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    edu: { $: 1 },
+    org: { $: 1 },
+    fam: { $: 1 },
+    biz: { $: 1 },
+    web: { $: 1 },
+    gov: { $: 1 },
+    gob: { $: 1 },
+    gok: { $: 1 },
+    gon: { $: 1 },
+    gop: { $: 1 },
+    gos: { $: 1 },
+    info: { $: 1 },
+  },
+  pl: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    aid: { $: 1 },
+    agro: { $: 1 },
+    atm: { $: 1 },
+    auto: { $: 1 },
+    biz: { $: 1 },
+    edu: { $: 1 },
+    gmina: { $: 1 },
+    gsm: { $: 1 },
+    info: { $: 1 },
+    mail: { $: 1 },
+    miasta: { $: 1 },
+    media: { $: 1 },
+    mil: { $: 1 },
+    nieruchomosci: { $: 1 },
+    nom: { $: 1 },
+    pc: { $: 1 },
+    powiat: { $: 1 },
+    priv: { $: 1 },
+    realestate: { $: 1 },
+    rel: { $: 1 },
+    sex: { $: 1 },
+    shop: { $: 1 },
+    sklep: { $: 1 },
+    sos: { $: 1 },
+    szkola: { $: 1 },
+    targi: { $: 1 },
+    tm: { $: 1 },
+    tourism: { $: 1 },
+    travel: { $: 1 },
+    turystyka: { $: 1 },
+    gov: {
+      $: 1,
+      ap: { $: 1 },
+      ic: { $: 1 },
+      is: { $: 1 },
+      us: { $: 1 },
+      kmpsp: { $: 1 },
+      kppsp: { $: 1 },
+      kwpsp: { $: 1 },
+      psp: { $: 1 },
+      wskr: { $: 1 },
+      kwp: { $: 1 },
+      mw: { $: 1 },
+      ug: { $: 1 },
+      um: { $: 1 },
+      umig: { $: 1 },
+      ugim: { $: 1 },
+      upow: { $: 1 },
+      uw: { $: 1 },
+      starostwo: { $: 1 },
+      pa: { $: 1 },
+      po: { $: 1 },
+      psse: { $: 1 },
+      pup: { $: 1 },
+      rzgw: { $: 1 },
+      sa: { $: 1 },
+      so: { $: 1 },
+      sr: { $: 1 },
+      wsa: { $: 1 },
+      sko: { $: 1 },
+      uzs: { $: 1 },
+      wiih: { $: 1 },
+      winb: { $: 1 },
+      pinb: { $: 1 },
+      wios: { $: 1 },
+      witd: { $: 1 },
+      wzmiuw: { $: 1 },
+      piw: { $: 1 },
+      wiw: { $: 1 },
+      griw: { $: 1 },
+      wif: { $: 1 },
+      oum: { $: 1 },
+      sdn: { $: 1 },
+      zp: { $: 1 },
+      uppo: { $: 1 },
+      mup: { $: 1 },
+      wuoz: { $: 1 },
+      konsulat: { $: 1 },
+      oirm: { $: 1 },
+    },
+    augustow: { $: 1 },
+    'babia-gora': { $: 1 },
+    bedzin: { $: 1 },
+    beskidy: { $: 1 },
+    bialowieza: { $: 1 },
+    bialystok: { $: 1 },
+    bielawa: { $: 1 },
+    bieszczady: { $: 1 },
+    boleslawiec: { $: 1 },
+    bydgoszcz: { $: 1 },
+    bytom: { $: 1 },
+    cieszyn: { $: 1 },
+    czeladz: { $: 1 },
+    czest: { $: 1 },
+    dlugoleka: { $: 1 },
+    elblag: { $: 1 },
+    elk: { $: 1 },
+    glogow: { $: 1 },
+    gniezno: { $: 1 },
+    gorlice: { $: 1 },
+    grajewo: { $: 1 },
+    ilawa: { $: 1 },
+    jaworzno: { $: 1 },
+    'jelenia-gora': { $: 1 },
+    jgora: { $: 1 },
+    kalisz: { $: 1 },
+    'kazimierz-dolny': { $: 1 },
+    karpacz: { $: 1 },
+    kartuzy: { $: 1 },
+    kaszuby: { $: 1 },
+    katowice: { $: 1 },
+    kepno: { $: 1 },
+    ketrzyn: { $: 1 },
+    klodzko: { $: 1 },
+    kobierzyce: { $: 1 },
+    kolobrzeg: { $: 1 },
+    konin: { $: 1 },
+    konskowola: { $: 1 },
+    kutno: { $: 1 },
+    lapy: { $: 1 },
+    lebork: { $: 1 },
+    legnica: { $: 1 },
+    lezajsk: { $: 1 },
+    limanowa: { $: 1 },
+    lomza: { $: 1 },
+    lowicz: { $: 1 },
+    lubin: { $: 1 },
+    lukow: { $: 1 },
+    malbork: { $: 1 },
+    malopolska: { $: 1 },
+    mazowsze: { $: 1 },
+    mazury: { $: 1 },
+    mielec: { $: 1 },
+    mielno: { $: 1 },
+    mragowo: { $: 1 },
+    naklo: { $: 1 },
+    nowaruda: { $: 1 },
+    nysa: { $: 1 },
+    olawa: { $: 1 },
+    olecko: { $: 1 },
+    olkusz: { $: 1 },
+    olsztyn: { $: 1 },
+    opoczno: { $: 1 },
+    opole: { $: 1 },
+    ostroda: { $: 1 },
+    ostroleka: { $: 1 },
+    ostrowiec: { $: 1 },
+    ostrowwlkp: { $: 1 },
+    pila: { $: 1 },
+    pisz: { $: 1 },
+    podhale: { $: 1 },
+    podlasie: { $: 1 },
+    polkowice: { $: 1 },
+    pomorze: { $: 1 },
+    pomorskie: { $: 1 },
+    prochowice: { $: 1 },
+    pruszkow: { $: 1 },
+    przeworsk: { $: 1 },
+    pulawy: { $: 1 },
+    radom: { $: 1 },
+    'rawa-maz': { $: 1 },
+    rybnik: { $: 1 },
+    rzeszow: { $: 1 },
+    sanok: { $: 1 },
+    sejny: { $: 1 },
+    slask: { $: 1 },
+    slupsk: { $: 1 },
+    sosnowiec: { $: 1 },
+    'stalowa-wola': { $: 1 },
+    skoczow: { $: 1 },
+    starachowice: { $: 1 },
+    stargard: { $: 1 },
+    suwalki: { $: 1 },
+    swidnica: { $: 1 },
+    swiebodzin: { $: 1 },
+    swinoujscie: { $: 1 },
+    szczecin: { $: 1 },
+    szczytno: { $: 1 },
+    tarnobrzeg: { $: 1 },
+    tgory: { $: 1 },
+    turek: { $: 1 },
+    tychy: { $: 1 },
+    ustka: { $: 1 },
+    walbrzych: { $: 1 },
+    warmia: { $: 1 },
+    warszawa: { $: 1 },
+    waw: { $: 1 },
+    wegrow: { $: 1 },
+    wielun: { $: 1 },
+    wlocl: { $: 1 },
+    wloclawek: { $: 1 },
+    wodzislaw: { $: 1 },
+    wolomin: { $: 1 },
+    wroclaw: { $: 1 },
+    zachpomor: { $: 1 },
+    zagan: { $: 1 },
+    zarow: { $: 1 },
+    zgora: { $: 1 },
+    zgorzelec: { $: 1 },
+    beep: { $: 2 },
+    krasnik: { $: 2 },
+    leczna: { $: 2 },
+    lubartow: { $: 2 },
+    lublin: { $: 2 },
+    poniatowa: { $: 2 },
+    swidnik: { $: 2 },
+    co: { $: 2 },
+    art: { $: 2 },
+    gliwice: { $: 2 },
+    krakow: { $: 2 },
+    poznan: { $: 2 },
+    wroc: { $: 2 },
+    zakopane: { $: 2 },
+    gda: { $: 2 },
+    gdansk: { $: 2 },
+    gdynia: { $: 2 },
+    med: { $: 2 },
+    sopot: { $: 2 },
+  },
+  pm: { $: 1, own: { $: 2 } },
+  pn: {
+    $: 1,
+    gov: { $: 1 },
+    co: { $: 1 },
+    org: { $: 1 },
+    edu: { $: 1 },
+    net: { $: 1 },
+  },
+  post: { $: 1 },
+  pr: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    gov: { $: 1 },
+    edu: { $: 1 },
+    isla: { $: 1 },
+    pro: { $: 1 },
+    biz: { $: 1 },
+    info: { $: 1 },
+    name: { $: 1 },
+    est: { $: 1 },
+    prof: { $: 1 },
+    ac: { $: 1 },
+  },
+  pro: {
+    $: 1,
+    aaa: { $: 1 },
+    aca: { $: 1 },
+    acct: { $: 1 },
+    avocat: { $: 1 },
+    bar: { $: 1 },
+    cpa: { $: 1 },
+    eng: { $: 1 },
+    jur: { $: 1 },
+    law: { $: 1 },
+    med: { $: 1 },
+    recht: { $: 1 },
+    cloudns: { $: 2 },
+    dnstrace: { bci: { $: 2 } },
+    barsy: { $: 2 },
+  },
+  ps: {
+    $: 1,
+    edu: { $: 1 },
+    gov: { $: 1 },
+    sec: { $: 1 },
+    plo: { $: 1 },
+    com: { $: 1 },
+    org: { $: 1 },
+    net: { $: 1 },
+  },
+  pt: {
+    $: 1,
+    net: { $: 1 },
+    gov: { $: 1 },
+    org: { $: 1 },
+    edu: { $: 1 },
+    int: { $: 1 },
+    publ: { $: 1 },
+    com: { $: 1 },
+    nome: { $: 1 },
+    blogspot: { $: 2 },
+    nym: { $: 2 },
+  },
+  pw: {
+    $: 1,
+    co: { $: 1 },
+    ne: { $: 1 },
+    or: { $: 1 },
+    ed: { $: 1 },
+    go: { $: 1 },
+    belau: { $: 1 },
+    cloudns: { $: 2 },
+    x443: { $: 2 },
+    nom: { $: 2 },
+  },
+  py: {
+    $: 1,
+    com: { $: 1 },
+    coop: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    mil: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+  },
+  qa: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    mil: { $: 1 },
+    name: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    sch: { $: 1 },
+    blogspot: { $: 2 },
+    nom: { $: 2 },
+  },
+  re: {
+    $: 1,
+    asso: { $: 1 },
+    com: { $: 1 },
+    nom: { $: 1 },
+    blogspot: { $: 2 },
+  },
+  ro: {
+    $: 1,
+    arts: { $: 1 },
+    com: { $: 1 },
+    firm: { $: 1 },
+    info: { $: 1 },
+    nom: { $: 1 },
+    nt: { $: 1 },
+    org: { $: 1 },
+    rec: { $: 1 },
+    store: { $: 1 },
+    tm: { $: 1 },
+    www: { $: 1 },
+    shop: { $: 2 },
+    blogspot: { $: 2 },
+    nym: { $: 2 },
+  },
+  rs: {
+    $: 1,
+    ac: { $: 1 },
+    co: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    in: { $: 1 },
+    org: { $: 1 },
+    blogspot: { $: 2 },
+    nom: { $: 2 },
+    ox: { $: 2 },
+  },
+  ru: {
+    $: 1,
+    ac: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    int: { $: 1 },
+    mil: { $: 1 },
+    test: { $: 1 },
+    adygeya: { $: 2 },
+    bashkiria: { $: 2 },
+    bir: { $: 2 },
+    cbg: { $: 2 },
+    com: { $: 2 },
+    dagestan: { $: 2 },
+    grozny: { $: 2 },
+    kalmykia: { $: 2 },
+    kustanai: { $: 2 },
+    marine: { $: 2 },
+    mordovia: { $: 2 },
+    msk: { $: 2 },
+    mytis: { $: 2 },
+    nalchik: { $: 2 },
+    nov: { $: 2 },
+    pyatigorsk: { $: 2 },
+    spb: { $: 2 },
+    vladikavkaz: { $: 2 },
+    vladimir: { $: 2 },
+    blogspot: { $: 2 },
+    myjino: {
+      $: 2,
+      hosting: { '*': { $: 2 } },
+      landing: { '*': { $: 2 } },
+      spectrum: { '*': { $: 2 } },
+      vps: { '*': { $: 2 } },
+    },
+    cldmail: { hb: { $: 2 } },
+    net: { $: 2 },
+    org: { $: 2 },
+    pp: { $: 2 },
+    ras: { $: 2 },
+  },
+  rw: {
+    $: 1,
+    gov: { $: 1 },
+    net: { $: 1 },
+    edu: { $: 1 },
+    ac: { $: 1 },
+    com: { $: 1 },
+    co: { $: 1 },
+    int: { $: 1 },
+    mil: { $: 1 },
+    gouv: { $: 1 },
+  },
+  sa: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    gov: { $: 1 },
+    med: { $: 1 },
+    pub: { $: 1 },
+    edu: { $: 1 },
+    sch: { $: 1 },
+  },
+  sb: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+  },
+  sc: {
+    $: 1,
+    com: { $: 1 },
+    gov: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    edu: { $: 1 },
+  },
+  sd: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    edu: { $: 1 },
+    med: { $: 1 },
+    tv: { $: 1 },
+    gov: { $: 1 },
+    info: { $: 1 },
+  },
+  se: {
+    $: 1,
+    a: { $: 1 },
+    ac: { $: 1 },
+    b: { $: 1 },
+    bd: { $: 1 },
+    brand: { $: 1 },
+    c: { $: 1 },
+    d: { $: 1 },
+    e: { $: 1 },
+    f: { $: 1 },
+    fh: { $: 1 },
+    fhsk: { $: 1 },
+    fhv: { $: 1 },
+    g: { $: 1 },
+    h: { $: 1 },
+    i: { $: 1 },
+    k: { $: 1 },
+    komforb: { $: 1 },
+    kommunalforbund: { $: 1 },
+    komvux: { $: 1 },
+    l: { $: 1 },
+    lanbib: { $: 1 },
+    m: { $: 1 },
+    n: { $: 1 },
+    naturbruksgymn: { $: 1 },
+    o: { $: 1 },
+    org: { $: 1 },
+    p: { $: 1 },
+    parti: { $: 1 },
+    pp: { $: 1 },
+    press: { $: 1 },
+    r: { $: 1 },
+    s: { $: 1 },
+    t: { $: 1 },
+    tm: { $: 1 },
+    u: { $: 1 },
+    w: { $: 1 },
+    x: { $: 1 },
+    y: { $: 1 },
+    z: { $: 1 },
+    com: { $: 2 },
+    blogspot: { $: 2 },
+  },
+  sg: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    gov: { $: 1 },
+    edu: { $: 1 },
+    per: { $: 1 },
+    blogspot: { $: 2 },
+  },
+  sh: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    gov: { $: 1 },
+    org: { $: 1 },
+    mil: { $: 1 },
+    hashbang: { $: 2 },
+    platform: { '*': { $: 2 } },
+    wedeploy: { $: 2 },
+    now: { $: 2 },
+  },
+  si: { $: 1, blogspot: { $: 2 }, nom: { $: 2 } },
+  sj: { $: 1 },
+  sk: { $: 1, blogspot: { $: 2 }, nym: { $: 2 } },
+  sl: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    org: { $: 1 },
+  },
+  sm: { $: 1 },
+  sn: {
+    $: 1,
+    art: { $: 1 },
+    com: { $: 1 },
+    edu: { $: 1 },
+    gouv: { $: 1 },
+    org: { $: 1 },
+    perso: { $: 1 },
+    univ: { $: 1 },
+    blogspot: { $: 2 },
+  },
+  so: { $: 1, com: { $: 1 }, net: { $: 1 }, org: { $: 1 } },
+  sr: { $: 1 },
+  st: {
+    $: 1,
+    co: { $: 1 },
+    com: { $: 1 },
+    consulado: { $: 1 },
+    edu: { $: 1 },
+    embaixada: { $: 1 },
+    gov: { $: 1 },
+    mil: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    principe: { $: 1 },
+    saotome: { $: 1 },
+    store: { $: 1 },
+    nom: { $: 2 },
+    noho: { $: 2 },
+  },
+  su: {
+    $: 1,
+    abkhazia: { $: 2 },
+    adygeya: { $: 2 },
+    aktyubinsk: { $: 2 },
+    arkhangelsk: { $: 2 },
+    armenia: { $: 2 },
+    ashgabad: { $: 2 },
+    azerbaijan: { $: 2 },
+    balashov: { $: 2 },
+    bashkiria: { $: 2 },
+    bryansk: { $: 2 },
+    bukhara: { $: 2 },
+    chimkent: { $: 2 },
+    dagestan: { $: 2 },
+    'east-kazakhstan': { $: 2 },
+    exnet: { $: 2 },
+    georgia: { $: 2 },
+    grozny: { $: 2 },
+    ivanovo: { $: 2 },
+    jambyl: { $: 2 },
+    kalmykia: { $: 2 },
+    kaluga: { $: 2 },
+    karacol: { $: 2 },
+    karaganda: { $: 2 },
+    karelia: { $: 2 },
+    khakassia: { $: 2 },
+    krasnodar: { $: 2 },
+    kurgan: { $: 2 },
+    kustanai: { $: 2 },
+    lenug: { $: 2 },
+    mangyshlak: { $: 2 },
+    mordovia: { $: 2 },
+    msk: { $: 2 },
+    murmansk: { $: 2 },
+    nalchik: { $: 2 },
+    navoi: { $: 2 },
+    'north-kazakhstan': { $: 2 },
+    nov: { $: 2 },
+    obninsk: { $: 2 },
+    penza: { $: 2 },
+    pokrovsk: { $: 2 },
+    sochi: { $: 2 },
+    spb: { $: 2 },
+    tashkent: { $: 2 },
+    termez: { $: 2 },
+    togliatti: { $: 2 },
+    troitsk: { $: 2 },
+    tselinograd: { $: 2 },
+    tula: { $: 2 },
+    tuva: { $: 2 },
+    vladikavkaz: { $: 2 },
+    vladimir: { $: 2 },
+    vologda: { $: 2 },
+    nym: { $: 2 },
+  },
+  sv: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gob: { $: 1 },
+    org: { $: 1 },
+    red: { $: 1 },
+  },
+  sx: { $: 1, gov: { $: 1 }, nym: { $: 2 } },
+  sy: {
+    $: 1,
+    edu: { $: 1 },
+    gov: { $: 1 },
+    net: { $: 1 },
+    mil: { $: 1 },
+    com: { $: 1 },
+    org: { $: 1 },
+  },
+  sz: { $: 1, co: { $: 1 }, ac: { $: 1 }, org: { $: 1 } },
+  tc: { $: 1 },
+  td: { $: 1, blogspot: { $: 2 } },
+  tel: { $: 1 },
+  tf: { $: 1 },
+  tg: { $: 1 },
+  th: {
+    $: 1,
+    ac: { $: 1 },
+    co: { $: 1 },
+    go: { $: 1 },
+    in: { $: 1 },
+    mi: { $: 1 },
+    net: { $: 1 },
+    or: { $: 1 },
+    online: { $: 2 },
+    shop: { $: 2 },
+  },
+  tj: {
+    $: 1,
+    ac: { $: 1 },
+    biz: { $: 1 },
+    co: { $: 1 },
+    com: { $: 1 },
+    edu: { $: 1 },
+    go: { $: 1 },
+    gov: { $: 1 },
+    int: { $: 1 },
+    mil: { $: 1 },
+    name: { $: 1 },
+    net: { $: 1 },
+    nic: { $: 1 },
+    org: { $: 1 },
+    test: { $: 1 },
+    web: { $: 1 },
+    nom: { $: 2 },
+  },
+  tk: { $: 1 },
+  tl: { $: 1, gov: { $: 1 } },
+  tm: {
+    $: 1,
+    com: { $: 1 },
+    co: { $: 1 },
+    org: { $: 1 },
+    net: { $: 1 },
+    nom: { $: 1 },
+    gov: { $: 1 },
+    mil: { $: 1 },
+    edu: { $: 1 },
+  },
+  tn: {
+    $: 1,
+    com: { $: 1 },
+    ens: { $: 1 },
+    fin: { $: 1 },
+    gov: { $: 1 },
+    ind: { $: 1 },
+    intl: { $: 1 },
+    nat: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    info: { $: 1 },
+    perso: { $: 1 },
+    tourism: { $: 1 },
+    edunet: { $: 1 },
+    rnrt: { $: 1 },
+    rns: { $: 1 },
+    rnu: { $: 1 },
+    mincom: { $: 1 },
+    agrinet: { $: 1 },
+    defense: { $: 1 },
+    turen: { $: 1 },
+  },
+  to: {
+    $: 1,
+    com: { $: 1 },
+    gov: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    edu: { $: 1 },
+    mil: { $: 1 },
+    vpnplus: { $: 2 },
+  },
+  tr: {
+    $: 1,
+    com: { $: 1, blogspot: { $: 2 } },
+    info: { $: 1 },
+    biz: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    web: { $: 1 },
+    gen: { $: 1 },
+    tv: { $: 1 },
+    av: { $: 1 },
+    dr: { $: 1 },
+    bbs: { $: 1 },
+    name: { $: 1 },
+    tel: { $: 1 },
+    gov: { $: 1 },
+    bel: { $: 1 },
+    pol: { $: 1 },
+    mil: { $: 1 },
+    k12: { $: 1 },
+    edu: { $: 1 },
+    kep: { $: 1 },
+    nc: { $: 1, gov: { $: 1 } },
+  },
+  tt: {
+    $: 1,
+    co: { $: 1 },
+    com: { $: 1 },
+    org: { $: 1 },
+    net: { $: 1 },
+    biz: { $: 1 },
+    info: { $: 1 },
+    pro: { $: 1 },
+    int: { $: 1 },
+    coop: { $: 1 },
+    jobs: { $: 1 },
+    mobi: { $: 1 },
+    travel: { $: 1 },
+    museum: { $: 1 },
+    aero: { $: 1 },
+    name: { $: 1 },
+    gov: { $: 1 },
+    edu: { $: 1 },
+  },
+  tv: {
+    $: 1,
+    dyndns: { $: 2 },
+    'better-than': { $: 2 },
+    'on-the-web': { $: 2 },
+    'worse-than': { $: 2 },
+  },
+  tw: {
+    $: 1,
+    edu: { $: 1 },
+    gov: { $: 1 },
+    mil: { $: 1 },
+    com: { $: 1, mymailer: { $: 2 } },
+    net: { $: 1 },
+    org: { $: 1 },
+    idv: { $: 1 },
+    game: { $: 1 },
+    ebiz: { $: 1 },
+    club: { $: 1 },
+    'xn--zf0ao64a': { $: 1 },
+    'xn--uc0atv': { $: 1 },
+    'xn--czrw28b': { $: 1 },
+    url: { $: 2 },
+    blogspot: { $: 2 },
+    nym: { $: 2 },
+  },
+  tz: {
+    $: 1,
+    ac: { $: 1 },
+    co: { $: 1 },
+    go: { $: 1 },
+    hotel: { $: 1 },
+    info: { $: 1 },
+    me: { $: 1 },
+    mil: { $: 1 },
+    mobi: { $: 1 },
+    ne: { $: 1 },
+    or: { $: 1 },
+    sc: { $: 1 },
+    tv: { $: 1 },
+  },
+  ua: {
+    $: 1,
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    in: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    cherkassy: { $: 1 },
+    cherkasy: { $: 1 },
+    chernigov: { $: 1 },
+    chernihiv: { $: 1 },
+    chernivtsi: { $: 1 },
+    chernovtsy: { $: 1 },
+    ck: { $: 1 },
+    cn: { $: 1 },
+    cr: { $: 1 },
+    crimea: { $: 1 },
+    cv: { $: 1 },
+    dn: { $: 1 },
+    dnepropetrovsk: { $: 1 },
+    dnipropetrovsk: { $: 1 },
+    dominic: { $: 1 },
+    donetsk: { $: 1 },
+    dp: { $: 1 },
+    if: { $: 1 },
+    'ivano-frankivsk': { $: 1 },
+    kh: { $: 1 },
+    kharkiv: { $: 1 },
+    kharkov: { $: 1 },
+    kherson: { $: 1 },
+    khmelnitskiy: { $: 1 },
+    khmelnytskyi: { $: 1 },
+    kiev: { $: 1 },
+    kirovograd: { $: 1 },
+    km: { $: 1 },
+    kr: { $: 1 },
+    krym: { $: 1 },
+    ks: { $: 1 },
+    kv: { $: 1 },
+    kyiv: { $: 1 },
+    lg: { $: 1 },
+    lt: { $: 1 },
+    lugansk: { $: 1 },
+    lutsk: { $: 1 },
+    lv: { $: 1 },
+    lviv: { $: 1 },
+    mk: { $: 1 },
+    mykolaiv: { $: 1 },
+    nikolaev: { $: 1 },
+    od: { $: 1 },
+    odesa: { $: 1 },
+    odessa: { $: 1 },
+    pl: { $: 1 },
+    poltava: { $: 1 },
+    rivne: { $: 1 },
+    rovno: { $: 1 },
+    rv: { $: 1 },
+    sb: { $: 1 },
+    sebastopol: { $: 1 },
+    sevastopol: { $: 1 },
+    sm: { $: 1 },
+    sumy: { $: 1 },
+    te: { $: 1 },
+    ternopil: { $: 1 },
+    uz: { $: 1 },
+    uzhgorod: { $: 1 },
+    vinnica: { $: 1 },
+    vinnytsia: { $: 1 },
+    vn: { $: 1 },
+    volyn: { $: 1 },
+    yalta: { $: 1 },
+    zaporizhzhe: { $: 1 },
+    zaporizhzhia: { $: 1 },
+    zhitomir: { $: 1 },
+    zhytomyr: { $: 1 },
+    zp: { $: 1 },
+    zt: { $: 1 },
+    cc: { $: 2 },
+    inf: { $: 2 },
+    ltd: { $: 2 },
+    biz: { $: 2 },
+    co: { $: 2 },
+    pp: { $: 2 },
+  },
+  ug: {
+    $: 1,
+    co: { $: 1 },
+    or: { $: 1 },
+    ac: { $: 1 },
+    sc: { $: 1 },
+    go: { $: 1 },
+    ne: { $: 1 },
+    com: { $: 1 },
+    org: { $: 1 },
+    blogspot: { $: 2 },
+    nom: { $: 2 },
+  },
+  uk: {
+    $: 1,
+    ac: { $: 1 },
+    co: {
+      $: 1,
+      bytemark: { dh: { $: 2 }, vm: { $: 2 } },
+      blogspot: { $: 2 },
+      barsy: { $: 2 },
+      barsyonline: { $: 2 },
+      'nh-serv': { $: 2 },
+      'no-ip': { $: 2 },
+      wellbeingzone: { $: 2 },
+      gwiddle: { $: 2 },
+    },
+    gov: { $: 1, service: { $: 2 }, homeoffice: { $: 2 } },
+    ltd: { $: 1 },
+    me: { $: 1 },
+    net: { $: 1 },
+    nhs: { $: 1 },
+    org: { $: 1, glug: { $: 2 }, lug: { $: 2 }, lugs: { $: 2 } },
+    plc: { $: 1 },
+    police: { $: 1 },
+    sch: { '*': { $: 1 } },
+    barsy: { $: 2 },
+  },
+  us: {
+    $: 1,
+    dni: { $: 1 },
+    fed: { $: 1 },
+    isa: { $: 1 },
+    kids: { $: 1 },
+    nsn: { $: 1 },
+    ak: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    al: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    ar: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    as: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    az: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    ca: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    co: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    ct: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    dc: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    de: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 2 } },
+    fl: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    ga: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    gu: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    hi: { $: 1, cc: { $: 1 }, lib: { $: 1 } },
+    ia: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    id: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    il: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    in: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    ks: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    ky: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    la: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    ma: {
+      $: 1,
+      k12: { $: 1, pvt: { $: 1 }, chtr: { $: 1 }, paroch: { $: 1 } },
+      cc: { $: 1 },
+      lib: { $: 1 },
+    },
+    md: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    me: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    mi: {
+      $: 1,
+      k12: { $: 1 },
+      cc: { $: 1 },
+      lib: { $: 1 },
+      'ann-arbor': { $: 1 },
+      cog: { $: 1 },
+      dst: { $: 1 },
+      eaton: { $: 1 },
+      gen: { $: 1 },
+      mus: { $: 1 },
+      tec: { $: 1 },
+      washtenaw: { $: 1 },
+    },
+    mn: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    mo: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    ms: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    mt: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    nc: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    nd: { $: 1, cc: { $: 1 }, lib: { $: 1 } },
+    ne: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    nh: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    nj: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    nm: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    nv: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    ny: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    oh: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    ok: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    or: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    pa: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    pr: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    ri: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    sc: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    sd: { $: 1, cc: { $: 1 }, lib: { $: 1 } },
+    tn: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    tx: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    ut: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    vi: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    vt: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    va: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    wa: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    wi: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    wv: { $: 1, cc: { $: 1 } },
+    wy: { $: 1, k12: { $: 1 }, cc: { $: 1 }, lib: { $: 1 } },
+    cloudns: { $: 2 },
+    drud: { $: 2 },
+    'is-by': { $: 2 },
+    'land-4-sale': { $: 2 },
+    'stuff-4-sale': { $: 2 },
+    freeddns: { $: 2 },
+    golffan: { $: 2 },
+    noip: { $: 2 },
+    pointto: { $: 2 },
+  },
+  uy: {
+    $: 1,
+    com: { $: 1, blogspot: { $: 2 } },
+    edu: { $: 1 },
+    gub: { $: 1 },
+    mil: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    nom: { $: 2 },
+  },
+  uz: { $: 1, co: { $: 1 }, com: { $: 1 }, net: { $: 1 }, org: { $: 1 } },
+  va: { $: 1 },
+  vc: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    gov: { $: 1 },
+    mil: { $: 1 },
+    edu: { $: 1 },
+    nom: { $: 2 },
+  },
+  ve: {
+    $: 1,
+    arts: { $: 1 },
+    co: { $: 1 },
+    com: { $: 1 },
+    e12: { $: 1 },
+    edu: { $: 1 },
+    firm: { $: 1 },
+    gob: { $: 1 },
+    gov: { $: 1 },
+    info: { $: 1 },
+    int: { $: 1 },
+    mil: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    rec: { $: 1 },
+    store: { $: 1 },
+    tec: { $: 1 },
+    web: { $: 1 },
+  },
+  vg: { $: 1, nom: { $: 2 } },
+  vi: {
+    $: 1,
+    co: { $: 1 },
+    com: { $: 1 },
+    k12: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+  },
+  vn: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    int: { $: 1 },
+    ac: { $: 1 },
+    biz: { $: 1 },
+    info: { $: 1 },
+    name: { $: 1 },
+    pro: { $: 1 },
+    health: { $: 1 },
+    blogspot: { $: 2 },
+  },
+  vu: { $: 1, com: { $: 1 }, edu: { $: 1 }, net: { $: 1 }, org: { $: 1 } },
+  wf: { $: 1 },
+  ws: {
+    $: 1,
+    com: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    gov: { $: 1 },
+    edu: { $: 1 },
+    advisor: { '*': { $: 2 } },
+    cloud66: { $: 2 },
+    dyndns: { $: 2 },
+    mypets: { $: 2 },
+  },
+  yt: { $: 1 },
+  'xn--mgbaam7a8h': { $: 1 },
+  'xn--y9a3aq': { $: 1 },
+  'xn--54b7fta0cc': { $: 1 },
+  'xn--90ae': { $: 1 },
+  'xn--90ais': { $: 1 },
+  'xn--fiqs8s': { $: 1 },
+  'xn--fiqz9s': { $: 1 },
+  'xn--lgbbat1ad8j': { $: 1 },
+  'xn--wgbh1c': { $: 1 },
+  'xn--e1a4c': { $: 1 },
+  'xn--node': { $: 1 },
+  'xn--qxam': { $: 1 },
+  'xn--j6w193g': {
+    $: 1,
+    'xn--55qx5d': { $: 1 },
+    'xn--wcvs22d': { $: 1 },
+    'xn--mxtq1m': { $: 1 },
+    'xn--gmqw5a': { $: 1 },
+    'xn--od0alg': { $: 1 },
+    'xn--uc0atv': { $: 1 },
+  },
+  'xn--2scrj9c': { $: 1 },
+  'xn--3hcrj9c': { $: 1 },
+  'xn--45br5cyl': { $: 1 },
+  'xn--h2breg3eve': { $: 1 },
+  'xn--h2brj9c8c': { $: 1 },
+  'xn--mgbgu82a': { $: 1 },
+  'xn--rvc1e0am3e': { $: 1 },
+  'xn--h2brj9c': { $: 1 },
+  'xn--mgbbh1a': { $: 1 },
+  'xn--mgbbh1a71e': { $: 1 },
+  'xn--fpcrj9c3d': { $: 1 },
+  'xn--gecrj9c': { $: 1 },
+  'xn--s9brj9c': { $: 1 },
+  'xn--45brj9c': { $: 1 },
+  'xn--xkc2dl3a5ee0h': { $: 1 },
+  'xn--mgba3a4f16a': { $: 1 },
+  'xn--mgba3a4fra': { $: 1 },
+  'xn--mgbtx2b': { $: 1 },
+  'xn--mgbayh7gpa': { $: 1 },
+  'xn--3e0b707e': { $: 1 },
+  'xn--80ao21a': { $: 1 },
+  'xn--fzc2c9e2c': { $: 1 },
+  'xn--xkc2al3hye2a': { $: 1 },
+  'xn--mgbc0a9azcg': { $: 1 },
+  'xn--d1alf': { $: 1 },
+  'xn--l1acc': { $: 1 },
+  'xn--mix891f': { $: 1 },
+  'xn--mix082f': { $: 1 },
+  'xn--mgbx4cd0ab': { $: 1 },
+  'xn--mgb9awbf': { $: 1 },
+  'xn--mgbai9azgqp6j': { $: 1 },
+  'xn--mgbai9a5eva00b': { $: 1 },
+  'xn--ygbi2ammx': { $: 1 },
+  'xn--90a3ac': {
+    $: 1,
+    'xn--o1ac': { $: 1 },
+    'xn--c1avg': { $: 1 },
+    'xn--90azh': { $: 1 },
+    'xn--d1at': { $: 1 },
+    'xn--o1ach': { $: 1 },
+    'xn--80au': { $: 1 },
+  },
+  'xn--p1ai': { $: 1 },
+  'xn--wgbl6a': { $: 1 },
+  'xn--mgberp4a5d4ar': { $: 1 },
+  'xn--mgberp4a5d4a87g': { $: 1 },
+  'xn--mgbqly7c0a67fbc': { $: 1 },
+  'xn--mgbqly7cvafr': { $: 1 },
+  'xn--mgbpl2fh': { $: 1 },
+  'xn--yfro4i67o': { $: 1 },
+  'xn--clchc0ea0b2g2a9gcd': { $: 1 },
+  'xn--ogbpf8fl': { $: 1 },
+  'xn--mgbtf8fl': { $: 1 },
+  'xn--o3cw4h': {
+    $: 1,
+    'xn--12c1fe0br': { $: 1 },
+    'xn--12co0c3b4eva': { $: 1 },
+    'xn--h3cuzk1di': { $: 1 },
+    'xn--o3cyx2a': { $: 1 },
+    'xn--m3ch0j3a': { $: 1 },
+    'xn--12cfi8ixb8l': { $: 1 },
+  },
+  'xn--pgbs0dh': { $: 1 },
+  'xn--kpry57d': { $: 1 },
+  'xn--kprw13d': { $: 1 },
+  'xn--nnx388a': { $: 1 },
+  'xn--j1amh': { $: 1 },
+  'xn--mgb2ddes': { $: 1 },
+  xxx: { $: 1 },
+  ye: { '*': { $: 1 } },
+  za: {
+    ac: { $: 1 },
+    agric: { $: 1 },
+    alt: { $: 1 },
+    co: { $: 1, blogspot: { $: 2 } },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    grondar: { $: 1 },
+    law: { $: 1 },
+    mil: { $: 1 },
+    net: { $: 1 },
+    ngo: { $: 1 },
+    nis: { $: 1 },
+    nom: { $: 1 },
+    org: { $: 1 },
+    school: { $: 1 },
+    tm: { $: 1 },
+    web: { $: 1 },
+  },
+  zm: {
+    $: 1,
+    ac: { $: 1 },
+    biz: { $: 1 },
+    co: { $: 1 },
+    com: { $: 1 },
+    edu: { $: 1 },
+    gov: { $: 1 },
+    info: { $: 1 },
+    mil: { $: 1 },
+    net: { $: 1 },
+    org: { $: 1 },
+    sch: { $: 1 },
+  },
+  zw: {
+    $: 1,
+    ac: { $: 1 },
+    co: { $: 1 },
+    gov: { $: 1 },
+    mil: { $: 1 },
+    org: { $: 1 },
+  },
+  aaa: { $: 1 },
+  aarp: { $: 1 },
+  abarth: { $: 1 },
+  abb: { $: 1 },
+  abbott: { $: 1 },
+  abbvie: { $: 1 },
+  abc: { $: 1 },
+  able: { $: 1 },
+  abogado: { $: 1 },
+  abudhabi: { $: 1 },
+  academy: { $: 1, official: { $: 2 } },
+  accenture: { $: 1 },
+  accountant: { $: 1 },
+  accountants: { $: 1 },
+  aco: { $: 1 },
+  active: { $: 1 },
+  actor: { $: 1 },
+  adac: { $: 1 },
+  ads: { $: 1 },
+  adult: { $: 1 },
+  aeg: { $: 1 },
+  aetna: { $: 1 },
+  afamilycompany: { $: 1 },
+  afl: { $: 1 },
+  africa: { $: 1 },
+  agakhan: { $: 1 },
+  agency: { $: 1 },
+  aig: { $: 1 },
+  aigo: { $: 1 },
+  airbus: { $: 1 },
+  airforce: { $: 1 },
+  airtel: { $: 1 },
+  akdn: { $: 1 },
+  alfaromeo: { $: 1 },
+  alibaba: { $: 1 },
+  alipay: { $: 1 },
+  allfinanz: { $: 1 },
+  allstate: { $: 1 },
+  ally: { $: 1 },
+  alsace: { $: 1 },
+  alstom: { $: 1 },
+  americanexpress: { $: 1 },
+  americanfamily: { $: 1 },
+  amex: { $: 1 },
+  amfam: { $: 1 },
+  amica: { $: 1 },
+  amsterdam: { $: 1 },
+  analytics: { $: 1 },
+  android: { $: 1 },
+  anquan: { $: 1 },
+  anz: { $: 1 },
+  aol: { $: 1 },
+  apartments: { $: 1 },
+  app: { $: 1, hasura: { $: 2 } },
+  apple: { $: 1 },
+  aquarelle: { $: 1 },
+  arab: { $: 1 },
+  aramco: { $: 1 },
+  archi: { $: 1 },
+  army: { $: 1 },
+  art: { $: 1 },
+  arte: { $: 1 },
+  asda: { $: 1 },
+  associates: { $: 1 },
+  athleta: { $: 1 },
+  attorney: { $: 1 },
+  auction: { $: 1 },
+  audi: { $: 1 },
+  audible: { $: 1 },
+  audio: { $: 1 },
+  auspost: { $: 1 },
+  author: { $: 1 },
+  auto: { $: 1 },
+  autos: { $: 1 },
+  avianca: { $: 1 },
+  aws: { $: 1 },
+  axa: { $: 1 },
+  azure: { $: 1 },
+  baby: { $: 1 },
+  baidu: { $: 1 },
+  banamex: { $: 1 },
+  bananarepublic: { $: 1 },
+  band: { $: 1 },
+  bank: { $: 1 },
+  bar: { $: 1 },
+  barcelona: { $: 1 },
+  barclaycard: { $: 1 },
+  barclays: { $: 1 },
+  barefoot: { $: 1 },
+  bargains: { $: 1 },
+  baseball: { $: 1 },
+  basketball: { $: 1 },
+  bauhaus: { $: 1 },
+  bayern: { $: 1 },
+  bbc: { $: 1 },
+  bbt: { $: 1 },
+  bbva: { $: 1 },
+  bcg: { $: 1 },
+  bcn: { $: 1 },
+  beats: { $: 1 },
+  beauty: { $: 1 },
+  beer: { $: 1 },
+  bentley: { $: 1 },
+  berlin: { $: 1 },
+  best: { $: 1 },
+  bestbuy: { $: 1 },
+  bet: { $: 1 },
+  bharti: { $: 1 },
+  bible: { $: 1 },
+  bid: { $: 1 },
+  bike: { $: 1 },
+  bing: { $: 1 },
+  bingo: { $: 1 },
+  bio: { $: 1 },
+  black: { $: 1 },
+  blackfriday: { $: 1 },
+  blanco: { $: 1 },
+  blockbuster: { $: 1 },
+  blog: { $: 1 },
+  bloomberg: { $: 1 },
+  blue: { $: 1 },
+  bms: { $: 1 },
+  bmw: { $: 1 },
+  bnl: { $: 1 },
+  bnpparibas: { $: 1 },
+  boats: { $: 1 },
+  boehringer: { $: 1 },
+  bofa: { $: 1 },
+  bom: { $: 1 },
+  bond: { $: 1 },
+  boo: { $: 1 },
+  book: { $: 1 },
+  booking: { $: 1 },
+  bosch: { $: 1 },
+  bostik: { $: 1 },
+  boston: { $: 1 },
+  bot: { $: 1 },
+  boutique: { $: 1 },
+  box: { $: 1 },
+  bradesco: { $: 1 },
+  bridgestone: { $: 1 },
+  broadway: { $: 1 },
+  broker: { $: 1 },
+  brother: { $: 1 },
+  brussels: { $: 1 },
+  budapest: { $: 1 },
+  bugatti: { $: 1 },
+  build: { $: 1 },
+  builders: { $: 1 },
+  business: { $: 1 },
+  buy: { $: 1 },
+  buzz: { $: 1 },
+  bzh: { $: 1 },
+  cab: { $: 1 },
+  cafe: { $: 1 },
+  cal: { $: 1 },
+  call: { $: 1 },
+  calvinklein: { $: 1 },
+  cam: { $: 1 },
+  camera: { $: 1 },
+  camp: { $: 1 },
+  cancerresearch: { $: 1 },
+  canon: { $: 1 },
+  capetown: { $: 1 },
+  capital: { $: 1 },
+  capitalone: { $: 1 },
+  car: { $: 1 },
+  caravan: { $: 1 },
+  cards: { $: 1 },
+  care: { $: 1 },
+  career: { $: 1 },
+  careers: { $: 1 },
+  cars: { $: 1 },
+  cartier: { $: 1 },
+  casa: { $: 1 },
+  case: { $: 1 },
+  caseih: { $: 1 },
+  cash: { $: 1 },
+  casino: { $: 1 },
+  catering: { $: 1 },
+  catholic: { $: 1 },
+  cba: { $: 1 },
+  cbn: { $: 1 },
+  cbre: { $: 1 },
+  cbs: { $: 1 },
+  ceb: { $: 1 },
+  center: { $: 1 },
+  ceo: { $: 1 },
+  cern: { $: 1 },
+  cfa: { $: 1 },
+  cfd: { $: 1 },
+  chanel: { $: 1 },
+  channel: { $: 1 },
+  charity: { $: 1 },
+  chase: { $: 1 },
+  chat: { $: 1 },
+  cheap: { $: 1 },
+  chintai: { $: 1 },
+  christmas: { $: 1 },
+  chrome: { $: 1 },
+  chrysler: { $: 1 },
+  church: { $: 1 },
+  cipriani: { $: 1 },
+  circle: { $: 1 },
+  cisco: { $: 1 },
+  citadel: { $: 1 },
+  citi: { $: 1 },
+  citic: { $: 1 },
+  city: { $: 1 },
+  cityeats: { $: 1 },
+  claims: { $: 1 },
+  cleaning: { $: 1 },
+  click: { $: 1 },
+  clinic: { $: 1 },
+  clinique: { $: 1 },
+  clothing: { $: 1 },
+  cloud: {
+    $: 1,
+    statics: { '*': { $: 2 } },
+    linkyard: { $: 2 },
+    magentosite: { '*': { $: 2 } },
+    vapor: { $: 2 },
+    sensiosite: { '*': { $: 2 } },
+    trafficplex: { $: 2 },
+  },
+  club: { $: 1, cloudns: { $: 2 }, barsy: { $: 2 } },
+  clubmed: { $: 1 },
+  coach: { $: 1 },
+  codes: { $: 1 },
+  coffee: { $: 1 },
+  college: { $: 1 },
+  cologne: { $: 1 },
+  comcast: { $: 1 },
+  commbank: { $: 1 },
+  community: { $: 1, ravendb: { $: 2 } },
+  company: { $: 1 },
+  compare: { $: 1 },
+  computer: { $: 1 },
+  comsec: { $: 1 },
+  condos: { $: 1 },
+  construction: { $: 1 },
+  consulting: { $: 1 },
+  contact: { $: 1 },
+  contractors: { $: 1 },
+  cooking: { $: 1 },
+  cookingchannel: { $: 1 },
+  cool: { $: 1, de: { $: 2 } },
+  corsica: { $: 1 },
+  country: { $: 1 },
+  coupon: { $: 1 },
+  coupons: { $: 1 },
+  courses: { $: 1 },
+  credit: { $: 1 },
+  creditcard: { $: 1 },
+  creditunion: { $: 1 },
+  cricket: { $: 1 },
+  crown: { $: 1 },
+  crs: { $: 1 },
+  cruise: { $: 1 },
+  cruises: { $: 1 },
+  csc: { $: 1 },
+  cuisinella: { $: 1 },
+  cymru: { $: 1 },
+  cyou: { $: 1 },
+  dabur: { $: 1 },
+  dad: { $: 1 },
+  dance: { $: 1 },
+  data: { $: 1 },
+  date: { $: 1 },
+  dating: { $: 1 },
+  datsun: { $: 1 },
+  day: { $: 1 },
+  dclk: { $: 1 },
+  dds: { $: 1 },
+  deal: { $: 1 },
+  dealer: { $: 1 },
+  deals: { $: 1 },
+  degree: { $: 1 },
+  delivery: { $: 1 },
+  dell: { $: 1 },
+  deloitte: { $: 1 },
+  delta: { $: 1 },
+  democrat: { $: 1 },
+  dental: { $: 1 },
+  dentist: { $: 1 },
+  desi: { $: 1 },
+  design: { $: 1 },
+  dev: { $: 1 },
+  dhl: { $: 1 },
+  diamonds: { $: 1 },
+  diet: { $: 1 },
+  digital: { $: 1 },
+  direct: { $: 1, fastpanel: { $: 2 } },
+  directory: { $: 1 },
+  discount: { $: 1 },
+  discover: { $: 1 },
+  dish: { $: 1 },
+  diy: { $: 1 },
+  dnp: { $: 1 },
+  docs: { $: 1 },
+  doctor: { $: 1 },
+  dodge: { $: 1 },
+  dog: { $: 1 },
+  doha: { $: 1 },
+  domains: { $: 1 },
+  dot: { $: 1 },
+  download: { $: 1 },
+  drive: { $: 1 },
+  dtv: { $: 1 },
+  dubai: { $: 1 },
+  duck: { $: 1 },
+  dunlop: { $: 1 },
+  duns: { $: 1 },
+  dupont: { $: 1 },
+  durban: { $: 1 },
+  dvag: { $: 1 },
+  dvr: { $: 1 },
+  earth: { $: 1 },
+  eat: { $: 1 },
+  eco: { $: 1 },
+  edeka: { $: 1 },
+  education: { $: 1 },
+  email: { $: 1 },
+  emerck: { $: 1 },
+  energy: { $: 1 },
+  engineer: { $: 1 },
+  engineering: { $: 1 },
+  enterprises: { $: 1 },
+  epost: { $: 1 },
+  epson: { $: 1 },
+  equipment: { $: 1 },
+  ericsson: { $: 1 },
+  erni: { $: 1 },
+  esq: { $: 1 },
+  estate: { $: 1, compute: { '*': { $: 2 } } },
+  esurance: { $: 1 },
+  etisalat: { $: 1 },
+  eurovision: { $: 1 },
+  eus: { $: 1, party: { user: { $: 2 } } },
+  events: { $: 1 },
+  everbank: { $: 1 },
+  exchange: { $: 1 },
+  expert: { $: 1 },
+  exposed: { $: 1 },
+  express: { $: 1 },
+  extraspace: { $: 1 },
+  fage: { $: 1 },
+  fail: { $: 1 },
+  fairwinds: { $: 1 },
+  faith: { $: 1, ybo: { $: 2 } },
+  family: { $: 1 },
+  fan: { $: 1 },
+  fans: { $: 1 },
+  farm: { $: 1, storj: { $: 2 } },
+  farmers: { $: 1 },
+  fashion: { $: 1 },
+  fast: { $: 1 },
+  fedex: { $: 1 },
+  feedback: { $: 1 },
+  ferrari: { $: 1 },
+  ferrero: { $: 1 },
+  fiat: { $: 1 },
+  fidelity: { $: 1 },
+  fido: { $: 1 },
+  film: { $: 1 },
+  final: { $: 1 },
+  finance: { $: 1 },
+  financial: { $: 1 },
+  fire: { $: 1 },
+  firestone: { $: 1 },
+  firmdale: { $: 1 },
+  fish: { $: 1 },
+  fishing: { $: 1 },
+  fit: { $: 1, ptplus: { $: 2 } },
+  fitness: { $: 1 },
+  flickr: { $: 1 },
+  flights: { $: 1 },
+  flir: { $: 1 },
+  florist: { $: 1 },
+  flowers: { $: 1 },
+  fly: { $: 1 },
+  foo: { $: 1 },
+  food: { $: 1 },
+  foodnetwork: { $: 1 },
+  football: { $: 1 },
+  ford: { $: 1 },
+  forex: { $: 1 },
+  forsale: { $: 1 },
+  forum: { $: 1 },
+  foundation: { $: 1 },
+  fox: { $: 1 },
+  free: { $: 1 },
+  fresenius: { $: 1 },
+  frl: { $: 1 },
+  frogans: { $: 1 },
+  frontdoor: { $: 1 },
+  frontier: { $: 1 },
+  ftr: { $: 1 },
+  fujitsu: { $: 1 },
+  fujixerox: { $: 1 },
+  fun: { $: 1 },
+  fund: { $: 1 },
+  furniture: { $: 1 },
+  futbol: { $: 1 },
+  fyi: { $: 1 },
+  gal: { $: 1 },
+  gallery: { $: 1 },
+  gallo: { $: 1 },
+  gallup: { $: 1 },
+  game: { $: 1 },
+  games: { $: 1 },
+  gap: { $: 1 },
+  garden: { $: 1 },
+  gbiz: { $: 1 },
+  gdn: { $: 1, cnpy: { $: 2 } },
+  gea: { $: 1 },
+  gent: { $: 1 },
+  genting: { $: 1 },
+  george: { $: 1 },
+  ggee: { $: 1 },
+  gift: { $: 1 },
+  gifts: { $: 1 },
+  gives: { $: 1 },
+  giving: { $: 1 },
+  glade: { $: 1 },
+  glass: { $: 1 },
+  gle: { $: 1 },
+  global: { $: 1 },
+  globo: { $: 1 },
+  gmail: { $: 1 },
+  gmbh: { $: 1 },
+  gmo: { $: 1 },
+  gmx: { $: 1 },
+  godaddy: { $: 1 },
+  gold: { $: 1 },
+  goldpoint: { $: 1 },
+  golf: { $: 1 },
+  goo: { $: 1 },
+  goodyear: { $: 1 },
+  goog: { $: 1, cloud: { $: 2 } },
+  google: { $: 1 },
+  gop: { $: 1 },
+  got: { $: 1 },
+  grainger: { $: 1 },
+  graphics: { $: 1 },
+  gratis: { $: 1 },
+  green: { $: 1 },
+  gripe: { $: 1 },
+  grocery: { $: 1 },
+  group: { $: 1 },
+  guardian: { $: 1 },
+  gucci: { $: 1 },
+  guge: { $: 1 },
+  guide: { $: 1 },
+  guitars: { $: 1 },
+  guru: { $: 1 },
+  hair: { $: 1 },
+  hamburg: { $: 1 },
+  hangout: { $: 1 },
+  haus: { $: 1 },
+  hbo: { $: 1 },
+  hdfc: { $: 1 },
+  hdfcbank: { $: 1 },
+  health: { $: 1 },
+  healthcare: { $: 1 },
+  help: { $: 1 },
+  helsinki: { $: 1 },
+  here: { $: 1 },
+  hermes: { $: 1 },
+  hgtv: { $: 1 },
+  hiphop: { $: 1 },
+  hisamitsu: { $: 1 },
+  hitachi: { $: 1 },
+  hiv: { $: 1 },
+  hkt: { $: 1 },
+  hockey: { $: 1 },
+  holdings: { $: 1 },
+  holiday: { $: 1 },
+  homedepot: { $: 1 },
+  homegoods: { $: 1 },
+  homes: { $: 1 },
+  homesense: { $: 1 },
+  honda: { $: 1 },
+  honeywell: { $: 1 },
+  horse: { $: 1 },
+  hospital: { $: 1 },
+  host: {
+    $: 1,
+    cloudaccess: { $: 2 },
+    freesite: { $: 2 },
+    pcloud: { $: 2 },
+    half: { $: 2 },
+  },
+  hosting: { $: 1, opencraft: { $: 2 } },
+  hot: { $: 1 },
+  hoteles: { $: 1 },
+  hotels: { $: 1 },
+  hotmail: { $: 1 },
+  house: { $: 1 },
+  how: { $: 1 },
+  hsbc: { $: 1 },
+  hughes: { $: 1 },
+  hyatt: { $: 1 },
+  hyundai: { $: 1 },
+  ibm: { $: 1 },
+  icbc: { $: 1 },
+  ice: { $: 1 },
+  icu: { $: 1 },
+  ieee: { $: 1 },
+  ifm: { $: 1 },
+  ikano: { $: 1 },
+  imamat: { $: 1 },
+  imdb: { $: 1 },
+  immo: { $: 1 },
+  immobilien: { $: 1 },
+  inc: { $: 1 },
+  industries: { $: 1 },
+  infiniti: { $: 1 },
+  ing: { $: 1 },
+  ink: { $: 1 },
+  institute: { $: 1 },
+  insurance: { $: 1 },
+  insure: { $: 1 },
+  intel: { $: 1 },
+  international: { $: 1 },
+  intuit: { $: 1 },
+  investments: { $: 1 },
+  ipiranga: { $: 1 },
+  irish: { $: 1 },
+  iselect: { $: 1 },
+  ismaili: { $: 1 },
+  ist: { $: 1 },
+  istanbul: { $: 1 },
+  itau: { $: 1 },
+  itv: { $: 1 },
+  iveco: { $: 1 },
+  jaguar: { $: 1 },
+  java: { $: 1 },
+  jcb: { $: 1 },
+  jcp: { $: 1 },
+  jeep: { $: 1 },
+  jetzt: { $: 1 },
+  jewelry: { $: 1 },
+  jio: { $: 1 },
+  jll: { $: 1 },
+  jmp: { $: 1 },
+  jnj: { $: 1 },
+  joburg: { $: 1 },
+  jot: { $: 1 },
+  joy: { $: 1 },
+  jpmorgan: { $: 1 },
+  jprs: { $: 1 },
+  juegos: { $: 1 },
+  juniper: { $: 1 },
+  kaufen: { $: 1 },
+  kddi: { $: 1 },
+  kerryhotels: { $: 1 },
+  kerrylogistics: { $: 1 },
+  kerryproperties: { $: 1 },
+  kfh: { $: 1 },
+  kia: { $: 1 },
+  kim: { $: 1 },
+  kinder: { $: 1 },
+  kindle: { $: 1 },
+  kitchen: { $: 1 },
+  kiwi: { $: 1 },
+  koeln: { $: 1 },
+  komatsu: { $: 1 },
+  kosher: { $: 1 },
+  kpmg: { $: 1 },
+  kpn: { $: 1 },
+  krd: { $: 1, co: { $: 2 }, edu: { $: 2 } },
+  kred: { $: 1 },
+  kuokgroup: { $: 1 },
+  kyoto: { $: 1 },
+  lacaixa: { $: 1 },
+  ladbrokes: { $: 1 },
+  lamborghini: { $: 1 },
+  lamer: { $: 1 },
+  lancaster: { $: 1 },
+  lancia: { $: 1 },
+  lancome: { $: 1 },
+  land: { $: 1, static: { $: 2, dev: { $: 2 }, sites: { $: 2 } } },
+  landrover: { $: 1 },
+  lanxess: { $: 1 },
+  lasalle: { $: 1 },
+  lat: { $: 1 },
+  latino: { $: 1 },
+  latrobe: { $: 1 },
+  law: { $: 1 },
+  lawyer: { $: 1 },
+  lds: { $: 1 },
+  lease: { $: 1 },
+  leclerc: { $: 1 },
+  lefrak: { $: 1 },
+  legal: { $: 1 },
+  lego: { $: 1 },
+  lexus: { $: 1 },
+  lgbt: { $: 1 },
+  liaison: { $: 1 },
+  lidl: { $: 1 },
+  life: { $: 1 },
+  lifeinsurance: { $: 1 },
+  lifestyle: { $: 1 },
+  lighting: { $: 1 },
+  like: { $: 1 },
+  lilly: { $: 1 },
+  limited: { $: 1 },
+  limo: { $: 1 },
+  lincoln: { $: 1 },
+  linde: { $: 1 },
+  link: { $: 1, cyon: { $: 2 }, mypep: { $: 2 } },
+  lipsy: { $: 1 },
+  live: { $: 1 },
+  living: { $: 1 },
+  lixil: { $: 1 },
+  llc: { $: 1 },
+  loan: { $: 1 },
+  loans: { $: 1 },
+  locker: { $: 1 },
+  locus: { $: 1 },
+  loft: { $: 1 },
+  lol: { $: 1 },
+  london: { $: 1 },
+  lotte: { $: 1 },
+  lotto: { $: 1 },
+  love: { $: 1 },
+  lpl: { $: 1 },
+  lplfinancial: { $: 1 },
+  ltd: { $: 1 },
+  ltda: { $: 1 },
+  lundbeck: { $: 1 },
+  lupin: { $: 1 },
+  luxe: { $: 1 },
+  luxury: { $: 1 },
+  macys: { $: 1 },
+  madrid: { $: 1 },
+  maif: { $: 1 },
+  maison: { $: 1 },
+  makeup: { $: 1 },
+  man: { $: 1 },
+  management: { $: 1, router: { $: 2 } },
+  mango: { $: 1 },
+  map: { $: 1 },
+  market: { $: 1 },
+  marketing: { $: 1 },
+  markets: { $: 1 },
+  marriott: { $: 1 },
+  marshalls: { $: 1 },
+  maserati: { $: 1 },
+  mattel: { $: 1 },
+  mba: { $: 1 },
+  mckinsey: { $: 1 },
+  med: { $: 1 },
+  media: { $: 1 },
+  meet: { $: 1 },
+  melbourne: { $: 1 },
+  meme: { $: 1 },
+  memorial: { $: 1 },
+  men: { $: 1 },
+  menu: { $: 1, barsy: { $: 2 } },
+  merckmsd: { $: 1 },
+  metlife: { $: 1 },
+  miami: { $: 1 },
+  microsoft: { $: 1 },
+  mini: { $: 1 },
+  mint: { $: 1 },
+  mit: { $: 1 },
+  mitsubishi: { $: 1 },
+  mlb: { $: 1 },
+  mls: { $: 1 },
+  mma: { $: 1 },
+  mobile: { $: 1 },
+  mobily: { $: 1 },
+  moda: { $: 1 },
+  moe: { $: 1 },
+  moi: { $: 1 },
+  mom: { $: 1 },
+  monash: { $: 1 },
+  money: { $: 1 },
+  monster: { $: 1 },
+  mopar: { $: 1 },
+  mormon: { $: 1 },
+  mortgage: { $: 1 },
+  moscow: { $: 1 },
+  moto: { $: 1 },
+  motorcycles: { $: 1 },
+  mov: { $: 1 },
+  movie: { $: 1 },
+  movistar: { $: 1 },
+  msd: { $: 1 },
+  mtn: { $: 1 },
+  mtr: { $: 1 },
+  mutual: { $: 1 },
+  nab: { $: 1 },
+  nadex: { $: 1 },
+  nagoya: { $: 1 },
+  nationwide: { $: 1 },
+  natura: { $: 1 },
+  navy: { $: 1 },
+  nba: { $: 1 },
+  nec: { $: 1 },
+  netbank: { $: 1 },
+  netflix: { $: 1 },
+  network: { $: 1, alces: { '*': { $: 2 } } },
+  neustar: { $: 1 },
+  new: { $: 1 },
+  newholland: { $: 1 },
+  news: { $: 1 },
+  next: { $: 1 },
+  nextdirect: { $: 1 },
+  nexus: { $: 1 },
+  nfl: { $: 1 },
+  ngo: { $: 1 },
+  nhk: { $: 1 },
+  nico: { $: 1 },
+  nike: { $: 1 },
+  nikon: { $: 1 },
+  ninja: { $: 1 },
+  nissan: { $: 1 },
+  nissay: { $: 1 },
+  nokia: { $: 1 },
+  northwesternmutual: { $: 1 },
+  norton: { $: 1 },
+  now: { $: 1 },
+  nowruz: { $: 1 },
+  nowtv: { $: 1 },
+  nra: { $: 1 },
+  nrw: { $: 1 },
+  ntt: { $: 1 },
+  nyc: { $: 1 },
+  obi: { $: 1 },
+  observer: { $: 1 },
+  off: { $: 1 },
+  office: { $: 1 },
+  okinawa: { $: 1 },
+  olayan: { $: 1 },
+  olayangroup: { $: 1 },
+  oldnavy: { $: 1 },
+  ollo: { $: 1 },
+  omega: { $: 1 },
+  one: { $: 1, homelink: { $: 2 } },
+  ong: { $: 1 },
+  onl: { $: 1 },
+  online: { $: 1, barsy: { $: 2 } },
+  onyourside: { $: 1 },
+  ooo: { $: 1 },
+  open: { $: 1 },
+  oracle: { $: 1 },
+  orange: { $: 1 },
+  organic: { $: 1 },
+  origins: { $: 1 },
+  osaka: { $: 1 },
+  otsuka: { $: 1 },
+  ott: { $: 1 },
+  ovh: { $: 1, nerdpol: { $: 2 } },
+  page: { $: 1 },
+  panasonic: { $: 1 },
+  paris: { $: 1 },
+  pars: { $: 1 },
+  partners: { $: 1 },
+  parts: { $: 1 },
+  party: { $: 1, ybo: { $: 2 } },
+  passagens: { $: 1 },
+  pay: { $: 1 },
+  pccw: { $: 1 },
+  pet: { $: 1 },
+  pfizer: { $: 1 },
+  pharmacy: { $: 1 },
+  phd: { $: 1 },
+  philips: { $: 1 },
+  phone: { $: 1 },
+  photo: { $: 1 },
+  photography: { $: 1 },
+  photos: { $: 1 },
+  physio: { $: 1 },
+  piaget: { $: 1 },
+  pics: { $: 1 },
+  pictet: { $: 1 },
+  pictures: { '1337': { $: 2 }, $: 1 },
+  pid: { $: 1 },
+  pin: { $: 1 },
+  ping: { $: 1 },
+  pink: { $: 1 },
+  pioneer: { $: 1 },
+  pizza: { $: 1 },
+  place: { $: 1 },
+  play: { $: 1 },
+  playstation: { $: 1 },
+  plumbing: { $: 1 },
+  plus: { $: 1 },
+  pnc: { $: 1 },
+  pohl: { $: 1 },
+  poker: { $: 1 },
+  politie: { $: 1 },
+  porn: { $: 1 },
+  pramerica: { $: 1 },
+  praxi: { $: 1 },
+  press: { $: 1 },
+  prime: { $: 1 },
+  prod: { $: 1 },
+  productions: { $: 1 },
+  prof: { $: 1 },
+  progressive: { $: 1 },
+  promo: { $: 1 },
+  properties: { $: 1 },
+  property: { $: 1 },
+  protection: { $: 1 },
+  pru: { $: 1 },
+  prudential: { $: 1 },
+  pub: { $: 1, barsy: { $: 2 } },
+  pwc: { $: 1 },
+  qpon: { $: 1 },
+  quebec: { $: 1 },
+  quest: { $: 1 },
+  qvc: { $: 1 },
+  racing: { $: 1 },
+  radio: { $: 1 },
+  raid: { $: 1 },
+  read: { $: 1 },
+  realestate: { $: 1 },
+  realtor: { $: 1 },
+  realty: { $: 1 },
+  recipes: { $: 1 },
+  red: { $: 1 },
+  redstone: { $: 1 },
+  redumbrella: { $: 1 },
+  rehab: { $: 1 },
+  reise: { $: 1 },
+  reisen: { $: 1 },
+  reit: { $: 1 },
+  reliance: { $: 1 },
+  ren: { $: 1 },
+  rent: { $: 1 },
+  rentals: { $: 1 },
+  repair: { $: 1 },
+  report: { $: 1 },
+  republican: { $: 1 },
+  rest: { $: 1 },
+  restaurant: { $: 1 },
+  review: { $: 1, ybo: { $: 2 } },
+  reviews: { $: 1 },
+  rexroth: { $: 1 },
+  rich: { $: 1 },
+  richardli: { $: 1 },
+  ricoh: { $: 1 },
+  rightathome: { $: 1 },
+  ril: { $: 1 },
+  rio: { $: 1 },
+  rip: { $: 1, clan: { $: 2 } },
+  rmit: { $: 1 },
+  rocher: { $: 1 },
+  rocks: { $: 1, myddns: { $: 2 }, 'lima-city': { $: 2 }, webspace: { $: 2 } },
+  rodeo: { $: 1 },
+  rogers: { $: 1 },
+  room: { $: 1 },
+  rsvp: { $: 1 },
+  rugby: { $: 1 },
+  ruhr: { $: 1 },
+  run: { $: 1, development: { $: 2 }, ravendb: { $: 2 } },
+  rwe: { $: 1 },
+  ryukyu: { $: 1 },
+  saarland: { $: 1 },
+  safe: { $: 1 },
+  safety: { $: 1 },
+  sakura: { $: 1 },
+  sale: { $: 1 },
+  salon: { $: 1 },
+  samsclub: { $: 1 },
+  samsung: { $: 1 },
+  sandvik: { $: 1 },
+  sandvikcoromant: { $: 1 },
+  sanofi: { $: 1 },
+  sap: { $: 1 },
+  sarl: { $: 1 },
+  sas: { $: 1 },
+  save: { $: 1 },
+  saxo: { $: 1 },
+  sbi: { $: 1 },
+  sbs: { $: 1 },
+  sca: { $: 1 },
+  scb: { $: 1 },
+  schaeffler: { $: 1 },
+  schmidt: { $: 1 },
+  scholarships: { $: 1 },
+  school: { $: 1 },
+  schule: { $: 1 },
+  schwarz: { $: 1 },
+  science: { $: 1, ybo: { $: 2 } },
+  scjohnson: { $: 1 },
+  scor: { $: 1 },
+  scot: { $: 1 },
+  search: { $: 1 },
+  seat: { $: 1 },
+  secure: { $: 1 },
+  security: { $: 1 },
+  seek: { $: 1 },
+  select: { $: 1 },
+  sener: { $: 1 },
+  services: { $: 1 },
+  ses: { $: 1 },
+  seven: { $: 1 },
+  sew: { $: 1 },
+  sex: { $: 1 },
+  sexy: { $: 1 },
+  sfr: { $: 1 },
+  shangrila: { $: 1 },
+  sharp: { $: 1 },
+  shaw: { $: 1 },
+  shell: { $: 1 },
+  shia: { $: 1 },
+  shiksha: { $: 1 },
+  shoes: { $: 1 },
+  shop: { $: 1, barsy: { $: 2 } },
+  shopping: { $: 1 },
+  shouji: { $: 1 },
+  show: { $: 1 },
+  showtime: { $: 1 },
+  shriram: { $: 1 },
+  silk: { $: 1 },
+  sina: { $: 1 },
+  singles: { $: 1 },
+  site: {
+    $: 1,
+    cyon: { $: 2 },
+    barsy: { $: 2 },
+    platformsh: { '*': { $: 2 } },
+    byen: { $: 2 },
+  },
+  ski: { $: 1 },
+  skin: { $: 1 },
+  sky: { $: 1 },
+  skype: { $: 1 },
+  sling: { $: 1 },
+  smart: { $: 1 },
+  smile: { $: 1 },
+  sncf: { $: 1 },
+  soccer: { $: 1 },
+  social: { $: 1 },
+  softbank: { $: 1 },
+  software: { $: 1 },
+  sohu: { $: 1 },
+  solar: { $: 1 },
+  solutions: { $: 1 },
+  song: { $: 1 },
+  sony: { $: 1 },
+  soy: { $: 1 },
+  space: { $: 1, linkitools: { $: 2 }, uber: { $: 2 }, xs4all: { $: 2 } },
+  spiegel: { $: 1 },
+  sport: { $: 1 },
+  spot: { $: 1 },
+  spreadbetting: { $: 1 },
+  srl: { $: 1 },
+  srt: { $: 1 },
+  stada: { $: 1 },
+  staples: { $: 1 },
+  star: { $: 1 },
+  starhub: { $: 1 },
+  statebank: { $: 1 },
+  statefarm: { $: 1 },
+  stc: { $: 1 },
+  stcgroup: { $: 1 },
+  stockholm: { $: 1 },
+  storage: { $: 1 },
+  store: { $: 1 },
+  stream: { $: 1 },
+  studio: { $: 1 },
+  study: { $: 1 },
+  style: { $: 1 },
+  sucks: { $: 1 },
+  supplies: { $: 1 },
+  supply: { $: 1 },
+  support: { $: 1, barsy: { $: 2 } },
+  surf: { $: 1 },
+  surgery: { $: 1 },
+  suzuki: { $: 1 },
+  swatch: { $: 1 },
+  swiftcover: { $: 1 },
+  swiss: { $: 1 },
+  sydney: { $: 1 },
+  symantec: { $: 1 },
+  systems: { $: 1, knightpoint: { $: 2 } },
+  tab: { $: 1 },
+  taipei: { $: 1 },
+  talk: { $: 1 },
+  taobao: { $: 1 },
+  target: { $: 1 },
+  tatamotors: { $: 1 },
+  tatar: { $: 1 },
+  tattoo: { $: 1 },
+  tax: { $: 1 },
+  taxi: { $: 1 },
+  tci: { $: 1 },
+  tdk: { $: 1 },
+  team: { $: 1 },
+  tech: { $: 1 },
+  technology: { $: 1 },
+  telefonica: { $: 1 },
+  temasek: { $: 1 },
+  tennis: { $: 1 },
+  teva: { $: 1 },
+  thd: { $: 1 },
+  theater: { $: 1 },
+  theatre: { $: 1 },
+  tiaa: { $: 1 },
+  tickets: { $: 1 },
+  tienda: { $: 1 },
+  tiffany: { $: 1 },
+  tips: { $: 1 },
+  tires: { $: 1 },
+  tirol: { $: 1 },
+  tjmaxx: { $: 1 },
+  tjx: { $: 1 },
+  tkmaxx: { $: 1 },
+  tmall: { $: 1 },
+  today: { $: 1 },
+  tokyo: { $: 1 },
+  tools: { $: 1 },
+  top: { $: 1, 'now-dns': { $: 2 }, ntdll: { $: 2 } },
+  toray: { $: 1 },
+  toshiba: { $: 1 },
+  total: { $: 1 },
+  tours: { $: 1 },
+  town: { $: 1 },
+  toyota: { $: 1 },
+  toys: { $: 1 },
+  trade: { $: 1, ybo: { $: 2 } },
+  trading: { $: 1 },
+  training: { $: 1 },
+  travel: { $: 1 },
+  travelchannel: { $: 1 },
+  travelers: { $: 1 },
+  travelersinsurance: { $: 1 },
+  trust: { $: 1 },
+  trv: { $: 1 },
+  tube: { $: 1 },
+  tui: { $: 1 },
+  tunes: { $: 1 },
+  tushu: { $: 1 },
+  tvs: { $: 1 },
+  ubank: { $: 1 },
+  ubs: { $: 1 },
+  uconnect: { $: 1 },
+  unicom: { $: 1 },
+  university: { $: 1 },
+  uno: { $: 1 },
+  uol: { $: 1 },
+  ups: { $: 1 },
+  vacations: { $: 1 },
+  vana: { $: 1 },
+  vanguard: { $: 1 },
+  vegas: { $: 1 },
+  ventures: { $: 1 },
+  verisign: { $: 1 },
+  versicherung: { $: 1 },
+  vet: { $: 1 },
+  viajes: { $: 1 },
+  video: { $: 1 },
+  vig: { $: 1 },
+  viking: { $: 1 },
+  villas: { $: 1 },
+  vin: { $: 1 },
+  vip: { $: 1 },
+  virgin: { $: 1 },
+  visa: { $: 1 },
+  vision: { $: 1 },
+  vistaprint: { $: 1 },
+  viva: { $: 1 },
+  vivo: { $: 1 },
+  vlaanderen: { $: 1 },
+  vodka: { $: 1 },
+  volkswagen: { $: 1 },
+  volvo: { $: 1 },
+  vote: { $: 1 },
+  voting: { $: 1 },
+  voto: { $: 1 },
+  voyage: { $: 1 },
+  vuelos: { $: 1 },
+  wales: { $: 1 },
+  walmart: { $: 1 },
+  walter: { $: 1 },
+  wang: { $: 1 },
+  wanggou: { $: 1 },
+  warman: { $: 1 },
+  watch: { $: 1 },
+  watches: { $: 1 },
+  weather: { $: 1 },
+  weatherchannel: { $: 1 },
+  webcam: { $: 1 },
+  weber: { $: 1 },
+  website: { $: 1 },
+  wed: { $: 1 },
+  wedding: { $: 1 },
+  weibo: { $: 1 },
+  weir: { $: 1 },
+  whoswho: { $: 1 },
+  wien: { $: 1 },
+  wiki: { $: 1 },
+  williamhill: { $: 1 },
+  win: { $: 1 },
+  windows: { $: 1 },
+  wine: { $: 1 },
+  winners: { $: 1 },
+  wme: { $: 1 },
+  wolterskluwer: { $: 1 },
+  woodside: { $: 1 },
+  work: { $: 1 },
+  works: { $: 1 },
+  world: { $: 1 },
+  wow: { $: 1 },
+  wtc: { $: 1 },
+  wtf: { $: 1 },
+  xbox: { $: 1 },
+  xerox: { $: 1 },
+  xfinity: { $: 1 },
+  xihuan: { $: 1 },
+  xin: { $: 1 },
+  'xn--11b4c3d': { $: 1 },
+  'xn--1ck2e1b': { $: 1 },
+  'xn--1qqw23a': { $: 1 },
+  'xn--30rr7y': { $: 1 },
+  'xn--3bst00m': { $: 1 },
+  'xn--3ds443g': { $: 1 },
+  'xn--3oq18vl8pn36a': { $: 1 },
+  'xn--3pxu8k': { $: 1 },
+  'xn--42c2d9a': { $: 1 },
+  'xn--45q11c': { $: 1 },
+  'xn--4gbrim': { $: 1 },
+  'xn--55qw42g': { $: 1 },
+  'xn--55qx5d': { $: 1 },
+  'xn--5su34j936bgsg': { $: 1 },
+  'xn--5tzm5g': { $: 1 },
+  'xn--6frz82g': { $: 1 },
+  'xn--6qq986b3xl': { $: 1 },
+  'xn--80adxhks': { $: 1 },
+  'xn--80aqecdr1a': { $: 1 },
+  'xn--80asehdb': { $: 1 },
+  'xn--80aswg': { $: 1 },
+  'xn--8y0a063a': { $: 1 },
+  'xn--9dbq2a': { $: 1 },
+  'xn--9et52u': { $: 1 },
+  'xn--9krt00a': { $: 1 },
+  'xn--b4w605ferd': { $: 1 },
+  'xn--bck1b9a5dre4c': { $: 1 },
+  'xn--c1avg': { $: 1 },
+  'xn--c2br7g': { $: 1 },
+  'xn--cck2b3b': { $: 1 },
+  'xn--cg4bki': { $: 1 },
+  'xn--czr694b': { $: 1 },
+  'xn--czrs0t': { $: 1 },
+  'xn--czru2d': { $: 1 },
+  'xn--d1acj3b': { $: 1 },
+  'xn--eckvdtc9d': { $: 1 },
+  'xn--efvy88h': { $: 1 },
+  'xn--estv75g': { $: 1 },
+  'xn--fct429k': { $: 1 },
+  'xn--fhbei': { $: 1 },
+  'xn--fiq228c5hs': { $: 1 },
+  'xn--fiq64b': { $: 1 },
+  'xn--fjq720a': { $: 1 },
+  'xn--flw351e': { $: 1 },
+  'xn--fzys8d69uvgm': { $: 1 },
+  'xn--g2xx48c': { $: 1 },
+  'xn--gckr3f0f': { $: 1 },
+  'xn--gk3at1e': { $: 1 },
+  'xn--hxt814e': { $: 1 },
+  'xn--i1b6b1a6a2e': { $: 1 },
+  'xn--imr513n': { $: 1 },
+  'xn--io0a7i': { $: 1 },
+  'xn--j1aef': { $: 1 },
+  'xn--jlq61u9w7b': { $: 1 },
+  'xn--jvr189m': { $: 1 },
+  'xn--kcrx77d1x4a': { $: 1 },
+  'xn--kpu716f': { $: 1 },
+  'xn--kput3i': { $: 1 },
+  'xn--mgba3a3ejt': { $: 1 },
+  'xn--mgba7c0bbn0a': { $: 1 },
+  'xn--mgbaakc7dvf': { $: 1 },
+  'xn--mgbab2bd': { $: 1 },
+  'xn--mgbb9fbpob': { $: 1 },
+  'xn--mgbca7dzdo': { $: 1 },
+  'xn--mgbi4ecexp': { $: 1 },
+  'xn--mgbt3dhd': { $: 1 },
+  'xn--mk1bu44c': { $: 1 },
+  'xn--mxtq1m': { $: 1 },
+  'xn--ngbc5azd': { $: 1 },
+  'xn--ngbe9e0a': { $: 1 },
+  'xn--ngbrx': { $: 1 },
+  'xn--nqv7f': { $: 1 },
+  'xn--nqv7fs00ema': { $: 1 },
+  'xn--nyqy26a': { $: 1 },
+  'xn--otu796d': { $: 1 },
+  'xn--p1acf': { $: 1 },
+  'xn--pbt977c': { $: 1 },
+  'xn--pssy2u': { $: 1 },
+  'xn--q9jyb4c': { $: 1 },
+  'xn--qcka1pmc': { $: 1 },
+  'xn--rhqv96g': { $: 1 },
+  'xn--rovu88b': { $: 1 },
+  'xn--ses554g': { $: 1 },
+  'xn--t60b56a': { $: 1 },
+  'xn--tckwe': { $: 1 },
+  'xn--tiq49xqyj': { $: 1 },
+  'xn--unup4y': { $: 1 },
+  'xn--vermgensberater-ctb': { $: 1 },
+  'xn--vermgensberatung-pwb': { $: 1 },
+  'xn--vhquv': { $: 1 },
+  'xn--vuq861b': { $: 1 },
+  'xn--w4r85el8fhu5dnra': { $: 1 },
+  'xn--w4rs40l': { $: 1 },
+  'xn--xhq521b': { $: 1 },
+  'xn--zfr164b': { $: 1 },
+  xyz: {
+    $: 1,
+    blogsite: { $: 2 },
+    fhapp: { $: 2 },
+    crafting: { $: 2 },
+    zapto: { $: 2 },
+  },
+  yachts: { $: 1 },
+  yahoo: { $: 1 },
+  yamaxun: { $: 1 },
+  yandex: { $: 1 },
+  yodobashi: { $: 1 },
+  yoga: { $: 1 },
+  yokohama: { $: 1 },
+  you: { $: 1 },
+  youtube: { $: 1 },
+  yun: { $: 1 },
+  zappos: { $: 1 },
+  zara: { $: 1 },
+  zero: { $: 1 },
+  zip: { $: 1 },
+  zippo: { $: 1 },
+  zone: { $: 1, triton: { '*': { $: 2 } }, lima: { $: 2 } },
+  zuerich: { $: 1 },
+};
+export const exceptions: any = {
+  ck: { www: { $: 1 } },
+  jp: {
+    kawasaki: { city: { $: 1 } },
+    kitakyushu: { city: { $: 1 } },
+    kobe: { city: { $: 1 } },
+    nagoya: { city: { $: 1 } },
+    sapporo: { city: { $: 1 } },
+    sendai: { city: { $: 1 } },
+    yokohama: { city: { $: 1 } },
+  },
+};

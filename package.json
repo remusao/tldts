@@ -1,7 +1,7 @@
 {
   "name": "tldts",
   "description": "Library to work against complex domain names, subdomains and URIs.",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "homepage": "https://github.com/remusao/tldts",
   "author": "Rémi Berson",
   "contributors": [
@@ -28,47 +28,42 @@
   ],
   "license": "MIT",
   "scripts": {
-    "lint": "tslint -c tslint.json 'lib/**/*.ts'",
     "clean": "rm -rfv dist build",
+    "lint": "tslint -c tslint.json 'lib/**/*.ts'",
     "update": "git submodule foreach git pull origin master && node ./bin/update.js",
-    "build": "tsc -p . --module ES6 --outDir build",
-    "bundle": "rollup -c rollup.config.js && google-closure-compiler --js=./dist/tldts.js --js_output_file=./dist/tldts.min.js",
+    "build": "tsc -p .",
+    "prebuild": "npm run clean",
+    "bundle": "rollup -c rollup.config.js",
+    "prebundle": "npm run build",
+    "minify": "google-closure-compiler --js=./dist/tldts.umd.js --js_output_file=./dist/tldts.umd.min.js",
+    "preminify": "npm run bundle",
+    "prepack": "npm run minify",
+    "test": "jest --coverage --no-cache ./test/",
     "benchmark": "./bin/benchmark.js",
-    "test": "jest --coverage",
-    "all": "npm install && npm run update && npm run clean && npm run build && npm run bundle"
-  },
-  "jest": {
-    "globals": {
-      "ts-jest": {
-        "diagnostics": {
-          "warnOnly": true
-        }
-      }
-    },
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "node",
-      "ts"
-    ],
-    "preset": "ts-jest"
+    "prebenchmark": "npm pack"
   },
   "dependencies": {
     "punycode": "^2.1.1"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.2",
-    "@types/node": "^10.11.3",
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.12",
     "benchmark": "^2.1.4",
-    "concurrently": "^4.0.1",
-    "google-closure-compiler": "^20180910.1.0",
+    "concurrently": "^4.1.0",
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "google-closure-compiler": "^20181125.1.0",
     "jest": "^23.6.0",
-    "rollup": "^0.66.3",
-    "rollup-plugin-cleanup": "^3.0.0",
-    "rollup-plugin-node-resolve": "^3.4.0",
-    "ts-jest": "^23.10.3",
+    "prettier": "^1.15.3",
+    "rollup": "^0.67.4",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "ts-jest": "^23.10.5",
     "tslint": "^5.11.0",
-    "typescript": "^3.1.1"
+    "typescript": "^3.2.2"
   },
   "keywords": [
     "tld",

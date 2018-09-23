@@ -1,5 +1,4 @@
 import isIp from '../lib/is-ip';
-import parse from '../lib/parsers/publicsuffix-org';
 import * as tld from '../tldts';
 
 function repeat(str: string, n: number): string {
@@ -35,7 +34,9 @@ describe('tld.js', () => {
       expect(tld.isValidHostname('.google.com')).toEqual(false);
       expect(tld.isValidHostname('google..com')).toEqual(false);
       expect(tld.isValidHostname('google.com..')).toEqual(false);
-      expect(tld.isValidHostname('example.' + repeat('a', 64) + '.')).toEqual(false);
+      expect(tld.isValidHostname('example.' + repeat('a', 64) + '.')).toEqual(
+        false,
+      );
       expect(tld.isValidHostname('example.' + repeat('a', 64))).toEqual(false);
       expect(tld.isValidHostname('googl@.com..')).toEqual(false);
 
@@ -45,12 +46,18 @@ describe('tld.js', () => {
       expect(tld.isValidHostname('google.com')).toEqual(true);
       expect(tld.isValidHostname('miam.google.com')).toEqual(true);
       expect(tld.isValidHostname('miam.miam.google.com')).toEqual(true);
-      expect(tld.isValidHostname('example.' + repeat('a', 63) + '.')).toEqual(true);
+      expect(tld.isValidHostname('example.' + repeat('a', 63) + '.')).toEqual(
+        true,
+      );
       expect(tld.isValidHostname('example.' + repeat('a', 63))).toEqual(true);
 
       // Acceps domains with '_' (validation is not strict by default)
       expect(tld.isValidHostname('foo.bar_baz.com')).toEqual(true);
-      expect(tld.isValidHostname('foo.bar_baz.com', { strictHostnameValidation: true })).toEqual(false);
+      expect(
+        tld.isValidHostname('foo.bar_baz.com', {
+          strictHostnameValidation: true,
+        }),
+      ).toEqual(false);
 
       // @see https://github.com/oncletom/tld.js/issues/95
       expect(tld.isValidHostname('miam.miam.google.com.')).toEqual(true);
@@ -60,7 +67,9 @@ describe('tld.js', () => {
 
       // Unicode
       expect(tld.isValidHostname('mañana.com')).toEqual(true);
-      expect(tld.isValidHostname(String.fromCodePoint(918000) + '.com')).toEqual(false);
+      expect(
+        tld.isValidHostname(String.fromCodePoint(918000) + '.com'),
+      ).toEqual(false);
     });
 
     it('should be falsy on invalid domain syntax', () => {
@@ -71,8 +80,16 @@ describe('tld.js', () => {
 
     it('should accept extra code points in domain with lenien mode', () => {
       // @see https://github.com/oncletom/tld.js/pull/122
-      expect(tld.isValidHostname('foo.bar_baz.com', { strictHostnameValidation: false })).toEqual(true);
-      expect(tld.isValidHostname('foo.bar_baz.com', { strictHostnameValidation: true })).toEqual(false);
+      expect(
+        tld.isValidHostname('foo.bar_baz.com', {
+          strictHostnameValidation: false,
+        }),
+      ).toEqual(true);
+      expect(
+        tld.isValidHostname('foo.bar_baz.com', {
+          strictHostnameValidation: true,
+        }),
+      ).toEqual(false);
     });
   });
 
@@ -123,7 +140,9 @@ describe('tld.js', () => {
       }).not.toThrow();
       expect(() => {
         // @see https://github.com/oncletom/tld.js/issues/53
-        tld.getDomain("http://('4drsteve.com', [], ['54.213.246.177'])/xmlrpc.php");
+        tld.getDomain(
+          "http://('4drsteve.com', [], ['54.213.246.177'])/xmlrpc.php",
+        );
       }).not.toThrow();
       expect(() => {
         // @see https://github.com/oncletom/tld.js/issues/53
@@ -148,8 +167,12 @@ describe('tld.js', () => {
     // @see https://github.com/oncletom/tld.js/issues/30
     it('existing rule constraint', () => {
       expect(tld.getDomain('s3.amazonaws.com')).toEqual('amazonaws.com');
-      expect(tld.getDomain('s3.amazonaws.com', { allowPrivateDomains: true })).toEqual(null);
-      expect(tld.getDomain('blogspot.co.uk', { allowPrivateDomains: true })).toEqual(null);
+      expect(
+        tld.getDomain('s3.amazonaws.com', { allowPrivateDomains: true }),
+      ).toEqual(null);
+      expect(
+        tld.getDomain('blogspot.co.uk', { allowPrivateDomains: true }),
+      ).toEqual(null);
       expect(tld.getDomain('blogspot.co.uk')).toEqual('blogspot.co.uk');
     });
 
@@ -159,7 +182,9 @@ describe('tld.js', () => {
 
     // @see https://github.com/oncletom/tld.js/issues/95
     it('should ignore the trailing dot in a domain', () => {
-      expect(tld.getDomain('https://www.google.co.uk./maps')).toEqual('google.co.uk');
+      expect(tld.getDomain('https://www.google.co.uk./maps')).toEqual(
+        'google.co.uk',
+      );
     });
   });
 
@@ -184,7 +209,9 @@ describe('tld.js', () => {
       });
 
       it('should return s3.amazonaws.com if www.s3.amazonaws.com', () => {
-        expect(getPublicSuffix('www.s3.amazonaws.com')).toEqual('s3.amazonaws.com');
+        expect(getPublicSuffix('www.s3.amazonaws.com')).toEqual(
+          's3.amazonaws.com',
+        );
       });
 
       it('should directly return the suffix if it matches a rule key', () => {
@@ -202,7 +229,9 @@ describe('tld.js', () => {
 
       // @see https://github.com/oncletom/tld.js/issues/95
       it('should ignore the trailing dot in a domain', () => {
-        expect(getPublicSuffix('https://www.google.co.uk./maps')).toEqual('co.uk');
+        expect(getPublicSuffix('https://www.google.co.uk./maps')).toEqual(
+          'co.uk',
+        );
       });
     });
 
@@ -216,7 +245,9 @@ describe('tld.js', () => {
       });
 
       it('should return net if global.prod.fastly.net', () => {
-        expect(getPublicSuffix('https://global.prod.fastly.net')).toEqual('net');
+        expect(getPublicSuffix('https://global.prod.fastly.net')).toEqual(
+          'net',
+        );
       });
 
       it('should return co.uk if google.co.uk', () => {
@@ -226,15 +257,22 @@ describe('tld.js', () => {
 
     describe('ignoring ICANN domains', () => {
       const getPublicSuffix = (url: string) => {
-        return tld.getPublicSuffix(url, { allowIcannDomains: false, allowPrivateDomains: true });
+        return tld.getPublicSuffix(url, {
+          allowIcannDomains: false,
+          allowPrivateDomains: true,
+        });
       };
 
       it('should return s3.amazonaws.com if www.s3.amazonaws.com', () => {
-        expect(getPublicSuffix('www.s3.amazonaws.com')).toEqual('s3.amazonaws.com');
+        expect(getPublicSuffix('www.s3.amazonaws.com')).toEqual(
+          's3.amazonaws.com',
+        );
       });
 
       it('should return global.prod.fastly.net if global.prod.fastly.net', () => {
-        expect(getPublicSuffix('https://global.prod.fastly.net')).toEqual('global.prod.fastly.net');
+        expect(getPublicSuffix('https://global.prod.fastly.net')).toEqual(
+          'global.prod.fastly.net',
+        );
       });
 
       it('should return co.uk if google.co.uk', () => {
@@ -244,69 +282,131 @@ describe('tld.js', () => {
   });
 
   describe('#getHostname', () => {
+    it('handles space only inputs', () => {
+      expect(tld.getHostname(' ')).toEqual('');
+      expect(tld.getHostname('  ')).toEqual('');
+    });
+
+    it('handles space corner-cases', () => {
+      expect(tld.getHostname(' a')).toEqual('a');
+      expect(tld.getHostname('a ')).toEqual('a');
+      expect(tld.getHostname(' a ')).toEqual('a');
+      expect(tld.getHostname(' a  ')).toEqual('a');
+    });
+
     it('should return a valid hostname as is', () => {
       expect(tld.getHostname(' example.CO.uk ')).toEqual('example.co.uk');
+      expect(tld.getHostname('  example.CO.uk ')).toEqual('example.co.uk');
+      expect(tld.getHostname('  example.CO.uk  ')).toEqual('example.co.uk');
+    });
+
+    it('should strip trailing dots', () => {
+      expect(tld.getHostname('example.co.uk.')).toEqual('example.co.uk');
+      expect(tld.getHostname('example.co.uk..')).toEqual('example.co.uk');
+      expect(tld.getHostname('example.co.uk...')).toEqual('example.co.uk');
     });
 
     it('should return the hostname of a scheme-less URL', () => {
-      expect(tld.getHostname('example.co.uk/some/path?and&query#hash')).toEqual('example.co.uk');
+      expect(tld.getHostname('example.co.uk/some/path?and&query#hash')).toEqual(
+        'example.co.uk',
+      );
     });
 
     it('should return the hostname of a scheme-less + port URL', () => {
-      expect(tld.getHostname('example.co.uk:8080/some/path?and&query#hash')).toEqual('example.co.uk');
+      expect(
+        tld.getHostname('example.co.uk:8080/some/path?and&query#hash'),
+      ).toEqual('example.co.uk');
     });
 
     it('should return the hostname of a scheme-less + authentication URL', () => {
-      expect(tld.getHostname('user:password@example.co.uk/some/path?and&query#hash')).toEqual('example.co.uk');
+      expect(
+        tld.getHostname('user:password@example.co.uk/some/path?and&query#hash'),
+      ).toEqual('example.co.uk');
     });
 
     it('should return the hostname of a scheme-less + passwordless URL', () => {
-      expect(tld.getHostname('user@example.co.uk/some/path?and&query#hash')).toEqual('example.co.uk');
+      expect(
+        tld.getHostname('user@example.co.uk/some/path?and&query#hash'),
+      ).toEqual('example.co.uk');
     });
 
     it('should return the hostname of a scheme-less + authentication + port URL', () => {
-      expect(tld.getHostname('user:password@example.co.uk:8080/some/path?and&query#hash')).toEqual('example.co.uk');
+      expect(
+        tld.getHostname(
+          'user:password@example.co.uk:8080/some/path?and&query#hash',
+        ),
+      ).toEqual('example.co.uk');
     });
 
     it('should return the hostname of a scheme-less + passwordless + port URL', () => {
-      expect(tld.getHostname('user@example.co.uk:8080/some/path?and&query#hash')).toEqual('example.co.uk');
+      expect(
+        tld.getHostname('user@example.co.uk:8080/some/path?and&query#hash'),
+      ).toEqual('example.co.uk');
     });
 
     it('should return the hostname of a user-password same-scheme URL', () => {
-      expect(tld.getHostname('//user:password@example.co.uk:8080/some/path?and&query#hash')).toEqual('example.co.uk');
+      expect(
+        tld.getHostname(
+          '//user:password@example.co.uk:8080/some/path?and&query#hash',
+        ),
+      ).toEqual('example.co.uk');
+      expect(
+        tld.getHostname(
+          '  //user:password@example.co.uk:8080/some/path?and&query#hash',
+        ),
+      ).toEqual('example.co.uk');
     });
 
     it('should return the hostname of a passwordless same-scheme URL', () => {
-      expect(tld.getHostname('//user@example.co.uk:8080/some/path?and&query#hash')).toEqual('example.co.uk');
+      expect(
+        tld.getHostname('//user@example.co.uk:8080/some/path?and&query#hash'),
+      ).toEqual('example.co.uk');
+      expect(
+        tld.getHostname('  //user@example.co.uk:8080/some/path?and&query#hash'),
+      ).toEqual('example.co.uk');
     });
 
     it('should return the hostname of a complex user-password scheme URL', () => {
-      expect(tld.getHostname('git+ssh://user:password@example.co.uk:8080/some/path?and&query#hash')).toEqual('example.co.uk');
+      expect(
+        tld.getHostname(
+          'git+ssh://user:password@example.co.uk:8080/some/path?and&query#hash',
+        ),
+      ).toEqual('example.co.uk');
     });
 
     it('should return the hostname of a complex passwordless scheme URL', () => {
-      expect(tld.getHostname('git+ssh://user@example.co.uk:8080/some/path?and&query#hash')).toEqual('example.co.uk');
+      expect(
+        tld.getHostname(
+          'git+ssh://user@example.co.uk:8080/some/path?and&query#hash',
+        ),
+      ).toEqual('example.co.uk');
     });
 
-    // it('should return the initial value if it is not a valid hostname', () => {
-    //   expect(tld.getHostname(42)).toEqual('42');
-    // });
-
     it('should return www.nytimes.com even with an URL as a parameter', () => {
-      expect(tld.getHostname('http://www.nytimes.com/glogin?URI=http://www.notnytimes.com/2010/03/26/us/politics/26court.html&OQ=_rQ3D1Q26&OP=45263736Q2FKgi!KQ7Dr!K@@@Ko!fQ24KJg(Q3FQ5Cgg!Q60KQ60W.WKWQ22KQ60IKyQ3FKigQ24Q26!Q26(Q3FKQ60I(gyQ5C!Q2Ao!fQ24')).toEqual('www.nytimes.com');
+      expect(
+        tld.getHostname(
+          'http://www.nytimes.com/glogin?URI=http://www.notnytimes.com/2010/03/26/us/politics/26court.html&OQ=_rQ3D1Q26&OP=45263736Q2FKgi!KQ7Dr!K@@@Ko!fQ24KJg(Q3FQ5Cgg!Q60KQ60W.WKWQ22KQ60IKyQ3FKigQ24Q26!Q26(Q3FKQ60I(gyQ5C!Q2Ao!fQ24',
+        ),
+      ).toEqual('www.nytimes.com');
     });
 
     // @see https://github.com/oncletom/tld.js/issues/95
     it('should ignore the trailing dot in a domain', () => {
-      expect(tld.getHostname('http://example.co.uk./some/path?and&query#hash')).toEqual('example.co.uk');
+      expect(
+        tld.getHostname('http://example.co.uk./some/path?and&query#hash'),
+      ).toEqual('example.co.uk');
     });
 
     it('should handle fragment URL', () => {
-      expect(tld.getHostname('http://example.co.uk.#hash')).toEqual('example.co.uk');
+      expect(tld.getHostname('http://example.co.uk.#hash')).toEqual(
+        'example.co.uk',
+      );
     });
 
     it('should handle parameter URL', () => {
-      expect(tld.getHostname('http://example.co.uk.?and&query#hash')).toEqual('example.co.uk');
+      expect(tld.getHostname('http://example.co.uk.?and&query#hash')).toEqual(
+        'example.co.uk',
+      );
     });
 
     it('should detect invalid protocol characters', () => {
@@ -349,7 +449,9 @@ describe('tld.js', () => {
     it('should return the subdomain of a TLD + SLD hostname', () => {
       expect(tld.getSubdomain('love.fukushima.jp')).toEqual('');
       expect(tld.getSubdomain('i.love.fukushima.jp')).toEqual('i');
-      expect(tld.getSubdomain('random.nuclear.strike.co.jp')).toEqual('random.nuclear');
+      expect(tld.getSubdomain('random.nuclear.strike.co.jp')).toEqual(
+        'random.nuclear',
+      );
     });
 
     it('should return the subdomain of a wildcard hostname', () => {
@@ -371,7 +473,9 @@ describe('tld.js', () => {
       }).not.toThrow();
       expect(() => {
         // @see https://github.com/oncletom/tld.js/issues/53
-        tld.getSubdomain("http://('4drsteve.com', [], ['54.213.246.177'])/xmlrpc.php");
+        tld.getSubdomain(
+          "http://('4drsteve.com', [], ['54.213.246.177'])/xmlrpc.php",
+        );
       }).not.toThrow();
       expect(() => {
         // @see https://github.com/oncletom/tld.js/issues/53
@@ -381,7 +485,9 @@ describe('tld.js', () => {
 
     // @see https://github.com/oncletom/tld.js/issues/53
     it('should correctly extract domain from paths including "@" in the path', () => {
-      const domain = tld.getSubdomain('http://cdn.jsdelivr.net/g/jquery@1.8.2,jquery.waypoints@2.0.2,qtip2@2.2.1,typeahead.js@0.9.3,sisyphus@0.1,jquery.slick@1.3.15,fastclick@1.0.3');
+      const domain = tld.getSubdomain(
+        'http://cdn.jsdelivr.net/g/jquery@1.8.2,jquery.waypoints@2.0.2,qtip2@2.2.1,typeahead.js@0.9.3,sisyphus@0.1,jquery.slick@1.3.15,fastclick@1.0.3',
+      );
       expect(domain).toEqual('cdn');
     });
 
@@ -412,15 +518,13 @@ describe('tld.js', () => {
     };
 
     it('should handle ipv6 addresses properly', () => {
-      expect(tld.parse('http://[2001:0db8:85a3:0000:0000:8a2e:0370:7334]')).toEqual(
-        mockResponse('2001:0db8:85a3:0000:0000:8a2e:0370:7334'),
-      );
-      expect(tld.parse('http://user:pass@[::1]/segment/index.html?query#frag')).toEqual(
-        mockResponse('::1'),
-      );
-      expect(tld.parse('https://[::1]')).toEqual(
-        mockResponse('::1'),
-      );
+      expect(
+        tld.parse('http://[2001:0db8:85a3:0000:0000:8a2e:0370:7334]'),
+      ).toEqual(mockResponse('2001:0db8:85a3:0000:0000:8a2e:0370:7334'));
+      expect(
+        tld.parse('http://user:pass@[::1]/segment/index.html?query#frag'),
+      ).toEqual(mockResponse('::1'));
+      expect(tld.parse('https://[::1]')).toEqual(mockResponse('::1'));
       expect(tld.parse('http://[1080::8:800:200C:417A]/foo')).toEqual(
         mockResponse('1080::8:800:200c:417a'),
       );
@@ -445,9 +549,15 @@ describe('tld.js', () => {
 
       it('should return the known valid host', () => {
         expect(tld.getDomain('localhost', options)).toEqual('localhost');
-        expect(tld.getDomain('subdomain.localhost', options)).toEqual('localhost');
-        expect(tld.getDomain('subdomain.notlocalhost', options)).toEqual('subdomain.notlocalhost');
-        expect(tld.getDomain('subdomain.not-localhost', options)).toEqual('subdomain.not-localhost');
+        expect(tld.getDomain('subdomain.localhost', options)).toEqual(
+          'localhost',
+        );
+        expect(tld.getDomain('subdomain.notlocalhost', options)).toEqual(
+          'subdomain.notlocalhost',
+        );
+        expect(tld.getDomain('subdomain.not-localhost', options)).toEqual(
+          'subdomain.not-localhost',
+        );
       });
 
       // @see https://github.com/oncletom/tld.js/issues/66
@@ -461,6 +571,7 @@ describe('tld.js', () => {
     });
   });
 
+  /*
   describe('SuffixTrie', () => {
     it('should ignore empty line', () => {
       const tlds = parse('\n');
@@ -593,4 +704,5 @@ describe('tld.js', () => {
       });
     });
   });
+  */
 });

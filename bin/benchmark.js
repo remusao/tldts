@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
-var path = require('path');
-var Benchmark = require('benchmark');
-var tld = require(path.resolve(__dirname, '../dist/tldts.min.js'));
+const path = require('path');
+const Benchmark = require('benchmark');
+
+const tld = require(path.resolve(__dirname, '../'));
 
 
-var HOSTNAMES = [
+const HOSTNAMES = [
   // No public suffix
   'example.foo.edu.au', // null
   'example.foo.edu.sh', // null
@@ -32,7 +33,7 @@ var HOSTNAMES = [
 ];
 
 
-var URLS = [
+const URLS = [
   // IDN labels
   'example.北海道.jp', // 北海道.jp
   'example.和歌山.jp', // 和歌山.jp
@@ -59,44 +60,44 @@ var URLS = [
 
 function bench(values) {
   console.log(
-    'While interpreting the results, keep in mind that each "op" reported' +
-    ' by the benchmark is processing ' + values.length + ' domains'
+    `${'While interpreting the results, keep in mind that each "op" reported'
+    + ' by the benchmark is processing '}${values.length} domains`,
   );
 
   new Benchmark.Suite()
     .add('tldjs#isValidHostname', () => {
       try {
-      for (var i = 0; i < values.length; i += 1) {
-        tld.isValidHostname(values[i]);
-      }
+        for (let i = 0; i < values.length; i += 1) {
+          tld.isValidHostname(values[i]);
+        }
       } catch (ex) { console.error(ex); }
     })
     .add('tldjs#getHostname', () => {
-      for (var i = 0; i < values.length; i += 1) {
+      for (let i = 0; i < values.length; i += 1) {
         tld.getHostname(values[i]);
       }
     })
     .add('tldjs#getPublicSuffix', () => {
-      for (var i = 0; i < values.length; i += 1) {
+      for (let i = 0; i < values.length; i += 1) {
         tld.getPublicSuffix(values[i]);
       }
     })
     .add('tldjs#getDomain', () => {
-      for (var i = 0; i < values.length; i += 1) {
+      for (let i = 0; i < values.length; i += 1) {
         tld.getDomain(values[i]);
       }
     })
     .add('tldjs#getSubdomain', () => {
-      for (var i = 0; i < values.length; i += 1) {
+      for (let i = 0; i < values.length; i += 1) {
         tld.getSubdomain(values[i]);
       }
     })
     .add('tldjs#parse', () => {
-      for (var i = 0; i < values.length; i += 1) {
+      for (let i = 0; i < values.length; i += 1) {
         tld.parse(values[i]);
       }
     })
-    .on('cycle', function (event) {
+    .on('cycle', (event) => {
       console.log(String(event.target));
     })
     .run();

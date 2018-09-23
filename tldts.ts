@@ -1,8 +1,3 @@
-import parseRules from './lib/parsers/publicsuffix-org';
-import getRules from './lib/rules';
-import Trie from './lib/suffix-trie';
-
-// Internals
 import getDomainImpl from './lib/domain';
 import isIpImpl from './lib/is-ip';
 import isValidHostnameImpl from './lib/is-valid';
@@ -37,108 +32,113 @@ interface IResult {
 // extract the domain and subdomain if we are only interested in public suffix).
 const enum FLAG {
   HOST,
+  IS_VALID,
+  IS_IP,
   PUBLIC_SUFFIX,
   DOMAIN,
   SUB_DOMAIN,
   ALL,
 }
 
-function parseImplFactory(trie: Trie = getRules()) {
-  return (url: string, partialOptions?: Partial<IOptions>, step: FLAG = FLAG.ALL): IResult => {
-    const options: IOptions = setDefaults(partialOptions);
+export function parse(
+  url: string,
+  partialOptions?: Partial<IOptions>,
+  step: FLAG = FLAG.ALL,
+): IResult {
+  const options: IOptions = setDefaults(partialOptions);
 
-    const result: IResult = {
-      domain: null,
-      host: null,
-      isIcann: null,
-      isIp: false,
-      isPrivate: null,
-      isValid: null,
-      publicSuffix: null,
-      subdomain: null,
-    };
-
-    const host = options.extractHostname(url, options);
-    if (host === null) {
-      result.isIp = false;
-      result.isValid = false;
-      return result;
-    }
-
-    result.host = host.toLowerCase();
-
-    // Check if `host` is a valid ip address
-    result.isIp = isIpImpl(result.host);
-    if (result.isIp) {
-      result.isValid = true;
-      return result;
-    }
-
-    // Check if `host` is valid
-    result.isValid = isValidHostnameImpl(result.host, options);
-    if (result.isValid === false) { return result; }
-    if (step === FLAG.HOST) { return result; }
-
-    // Extract public suffix
-    const publicSuffixResult = getPublicSuffixImpl(
-      trie,
-      result.host,
-      options,
-    );
-
-    result.publicSuffix = publicSuffixResult.publicSuffix;
-    result.isIcann = publicSuffixResult.isIcann;
-    result.isPrivate = publicSuffixResult.isIcann === false;
-    if (step === FLAG.PUBLIC_SUFFIX) { return result; }
-
-    // Extract domain
-    result.domain = getDomainImpl(result.publicSuffix, result.host, options);
-    if (step === FLAG.DOMAIN) { return result; }
-
-    // Extract subdomain
-    result.subdomain = getSubdomainImpl(result.host, result.domain);
-
-    return result;
+  const result: IResult = {
+    domain: null,
+    host: null,
+    isIcann: null,
+    isIp: false,
+    isPrivate: null,
+    isValid: null,
+    publicSuffix: null,
+    subdomain: null,
   };
+
+  // Extract hostname from `url`
+  const host = options.extractHostname(url);
+  if (host === null) {
+    result.isIp = false;
+    result.isValid = false;
+    return result;
+  }
+  result.host = host.toLowerCase();
+  if (step === FLAG.HOST) {
+    return result;
+  }
+
+  // Check if `host` is a valid ip address
+  result.isIp = isIpImpl(result.host);
+  if (result.isIp) {
+    result.isValid = true;
+    return result;
+  }
+  if (step === FLAG.IS_IP) {
+    return result;
+  }
+
+  // Check if `host` is valid
+  result.isValid = isValidHostnameImpl(result.host, options);
+  if (result.isValid === false || step === FLAG.IS_VALID) {
+    return result;
+  }
+
+  // Extract public suffix
+  const publicSuffixResult = getPublicSuffixImpl(result.host, options);
+
+  result.publicSuffix = publicSuffixResult.publicSuffix;
+  result.isIcann = publicSuffixResult.isIcann;
+  result.isPrivate = publicSuffixResult.isIcann === false;
+  if (step === FLAG.PUBLIC_SUFFIX) {
+    return result;
+  }
+
+  // Extract domain
+  result.domain = getDomainImpl(result.publicSuffix, result.host, options);
+  if (step === FLAG.DOMAIN) {
+    return result;
+  }
+
+  // Extract subdomain
+  result.subdomain = getSubdomainImpl(result.host, result.domain);
+
+  return result;
 }
 
-/**
- * Process a given url and extract all information. This is a higher level API
- * around private functions of `tldts`. It allows to remove duplication (only
- * extract host from url once for all operations) and implement some early
- * termination mechanism to not pay the price of what we don't need (this
- * simulates laziness at a lower cost).
- */
-let parseImpl = parseImplFactory();
-
-export function update(rules: string) {
-  parseImpl = parseImplFactory(parseRules(rules));
-}
-
-export function reset() {
-  parseImpl = parseImplFactory();
-}
-
-export function parse(url: string, options?: Partial<IOptions>) {
-  return parseImpl(url, options);
-}
-
-export function isValidHostname(url: string, options ?: Partial<IOptions>): boolean {
+export function isValidHostname(
+  url: string,
+  options?: Partial<IOptions>,
+): boolean {
   return isValidHostnameImpl(url, setDefaults(options));
 }
 
-export function getPublicSuffix(url: string, options ?: Partial<IOptions>): string | null {
-  return parseImpl(url, options, FLAG.PUBLIC_SUFFIX).publicSuffix;
+export function getPublicSuffix(
+  url: string,
+  options?: Partial<IOptions>,
+): string | null {
+  return parse(url, options, FLAG.PUBLIC_SUFFIX).publicSuffix;
 }
 
-export function getDomain(url: string, options ?: Partial<IOptions>): string | null {
-  return parseImpl(url, options, FLAG.DOMAIN).domain;
+export function getDomain(
+  url: string,
+  options?: Partial<IOptions>,
+): string | null {
+  return parse(url, options, FLAG.DOMAIN).domain;
 }
 
-export function getSubdomain(url: string, options ?: Partial<IOptions>): string | null {
-  return parseImpl(url, options, FLAG.SUB_DOMAIN).subdomain;
+export function getSubdomain(
+  url: string,
+  options?: Partial<IOptions>,
+): string | null {
+  return parse(url, options, FLAG.SUB_DOMAIN).subdomain;
 }
 
-export function getHostname(url: string, options ?: Partial<IOptions>): string | null {
-  return parseImpl(url, options, FLAG.HOST).host;
+export function getHostname(
+  url: string,
+  options?: Partial<IOptions>,
+): string | null {
+  return parse(url, options, FLAG.HOST).host;
 }
