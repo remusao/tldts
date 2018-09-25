@@ -2,7 +2,7 @@
 
 var path = require('path');
 var Benchmark = require('benchmark');
-var tld = require(path.resolve(__dirname, '../dist/index.min.js'));
+var tld = require(path.resolve(__dirname, '../dist/tldts.min.js'));
 
 
 var HOSTNAMES = [
