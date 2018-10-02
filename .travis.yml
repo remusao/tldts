@@ -37,4 +37,4 @@ deploy:
   on:
     branch: master
     tags: true
-    repo: remusao/tld.js
+    repo: remusao/tldts
