@@ -1,5 +1,10 @@
 ## Change Log
 
+### 3.0.1
+
+- [#5](https://github.com/remusao/tldts/pull/5) Update Public Suffix Lists
+  * https://github.com/publicsuffix/list/commit/1422e8a1dfa290b11a483ec660435e33841cf96a
+
 ### 3.0.0 (2018/09/18 11:42 +00:00)
 - [#1](https://github.com/remusao/tld.js/pull/1) Tldts - typescript rewrite
   * Introduce two new options to enabled/disabled the Private/ICANN domains.
