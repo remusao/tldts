@@ -489,18 +489,15 @@ function extractHostname(url, options) {
     return trimTrailingDots(url.slice(start, end));
 }
 
-var defaultOptions = {
-    allowIcannDomains: true,
-    allowPrivateDomains: false,
-    extractHostname: extractHostname,
-    strictHostnameValidation: false,
-    validHosts: []
-};
-function setDefaults(options) {
-    if (options === undefined) {
-        return defaultOptions;
-    }
-    return Object.assign({}, defaultOptions, options);
+function setDefaults(_a) {
+    var _b = _a === void 0 ? {} : _a, _c = _b.allowIcannDomains, allowIcannDomains = _c === void 0 ? true : _c, _d = _b.allowPrivateDomains, allowPrivateDomains = _d === void 0 ? false : _d, _e = _b.extractHostname, extractHostname$$1 = _e === void 0 ? extractHostname : _e, _f = _b.strictHostnameValidation, strictHostnameValidation = _f === void 0 ? false : _f, _g = _b.validHosts, validHosts = _g === void 0 ? [] : _g;
+    return {
+        allowIcannDomains: allowIcannDomains,
+        allowPrivateDomains: allowPrivateDomains,
+        extractHostname: extractHostname$$1,
+        strictHostnameValidation: strictHostnameValidation,
+        validHosts: validHosts
+    };
 }
 
 function extractTldFromHost(hostname) {

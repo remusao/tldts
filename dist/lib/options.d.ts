@@ -5,5 +5,4 @@ export interface IOptions {
     strictHostnameValidation: boolean;
     validHosts: string[];
 }
-export declare const defaultOptions: IOptions;
-export declare function setDefaults(options?: Partial<IOptions>): IOptions;
+export declare function setDefaults({ allowIcannDomains, allowPrivateDomains, extractHostname, strictHostnameValidation, validHosts, }?: Partial<IOptions>): IOptions;
