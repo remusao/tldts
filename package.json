@@ -1,7 +1,7 @@
 {
   "name": "tldts",
   "description": "Library to work against complex domain names, subdomains and URIs.",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "homepage": "https://github.com/remusao/tldts",
   "author": "Rémi Berson",
   "contributors": [
@@ -34,7 +34,8 @@
     "build": "tsc -p . --module ES6 --outDir build",
     "bundle": "rollup -c rollup.config.js && google-closure-compiler --js=./dist/tldts.js --js_output_file=./dist/tldts.min.js",
     "benchmark": "./bin/benchmark.js",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "all": "npm install && npm run update && npm run clean && npm run build && npm run bundle"
   },
   "jest": {
     "globals": {

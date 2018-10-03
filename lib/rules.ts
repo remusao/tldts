@@ -8349,9 +8349,6 @@ golf
 // goo : 2014-12-18 NTT Resonant Inc.
 goo
 
-// goodhands : 2015-07-31 Allstate Fire and Casualty Insurance Company
-goodhands
-
 // goodyear : 2015-07-02 The Goodyear Tire & Rubber Company
 goodyear
 
@@ -8651,9 +8648,6 @@ jewelry
 
 // jio : 2015-04-02 Reliance Industries Limited
 jio
-
-// jlc : 2014-12-04 Richemont DNS Inc.
-jlc
 
 // jll : 2015-04-02 Jones Lang LaSalle Incorporated
 jll
@@ -9296,9 +9290,6 @@ page
 
 // panasonic : 2015-07-30 Panasonic Corporation
 panasonic
-
-// panerai : 2014-11-07 Richemont DNS Inc.
-panerai
 
 // paris : 2014-01-30 City of Paris
 paris
@@ -10002,9 +9993,6 @@ tech
 // technology : 2013-09-13 Binky Moon, LLC
 technology
 
-// telecity : 2015-02-19 TelecityGroup International Limited
-telecity
-
 // telefonica : 2014-10-16 Telefónica S.A.
 telefonica
 
@@ -10211,9 +10199,6 @@ visa
 
 // vision : 2013-12-05 Binky Moon, LLC
 vision
-
-// vista : 2014-09-18 Vistaprint Limited
-vista
 
 // vistaprint : 2014-09-18 Vistaprint Limited
 vistaprint

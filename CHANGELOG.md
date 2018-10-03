@@ -1,6 +1,11 @@
 ## Change Log
 
-### 3.0.1
+### 3.0.2 (2018/10/03 15h46)
+
+- [#6](https://github.com/remusao/tldts/pull/6) Update Public Suffix Lists
+  * https://github.com/publicsuffix/list/commit/6f2b9e75eaf65bb75da83677655a59110088ebc5
+
+### 3.0.1 (2018/10/02 22:43 +00:00)
 
 - [#5](https://github.com/remusao/tldts/pull/5) Update Public Suffix Lists
   * https://github.com/publicsuffix/list/commit/1422e8a1dfa290b11a483ec660435e33841cf96a
