@@ -2,6 +2,11 @@ interface IOptions {
     allowIcannDomains: boolean;
     allowPrivateDomains: boolean;
 }
+export interface IPublicSuffix {
+    isIcann: boolean;
+    isPrivate: boolean;
+    publicSuffix: string | null;
+}
 export interface IRule {
     exception: boolean;
     isIcann: boolean;
@@ -16,6 +21,6 @@ export default class SuffixTrie {
     rules: ITrieObject;
     constructor(rules: IRule[]);
     hasTld(value: string): boolean;
-    suffixLookup(hostname: string, options: IOptions): any;
+    suffixLookup(hostname: string, options: IOptions): IPublicSuffix | null;
 }
 export {};

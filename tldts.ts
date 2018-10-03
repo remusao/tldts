@@ -87,8 +87,8 @@ function parseImplFactory(trie: Trie = getRules()) {
     );
 
     result.publicSuffix = publicSuffixResult.publicSuffix;
-    result.isPrivate = publicSuffixResult.isPrivate;
     result.isIcann = publicSuffixResult.isIcann;
+    result.isPrivate = publicSuffixResult.isIcann === false;
     if (step === FLAG.PUBLIC_SUFFIX) { return result; }
 
     // Extract domain

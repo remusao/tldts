@@ -242,11 +242,13 @@
 	        if (exceptionLookupResult.index !== -1) {
 	            return {
 	                isIcann: exceptionLookupResult.isIcann,
+	                isPrivate: !exceptionLookupResult.isIcann,
 	                publicSuffix: hostnameParts.slice(exceptionLookupResult.index + 1).join('.')
 	            };
 	        }
 	        return {
 	            isIcann: lookupResult.isIcann,
+	            isPrivate: !lookupResult.isIcann,
 	            publicSuffix: hostnameParts.slice(lookupResult.index).join('.')
 	        };
 	    };
@@ -576,8 +578,8 @@
 	        }
 	        var publicSuffixResult = getPublicSuffix(trie, result.host, options);
 	        result.publicSuffix = publicSuffixResult.publicSuffix;
-	        result.isPrivate = publicSuffixResult.isPrivate;
 	        result.isIcann = publicSuffixResult.isIcann;
+	        result.isPrivate = publicSuffixResult.isIcann === false;
 	        if (step === 1) {
 	            return result;
 	        }

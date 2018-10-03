@@ -1,12 +1,6 @@
 import extractTldFromHost from './from-host';
 import { IOptions } from './options';
-import Trie from './suffix-trie';
-
-export interface IPublicSuffix {
-  isIcann: boolean;
-  isPrivate: boolean;
-  publicSuffix: string | null;
-}
+import Trie, { IPublicSuffix } from './suffix-trie';
 
 /**
  * Returns the public suffix (including exact matches)
