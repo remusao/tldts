@@ -8,7 +8,8 @@ function isProbablyIpv4(hostname: string): boolean {
   for (let i = 0; i < hostname.length; i += 1) {
     const code = hostname.charCodeAt(i);
 
-    if (code === 46) { // '.'
+    if (code === 46) {
+      // '.'
       numberOfDots += 1;
     } else if (code < 48 || code > 57) {
       // 48 => '0'
@@ -18,7 +19,7 @@ function isProbablyIpv4(hostname: string): boolean {
   }
 
   return (
-    numberOfDots === 3  &&
+    numberOfDots === 3 &&
     hostname[0] !== '.' &&
     hostname[hostname.length - 1] !== '.'
   );
@@ -33,12 +34,15 @@ function isProbablyIpv6(hostname: string): boolean {
   for (let i = 0; i < hostname.length; i += 1) {
     const code = hostname.charCodeAt(i);
 
-    if (code === 58) { // ':'
+    if (code === 58) {
+      // ':'
       hasColon = true;
-    } else if (!(
-      (code >= 48 && code <= 57) || // 0-9
-      (code >= 97 && code <= 102)   // a-f
-    )) {
+    } else if (
+      !(
+        (code >= 48 && code <= 57) || // 0-9
+        (code >= 97 && code <= 102)
+      ) // a-f
+    ) {
       return false;
     }
   }
@@ -52,5 +56,5 @@ function isProbablyIpv6(hostname: string): boolean {
  * hostname.
  */
 export default function isIp(hostname: string): boolean {
-  return (isProbablyIpv6(hostname) || isProbablyIpv4(hostname));
+  return isProbablyIpv6(hostname) || isProbablyIpv4(hostname);
 }

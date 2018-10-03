@@ -78,7 +78,12 @@ function insertInTrie(rule: IRule, trie: any): any {
  * TODO - make iterative using a fixed-size simulated stack for intermediary
  * results?
  */
-function lookupInTrie(parts: string[], trie: any, index: number, allowedMask: number): IMatch {
+function lookupInTrie(
+  parts: string[],
+  trie: any,
+  index: number,
+  allowedMask: number,
+): IMatch {
   let nextNode;
   let lookupResult = {
     index: -1,
@@ -168,7 +173,10 @@ export default class SuffixTrie {
   /**
    * Check if `hostname` has a valid public suffix in `trie`.
    */
-  public suffixLookup(hostname: string, options: IOptions): IPublicSuffix | null {
+  public suffixLookup(
+    hostname: string,
+    options: IOptions,
+  ): IPublicSuffix | null {
     const allowIcannDomains = options.allowIcannDomains;
     const allowPrivateDomains = options.allowPrivateDomains;
 
@@ -218,7 +226,9 @@ export default class SuffixTrie {
       return {
         isIcann: exceptionLookupResult.isIcann,
         isPrivate: !exceptionLookupResult.isIcann,
-        publicSuffix: hostnameParts.slice(exceptionLookupResult.index + 1).join('.'),
+        publicSuffix: hostnameParts
+          .slice(exceptionLookupResult.index + 1)
+          .join('.'),
       };
     }
 

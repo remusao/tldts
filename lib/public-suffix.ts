@@ -5,7 +5,11 @@ import Trie, { IPublicSuffix } from './suffix-trie';
 /**
  * Returns the public suffix (including exact matches)
  */
-export default function getPublicSuffix(rules: Trie, hostname: string, options: IOptions): IPublicSuffix {
+export default function getPublicSuffix(
+  rules: Trie,
+  hostname: string,
+  options: IOptions,
+): IPublicSuffix {
   // First check if `hostname` is already a valid top-level Domain.
   if (rules.hasTld(hostname)) {
     return {

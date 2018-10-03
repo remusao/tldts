@@ -33,7 +33,7 @@
     "update": "git submodule foreach git pull origin master && node ./bin/update.js",
     "build": "tsc -p . --module ES6 --outDir build",
     "bundle": "rollup -c rollup.config.js && google-closure-compiler --js=./dist/tldts.js --js_output_file=./dist/tldts.min.js",
-    "benchmark": "./bin/benchmark.js",
+    "benchmark": "node ./bin/benchmark.js",
     "test": "jest --coverage",
     "all": "npm install && npm run update && npm run clean && npm run build && npm run bundle"
   },
@@ -63,6 +63,7 @@
     "concurrently": "^4.0.1",
     "google-closure-compiler": "^20180910.1.0",
     "jest": "^23.6.0",
+    "prettier": "^1.14.3",
     "rollup": "^0.66.3",
     "rollup-plugin-cleanup": "^3.0.0",
     "rollup-plugin-node-resolve": "^3.4.0",

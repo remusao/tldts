@@ -4,9 +4,7 @@ import { IOptions } from './options';
  * Polyfill for `endsWith`
  */
 function endsWith(str: string, pattern: string): boolean {
-  return (
-    str.lastIndexOf(pattern) === (str.length - pattern.length)
-  );
+  return str.lastIndexOf(pattern) === str.length - pattern.length;
 }
 
 /**
@@ -34,7 +32,10 @@ function shareSameDomainSuffix(hostname: string, vhost: string): boolean {
 /**
  * Given a hostname and its public suffix, extract the general domain.
  */
-function extractDomainWithSuffix(hostname: string, publicSuffix: string): string {
+function extractDomainWithSuffix(
+  hostname: string,
+  publicSuffix: string,
+): string {
   // Locate the index of the last '.' in the part of the `hostname` preceding
   // the public suffix.
   //
@@ -64,7 +65,11 @@ function extractDomainWithSuffix(hostname: string, publicSuffix: string): string
 /**
  * Detects the domain based on rules and upon and a host string
  */
-export default function getDomain(suffix: string | null, hostname: string, options: IOptions): string | null {
+export default function getDomain(
+  suffix: string | null,
+  hostname: string,
+  options: IOptions,
+): string | null {
   const validHosts = options.validHosts;
   // Check if `hostname` ends with a member of `validHosts`.
   for (let i = 0; i < validHosts.length; i += 1) {
