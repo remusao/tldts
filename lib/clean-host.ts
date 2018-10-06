@@ -17,10 +17,8 @@ function trimTrailingDots(value: string): string {
  */
 function isTrimmingNeeded(value: string): boolean {
   return (
-    value.length > 0 && (
-      value.charCodeAt(0) <= 32 ||
-      value.charCodeAt(value.length - 1) <= 32
-    )
+    value.length > 0 &&
+    (value.charCodeAt(0) <= 32 || value.charCodeAt(value.length - 1) <= 32)
   );
 }
 
@@ -38,7 +36,10 @@ function isSchemeChar(code: number): boolean {
   );
 }
 
-export default function extractHostname(url: string, options: IOptions): string | null {
+export default function extractHostname(
+  url: string,
+  options: IOptions,
+): string | null {
   // Trim spaces in `url` if needed.
   if (isTrimmingNeeded(url)) {
     url = url.trim();

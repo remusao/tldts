@@ -33,10 +33,11 @@ function isValidHostname(hostname: string): boolean {
     const code = hostname.codePointAt(i);
     if (code === undefined) {
       return false;
-    } else if (code === 46) { // '.'
+    } else if (code === 46) {
+      // '.'
       if (
         // Check that previous label is < 63 bytes long (64 = 63 + '.')
-        (i - lastDotIndex) > 64 ||
+        i - lastDotIndex > 64 ||
         // Check that previous character was not already a '.'
         lastCharCode === 46 ||
         // Check that the previous label does not end with a '-'
@@ -58,13 +59,12 @@ function isValidHostname(hostname: string): boolean {
 
   return (
     // Check that last label is shorter than 63 chars
-    (len - lastDotIndex - 1) <= 63 &&
+    len - lastDotIndex - 1 <= 63 &&
     // Check that the last character is an allowed trailing label character.
     // Since we already checked that the char is a valid hostname character,
     // we only need to check that it's different from '-'.
     lastCharCode !== 45
   );
-
 }
 
 /**
@@ -75,8 +75,8 @@ function isValidHostname(hostname: string): boolean {
  */
 export default function isValid(hostname: string, options: IOptions): boolean {
   return (
-    isValidHostname(hostname) && (
-      options.strictHostnameValidation === false || !containsUnderscore(hostname)
-    )
+    isValidHostname(hostname) &&
+    (options.strictHostnameValidation === false ||
+      !containsUnderscore(hostname))
   );
 }

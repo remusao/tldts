@@ -1,4 +1,3 @@
-
 export function startsWith(str: string, prefix: string): boolean {
   if (str.length < prefix.length) {
     return false;

@@ -16,7 +16,9 @@ export default function parse(body: string) {
     let line = lines[i].trim();
 
     // Ignore empty lines
-    if (line.length === 0) { continue; }
+    if (line.length === 0) {
+      continue;
+    }
 
     // Comment (check for beginning of Private domains section)
     if (startsWith(line, '//')) {

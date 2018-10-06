@@ -1,9 +1,6 @@
-#!/usr/bin/env node
-
 var path = require('path');
 var Benchmark = require('benchmark');
 var tld = require(path.resolve(__dirname, '../dist/tldts.min.js'));
-
 
 var HOSTNAMES = [
   // No public suffix
@@ -31,7 +28,6 @@ var HOSTNAMES = [
   'example.city.kobe.jp', // !city.kobe.jp
 ];
 
-
 var URLS = [
   // IDN labels
   'example.北海道.jp', // 北海道.jp
@@ -56,20 +52,19 @@ var URLS = [
   'https://[::1]',
 ];
 
-
 function bench(values) {
   console.log(
     'While interpreting the results, keep in mind that each "op" reported' +
-    ' by the benchmark is processing ' + values.length + ' domains'
+      ' by the benchmark is processing ' +
+      values.length +
+      ' domains',
   );
 
   new Benchmark.Suite()
     .add('tldjs#isValidHostname', () => {
-      try {
       for (var i = 0; i < values.length; i += 1) {
         tld.isValidHostname(values[i]);
       }
-      } catch (ex) { console.error(ex); }
     })
     .add('tldjs#getHostname', () => {
       for (var i = 0; i < values.length; i += 1) {
@@ -96,12 +91,11 @@ function bench(values) {
         tld.parse(values[i]);
       }
     })
-    .on('cycle', function (event) {
+    .on('cycle', function(event) {
       console.log(String(event.target));
     })
     .run();
 }
-
 
 // TODO - Compare to other libraries
 function main() {
@@ -116,6 +110,5 @@ function main() {
   console.log('>>> ----------- <<<');
   bench(URLS);
 }
-
 
 main();

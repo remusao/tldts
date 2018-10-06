@@ -44,7 +44,11 @@ const enum FLAG {
 }
 
 function parseImplFactory(trie: Trie = getRules()) {
-  return (url: string, partialOptions?: Partial<IOptions>, step: FLAG = FLAG.ALL): IResult => {
+  return (
+    url: string,
+    partialOptions?: Partial<IOptions>,
+    step: FLAG = FLAG.ALL,
+  ): IResult => {
     const options: IOptions = setDefaults(partialOptions);
 
     const result: IResult = {
@@ -76,24 +80,28 @@ function parseImplFactory(trie: Trie = getRules()) {
 
     // Check if `host` is valid
     result.isValid = isValidHostnameImpl(result.host, options);
-    if (result.isValid === false) { return result; }
-    if (step === FLAG.HOST) { return result; }
+    if (result.isValid === false) {
+      return result;
+    }
+    if (step === FLAG.HOST) {
+      return result;
+    }
 
     // Extract public suffix
-    const publicSuffixResult = getPublicSuffixImpl(
-      trie,
-      result.host,
-      options,
-    );
+    const publicSuffixResult = getPublicSuffixImpl(trie, result.host, options);
 
     result.publicSuffix = publicSuffixResult.publicSuffix;
     result.isIcann = publicSuffixResult.isIcann;
     result.isPrivate = publicSuffixResult.isIcann === false;
-    if (step === FLAG.PUBLIC_SUFFIX) { return result; }
+    if (step === FLAG.PUBLIC_SUFFIX) {
+      return result;
+    }
 
     // Extract domain
     result.domain = getDomainImpl(result.publicSuffix, result.host, options);
-    if (step === FLAG.DOMAIN) { return result; }
+    if (step === FLAG.DOMAIN) {
+      return result;
+    }
 
     // Extract subdomain
     result.subdomain = getSubdomainImpl(result.host, result.domain);
@@ -123,22 +131,37 @@ export function parse(url: string, options?: Partial<IOptions>) {
   return parseImpl(url, options);
 }
 
-export function isValidHostname(url: string, options ?: Partial<IOptions>): boolean {
+export function isValidHostname(
+  url: string,
+  options?: Partial<IOptions>,
+): boolean {
   return isValidHostnameImpl(url, setDefaults(options));
 }
 
-export function getPublicSuffix(url: string, options ?: Partial<IOptions>): string | null {
+export function getPublicSuffix(
+  url: string,
+  options?: Partial<IOptions>,
+): string | null {
   return parseImpl(url, options, FLAG.PUBLIC_SUFFIX).publicSuffix;
 }
 
-export function getDomain(url: string, options ?: Partial<IOptions>): string | null {
+export function getDomain(
+  url: string,
+  options?: Partial<IOptions>,
+): string | null {
   return parseImpl(url, options, FLAG.DOMAIN).domain;
 }
 
-export function getSubdomain(url: string, options ?: Partial<IOptions>): string | null {
+export function getSubdomain(
+  url: string,
+  options?: Partial<IOptions>,
+): string | null {
   return parseImpl(url, options, FLAG.SUB_DOMAIN).subdomain;
 }
 
-export function getHostname(url: string, options ?: Partial<IOptions>): string | null {
+export function getHostname(
+  url: string,
+  options?: Partial<IOptions>,
+): string | null {
   return parseImpl(url, options, FLAG.HOST).host;
 }

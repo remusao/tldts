@@ -243,7 +243,9 @@
 	            return {
 	                isIcann: exceptionLookupResult.isIcann,
 	                isPrivate: !exceptionLookupResult.isIcann,
-	                publicSuffix: hostnameParts.slice(exceptionLookupResult.index + 1).join('.')
+	                publicSuffix: hostnameParts
+	                    .slice(exceptionLookupResult.index + 1)
+	                    .join('.')
 	            };
 	        }
 	        return {
@@ -302,7 +304,7 @@
 	}
 
 	function endsWith(str, pattern) {
-	    return (str.lastIndexOf(pattern) === (str.length - pattern.length));
+	    return str.lastIndexOf(pattern) === str.length - pattern.length;
 	}
 	function shareSameDomainSuffix(hostname, vhost) {
 	    if (endsWith(hostname, vhost)) {
@@ -366,7 +368,7 @@
 	    return hasColon;
 	}
 	function isIp(hostname) {
-	    return (isProbablyIpv6(hostname) || isProbablyIpv4(hostname));
+	    return isProbablyIpv6(hostname) || isProbablyIpv4(hostname);
 	}
 
 	var isValidIDNA = (function () {
@@ -404,7 +406,7 @@
 	            return false;
 	        }
 	        else if (code === 46) {
-	            if ((i - lastDotIndex) > 64 ||
+	            if (i - lastDotIndex > 64 ||
 	                lastCharCode === 46 ||
 	                lastCharCode === 45 ||
 	                lastCharCode === 95) {
@@ -417,11 +419,13 @@
 	        }
 	        lastCharCode = code;
 	    }
-	    return ((len - lastDotIndex - 1) <= 63 &&
+	    return (len - lastDotIndex - 1 <= 63 &&
 	        lastCharCode !== 45);
 	}
 	function isValid(hostname, options) {
-	    return (isValidHostname(hostname) && (options.strictHostnameValidation === false || !containsUnderscore(hostname)));
+	    return (isValidHostname(hostname) &&
+	        (options.strictHostnameValidation === false ||
+	            !containsUnderscore(hostname)));
 	}
 
 	function trimTrailingDots(value) {
@@ -431,8 +435,8 @@
 	    return value;
 	}
 	function isTrimmingNeeded(value) {
-	    return (value.length > 0 && (value.charCodeAt(0) <= 32 ||
-	        value.charCodeAt(value.length - 1) <= 32));
+	    return (value.length > 0 &&
+	        (value.charCodeAt(0) <= 32 || value.charCodeAt(value.length - 1) <= 32));
 	}
 	function isSchemeChar(code) {
 	    var lowerCaseCode = code | 32;
