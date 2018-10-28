@@ -10840,6 +10840,11 @@ sweetpepper.org
 // Submitted by Vincent Tseng <vincenttseng@asustor.com>
 myasustor.com
 
+// Automattic Inc. : https://automattic.com/
+// Submitted by Alex Concha <alex.concha@automattic.com>
+go-vip.co
+wpcomstaging.com
+
 // AVM : https://avm.de
 // Submitted by Andreas Weise <a.weise@avm.de>
 myfritz.net
@@ -11089,6 +11094,11 @@ dedyn.io
 // DNShome : https://www.dnshome.de/
 // Submitted by Norbert Auler <mail@dnshome.de>
 dnshome.de
+
+// DotArai : https://www.dotarai.com/
+// Submitted by Atsadawat Netcharadsang <atsadawat@dotarai.co.th>
+online.th
+shop.th
 
 // DrayTek Corp. : https://www.draytek.com/
 // Submitted by Paul Fang <mis@draytek.com>
@@ -11646,6 +11656,10 @@ cloud.fedoraproject.org
 app.os.fedoraproject.org
 app.os.stg.fedoraproject.org
 
+// Fermax : https://fermax.com/
+// submitted by Koen Van Isterdael <k.vanisterdael@fermax.be>
+mydobiss.com
+
 // Filegear Inc. : https://www.filegear.com
 // Submitted by Jason Zhu <jason@owtware.com>
 filegear.me
@@ -11932,6 +11946,15 @@ linkyard-cloud.ch
 // LiquidNet Ltd : http://www.liquidnetlimited.com/
 // Submitted by Victor Velchev <admin@liquidnetlimited.com>
 we.bs
+
+// LubMAN UMCS Sp. z o.o : https://lubman.pl/
+// Submitted by Ireneusz Maliszewski <ireneusz.maliszewski@lubman.pl>
+krasnik.pl
+leczna.pl
+lubartow.pl
+lublin.pl
+poniatowa.pl
+swidnik.pl
 
 // Lug.org.uk : https://lug.org.uk
 // Submitted by Jon Spriggs <admin@lug.org.uk>
@@ -12320,6 +12343,10 @@ protonet.io
 chirurgiens-dentistes-en-france.fr
 byen.site
 
+// Redstar Consultants : https://www.redstarconsultants.com/
+// Submitted by Jons Slemmer <jons@redstarconsultants.com>
+instantcloud.cn
+
 // Russian Academy of Sciences
 // Submitted by Tech Support <support@rasnet.ru>
 ras.ru
@@ -12423,6 +12450,10 @@ appchizi.com
 applinzi.com
 sinaapp.com
 vipsinaapp.com
+
+// Siteleaf : https://www.siteleaf.com/
+// Submitted by Skylar Challand <support@siteleaf.com>
+siteleaf.net
 
 // Skyhat : http://www.skyhat.io
 // Submitted by Shante Adam <shante@skyhat.io>
