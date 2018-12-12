@@ -2,6 +2,10 @@
 
 ### Not Released
 
+### 3.1.1
+
+- Minify rules and idna files
+
 ### 3.1.0
 
 - [#3](https://github.com/remusao/tldts/pull/3) Various optimizations
