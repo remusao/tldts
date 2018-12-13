@@ -15,7 +15,7 @@ export default [
   {
     input: './build/tldts.js',
     output: {
-      file: './dist/tldts.umd.js',
+      file: pkg.browser,
       name: pkg.name,
       format: 'umd',
     },

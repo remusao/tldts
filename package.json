@@ -1,7 +1,7 @@
 {
   "name": "tldts",
   "description": "Library to work against complex domain names, subdomains and URIs.",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "homepage": "https://github.com/remusao/tldts",
   "author": "Rémi Berson",
   "contributors": [
@@ -17,9 +17,9 @@
   "engines": {
     "node": ">= 6"
   },
-  "main": "dist/tldts.js",
-  "module": "dist/tldts.es.js",
-  "jsnext:main": "dist/tldts.es.js",
+  "browser": "dist/tldts.umd.js",
+  "main": "dist/tldts.cjs.js",
+  "module": "dist/tldts.esm.js",
   "types": "dist/tldts.d.ts",
   "files": [
     "dist",
