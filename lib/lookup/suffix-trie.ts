@@ -1,16 +1,5 @@
-import * as punycode from 'punycode';
-import { exceptions, rules } from './rules';
-
-interface IOptions {
-  allowIcannDomains: boolean;
-  allowPrivateDomains: boolean;
-}
-
-export interface IPublicSuffix {
-  isIcann: boolean;
-  isPrivate: boolean;
-  publicSuffix: string | null;
-}
+import { exceptions, rules } from './data/trie';
+import { IPublicSuffix, ISuffixLookupOptions } from './interface';
 
 // Flags used to know if a rule is ICANN or Private
 const enum RULE_TYPE {
@@ -58,37 +47,15 @@ function lookupInTrie(
 }
 
 /**
- * Check if there is any non-ascii character in hostname
- */
-function hasUnicode(value: string): boolean {
-  for (let i = 0; i < value.length; i += 1) {
-    if (value.charCodeAt(i) > 127) {
-      return true;
-    }
-  }
-  return false;
-}
-
-export function hasTld(value: string): boolean {
-  // All TLDs are at the root of the Trie.
-  return rules[value] !== undefined;
-}
-
-/**
  * Check if `hostname` has a valid public suffix in `trie`.
  */
-export function suffixLookup(
+export default function suffixLookup(
   hostname: string,
-  options: IOptions,
+  options: ISuffixLookupOptions,
 ): IPublicSuffix | null {
   const allowIcannDomains = options.allowIcannDomains;
   const allowPrivateDomains = options.allowPrivateDomains;
   const hostnameParts = hostname.split('.');
-  let parts = hostnameParts;
-
-  if (hasUnicode(hostname)) {
-    parts = punycode.toASCII(hostname).split('.');
-  }
 
   let allowedMask = 0;
 
@@ -102,9 +69,9 @@ export function suffixLookup(
 
   // Look for a match in rules
   const lookupResult = lookupInTrie(
-    parts,
+    hostnameParts,
     rules,
-    parts.length - 1,
+    hostnameParts.length - 1,
     allowedMask,
   );
 
@@ -114,9 +81,9 @@ export function suffixLookup(
 
   // Look for exceptions
   const exceptionLookupResult = lookupInTrie(
-    parts,
+    hostnameParts,
     exceptions,
-    parts.length - 1,
+    hostnameParts.length - 1,
     allowedMask,
   );
 
