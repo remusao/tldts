@@ -59,22 +59,19 @@ function extractDomainWithSuffix(
  * Detects the domain based on rules and upon and a host string
  */
 export default function getDomain(
-  suffix: string | null,
+  suffix: string,
   hostname: string,
   options: IOptions,
 ): string | null {
-  const validHosts = options.validHosts;
   // Check if `hostname` ends with a member of `validHosts`.
-  for (let i = 0; i < validHosts.length; i += 1) {
-    const vhost = validHosts[i];
-    if (shareSameDomainSuffix(hostname, vhost)) {
-      return vhost;
+  if (options.validHosts !== null) {
+    const validHosts = options.validHosts;
+    for (let i = 0; i < validHosts.length; i += 1) {
+      const vhost = validHosts[i];
+      if (shareSameDomainSuffix(hostname, vhost)) {
+        return vhost;
+      }
     }
-  }
-
-  // If there is no suffix, there is no hostname
-  if (suffix === null) {
-    return null;
   }
 
   // If `hostname` is a valid public suffix, then there is no domain to return.

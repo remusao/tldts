@@ -13,6 +13,55 @@ function repeat(str: string, n: number): string {
 
 function test(tldts: any): void {
   describe('#getDomain', () => {
+    it('should allow disabling parsing/validation of hostnames', () => {
+      expect(
+        tldts.getDomain('foo.com', {
+          extractHostname: false,
+        }),
+      ).toEqual('foo.com');
+    });
+
+    it('handle IPs', () => {
+      expect(tldts.getDomain('1.2.3.4')).toEqual(null);
+      expect(tldts.getHostname('1.2.3.4')).toEqual('1.2.3.4');
+    });
+
+    it('handle weird urls', () => {
+      // From https://github.com/peerigon/parse-domain/issues/49
+      expect(tldts.getDomain('ftp://mapasamazonsa.com.ve/')).toEqual(
+        'mapasamazonsa.com.ve',
+      );
+      expect(
+        tldts.getDomain('http://y399.3466633.be:4/235222/399.html'),
+      ).toEqual('3466633.be');
+      expect(tldts.getDomain('this%20file%20was%')).toEqual(null);
+      expect(
+        tldts.getDomain(
+          'wss://ie14.zopim.com/s/W/ws/zPYsGUAnWMyJ1XOL/c/1537265376519',
+        ),
+      ).toEqual('zopim.com');
+      expect(tldts.getDomain('wss://mp.sparkchess.com/ ')).toEqual(
+        'sparkchess.com',
+      );
+      expect(
+        tldts.getDomain(
+          'wss://119.92.223.221.prod.hosts.ooklaserver.net:8080/ws',
+        ),
+      ).toEqual('ooklaserver.net');
+      expect(
+        tldts.getDomain(
+          'wss://gscspeedtest1.dctechmicro.com.prod.hosts.ooklaserver.net:8080/ws',
+        ),
+      ).toEqual('ooklaserver.net');
+      expect(
+        tldts.getDomain('ws://lhg2-speedtest.globe.com.ph:8080/ws'),
+      ).toEqual('globe.com.ph');
+      expect(
+        tldts.getDomain('wss://s-usc1c-nss-218.firebaseio.com/.ws'),
+      ).toEqual('firebaseio.com');
+      expect(tldts.getDomain('http://server.dr.pt./')).toEqual('dr.pt');
+    });
+
     it('should return the expected domain from a simple string', () => {
       expect(tldts.getDomain('google.com')).toEqual('google.com');
       expect(tldts.getDomain('t.co')).toEqual('t.co');
@@ -40,22 +89,22 @@ function test(tldts: any): void {
 
     it('should not break on specific RegExp characters', () => {
       expect(() => {
-        // @see https://github.com/oncletom/tldts.js/issues/33
+        // @see https://github.com/oncletom/tld.js/issues/33
         tldts.getDomain('www.weir)domain.com');
       }).not.toThrow();
       expect(() => {
-        // @see https://github.com/oncletom/tldts.js/issues/53
+        // @see https://github.com/oncletom/tld.js/issues/53
         tldts.getDomain(
           "http://('4drsteve.com', [], ['54.213.246.177'])/xmlrpc.php",
         );
       }).not.toThrow();
       expect(() => {
-        // @see https://github.com/oncletom/tldts.js/issues/53
+        // @see https://github.com/oncletom/tld.js/issues/53
         tldts.getDomain("('4drsteve.com', [], ['54.213.246.177'])");
       }).not.toThrow();
     });
 
-    // @see https://github.com/oncletom/tldts.js/issues/53
+    // @see https://github.com/oncletom/tld.js/issues/53
     it('should correctly extract domain from paths including "@" in the path', () => {
       const domain = tldts.getDomain(
         'http://cdn.jsdelivr.net/g/jquery@1.8.2,jquery.waypoints@2.0.2,qtip2@2.2.1,typeahead.js@0.9.3,sisyphus@0.1,jquery.slick@1.3.15,fastclick@1.0.3',
@@ -70,8 +119,8 @@ function test(tldts: any): void {
       );
     });
 
-    // @see https://github.com/oncletom/tldts.js/issues/25
-    // @see https://github.com/oncletom/tldts.js/issues/30
+    // @see https://github.com/oncletom/tld.js/issues/25
+    // @see https://github.com/oncletom/tld.js/issues/30
     it('existing rule constraint', () => {
       expect(tldts.getDomain('s3.amazonaws.com')).toEqual('amazonaws.com');
       expect(
@@ -87,7 +136,7 @@ function test(tldts: any): void {
       expect(tldts.getDomain('http://www.nytimes.com/')).toEqual('nytimes.com');
     });
 
-    // @see https://github.com/oncletom/tldts.js/issues/95
+    // @see https://github.com/oncletom/tld.js/issues/95
     it('should ignore the trailing dot in a domain', () => {
       expect(tldts.getDomain('https://www.google.co.uk./maps')).toEqual(
         'google.co.uk',
@@ -105,12 +154,12 @@ function test(tldts: any): void {
         expect(getPublicSuffix('google.co.uk')).toEqual('co.uk');
       });
 
-      // @see https://github.com/oncletom/tldts.js/pull/97
+      // @see https://github.com/oncletom/tld.js/pull/97
       it('should return www.ck if www.www.ck', () => {
         expect(getPublicSuffix('www.www.ck')).toEqual('ck');
       });
 
-      // @see https://github.com/oncletom/tldts.js/issues/30
+      // @see https://github.com/oncletom/tld.js/issues/30
       it('should return s3.amazonaws.com if s3.amazonaws.com', () => {
         expect(getPublicSuffix('s3.amazonaws.com')).toEqual('s3.amazonaws.com');
       });
@@ -129,12 +178,12 @@ function test(tldts: any): void {
         expect(getPublicSuffix('microsoft.eu')).toEqual('eu');
       });
 
-      // @see https://github.com/oncletom/tldts.js/pull/97
+      // @see https://github.com/oncletom/tld.js/pull/97
       it('should return the string tldts if the publicsuffix does not exist', () => {
         expect(getPublicSuffix('www.freedom.nsa')).toEqual('nsa');
       });
 
-      // @see https://github.com/oncletom/tldts.js/issues/95
+      // @see https://github.com/oncletom/tld.js/issues/95
       it('should ignore the trailing dot in a domain', () => {
         expect(getPublicSuffix('https://www.google.co.uk./maps')).toEqual(
           'co.uk',
@@ -301,7 +350,7 @@ function test(tldts: any): void {
       ).toEqual('www.nytimes.com');
     });
 
-    // @see https://github.com/oncletom/tldts.js/issues/95
+    // @see https://github.com/oncletom/tld.js/issues/95
     it('should ignore the trailing dot in a domain', () => {
       expect(
         tldts.getHostname('http://example.co.uk./some/path?and&query#hash'),
@@ -326,6 +375,14 @@ function test(tldts: any): void {
 
     it('should reject incomplete ipv6', () => {
       expect(tldts.getHostname('http://[::1')).toEqual(null);
+    });
+
+    it('should allow disabling parsing/validation of hostnames', () => {
+      expect(
+        tldts.getHostname('http://foo.com', {
+          extractHostname: false,
+        }),
+      ).toEqual('http://foo.com');
     });
   });
 
@@ -362,7 +419,7 @@ function test(tldts: any): void {
       expect(tldts.getSubdomain('random.fr.google.co.uk')).toEqual('random.fr');
     });
 
-    // @see https://github.com/oncletom/tldts.js/issues/25
+    // @see https://github.com/oncletom/tld.js/issues/25
     it('should return the subdomain of reserved subdomains', () => {
       expect(tldts.getSubdomain('blogspot.co.uk')).toEqual('');
       expect(tldts.getSubdomain('emergency.blogspot.co.uk')).toEqual(
@@ -372,22 +429,22 @@ function test(tldts: any): void {
 
     it('should not break on specific RegExp characters', () => {
       expect(() => {
-        // @see https://github.com/oncletom/tldts.js/issues/33
+        // @see https://github.com/oncletom/tld.js/issues/33
         tldts.getSubdomain('www.weir)domain.com');
       }).not.toThrow();
       expect(() => {
-        // @see https://github.com/oncletom/tldts.js/issues/53
+        // @see https://github.com/oncletom/tld.js/issues/53
         tldts.getSubdomain(
           "http://('4drsteve.com', [], ['54.213.246.177'])/xmlrpc.php",
         );
       }).not.toThrow();
       expect(() => {
-        // @see https://github.com/oncletom/tldts.js/issues/53
+        // @see https://github.com/oncletom/tld.js/issues/53
         tldts.getSubdomain("('4drsteve.com', [], ['54.213.246.177'])");
       }).not.toThrow();
     });
 
-    // @see https://github.com/oncletom/tldts.js/issues/53
+    // @see https://github.com/oncletom/tld.js/issues/53
     it('should correctly extract domain from paths including "@" in the path', () => {
       const domain = tldts.getSubdomain(
         'http://cdn.jsdelivr.net/g/jquery@1.8.2,jquery.waypoints@2.0.2,qtip2@2.2.1,typeahead.js@0.9.3,sisyphus@0.1,jquery.slick@1.3.15,fastclick@1.0.3',
@@ -395,13 +452,13 @@ function test(tldts: any): void {
       expect(domain).toEqual('cdn');
     });
 
-    // @see https://github.com/oncletom/tldts.js/issues/35
+    // @see https://github.com/oncletom/tld.js/issues/35
     it('should provide consistent results', () => {
       expect(tldts.getSubdomain('www.bl.uk')).toEqual('www');
       expect(tldts.getSubdomain('www.majestic12.co.uk')).toEqual('www');
     });
 
-    // @see https://github.com/oncletom/tldts.js/issues/95
+    // @see https://github.com/oncletom/tld.js/issues/95
     it('should ignore the trailing dot in a domain', () => {
       expect(tldts.getSubdomain('random.fr.google.co.uk.')).toEqual(
         'random.fr',
@@ -465,7 +522,7 @@ function test(tldts: any): void {
         );
       });
 
-      // @see https://github.com/oncletom/tldts.js/issues/66
+      // @see https://github.com/oncletom/tld.js/issues/66
       it('should return the subdomain of a validHost', () => {
         expect(tldts.getSubdomain('vhost.localhost', options)).toEqual('vhost');
       });

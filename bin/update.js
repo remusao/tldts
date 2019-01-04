@@ -14,12 +14,9 @@ const buildHashes = require('./builders/hashes.js');
   );
 
   // Build trie and update TypeScript file
-  const { rules, exceptions } = buildTrie(publicSuffixList);
   fs.writeFileSync(
     path.resolve(__dirname, '../lib/lookup/data/trie.ts'),
-    `// Code automatically generated using ./bin/builders/trie.js
-export const rules: any = ${JSON.stringify(rules)};
-export const exceptions: any = ${JSON.stringify(exceptions)};`,
+    buildTrie(publicSuffixList),
     'utf-8',
   );
 

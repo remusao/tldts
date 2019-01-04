@@ -235,7 +235,8 @@ export default function suffixLookup(
     publicSuffix = hostname.slice(
       previousDotIndex === -1 ? 0 : previousDotIndex + 1,
     );
-  } else if ((matchKind & Result.NORMAL_MATCH) !== 0) {
+  } else {
+    // if ((matchKind & Result.NORMAL_MATCH) !== 0)
     // For normal match, we just slice the hostname at the beginning of suffix.
     publicSuffix = hostname.slice(matchIndex);
   }

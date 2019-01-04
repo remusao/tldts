@@ -1,96 +1,131 @@
-# tldts - Public Suffix List Parsing
+# tldts - Hostname and Domain Parsing using Public Suffix Lists
 
 [![NPM](https://nodei.co/npm/tldts.png?downloads=true&downloadRank=true)](https://nodei.co/npm/tldts/)
 
 [![Build Status][badge-ci]](http://travis-ci.org/remusao/tldts) ![][badge-downloads]
 ![Coverage Status](https://coveralls.io/repos/github/remusao/tldts/badge.svg?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/remusao/tldts/badge.svg?targetFile=package.json)](https://snyk.io/test/github/remusao/tldts?targetFile=package.json)
 
 
-> `tldts` is a Typescript library to work against complex domain names, subdomains and well-known TLDs. It is a fork of the very good [tld.js](https://github.com/oncletom/tld.js) JavaScript library.
+> `tldts` is a Typescript library to parse hostnames, domains, public suffixes, top-level domains and subdomains from URLs.
 
-It answers with accuracy to questions like _what is `mail.google.com`'s domain?_,  _what is `a.b.ide.kyoto.jp`'s subdomain?_ and _is `https://big.data`'s TLD a well-known one?_.
 
-`tldts` [runs fast](#performances) (even faster than the original tld.js library thanks to additional optimizations), is fully tested and is safe to use in the browser (UMD bundles are provided as well as an ES6 module version and Typescripts type declarations). Because it relies on Mozilla's [public suffix list][], now is a good time to say _thank you_ Mozilla!
+**Features**:
+1. **Fastest library** around (up to 2M operations per second, that's 3 orders of
+   magnitude faster than the most popular library out there)
+2. Written in **TypeScript**, ships with `umd`, `esm`, `cjs` bundles and *type definitions*
+3. Full Unicode/IDNA support
+4. Support both ICANN and Private suffixes
+5. Ships with continuously updated version of the list: it works *out of the box*!
+6. Support parsing full URLs or hostnames
+7. Small bundles and small memory footprint
 
 # Install
 
 ```bash
-# Regular install
 npm install --save tldts
 ```
 
-It ships by default with the latest version of the public suffix lists, but you
-can provide your own version (more up-to-date or modified) using the `update`
-method.
-
-# Using It
+# Usage
 
 ```js
-const { parse } = require('tldts');
+const tldts = require('tldts');
 
 // Retrieving hostname related informations of a given URL
 parse('http://www.writethedocs.org/conf/eu/2017/');
+// { domain: 'writethedocs.org',
+//   hostname: 'www.writethedocs.org',
+//   isIcann: true,
+//   isIp: false,
+//   isPrivate: false,
+//   publicSuffix: 'org',
+//   subdomain: 'www' }
 ```
 
-⬇️ Read the documentation _below_ to find out the available _functions_.
+# API
 
-## `tldts.parse()`
+* `tldts.parse(url | hostname, options)`
+* `tldts.getHostname(url | hostname, options)`
+* `tldts.getDomain(url | hostname, options)`
+* `tldts.getPublicSuffix(url | hostname, options)`
+* `tldts.getSubdomain(url, | hostname, options)`
 
-This methods returns handy **properties about a URL or a hostname**.
+The behavior of `tldts` can be customized using an `options` argument for all
+the functions exposed as part of the public API.
+
+```js
+{
+  // Use suffixes from ICANN section (default: true)
+  allowIcannDomains: boolean;
+  // Use suffixes from Private section (default: false)
+  allowPrivateDomains: boolean;
+  // Extract and validate hostname (default: true)
+  extractHostname: boolean;
+  // Specifies extra valid suffixes (default: null)
+  validHosts: string[] | null;
+}
+```
+
+The `parse` method returns handy **properties about a URL or a hostname**.
 
 ```js
 const tldts = require('tldts');
 
 tldts.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv');
-// { host: 'spark-public.s3.amazonaws.com',
-//   isValid: true,
-//   isIp: false,
-//   publicSuffix: 'com',
+// { domain: 'amazonaws.com',
+//   hostname: 'spark-public.s3.amazonaws.com',
 //   isIcann: true,
+//   isIp: false,
 //   isPrivate: false,
-//   domain: 'amazonaws.com',
+//   publicSuffix: 'com',
 //   subdomain: 'spark-public.s3' }
 
 tldts.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv', { allowPrivateDomains: true })
-// { host: 'spark-public.s3.amazonaws.com',
-//   isValid: true,
-//   isIp: false,
-//   publicSuffix: 's3.amazonaws.com',
+// { domain: 'spark-public.s3.amazonaws.com',
+//   hostname: 'spark-public.s3.amazonaws.com',
 //   isIcann: false,
+//   isIp: false,
 //   isPrivate: true,
-//   domain: 'spark-public.s3.amazonaws.com',
+//   publicSuffix: 's3.amazonaws.com',
 //   subdomain: '' }
 
 tldts.parse('gopher://domain.unknown/');
-// { host: 'domain.unknown',
-//   isValid: true,
-//   isIp: false,
-//   publicSuffix: 'unknown',
+// { domain: 'domain.unknown',
+//   hostname: 'domain.unknown',
 //   isIcann: false,
-//   isPrivate: false,
-//   domain: 'domain.unknown',
+//   isIp: false,
+//   isPrivate: true,
+//   publicSuffix: 'unknown',
 //   subdomain: '' }
 
-tldts.parse('https://192.168.0.0')
-// { host: '192.168.0.0',
-//   isValid: true,
-//   isIp: true,
-//   publicSuffix: null,
+tldts.parse('https://192.168.0.0') // IPv4
+// { domain: null,
+//   hostname: '192.168.0.0',
 //   isIcann: null,
+//   isIp: true,
 //   isPrivate: null,
-//   domain: null,
+//   publicSuffix: null,
+//   subdomain: null }
+
+tldts.parse('https://[::1]') // IPv6
+// { domain: null,
+//   hostname: '::1',
+//   isIcann: null,
+//   isIp: true,
+//   isPrivate: null,
+//   publicSuffix: null,
 //   subdomain: null }
 ```
 
-| Property Name     | Type | |
-| ---               | ---       | --- |
-| `host`            | `String`  | `host` part of the input extracted automatically  |
-| `isValid`         | `Boolean` | Is the hostname valid according to the RFC? |
-| `publicSuffix`    | `String`  |   |
-| `isIcann`         | `Boolean` | Does TLD come from public part of the list  |
-| `isPrivate`       | `Boolean` | Does TLD come from private part of the list |
-| `domain`          | `String`  |   |
-| `subdomain`       | `String`  |   |
+| Property Name  | Type   | Description                                 |
+|:-------------- |:------ |:------------------------------------------- |
+| `hostname`     | `str`  | `hostname` of the input extracted automatically |
+| `domain`       | `str`  | Domain (tld + sld)                          |
+| `subdomain`    | `str`  | Sub domain (what comes after `domain`)      |
+| `publicSuffix` | `str`  | Public Suffix (tld) of `hostname`           |
+| `isIcann`      | `bool` | Does TLD come from ICANN part of the list   |
+| `isPrivate`    | `bool` | Does TLD come from Private part of the list |
+| `isIP`         | `bool` | Is `hostname` an IP address?                |
 
 
 ## Single purpose methods
@@ -98,12 +133,12 @@ tldts.parse('https://192.168.0.0')
 These methods are shorthands if you want to retrieve only a single value (and
 will perform better than `parse` because less work will be needed).
 
-### getDomain()
+### getDomain(url | hostname, options?)
 
 Returns the fully qualified domain from a given string.
 
 ```javascript
-const { getDomain } = tldts;
+const { getDomain } = require('tldts');
 
 getDomain('google.com');        // returns `google.com`
 getDomain('fr.google.com');     // returns `google.com`
@@ -114,12 +149,12 @@ getDomain('fr.t.co');           // returns `t.co`
 getDomain('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `example.co.uk`
 ```
 
-### getSubdomain()
+### getSubdomain(url | hostname, options?)
 
 Returns the complete subdomain for a given string.
 
 ```javascript
-const { getSubdomain } = tldts;
+const { getSubdomain } = require('tldts');
 
 getSubdomain('google.com');             // returns ``
 getSubdomain('fr.google.com');          // returns `fr`
@@ -131,12 +166,12 @@ getSubdomain('fr.t.co');                // returns `fr`
 getSubdomain('https://user:password@secure.example.co.uk:443/some/path?and&query#hash'); // returns `secure`
 ```
 
-### getPublicSuffix()
+### getPublicSuffix(url | hostname, options?)
 
 Returns the [public suffix][] for a given string.
 
 ```javascript
-const { getPublicSuffix } = tldts;
+const { getPublicSuffix } = require('tldts');
 
 getPublicSuffix('google.com');       // returns `com`
 getPublicSuffix('fr.google.com');    // returns `com`
@@ -144,22 +179,6 @@ getPublicSuffix('google.co.uk');     // returns `co.uk`
 getPublicSuffix('s3.amazonaws.com'); // returns `com`
 getPublicSuffix('s3.amazonaws.com', { allowPrivateDomains: true }); // returns `s3.amazonaws.com`
 getPublicSuffix('tld.is.unknown');   // returns `unknown`
-```
-
-### isValidHostname()
-
-Checks if the given string is a valid hostname according to [RFC 1035](https://tools.ietf.org/html/rfc1035).
-It does not check if the TLD is _well-known_.
-
-```javascript
-const { isValidHostname } = tldts;
-
-isValidHostname('google.com');      // returns `true`
-isValidHostname('.google.com');     // returns `false`
-isValidHostname('my.fake.domain');  // returns `true`
-isValidHostname('localhost');       // returns `true`
-isValidHostname('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `false`
-isValidHostname('192.168.0.0')      // returns `true`
 ```
 
 # Troubleshooting
@@ -183,74 +202,46 @@ tldts.getSubdomain('vhost.localhost', { validHosts: ['localhost'] });  // return
 
 ## Updating the TLDs List
 
-Many libraries offer a list of TLDs. But, are they up-to-date? And how to update them?
+`tldts` made the opinionated choice of shipping with a list of suffixes directly
+in its bundle. There is currently no mechanism to update the lists yourself, but
+we make sure that the version shipped is always up-to-date.
 
-`tldts` bundles a list of known TLDs but this list can become outdated.
-This is especially true if the package have not been updated on npm for a while.
+If you keep `tldts` updated, the lists should be up-to-date as well!
 
-Thankfully for you, you can pass your own version of the list to the `update`
-method of `tldts`. It can be fetched from `https://publicsuffix.org/list/public_suffix_list.dat`:
+# Performance
 
-```js
-const { update } = require('tldts');
+`tldts` is the *fastest JavaScript library* available for parsing
+hostnames. It is able to parse up to **2M hostnames per second** on a
+modern i7-8550U CPU with Node.js version 11.6.0.
 
-// `tldts` will not fetch the lists for you at the moment, so depending on your
-// platform your might use either `fetch` or something else.
-update(lists_as_a_string);
-```
+Please see [this detailed comparison](./comparison/comparison.md) with other available libraries.
 
-Open an issue to request an update of the bundled TLDs.
+## Experimental Bundle
 
-# Contributing
+`tldts` ships with two bundles, the default one is what you should use and what
+is imported out of the box. It makes use of an optimized DAWG (direct acyclic
+word graph) data-structure and delivers very good performances. If that is not
+enough, you can try the `tldts-experimental` bundle which implements a
+*probabilistic data-structure*. It is:
 
-Provide a pull request (with tested code) to include your work in this main project.
-Issues may be awaiting for help so feel free to give a hand, with code or ideas.
+* Must smaller (in terms of bundle size and memory footprint)
+* Loads instantly (no data loading or parsing required)
+* Much faster (lookups are up to 1.5-2x faster)
 
-# Performances
+The drawback is that there might be some *unlikely* false positive (think bloom filters).
 
-`tldts` is fast, but keep in mind that it might vary depending on your
-own use-case. Because the library tried to be smart, the speed can be
-drastically different depending on the input (it will be faster if you
-provide an already cleaned hostname, compared to a random URL).
-
-On an Intel i7-6600U (2,60-3,40 GHz) using Node.js `v10.9.0`:
-
-## For already cleaned hostnames
-
-| Methods           | ops/sec      |
-| ---               | ---          |
-| `isValidHostname` | ~`7,500,000` |
-| `getHostname`     | ~`3,200,000` |
-| `getPublicSuffix` | ~`1,100,000` |
-| `getDomain`       | ~`1,100,000` |
-| `getSubdomain`    | ~`1,100,000` |
-| `parse`           | ~`1,000,000` |
-
-
-## For random URLs
-
-| Methods           | ops/sec       |
-| ---               | ---           |
-| `isValidHostname` | ~`12,000,000` |
-| `getHostname`     | ~`2,640,000`  |
-| `getPublicSuffix` | ~`800,000`    |
-| `getDomain`       | ~`760,000`    |
-| `getSubdomain`    | ~`760,000`    |
-| `parse`           | ~`750,000`    |
-
-
-You can measure the performance of `tldts` on your hardware by running the following command:
-
-```bash
-npm run benchmark
-```
-
-_Notice_: if this is not fast enough for your use-case, please get in touch via an issue so that we can analyze that this is so.
+For more details, check the documentation from the following files:
+* [building](./bin/builders/hashes.js)
+* [lookups](./lib/lookup/packed_hashes.ts)
 
 ## Contributors
 
-This project exists thanks to all the people who contributed to `tld.js` as well as `tldts`. [[Contribute]](CONTRIBUTING.md).
+`tldts` is based upon the excellent `tld.js` library and would not exist without
+the many contributors who worked on the project:
 <a href="graphs/contributors"><img src="https://opencollective.com/tldjs/contributors.svg?width=890" /></a>
+
+This project would not be possible without the amazing Mozilla's
+[public suffix list][]. Thank you for your hard work!
 
 # License
 

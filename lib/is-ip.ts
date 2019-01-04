@@ -38,10 +38,8 @@ function isProbablyIpv6(hostname: string): boolean {
       // ':'
       hasColon = true;
     } else if (
-      !(
-        (code >= 48 && code <= 57) || // 0-9
-        (code >= 97 && code <= 102)
-      ) // a-f
+      ((code >= 48 && code <= 57) || // 0-9
+        (code >= 97 && code <= 102)) === false // a-f
     ) {
       return false;
     }

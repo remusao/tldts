@@ -9,10 +9,7 @@
 
 function isValidAscii(code: number): boolean {
   return (
-    (code >= 65 && code <= 90) ||
-    (code >= 97 && code <= 122) ||
-    (code >= 48 && code <= 57) ||
-    code > 127
+    (code >= 97 && code <= 122) || (code >= 48 && code <= 57) || code > 127
   );
 }
 
@@ -31,11 +28,8 @@ export default function(hostname: string): boolean {
     return false;
   }
 
-  // Check first character
-  const firstCharCode: number | undefined = hostname.codePointAt(0);
-
   // @ts-ignore
-  if (!isValidAscii(firstCharCode)) {
+  if (!isValidAscii(hostname.codePointAt(0))) {
     return false;
   }
 
@@ -53,9 +47,9 @@ export default function(hostname: string): boolean {
         i - lastDotIndex > 64 ||
         // Check that previous character was not already a '.'
         lastCharCode === 46 ||
-        // Check that the previous label does not end with a '-'
+        // Check that the previous label does not end with a '-' (dash)
         lastCharCode === 45 ||
-        // Check that the previous label does not end with a '_'
+        // Check that the previous label does not end with a '_' (underscore)
         lastCharCode === 95
       ) {
         return false;
