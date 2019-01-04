@@ -3,7 +3,7 @@
 const path = require('path');
 const Benchmark = require('benchmark');
 
-const tld = require(path.resolve(__dirname, '../'));
+const tld = require(path.resolve(__dirname, '../dist/tldts-experimental.cjs.js'));
 
 
 const HOSTNAMES = [
@@ -65,13 +65,6 @@ function bench(values) {
   );
 
   new Benchmark.Suite()
-    .add('tldjs#isValidHostname', () => {
-      try {
-        for (let i = 0; i < values.length; i += 1) {
-          tld.isValidHostname(values[i]);
-        }
-      } catch (ex) { console.error(ex); }
-    })
     .add('tldjs#getHostname', () => {
       for (let i = 0; i < values.length; i += 1) {
         tld.getHostname(values[i]);

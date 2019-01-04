@@ -1,13 +1,6 @@
 import { IOptions } from './options';
 
 /**
- * Polyfill for `endsWith`
- */
-function endsWith(str: string, pattern: string): boolean {
-  return str.lastIndexOf(pattern) === str.length - pattern.length;
-}
-
-/**
  * Check if `vhost` is a valid suffix of `hostname` (top-domain)
  *
  * It means that `vhost` needs to be a suffix of `hostname` and we then need to
@@ -19,7 +12,7 @@ function endsWith(str: string, pattern: string): boolean {
  * * hostname = 'not.evil.com' and vhost = 'not.evil.com' => ok
  */
 function shareSameDomainSuffix(hostname: string, vhost: string): boolean {
-  if (endsWith(hostname, vhost)) {
+  if (hostname.endsWith(vhost)) {
     return (
       hostname.length === vhost.length ||
       hostname[hostname.length - vhost.length - 1] === '.'
@@ -59,7 +52,7 @@ function extractDomainWithSuffix(
   }
 
   // Extract the part between the last '.'
-  return hostname.substr(lastDotBeforeSuffixIndex + 1);
+  return hostname.slice(lastDotBeforeSuffixIndex + 1);
 }
 
 /**

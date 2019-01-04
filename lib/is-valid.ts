@@ -1,11 +1,28 @@
-import isValidIDNA from './idna';
-import { IOptions } from './options';
+/**
+ * Implements fast shallow verification of hostnames. This does not perform a
+ * struct check on the content of labels (classes of Unicode characters, etc.)
+ * but instead check that the structure is valid (number of labels, length of
+ * labels, etc.).
+ *
+ * If you need stricter validation, consider using an external library.
+ */
 
-function containsUnderscore(hostname: string): boolean {
-  return hostname.indexOf('_') !== -1;
+function isValidAscii(code: number): boolean {
+  return (
+    (code >= 65 && code <= 90) ||
+    (code >= 97 && code <= 122) ||
+    (code >= 48 && code <= 57) ||
+    code > 127
+  );
 }
 
-function isValidHostname(hostname: string): boolean {
+/**
+ * Check if a hostname string is valid. It's usually a preliminary check before
+ * trying to use getDomain or anything else.
+ *
+ * Beware: it does not check if the TLD exists.
+ */
+export default function(hostname: string): boolean {
   if (hostname.length > 255) {
     return false;
   }
@@ -16,11 +33,9 @@ function isValidHostname(hostname: string): boolean {
 
   // Check first character
   const firstCharCode: number | undefined = hostname.codePointAt(0);
-  if (firstCharCode === undefined) {
-    return false;
-  }
 
-  if (!isValidIDNA(firstCharCode)) {
+  // @ts-ignore
+  if (!isValidAscii(firstCharCode)) {
     return false;
   }
 
@@ -31,9 +46,7 @@ function isValidHostname(hostname: string): boolean {
 
   for (let i = 0; i < len; i += 1) {
     const code = hostname.codePointAt(i);
-    if (code === undefined) {
-      return false;
-    } else if (code === 46) {
+    if (code === 46) {
       // '.'
       if (
         // Check that previous label is < 63 bytes long (64 = 63 + '.')
@@ -49,7 +62,8 @@ function isValidHostname(hostname: string): boolean {
       }
 
       lastDotIndex = i;
-    } else if (!(isValidIDNA(code) || code === 45 || code === 95)) {
+      // @ts-ignore
+    } else if (!(isValidAscii(code) || code === 45 || code === 95)) {
       // Check if there is a forbidden character in the label
       return false;
     }
@@ -64,19 +78,5 @@ function isValidHostname(hostname: string): boolean {
     // Since we already checked that the char is a valid hostname character,
     // we only need to check that it's different from '-'.
     lastCharCode !== 45
-  );
-}
-
-/**
- * Check if a hostname string is valid (according to RFC). It's usually a
- * preliminary check before trying to use getDomain or anything else.
- *
- * Beware: it does not check if the TLD exists.
- */
-export default function isValid(hostname: string, options: IOptions): boolean {
-  return (
-    isValidHostname(hostname) &&
-    (options.strictHostnameValidation === false ||
-      !containsUnderscore(hostname))
   );
 }

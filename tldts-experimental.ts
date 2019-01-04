@@ -1,5 +1,5 @@
 import tldtsFactory, { FLAG } from './lib/factory';
-import suffixLookup from './lib/lookup/suffix-trie';
+import suffixLookup from './lib/lookup/packed-hashes';
 import { IOptions } from './lib/options';
 
 export const parse = tldtsFactory(suffixLookup);

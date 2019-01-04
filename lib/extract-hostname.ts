@@ -1,4 +1,21 @@
-import { startsWithFrom } from './polyfill';
+function startsWithFrom(
+  haystack: string,
+  needle: string,
+  start: number,
+): boolean {
+  if (haystack.length - start < needle.length) {
+    return false;
+  }
+
+  const ceil = start + needle.length;
+  for (let i = start; i < ceil; i += 1) {
+    if (haystack[i] !== needle[i - start]) {
+      return false;
+    }
+  }
+
+  return true;
+}
 
 const enum CHARACTERS {
   A = 97, // 'a'
@@ -22,11 +39,12 @@ export default function extractHostname(url: string): string | null {
   let end = url.length;
 
   // Trim leading and trailing spaces
-  for (; start < url.length && url.charCodeAt(start) <= 32; start += 1) {
-    /* */
+  while (start < url.length && url.charCodeAt(start) <= 32) {
+    start += 1;
   }
-  for (; end > start + 1 && url.charCodeAt(end - 1) <= 32; end -= 1) {
-    /* */
+
+  while (end > start + 1 && url.charCodeAt(end - 1) <= 32) {
+    end -= 1;
   }
 
   // Skip scheme.
@@ -104,17 +122,14 @@ export default function extractHostname(url: string): string | null {
   }
 
   // Trim trailing dots
-  for (
-    ;
-    end > start + 1 && url.charCodeAt(end - 1) === CHARACTERS.DOT;
-    end -= 1
-  ) {
-    /* */
+  while (end > start + 1 && url.charCodeAt(end - 1) === CHARACTERS.DOT) {
+    end -= 1;
   }
 
   // Return subset corresponding to hostname
   if (start !== 0 || end !== url.length) {
     return url.slice(start, end);
   }
+
   return url;
 }

@@ -1,17 +1,21 @@
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
 import pkg from './package.json';
 
-
-const plugins = [
-  resolve({
-    preferBuiltins: false,
-  }),
-  commonjs(),
-];
-
-
 export default [
+  {
+    input: './build/tldts-experimental.js',
+    output: {
+      file: pkg.browser.replace('tldts', 'tldts-experimental'),
+      name: pkg.name,
+      format: 'umd',
+    },
+  },
+  {
+    input: './build/tldts-experimental.js',
+    output: [
+      { file: pkg.module.replace('tldts', 'tldts-experimental'), format: 'es' },
+      { file: pkg.main.replace('tldts', 'tldts-experimental'), format: 'cjs' },
+    ],
+  },
   {
     input: './build/tldts.js',
     output: {
@@ -19,11 +23,9 @@ export default [
       name: pkg.name,
       format: 'umd',
     },
-    plugins,
   },
   {
     input: './build/tldts.js',
-    external: ['punycode'],
     output: [
       { file: pkg.module, format: 'es' },
       { file: pkg.main, format: 'cjs' },

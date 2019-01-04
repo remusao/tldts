@@ -7,6 +7,9 @@
     },
     "rules": {
         "no-console": "off",
-        "no-continue": "off"
+        "no-continue": "off",
+        "indent": "off",
+        "operator-linebreak": "off",
+        "no-bitwise": "off"
     }
 }
