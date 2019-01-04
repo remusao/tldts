@@ -4,6 +4,7 @@
 
 [![Build Status][badge-ci]](http://travis-ci.org/remusao/tldts) ![][badge-downloads]
 [![devDependency Status](https://david-dm.org/remusao/tldts/dev-status.png)](https://david-dm.org/tldts/tldts#info=devDependencies) [![Greenkeeper badge](https://badges.greenkeeper.io/remusao/tldts.svg)](https://greenkeeper.io/)
+[![Coverage Status](https://coveralls.io/repos/github/remusao/tldts/badge.svg?branch=master)](https://coveralls.io/github/remusao/tldts?branch=master)
 
 
 > `tldts` is a Typescript library to work against complex domain names, subdomains and well-known TLDs. It is a fork of the very good [tld.js](https://github.com/oncletom/tld.js) JavaScript library.
