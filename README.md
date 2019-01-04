@@ -1,4 +1,10 @@
-# tldts [![Build Status][badge-ci]](http://travis-ci.org/remusao/tldts) ![][badge-downloads]
+# tldts - Public Suffix List Parsing
+
+[![NPM](https://nodei.co/npm/tldts.png?downloads=true&downloadRank=true)](https://nodei.co/npm/tldts/)
+
+[![Build Status][badge-ci]](http://travis-ci.org/remusao/tldts) ![][badge-downloads]
+[![devDependency Status](https://david-dm.org/remusao/tldts/dev-status.png)](https://david-dm.org/tldts/tldts#info=devDependencies)
+
 
 > `tldts` is a Typescript library to work against complex domain names, subdomains and well-known TLDs. It is a fork of the very good [tld.js](https://github.com/oncletom/tld.js) JavaScript library.
 
