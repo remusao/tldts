@@ -25,6 +25,9 @@ install:
 script:
   - npm run test
 
+after_script:
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+
 deploy:
   provider: npm
   email: remi@cliqz.com
