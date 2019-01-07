@@ -1,7 +1,7 @@
 {
   "name": "tldts",
   "description": "Library to work against complex domain names, subdomains and URIs.",
-  "version": "3.1.2",
+  "version": "4.0.0",
   "homepage": "https://github.com/remusao/tldts",
   "author": "Rémi Berson",
   "contributors": [
@@ -24,7 +24,8 @@
   "files": [
     "dist",
     "lib",
-    "tldts.ts"
+    "tldts.ts",
+    "tldts-experimental.ts"
   ],
   "license": "MIT",
   "scripts": {
@@ -66,11 +67,14 @@
     "tld",
     "sld",
     "domain",
+    "subdomain",
+    "subdomain",
+    "hostname",
     "browser",
     "uri",
     "url",
     "domain name",
-    "subdomain",
-    "public suffix"
+    "public suffix",
+    "typescript"
   ]
 }
