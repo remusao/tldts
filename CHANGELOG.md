@@ -2,6 +2,36 @@
 
 ### Not Released
 
+### 4.0.0
+
+*2019-01-07*
+
+This Release introduces some more optimizations both in size of bundles,
+memory usage and speed of parsing. Because it introduces some breaking
+changes in the API results (`host` renamed into `hostname` and deletion
+of the `isValid` attribute), as well as introducing a new experimental
+backend (`tldts-experimental` bundle), this is a major version bump.
+
+- [#16](https://github.com/remusao/tldts/pull/16) Optimizations + comparison with other libraries (#16)
+  * Optimize Trie into a DAWG (size reduction)
+  * Implement comparison with other libraries
+  * Implement fast path for valid hostnames as arguments
+  * Allow to disable hostname parsing and validation using option
+  * Add tests for corner-cases URLs parsing
+  * Update README
+
+- [#13](https://github.com/remusao/tldts/pull/13) Implement experimental probabilistic packed suffix structure (#13)
+  * Implement packed hash probabilistic structure for more compact
+    representation and faster lookups. See ./bin/builders/hashes.js for more
+    details about how it works.
+  * Create second bundle (tldts-experimental) making use of this new implementation
+  * Simplify hostname validation and remove strict IDNA checks
+  * Move lookup implementations into 'lookup' sub-folder
+  * Move compiled data into 'lookup/data' sub-folder
+  * Refactor suffix list parsing out of builders
+  * Handle IDNA hostnames at build-time instead of runtime (by indexing
+    some suffixes multiple times: once puny-coded and once in unicode form)
+
 ### 3.1.1
 
 - Minify rules and idna files
