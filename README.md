@@ -115,6 +115,15 @@ tldts.parse('https://[::1]') // IPv6
 //   isPrivate: null,
 //   publicSuffix: null,
 //   subdomain: null }
+
+tldts.parse('tldts@emailprovider.co.uk') // email
+// { domain: 'emailprovider.co.uk',
+//   hostname: 'emailprovider.co.uk',
+//   isIcann: true,
+//   isIp: false,
+//   isPrivate: false,
+//   publicSuffix: 'co.uk',
+//   subdomain: '' }
 ```
 
 | Property Name  | Type   | Description                                 |
