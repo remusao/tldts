@@ -1,17 +1,15 @@
-import extractHostnameDefault from './extract-hostname';
-
 export interface IOptions {
   allowIcannDomains: boolean;
   allowPrivateDomains: boolean;
-  extractHostname: (url: string) => string | null;
-  validHosts: string[];
+  extractHostname: boolean;
+  validHosts: string[] | null;
 }
 
 export function setDefaults({
   allowIcannDomains = true,
   allowPrivateDomains = false,
-  extractHostname = extractHostnameDefault,
-  validHosts = [],
+  extractHostname = true,
+  validHosts = null,
 }: Partial<IOptions> = {}): IOptions {
   return {
     allowIcannDomains,

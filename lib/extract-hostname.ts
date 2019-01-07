@@ -1,135 +1,108 @@
-function startsWithFrom(
-  haystack: string,
-  needle: string,
-  start: number,
-): boolean {
-  if (haystack.length - start < needle.length) {
-    return false;
-  }
-
-  const ceil = start + needle.length;
-  for (let i = start; i < ceil; i += 1) {
-    if (haystack[i] !== needle[i - start]) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-const enum CHARACTERS {
-  A = 97, // 'a'
-  AT = 64, // '@'
-  CLOSE_BRACKET = 93, // ']'
-  COLON = 58, // ':'
-  DASH = 45, // '-'
-  DOT = 46, // '.'
-  NINE = 57, // '9'
-  OPEN_BRACKET = 91, // '['
-  PLUS = 43, // '+'
-  QUESTION_MARK = 63, // '?'
-  SHARP = 35, // '#'
-  SLASH = 47, // '/'
-  Z = 122, // 'z'
-  ZERO = 48, // '0'
-}
-
-export default function extractHostname(url: string): string | null {
+/**
+ * @param url - URL we want to extract a hostname from.
+ * @param urlIsValidHostname - hint from caller; true if `url` is already a valid hostname.
+ */
+export default function extractHostname(
+  url: string,
+  urlIsValidHostname: boolean,
+): string | null {
   let start = 0;
   let end = url.length;
 
-  // Trim leading and trailing spaces
-  while (start < url.length && url.charCodeAt(start) <= 32) {
-    start += 1;
-  }
+  // If url is not already a valid hostname, then try to extract hostname.
+  if (urlIsValidHostname === false) {
+    // Trim leading spaces
+    while (start < url.length && url.charCodeAt(start) <= 32) {
+      start += 1;
+    }
 
-  while (end > start + 1 && url.charCodeAt(end - 1) <= 32) {
-    end -= 1;
-  }
+    // Trim trailing spaces
+    while (end > start + 1 && url.charCodeAt(end - 1) <= 32) {
+      end -= 1;
+    }
 
-  // Skip scheme.
-  if (startsWithFrom(url, '//', start)) {
-    start += 2;
-  } else {
-    const indexOfProtocol = url.indexOf('://', start);
-    if (indexOfProtocol !== -1) {
-      start = indexOfProtocol + 3;
+    // Skip scheme.
+    if (url.charCodeAt(start) === 47 && url.charCodeAt(start + 1) === 47) {
+      // check if url starts with '//'
+      start += 2;
+    } else {
+      const indexOfProtocol = url.indexOf('://', start);
+      if (indexOfProtocol !== -1) {
+        start = indexOfProtocol + 3;
 
-      // Check that scheme is valid
-      for (let i = 0; i < indexOfProtocol; i += 1) {
-        const lowerCaseCode = url.charCodeAt(i) | 32;
-        if (
-          !(
-            (lowerCaseCode >= CHARACTERS.A && lowerCaseCode <= CHARACTERS.Z) || // alpha
-            (lowerCaseCode >= CHARACTERS.ZERO &&
-              lowerCaseCode <= CHARACTERS.NINE) || // digit
-            lowerCaseCode === CHARACTERS.DOT || // '.'
-            lowerCaseCode === CHARACTERS.DASH || // '-'
-            lowerCaseCode === CHARACTERS.PLUS
-          ) // '+'
-        ) {
-          return null;
+        // Check that scheme is valid
+        for (let i = 0; i < indexOfProtocol; i += 1) {
+          const lowerCaseCode = url.charCodeAt(i) | 32;
+          if (
+            ((lowerCaseCode >= 97 && lowerCaseCode <= 122) || // [a, z]
+            (lowerCaseCode >= 48 && lowerCaseCode <= 57) || // [0, 9]
+            lowerCaseCode === 46 || // '.'
+            lowerCaseCode === 45 || // '-'
+              lowerCaseCode === 43) === false // '+'
+          ) {
+            return null;
+          }
         }
       }
     }
-  }
 
-  // Detect first occurrence of '/', '?' or '#'. We also keep track of the last
-  // occurrence of '@', ']' or ':' to speed-up subsequent parsing of
-  // (respectively), identifier, ipv6 or port.
-  let indexOfIdentifier = -1;
-  let indexOfClosingBracket = -1;
-  let indexOfPort = -1;
-  for (let i = start; i < end; i += 1) {
-    const code = url.charCodeAt(i);
+    // Detect first occurrence of '/', '?' or '#'. We also keep track of the last
+    // occurrence of '@', ']' or ':' to speed-up subsequent parsing of
+    // (respectively), identifier, ipv6 or port.
+    let indexOfIdentifier = -1;
+    let indexOfClosingBracket = -1;
+    let indexOfPort = -1;
+    for (let i = start; i < end; i += 1) {
+      const code = url.charCodeAt(i);
+      if (
+        code === 35 || // '#'
+        code === 47 || // '/'
+        code === 63 // '?'
+      ) {
+        end = i;
+        break;
+      } else if (code === 64) {
+        // '@'
+        indexOfIdentifier = i;
+      } else if (code === 93) {
+        // ']'
+        indexOfClosingBracket = i;
+      } else if (code === 58) {
+        // ':'
+        indexOfPort = i;
+      }
+    }
+
+    // Detect identifier: '@'
     if (
-      code === CHARACTERS.SHARP || // '#'
-      code === CHARACTERS.SLASH || // '/'
-      code === CHARACTERS.QUESTION_MARK // '?'
+      indexOfIdentifier !== -1 &&
+      indexOfIdentifier > start &&
+      indexOfIdentifier < end
     ) {
-      end = i;
-      break;
-    } else if (code === CHARACTERS.AT) {
-      // '@'
-      indexOfIdentifier = i;
-    } else if (code === CHARACTERS.CLOSE_BRACKET) {
-      // ']'
-      indexOfClosingBracket = i;
-    } else if (code === CHARACTERS.COLON) {
-      // ':'
-      indexOfPort = i;
+      start = indexOfIdentifier + 1;
     }
-  }
 
-  // Detect identifier: '@'
-  if (
-    indexOfIdentifier !== -1 &&
-    indexOfIdentifier > start &&
-    indexOfIdentifier < end
-  ) {
-    start = indexOfIdentifier + 1;
-  }
-
-  // Handle ipv6 addresses
-  if (url.charCodeAt(start) === CHARACTERS.OPEN_BRACKET) {
-    if (indexOfClosingBracket !== -1) {
-      return url.slice(start + 1, indexOfClosingBracket);
+    // Handle ipv6 addresses
+    if (url.charCodeAt(start) === 91) {
+      // '['
+      if (indexOfClosingBracket !== -1) {
+        return url.slice(start + 1, indexOfClosingBracket).toLowerCase();
+      }
+      return null;
+    } else if (indexOfPort !== -1 && indexOfPort > start && indexOfPort < end) {
+      // Detect port: ':'
+      end = indexOfPort;
     }
-    return null;
-  } else if (indexOfPort !== -1 && indexOfPort > start && indexOfPort < end) {
-    // Detect port: ':'
-    end = indexOfPort;
   }
 
   // Trim trailing dots
-  while (end > start + 1 && url.charCodeAt(end - 1) === CHARACTERS.DOT) {
+  while (end > start + 1 && url.charCodeAt(end - 1) === 46) {
+    // '.'
     end -= 1;
   }
 
-  // Return subset corresponding to hostname
-  if (start !== 0 || end !== url.length) {
-    return url.slice(start, end);
-  }
-
-  return url;
+  return (start !== 0 || end !== url.length
+    ? url.slice(start, end)
+    : url
+  ).toLowerCase();
 }

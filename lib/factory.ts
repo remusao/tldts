@@ -4,13 +4,14 @@
  * and exposed in `tldts.ts` and `tldts-experimental.ts` bundle entrypoints.
  */
 
-import getDomainImpl from './domain';
-import isIpImpl from './is-ip';
-import validateHostnameShape from './is-valid';
+import getDomain from './domain';
+import extractHostname from './extract-hostname';
+import isIp from './is-ip';
+import isValidHostname from './is-valid';
 import { IPublicSuffix, ISuffixLookupOptions } from './lookup/interface';
 import { IOptions, setDefaults } from './options';
-import getPublicSuffixImpl from './public-suffix';
-import getSubdomainImpl from './subdomain';
+import getPublicSuffix from './public-suffix';
+import getSubdomain from './subdomain';
 
 export interface IResult {
   // `hostname` is either a registered name (including but not limited to a
@@ -45,15 +46,13 @@ export const enum FLAG {
   ALL,
 }
 
-export default (
-  suffixLookup: (_1: string, _2: ISuffixLookupOptions) => IPublicSuffix | null,
-) => (
+export default function parseImpl(
   url: string,
+  step: FLAG,
+  suffixLookup: (_1: string, _2: ISuffixLookupOptions) => IPublicSuffix | null,
   partialOptions?: Partial<IOptions>,
-  step: FLAG = FLAG.ALL,
-): IResult => {
+): IResult {
   const options: IOptions = setDefaults(partialOptions);
-
   const result: IResult = {
     domain: null,
     hostname: null,
@@ -64,30 +63,38 @@ export default (
     subdomain: null,
   };
 
-  // Extract hostname from `url`
-  const hostname = options.extractHostname(url);
-  if (hostname === null) {
-    result.isIp = false;
-    return result;
-  }
-  result.hostname = hostname.toLowerCase();
-  if (step === FLAG.HOSTNAME) {
-    return result;
-  }
+  // Extract hostname from `url` only if needed
+  if (options.extractHostname === false) {
+    result.hostname = url;
 
-  // Check if `hostname` is a valid ip address
-  result.isIp = isIpImpl(result.hostname);
-  if (result.isIp) {
-    return result;
-  }
+    if (step === FLAG.HOSTNAME) {
+      return result;
+    }
+  } else {
+    const urlIsValidHostname = isValidHostname(url);
+    result.hostname = extractHostname(url, urlIsValidHostname);
 
-  // Make sure hostname is valid before proceeding
-  if (validateHostnameShape(hostname) === false) {
-    return result;
+    if (step === FLAG.HOSTNAME || result.hostname === null) {
+      return result;
+    }
+
+    // Check if `hostname` is a valid ip address
+    result.isIp = isIp(result.hostname);
+    if (result.isIp) {
+      return result;
+    }
+
+    // Make sure hostname is valid before proceeding
+    if (
+      urlIsValidHostname === false &&
+      isValidHostname(result.hostname) === false
+    ) {
+      return result;
+    }
   }
 
   // Extract public suffix
-  const publicSuffixResult = getPublicSuffixImpl(
+  const publicSuffixResult = getPublicSuffix(
     result.hostname,
     options,
     suffixLookup,
@@ -96,18 +103,18 @@ export default (
   result.publicSuffix = publicSuffixResult.publicSuffix;
   result.isIcann = publicSuffixResult.isIcann;
   result.isPrivate = publicSuffixResult.isIcann === false;
-  if (step === FLAG.PUBLIC_SUFFIX) {
+  if (step === FLAG.PUBLIC_SUFFIX || result.publicSuffix === null) {
     return result;
   }
 
   // Extract domain
-  result.domain = getDomainImpl(result.publicSuffix, result.hostname, options);
-  if (step === FLAG.DOMAIN) {
+  result.domain = getDomain(result.publicSuffix, result.hostname, options);
+  if (step === FLAG.DOMAIN || result.domain === null) {
     return result;
   }
 
   // Extract subdomain
-  result.subdomain = getSubdomainImpl(result.hostname, result.domain);
+  result.subdomain = getSubdomain(result.hostname, result.domain);
 
   return result;
-};
+}
