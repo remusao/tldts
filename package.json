@@ -56,7 +56,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.12.2",
-    "google-closure-compiler": "^20181210.0.0",
+    "google-closure-compiler": "^20190106.0.0",
     "jest": "^23.6.0",
     "rollup": "^1.0.2",
     "ts-jest": "^23.10.5",
