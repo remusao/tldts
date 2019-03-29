@@ -2,6 +2,12 @@
 
 ### Not Released
 
+### 4.0.4
+
+*2019-03-28*
+
+- [#100](https://github.com/remusao/tldts/pull/100) Update Public Suffix Lists
+
 ### 4.0.3
 
 *2019-03-10*
