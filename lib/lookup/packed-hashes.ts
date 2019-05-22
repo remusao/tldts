@@ -2,6 +2,19 @@ import packed from './data/hashes';
 import { IPublicSuffix, ISuffixLookupOptions } from './interface';
 
 /**
+ * Utility to extract the TLD from a hostname string
+ */
+function extractTldFromHost(hostname: string): string | null {
+  const lastDotIndex = hostname.lastIndexOf('.');
+  if (lastDotIndex === -1) {
+    // Single label is considered a tld
+    return hostname;
+  }
+
+  return hostname.slice(lastDotIndex + 1);
+}
+
+/**
  * Find `elt` in `arr` between indices `start` (included) and `end` (excluded)
  * using a binary search algorithm.
  */
@@ -88,7 +101,8 @@ const enum Result {
 export default function suffixLookup(
   hostname: string,
   { allowIcannDomains, allowPrivateDomains }: ISuffixLookupOptions,
-): IPublicSuffix | null {
+  out: IPublicSuffix,
+): void {
   // Keep track of longest match
   let matchIndex = -1;
   let matchKind = Result.NO_MATCH;
@@ -219,7 +233,10 @@ export default function suffixLookup(
 
   if (matchIndex === -1) {
     // No match found
-    return null;
+    out.isIcann = false;
+    out.isPrivate = false;
+    out.publicSuffix = extractTldFromHost(hostname);
+    return;
   } else if ((matchKind & Result.EXCEPTION_MATCH) !== 0) {
     // If match is an exception, this means that we need to count less label.
     // For example, exception rule !foo.com would yield suffix 'com', so we need
@@ -241,9 +258,7 @@ export default function suffixLookup(
     publicSuffix = hostname.slice(matchIndex);
   }
 
-  return {
-    isIcann: (matchKind & Result.ICANN_MATCH) !== 0,
-    isPrivate: (matchKind & Result.PRIVATE_MATCH) !== 0,
-    publicSuffix,
-  };
+  out.isIcann = (matchKind & Result.ICANN_MATCH) !== 0;
+  out.isPrivate = (matchKind & Result.PRIVATE_MATCH) !== 0;
+  out.publicSuffix = publicSuffix;
 }

@@ -2,6 +2,41 @@
 
 ### Not Released
 
+### 5.0.0
+
+*2019-05-23*
+
+- Improvements in various areas [#149](https://github.com/remusao/tldts/pull/149)
+  * Performance improvements in all methods of public API (up to x2 faster)
+    * `extractHostname`: will now avoid lower-casing the result in some cases
+    * `extractHostname`: handles single or triple '/' after protocol
+    * `extractHostname`: has fast-path for validation of common protocols (e.g. https)
+    * `isProbablyIpv4`: performs first quick check on length of hostname
+    * `isProbablyIpv6`: performs first quick check on length of hostname
+    * `isValidHostname`: make use of `charCodeAt` instead of `codePointAt`
+    * `lookupInTrie`: makes use of Trie with more stable structure (faster)
+    * `lookupInTrie`: lazily allocate memory for result
+    * `suffixLookup`: uses fast-path for most common suffixes (massive speed-up)
+    * `suffixLookup`: does not allocate memory for result anymore
+    * `setDefaults`: fast-path in case no argument was provided
+    * `getSubdomain`: fast-path if subdomain is empty
+  * Add more options to fine-tune behavior and performance
+    * `detectIp` allows to disable IP check
+    * `mixedInput` allows to specify if we expect a mix of URLs and hostnames as
+      input. If only hostnames are expected then `extractHostname` can be set to
+      `false` to speed-up parsing. If only URLs are expected then `mixedInputs`
+      can be set to `false`. The `mixedInputs` is only a hint and will not
+      change the behavior of the library.
+    * `validateHostname` can be set to `false` to disable validation and
+      speed-up processing further.
+  * Check that input is string before parsing
+  * Fix support for reserved keywords in hostnames
+  * Add tests and bring back coverage to 100%
+  * Minified bundle is now also tested with the same suite
+  * Migrate utils scripts from `bin/` folder to TypeScript
+  * Add small `tldts` cli which can be used to parse URLs
+  * Update README with more accurate information
+
 ### 4.0.6
 
 *2019-04-15*

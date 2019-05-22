@@ -1,4 +1,4 @@
-# tldts - Hostname and Domain Parsing using Public Suffix Lists
+# tldts - Blazing Fast URL Parsing
 
 [![NPM](https://nodei.co/npm/tldts.png?downloads=true&downloadRank=true)](https://nodei.co/npm/tldts/)
 
@@ -6,19 +6,18 @@
 ![Coverage Status](https://coveralls.io/repos/github/remusao/tldts/badge.svg?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/remusao/tldts/badge.svg?targetFile=package.json)](https://snyk.io/test/github/remusao/tldts?targetFile=package.json)
 
-
-> `tldts` is a Typescript library to parse hostnames, domains, public suffixes, top-level domains and subdomains from URLs.
-
+`tldts` is a JavaScript library to extract hostnames, domains, public suffixes, top-level domains and subdomains from URLs.
 
 **Features**:
-1. **Fastest library** around (up to 2M operations per second, that's 3 orders of
-   magnitude faster than the most popular library out there)
-2. Written in **TypeScript**, ships with `umd`, `esm`, `cjs` bundles and *type definitions*
+1. Tuned for **performance** (order of 0.1 to 1 μs per input)
+2. Handles both URLs and hostnames
 3. Full Unicode/IDNA support
-4. Support both ICANN and Private suffixes
-5. Ships with continuously updated version of the list: it works *out of the box*!
-6. Support parsing full URLs or hostnames
-7. Small bundles and small memory footprint
+4. Support parsing email addresses
+5. Detect IPv4 and IPv6 addresses
+6. Continuously updated version of the public suffix list
+7. **TypeScript**, ships with `umd`, `esm`, `cjs` bundles and *type definitions*
+8. Small bundles and small memory footprint
+9. Battle tested: full test coverage and production use
 
 # Install
 
@@ -29,7 +28,7 @@ npm install --save tldts
 # Usage
 
 ```js
-const tldts = require('tldts');
+const { parse } = require('tldts');
 
 // Retrieving hostname related informations of a given URL
 parse('http://www.writethedocs.org/conf/eu/2017/');
@@ -42,6 +41,12 @@ parse('http://www.writethedocs.org/conf/eu/2017/');
 //   subdomain: 'www' }
 ```
 
+Modern *ES6 modules import* is also supported:
+
+```js
+import { parse } from 'tldts';
+```
+
 # API
 
 * `tldts.parse(url | hostname, options)`
@@ -51,7 +56,9 @@ parse('http://www.writethedocs.org/conf/eu/2017/');
 * `tldts.getSubdomain(url, | hostname, options)`
 
 The behavior of `tldts` can be customized using an `options` argument for all
-the functions exposed as part of the public API.
+the functions exposed as part of the public API. This is useful to both change
+the behavior of the library as well as fine-tune the performance depending on
+your inputs.
 
 ```js
 {
@@ -60,7 +67,19 @@ the functions exposed as part of the public API.
   // Use suffixes from Private section (default: false)
   allowPrivateDomains: boolean;
   // Extract and validate hostname (default: true)
+  // When set to `false`, inputs will be considered valid hostnames.
   extractHostname: boolean;
+  // Validate hostnames after parsing (default: true)
+  // If a hostname is not valid, not further processing is performed. When set
+  // to `false`, inputs to the library will be considered valid and parsing will
+  // proceed regardless.
+  validateHostname: boolean;
+  // Perform IP address detection (default: true).
+  detectIp: boolean;
+  // Assume that both URLs and hostnames can be given as input (default: true)
+  // If set to `false` we assume only URLs will be given as input, which
+  // speed-ups processing.
+  mixedInputs: boolean;
   // Specifies extra valid suffixes (default: null)
   validHosts: string[] | null;
 }

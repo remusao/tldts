@@ -1,14 +1,22 @@
-const punycode = require('punycode');
+import { toASCII } from 'punycode';
+
+interface IRule {
+  isException: boolean;
+  isIcann: boolean;
+  isNormal: boolean;
+  isWildcard: boolean;
+  rule: string;
+}
 
 /**
  * Parse public suffix list and invoke callback on each rule.
  */
-module.exports = (body, cb) => {
-  const beginPrivateDomains = '// ===begin private domains===';
-  let isIcann = true;
+export default (body: string, cb: (_: IRule) => void) => {
+  const beginPrivateDomains: string = '// ===begin private domains===';
+  let isIcann: boolean = true;
 
   // Iterate on lines and extract public suffix rules
-  const lines = body.split('\n');
+  const lines: string[] = body.split('\n');
   for (let i = 0; i < lines.length; i += 1) {
     let line = lines[i].trim().toLowerCase();
 
@@ -45,23 +53,23 @@ module.exports = (body, cb) => {
     // If suffix is not ascii, we index the suffix twice so that we support IDNA
     // labels as well. This allows to not have to perform the conversion at
     // runtime.
-    const encoded = punycode.toASCII(line);
+    const encoded = toASCII(line);
     if (line !== encoded) {
       cb({
-        rule: encoded,
         isException,
-        isWildcard,
-        isNormal,
         isIcann,
+        isNormal,
+        isWildcard,
+        rule: encoded,
       });
     }
 
     cb({
-      rule: line,
       isException,
-      isWildcard,
-      isNormal,
       isIcann,
+      isNormal,
+      isWildcard,
+      rule: line,
     });
   }
 };

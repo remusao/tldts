@@ -84,32 +84,37 @@
  * 4. Hash can be computed on-the-fly from end to start without any string copy
  */
 
-const parse = require('../parser');
+import parse from '../parser';
 
 /**
  * Compute 32 bits hash of `str` backward.
  */
-function fastHash(str) {
-  let hash = 5381;
+function fastHash(str: string): number {
+  let hash: number = 5381;
   for (let j = str.length - 1; j >= 0; j -= 1) {
     hash = (hash * 33) ^ str.charCodeAt(j);
   }
   return hash >>> 0;
 }
 
+interface IRules {
+  icann: any[];
+  priv: any[];
+}
+
 /**
  * Build packed typed array given the raw public list as a string.
  */
-module.exports = (body) => {
-  const rules = {
+export default (body: string) => {
+  const rules: IRules = {
     icann: [],
     priv: [],
   };
-  const wildcards = {
+  const wildcards: IRules = {
     icann: [],
     priv: [],
   };
-  const exceptions = {
+  const exceptions: IRules = {
     icann: [],
     priv: [],
   };
@@ -121,13 +126,7 @@ module.exports = (body) => {
   let maximumNumberOfLabels = 0;
 
   // Iterate on public suffix rules
-  parse(body, ({
-    rule,
-    isIcann,
-    isException,
-    isWildcard,
-    isNormal,
-  }) => {
+  parse(body, ({ rule, isIcann, isException, isWildcard, isNormal }) => {
     // Select correct section to insert the rule
     let hashesPerLabels = null;
     if (isException) {
@@ -138,6 +137,10 @@ module.exports = (body) => {
       rule = rule.slice(2);
     } else if (isNormal) {
       hashesPerLabels = isIcann ? rules.icann : rules.priv;
+    }
+
+    if (hashesPerLabels === null) {
+      return;
     }
 
     // Count number of labels in this suffix
@@ -164,7 +167,7 @@ module.exports = (body) => {
   });
 
   // Pack everything together
-  const chunks = [];
+  const chunks: number[][] = [];
   const pushHashes = (hashes = []) => {
     chunks.push([
       hashes.length,
@@ -189,5 +192,6 @@ module.exports = (body) => {
     pushHashes(rules.priv[label]);
   }
 
+  // @ts-ignore
   return new Uint32Array([maximumNumberOfLabels, ...[].concat(...chunks)]);
 };

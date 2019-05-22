@@ -1,6 +1,6 @@
 export interface IPublicSuffix {
-  isIcann: boolean;
-  isPrivate: boolean;
+  isIcann: boolean | null;
+  isPrivate: boolean | null;
   publicSuffix: string | null;
 }
 

@@ -1,39 +1,13 @@
-#!/usr/bin/env node
-
+const Benchmark = require('benchmark');
+const chalk = require('chalk');
 const { URL } = require('url');
 const fs = require('fs');
 const path = require('path');
-
-const tldtsExperimental = require(path.resolve(
-  __dirname,
-  '../dist/tldts-experimental.umd.min.js',
-));
-const tldtsDefault = require(path.resolve(
-  __dirname,
-  '../dist/tldts.umd.min.js',
-));
-
-function bench(title, tldts, inputs) {
-  console.log(`* Start: ${title}`);
-  const t0 = Date.now();
-  for (let i = 0; i < inputs.length; i += 1) {
-    tldts.parse(inputs[i]);
-    tldts.parse(inputs[i]);
-    tldts.parse(inputs[i]);
-    tldts.parse(inputs[i]);
-    tldts.parse(inputs[i]);
-  }
-  const total = Date.now() - t0;
-  console.log(`  - ${total / 5} ms`);
-  console.log(`  - ${total / inputs.length / 5} ms per input`);
-  console.log(
-    `  - ${Math.floor(1000 / (total / inputs.length / 5))} calls per second`,
-  );
-}
+const tldts = require('..');
 
 function main() {
-  const urls = [
-    ...new Set(
+  const urls = Array.from(
+    new Set(
       fs
         .readFileSync(path.resolve(__dirname, './requests.json'), {
           encoding: 'utf-8',
@@ -42,16 +16,67 @@ function main() {
         .map(JSON.parse)
         .map(({ url }) => url),
     ),
-  ];
-  console.log('urls', urls.length);
+  );
+  const hostnames = Array.from(new Set(urls.map(url => new URL(url).hostname)));
 
-  const hostnames = [...new Set(urls.map(url => new URL(url).hostname))];
-  console.log('Hosts', hostnames.length);
+  function bench(name, args, fn) {
+    const suite = new Benchmark.Suite();
+    suite
+      .add(name, () => fn(args))
+      .on('cycle', event => {
+        console.log(
+          `  + ${name} ${Math.floor(event.target.hz * args.length)} ops/second`,
+        );
+      })
+      .run({ async: false });
+  }
 
-  bench('tldts URLs', tldtsDefault, urls);
-  bench('tldts-experimental URLs', tldtsExperimental, urls);
-  bench('tldts hostnames', tldtsDefault, hostnames);
-  bench('tldts-experimental hostnames', tldtsExperimental, hostnames);
+  for (const method of [
+    'parse',
+    'getHostname',
+    'getPublicSuffix',
+    'getDomain',
+    'getSubdomain',
+  ]) {
+    console.log(`= ${chalk.bold(method)}`);
+    const fn = tldts[method];
+
+    for (const options of [
+      undefined, // defaults
+      { validateHostname: false },
+      { validateHostname: false, detectIp: false, mixedInputs: false },
+    ]) {
+      bench(
+        `#${chalk.bold(method)}(url, ${chalk.underline(
+          JSON.stringify(options),
+        )})`,
+        urls,
+        urls => {
+          for (let i = 0; i < urls.length; i += 1) {
+            fn(urls[i], options);
+          }
+        },
+      );
+    }
+
+    for (const options of [
+      undefined, // defaults
+      { validateHostname: false },
+      { validateHostname: false, detectIp: false, extractHostname: false },
+    ]) {
+      bench(
+        `#${chalk.bold(method)}(hostname, ${chalk.underline(
+          JSON.stringify(options),
+        )})`,
+        hostnames,
+        hostnames => {
+          for (let i = 0; i < hostnames.length; i += 1) {
+            fn(hostnames[i], options);
+          }
+        },
+      );
+    }
+  }
 }
 
 main();

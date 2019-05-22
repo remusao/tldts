@@ -1,29 +1,18 @@
-sudo: false
-dist: trusty
+dist: xenial
 language: node_js
 
 node_js:
-  - 6
-  - 8
-  - 9
+  - lts/*
   - node
 
-cache:
-  directories:
-  - node_modules
+cache: npm
 
 notifications:
   email:
     on_failure: change
 
 before_install:
-  - npm install -g npm@latest
-
-install:
-  - npm ci
-
-script:
-  - npm run test
+  - npm install --global npm@latest
 
 after_script:
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
