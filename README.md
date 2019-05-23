@@ -176,6 +176,22 @@ tldts.parse('tldts@emailprovider.co.uk') // email
 These methods are shorthands if you want to retrieve only a single value (and
 will perform better than `parse` because less work will be needed).
 
+### getHostname(url | hostname, options?)
+
+Returns the hostname from a given string.
+
+```javascript
+const { getHostname } = require('tldts');
+
+getHostname('google.com');        // returns `google.com`
+getHostname('fr.google.com');     // returns `fr.google.com`
+getHostname('fr.google.google');  // returns `fr.google.google`
+getHostname('foo.google.co.uk');  // returns `foo.google.co.uk`
+getHostname('t.co');              // returns `t.co`
+getHostname('fr.t.co');           // returns `fr.t.co`
+getHostname('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `example.co.uk`
+```
+
 ### getDomain(url | hostname, options?)
 
 Returns the fully qualified domain from a given string.
@@ -253,9 +269,7 @@ If you keep `tldts` updated, the lists should be up-to-date as well!
 
 # Performance
 
-`tldts` is the *fastest JavaScript library* available for parsing
-hostnames. It is able to parse up to **2M hostnames per second** on a
-modern i7-8550U CPU with Node.js version 11.6.0.
+`tldts` is the *fastest JavaScript library* available for parsing hostnames. It is able to parse *millions of inputs per second* (typically 2-3M depending on your hardware and inputs). It also offers granular options to fine-tune the behavior and performance of the library depending on the kind of inputs you are dealing with (e.g.: if you know you only manipulate valid hostnames you can disable the hostname extraction step with `{ extractHostname: false }`).
 
 Please see [this detailed comparison](./comparison/comparison.md) with other available libraries.
 
