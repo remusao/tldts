@@ -1,3 +1,4 @@
+import * as tldMinified from '../';
 import * as tld from '../tldts';
 import * as tldExperimental from '../tldts-experimental';
 
@@ -148,4 +149,8 @@ describe('tldts classic', () => {
 
 describe('tldts experimental', () => {
   test(tldExperimental.getDomain);
+});
+
+describe('tldts minified', () => {
+  test(tldMinified.getDomain);
 });

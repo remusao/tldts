@@ -3,25 +3,32 @@
  * because `hostname` is already garanteed to be a valid hostname!
  */
 function isProbablyIpv4(hostname: string): boolean {
+  // Cannot be shorted than 1.1.1.1
+  if (hostname.length < 7) {
+    return false;
+  }
+
+  // Cannot be longer than: 255.255.255.255
+  if (hostname.length > 15) {
+    return false;
+  }
+
   let numberOfDots = 0;
 
   for (let i = 0; i < hostname.length; i += 1) {
     const code = hostname.charCodeAt(i);
 
-    if (code === 46) {
-      // '.'
+    if (code === 46 /* '.' */) {
       numberOfDots += 1;
-    } else if (code < 48 || code > 57) {
-      // 48 => '0'
-      // 57 => '9'
+    } else if (code < 48 /* '0' */ || code > 57 /* '9' */) {
       return false;
     }
   }
 
   return (
     numberOfDots === 3 &&
-    hostname[0] !== '.' &&
-    hostname[hostname.length - 1] !== '.'
+    hostname.charCodeAt(0) !== 46 /* '.' */ &&
+    hostname.charCodeAt(hostname.length - 1) !== 46 /* '.' */
   );
 }
 
@@ -29,13 +36,19 @@ function isProbablyIpv4(hostname: string): boolean {
  * Similar to isProbablyIpv4.
  */
 function isProbablyIpv6(hostname: string): boolean {
-  let hasColon = false;
+  // We only consider the maximum size of a normal IPV6. Note that this will
+  // fail on so-called "IPv4 mapped IPv6 addresses" but this is a corner-case
+  // and a proper validation library should be used for these.
+  if (hostname.length > 39) {
+    return false;
+  }
+
+  let hasColon: boolean = false;
 
   for (let i = 0; i < hostname.length; i += 1) {
     const code = hostname.charCodeAt(i);
 
-    if (code === 58) {
-      // ':'
+    if (code === 58 /* ':' */) {
       hasColon = true;
     } else if (
       ((code >= 48 && code <= 57) || // 0-9

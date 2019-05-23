@@ -6,8 +6,9 @@ export default function extractHostname(
   url: string,
   urlIsValidHostname: boolean,
 ): string | null {
-  let start = 0;
-  let end = url.length;
+  let start: number = 0;
+  let end: number = url.length;
+  let hasUpper: boolean = false;
 
   // If url is not already a valid hostname, then try to extract hostname.
   if (urlIsValidHostname === false) {
@@ -22,38 +23,86 @@ export default function extractHostname(
     }
 
     // Skip scheme.
-    if (url.charCodeAt(start) === 47 && url.charCodeAt(start + 1) === 47) {
-      // check if url starts with '//'
+    if (
+      url.charCodeAt(start) === 47 /* '/' */ &&
+      url.charCodeAt(start + 1) === 47 /* '/' */
+    ) {
       start += 2;
     } else {
-      const indexOfProtocol = url.indexOf('://', start);
+      const indexOfProtocol = url.indexOf(':/', start);
       if (indexOfProtocol !== -1) {
-        start = indexOfProtocol + 3;
+        // Implement fast-path for common protocols. We expect most protocols
+        // should be one of these 4 and thus we will not need to perform the
+        // more expansive validity check most of the time.
+        const protocolSize = indexOfProtocol - start;
+        const c0 = url.charCodeAt(start);
+        const c1 = url.charCodeAt(start + 1);
+        const c2 = url.charCodeAt(start + 2);
+        const c3 = url.charCodeAt(start + 3);
+        const c4 = url.charCodeAt(start + 4);
 
-        // Check that scheme is valid
-        for (let i = 0; i < indexOfProtocol; i += 1) {
-          const lowerCaseCode = url.charCodeAt(i) | 32;
-          if (
-            ((lowerCaseCode >= 97 && lowerCaseCode <= 122) || // [a, z]
-            (lowerCaseCode >= 48 && lowerCaseCode <= 57) || // [0, 9]
-            lowerCaseCode === 46 || // '.'
-            lowerCaseCode === 45 || // '-'
-              lowerCaseCode === 43) === false // '+'
-          ) {
-            return null;
+        if (
+          protocolSize === 5 &&
+          c0 === 104 /* 'h' */ &&
+          c1 === 116 /* 't' */ &&
+          c2 === 116 /* 't' */ &&
+          c3 === 112 /* 'p' */ &&
+          c4 === 115 /* 's' */
+        ) {
+          // https
+        } else if (
+          protocolSize === 4 &&
+          c0 === 104 /* 'h' */ &&
+          c1 === 116 /* 't' */ &&
+          c2 === 116 /* 't' */ &&
+          c3 === 112 /* 'p' */
+        ) {
+          // http
+        } else if (
+          protocolSize === 3 &&
+          c0 === 119 /* 'w' */ &&
+          c1 === 115 /* 's' */ &&
+          c2 === 115 /* 's' */
+        ) {
+          // wss
+        } else if (
+          protocolSize === 2 &&
+          c0 === 119 /* 'w' */ &&
+          c1 === 115 /* 's' */
+        ) {
+          // ws
+        } else {
+          // Check that scheme is valid
+          for (let i = start; i < indexOfProtocol; i += 1) {
+            const lowerCaseCode = url.charCodeAt(i) | 32;
+            if (
+              ((lowerCaseCode >= 97 && lowerCaseCode <= 122) || // [a, z]
+              (lowerCaseCode >= 48 && lowerCaseCode <= 57) || // [0, 9]
+              lowerCaseCode === 46 || // '.'
+              lowerCaseCode === 45 || // '-'
+                lowerCaseCode === 43) === false // '+'
+            ) {
+              return null;
+            }
           }
+        }
+
+        // Skip 0, 1 or more '/' after ':/'
+        start = indexOfProtocol + 2;
+        while (url.charCodeAt(start) === 47 /* '/' */) {
+          start += 1;
         }
       }
     }
 
-    // Detect first occurrence of '/', '?' or '#'. We also keep track of the last
-    // occurrence of '@', ']' or ':' to speed-up subsequent parsing of
+    // Detect first occurrence of '/', '?' or '#'. We also keep track of the
+    // last occurrence of '@', ']' or ':' to speed-up subsequent parsing of
     // (respectively), identifier, ipv6 or port.
-    let indexOfIdentifier = -1;
-    let indexOfClosingBracket = -1;
-    let indexOfPort = -1;
+    let indexOfIdentifier: number = -1;
+    let indexOfClosingBracket: number = -1;
+    let indexOfPort: number = -1;
     for (let i = start; i < end; i += 1) {
-      const code = url.charCodeAt(i);
+      const code: number = url.charCodeAt(i);
       if (
         code === 35 || // '#'
         code === 47 || // '/'
@@ -70,6 +119,8 @@ export default function extractHostname(
       } else if (code === 58) {
         // ':'
         indexOfPort = i;
+      } else if (code >= 65 && code <= 90) {
+        hasUpper = true;
       }
     }
 
@@ -83,8 +134,7 @@ export default function extractHostname(
     }
 
     // Handle ipv6 addresses
-    if (url.charCodeAt(start) === 91) {
-      // '['
+    if (url.charCodeAt(start) === 91 /* '[' */) {
       if (indexOfClosingBracket !== -1) {
         return url.slice(start + 1, indexOfClosingBracket).toLowerCase();
       }
@@ -96,13 +146,16 @@ export default function extractHostname(
   }
 
   // Trim trailing dots
-  while (end > start + 1 && url.charCodeAt(end - 1) === 46) {
-    // '.'
+  while (end > start + 1 && url.charCodeAt(end - 1) === 46 /* '.' */) {
     end -= 1;
   }
 
-  return (start !== 0 || end !== url.length
-    ? url.slice(start, end)
-    : url
-  ).toLowerCase();
+  const hostname: string =
+    start !== 0 || end !== url.length ? url.slice(start, end) : url;
+
+  if (hasUpper) {
+    return hostname.toLowerCase();
+  }
+
+  return hostname;
 }

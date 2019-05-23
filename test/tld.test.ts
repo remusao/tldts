@@ -1,5 +1,7 @@
 import isIp from '../lib/is-ip';
 import isValidHostname from '../lib/is-valid';
+
+import * as tldMinified from '../';
 import * as tld from '../tldts';
 import * as tldExperimental from '../tldts-experimental';
 
@@ -12,6 +14,47 @@ function repeat(str: string, n: number): string {
 }
 
 function test(tldts: any): void {
+  describe('from https://github.com/rushmorem/publicsuffix/blob/master/src/tests.rs', () => {
+    // Copyright (c) 2016 Rushmore Mushambi
+    it('should allow parsing IDN email addresses', () => {
+      expect(tldts.parse('Pelé@example.com')).toMatchObject({
+        domain: 'example.com',
+        hostname: 'example.com',
+        publicSuffix: 'com',
+      });
+
+      expect(tldts.parse('δοκιμή@παράδειγμα.δοκιμή')).toMatchObject({
+        domain: 'παράδειγμα.δοκιμή',
+        hostname: 'παράδειγμα.δοκιμή',
+        publicSuffix: 'δοκιμή',
+      });
+
+      expect(tldts.parse('我買@屋企.香港')).toMatchObject({
+        domain: '屋企.香港',
+        hostname: '屋企.香港',
+        publicSuffix: '香港',
+      });
+
+      expect(tldts.parse('甲斐@黒川.日本')).toMatchObject({
+        domain: '黒川.日本',
+        hostname: '黒川.日本',
+        publicSuffix: '日本',
+      });
+
+      expect(tldts.parse('чебурашка@ящик-с-апельсинами.рф')).toMatchObject({
+        domain: 'ящик-с-апельсинами.рф',
+        hostname: 'ящик-с-апельсинами.рф',
+        publicSuffix: 'рф',
+      });
+
+      expect(tldts.parse('用户@例子.广告')).toMatchObject({
+        domain: '例子.广告',
+        hostname: '例子.广告',
+        publicSuffix: '广告',
+      });
+    });
+  });
+
   describe('#getDomain', () => {
     it('should allow disabling parsing/validation of hostnames', () => {
       expect(
@@ -21,12 +64,106 @@ function test(tldts: any): void {
       ).toEqual('foo.com');
     });
 
+    describe('supports reserved keywords', () => {
+      [
+        'abstract',
+        'arguments',
+        'await',
+        'boolean',
+        'break',
+        'byte',
+        'case',
+        'catch',
+        'char',
+        'class',
+        'const',
+        'continue',
+        'debugger',
+        'default',
+        'delete',
+        'do',
+        'double',
+        'else',
+        'enum',
+        'eval',
+        'export',
+        'extends',
+        'false',
+        'final',
+        'finally',
+        'float',
+        'for',
+        'function',
+        'goto',
+        'if',
+        'implements',
+        'import',
+        'in',
+        'instanceof',
+        'int',
+        'interface',
+        'let',
+        'long',
+        'native',
+        'new',
+        'null',
+        'package',
+        'private',
+        'protected',
+        'public',
+        'return',
+        'short',
+        'static',
+        'super',
+        'switch',
+        'synchronized',
+        'this',
+        'throw',
+        'throws',
+        'transient',
+        'true',
+        'try',
+        'typeof',
+        'var',
+        'void',
+        'volatile',
+        'while',
+        'with',
+        'yield',
+      ].forEach(keyword => {
+        it(keyword, () => {
+          expect(tldts.getDomain(`https://${keyword}.com`)).toEqual(
+            `${keyword}.com`,
+          );
+          expect(tldts.getDomain(`https://foo.${keyword}.com`)).toEqual(
+            `${keyword}.com`,
+          );
+          expect(tldts.getDomain(`https://foo.${keyword}`)).toEqual(
+            `foo.${keyword}`,
+          );
+        });
+      });
+    });
+
     it('handle IPs', () => {
       expect(tldts.getDomain('1.2.3.4')).toEqual(null);
       expect(tldts.getHostname('1.2.3.4')).toEqual('1.2.3.4');
     });
 
     it('handle weird urls', () => {
+      expect(tldts.getDomain('  ftp:/mapasamazonsa.com.ve./  ')).toEqual(
+        'mapasamazonsa.com.ve',
+      );
+      expect(tldts.getDomain('  ftp://///mapasamazonsa.com.ve./  ')).toEqual(
+        'mapasamazonsa.com.ve',
+      );
+      expect(tldts.getDomain('  ftp://///mapasamazonsa.com.ve/  ')).toEqual(
+        'mapasamazonsa.com.ve',
+      );
+      expect(tldts.getDomain('ftp://///mapasamazonsa.com.ve/')).toEqual(
+        'mapasamazonsa.com.ve',
+      );
+
       // From https://github.com/peerigon/parse-domain/issues/49
       expect(tldts.getDomain('ftp://mapasamazonsa.com.ve/')).toEqual(
         'mapasamazonsa.com.ve',
@@ -150,6 +287,10 @@ function test(tldts: any): void {
         return tldts.getPublicSuffix(url, { allowPrivateDomains: true });
       };
 
+      it('should return de if example.de', () => {
+        expect(getPublicSuffix('example.de')).toEqual('de');
+      });
+
       it('should return co.uk if google.co.uk', () => {
         expect(getPublicSuffix('google.co.uk')).toEqual('co.uk');
       });
@@ -195,6 +336,26 @@ function test(tldts: any): void {
       const getPublicSuffix = (url: string) => {
         return tldts.getPublicSuffix(url, { allowPrivateDomains: false });
       };
+
+      it('should return de if example.de', () => {
+        expect(getPublicSuffix('example.de')).toEqual('de');
+        expect(getPublicSuffix('example.foo.de')).toEqual('de');
+      });
+
+      it('should return de if example.gov', () => {
+        expect(getPublicSuffix('example.gov')).toEqual('gov');
+        expect(getPublicSuffix('example.foo.gov')).toEqual('gov');
+      });
+
+      it('should return de if example.edu', () => {
+        expect(getPublicSuffix('example.edu')).toEqual('edu');
+        expect(getPublicSuffix('example.foo.edu')).toEqual('edu');
+      });
+
+      it('should return de if example.org', () => {
+        expect(getPublicSuffix('example.org')).toEqual('org');
+        expect(getPublicSuffix('example.foo.org')).toEqual('org');
+      });
 
       it('should return com if www.s3.amazonaws.com', () => {
         expect(getPublicSuffix('www.s3.amazonaws.com')).toEqual('com');
@@ -377,12 +538,33 @@ function test(tldts: any): void {
       expect(tldts.getHostname('http://[::1')).toEqual(null);
     });
 
-    it('should allow disabling parsing/validation of hostnames', () => {
+    it('should allow disabling parsing of hostnames', () => {
       expect(
         tldts.getHostname('http://foo.com', {
           extractHostname: false,
         }),
       ).toEqual('http://foo.com');
+    });
+
+    it('should allow disabling validation of hostnames', () => {
+      expect(
+        tldts.parse('http://f__.._oo.com', {
+          validateHostname: true,
+        }).hostname,
+      ).toBeNull();
+
+      expect(
+        tldts.parse('http://f__.._oo.com', {
+          validateHostname: false,
+        }).hostname,
+      ).toEqual('f__.._oo.com');
+    });
+
+    it('should allow specifying no mixed inputs', () => {
+      const url = 'http://foo.com/baz?param=31';
+      expect(tldts.parse(url)).toEqual(
+        tldts.parse(url, { mixedInputs: false }),
+      );
     });
   });
 
@@ -479,6 +661,18 @@ function test(tldts: any): void {
       };
     };
 
+    it('fallback to wildcard', () => {
+      expect(tldts.parse('https://foo.bar.badasdasdada')).toEqual({
+        domain: 'bar.badasdasdada',
+        hostname: 'foo.bar.badasdasdada',
+        isIcann: false,
+        isIp: false,
+        isPrivate: false,
+        publicSuffix: 'badasdasdada',
+        subdomain: 'foo',
+      });
+    });
+
     it('should handle ipv6 addresses properly', () => {
       expect(
         tldts.parse('http://[2001:0db8:85a3:0000:0000:8a2e:0370:7334]'),
@@ -490,12 +684,27 @@ function test(tldts: any): void {
       expect(tldts.parse('http://[1080::8:800:200C:417A]/foo')).toEqual(
         mockResponse('1080::8:800:200c:417a'),
       );
+      expect(tldts.parse('http://[1080::8:800:200C:417A]:4242/foo')).toEqual(
+        mockResponse('1080::8:800:200c:417a'),
+      );
     });
 
     it('should handle ipv4 addresses properly', () => {
       expect(tldts.parse('http://192.168.0.1/')).toEqual(
         mockResponse('192.168.0.1'),
       );
+    });
+
+    it('disable ip detection', () => {
+      expect(tldts.parse('http://192.168.0.1/', { detectIp: false })).toEqual({
+        domain: '0.1',
+        hostname: '192.168.0.1',
+        isIcann: false,
+        isIp: null,
+        isPrivate: false,
+        publicSuffix: '1',
+        subdomain: '192.168',
+      });
     });
   });
 
@@ -625,5 +834,9 @@ describe('tld.js', () => {
 
   describe('tldts experimental', () => {
     test(tldExperimental);
+  });
+
+  describe('tldts minified', () => {
+    test(tldMinified);
   });
 });

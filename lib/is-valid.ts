@@ -28,20 +28,18 @@ export default function(hostname: string): boolean {
     return false;
   }
 
-  // @ts-ignore
-  if (!isValidAscii(hostname.codePointAt(0))) {
+  if (!isValidAscii(hostname.charCodeAt(0))) {
     return false;
   }
 
   // Validate hostname according to RFC
-  let lastDotIndex = -1;
-  let lastCharCode;
+  let lastDotIndex: number = -1;
+  let lastCharCode: number = -1;
   const len = hostname.length;
 
   for (let i = 0; i < len; i += 1) {
-    const code = hostname.codePointAt(i);
-    if (code === 46) {
-      // '.'
+    const code = hostname.charCodeAt(i);
+    if (code === 46 /* '.' */) {
       if (
         // Check that previous label is < 63 bytes long (64 = 63 + '.')
         i - lastDotIndex > 64 ||
@@ -56,7 +54,6 @@ export default function(hostname: string): boolean {
       }
 
       lastDotIndex = i;
-      // @ts-ignore
     } else if (!(isValidAscii(code) || code === 45 || code === 95)) {
       // Check if there is a forbidden character in the label
       return false;

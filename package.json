@@ -1,7 +1,7 @@
 {
   "name": "tldts",
   "description": "Library to work against complex domain names, subdomains and URIs.",
-  "version": "4.0.6",
+  "version": "5.0.0",
   "homepage": "https://github.com/remusao/tldts",
   "author": "Rémi Berson",
   "contributors": [
@@ -17,9 +17,9 @@
   "engines": {
     "node": ">= 6"
   },
-  "browser": "dist/tldts.umd.js",
-  "main": "dist/tldts.cjs.js",
-  "module": "dist/tldts.esm.js",
+  "browser": "dist/tldts.umd.min.js",
+  "main": "dist/tldts.cjs.min.js",
+  "module": "dist/tldts.esm.min.js",
   "types": "dist/tldts.d.ts",
   "files": [
     "dist",
@@ -28,40 +28,37 @@
     "tldts-experimental.ts"
   ],
   "license": "MIT",
+  "bin": {
+    "tldts": "bin/cli.js"
+  },
   "scripts": {
     "clean": "rm -rfv dist build",
     "lint": "tslint -c tslint.json 'lib/**/*.ts'",
-    "update": "git submodule foreach git pull origin master && node ./bin/update.js",
+    "update": "git submodule foreach git pull origin master && ts-node -O '{\"module\": \"commonjs\"}' ./bin/update.ts",
     "build": "tsc -p .",
     "prebuild": "npm run clean",
-    "bundle": "rollup -c rollup.config.js",
+    "bundle": "rollup -c rollup.config.ts",
     "prebundle": "npm run build",
-    "minify-tldts": "google-closure-compiler --js=./dist/tldts.umd.js --js_output_file=./dist/tldts.umd.min.js",
-    "minify-tldts-experimental": "google-closure-compiler --js=./dist/tldts-experimental.umd.js --js_output_file=./dist/tldts-experimental.umd.min.js",
-    "minify": "npm run minify-tldts && npm run minify-tldts-experimental",
-    "preminify": "npm run bundle",
-    "prepack": "npm run minify",
+    "prepack": "npm run bundle",
     "test": "jest --coverage --no-cache ./test/",
+    "pretest": "npm pack",
     "benchmark": "make -C bench",
     "prebenchmark": "npm pack"
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/jest": "^24.0.11",
+    "@ampproject/rollup-plugin-closure-compiler": "^0.9.0",
+    "@types/jest": "^24.0.12",
     "@types/node": "^12.0.2",
     "benchmark": "^2.1.4",
+    "chalk": "^2.4.2",
     "coveralls": "^3.0.3",
-    "eslint": "^5.15.3",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4",
-    "google-closure-compiler": "^20190415.0.0",
-    "jest": "^24.5.0",
-    "rollup": "^1.7.4",
-    "ts-jest": "^24.0.0",
-    "tslint": "^5.14.0",
-    "typescript": "^3.3.4000"
+    "jest": "^24.8.0",
+    "rollup": "^1.11.3",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.1.0",
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.5"
   },
   "keywords": [
     "tld",
@@ -75,6 +72,7 @@
     "url",
     "domain name",
     "public suffix",
+    "url parsing",
     "typescript"
   ]
 }
