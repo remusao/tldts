@@ -27,6 +27,21 @@ npm install --save tldts
 
 # Usage
 
+Using the command-line interface:
+```js
+$ npx tldts 'http://www.writethedocs.org/conf/eu/2017/'
+{
+  "domain": "writethedocs.org",
+  "hostname": "www.writethedocs.org",
+  "isIcann": true,
+  "isIp": false,
+  "isPrivate": false,
+  "publicSuffix": "org",
+  "subdomain": "www"
+}
+```
+
+Programmatically:
 ```js
 const { parse } = require('tldts');
 
