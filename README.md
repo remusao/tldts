@@ -62,6 +62,8 @@ Modern *ES6 modules import* is also supported:
 import { parse } from 'tldts';
 ```
 
+Alternatively, you can try it *directly in your browser* here: https://npm.runkit.com/tldts
+
 # API
 
 * `tldts.parse(url | hostname, options)`
