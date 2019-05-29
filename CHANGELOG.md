@@ -2,6 +2,12 @@
 
 ### Not Released
 
+### 5.0.3
+
+*2019-05-29*
+
+- [#155](https://github.com/remusao/tldts/pull/151) Update Public Suffix Lists to [f651d07](https://github.com/publicsuffix/list/commit/f651d07f85b5e25f8bc757f0e7db60ec5c41c256)
+
 ### 5.0.2
 
 *2019-05-24*
