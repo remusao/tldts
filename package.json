@@ -1,7 +1,7 @@
 {
   "name": "tldts",
   "description": "Library to work against complex domain names, subdomains and URIs.",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "homepage": "https://github.com/remusao/tldts",
   "author": "Rémi Berson",
   "contributors": [
