@@ -3,7 +3,8 @@ const chalk = require('chalk');
 const { URL } = require('url');
 const fs = require('fs');
 const path = require('path');
-const tldts = require('..');
+const tldtsDefault = require('../dist/tldts.cjs.min.js');
+const tldtsExperimental = require('../dist/tldts-experimental.cjs.min.js');
 
 function main() {
   const urls = Array.from(
@@ -31,52 +32,58 @@ function main() {
       .run({ async: false });
   }
 
-  for (const method of [
-    'parse',
-    'getHostname',
-    'getPublicSuffix',
-    'getDomain',
-    'getSubdomain',
-  ]) {
-    console.log(`= ${chalk.bold(method)}`);
-    const fn = tldts[method];
-
-    for (const options of [
-      undefined, // defaults
-      { validateHostname: false },
-      { validateHostname: false, detectIp: false, mixedInputs: false },
+  function run(bundleName, tldts) {
+    console.log(bundleName);
+    for (const method of [
+      'parse',
+      'getHostname',
+      'getPublicSuffix',
+      'getDomain',
+      'getSubdomain',
     ]) {
-      bench(
-        `#${chalk.bold(method)}(url, ${chalk.underline(
-          JSON.stringify(options),
-        )})`,
-        urls,
-        urls => {
-          for (let i = 0; i < urls.length; i += 1) {
-            fn(urls[i], options);
-          }
-        },
-      );
-    }
+      console.log(`= ${chalk.bold(method)}`);
+      const fn = tldts[method];
 
-    for (const options of [
-      undefined, // defaults
-      { validateHostname: false },
-      { validateHostname: false, detectIp: false, extractHostname: false },
-    ]) {
-      bench(
-        `#${chalk.bold(method)}(hostname, ${chalk.underline(
-          JSON.stringify(options),
-        )})`,
-        hostnames,
-        hostnames => {
-          for (let i = 0; i < hostnames.length; i += 1) {
-            fn(hostnames[i], options);
-          }
-        },
-      );
+      for (const options of [
+        undefined, // defaults
+        { validateHostname: false },
+        { validateHostname: false, detectIp: false, mixedInputs: false },
+      ]) {
+        bench(
+          `#${chalk.bold(method)}(url, ${chalk.underline(
+            JSON.stringify(options),
+          )})`,
+          urls,
+          urls => {
+            for (let i = 0; i < urls.length; i += 1) {
+              fn(urls[i], options);
+            }
+          },
+        );
+      }
+
+      for (const options of [
+        undefined, // defaults
+        { validateHostname: false },
+        { validateHostname: false, detectIp: false, extractHostname: false },
+      ]) {
+        bench(
+          `#${chalk.bold(method)}(hostname, ${chalk.underline(
+            JSON.stringify(options),
+          )})`,
+          hostnames,
+          hostnames => {
+            for (let i = 0; i < hostnames.length; i += 1) {
+              fn(hostnames[i], options);
+            }
+          },
+        );
+      }
     }
   }
+
+  run('tldts-experimental', tldtsExperimental);
+  run('tldts', tldtsDefault);
 }
 
 main();

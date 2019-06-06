@@ -2,6 +2,12 @@
 
 ### Not Released
 
+### 5.1.0
+
+*2019-06-06*
+
+- [#164](https://github.com/remusao/tldts/pull/164) Update rules + add fast path for experimental bundle as well
+
 ### 5.0.3
 
 *2019-05-29*

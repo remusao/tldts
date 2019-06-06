@@ -1,4 +1,5 @@
 import packed from './data/hashes';
+import fastPathLookup from './fast-path';
 import { IPublicSuffix, ISuffixLookupOptions } from './interface';
 
 /**
@@ -100,9 +101,15 @@ const enum Result {
  */
 export default function suffixLookup(
   hostname: string,
-  { allowIcannDomains, allowPrivateDomains }: ISuffixLookupOptions,
+  options: ISuffixLookupOptions,
   out: IPublicSuffix,
 ): void {
+  if (fastPathLookup(hostname, options, out) === true) {
+    return;
+  }
+
+  const { allowIcannDomains, allowPrivateDomains } = options;
+
   // Keep track of longest match
   let matchIndex = -1;
   let matchKind = Result.NO_MATCH;
