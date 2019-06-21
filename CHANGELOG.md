@@ -2,6 +2,12 @@
 
 ### Not Released
 
+### 5.2.0
+
+*2019-06-21*
+
+- Exclude unnecessary files from package.json [#177](https://github.com/remusao/tldts/pull/177)
+
 ### 5.1.0
 
 *2019-06-06*
