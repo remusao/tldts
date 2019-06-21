@@ -22,7 +22,7 @@
   "module": "dist/tldts.esm.min.js",
   "types": "dist/tldts.d.ts",
   "files": [
-    "dist",
+    "dist"
   ],
   "license": "MIT",
   "bin": {
