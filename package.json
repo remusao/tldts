@@ -23,9 +23,6 @@
   "types": "dist/tldts.d.ts",
   "files": [
     "dist",
-    "lib",
-    "tldts.ts",
-    "tldts-experimental.ts"
   ],
   "license": "MIT",
   "bin": {
