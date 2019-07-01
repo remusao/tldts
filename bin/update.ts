@@ -22,8 +22,11 @@ import buildTrie from './builders/trie';
   const packed = buildHashes(publicSuffixList);
   writeFileSync(
     resolve(__dirname, '../lib/lookup/data/hashes.ts'),
-    `// Code automatically generated using ./bin/builders/hashes.js
-export default new Uint32Array([${Array.from(packed)}]);`,
+    `
+/* tslint:disable */
+// Code automatically generated using ./bin/builders/hashes.js
+export default new Uint32Array([${Array.from(packed)}]);
+`,
     'utf-8',
   );
 })();
