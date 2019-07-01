@@ -1,7 +1,7 @@
 {
   "name": "tldts",
   "description": "Library to work against complex domain names, subdomains and URIs.",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "homepage": "https://github.com/remusao/tldts",
   "author": "Rémi Berson",
   "contributors": [
@@ -18,10 +18,11 @@
     "node": ">= 6"
   },
   "browser": "dist/tldts.umd.min.js",
-  "main": "dist/tldts.cjs.min.js",
-  "module": "dist/tldts.esm.min.js",
+  "main": "build/cjs/tldts.js",
+  "module": "build/es6/tldts.js",
   "types": "dist/tldts.d.ts",
   "files": [
+    "build",
     "dist"
   ],
   "license": "MIT",
@@ -32,7 +33,9 @@
     "clean": "rm -rfv dist build",
     "lint": "tslint -c tslint.json 'lib/**/*.ts'",
     "update": "git submodule foreach git pull origin master && ts-node -O '{\"module\": \"commonjs\"}' ./bin/update.ts",
-    "build": "tsc -p .",
+    "build-cjs": "tsc -p . --outDir build/cjs --module commonjs",
+    "build-es6": "tsc -p . --outDir build/es6 --module esnext",
+    "build": "concurrently 'npm run build-cjs' 'npm run build-es6'",
     "prebuild": "npm run clean",
     "bundle": "rollup -c rollup.config.ts",
     "prebundle": "npm run build",
@@ -49,6 +52,7 @@
     "@types/node": "^12.0.2",
     "benchmark": "^2.1.4",
     "chalk": "^2.4.2",
+    "concurrently": "^4.1.1",
     "coveralls": "^3.0.3",
     "jest": "^24.8.0",
     "rollup": "^1.11.3",
