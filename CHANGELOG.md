@@ -2,6 +2,12 @@
 
 ### Not Released
 
+### 5.2.1
+
+*2019-07-01*
+
+- ship both cjs and es6 source + only minified bundles [#183](https://github.com/remusao/tldts/pull/183)
+
 ### 5.2.0
 
 *2019-06-21*
