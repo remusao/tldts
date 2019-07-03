@@ -1,11 +1,3 @@
-# `base`
+# `tldts-core`
 
-> TODO: description
-
-## Usage
-
-```
-const base = require('base');
-
-// TODO: DEMONSTRATE API
-```
+> core building blocks of tldts, used by both `tldts` and `tldts-experimental` packages.

@@ -2,6 +2,10 @@
   "private": true,
   "license": "MIT",
   "homepage": "https://github.com/remusao/tldts#readme",
+  "author": "Rémi Berson",
+  "contributors": [
+    "Thomas Parisot (https://oncletom.io)"
+  ],
   "bugs": {
     "url": "https://github.com/remusao/tldts/issues"
   },
