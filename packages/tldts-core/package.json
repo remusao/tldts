@@ -4,7 +4,22 @@
   "description": "tldts core primitives (internal module)",
   "author": "Rémi Berson",
   "contributors": [
-    "Thomas Parisot (https://oncletom.io)"
+    "Alexei <alexeiatyahoodotcom@gmail.com>",
+    "Alexey <kureev-mail@ya.ru>",
+    "Andrew <chefandrew@seomoz.org>",
+    "Johannes Ewald <johannes.ewald@peerigon.com>",
+    "Jérôme Desboeufs <jerome.desboeufs@gmail.com>",
+    "Kelly Campbell <kelly.a.campbell@gmail.com>",
+    "Kiko Beats <josefrancisco.verdu@gmail.com>",
+    "Kris Reeves <krisreeves@searchfanatics.com>",
+    "Krzysztof Jan Modras <chrmod@chrmod.net>",
+    "Olivier Melcher <olivier.melcher@gmail.com>",
+    "Rémi Berson <remi.berson@pm.me>",
+    "Saad Rashid <srashid@lendinghome.com>",
+    "Thomas Parisot <hi@oncletom.io>",
+    "Timo Tijhof <krinklemail@gmail.com>",
+    "Xavier Damman <xdamman@gmail.com>",
+    "Yehezkiel Syamsuhadi <yehezkielbs@gmail.com>"
   ],
   "license": "MIT",
   "homepage": "https://github.com/remusao/tldts#readme",
