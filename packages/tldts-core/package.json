@@ -1,6 +1,6 @@
 {
   "name": "tldts-core",
-  "version": "5.2.1",
+  "version": "5.3.0",
   "description": "tldts core primitives (internal module)",
   "author": "Rémi Berson",
   "contributors": [
@@ -18,7 +18,9 @@
   "main": "build/cjs/index.js",
   "module": "build/es6/index.js",
   "types": "build/types/index.d.ts",
-  "files": ["build"],
+  "files": [
+    "build"
+  ],
   "scripts": {
     "clean": "rimraf build",
     "lint": "tslint --config ../../tslint.json --project .",
