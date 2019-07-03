@@ -1,6 +1,5 @@
-import parseImpl, { FLAG, IResult } from './lib/factory';
-import suffixLookup from './lib/lookup/packed-hashes';
-import { IOptions } from './lib/options';
+import { FLAG, IOptions, IResult, parseImpl } from 'tldts-core';
+import suffixLookup from './src/packed-hashes';
 
 export function parse(url: string, options?: Partial<IOptions>): IResult {
   return parseImpl(url, FLAG.ALL, suffixLookup, options);

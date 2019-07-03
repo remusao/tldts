@@ -159,6 +159,7 @@ function compressToDAWG(trie: ITrie, name: string): string {
 
 function convertToTypeScriptSource(rules: ITrie, exceptions: ITrie): string {
   return `
+/* tslint:disable */
 export interface ITrie {
   $: number;
   succ: {

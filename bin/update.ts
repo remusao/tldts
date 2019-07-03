@@ -13,7 +13,7 @@ import buildTrie from './builders/trie';
 
   // Build trie and update TypeScript file
   writeFileSync(
-    resolve(__dirname, '../lib/lookup/data/trie.ts'),
+    resolve(__dirname, '../packages/tldts/src/data/trie.ts'),
     buildTrie(publicSuffixList),
     'utf-8',
   );
@@ -21,9 +21,12 @@ import buildTrie from './builders/trie';
   // Build hashes and update TypeScript file
   const packed = buildHashes(publicSuffixList);
   writeFileSync(
-    resolve(__dirname, '../lib/lookup/data/hashes.ts'),
-    `// Code automatically generated using ./bin/builders/hashes.js
-export default new Uint32Array([${Array.from(packed)}]);`,
+    resolve(__dirname, '../packages/tldts-experimental/src/data/hashes.ts'),
+    `
+/* tslint:disable */
+// Code automatically generated using ./bin/builders/hashes.ts
+export default new Uint32Array([${Array.from(packed)}]);
+`,
     'utf-8',
   );
 })();

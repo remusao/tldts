@@ -1,18 +1,14 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "declarationDir": "dist",
-    "types": ["node", "jest"],
     "target": "ES3",
-    "module": "ES6",
-    "outDir": "build",
-    "lib": ["ES6"],
+    "lib": ["es2015", "ES6", "DOM"],
+    "esModuleInterop": true,
     "moduleResolution": "Node",
+    "importHelpers": true,
+    "downlevelIteration": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "alwaysStrict": false,
-    "downlevelIteration": false,
-    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "keyofStringsOnly": true,
     "noFallthroughCasesInSwitch": true,
@@ -21,15 +17,10 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "removeComments": true,
     "strict": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true
-  },
-  "files": [
-    "./tldts.ts",
-    "./tldts-experimental.ts"
-  ]
+  }
 }

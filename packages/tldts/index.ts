@@ -1,6 +1,5 @@
-import parseImpl, { FLAG, IResult } from './lib/factory';
-import suffixLookup from './lib/lookup/suffix-trie';
-import { IOptions } from './lib/options';
+import { FLAG, IOptions, IResult, parseImpl } from 'tldts-core';
+import suffixLookup from './src/suffix-trie';
 
 export function parse(url: string, options?: Partial<IOptions>): IResult {
   return parseImpl(url, FLAG.ALL, suffixLookup, options);
