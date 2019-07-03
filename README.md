@@ -3,7 +3,6 @@
 [![NPM](https://nodei.co/npm/tldts.png?downloads=true&downloadRank=true)](https://nodei.co/npm/tldts/)
 
 [![Build Status][badge-ci]](http://travis-ci.org/remusao/tldts) ![][badge-downloads]
-![Coverage Status](https://coveralls.io/repos/github/remusao/tldts/badge.svg?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/remusao/tldts/badge.svg?targetFile=package.json)](https://snyk.io/test/github/remusao/tldts?targetFile=package.json)
 
 `tldts` is a JavaScript library to extract hostnames, domains, public suffixes, top-level domains and subdomains from URLs.
