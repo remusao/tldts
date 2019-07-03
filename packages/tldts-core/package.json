@@ -1,0 +1,46 @@
+{
+  "name": "tldts-core",
+  "version": "5.2.1",
+  "description": "tldts core primitives (internal module)",
+  "author": "Rémi Berson",
+  "contributors": [
+    "Thomas Parisot (https://oncletom.io)"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/remusao/tldts#readme",
+  "bugs": {
+    "url": "https://github.com/remusao/tldts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:remusao/tldts.git"
+  },
+  "main": "build/cjs/index.js",
+  "module": "build/es6/index.js",
+  "types": "build/types/index.d.ts",
+  "files": ["build"],
+  "scripts": {
+    "clean": "rimraf build",
+    "lint": "tslint --config ../../tslint.json --project .",
+    "build-cjs": "tsc -p . --outDir build/cjs --module commonjs",
+    "build-es6": "tsc -p . --outDir build/es6 --module esnext",
+    "build": "concurrently 'yarn run build-cjs' 'yarn run build-es6'",
+    "prebuild": "yarn run clean",
+    "bundle": "yarn run build",
+    "prepack": "yarn run bundle",
+    "test": "jest --config ./jest.config.js ./test/",
+    "pretest": "yarn run lint"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.0.3",
+    "concurrently": "^4.1.1",
+    "jest": "^24.8.0",
+    "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.5.2"
+  }
+}

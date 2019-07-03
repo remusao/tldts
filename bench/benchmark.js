@@ -3,8 +3,8 @@ const chalk = require('chalk');
 const { URL } = require('url');
 const fs = require('fs');
 const path = require('path');
-const tldtsDefault = require('../dist/tldts.cjs.min.js');
-const tldtsExperimental = require('../dist/tldts-experimental.cjs.min.js');
+const tldtsDefault = require('tldts');
+const tldtsExperimental = require('tldts-experimental');
 
 function main() {
   const urls = Array.from(

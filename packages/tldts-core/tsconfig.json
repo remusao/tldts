@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig",
+  "compilerOptions": {
+    "declarationDir": "build/types",
+    "outDir": "build"
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "files": [
+    "./index.ts"
+  ]
+}

@@ -1,8 +1,4 @@
-import * as tldMinified from '../';
-import * as tld from '../tldts';
-import * as tldExperimental from '../tldts-experimental';
-
-function test(getDomain: any): void {
+export default function test(getDomain: any): void {
   // Ease testing by simply copy/pasting tests from Mozilla Central
   // @see https://dxr.mozilla.org/mozilla-central/source/netwerk/test/unit/data/test_psl.txt?raw=1
   function checkPublicSuffix(
@@ -142,15 +138,3 @@ function test(getDomain: any): void {
     });
   });
 }
-
-describe('tldts classic', () => {
-  test(tld.getDomain);
-});
-
-describe('tldts experimental', () => {
-  test(tldExperimental.getDomain);
-});
-
-describe('tldts minified', () => {
-  test(tldMinified.getDomain);
-});

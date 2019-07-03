@@ -1,0 +1,76 @@
+{
+  "name": "tldts",
+  "version": "5.2.1",
+  "description": "Library to work against complex domain names, subdomains and URIs.",
+  "author": "Rémi Berson",
+  "contributors": [
+    "Thomas Parisot (https://oncletom.io)"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/remusao/tldts#readme",
+  "bugs": {
+    "url": "https://github.com/remusao/tldts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:remusao/tldts.git"
+  },
+  "main": "build/cjs/index.js",
+  "module": "build/es6/index.js",
+  "browser": "dist/index.umd.min.js",
+  "types": "build/types/index.d.ts",
+  "files": [
+    "build",
+    "dist"
+  ],
+  "bin": {
+    "tldts": "bin/cli.js"
+  },
+  "scripts": {
+    "clean": "rimraf dist build coverage",
+    "lint": "tslint --config ../../tslint.json --project .",
+    "build-cjs": "tsc -p . --outDir build/cjs --module commonjs",
+    "build-es6": "tsc -p . --outDir build/es6 --module esnext",
+    "build": "concurrently 'yarn run build-cjs' 'yarn run build-es6'",
+    "prebuild": "yarn run clean",
+    "bundle": "rollup --config rollup.config.ts",
+    "prebundle": "yarn run build",
+    "prepack": "yarn run bundle",
+    "test": "jest --config ./jest.config.js --coverage --no-cache ./test/",
+    "pretest": "yarn run lint"
+  },
+  "devDependencies": {
+    "@ampproject/rollup-plugin-closure-compiler": "^0.9.0",
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.0.3",
+    "concurrently": "^4.1.1",
+    "jest": "^24.8.0",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.16.4",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "tldts-tests": "^5.2.1",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.5.2"
+  },
+  "dependencies": {
+    "tldts-core": "^5.2.1"
+  },
+  "keywords": [
+    "tld",
+    "sld",
+    "domain",
+    "subdomain",
+    "subdomain",
+    "hostname",
+    "browser",
+    "uri",
+    "url",
+    "domain name",
+    "public suffix",
+    "url parsing",
+    "typescript"
+  ]
+}

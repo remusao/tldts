@@ -1,0 +1,47 @@
+{
+  "name": "tldts-tests",
+  "version": "5.2.1",
+  "private": true,
+  "description": "tests for different tldts implementations",
+  "author": "Rémi Berson <remi@cliqz.com>",
+  "contributors": [
+    "Thomas Parisot (https://oncletom.io)"
+  ],
+  "homepage": "https://github.com/remusao/tldts#readme",
+  "bugs": {
+    "url": "https://github.com/remusao/tldts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:remusao/tldts.git"
+  },
+  "license": "MIT",
+  "main": "build/cjs/index.js",
+  "module": "build/es6/index.js",
+  "types": "build/types/index.d.ts",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "clean": "rimraf build coverage",
+    "lint": "tslint --config ../../tslint.json --project .",
+    "build-cjs": "tsc -p . --outDir build/cjs --module commonjs",
+    "build-es6": "tsc -p . --outDir build/es6 --module esnext",
+    "build": "concurrently 'yarn build-cjs' 'yarn build-es6'",
+    "prebuild": "yarn run clean",
+    "bundle": "yarn run build",
+    "prepack": "yarn run bundle"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.1",
+    "rimraf": "^2.6.3",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.5.2"
+  },
+  "dependencies": {
+    "@types/jest": "^24.0.15",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2"
+  }
+}
