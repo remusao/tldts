@@ -2,6 +2,15 @@
 
 ### Not Released
 
+### 5.3.0
+
+*2019-07-03*
+
+- change structure of the cliqz/adblocker project into a monorepo [#185](https://github.com/cliqz-oss/adblocker/pull/185)
+  * embrace `lerna` and `yarn` workspaces as a way to manage multiple packages
+  * split `tldts` into two packages `tldts` and `tldts-experimental`
+  * both package inherit from `tldts-core` which contains the building blocks
+
 ### 5.2.1
 
 *2019-07-01*
