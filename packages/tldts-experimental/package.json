@@ -32,7 +32,6 @@
   },
   "main": "build/cjs/index.js",
   "module": "build/es6/index.js",
-  "browser": "dist/index.umd.min.js",
   "types": "build/types/index.d.ts",
   "files": [
     "build",
