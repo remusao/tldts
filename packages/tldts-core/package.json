@@ -45,8 +45,7 @@
     "prebuild": "yarn run clean",
     "bundle": "yarn run build",
     "prepack": "yarn run bundle",
-    "test": "jest --config ./jest.config.js ./test/",
-    "pretest": "yarn run lint"
+    "test": "jest --config ./jest.config.js ./test/"
   },
   "devDependencies": {
     "@types/jest": "^24.0.15",

@@ -16,6 +16,7 @@ cache: yarn
 script:
   - yarn bootstrap
   - yarn bundle
+  - yarn lint
   - yarn test
 
 # TODO - migrate to lerna
