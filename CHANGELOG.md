@@ -2,6 +2,8 @@
 
 ### Not Released
 
+- clean-up dead folder + update rules [#199](https://github.com/remusao/tldts/pull/199)
+
 ### 5.3.0
 
 *2019-07-03*
