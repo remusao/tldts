@@ -51,8 +51,7 @@
     "bundle": "rollup --config rollup.config.ts",
     "prebundle": "yarn run build",
     "prepack": "yarn run bundle",
-    "test": "jest --config ./jest.config.js --coverage --no-cache ./test/",
-    "pretest": "yarn run lint"
+    "test": "jest --config ./jest.config.js --coverage --no-cache ./test/"
   },
   "devDependencies": {
     "@ampproject/rollup-plugin-closure-compiler": "^0.10.0",

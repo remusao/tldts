@@ -36,7 +36,6 @@
     "bundle": "lerna run --concurrency 1 bundle",
     "clean": "lerna run --parallel clean && lerna clean --yes && rimraf node_modules",
     "lint": "lerna run --parallel lint",
-    "prepublish": "yarn run lint",
     "test": "lerna run --concurrency 1 test",
     "bench": "make -C bench",
     "update": "git submodule foreach git pull origin master && ts-node -O '{\"module\": \"commonjs\"}' ./bin/update.ts"
