@@ -63,7 +63,7 @@ import { parse } from 'tldts';
 
 Alternatively, you can try it *directly in your browser* here: https://npm.runkit.com/tldts
 
-Check [README.md]('./packages/tldts/README.md') for more details about the API.
+Check [README.md](/packages/tldts/README.md) for more details about the API.
 
 ## Contributors
 
