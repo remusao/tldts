@@ -4,9 +4,13 @@
 
 *not released*
 
-- update public suffix ruleset
-- fix source maps
-- make sure tslib does not appear in build artifacts
+### 5.3.2
+
+*2019-07-26*
+
+- update public suffix ruleset [#207](https://github.com/remusao/tldts/pull/207)
+- fix source maps [#207](https://github.com/remusao/tldts/pull/207)
+- make sure tslib does not appear in build artifacts [#207](https://github.com/remusao/tldts/pull/207)
 
 ### 5.3.1
 
