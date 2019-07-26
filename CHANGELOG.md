@@ -1,5 +1,13 @@
 ## Change Log
 
+### next
+
+*not released*
+
+- update public suffix ruleset
+- fix source maps
+- make sure tslib does not appear in build artifacts
+
 ### 5.3.1
 
 *2019-07-17*

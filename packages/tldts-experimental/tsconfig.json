@@ -1,13 +1,20 @@
 {
   "extends": "../../tsconfig",
   "compilerOptions": {
-    "declarationDir": "build/types",
-    "outDir": "build"
+    "composite": true,
+    "declarationDir": "dist/types",
+    "outDir": "dist/es6"
   },
-  "include": [
-    "src/**/*.ts"
+  "references": [
+    {
+      "path": "../tldts-core/tsconfig.json"
+    },
+    {
+      "path": "../tldts-tests/tsconfig.json"
+    }
   ],
-  "files": [
-    "./index.ts"
+  "include": [
+    "src/**/*.ts",
+    "index.ts"
   ]
 }

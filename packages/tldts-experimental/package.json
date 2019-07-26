@@ -30,37 +30,32 @@
     "type": "git",
     "url": "git@github.com:remusao/tldts.git"
   },
-  "main": "build/cjs/index.js",
-  "module": "build/es6/index.js",
-  "types": "build/types/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es6/index.js",
+  "types": "dist/types/index.d.ts",
   "files": [
-    "build",
     "dist"
   ],
   "scripts": {
-    "clean": "rimraf dist build coverage",
-    "lint": "tslint --config ../../tslint.json --project .",
-    "build-cjs": "tsc -p . --outDir build/cjs --module commonjs",
-    "build-es6": "tsc -p . --outDir build/es6 --module esnext",
-    "build": "concurrently 'yarn run build-cjs' 'yarn run build-es6'",
-    "prebuild": "yarn run clean",
-    "bundle": "rollup --config rollup.config.ts",
+    "clean": "rimraf dist coverage",
+    "lint": "tslint --config ../../tslint.json --project ./tsconfig.json",
+    "build": "tsc --build ./tsconfig.json",
+    "bundle": "rollup --config ./rollup.config.ts",
     "prebundle": "yarn run build",
     "prepack": "yarn run bundle",
-    "test": "jest --config ./jest.config.js --coverage --no-cache ./test/"
+    "test": "jest --config ./jest.config.js --coverage ./test/"
   },
   "devDependencies": {
     "@ampproject/rollup-plugin-closure-compiler": "^0.10.0",
     "@types/jest": "^24.0.15",
     "@types/node": "^12.0.3",
-    "concurrently": "^4.1.1",
     "jest": "^24.8.0",
     "rimraf": "^2.6.3",
-    "rollup": "^1.16.4",
+    "rollup": "^1.17.0",
     "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-sourcemaps": "^0.4.2",
     "tldts-tests": "^5.3.1",
     "ts-jest": "^24.0.2",
-    "ts-node": "^8.3.0",
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.5.2"

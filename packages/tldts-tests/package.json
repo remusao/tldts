@@ -3,7 +3,7 @@
   "version": "5.3.1",
   "private": true,
   "description": "tests for different tldts implementations",
-  "author": "Rémi Berson <remi@cliqz.com>",
+  "author": "Rémi Berson",
   "contributors": [
     "Alexei <alexeiatyahoodotcom@gmail.com>",
     "Alexey <kureev-mail@ya.ru>",
@@ -31,25 +31,25 @@
     "url": "git@github.com:remusao/tldts.git"
   },
   "license": "MIT",
-  "main": "build/cjs/index.js",
-  "module": "build/es6/index.js",
-  "types": "build/types/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es6/index.js",
+  "types": "dist/types/index.d.ts",
   "files": [
-    "build"
+    "dist"
   ],
   "scripts": {
-    "clean": "rimraf build coverage",
-    "lint": "tslint --config ../../tslint.json --project .",
-    "build-cjs": "tsc -p . --outDir build/cjs --module commonjs",
-    "build-es6": "tsc -p . --outDir build/es6 --module esnext",
-    "build": "concurrently 'yarn build-cjs' 'yarn build-es6'",
-    "prebuild": "yarn run clean",
-    "bundle": "yarn run build",
+    "clean": "rimraf dist",
+    "lint": "tslint --config ../../tslint.json --project ./tsconfig.json",
+    "build": "tsc --build ./tsconfig.json",
+    "bundle": "rollup --config ./rollup.config.ts",
+    "prebundle": "yarn run build",
     "prepack": "yarn run bundle"
   },
   "devDependencies": {
-    "concurrently": "^4.1.1",
     "rimraf": "^2.6.3",
+    "rollup": "^1.17.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-sourcemaps": "^0.4.2",
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.5.2"

@@ -1,13 +1,12 @@
 {
   "extends": "../../tsconfig",
   "compilerOptions": {
-    "declarationDir": "build/types",
-    "outDir": "build"
+    "composite": true,
+    "declarationDir": "dist/types",
+    "outDir": "dist/es6"
   },
   "include": [
-    "src/**/*.ts"
-  ],
-  "files": [
-    "./index.ts"
+    "src/**/*.ts",
+    "index.ts"
   ]
 }
