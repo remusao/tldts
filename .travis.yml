@@ -2,7 +2,6 @@ dist: xenial
 language: node_js
 
 node_js:
-  - "8"
   - lts/*
   - node
 
@@ -20,6 +19,7 @@ script:
   - yarn bundle
   - yarn lint
   - yarn test
+  - npx metalint --ci
 
 # TODO - migrate to lerna
 # deploy:

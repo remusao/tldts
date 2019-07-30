@@ -21,6 +21,9 @@
     "Xavier Damman <xdamman@gmail.com>",
     "Yehezkiel Syamsuhadi <yehezkielbs@gmail.com>"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "homepage": "https://github.com/remusao/tldts#readme",
   "bugs": {

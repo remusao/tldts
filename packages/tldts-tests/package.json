@@ -22,6 +22,9 @@
     "Xavier Damman <xdamman@gmail.com>",
     "Yehezkiel Syamsuhadi <yehezkielbs@gmail.com>"
   ],
+  "publishConfig": {
+    "access": "private"
+  },
   "homepage": "https://github.com/remusao/tldts#readme",
   "bugs": {
     "url": "https://github.com/remusao/tldts/issues"
