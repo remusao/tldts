@@ -41,6 +41,7 @@
     "update": "git submodule foreach git pull origin master && ts-node -O '{\"module\": \"commonjs\"}' ./bin/update.ts"
   },
   "devDependencies": {
+    "@cliqz/metalint": "^0.1.0",
     "@types/node": "^12.0.3",
     "benchmark": "^2.1.4",
     "lerna": "^3.15.0",
