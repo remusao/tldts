@@ -1,8 +1,10 @@
 {
+  "name": "tldts",
+  "description": "Library to work against complex domain names, subdomains and URIs.",
   "private": true,
   "license": "MIT",
   "homepage": "https://github.com/remusao/tldts#readme",
-  "author": "Rémi Berson",
+  "author": { "name": "Rémi Berson" },
   "contributors": [
     "Alexei <alexeiatyahoodotcom@gmail.com>",
     "Alexey <kureev-mail@ya.ru>",
@@ -26,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:remusao/tldts.git"
+    "url": "git+ssh://git@github.com/remusao/tldts.git"
   },
   "workspaces": [
     "./packages/*"
@@ -41,7 +43,7 @@
     "update": "git submodule foreach git pull origin master && ts-node -O '{\"module\": \"commonjs\"}' ./bin/update.ts"
   },
   "devDependencies": {
-    "@cliqz/metalint": "^0.1.0",
+    "@cliqz/metalint": "^0.2.0",
     "@types/node": "^12.0.3",
     "benchmark": "^2.1.4",
     "lerna": "^3.15.0",
