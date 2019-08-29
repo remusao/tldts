@@ -32,3 +32,10 @@ export function getHostname(
 ): string | null {
   return parseImpl(url, FLAG.HOSTNAME, suffixLookup, options).hostname;
 }
+
+export function getDomainWithoutSuffix(
+  url: string,
+  options?: Partial<IOptions>,
+): string | null {
+  return parseImpl(url, FLAG.ALL, suffixLookup, options).domainWithoutSuffix;
+}

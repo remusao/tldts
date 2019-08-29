@@ -5,6 +5,7 @@
  */
 
 import getDomain from './domain';
+import getDomainWithoutSuffix from './domain-without-suffix';
 import extractHostname from './extract-hostname';
 import isIp from './is-ip';
 import isValidHostname from './is-valid';
@@ -26,6 +27,7 @@ export interface IResult {
   subdomain: string | null;
   domain: string | null;
   publicSuffix: string | null;
+  domainWithoutSuffix: string | null;
 
   // Specifies if `publicSuffix` comes from the ICANN or PRIVATE section of the list
   isIcann: boolean | null;
@@ -58,6 +60,7 @@ export function parseImpl(
   const options: IOptions = setDefaults(partialOptions);
   const result: IResult = {
     domain: null,
+    domainWithoutSuffix: null,
     hostname: null,
     isIcann: null,
     isIp: null,
@@ -128,6 +131,15 @@ export function parseImpl(
 
   // Extract subdomain
   result.subdomain = getSubdomain(result.hostname, result.domain);
+  if (step === FLAG.SUB_DOMAIN) {
+    return result;
+  }
+
+  // Extract domain without suffix
+  result.domainWithoutSuffix = getDomainWithoutSuffix(
+    result.domain,
+    result.publicSuffix,
+  );
 
   return result;
 }
