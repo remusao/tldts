@@ -31,6 +31,7 @@ Using the command-line interface:
 $ npx tldts 'http://www.writethedocs.org/conf/eu/2017/'
 {
   "domain": "writethedocs.org",
+  "domainWithoutSuffix": "writethedocs",
   "hostname": "www.writethedocs.org",
   "isIcann": true,
   "isIp": false,
@@ -47,6 +48,7 @@ const { parse } = require('tldts');
 // Retrieving hostname related informations of a given URL
 parse('http://www.writethedocs.org/conf/eu/2017/');
 // { domain: 'writethedocs.org',
+//   domainWithoutSuffix: 'writethedocs',
 //   hostname: 'www.writethedocs.org',
 //   isIcann: true,
 //   isIp: false,

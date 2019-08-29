@@ -553,6 +553,20 @@ export default function test(tldts: any): void {
     });
   });
 
+  describe('getDomainWithoutSuffix method', () => {
+    it('should return null if the domain cannot be found', () => {
+      expect(tldts.getDomainWithoutSuffix('not-a-validHost')).toEqual(null);
+    });
+
+    it('should return null if domain and suffix are the same', () => {
+      expect(tldts.getDomainWithoutSuffix('co.uk')).toEqual(null);
+    });
+
+    it('should return domain without suffix if domain exists', () => {
+      expect(tldts.getDomainWithoutSuffix('https://sub.foo.co.uk')).toEqual('foo');
+    });
+  });
+
   describe('getSubdomain method', () => {
     it('should return null if the domain cannot be found', () => {
       expect(tldts.getSubdomain('not-a-validHost')).toEqual(null);
@@ -637,6 +651,7 @@ export default function test(tldts: any): void {
     const mockResponse = (hostname: string) => {
       return {
         domain: null,
+        domainWithoutSuffix: null,
         hostname,
         isIcann: null,
         isIp: true,
@@ -649,6 +664,7 @@ export default function test(tldts: any): void {
     it('fallback to wildcard', () => {
       expect(tldts.parse('https://foo.bar.badasdasdada')).toEqual({
         domain: 'bar.badasdasdada',
+        domainWithoutSuffix: 'bar',
         hostname: 'foo.bar.badasdasdada',
         isIcann: false,
         isIp: false,
@@ -683,6 +699,7 @@ export default function test(tldts: any): void {
     it('disable ip detection', () => {
       expect(tldts.parse('http://192.168.0.1/', { detectIp: false })).toEqual({
         domain: '0.1',
+        domainWithoutSuffix: '0',
         hostname: '192.168.0.1',
         isIcann: false,
         isIp: null,

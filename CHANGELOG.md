@@ -4,6 +4,9 @@
 
 *not released*
 
+- Update public suffix ruleset
+- Add new `getDomainWithoutSuffix(...)` method
+
 ### 5.3.2
 
 *2019-07-26*

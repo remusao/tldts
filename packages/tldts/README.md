@@ -26,6 +26,7 @@ Using the command-line interface:
 $ npx tldts 'http://www.writethedocs.org/conf/eu/2017/'
 {
   "domain": "writethedocs.org",
+  "domainWithoutSuffix": "writethedocs",
   "hostname": "www.writethedocs.org",
   "isIcann": true,
   "isIp": false,
@@ -42,6 +43,7 @@ const { parse } = require('tldts');
 // Retrieving hostname related informations of a given URL
 parse('http://www.writethedocs.org/conf/eu/2017/');
 // { domain: 'writethedocs.org',
+//   domainWithoutSuffix: 'writethedocs',
 //   hostname: 'www.writethedocs.org',
 //   isIcann: true,
 //   isIp: false,
@@ -65,6 +67,7 @@ Alternatively, you can try it *directly in your browser* here: https://npm.runki
 * `tldts.getDomain(url | hostname, options)`
 * `tldts.getPublicSuffix(url | hostname, options)`
 * `tldts.getSubdomain(url, | hostname, options)`
+* `tldts.getDomainWithoutSuffix(url | hostname, options)`
 
 The behavior of `tldts` can be customized using an `options` argument for all
 the functions exposed as part of the public API. This is useful to both change
@@ -103,6 +106,7 @@ const tldts = require('tldts');
 
 tldts.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv');
 // { domain: 'amazonaws.com',
+//   domainWithoutSuffix: 'amazonaws',
 //   hostname: 'spark-public.s3.amazonaws.com',
 //   isIcann: true,
 //   isIp: false,
@@ -112,6 +116,7 @@ tldts.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv');
 
 tldts.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv', { allowPrivateDomains: true })
 // { domain: 'spark-public.s3.amazonaws.com',
+//   domainWithoutSuffix: 'spark-public',
 //   hostname: 'spark-public.s3.amazonaws.com',
 //   isIcann: false,
 //   isIp: false,
@@ -121,6 +126,7 @@ tldts.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv', 
 
 tldts.parse('gopher://domain.unknown/');
 // { domain: 'domain.unknown',
+//   domainWithoutSuffix: 'domain',
 //   hostname: 'domain.unknown',
 //   isIcann: false,
 //   isIp: false,
@@ -130,6 +136,7 @@ tldts.parse('gopher://domain.unknown/');
 
 tldts.parse('https://192.168.0.0') // IPv4
 // { domain: null,
+//   domainWithoutSuffix: null,
 //   hostname: '192.168.0.0',
 //   isIcann: null,
 //   isIp: true,
@@ -139,6 +146,7 @@ tldts.parse('https://192.168.0.0') // IPv4
 
 tldts.parse('https://[::1]') // IPv6
 // { domain: null,
+//   domainWithoutSuffix: null,
 //   hostname: '::1',
 //   isIcann: null,
 //   isIp: true,
@@ -148,6 +156,7 @@ tldts.parse('https://[::1]') // IPv6
 
 tldts.parse('tldts@emailprovider.co.uk') // email
 // { domain: 'emailprovider.co.uk',
+//   domainWithoutSuffix: 'emailprovider',
 //   hostname: 'emailprovider.co.uk',
 //   isIcann: true,
 //   isIp: false,
@@ -156,15 +165,16 @@ tldts.parse('tldts@emailprovider.co.uk') // email
 //   subdomain: '' }
 ```
 
-| Property Name  | Type   | Description                                 |
-|:-------------- |:------ |:------------------------------------------- |
-| `hostname`     | `str`  | `hostname` of the input extracted automatically |
-| `domain`       | `str`  | Domain (tld + sld)                          |
-| `subdomain`    | `str`  | Sub domain (what comes after `domain`)      |
-| `publicSuffix` | `str`  | Public Suffix (tld) of `hostname`           |
-| `isIcann`      | `bool` | Does TLD come from ICANN part of the list   |
-| `isPrivate`    | `bool` | Does TLD come from Private part of the list |
-| `isIP`         | `bool` | Is `hostname` an IP address?                |
+| Property Name         | Type   | Description                                     |
+|:--------------------- |:------ |:----------------------------------------------- |
+| `hostname`            | `str`  | `hostname` of the input extracted automatically |
+| `domain`              | `str`  | Domain (tld + sld)                              |
+| `domainWithoutSuffix` | `str`  | Domain without public suffix                    |
+| `subdomain`           | `str`  | Sub domain (what comes after `domain`)          |
+| `publicSuffix`        | `str`  | Public Suffix (tld) of `hostname`               |
+| `isIcann`             | `bool` | Does TLD come from ICANN part of the list       |
+| `isPrivate`           | `bool` | Does TLD come from Private part of the list     |
+| `isIP`                | `bool` | Is `hostname` an IP address?                    |
 
 
 ## Single purpose methods
@@ -202,6 +212,22 @@ getDomain('foo.google.co.uk');  // returns `google.co.uk`
 getDomain('t.co');              // returns `t.co`
 getDomain('fr.t.co');           // returns `t.co`
 getDomain('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `example.co.uk`
+```
+
+### getDomainWithoutSuffix(url | hostname, options?)
+
+Returns the domain (as returned by `getDomain(...)`) without the public suffix part.
+
+```javascript
+const { getDomainWithoutSuffix } = require('tldts');
+
+getDomainWithoutSuffix('google.com');        // returns `google`
+getDomainWithoutSuffix('fr.google.com');     // returns `google`
+getDomainWithoutSuffix('fr.google.google');  // returns `google`
+getDomainWithoutSuffix('foo.google.co.uk');  // returns `google`
+getDomainWithoutSuffix('t.co');              // returns `t`
+getDomainWithoutSuffix('fr.t.co');           // returns `t`
+getDomainWithoutSuffix('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `example`
 ```
 
 ### getSubdomain(url | hostname, options?)
