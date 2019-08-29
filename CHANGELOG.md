@@ -4,8 +4,12 @@
 
 *not released*
 
-- Update public suffix ruleset
-- Add new `getDomainWithoutSuffix(...)` method
+### 5.4.0
+
+*2019-07-26*
+
+- Update public suffix ruleset [#231](https://github.com/remusao/tldts/pull/231)
+- Add new `getDomainWithoutSuffix(...)` method [#231](https://github.com/remusao/tldts/pull/231)
 
 ### 5.3.2
 
