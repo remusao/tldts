@@ -4,6 +4,13 @@
 
 *not released*
 
+### 5.5.0
+
+*2019-09-24*
+
+- Add minified esm bundle (alongside umd)
+- Update public suffix ruleset
+
 ### 5.4.1
 
 *2019-09-16*

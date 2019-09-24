@@ -16,15 +16,23 @@ export default [
       sourcemaps(),
     ],
   },
-  // UMD minified
+  // minified esm + umd
   {
     input: './dist/es6/index.js',
-    output: {
-      file: './dist/index.umd.min.js',
-      format: 'umd',
-      name: 'tldts',
-      sourcemap: true,
-    },
+    output: [
+      {
+        file: './dist/index.esm.min.js',
+        format: 'esm',
+        name: 'tldts',
+        sourcemap: true,
+      },
+      {
+        file: './dist/index.umd.min.js',
+        format: 'umd',
+        name: 'tldts',
+        sourcemap: true,
+      },
+    ],
     plugins: [
       resolve(),
       compiler(),
