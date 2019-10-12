@@ -34,6 +34,30 @@ export interface IResult {
   isPrivate: boolean | null;
 }
 
+export function getEmptyResult(): IResult {
+  return {
+    domain: null,
+    domainWithoutSuffix: null,
+    hostname: null,
+    isIcann: null,
+    isIp: null,
+    isPrivate: null,
+    publicSuffix: null,
+    subdomain: null,
+  };
+}
+
+export function resetResult(result: IResult): void {
+  result.domain = null;
+  result.domainWithoutSuffix = null;
+  result.hostname = null;
+  result.isIcann = null;
+  result.isIp = null;
+  result.isPrivate = null;
+  result.publicSuffix = null;
+  result.subdomain = null;
+}
+
 // Flags representing steps in the `parse` function. They are used to implement
 // an early stop mechanism (simulating some form of laziness) to avoid doing
 // more work than necessary to perform a given action (e.g.: we don't need to
@@ -55,19 +79,10 @@ export function parseImpl(
     _2: ISuffixLookupOptions,
     _3: IPublicSuffix,
   ) => void,
-  partialOptions?: Partial<IOptions>,
+  partialOptions: Partial<IOptions>,
+  result: IResult,
 ): IResult {
   const options: IOptions = setDefaults(partialOptions);
-  const result: IResult = {
-    domain: null,
-    domainWithoutSuffix: null,
-    hostname: null,
-    isIcann: null,
-    isIp: null,
-    isPrivate: null,
-    publicSuffix: null,
-    subdomain: null,
-  };
 
   // Very fast approximate check to make sure `url` is a string. This is needed
   // because the library will not necessarily be used in a typed setup and

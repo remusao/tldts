@@ -1,4 +1,4 @@
-const { getDomain, getPublicSuffix, getSubdomain } = require('../dist/tldts.cjs.js');
+const { getDomain, getPublicSuffix, getSubdomain } = require('../packages/tldts/dist/cjs/index.js');
 
 module.exports = {
   getDomain,
