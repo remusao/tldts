@@ -1,5 +1,6 @@
 const Benchmark = require('benchmark');
 
+const tldtsExperimentalNoParse = require('./tldts-experimental-no-parse_test.js');
 const tldtsExperimental = require('./tldts-experimental_test.js');
 const tldtsNoParse = require('./tldts-no-parse_test.js');
 const tldts = require('./tldts_test.js');
@@ -46,6 +47,11 @@ function printResult(event) {
 console.log();
 console.log('>> getPublicSuffix');
 (new Benchmark.Suite())
+  .add('tldts-experimental no parsing#getPublicSuffix', () => {
+    for (let i = 0; i < HOSTNAMES.length; i += 1) {
+      tldtsExperimentalNoParse.getPublicSuffix(HOSTNAMES[i]);
+    }
+  })
   .add('tldts no parsing#getPublicSuffix', () => {
     for (let i = 0; i < HOSTNAMES.length; i += 1) {
       tldtsNoParse.getPublicSuffix(HOSTNAMES[i]);
@@ -88,6 +94,11 @@ console.log('>> getPublicSuffix');
 console.log();
 console.log('>> getDomain');
 (new Benchmark.Suite())
+  .add('tldts-experimental no parsing#getDomain', () => {
+    for (let i = 0; i < HOSTNAMES.length; i += 1) {
+      tldtsExperimentalNoParse.getDomain(HOSTNAMES[i]);
+    }
+  })
   .add('tldts no parsing#getDomain', () => {
     for (let i = 0; i < HOSTNAMES.length; i += 1) {
       tldtsNoParse.getDomain(HOSTNAMES[i]);
@@ -135,6 +146,11 @@ console.log('>> getDomain');
 console.log();
 console.log('>> getSubdomain');
 (new Benchmark.Suite())
+  .add('tldts-experimental no parsing#getSubdomain', () => {
+    for (let i = 0; i < HOSTNAMES.length; i += 1) {
+      tldtsExperimentalNoParse.getSubdomain(HOSTNAMES[i]);
+    }
+  })
   .add('tldts no parsing#getSubdomain', () => {
     for (let i = 0; i < HOSTNAMES.length; i += 1) {
       tldtsNoParse.getSubdomain(HOSTNAMES[i]);

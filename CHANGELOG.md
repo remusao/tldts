@@ -4,6 +4,22 @@
 
 *not released*
 
+### 5.6.0
+
+*2019-10-12*
+
+- New optimizations [#255](https://github.com/remusao/tldts/pull/255)
+
+  * re-use a unique result object for all methods but `parse(...)`
+  * remove memory allocation + callback in packed hash
+  * remove unnecessary calls to `indexOf` and `lastIndexOf` in packed hash
+
+  These optimizations result in up to **20%** faster invocations of `parse(...)`
+  and **40%** faster invocations of `getPublicSuffix(...)`when using
+  `tldts-experimental`. This should also reduce memory pressure in cases where
+  specific methods are used (i.e.: all but `parse(...)`) since no intermediary
+  result object needs to be allocated.
+
 ### 5.5.0
 
 *2019-09-24*
