@@ -36,24 +36,36 @@ function isProbablyIpv4(hostname: string): boolean {
  * Similar to isProbablyIpv4.
  */
 function isProbablyIpv6(hostname: string): boolean {
+  if (hostname.length < 3) {
+    return false;
+  }
+
+  let start = hostname[0] === '[' ? 1 : 0;
+  let end = hostname.length;
+
+  if (hostname[end - 1] === ']') {
+    end -= 1;
+  }
+
   // We only consider the maximum size of a normal IPV6. Note that this will
   // fail on so-called "IPv4 mapped IPv6 addresses" but this is a corner-case
   // and a proper validation library should be used for these.
-  if (hostname.length > 39) {
+  if (end - start > 39) {
     return false;
   }
 
   let hasColon: boolean = false;
 
-  for (let i = 0; i < hostname.length; i += 1) {
-    const code = hostname.charCodeAt(i);
+  for (; start < end; start += 1) {
+    const code = hostname.charCodeAt(start);
 
     if (code === 58 /* ':' */) {
       hasColon = true;
-    } else if (
-      ((code >= 48 && code <= 57) || // 0-9
-        (code >= 97 && code <= 102)) === false // a-f
-    ) {
+    } else if ((
+      (code >= 48 && code <= 57) || // 0-9
+      (code >= 97 && code <= 102) || // a-f
+      (code >= 65 && code <= 90) // A-F
+    ) === false) {
       return false;
     }
   }

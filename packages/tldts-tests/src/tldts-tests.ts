@@ -690,6 +690,34 @@ export default function test(tldts: any): void {
       );
     });
 
+    it('handles ipv6 address when extractHostname is false', () => {
+      const hostname = '1080::8:800:200C:417A';
+      expect(tldts.parse(hostname, { extractHostname: false })).toEqual({
+        domain: null,
+        domainWithoutSuffix: null,
+        hostname,
+        isIcann: null,
+        isIp: true,
+        isPrivate: null,
+        publicSuffix: null,
+        subdomain: null,
+      });
+    });
+
+    it('handles ipv6 address when extractHostname is false (with brackets)', () => {
+      const hostname = '[1080::8:800:200C:417A]';
+      expect(tldts.parse(hostname, { extractHostname: false })).toEqual({
+        domain: null,
+        domainWithoutSuffix: null,
+        hostname,
+        isIcann: null,
+        isIp: true,
+        isPrivate: null,
+        publicSuffix: null,
+        subdomain: null,
+      });
+    });
+
     it('should handle ipv4 addresses properly', () => {
       expect(tldts.parse('http://192.168.0.1/')).toEqual(
         mockResponse('192.168.0.1'),

@@ -4,6 +4,14 @@
 
 *not released*
 
+### 5.6.1
+
+*2019-10-14*
+
+- Fix detection of IPv6 when `extractHostname` is `false` [#256](https://github.com/remusao/tldts/pull/256)
+  * Allow IPv6 to be specified with or without brackets
+  * Make sure detection is case-insensitive
+
 ### 5.6.0
 
 *2019-10-12*
