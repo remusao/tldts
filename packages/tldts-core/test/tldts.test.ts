@@ -18,12 +18,12 @@ describe('#isIp', () => {
     expect(isIp('::1')).toEqual(true);
     expect(isIp('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).toEqual(true);
     expect(isIp('192.168.0.1')).toEqual(true);
+    expect(isIp('[::1]')).toEqual(true);
+    expect(isIp('[2001:0db8:85a3:0000:0000:8a2e:0370:7334]')).toEqual(true);
   });
 
   it('should return false on invalid ip addresses', () => {
     expect(isIp('::1-')).toEqual(false);
-    expect(isIp('[::1]')).toEqual(false);
-    expect(isIp('[2001:0db8:85a3:0000:0000:8a2e:0370:7334]')).toEqual(false);
     expect(isIp('192.168.0.1.')).toEqual(false);
     expect(isIp('192.168.0')).toEqual(false);
     expect(isIp('192.168.0.')).toEqual(false);
