@@ -2,16 +2,16 @@
 # yarn lockfile v1
 
 
-"@ampproject/rollup-plugin-closure-compiler@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@ampproject/rollup-plugin-closure-compiler/-/rollup-plugin-closure-compiler-0.10.0.tgz#3772cdf1fbd3501e101b9d62e6dfbd96e00da529"
-  integrity sha512-en6QmWPdWlJMQBu75Z2+oWj8I6EZMdUtxo3jJTvAPp8ZmEAltGAL1vk0MOksOgPOK/Utkir2+KnNECIRiXGi4A==
+"@ampproject/rollup-plugin-closure-compiler@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@ampproject/rollup-plugin-closure-compiler/-/rollup-plugin-closure-compiler-0.12.0.tgz#8519ecd8a21efefafe54a3cb4cda8caeedfbb49c"
+  integrity sha512-MwOBCn00bF4y/tXZadHZMvC7J3EHkM9t/iubcQzTmoxUMrDAzM8EvOuD8ivggx9aYQmA/gqn1Xm0RwZQGA9SqA==
   dependencies:
-    acorn "6.2.0"
+    acorn "6.3.0"
     acorn-dynamic-import "4.0.0"
     acorn-walk "6.2.0"
-    google-closure-compiler "20190618.0.0"
-    magic-string "0.25.3"
+    google-closure-compiler "20190929.0.0"
+    magic-string "0.25.4"
     temp-write "4.0.0"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.5.5":
@@ -1310,20 +1310,15 @@ acorn-walk@6.2.0, acorn-walk@^6.0.1:
   resolved "https://registry.yarnpkg.com/acorn-walk/-/acorn-walk-6.2.0.tgz#123cb8f3b84c2171f1f7fb252615b1c78a6b1a8c"
   integrity sha512-7evsyfH1cLOCdAzZAd43Cic04yKydNx0cF+7tiA19p1XnLLPU4dpCQOqpjqwokFe//vS0QqfqqjCS2JkiIs0cA==
 
-acorn@6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.2.0.tgz#67f0da2fc339d6cfb5d6fb244fd449f33cd8bbe3"
-  integrity sha512-8oe72N3WPMjA+2zVG71Ia0nXZ8DpQH+QyyHO+p06jT8eg8FGG3FbcUIi8KziHlAfheJQZeoqbvq1mQSQHXKYLw==
+acorn@6.3.0, acorn@^6.0.1:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.3.0.tgz#0087509119ffa4fc0a0041d1e93a417e68cb856e"
+  integrity sha512-/czfa8BwS88b9gWQVhc8eknunSA2DoJpJyTQkhheIf5E48u1N0R4q/YxxsAeqRrmK9TQ/uYfgLDfZo91UlANIA==
 
 acorn@^5.5.3:
   version "5.7.3"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
   integrity sha512-T/zvzYRfbVojPWahDsE5evJdHb3oJoQfFbsrKM7w5Zcs++Tr257tia3BmMP8XYVjp1S9RZXQMh7gao96BlqZOw==
-
-acorn@^6.0.1:
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.2.1.tgz#3ed8422d6dec09e6121cc7a843ca86a330a86b51"
-  integrity sha512-JD0xT5FCRDNyjDda3Lrg/IxFscp9q4tiYtxE1/nOzlKCk7hIRuYjhq1kCNkbPjMRMZuFq20HNQn1I9k8Oj0E+Q==
 
 acorn@^7.1.0:
   version "7.1.0"
@@ -3000,46 +2995,46 @@ globby@^9.2.0:
     pify "^4.0.1"
     slash "^2.0.0"
 
-google-closure-compiler-java@^20190618.0.0:
-  version "20190618.0.0"
-  resolved "https://registry.yarnpkg.com/google-closure-compiler-java/-/google-closure-compiler-java-20190618.0.0.tgz#456ca553a23c7ff15475364dd5095b85059b06f3"
-  integrity sha512-y6gAyJHMH5k2SM0qj/lyErEjmFGMvcT3glcx5Lsrl99CGwImJY0gDi+Cy9S0pczZvLG+wUW33AEfEW9MtdRZ6A==
+google-closure-compiler-java@^20190929.0.0:
+  version "20190929.0.0"
+  resolved "https://registry.yarnpkg.com/google-closure-compiler-java/-/google-closure-compiler-java-20190929.0.0.tgz#faa2c5750982a79c8a4c27999164842502d6b80a"
+  integrity sha512-fDThDeix5BDIQrP1ESznDq6VDLxY539JF2Hhm+/+XfgXz/kfxWB6RIcsHF+pI4QdNYEEaUGsE3gvF0bYpesUUQ==
 
-google-closure-compiler-js@^20190618.0.0:
-  version "20190618.0.0"
-  resolved "https://registry.yarnpkg.com/google-closure-compiler-js/-/google-closure-compiler-js-20190618.0.0.tgz#988db659ed7e58d198f1387bd345e7cd06300f6f"
-  integrity sha512-Xc/84uN00GLUzRwWx25Lg11VuSTz/1odWy0d+pM3F/26fXqi16ZhhkVoe6VVFklSSMVDyGTPAH0ZkyfZhinKhA==
+google-closure-compiler-js@^20190929.0.0:
+  version "20190929.0.0"
+  resolved "https://registry.yarnpkg.com/google-closure-compiler-js/-/google-closure-compiler-js-20190929.0.0.tgz#6b62c7122fcce86a978a5496fb593949452edefe"
+  integrity sha512-IB9GJCJPGcSNZWtferd15lA9InUaab9oWPZhJssZN3z/nsHPzV9SqKJLj2oajmcaf2uINhlOIsCVWZwC+AbwVA==
 
-google-closure-compiler-linux@^20190618.0.0:
-  version "20190618.0.0"
-  resolved "https://registry.yarnpkg.com/google-closure-compiler-linux/-/google-closure-compiler-linux-20190618.0.0.tgz#21b4914b1c870d87bbd5775831a93d261bb0023e"
-  integrity sha512-idWJ/sFmOSYfCmDbCVMcaBX2NCUCxukjt2UzT5PJmpoVLmJuwwoVbpQZVfvgRvEH4bLzvvcvJRfn5nIiODjjaQ==
+google-closure-compiler-linux@^20190929.0.0:
+  version "20190929.0.0"
+  resolved "https://registry.yarnpkg.com/google-closure-compiler-linux/-/google-closure-compiler-linux-20190929.0.0.tgz#394b29e8c294498be34f5e86eb3f38fa5d2abe6a"
+  integrity sha512-gu/H1z7MqC43rXnGGoUyGdb12kTFpkDNw0huKj1ScXNvHgq5fQteicQKd7EpiKOIlMBJbJOKoVFNpU1nrAfNvQ==
 
-google-closure-compiler-osx@^20190618.0.0:
-  version "20190618.0.0"
-  resolved "https://registry.yarnpkg.com/google-closure-compiler-osx/-/google-closure-compiler-osx-20190618.0.0.tgz#0290ae9a019b1bb6438f4874dc426a9fed02c060"
-  integrity sha512-OzXMW+hKq76NJt9MIRQhV7pHTzHISCXtg+LZUPcqNT+V/tcvOlrSaflokmvyJPzEVk889QArYp8JgZ7mqHuY5g==
+google-closure-compiler-osx@^20190929.0.0:
+  version "20190929.0.0"
+  resolved "https://registry.yarnpkg.com/google-closure-compiler-osx/-/google-closure-compiler-osx-20190929.0.0.tgz#06e501a0c7ae78b6bc16c260ba137c82bb9d933f"
+  integrity sha512-SZbp2BOhwjrJdrShZ4HrtBHOEJyKvOtka47uXyo83AdZMX22EV04z+mQCMFHtBautgG/mCsL8eX75nlMPXzkjg==
 
-google-closure-compiler-windows@^20190618.0.0:
-  version "20190618.0.0"
-  resolved "https://registry.yarnpkg.com/google-closure-compiler-windows/-/google-closure-compiler-windows-20190618.0.0.tgz#2241036638025d98a81ff14afda7cb49caa17dd6"
-  integrity sha512-2qzY/fQneEg+zFvRGoNeJkAY6VU5OcmBT37l+xTBGQvy/AauCLWltSGcOYNEi7Qd3OEBVIcAJ+CzNOV9s3jfwA==
+google-closure-compiler-windows@^20190929.0.0:
+  version "20190929.0.0"
+  resolved "https://registry.yarnpkg.com/google-closure-compiler-windows/-/google-closure-compiler-windows-20190929.0.0.tgz#d6ab1ff5c74d87302884cc7691349d2f14e73b51"
+  integrity sha512-b1azZx19cQnYqwof+4KxWcjjOJ88QeDDIvmjCmuAZjXG5UC0os/1cutg0AeK3gZnXAsaQwAh3szy+QGKT6IgWw==
 
-google-closure-compiler@20190618.0.0:
-  version "20190618.0.0"
-  resolved "https://registry.yarnpkg.com/google-closure-compiler/-/google-closure-compiler-20190618.0.0.tgz#c2e9456c7b0b378058a7e24a6b24bea84349a894"
-  integrity sha512-f5zJQSWnlawuQlGo9TxcuprBGxIS5ksikj/pjDxdlRTXWt3dOKqEFA3CN8QshNYDl6oEjtO/ehiNx64fqEgkUA==
+google-closure-compiler@20190929.0.0:
+  version "20190929.0.0"
+  resolved "https://registry.yarnpkg.com/google-closure-compiler/-/google-closure-compiler-20190929.0.0.tgz#9ddd9150e852fe6486e7840ba8277e67ee50ec72"
+  integrity sha512-psPXU3rfTbx4WsTOxtxCnNQqZdphdH1fS7KbqISJ3Bk1G6WMFapnCUHdnXsFz96i/XrVaTxjwUfrNdoz/F+PsA==
   dependencies:
     chalk "2.x"
-    google-closure-compiler-java "^20190618.0.0"
-    google-closure-compiler-js "^20190618.0.0"
+    google-closure-compiler-java "^20190929.0.0"
+    google-closure-compiler-js "^20190929.0.0"
     minimist "1.x"
     vinyl "2.x"
     vinyl-sourcemaps-apply "^0.2.0"
   optionalDependencies:
-    google-closure-compiler-linux "^20190618.0.0"
-    google-closure-compiler-osx "^20190618.0.0"
-    google-closure-compiler-windows "^20190618.0.0"
+    google-closure-compiler-linux "^20190929.0.0"
+    google-closure-compiler-osx "^20190929.0.0"
+    google-closure-compiler-windows "^20190929.0.0"
 
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0:
   version "4.2.0"
@@ -4311,10 +4306,10 @@ macos-release@^2.2.0:
   resolved "https://registry.yarnpkg.com/macos-release/-/macos-release-2.3.0.tgz#eb1930b036c0800adebccd5f17bc4c12de8bb71f"
   integrity sha512-OHhSbtcviqMPt7yfw5ef5aghS2jzFVKEFyCJndQt2YpSQ9qRVSEv2axSJI1paVThEu+FFGs584h/1YhxjVqajA==
 
-magic-string@0.25.3:
-  version "0.25.3"
-  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.25.3.tgz#34b8d2a2c7fec9d9bdf9929a3fd81d271ef35be9"
-  integrity sha512-6QK0OpF/phMz0Q2AxILkX2mFhi7m+WMwTRg0LQKq/WBB0cDP4rYH3Wp4/d3OTXlrPLVJT/RFqj8tFeAR4nk8AA==
+magic-string@0.25.4:
+  version "0.25.4"
+  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.25.4.tgz#325b8a0a79fc423db109b77fd5a19183b7ba5143"
+  integrity sha512-oycWO9nEVAP2RVPbIoDoA4Y7LFIJ3xRYov93gAyJhZkET1tNuB0u7uWkZS2LpBWTJUWnmau/To8ECWRC+jKNfw==
   dependencies:
     sourcemap-codec "^1.4.4"
 
