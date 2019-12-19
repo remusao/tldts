@@ -51,7 +51,7 @@
     "test": "jest --config ./jest.config.js --coverage ./test/"
   },
   "devDependencies": {
-    "@ampproject/rollup-plugin-closure-compiler": "^0.13.0",
+    "@ampproject/rollup-plugin-closure-compiler": "^0.14.0",
     "@types/jest": "^24.0.15",
     "@types/node": "^12.0.3",
     "jest": "^24.8.0",
