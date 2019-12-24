@@ -56,7 +56,7 @@
   "devDependencies": {
     "@ampproject/rollup-plugin-closure-compiler": "^0.16.0",
     "@types/jest": "^24.0.15",
-    "@types/node": "^12.0.3",
+    "@types/node": "^13.1.0",
     "jest": "^24.8.0",
     "rimraf": "^3.0.0",
     "rollup": "^1.17.0",
