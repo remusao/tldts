@@ -4,6 +4,12 @@
 
 *not released*
 
+### 5.6.3
+
+*2019-12-25*
+
+- Update version of public suffix rules.
+
 ### 5.6.2
 
 *2019-11-17*
