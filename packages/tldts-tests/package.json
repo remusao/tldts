@@ -61,7 +61,7 @@
   },
   "dependencies": {
     "@types/jest": "^24.0.15",
-    "jest": "^24.8.0",
+    "jest": "^25.1.0",
     "ts-jest": "^24.0.2"
   }
 }
