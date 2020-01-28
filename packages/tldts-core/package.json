@@ -51,7 +51,7 @@
     "test": "jest --config ./jest.config.js ./test/"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.15",
+    "@types/jest": "^25.1.0",
     "@types/node": "^13.1.0",
     "jest": "^25.1.0",
     "rimraf": "^3.0.0",
