@@ -1333,11 +1333,6 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@remusao/auto-config@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@remusao/auto-config/-/auto-config-1.1.0.tgz#9324fafcc6267a381ac8b2eebcf3f69f59edb4b9"
-  integrity sha512-SADIurAgV4BYar3Z/6s6O/dTl+41gsXeErImLnV9A7PZx3r5VpfzJumIpDwNLAwLbypIj0f5+2waGRoekcmp1g==
-
 "@rollup/pluginutils@^3.0.1":
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-3.0.8.tgz#4e94d128d94b90699e517ef045422960d18c8fde"

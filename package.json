@@ -46,7 +46,6 @@
     "release": "auto shipit"
   },
   "devDependencies": {
-    "@remusao/auto-config": "^1.1.0",
     "@types/node": "^13.1.0",
     "auto": "^9.10.5",
     "benchmark": "^2.1.4",
@@ -55,7 +54,6 @@
     "typescript": "^3.5.2"
   },
   "auto": {
-    "extends": "@remusao/auto-config",
     "name": "Rémi Berson",
     "email": "remi@cliqz.com",
     "plugins": [
