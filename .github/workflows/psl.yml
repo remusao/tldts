@@ -2,7 +2,7 @@ name: Assets
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 20 * * *'
 
 jobs:
   assets:
