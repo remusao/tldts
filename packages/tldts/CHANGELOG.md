@@ -1,6 +1,6 @@
 # v5.6.7 (Sun Feb 16 2020)
 
-#### :scroll: Breaking Change
+#### :scroll: Update Public Suffix List
 
 - Update upstream public suffix list [#376](https://github.com/remusao/tldts/pull/376) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
 
@@ -13,7 +13,7 @@
 
 # v5.6.4 (Sun Feb 16 2020)
 
-#### :scroll: Breaking Change
+#### :scroll: Update Public Suffix List
 
 - Release v5.6.3  ([@remusao](https://github.com/remusao))
 - Release v5.6.2  ([@remusao](https://github.com/remusao))

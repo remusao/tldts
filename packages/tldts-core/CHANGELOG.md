@@ -1,6 +1,6 @@
 # v5.6.4 (Sun Feb 16 2020)
 
-#### :scroll: Breaking Change
+#### :scroll: Update Public Suffix List
 
 - Release v5.6.3  ([@remusao](https://github.com/remusao))
 - Release v5.6.2  ([@remusao](https://github.com/remusao))

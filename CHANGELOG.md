@@ -1,6 +1,6 @@
 # v5.6.7 (Sun Feb 16 2020)
 
-#### :scroll: Breaking Change
+#### :scroll: Update Public Suffix List
 
 - `tldts-experimental`, `tldts`
   - Update upstream public suffix list [#376](https://github.com/remusao/tldts/pull/376) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
@@ -27,7 +27,7 @@
 
 # v5.6.1 (Sun Feb 16 2020)
 
-#### :scroll: Breaking Change
+#### :scroll: Update Public Suffix List
 
 - `tldts-core`, `tldts-experimental`, `tldts`
   - Release v5.6.2 [#291](https://github.com/remusao/tldts/pull/291) ([@remusao](https://github.com/remusao))
