@@ -1,3 +1,17 @@
+# v5.6.7 (Sun Feb 16 2020)
+
+#### :scroll: Breaking Change
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#376](https://github.com/remusao/tldts/pull/376) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### Authors: 2
+
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.6 (Sun Feb 16 2020)
 
 #### ⚠️  Pushed to master
