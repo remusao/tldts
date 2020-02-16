@@ -70,11 +70,10 @@ Check [README.md](/packages/tldts/README.md) for more details about the API.
 ## Contributors
 
 `tldts` is based upon the excellent `tld.js` library and would not exist without
-the many contributors who worked on the project:
-<a href="graphs/contributors"><img src="https://opencollective.com/tldjs/contributors.svg?width=890" /></a>
+the [many contributors](https://github.com/remusao/tldts/graphs/contributors) who worked on the project.
 
 This project would not be possible without the amazing Mozilla's
-[public suffix list][]. Thank you for your hard work!
+[public suffix list][] either. Thank you for your hard work!
 
 # License
 
