@@ -1,3 +1,16 @@
+# v5.6.6 (Sun Feb 16 2020)
+
+#### ⚠️  Pushed to master
+
+- clean-up CHANGELOG  ([@remusao](https://github.com/remusao))
+- ci: remove 'released' plugin for auto  ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.1 (Sun Feb 16 2020)
 
 #### :scroll: Breaking Change
