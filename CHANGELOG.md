@@ -1,3 +1,337 @@
+# v5.6.1 (Sun Feb 16 2020)
+
+#### :scroll: Breaking Change
+
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - Release v5.6.2 [#291](https://github.com/remusao/tldts/pull/291) ([@remusao](https://github.com/remusao))
+
+#### :bug: Bug Fix
+
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - fix: handling of ipv6 when 'extractHostname' option is 'false' [#256](https://github.com/remusao/tldts/pull/256) ([@remusao](https://github.com/remusao))
+
+#### ⚠️  Pushed to master
+
+- ci: remove auto base config  ([@remusao](https://github.com/remusao))
+- ci: try to fix publishing  ([@remusao](https://github.com/remusao))
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - Release v5.6.3  ([@remusao](https://github.com/remusao))
+
+#### :house: Internal
+
+- Add workflow to automatically update PSL rules [#375](https://github.com/remusao/tldts/pull/375) ([@remusao](https://github.com/remusao))
+- ci: automate releases with auto [#374](https://github.com/remusao/tldts/pull/374) ([@remusao](https://github.com/remusao))
+- ci: move to GitHub actions for testing [#351](https://github.com/remusao/tldts/pull/351) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump ts-node from 8.6.0 to 8.6.1 [#345](https://github.com/remusao/tldts/pull/345) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @ampproject/rollup-plugin-closure-compiler [#344](https://github.com/remusao/tldts/pull/344) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.1.5 to 13.1.6 [#342](https://github.com/remusao/tldts/pull/342) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump ts-node from 8.5.4 to 8.6.0 [#341](https://github.com/remusao/tldts/pull/341) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.1.4 to 13.1.5 [#340](https://github.com/remusao/tldts/pull/340) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.28.0 to 1.29.0 [#339](https://github.com/remusao/tldts/pull/339) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump ts-jest from 24.2.0 to 24.3.0 [#338](https://github.com/remusao/tldts/pull/338) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.27.14 to 1.28.0 [#337](https://github.com/remusao/tldts/pull/337) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.1.2 to 13.1.4 [#335](https://github.com/remusao/tldts/pull/335) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump lerna from 3.20.1 to 3.20.2 [#334](https://github.com/remusao/tldts/pull/334) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.1.1 to 13.1.2 [#333](https://github.com/remusao/tldts/pull/333) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump lerna from 3.19.0 to 3.20.1 [#331](https://github.com/remusao/tldts/pull/331) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.1.0 to 13.1.1 [#330](https://github.com/remusao/tldts/pull/330) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump @types/jest from 24.0.24 to 24.0.25 [#329](https://github.com/remusao/tldts/pull/329) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): [security] bump handlebars from 4.1.2 to 4.5.3 [#328](https://github.com/remusao/tldts/pull/328) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.27.13 to 1.27.14 [#326](https://github.com/remusao/tldts/pull/326) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump typescript from 3.7.3 to 3.7.4 [#324](https://github.com/remusao/tldts/pull/324) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 12.12.20 to 12.12.21 [#320](https://github.com/remusao/tldts/pull/320) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump @types/jest from 24.0.23 to 24.0.24 [#319](https://github.com/remusao/tldts/pull/319) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 12.12.18 to 12.12.20 [#318](https://github.com/remusao/tldts/pull/318) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 12.12.17 to 12.12.18 [#317](https://github.com/remusao/tldts/pull/317) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.27.11 to 1.27.13 [#316](https://github.com/remusao/tldts/pull/316) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.27.10 to 1.27.11 [#315](https://github.com/remusao/tldts/pull/315) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.27.9 to 1.27.10 [#314](https://github.com/remusao/tldts/pull/314) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 12.12.16 to 12.12.17 [#313](https://github.com/remusao/tldts/pull/313) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 12.12.14 to 12.12.16 [#312](https://github.com/remusao/tldts/pull/312) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.27.8 to 1.27.9 [#311](https://github.com/remusao/tldts/pull/311) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump typescript from 3.7.2 to 3.7.3 [#310](https://github.com/remusao/tldts/pull/310) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.27.7 to 1.27.8 [#309](https://github.com/remusao/tldts/pull/309) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.27.5 to 1.27.7 [#308](https://github.com/remusao/tldts/pull/308) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump ts-node from 8.5.2 to 8.5.4 [#307](https://github.com/remusao/tldts/pull/307) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.27.4 to 1.27.5 [#306](https://github.com/remusao/tldts/pull/306) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 12.12.12 to 12.12.14 [#305](https://github.com/remusao/tldts/pull/305) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 12.12.11 to 12.12.12 [#303](https://github.com/remusao/tldts/pull/303) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump ts-jest from 24.1.0 to 24.2.0 [#304](https://github.com/remusao/tldts/pull/304) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.27.3 to 1.27.4 [#302](https://github.com/remusao/tldts/pull/302) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump lerna from 3.18.5 to 3.19.0 [#300](https://github.com/remusao/tldts/pull/300) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.27.2 to 1.27.3 [#299](https://github.com/remusao/tldts/pull/299) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump lerna from 3.18.4 to 3.18.5 [#298](https://github.com/remusao/tldts/pull/298) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @ampproject/rollup-plugin-closure-compiler [#297](https://github.com/remusao/tldts/pull/297) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 12.12.9 to 12.12.11 [#296](https://github.com/remusao/tldts/pull/296) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 12.12.8 to 12.12.9 [#295](https://github.com/remusao/tldts/pull/295) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.27.0 to 1.27.2 [#294](https://github.com/remusao/tldts/pull/294) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): [security] bump https-proxy-agent from 2.2.2 to 2.2.4 [#293](https://github.com/remusao/tldts/pull/293) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 12.12.7 to 12.12.8 [#292](https://github.com/remusao/tldts/pull/292) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump ts-node from 8.5.0 to 8.5.2 [#290](https://github.com/remusao/tldts/pull/290) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.26.5 to 1.27.0 [#289](https://github.com/remusao/tldts/pull/289) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump @types/jest from 24.0.22 to 24.0.23 [#288](https://github.com/remusao/tldts/pull/288) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.26.4 to 1.26.5 [#287](https://github.com/remusao/tldts/pull/287) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.26.3 to 1.26.4 [#286](https://github.com/remusao/tldts/pull/286) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 12.12.6 to 12.12.7 [#285](https://github.com/remusao/tldts/pull/285) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump ts-node from 8.4.1 to 8.5.0 [#284](https://github.com/remusao/tldts/pull/284) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump lerna from 3.18.3 to 3.18.4 [#283](https://github.com/remusao/tldts/pull/283) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump tslint from 5.20.0 to 5.20.1 [#282](https://github.com/remusao/tldts/pull/282) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump @types/jest from 24.0.21 to 24.0.22 [#281](https://github.com/remusao/tldts/pull/281) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 12.12.5 to 12.12.6 [#280](https://github.com/remusao/tldts/pull/280) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump typescript from 3.6.4 to 3.7.2 [#279](https://github.com/remusao/tldts/pull/279) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.26.2 to 1.26.3 [#278](https://github.com/remusao/tldts/pull/278) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 12.12.3 to 12.12.5 [#277](https://github.com/remusao/tldts/pull/277) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.26.0 to 1.26.2 [#276](https://github.com/remusao/tldts/pull/276) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @ampproject/rollup-plugin-closure-compiler [#275](https://github.com/remusao/tldts/pull/275) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 12.12.0 to 12.12.3 [#274](https://github.com/remusao/tldts/pull/274) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump @types/node from 12.11.7 to 12.12.0 [#273](https://github.com/remusao/tldts/pull/273) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump @types/jest from 24.0.20 to 24.0.21 [#272](https://github.com/remusao/tldts/pull/272) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump rollup from 1.25.2 to 1.26.0 [#271](https://github.com/remusao/tldts/pull/271) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump @types/jest from 24.0.19 to 24.0.20 [#270](https://github.com/remusao/tldts/pull/270) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump @types/node from 12.11.6 to 12.11.7 [#269](https://github.com/remusao/tldts/pull/269) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump rollup from 1.25.1 to 1.25.2 [#268](https://github.com/remusao/tldts/pull/268) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump @types/node from 12.11.5 to 12.11.6 [#267](https://github.com/remusao/tldts/pull/267) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump @types/node from 12.11.2 to 12.11.5 [#265](https://github.com/remusao/tldts/pull/265) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump lerna from 3.18.2 to 3.18.3 [#264](https://github.com/remusao/tldts/pull/264) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump @types/node from 12.11.1 to 12.11.2 [#263](https://github.com/remusao/tldts/pull/263) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump lerna from 3.18.1 to 3.18.2 [#262](https://github.com/remusao/tldts/pull/262) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump rollup from 1.24.0 to 1.25.1 [#261](https://github.com/remusao/tldts/pull/261) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump lerna from 3.17.0 to 3.18.1 [#260](https://github.com/remusao/tldts/pull/260) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump @types/node from 12.7.12 to 12.11.1 [#259](https://github.com/remusao/tldts/pull/259) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump @types/jest from 24.0.18 to 24.0.19 [#258](https://github.com/remusao/tldts/pull/258) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Bump rollup from 1.23.1 to 1.24.0 [#257](https://github.com/remusao/tldts/pull/257) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- `tldts-experimental`, `tldts`
+  - chore(deps-dev): bump @ampproject/rollup-plugin-closure-compiler [#343](https://github.com/remusao/tldts/pull/343) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - chore(deps-dev): bump rollup-plugin-sourcemaps from 0.4.2 to 0.5.0 [#336](https://github.com/remusao/tldts/pull/336) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- `tldts-experimental`, `tldts`
+  - chore(deps-dev): bump @ampproject/rollup-plugin-closure-compiler [#332](https://github.com/remusao/tldts/pull/332) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - chore(deps-dev): bump @types/node from 12.12.21 to 13.1.0 [#327](https://github.com/remusao/tldts/pull/327) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- `tldts-experimental`, `tldts`
+  - chore(deps-dev): bump @ampproject/rollup-plugin-closure-compiler [#325](https://github.com/remusao/tldts/pull/325) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- `tldts-experimental`, `tldts`
+  - chore(deps-dev): bump @ampproject/rollup-plugin-closure-compiler [#323](https://github.com/remusao/tldts/pull/323) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- `tldts-experimental`, `tldts`
+  - chore(deps-dev): bump @ampproject/rollup-plugin-closure-compiler [#301](https://github.com/remusao/tldts/pull/301) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- `tldts-experimental`, `tldts`
+  - Bump @ampproject/rollup-plugin-closure-compiler from 0.10.0 to 0.12.0 [#266](https://github.com/remusao/tldts/pull/266) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.7.0 to 13.7.1
+
+Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 13.7.0 to 13.7.1.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#373](https://github.com/remusao/tldts/pull/373) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump @types/jest from 25.1.1 to 25.1.2
+
+Bumps [@types/jest](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/jest) from 25.1.1 to 25.1.2.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/jest)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#371](https://github.com/remusao/tldts/pull/371) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.5.3 to 13.7.0
+
+Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 13.5.3 to 13.7.0.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#367](https://github.com/remusao/tldts/pull/367) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.5.2 to 13.5.3
+
+Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 13.5.2 to 13.5.3.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#365](https://github.com/remusao/tldts/pull/365) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.5.1 to 13.5.2
+
+Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 13.5.1 to 13.5.2.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#364](https://github.com/remusao/tldts/pull/364) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump @types/jest from 25.1.0 to 25.1.1
+
+Bumps [@types/jest](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/jest) from 25.1.0 to 25.1.1.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/jest)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#363](https://github.com/remusao/tldts/pull/363) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.5.0 to 13.5.1
+
+Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 13.5.0 to 13.5.1.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#362](https://github.com/remusao/tldts/pull/362) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump @types/jest from 24.9.0 to 24.9.1
+
+Bumps [@types/jest](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/jest) from 24.9.0 to 24.9.1.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/jest)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#357](https://github.com/remusao/tldts/pull/357) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.1.8 to 13.5.0
+
+Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 13.1.8 to 13.5.0.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#356](https://github.com/remusao/tldts/pull/356) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.1.7 to 13.1.8
+
+Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 13.1.7 to 13.1.8.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#352](https://github.com/remusao/tldts/pull/352) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump typescript from 3.7.4 to 3.7.5
+
+Bumps [typescript](https://github.com/Microsoft/TypeScript) from 3.7.4 to 3.7.5.
+- [Release notes](https://github.com/Microsoft/TypeScript/releases)
+- [Commits](https://github.com/Microsoft/TypeScript/compare/v3.7.4...v3.7.5)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#350](https://github.com/remusao/tldts/pull/350) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump @types/jest from 24.0.25 to 24.9.0
+
+Bumps [@types/jest](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/jest) from 24.0.25 to 24.9.0.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/jest)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#349](https://github.com/remusao/tldts/pull/349) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.1.6 to 13.1.7
+
+Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 13.1.6 to 13.1.7.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#348](https://github.com/remusao/tldts/pull/348) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump ts-node from 8.6.1 to 8.6.2
+
+Bumps [ts-node](https://github.com/TypeStrong/ts-node) from 8.6.1 to 8.6.2.
+- [Release notes](https://github.com/TypeStrong/ts-node/releases)
+- [Commits](https://github.com/TypeStrong/ts-node/compare/v8.6.1...v8.6.2)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#346](https://github.com/remusao/tldts/pull/346) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rimraf from 3.0.1 to 3.0.2
+
+Bumps [rimraf](https://github.com/isaacs/rimraf) from 3.0.1 to 3.0.2.
+- [Release notes](https://github.com/isaacs/rimraf/releases)
+- [Changelog](https://github.com/isaacs/rimraf/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/isaacs/rimraf/compare/v3.0.1...v3.0.2)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#372](https://github.com/remusao/tldts/pull/372) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump ts-jest from 25.1.0 to 25.2.0
+
+Bumps [ts-jest](https://github.com/kulshekhar/ts-jest) from 25.1.0 to 25.2.0.
+- [Release notes](https://github.com/kulshekhar/ts-jest/releases)
+- [Changelog](https://github.com/kulshekhar/ts-jest/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/kulshekhar/ts-jest/compare/v25.1.0...v25.2.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#370](https://github.com/remusao/tldts/pull/370) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- `tldts-experimental`, `tldts`
+  - chore(deps-dev): bump @ampproject/rollup-plugin-closure-compiler
+
+Bumps [@ampproject/rollup-plugin-closure-compiler](https://github.com/ampproject/rollup-plugin-closure-compiler) from 0.20.0 to 0.21.0.
+- [Release notes](https://github.com/ampproject/rollup-plugin-closure-compiler/releases)
+- [Commits](https://github.com/ampproject/rollup-plugin-closure-compiler/compare/v0.20.0...v0.21.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#369](https://github.com/remusao/tldts/pull/369) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.30.1 to 1.31.0
+
+Bumps [rollup](https://github.com/rollup/rollup) from 1.30.1 to 1.31.0.
+- [Release notes](https://github.com/rollup/rollup/releases)
+- [Changelog](https://github.com/rollup/rollup/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/rollup/rollup/compare/v1.30.1...v1.31.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#368](https://github.com/remusao/tldts/pull/368) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump ts-jest from 25.0.0 to 25.1.0
+
+Bumps [ts-jest](https://github.com/kulshekhar/ts-jest) from 25.0.0 to 25.1.0.
+- [Release notes](https://github.com/kulshekhar/ts-jest/releases)
+- [Changelog](https://github.com/kulshekhar/ts-jest/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/kulshekhar/ts-jest/compare/v25.0.0...v25.1.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#366](https://github.com/remusao/tldts/pull/366) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - chore(deps): bump @types/jest from 24.9.1 to 25.1.0
+
+Bumps [@types/jest](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/jest) from 24.9.1 to 25.1.0.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/jest)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#361](https://github.com/remusao/tldts/pull/361) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rimraf from 3.0.0 to 3.0.1
+
+Bumps [rimraf](https://github.com/isaacs/rimraf) from 3.0.0 to 3.0.1.
+- [Release notes](https://github.com/isaacs/rimraf/releases)
+- [Changelog](https://github.com/isaacs/rimraf/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/isaacs/rimraf/compare/v3.0.0...v3.0.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#360](https://github.com/remusao/tldts/pull/360) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.29.1 to 1.30.1
+
+Bumps [rollup](https://github.com/rollup/rollup) from 1.29.1 to 1.30.1.
+- [Release notes](https://github.com/rollup/rollup/releases)
+- [Changelog](https://github.com/rollup/rollup/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/rollup/rollup/compare/v1.29.1...v1.30.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#359](https://github.com/remusao/tldts/pull/359) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.29.0 to 1.29.1
+
+Bumps [rollup](https://github.com/rollup/rollup) from 1.29.0 to 1.29.1.
+- [Release notes](https://github.com/rollup/rollup/releases)
+- [Changelog](https://github.com/rollup/rollup/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/rollup/rollup/compare/v1.29.0...v1.29.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#354](https://github.com/remusao/tldts/pull/354) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- `tldts-experimental`, `tldts`
+  - chore(deps-dev): bump @ampproject/rollup-plugin-closure-compiler
+
+Bumps [@ampproject/rollup-plugin-closure-compiler](https://github.com/ampproject/rollup-plugin-closure-compiler) from 0.19.1 to 0.20.0.
+- [Release notes](https://github.com/ampproject/rollup-plugin-closure-compiler/releases)
+- [Commits](https://github.com/ampproject/rollup-plugin-closure-compiler/compare/v0.19.1...v0.20.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#347](https://github.com/remusao/tldts/pull/347) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - chore(deps): bump ts-jest from 24.3.0 to 25.0.0
+
+Bumps [ts-jest](https://github.com/kulshekhar/ts-jest) from 24.3.0 to 25.0.0.
+- [Release notes](https://github.com/kulshekhar/ts-jest/releases)
+- [Changelog](https://github.com/kulshekhar/ts-jest/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/kulshekhar/ts-jest/compare/v24.3.0...v25.0.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#358](https://github.com/remusao/tldts/pull/358) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - chore(deps): bump jest from 24.9.0 to 25.1.0
+
+Bumps [jest](https://github.com/facebook/jest) from 24.9.0 to 25.1.0.
+- [Release notes](https://github.com/facebook/jest/releases)
+- [Changelog](https://github.com/facebook/jest/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/facebook/jest/compare/v24.9.0...v25.1.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#353](https://github.com/remusao/tldts/pull/353) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - chore(deps-dev): bump tslint from 5.20.1 to 6.0.0
+
+Bumps [tslint](https://github.com/palantir/tslint) from 5.20.1 to 6.0.0.
+- [Release notes](https://github.com/palantir/tslint/releases)
+- [Changelog](https://github.com/palantir/tslint/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/palantir/tslint/compare/5.20.1...6.0.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#355](https://github.com/remusao/tldts/pull/355) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 2
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 ## Change Log
 
 ### next
