@@ -61,7 +61,7 @@
       {
         "name": "PR: Update PSL :scroll:",
         "description": "Update upstream public suffix list",
-        "changelogTitle": ":scroll: Breaking Change",
+        "changelogTitle": ":scroll: Update Public Suffix List",
         "releaseType": "patch",
         "overwrite": true,
         "color": "#c2e0c6"
