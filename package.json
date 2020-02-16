@@ -4,7 +4,9 @@
   "private": true,
   "license": "MIT",
   "homepage": "https://github.com/remusao/tldts#readme",
-  "author": { "name": "Rémi Berson" },
+  "author": {
+    "name": "Rémi Berson"
+  },
   "contributors": [
     "Alexei <alexeiatyahoodotcom@gmail.com>",
     "Alexey <kureev-mail@ya.ru>",
@@ -34,20 +36,37 @@
     "./packages/*"
   ],
   "scripts": {
-    "bootstrap": "npx lerna bootstrap",
+    "bootstrap": "yarn install --frozen-lock && lerna bootstrap",
     "bundle": "lerna run --concurrency 1 bundle",
     "clean": "lerna run --parallel clean && lerna clean --yes && rimraf node_modules",
     "lint": "lerna run --parallel lint",
     "test": "lerna run --concurrency 1 test",
     "bench": "make -C bench",
-    "update": "git submodule foreach git pull origin master && ts-node -O '{\"module\": \"commonjs\"}' ./bin/update.ts"
+    "update": "git submodule foreach git pull origin master && ts-node -O '{\"module\": \"commonjs\"}' ./bin/update.ts",
+    "release": "auto shipit"
   },
   "devDependencies": {
-    "@cliqz/metalint": "^0.2.0",
+    "@remusao/auto-config": "^1.1.0",
     "@types/node": "^13.1.0",
+    "auto": "^9.10.5",
     "benchmark": "^2.1.4",
     "lerna": "^3.15.0",
     "ts-node": "^8.3.0",
     "typescript": "^3.5.2"
+  },
+  "auto": {
+    "extends": "@remusao/auto-config",
+    "name": "Rémi Berson",
+    "email": "remi@cliqz.com",
+    "labels": [
+      {
+        "name": "PR: Update PSL :scroll:",
+        "description": "Update upstream public suffix list",
+        "changelogTitle": ":scroll: Breaking Change",
+        "releaseType": "patch",
+        "overwrite": true,
+        "color": "#c2e0c6"
+      }
+    ]
   }
 }
