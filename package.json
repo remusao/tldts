@@ -56,10 +56,7 @@
   "auto": {
     "name": "Rémi Berson",
     "email": "remi@cliqz.com",
-    "plugins": [
-      "npm",
-      "released"
-    ],
+    "plugins": ["npm"],
     "labels": [
       {
         "name": "PR: Update PSL :scroll:",
