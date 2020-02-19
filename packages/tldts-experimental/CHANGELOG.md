@@ -1,3 +1,26 @@
+# v5.6.8 (Wed Feb 19 2020)
+
+#### :scroll: Update Public Suffix List
+
+- Fix CHANGELOG titles [skip ci]  ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump @ampproject/rollup-plugin-closure-compiler
+
+Bumps [@ampproject/rollup-plugin-closure-compiler](https://github.com/ampproject/rollup-plugin-closure-compiler) from 0.21.0 to 0.22.2.
+- [Release notes](https://github.com/ampproject/rollup-plugin-closure-compiler/releases)
+- [Commits](https://github.com/ampproject/rollup-plugin-closure-compiler/commits)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#378](https://github.com/remusao/tldts/pull/378) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 2
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.7 (Sun Feb 16 2020)
 
 #### :scroll: Update Public Suffix List

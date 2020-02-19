@@ -1,3 +1,73 @@
+# v5.6.8 (Wed Feb 19 2020)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts`
+  - Update upstream public suffix list [#385](https://github.com/remusao/tldts/pull/385) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps): bump @types/jest from 25.1.2 to 25.1.3
+
+Bumps [@types/jest](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/jest) from 25.1.2 to 25.1.3.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/jest)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#384](https://github.com/remusao/tldts/pull/384) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.7.2 to 13.7.4
+
+Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 13.7.2 to 13.7.4.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#383](https://github.com/remusao/tldts/pull/383) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.7.1 to 13.7.2
+
+Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 13.7.1 to 13.7.2.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#381](https://github.com/remusao/tldts/pull/381) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @ampproject/rollup-plugin-closure-compiler
+
+Bumps [@ampproject/rollup-plugin-closure-compiler](https://github.com/ampproject/rollup-plugin-closure-compiler) from 0.21.0 to 0.22.2.
+- [Release notes](https://github.com/ampproject/rollup-plugin-closure-compiler/releases)
+- [Commits](https://github.com/ampproject/rollup-plugin-closure-compiler/commits)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#378](https://github.com/remusao/tldts/pull/378) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump ts-jest from 25.2.0 to 25.2.1
+
+Bumps [ts-jest](https://github.com/kulshekhar/ts-jest) from 25.2.0 to 25.2.1.
+- [Release notes](https://github.com/kulshekhar/ts-jest/releases)
+- [Changelog](https://github.com/kulshekhar/ts-jest/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/kulshekhar/ts-jest/commits)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#382](https://github.com/remusao/tldts/pull/382) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.10.6 to 9.10.7
+
+Bumps [auto](https://github.com/intuit/auto) from 9.10.6 to 9.10.7.
+- [Release notes](https://github.com/intuit/auto/releases)
+- [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/intuit/auto/compare/v9.10.6...v9.10.7)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#380](https://github.com/remusao/tldts/pull/380) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.10.5 to 9.10.6
+
+Bumps [auto](https://github.com/intuit/auto) from 9.10.5 to 9.10.6.
+- [Release notes](https://github.com/intuit/auto/releases)
+- [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/intuit/auto/compare/v9.10.5...v9.10.6)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#379](https://github.com/remusao/tldts/pull/379) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.7 (Sun Feb 16 2020)
 
 #### :scroll: Update Public Suffix List

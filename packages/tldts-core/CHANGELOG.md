@@ -1,3 +1,15 @@
+# v5.6.8 (Wed Feb 19 2020)
+
+#### :scroll: Update Public Suffix List
+
+- Fix CHANGELOG titles [skip ci]  ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.4 (Sun Feb 16 2020)
 
 #### :scroll: Update Public Suffix List
