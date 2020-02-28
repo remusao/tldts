@@ -1,3 +1,97 @@
+# v5.6.9 (Fri Feb 28 2020)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#395](https://github.com/remusao/tldts/pull/395) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump @types/node from 13.7.5 to 13.7.6
+
+Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 13.7.5 to 13.7.6.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#396](https://github.com/remusao/tldts/pull/396) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.7.4 to 13.7.5
+
+Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 13.7.4 to 13.7.5.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#394](https://github.com/remusao/tldts/pull/394) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump typescript from 3.7.5 to 3.8.2
+
+Bumps [typescript](https://github.com/Microsoft/TypeScript) from 3.7.5 to 3.8.2.
+- [Release notes](https://github.com/Microsoft/TypeScript/releases)
+- [Commits](https://github.com/Microsoft/TypeScript/commits)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#386](https://github.com/remusao/tldts/pull/386) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.13.1 to 9.14.0
+
+Bumps [auto](https://github.com/intuit/auto) from 9.13.1 to 9.14.0.
+- [Release notes](https://github.com/intuit/auto/releases)
+- [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/intuit/auto/compare/v9.13.1...v9.14.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#393](https://github.com/remusao/tldts/pull/393) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.13.0 to 9.13.1
+
+Bumps [auto](https://github.com/intuit/auto) from 9.13.0 to 9.13.1.
+- [Release notes](https://github.com/intuit/auto/releases)
+- [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/intuit/auto/compare/v9.13.0...v9.13.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#392](https://github.com/remusao/tldts/pull/392) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.12.1 to 9.13.0
+
+Bumps [auto](https://github.com/intuit/auto) from 9.12.1 to 9.13.0.
+- [Release notes](https://github.com/intuit/auto/releases)
+- [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/intuit/auto/compare/v9.12.1...v9.13.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#391](https://github.com/remusao/tldts/pull/391) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.12.0 to 9.12.1
+
+Bumps [auto](https://github.com/intuit/auto) from 9.12.0 to 9.12.1.
+- [Release notes](https://github.com/intuit/auto/releases)
+- [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/intuit/auto/compare/v9.12.0...v9.12.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#390](https://github.com/remusao/tldts/pull/390) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.11.0 to 9.12.0
+
+Bumps [auto](https://github.com/intuit/auto) from 9.11.0 to 9.12.0.
+- [Release notes](https://github.com/intuit/auto/releases)
+- [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/intuit/auto/compare/v9.11.0...v9.12.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#389](https://github.com/remusao/tldts/pull/389) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.10.8 to 9.11.0
+
+Bumps [auto](https://github.com/intuit/auto) from 9.10.8 to 9.11.0.
+- [Release notes](https://github.com/intuit/auto/releases)
+- [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/intuit/auto/compare/v9.10.8...v9.11.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#388](https://github.com/remusao/tldts/pull/388) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.10.7 to 9.10.8
+
+Bumps [auto](https://github.com/intuit/auto) from 9.10.7 to 9.10.8.
+- [Release notes](https://github.com/intuit/auto/releases)
+- [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/intuit/auto/compare/v9.10.7...v9.10.8)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#387](https://github.com/remusao/tldts/pull/387) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.8 (Wed Feb 19 2020)
 
 #### :scroll: Update Public Suffix List
