@@ -1,3 +1,27 @@
+# v5.6.10 (Tue Mar 03 2020)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#407](https://github.com/remusao/tldts/pull/407) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump @ampproject/rollup-plugin-closure-compiler
+
+Bumps [@ampproject/rollup-plugin-closure-compiler](https://github.com/ampproject/rollup-plugin-closure-compiler) from 0.22.2 to 0.23.0.
+- [Release notes](https://github.com/ampproject/rollup-plugin-closure-compiler/releases)
+- [Commits](https://github.com/ampproject/rollup-plugin-closure-compiler/commits)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#402](https://github.com/remusao/tldts/pull/402) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.8 (Wed Feb 19 2020)
 
 #### :scroll: Update Public Suffix List

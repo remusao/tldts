@@ -1,3 +1,99 @@
+# v5.6.10 (Tue Mar 03 2020)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#407](https://github.com/remusao/tldts/pull/407) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump typescript from 3.8.2 to 3.8.3
+
+Bumps [typescript](https://github.com/Microsoft/TypeScript) from 3.8.2 to 3.8.3.
+- [Release notes](https://github.com/Microsoft/TypeScript/releases)
+- [Commits](https://github.com/Microsoft/TypeScript/compare/v3.8.2...v3.8.3)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#399](https://github.com/remusao/tldts/pull/399) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.7.6 to 13.7.7
+
+Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 13.7.6 to 13.7.7.
+- [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
+- [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#398](https://github.com/remusao/tldts/pull/398) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.15.4 to 9.15.5
+
+Bumps [auto](https://github.com/intuit/auto) from 9.15.4 to 9.15.5.
+- [Release notes](https://github.com/intuit/auto/releases)
+- [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/intuit/auto/compare/v9.15.4...v9.15.5)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#406](https://github.com/remusao/tldts/pull/406) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.15.3 to 9.15.4
+
+Bumps [auto](https://github.com/intuit/auto) from 9.15.3 to 9.15.4.
+- [Release notes](https://github.com/intuit/auto/releases)
+- [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/intuit/auto/compare/v9.15.3...v9.15.4)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#405](https://github.com/remusao/tldts/pull/405) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.15.2 to 9.15.3
+
+Bumps [auto](https://github.com/intuit/auto) from 9.15.2 to 9.15.3.
+- [Release notes](https://github.com/intuit/auto/releases)
+- [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/intuit/auto/compare/v9.15.2...v9.15.3)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#404](https://github.com/remusao/tldts/pull/404) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.15.1 to 9.15.2
+
+Bumps [auto](https://github.com/intuit/auto) from 9.15.1 to 9.15.2.
+- [Release notes](https://github.com/intuit/auto/releases)
+- [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/intuit/auto/compare/v9.15.1...v9.15.2)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#403](https://github.com/remusao/tldts/pull/403) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- `tldts-experimental`, `tldts`
+  - chore(deps-dev): bump @ampproject/rollup-plugin-closure-compiler
+
+Bumps [@ampproject/rollup-plugin-closure-compiler](https://github.com/ampproject/rollup-plugin-closure-compiler) from 0.22.2 to 0.23.0.
+- [Release notes](https://github.com/ampproject/rollup-plugin-closure-compiler/releases)
+- [Commits](https://github.com/ampproject/rollup-plugin-closure-compiler/commits)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#402](https://github.com/remusao/tldts/pull/402) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.15.0 to 9.15.1
+
+Bumps [auto](https://github.com/intuit/auto) from 9.15.0 to 9.15.1.
+- [Release notes](https://github.com/intuit/auto/releases)
+- [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/intuit/auto/compare/v9.15.0...v9.15.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#401](https://github.com/remusao/tldts/pull/401) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.14.0 to 9.15.0
+
+Bumps [auto](https://github.com/intuit/auto) from 9.14.0 to 9.15.0.
+- [Release notes](https://github.com/intuit/auto/releases)
+- [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/intuit/auto/compare/v9.14.0...v9.15.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#400](https://github.com/remusao/tldts/pull/400) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.31.1 to 1.32.0
+
+Bumps [rollup](https://github.com/rollup/rollup) from 1.31.1 to 1.32.0.
+- [Release notes](https://github.com/rollup/rollup/releases)
+- [Changelog](https://github.com/rollup/rollup/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/rollup/rollup/compare/v1.31.1...v1.32.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#397](https://github.com/remusao/tldts/pull/397) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.9 (Fri Feb 28 2020)
 
 #### :scroll: Update Public Suffix List
