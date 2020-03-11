@@ -1,3 +1,16 @@
+# v5.6.11 (Wed Mar 11 2020)
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump @ampproject/rollup-plugin-closure-compiler [#422](https://github.com/remusao/tldts/pull/422) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 1.32.1 to 2.0.0 [#421](https://github.com/remusao/tldts/pull/421) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 1
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+
+---
+
 # v5.6.10 (Tue Mar 03 2020)
 
 #### :scroll: Update Public Suffix List
