@@ -1,3 +1,28 @@
+# v5.6.12 (Sun Mar 15 2020)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts`
+  - Update upstream public suffix list [#445](https://github.com/remusao/tldts/pull/445) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps): [security] bump acorn from 6.4.0 to 6.4.1 [#444](https://github.com/remusao/tldts/pull/444) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.0.5 to 2.0.6 [#443](https://github.com/remusao/tldts/pull/443) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.9.0 to 13.9.1 [#442](https://github.com/remusao/tldts/pull/442) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.0.4 to 2.0.5 [#441](https://github.com/remusao/tldts/pull/441) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.0.3 to 2.0.4 [#440](https://github.com/remusao/tldts/pull/440) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump tslint from 6.0.0 to 6.1.0 [#439](https://github.com/remusao/tldts/pull/439) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.19.4 to 9.19.5 [#438](https://github.com/remusao/tldts/pull/438) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.11 (Wed Mar 11 2020)
 
 #### :scroll: Update Public Suffix List
