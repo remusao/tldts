@@ -1,3 +1,16 @@
+# v5.6.13 (Sat Mar 21 2020)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#452](https://github.com/remusao/tldts/pull/452) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### Authors: 2
+
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.11 (Wed Mar 11 2020)
 
 #### :nut_and_bolt: Dependencies
