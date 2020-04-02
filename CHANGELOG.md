@@ -1,3 +1,26 @@
+# v5.6.19 (Thu Apr 02 2020)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts`
+  - Update upstream public suffix list [#487](https://github.com/remusao/tldts/pull/487) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps): bump @types/jest from 25.1.4 to 25.1.5 [#486](https://github.com/remusao/tldts/pull/486) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.9.8 to 13.11.0 [#485](https://github.com/remusao/tldts/pull/485) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump jest from 25.2.4 to 25.2.6 [#484](https://github.com/remusao/tldts/pull/484) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump tslint from 6.1.0 to 6.1.1 [#483](https://github.com/remusao/tldts/pull/483) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.22.4 to 9.23.0 [#482](https://github.com/remusao/tldts/pull/482) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.18 (Wed Apr 01 2020)
 
 #### :scroll: Update Public Suffix List
