@@ -648,7 +648,7 @@ export default function test(tldts: any): void {
   });
 
   describe('#parse', () => {
-    const mockResponse = (hostname: string) => {
+    const mockResponse = (hostname: string | null) => {
       return {
         domain: null,
         domainWithoutSuffix: null,
@@ -672,6 +672,12 @@ export default function test(tldts: any): void {
         publicSuffix: 'badasdasdada',
         subdomain: 'foo',
       });
+    });
+
+    it('should handle data URLs', () => {
+      expect(
+        tldts.parse('data:image/png,some-base-64-value'),
+      ).toEqual({ ...mockResponse(null), isIp: null });
     });
 
     it('should handle ipv6 addresses properly', () => {
