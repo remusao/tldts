@@ -1,3 +1,25 @@
+# v5.6.21 (Mon Apr 06 2020)
+
+#### :bug: Bug Fix
+
+- `tldts-core`
+  - Fix handling of data URLs [#502](https://github.com/remusao/tldts/pull/502) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump auto from 9.26.0 to 9.26.1 [#501](https://github.com/remusao/tldts/pull/501) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.25.4 to 9.26.0 [#500](https://github.com/remusao/tldts/pull/500) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.25.2 to 9.25.4 [#499](https://github.com/remusao/tldts/pull/499) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump ts-node from 8.8.1 to 8.8.2 [#498](https://github.com/remusao/tldts/pull/498) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.3.2 to 2.3.3 [#497](https://github.com/remusao/tldts/pull/497) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 2
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.20 (Sat Apr 04 2020)
 
 #### :scroll: Update Public Suffix List

@@ -1,3 +1,15 @@
+# v5.6.21 (Mon Apr 06 2020)
+
+#### :bug: Bug Fix
+
+- Fix handling of data URLs [#502](https://github.com/remusao/tldts/pull/502) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.11 (Wed Mar 11 2020)
 
 #### :nut_and_bolt: Dependencies
