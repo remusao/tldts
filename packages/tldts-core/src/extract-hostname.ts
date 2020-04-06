@@ -12,6 +12,11 @@ export default function extractHostname(
 
   // If url is not already a valid hostname, then try to extract hostname.
   if (urlIsValidHostname === false) {
+    // Special handling of data URLs
+    if (url.startsWith('data:') === true) {
+      return null;
+    }
+
     // Trim leading spaces
     while (start < url.length && url.charCodeAt(start) <= 32) {
       start += 1;
