@@ -1,3 +1,6 @@
+import { expect } from 'chai';
+import 'mocha';
+
 export default function test(getDomain: any): void {
   // Ease testing by simply copy/pasting tests from Mozilla Central
   // @see https://dxr.mozilla.org/mozilla-central/source/netwerk/test/unit/data/test_psl.txt?raw=1
@@ -10,7 +13,7 @@ export default function test(getDomain: any): void {
         allowIcannDomains: true,
         allowPrivateDomains: true,
       }),
-    ).toEqual(expectedResult);
+    ).to.equal(expectedResult);
   }
 
   describe('PublicSuffix tests', () => {

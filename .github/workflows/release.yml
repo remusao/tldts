@@ -33,6 +33,9 @@ jobs:
       - name: Bootstrap
         run: yarn bootstrap
 
+      - name: Build
+        run: yarn build
+
       - name: Bundle
         run: yarn bundle
 

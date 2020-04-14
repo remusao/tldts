@@ -2,34 +2,15 @@
   "compilerOptions": {
     "declaration": true,
     "sourceMap": true,
-    "target": "ES3",
-    "lib": [
-      "es2015",
-      "es2017",
-      "dom"
-    ],
-    "allowJs": false,
-    "esModuleInterop": true,
-    "moduleResolution": "Node",
-    "module": "esnext",
-    "importHelpers": true,
-    "downlevelIteration": true,
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "forceConsistentCasingInFileNames": true,
-    "keyofStringsOnly": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
+    "target": "es2017",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "strict": true,
-    "strictFunctionTypes": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true
-  },
-  "exclude": [
-    "node_modules"
-  ]
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true
+  }
 }

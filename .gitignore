@@ -1,8 +1,6 @@
+.nyc_output
+coverage/
+dist/
 node_modules/
-
-packages/*/build/
-packages/*/dist/
-packages/*/node_modules/
-packages/*/coverage/
 
 bench/requests.json

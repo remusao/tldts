@@ -37,10 +37,12 @@
   ],
   "scripts": {
     "bootstrap": "yarn install --frozen-lock && lerna bootstrap",
-    "bundle": "lerna run --concurrency 1 bundle",
+    "build": "tsc --build ./tsconfig.project.json && lerna run build",
+    "watch": "tsc --build ./tsconfig.project.json --watch",
+    "bundle": "lerna run --concurrency 2 bundle",
     "clean": "lerna run --parallel clean && lerna clean --yes && rimraf node_modules",
     "lint": "lerna run --parallel lint",
-    "test": "lerna run --concurrency 1 test",
+    "test": "lerna run --concurrency 2 test",
     "bench": "make -C bench",
     "update": "git submodule foreach git pull origin master && ts-node -O '{\"module\": \"commonjs\"}' ./bin/update.ts",
     "release": "auto shipit"

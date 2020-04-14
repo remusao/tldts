@@ -1,13 +1,9 @@
-// @ts-ignore
-import * as tldMinified from '../dist/index.umd.min';
-import * as tld from '../index';
+import 'mocha'
 
 import { tldtsTests } from 'tldts-tests';
 
+import * as tld from '../index';
+
 describe('tldts classic', () => {
   tldtsTests(tld);
-});
-
-describe('tldts minified', () => {
-  tldtsTests(tldMinified);
 });

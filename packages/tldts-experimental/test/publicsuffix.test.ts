@@ -1,13 +1,9 @@
-// @ts-ignore
-import * as tldMinified from '../dist/index.umd.min';
-import * as tld from '../index';
+import 'mocha';
 
 import { publicSuffixListTests } from 'tldts-tests';
 
+import * as tld from '../index';
+
 describe('tldts classic', () => {
   publicSuffixListTests(tld.getDomain);
-});
-
-describe('tldts minified', () => {
-  publicSuffixListTests(tldMinified.getDomain);
 });

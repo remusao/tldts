@@ -1,5 +1,5 @@
 import compiler from '@ampproject/rollup-plugin-closure-compiler';
-import resolve from 'rollup-plugin-node-resolve';
+import resolve from '@rollup/plugin-node-resolve';
 import sourcemaps from 'rollup-plugin-sourcemaps';
 
 export default [
@@ -33,10 +33,6 @@ export default [
         sourcemap: true,
       },
     ],
-    plugins: [
-      resolve(),
-      compiler(),
-      sourcemaps(),
-    ],
+    plugins: [resolve(), compiler(), sourcemaps()],
   },
 ];

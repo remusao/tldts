@@ -2,11 +2,11 @@
   "extends": "../../tsconfig",
   "compilerOptions": {
     "composite": true,
-    "declarationDir": "dist/types",
-    "outDir": "dist/es6"
+    "outDir": "dist/cjs",
+    "declarationDir": "dist/types"
   },
   "include": [
-    "src/**/*.ts",
-    "index.ts"
+    "./src/**/*.ts",
+    "./index.ts"
   ]
 }
