@@ -1,0 +1,17 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./packages/tldts/tsconfig.json"
+    },
+    {
+      "path": "./packages/tldts-core/tsconfig.json"
+    },
+    {
+      "path": "./packages/tldts/tsconfig.json"
+    },
+    {
+      "path": "./packages/tldts-experimental/tsconfig.json"
+    }
+  ]
+}

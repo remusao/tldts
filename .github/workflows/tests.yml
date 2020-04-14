@@ -37,6 +37,9 @@ jobs:
         run: yarn bootstrap
 
       - name: Build
+        run: yarn build
+
+      - name: Bundle
         run: yarn bundle
 
       - name: Lint
