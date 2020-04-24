@@ -1,3 +1,25 @@
+# v5.6.24 (Fri Apr 24 2020)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#542](https://github.com/remusao/tldts/pull/542) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :house: Internal
+
+- Migrate from jest to mocha + chai [#525](https://github.com/remusao/tldts/pull/525) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump @ampproject/rollup-plugin-closure-compiler [#522](https://github.com/remusao/tldts/pull/522) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.23 (Thu Apr 09 2020)
 
 #### :scroll: Update Public Suffix List

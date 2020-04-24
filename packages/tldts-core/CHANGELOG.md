@@ -1,3 +1,15 @@
+# v5.6.24 (Fri Apr 24 2020)
+
+#### :house: Internal
+
+- Migrate from jest to mocha + chai [#525](https://github.com/remusao/tldts/pull/525) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.21 (Mon Apr 06 2020)
 
 #### :bug: Bug Fix
