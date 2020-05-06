@@ -1,3 +1,39 @@
+# v5.6.25 (Wed May 06 2020)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#563](https://github.com/remusao/tldts/pull/563) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump rollup from 2.7.6 to 2.8.0 [#562](https://github.com/remusao/tldts/pull/562) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.13.4 to 13.13.5 [#561](https://github.com/remusao/tldts/pull/561) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.30.5 to 9.31.1 [#560](https://github.com/remusao/tldts/pull/560) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump ts-node from 8.9.1 to 8.10.1 [#559](https://github.com/remusao/tldts/pull/559) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.30.4 to 9.30.5 [#557](https://github.com/remusao/tldts/pull/557) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.30.3 to 9.30.4 [#556](https://github.com/remusao/tldts/pull/556) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.7.5 to 2.7.6 [#554](https://github.com/remusao/tldts/pull/554) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.7.4 to 2.7.5 [#552](https://github.com/remusao/tldts/pull/552) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.7.3 to 2.7.4 [#551](https://github.com/remusao/tldts/pull/551) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.30.2 to 9.30.3 [#550](https://github.com/remusao/tldts/pull/550) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.7.2 to 2.7.3 [#549](https://github.com/remusao/tldts/pull/549) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump tslint from 6.1.1 to 6.1.2 [#548](https://github.com/remusao/tldts/pull/548) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.13.3 to 13.13.4 [#547](https://github.com/remusao/tldts/pull/547) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.13.2 to 13.13.3 [#546](https://github.com/remusao/tldts/pull/546) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump mocha from 7.1.1 to 7.1.2 [#545](https://github.com/remusao/tldts/pull/545) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.30.1 to 9.30.2 [#544](https://github.com/remusao/tldts/pull/544) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump ts-node from 8.9.0 to 8.9.1 [#543](https://github.com/remusao/tldts/pull/543) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - chore(deps-dev): bump rollup-plugin-sourcemaps from 0.5.0 to 0.6.1 [#555](https://github.com/remusao/tldts/pull/555) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.24 (Fri Apr 24 2020)
 
 #### :scroll: Update Public Suffix List

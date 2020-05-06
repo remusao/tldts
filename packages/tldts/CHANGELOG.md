@@ -1,3 +1,15 @@
+# v5.6.25 (Wed May 06 2020)
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump rollup-plugin-sourcemaps from 0.5.0 to 0.6.1 [#555](https://github.com/remusao/tldts/pull/555) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 1
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+
+---
+
 # v5.6.24 (Fri Apr 24 2020)
 
 #### :scroll: Update Public Suffix List
