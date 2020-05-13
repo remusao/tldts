@@ -48,7 +48,7 @@
     "release": "auto shipit"
   },
   "devDependencies": {
-    "@types/node": "^13.1.0",
+    "@types/node": "^14.0.0",
     "auto": "^9.10.5",
     "benchmark": "^2.1.4",
     "lerna": "^3.15.0",
