@@ -1,3 +1,16 @@
+# v5.6.26 (Sat May 23 2020)
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump @rollup/plugin-node-resolve from 7.1.3 to 8.0.0 [#588](https://github.com/remusao/tldts/pull/588) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 13.13.5 to 14.0.0 [#571](https://github.com/remusao/tldts/pull/571) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 1
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+
+---
+
 # v5.6.25 (Wed May 06 2020)
 
 #### :nut_and_bolt: Dependencies
