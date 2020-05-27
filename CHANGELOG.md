@@ -1,3 +1,25 @@
+# v5.6.27 (Wed May 27 2020)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#603](https://github.com/remusao/tldts/pull/603) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump lerna from 3.21.0 to 3.22.0 [#602](https://github.com/remusao/tldts/pull/602) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.10.8 to 2.10.9 [#601](https://github.com/remusao/tldts/pull/601) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.36.1 to 9.36.2 [#600](https://github.com/remusao/tldts/pull/600) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump mocha from 7.1.2 to 7.2.0 [#599](https://github.com/remusao/tldts/pull/599) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.26 (Sat May 23 2020)
 
 #### :scroll: Update Public Suffix List
