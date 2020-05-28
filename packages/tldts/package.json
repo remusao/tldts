@@ -1,6 +1,6 @@
 {
   "name": "tldts",
-  "version": "5.6.27",
+  "version": "5.6.28",
   "description": "Library to work against complex domain names, subdomains and URIs.",
   "author": {
     "name": "Rémi Berson"
@@ -64,13 +64,13 @@
     "rimraf": "^3.0.0",
     "rollup": "^2.0.0",
     "rollup-plugin-sourcemaps": "^0.6.1",
-    "tldts-tests": "^5.6.27",
+    "tldts-tests": "^5.6.28",
     "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.5.2"
   },
   "dependencies": {
-    "tldts-core": "^5.6.27"
+    "tldts-core": "^5.6.28"
   },
   "keywords": [
     "tld",
