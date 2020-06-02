@@ -53,7 +53,7 @@
     "test": "nyc mocha --config ../../.mocharc.js"
   },
   "devDependencies": {
-    "@ampproject/rollup-plugin-closure-compiler": "^0.25.0",
+    "@ampproject/rollup-plugin-closure-compiler": "^0.26.0",
     "@rollup/plugin-node-resolve": "^8.0.0",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
