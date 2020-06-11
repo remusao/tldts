@@ -1,3 +1,21 @@
+# v5.6.31 (Thu Jun 11 2020)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#635](https://github.com/remusao/tldts/pull/635) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps): bump mocha from 7.2.0 to 8.0.1 [#634](https://github.com/remusao/tldts/pull/634) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.30 (Sat Jun 06 2020)
 
 #### :nut_and_bolt: Dependencies

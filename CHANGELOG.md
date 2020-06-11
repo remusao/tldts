@@ -1,3 +1,28 @@
+# v5.6.31 (Thu Jun 11 2020)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#635](https://github.com/remusao/tldts/pull/635) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump @types/node from 14.0.12 to 14.0.13 [#633](https://github.com/remusao/tldts/pull/633) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump lerna from 3.22.0 to 3.22.1 [#632](https://github.com/remusao/tldts/pull/632) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 14.0.11 to 14.0.12 [#631](https://github.com/remusao/tldts/pull/631) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @rollup/plugin-node-resolve from 8.0.0 to 8.0.1 [#630](https://github.com/remusao/tldts/pull/630) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.13.1 to 2.15.0 [#629](https://github.com/remusao/tldts/pull/629) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - chore(deps): bump mocha from 7.2.0 to 8.0.1 [#634](https://github.com/remusao/tldts/pull/634) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.30 (Sat Jun 06 2020)
 
 #### :scroll: Update Public Suffix List
