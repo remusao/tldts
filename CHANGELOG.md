@@ -1,3 +1,21 @@
+# v5.6.34 (Tue Jun 16 2020)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#639](https://github.com/remusao/tldts/pull/639) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump rollup from 2.15.0 to 2.16.1 [#638](https://github.com/remusao/tldts/pull/638) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.33 (Sun Jun 14 2020)
 
 #### :scroll: Update Public Suffix List
