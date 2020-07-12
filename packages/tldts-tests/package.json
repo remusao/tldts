@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
-    "@types/mocha": "^7.0.2",
+    "@types/mocha": "^8.0.0",
     "chai": "^4.2.0",
     "nyc": "^15.0.1",
     "rimraf": "^3.0.0",
@@ -61,7 +61,7 @@
   },
   "dependencies": {
     "@types/chai": "^4.2.11",
-    "@types/mocha": "^7.0.2",
+    "@types/mocha": "^8.0.0",
     "chai": "^4.2.0",
     "mocha": "^8.0.1"
   }
