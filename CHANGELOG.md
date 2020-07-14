@@ -1,3 +1,42 @@
+# v5.6.39 (Tue Jul 14 2020)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#672](https://github.com/remusao/tldts/pull/672) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump auto from 9.45.0 to 9.46.0 [#671](https://github.com/remusao/tldts/pull/671) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.44.0 to 9.45.0 [#670](https://github.com/remusao/tldts/pull/670) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 14.0.22 to 14.0.23 [#669](https://github.com/remusao/tldts/pull/669) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @rollup/plugin-node-resolve from 8.1.0 to 8.4.0 [#668](https://github.com/remusao/tldts/pull/668) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.43.2 to 9.44.0 [#666](https://github.com/remusao/tldts/pull/666) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.43.1 to 9.43.2 [#665](https://github.com/remusao/tldts/pull/665) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 14.0.20 to 14.0.22 [#664](https://github.com/remusao/tldts/pull/664) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 14.0.19 to 14.0.20 [#663](https://github.com/remusao/tldts/pull/663) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.43.0 to 9.43.1 [#662](https://github.com/remusao/tldts/pull/662) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.41.1 to 9.43.0 [#661](https://github.com/remusao/tldts/pull/661) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.20.0 to 2.21.0 [#660](https://github.com/remusao/tldts/pull/660) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 14.0.18 to 14.0.19 [#659](https://github.com/remusao/tldts/pull/659) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 14.0.14 to 14.0.18 [#658](https://github.com/remusao/tldts/pull/658) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.40.6 to 9.41.1 [#657](https://github.com/remusao/tldts/pull/657) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.19.0 to 2.20.0 [#656](https://github.com/remusao/tldts/pull/656) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.18.2 to 2.19.0 [#655](https://github.com/remusao/tldts/pull/655) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.40.5 to 9.40.6 [#654](https://github.com/remusao/tldts/pull/654) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.18.1 to 2.18.2 [#653](https://github.com/remusao/tldts/pull/653) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump typescript from 3.9.5 to 3.9.6 [#652](https://github.com/remusao/tldts/pull/652) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - chore(deps): bump @types/mocha from 7.0.2 to 8.0.0 [#667](https://github.com/remusao/tldts/pull/667) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.38 (Sat Jun 27 2020)
 
 #### :scroll: Update Public Suffix List

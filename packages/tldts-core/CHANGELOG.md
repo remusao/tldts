@@ -1,3 +1,15 @@
+# v5.6.39 (Tue Jul 14 2020)
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps): bump @types/mocha from 7.0.2 to 8.0.0 [#667](https://github.com/remusao/tldts/pull/667) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 1
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+
+---
+
 # v5.6.31 (Thu Jun 11 2020)
 
 #### :nut_and_bolt: Dependencies
