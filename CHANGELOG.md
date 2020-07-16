@@ -1,3 +1,22 @@
+# v5.6.40 (Thu Jul 16 2020)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#673](https://github.com/remusao/tldts/pull/673) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps): [security] bump lodash from 4.17.15 to 4.17.19 [#674](https://github.com/remusao/tldts/pull/674) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.39 (Tue Jul 14 2020)
 
 #### :scroll: Update Public Suffix List
