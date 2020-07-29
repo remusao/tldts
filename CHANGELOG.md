@@ -1,3 +1,30 @@
+# v5.6.44 (Wed Jul 29 2020)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#692](https://github.com/remusao/tldts/pull/692) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump auto from 9.48.1 to 9.48.2 [#694](https://github.com/remusao/tldts/pull/694) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 14.0.26 to 14.0.27 [#693](https://github.com/remusao/tldts/pull/693) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 14.0.25 to 14.0.26 [#691](https://github.com/remusao/tldts/pull/691) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 14.0.24 to 14.0.25 [#690](https://github.com/remusao/tldts/pull/690) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.48.0 to 9.48.1 [#689](https://github.com/remusao/tldts/pull/689) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.22.2 to 2.23.0 [#688](https://github.com/remusao/tldts/pull/688) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump @types/chai from 4.2.11 to 4.2.12 [#687](https://github.com/remusao/tldts/pull/687) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.47.2 to 9.48.0 [#686](https://github.com/remusao/tldts/pull/686) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.47.1 to 9.47.2 [#685](https://github.com/remusao/tldts/pull/685) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.22.1 to 2.22.2 [#684](https://github.com/remusao/tldts/pull/684) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.43 (Tue Jul 21 2020)
 
 #### :scroll: Update Public Suffix List
