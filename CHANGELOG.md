@@ -1,3 +1,27 @@
+# v5.6.46 (Tue Aug 04 2020)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#703](https://github.com/remusao/tldts/pull/703) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps): bump @types/mocha from 8.0.0 to 8.0.1 [#702](https://github.com/remusao/tldts/pull/702) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump tslint from 6.1.2 to 6.1.3 [#701](https://github.com/remusao/tldts/pull/701) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.49.1 to 9.49.3 [#700](https://github.com/remusao/tldts/pull/700) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump mocha from 8.0.1 to 8.1.0 [#699](https://github.com/remusao/tldts/pull/699) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.49.0 to 9.49.1 [#698](https://github.com/remusao/tldts/pull/698) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.48.3 to 9.49.0 [#697](https://github.com/remusao/tldts/pull/697) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.45 (Wed Jul 29 2020)
 
 #### :scroll: Update Public Suffix List
