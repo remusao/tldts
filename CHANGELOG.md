@@ -1,3 +1,25 @@
+# v5.6.47 (Sat Aug 08 2020)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#709](https://github.com/remusao/tldts/pull/709) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump rollup from 2.23.0 to 2.23.1 [#708](https://github.com/remusao/tldts/pull/708) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.49.5 to 9.50.0 [#707](https://github.com/remusao/tldts/pull/707) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.49.4 to 9.49.5 [#706](https://github.com/remusao/tldts/pull/706) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump mocha from 8.1.0 to 8.1.1 [#705](https://github.com/remusao/tldts/pull/705) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.49.3 to 9.49.4 [#704](https://github.com/remusao/tldts/pull/704) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.46 (Tue Aug 04 2020)
 
 #### :scroll: Update Public Suffix List
