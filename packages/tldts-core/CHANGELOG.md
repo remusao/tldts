@@ -1,3 +1,15 @@
+# v5.6.49 (Fri Aug 14 2020)
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump @rollup/plugin-node-resolve from 8.4.0 to 9.0.0 [#714](https://github.com/remusao/tldts/pull/714) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 1
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+
+---
+
 # v5.6.39 (Tue Jul 14 2020)
 
 #### :nut_and_bolt: Dependencies

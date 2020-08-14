@@ -1,3 +1,21 @@
+# v5.6.49 (Fri Aug 14 2020)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#718](https://github.com/remusao/tldts/pull/718) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump @rollup/plugin-node-resolve from 8.4.0 to 9.0.0 [#714](https://github.com/remusao/tldts/pull/714) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.48 (Tue Aug 11 2020)
 
 #### :scroll: Update Public Suffix List
