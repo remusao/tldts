@@ -1,3 +1,26 @@
+# v5.6.50 (Mon Aug 17 2020)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#725](https://github.com/remusao/tldts/pull/725) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump rollup from 2.26.2 to 2.26.3 [#724](https://github.com/remusao/tldts/pull/724) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.26.1 to 2.26.2 [#723](https://github.com/remusao/tldts/pull/723) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.26.0 to 2.26.1 [#722](https://github.com/remusao/tldts/pull/722) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.25.0 to 2.26.0 [#721](https://github.com/remusao/tldts/pull/721) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 9.50.9 to 9.50.11 [#720](https://github.com/remusao/tldts/pull/720) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.49 (Fri Aug 14 2020)
 
 #### :scroll: Update Public Suffix List
