@@ -1,3 +1,21 @@
+# v5.6.51 (Tue Aug 25 2020)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#735](https://github.com/remusao/tldts/pull/735) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump typescript from 3.9.7 to 4.0.2 [#729](https://github.com/remusao/tldts/pull/729) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.50 (Mon Aug 17 2020)
 
 #### :scroll: Update Public Suffix List
