@@ -1,3 +1,29 @@
+# v5.6.53 (Sat Sep 05 2020)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#747](https://github.com/remusao/tldts/pull/747) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump rollup from 2.26.9 to 2.26.10 [#748](https://github.com/remusao/tldts/pull/748) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 14.6.3 to 14.6.4 [#746](https://github.com/remusao/tldts/pull/746) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 14.6.2 to 14.6.3 [#745](https://github.com/remusao/tldts/pull/745) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.26.8 to 2.26.9 [#744](https://github.com/remusao/tldts/pull/744) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.26.7 to 2.26.8 [#743](https://github.com/remusao/tldts/pull/743) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump mocha from 8.1.2 to 8.1.3 [#742](https://github.com/remusao/tldts/pull/742) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.26.6 to 2.26.7 [#741](https://github.com/remusao/tldts/pull/741) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 14.6.1 to 14.6.2 [#740](https://github.com/remusao/tldts/pull/740) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.52 (Fri Aug 28 2020)
 
 #### :scroll: Update Public Suffix List
