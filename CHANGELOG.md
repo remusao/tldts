@@ -1,3 +1,15 @@
+# v5.6.58 (Sat Oct 10 2020)
+
+#### ⚠️ Pushed to `master`
+
+- Refresh yarn.lock ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.57 (Fri Oct 09 2020)
 
 #### :scroll: Update Public Suffix List
