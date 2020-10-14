@@ -1,3 +1,22 @@
+# v5.6.60 (Wed Oct 14 2020)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#780](https://github.com/remusao/tldts/pull/780) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump rollup from 2.29.0 to 2.30.0 [#779](https://github.com/remusao/tldts/pull/779) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.59 (Tue Oct 13 2020)
 
 #### :scroll: Update Public Suffix List
