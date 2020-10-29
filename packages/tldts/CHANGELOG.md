@@ -1,3 +1,15 @@
+# v5.6.62 (Thu Oct 29 2020)
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump @rollup/plugin-node-resolve from 9.0.0 to 10.0.0 [#797](https://github.com/remusao/tldts/pull/797) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 1
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+
+---
+
 # v5.6.61 (Tue Oct 27 2020)
 
 #### :scroll: Update Public Suffix List
