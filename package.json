@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@types/node": "^14.0.0",
-    "auto": "^9.10.5",
+    "auto": "^10.0.2",
     "benchmark": "^2.1.4",
     "lerna": "^3.15.0",
     "ts-node": "^9.0.0",
