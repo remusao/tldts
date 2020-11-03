@@ -1,3 +1,30 @@
+# v5.6.65 (Tue Nov 03 2020)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#810](https://github.com/remusao/tldts/pull/810) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :house: Internal
+
+- Skip canary releases on PRs [#809](https://github.com/remusao/tldts/pull/809) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump auto from 10.1.0 to 10.2.0 [#808](https://github.com/remusao/tldts/pull/808) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump mocha from 8.2.0 to 8.2.1 [#807](https://github.com/remusao/tldts/pull/807) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 10.0.2 to 10.1.0 [#806](https://github.com/remusao/tldts/pull/806) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.33.0 to 2.33.1 [#805](https://github.com/remusao/tldts/pull/805) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.32.1 to 2.33.0 [#804](https://github.com/remusao/tldts/pull/804) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.64 (Fri Oct 30 2020)
 
 #### :scroll: Update Public Suffix List
