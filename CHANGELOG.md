@@ -1,3 +1,22 @@
+# v5.6.70 (Wed Nov 11 2020)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#823](https://github.com/remusao/tldts/pull/823) ([@github-actions[bot]](https://github.com/github-actions[bot]) [@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps): bump @types/mocha from 8.0.3 to 8.0.4 [#822](https://github.com/remusao/tldts/pull/822) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.69 (Tue Nov 10 2020)
 
 #### :scroll: Update Public Suffix List
