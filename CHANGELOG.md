@@ -1,3 +1,30 @@
+# v5.6.74 (Wed Dec 02 2020)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts`
+  - Update upstream public suffix list [#839](https://github.com/remusao/tldts/pull/839) ([@remusao](https://github.com/remusao))
+
+#### :house: Internal
+
+- Update create-pull-request action [#837](https://github.com/remusao/tldts/pull/837) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump rollup from 2.33.3 to 2.34.0 [#836](https://github.com/remusao/tldts/pull/836) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 14.14.9 to 14.14.10 [#835](https://github.com/remusao/tldts/pull/835) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 10.4.1 to 10.4.2 [#834](https://github.com/remusao/tldts/pull/834) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 10.4.0 to 10.4.1 [#833](https://github.com/remusao/tldts/pull/833) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - chore(deps-dev): bump @rollup/plugin-node-resolve from 10.0.0 to 11.0.0 [#838](https://github.com/remusao/tldts/pull/838) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 2
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.73 (Sun Nov 22 2020)
 
 #### :scroll: Update Public Suffix List
