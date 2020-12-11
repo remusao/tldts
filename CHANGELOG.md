@@ -1,3 +1,29 @@
+# v5.6.75 (Fri Dec 11 2020)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#848](https://github.com/remusao/tldts/pull/848) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump typescript from 4.1.2 to 4.1.3 [#849](https://github.com/remusao/tldts/pull/849) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): [security] bump ini from 1.3.5 to 1.3.7 [#847](https://github.com/remusao/tldts/pull/847) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 14.14.11 to 14.14.12 [#846](https://github.com/remusao/tldts/pull/846) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump @types/mocha from 8.0.4 to 8.2.0 [#844](https://github.com/remusao/tldts/pull/844) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 14.14.10 to 14.14.11 [#845](https://github.com/remusao/tldts/pull/845) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump ts-node from 9.1.0 to 9.1.1 [#843](https://github.com/remusao/tldts/pull/843) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.34.1 to 2.34.2 [#842](https://github.com/remusao/tldts/pull/842) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump ts-node from 9.0.0 to 9.1.0 [#841](https://github.com/remusao/tldts/pull/841) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.34.0 to 2.34.1 [#840](https://github.com/remusao/tldts/pull/840) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 2
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.74 (Wed Dec 02 2020)
 
 #### :scroll: Update Public Suffix List
