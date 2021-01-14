@@ -1,3 +1,24 @@
+# v5.6.83 (Thu Jan 14 2021)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#875](https://github.com/remusao/tldts/pull/875) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump auto from 10.7.0 to 10.9.1 [#879](https://github.com/remusao/tldts/pull/879) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 14.14.20 to 14.14.21 [#878](https://github.com/remusao/tldts/pull/878) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 10.6.2 to 10.7.0 [#877](https://github.com/remusao/tldts/pull/877) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 10.6.1 to 10.6.2 [#876](https://github.com/remusao/tldts/pull/876) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 2
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.82 (Tue Jan 12 2021)
 
 #### :scroll: Update Public Suffix List
