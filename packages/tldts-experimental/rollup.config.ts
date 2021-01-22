@@ -1,4 +1,4 @@
-import compiler from '@ampproject/rollup-plugin-closure-compiler';
+import { terser } from 'rollup-plugin-terser';
 import resolve from '@rollup/plugin-node-resolve';
 import sourcemaps from 'rollup-plugin-sourcemaps';
 
@@ -11,10 +11,7 @@ export default [
       format: 'cjs',
       sourcemap: true,
     },
-    plugins: [
-      resolve(),
-      sourcemaps(),
-    ],
+    plugins: [resolve(), sourcemaps()],
   },
   // minified esm + umd
   {
@@ -32,7 +29,13 @@ export default [
         name: 'tldts',
         sourcemap: true,
       },
+      {
+        file: './dist/index.cjs.min.js',
+        format: 'cjs',
+        name: 'tldts',
+        sourcemap: true,
+      },
     ],
-    plugins: [resolve(), compiler(), sourcemaps()],
+    plugins: [resolve(), terser({ output: { comments: false } }), sourcemaps()],
   },
 ];

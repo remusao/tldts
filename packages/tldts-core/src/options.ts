@@ -28,12 +28,12 @@ function setDefaultsImpl({
   };
 }
 
-const DEFAULT_OPTIONS = setDefaultsImpl({});
+const DEFAULT_OPTIONS = /*@__INLINE__*/ setDefaultsImpl({});
 
 export function setDefaults(options?: Partial<IOptions>): IOptions {
   if (options === undefined) {
     return DEFAULT_OPTIONS;
   }
 
-  return setDefaultsImpl(options);
+  return /*@__INLINE__*/ setDefaultsImpl(options);
 }

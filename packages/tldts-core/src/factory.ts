@@ -82,7 +82,7 @@ export function parseImpl(
   partialOptions: Partial<IOptions>,
   result: IResult,
 ): IResult {
-  const options: IOptions = setDefaults(partialOptions);
+  const options: IOptions = /*@__INLINE__*/ setDefaults(partialOptions);
 
   // Very fast approximate check to make sure `url` is a string. This is needed
   // because the library will not necessarily be used in a typed setup and

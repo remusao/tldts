@@ -68,7 +68,7 @@ export default function getDomain(
     const validHosts = options.validHosts;
     for (let i = 0; i < validHosts.length; i += 1) {
       const vhost = validHosts[i];
-      if (shareSameDomainSuffix(hostname, vhost)) {
+      if (/*@__INLINE__*/ shareSameDomainSuffix(hostname, vhost) === true) {
         return vhost;
       }
     }
@@ -87,5 +87,5 @@ export default function getDomain(
   // level of depth. (e.g.: if hostname is `not.evil.co.uk` and public suffix:
   // `co.uk`, then we take one more level: `evil`, giving the final result:
   // `evil.co.uk`).
-  return extractDomainWithSuffix(hostname, suffix);
+  return /*@__INLINE__*/ extractDomainWithSuffix(hostname, suffix);
 }

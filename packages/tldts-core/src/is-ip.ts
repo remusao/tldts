@@ -61,11 +61,12 @@ function isProbablyIpv6(hostname: string): boolean {
 
     if (code === 58 /* ':' */) {
       hasColon = true;
-    } else if ((
-      (code >= 48 && code <= 57) || // 0-9
-      (code >= 97 && code <= 102) || // a-f
-      (code >= 65 && code <= 90) // A-F
-    ) === false) {
+    } else if (
+      ((code >= 48 && code <= 57) || // 0-9
+        (code >= 97 && code <= 102) || // a-f
+        (code >= 65 && code <= 90)) === // A-F
+      false
+    ) {
       return false;
     }
   }

@@ -19,7 +19,7 @@ function isValidAscii(code: number): boolean {
  *
  * Beware: it does not check if the TLD exists.
  */
-export default function(hostname: string): boolean {
+export default function (hostname: string): boolean {
   if (hostname.length > 255) {
     return false;
   }
@@ -28,7 +28,7 @@ export default function(hostname: string): boolean {
     return false;
   }
 
-  if (!isValidAscii(hostname.charCodeAt(0))) {
+  if (/*@__INLINE__*/ isValidAscii(hostname.charCodeAt(0)) === false) {
     return false;
   }
 
@@ -54,7 +54,10 @@ export default function(hostname: string): boolean {
       }
 
       lastDotIndex = i;
-    } else if (!(isValidAscii(code) || code === 45 || code === 95)) {
+    } else if (
+      (/*@__INLINE__*/ isValidAscii(code) || code === 45 || code === 95) ===
+      false
+    ) {
       // Check if there is a forbidden character in the label
       return false;
     }
