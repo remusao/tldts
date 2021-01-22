@@ -1,3 +1,16 @@
+# v5.7.0 (Fri Jan 22 2021)
+
+#### :rocket: New Feature
+
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - Migrate to using Terser [#893](https://github.com/remusao/tldts/pull/893) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.85 (Fri Jan 22 2021)
 
 #### :scroll: Update Public Suffix List

@@ -1,3 +1,15 @@
+# v5.7.0 (Fri Jan 22 2021)
+
+#### :rocket: New Feature
+
+- Migrate to using Terser [#893](https://github.com/remusao/tldts/pull/893) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.6.74 (Wed Dec 02 2020)
 
 #### :nut_and_bolt: Dependencies
