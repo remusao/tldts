@@ -1,9 +1,15 @@
-const { getDomain, getPublicSuffix, getSubdomain } = require('../packages/tldts/dist/cjs/index.js');
+const {
+  getDomain,
+  getPublicSuffix,
+  getSubdomain,
+} = require('../packages/tldts/dist/cjs/index.js');
 
 module.exports = {
-  getDomain: hostname => getDomain(hostname, { extractHostname: false }),
-  getSubdomain: hostname => getSubdomain(hostname, { extractHostname: false }),
-  getPublicSuffix: hostname => getPublicSuffix(hostname, { extractHostname: false }),
+  getDomain: (hostname) => getDomain(hostname, { extractHostname: false }),
+  getSubdomain: (hostname) =>
+    getSubdomain(hostname, { extractHostname: false }),
+  getPublicSuffix: (hostname) =>
+    getPublicSuffix(hostname, { extractHostname: false }),
   mem: () => {
     console.log(process.memoryUsage().heapUsed);
     global.gc();

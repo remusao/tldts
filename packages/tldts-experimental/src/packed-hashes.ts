@@ -242,7 +242,8 @@ export default function suffixLookup(
 
   // No match found
   if (matchIndex === -1) {
-    out.publicSuffix = numberOfHashes === 1 ? hostname : hostname.slice(BUFFER[1]);
+    out.publicSuffix =
+      numberOfHashes === 1 ? hostname : hostname.slice(BUFFER[1]);
     return;
   }
 

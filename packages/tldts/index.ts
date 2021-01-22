@@ -1,4 +1,12 @@
-import { FLAG, getEmptyResult, IOptions, IResult, parseImpl, resetResult } from 'tldts-core';
+import {
+  FLAG,
+  getEmptyResult,
+  IOptions,
+  IResult,
+  parseImpl,
+  resetResult,
+} from 'tldts-core';
+
 import suffixLookup from './src/suffix-trie';
 
 // For all methods but 'parse', it does not make sense to allocate an object
@@ -14,7 +22,7 @@ export function getHostname(
   url: string,
   options: Partial<IOptions> = {},
 ): string | null {
-  resetResult(RESULT);
+  /*@__INLINE__*/ resetResult(RESULT);
   return parseImpl(url, FLAG.HOSTNAME, suffixLookup, options, RESULT).hostname;
 }
 
@@ -22,15 +30,16 @@ export function getPublicSuffix(
   url: string,
   options: Partial<IOptions> = {},
 ): string | null {
-  resetResult(RESULT);
-  return parseImpl(url, FLAG.PUBLIC_SUFFIX, suffixLookup, options, RESULT).publicSuffix;
+  /*@__INLINE__*/ resetResult(RESULT);
+  return parseImpl(url, FLAG.PUBLIC_SUFFIX, suffixLookup, options, RESULT)
+    .publicSuffix;
 }
 
 export function getDomain(
   url: string,
   options: Partial<IOptions> = {},
 ): string | null {
-  resetResult(RESULT);
+  /*@__INLINE__*/ resetResult(RESULT);
   return parseImpl(url, FLAG.DOMAIN, suffixLookup, options, RESULT).domain;
 }
 
@@ -38,14 +47,16 @@ export function getSubdomain(
   url: string,
   options: Partial<IOptions> = {},
 ): string | null {
-  resetResult(RESULT);
-  return parseImpl(url, FLAG.SUB_DOMAIN, suffixLookup, options, RESULT).subdomain;
+  /*@__INLINE__*/ resetResult(RESULT);
+  return parseImpl(url, FLAG.SUB_DOMAIN, suffixLookup, options, RESULT)
+    .subdomain;
 }
 
 export function getDomainWithoutSuffix(
   url: string,
   options: Partial<IOptions> = {},
 ): string | null {
-  resetResult(RESULT);
-  return parseImpl(url, FLAG.ALL, suffixLookup, options, RESULT).domainWithoutSuffix;
+  /*@__INLINE__*/ resetResult(RESULT);
+  return parseImpl(url, FLAG.ALL, suffixLookup, options, RESULT)
+    .domainWithoutSuffix;
 }

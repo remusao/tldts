@@ -5,9 +5,11 @@ const {
 } = require('../packages/tldts-experimental/dist/cjs/index.js');
 
 module.exports = {
-  getDomain,
-  getSubdomain,
-  getPublicSuffix,
+  getDomain: (hostname) => getDomain(hostname, { extractHostname: false }),
+  getSubdomain: (hostname) =>
+    getSubdomain(hostname, { extractHostname: false }),
+  getPublicSuffix: (hostname) =>
+    getPublicSuffix(hostname, { extractHostname: false }),
   mem: () => {
     console.log(process.memoryUsage().heapUsed);
     global.gc();
