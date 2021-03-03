@@ -1,3 +1,30 @@
+# v5.7.11 (Wed Mar 03 2021)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#958](https://github.com/remusao/tldts/pull/958) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump auto from 10.18.1 to 10.18.2 [#959](https://github.com/remusao/tldts/pull/959) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump chai from 4.3.1 to 4.3.3 [#957](https://github.com/remusao/tldts/pull/957) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 10.18.0 to 10.18.1 [#955](https://github.com/remusao/tldts/pull/955) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 10.17.1 to 10.18.0 [#954](https://github.com/remusao/tldts/pull/954) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 10.17.0 to 10.17.1 [#953](https://github.com/remusao/tldts/pull/953) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump lerna from 3.22.1 to 4.0.0 [#952](https://github.com/remusao/tldts/pull/952) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 10.16.8 to 10.17.0 [#951](https://github.com/remusao/tldts/pull/951) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump chai from 4.3.0 to 4.3.1 [#950](https://github.com/remusao/tldts/pull/950) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.39.1 to 2.40.0 [#949](https://github.com/remusao/tldts/pull/949) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 10.16.7 to 10.16.8 [#948](https://github.com/remusao/tldts/pull/948) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 2
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.10 (Wed Feb 24 2021)
 
 #### :scroll: Update Public Suffix List
