@@ -1,3 +1,22 @@
+# v5.7.12 (Sat Mar 06 2021)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#961](https://github.com/remusao/tldts/pull/961) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps): bump mocha from 8.3.0 to 8.3.1 [#963](https://github.com/remusao/tldts/pull/963) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump typescript from 4.2.2 to 4.2.3 [#962](https://github.com/remusao/tldts/pull/962) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 10.18.2 to 10.18.3 [#960](https://github.com/remusao/tldts/pull/960) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 2
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.11 (Wed Mar 03 2021)
 
 #### :scroll: Update Public Suffix List
