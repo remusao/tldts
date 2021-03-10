@@ -1,3 +1,23 @@
+# v5.7.13 (Wed Mar 10 2021)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#968](https://github.com/remusao/tldts/pull/968) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump auto from 10.18.3 to 10.18.4 [#967](https://github.com/remusao/tldts/pull/967) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 14.14.32 to 14.14.33 [#966](https://github.com/remusao/tldts/pull/966) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.40.0 to 2.41.0 [#965](https://github.com/remusao/tldts/pull/965) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 14.14.31 to 14.14.32 [#964](https://github.com/remusao/tldts/pull/964) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 2
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.12 (Sat Mar 06 2021)
 
 #### :scroll: Update Public Suffix List
