@@ -1,3 +1,29 @@
+# v5.7.14 (Sat Mar 13 2021)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#977](https://github.com/remusao/tldts/pull/977) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump auto from 10.18.8 to 10.18.9 [#979](https://github.com/remusao/tldts/pull/979) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 10.18.7 to 10.18.8 [#978](https://github.com/remusao/tldts/pull/978) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump chai from 4.3.3 to 4.3.4 [#976](https://github.com/remusao/tldts/pull/976) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.41.1 to 2.41.2 [#975](https://github.com/remusao/tldts/pull/975) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump @types/node from 14.14.33 to 14.14.34 [#974](https://github.com/remusao/tldts/pull/974) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps): bump mocha from 8.3.1 to 8.3.2 [#973](https://github.com/remusao/tldts/pull/973) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 10.18.6 to 10.18.7 [#972](https://github.com/remusao/tldts/pull/972) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump auto from 10.18.4 to 10.18.6 [#971](https://github.com/remusao/tldts/pull/971) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- chore(deps-dev): bump rollup from 2.41.0 to 2.41.1 [#969](https://github.com/remusao/tldts/pull/969) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 2
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.13 (Wed Mar 10 2021)
 
 #### :scroll: Update Public Suffix List
