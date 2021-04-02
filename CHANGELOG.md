@@ -1,16 +1,3 @@
-# v5.8.0 (Thu Apr 02 2021)
-
-#### :rocket: New Feature
-
-- `tldts`
-  - Update cli to process each line of STDIN if no agruments are passed [#1009](https://github.com/remusao/tldts/pull/1009) ([@fulldecent](https://github.com/fulldecent))
-
-#### Authors: 1
-
-- William Entriken ([@fulldecent](https://github.com/fulldecent))
-
----
-
 # v5.7.21 (Thu Apr 01 2021)
 
 #### :scroll: Update Public Suffix List
