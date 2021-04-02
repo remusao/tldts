@@ -1,3 +1,16 @@
+# v5.7.22 (Fri Apr 02 2021)
+
+#### :nail_care: Polish
+
+- CLI: process each line of STDIN if no agruments are passed, fixes #1009 [#1021](https://github.com/remusao/tldts/pull/1021) ([@fulldecent](https://github.com/fulldecent) [@remusao](https://github.com/remusao))
+
+#### Authors: 2
+
+- Rémi ([@remusao](https://github.com/remusao))
+- William Entriken ([@fulldecent](https://github.com/fulldecent))
+
+---
+
 # v5.7.21 (Thu Apr 01 2021)
 
 #### :scroll: Update Public Suffix List
