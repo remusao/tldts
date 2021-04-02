@@ -41,6 +41,31 @@ $ npx tldts 'http://www.writethedocs.org/conf/eu/2017/'
 }
 ```
 
+Or from the command-line in batch:
+```js
+$ echo "http://www.writethedocs.org/\nhttps://example.com" | npx tldts
+{
+  "domain": "writethedocs.org",
+  "domainWithoutSuffix": "writethedocs",
+  "hostname": "www.writethedocs.org",
+  "isIcann": true,
+  "isIp": false,
+  "isPrivate": false,
+  "publicSuffix": "org",
+  "subdomain": "www"
+}
+{
+  "domain": "example.com",
+  "domainWithoutSuffix": "example",
+  "hostname": "example.com",
+  "isIcann": true,
+  "isIp": false,
+  "isPrivate": false,
+  "publicSuffix": "com",
+  "subdomain": ""
+}
+```
+
 Programmatically:
 ```js
 const { parse } = require('tldts');
