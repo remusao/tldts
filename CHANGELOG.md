@@ -1,3 +1,21 @@
+# v5.7.23 (Sat Apr 03 2021)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#1023](https://github.com/remusao/tldts/pull/1023) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps): bump @types/chai from 4.2.15 to 4.2.16 [#1022](https://github.com/remusao/tldts/pull/1022) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 2
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.22 (Fri Apr 02 2021)
 
 #### :nail_care: Polish
