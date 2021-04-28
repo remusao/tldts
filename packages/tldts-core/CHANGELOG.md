@@ -1,3 +1,15 @@
+# v5.7.32 (Wed Apr 28 2021)
+
+#### :nut_and_bolt: Dependencies
+
+- chore(deps-dev): bump @types/node from 14.14.41 to 15.0.1 [#1044](https://github.com/remusao/tldts/pull/1044) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 1
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+
+---
+
 # v5.7.0 (Fri Jan 22 2021)
 
 #### :rocket: New Feature
