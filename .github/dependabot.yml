@@ -1,0 +1,23 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 99
+  reviewers:
+  - remusao
+  labels:
+  - "PR: Dependencies :nut_and_bolt:"
+  ignore:
+  - dependency-name: chai
+    versions:
+    - 4.3.2
+  - dependency-name: "@types/node"
+    versions:
+    - 14.14.23
+    - 15.0.0
+  - dependency-name: auto
+    versions:
+    - 10.18.5
