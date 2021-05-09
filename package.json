@@ -48,8 +48,8 @@
     "release": "auto shipit"
   },
   "devDependencies": {
-    "@types/node": "^15.0.1",
-    "auto": "^10.0.2",
+    "@types/node": "^15.0.2",
+    "auto": "^10.27.0",
     "benchmark": "^2.1.4",
     "lerna": "^4.0.0",
     "ts-node": "^9.0.0",
