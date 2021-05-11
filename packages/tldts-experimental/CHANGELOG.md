@@ -1,3 +1,15 @@
+# v5.7.35 (Tue May 11 2021)
+
+#### :house: Internal
+
+- Refresh yarn.lock + updates [#1059](https://github.com/remusao/tldts/pull/1059) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.34 (Thu May 06 2021)
 
 #### :scroll: Update Public Suffix List

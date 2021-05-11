@@ -1,3 +1,21 @@
+# v5.7.35 (Tue May 11 2021)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts`
+  - Update upstream public suffix list [#1060](https://github.com/remusao/tldts/pull/1060) ([@remusao](https://github.com/remusao))
+
+#### :house: Internal
+
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - Refresh yarn.lock + updates [#1059](https://github.com/remusao/tldts/pull/1059) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.34 (Thu May 06 2021)
 
 #### :scroll: Update Public Suffix List
