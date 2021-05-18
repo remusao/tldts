@@ -1,3 +1,24 @@
+# v5.7.36 (Tue May 18 2021)
+
+#### :scroll: Update Public Suffix List
+
+- Bump hosted-git-info from 2.8.8 to 2.8.9 [#1058](https://github.com/remusao/tldts/pull/1058) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#1065](https://github.com/remusao/tldts/pull/1065) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump handlebars from 4.7.6 to 4.7.7 [#1056](https://github.com/remusao/tldts/pull/1056) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump auto from 10.27.0 to 10.27.1 [#1061](https://github.com/remusao/tldts/pull/1061) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 15.0.2 to 15.0.3 [#1062](https://github.com/remusao/tldts/pull/1062) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.35 (Tue May 11 2021)
 
 #### :scroll: Update Public Suffix List
