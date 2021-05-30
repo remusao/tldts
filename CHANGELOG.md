@@ -1,3 +1,23 @@
+# v5.7.38 (Sun May 30 2021)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - Bump deps + GitHub actions + update rules [#1079](https://github.com/remusao/tldts/pull/1079) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/node from 15.3.0 to 15.6.1 [#1073](https://github.com/remusao/tldts/pull/1073) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 2.48.0 to 2.49.0 [#1070](https://github.com/remusao/tldts/pull/1070) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump auto from 10.27.1 to 10.29.0 [#1069](https://github.com/remusao/tldts/pull/1069) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.37 (Wed May 19 2021)
 
 #### :scroll: Update Public Suffix List

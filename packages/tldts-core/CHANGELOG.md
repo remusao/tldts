@@ -1,3 +1,15 @@
+# v5.7.38 (Sun May 30 2021)
+
+#### :scroll: Update Public Suffix List
+
+- Bump deps + GitHub actions + update rules [#1079](https://github.com/remusao/tldts/pull/1079) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.35 (Tue May 11 2021)
 
 #### :house: Internal
