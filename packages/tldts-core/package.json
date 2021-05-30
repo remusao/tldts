@@ -58,10 +58,10 @@
     "mocha": "^8.4.0",
     "nyc": "^15.0.1",
     "rimraf": "^3.0.0",
-    "rollup": "^2.47.0",
+    "rollup": "^2.50.4",
     "rollup-plugin-sourcemaps": "^0.6.1",
     "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^4.0.2"
+    "typescript": "^4.3.2"
   }
 }
