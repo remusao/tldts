@@ -1,3 +1,26 @@
+# v5.7.49 (Mon Oct 18 2021)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#1192](https://github.com/remusao/tldts/pull/1192) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump auto from 10.32.0 to 10.32.1 [#1185](https://github.com/remusao/tldts/pull/1185) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 2.57.0 to 2.58.0 [#1186](https://github.com/remusao/tldts/pull/1186) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump ts-node from 10.2.1 to 10.3.0 [#1188](https://github.com/remusao/tldts/pull/1188) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript from 4.4.3 to 4.4.4 [#1189](https://github.com/remusao/tldts/pull/1189) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 16.10.1 to 16.11.1 [#1194](https://github.com/remusao/tldts/pull/1194) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump mocha from 9.1.2 to 9.1.3 [#1195](https://github.com/remusao/tldts/pull/1195) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.48 (Thu Oct 14 2021)
 
 #### :scroll: Update Public Suffix List
