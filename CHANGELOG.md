@@ -1,3 +1,21 @@
+# v5.7.53 (Thu Nov 18 2021)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#1209](https://github.com/remusao/tldts/pull/1209) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump typescript from 4.4.4 to 4.5.2 [#1211](https://github.com/remusao/tldts/pull/1211) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 2.59.0 to 2.60.0 [#1210](https://github.com/remusao/tldts/pull/1210) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.52 (Wed Nov 10 2021)
 
 #### :scroll: Update Public Suffix List
