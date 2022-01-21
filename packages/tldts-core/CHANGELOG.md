@@ -1,3 +1,15 @@
+# v5.7.59 (Fri Jan 21 2022)
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/node from 16.11.11 to 17.0.8 [#1244](https://github.com/remusao/tldts/pull/1244) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
 # v5.7.39 (Thu Aug 05 2021)
 
 #### :nut_and_bolt: Dependencies

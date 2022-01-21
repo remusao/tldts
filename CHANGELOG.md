@@ -1,3 +1,36 @@
+# v5.7.59 (Fri Jan 21 2022)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#1254](https://github.com/remusao/tldts/pull/1254) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump typescript from 4.5.4 to 4.5.5 [#1256](https://github.com/remusao/tldts/pull/1256) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump auto from 10.32.5 to 10.32.6 [#1255](https://github.com/remusao/tldts/pull/1255) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/mocha from 9.0.0 to 9.1.0 [#1253](https://github.com/remusao/tldts/pull/1253) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump trim-off-newlines from 1.0.1 to 1.0.3 [#1252](https://github.com/remusao/tldts/pull/1252) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 17.0.9 to 17.0.10 [#1251](https://github.com/remusao/tldts/pull/1251) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 17.0.8 to 17.0.9 [#1250](https://github.com/remusao/tldts/pull/1250) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 2.63.0 to 2.64.0 [#1249](https://github.com/remusao/tldts/pull/1249) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump mocha from 9.1.3 to 9.1.4 [#1248](https://github.com/remusao/tldts/pull/1248) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump shelljs from 0.8.4 to 0.8.5 [#1247](https://github.com/remusao/tldts/pull/1247) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @rollup/plugin-node-resolve from 13.0.6 to 13.1.3 [#1245](https://github.com/remusao/tldts/pull/1245) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 2.60.2 to 2.63.0 [#1243](https://github.com/remusao/tldts/pull/1243) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript from 4.5.2 to 4.5.4 [#1231](https://github.com/remusao/tldts/pull/1231) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump auto from 10.32.3 to 10.32.5 [#1227](https://github.com/remusao/tldts/pull/1227) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/chai from 4.2.22 to 4.3.0 [#1223](https://github.com/remusao/tldts/pull/1223) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - Bump @types/node from 16.11.11 to 17.0.8 [#1244](https://github.com/remusao/tldts/pull/1244) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.58 (Mon Jan 03 2022)
 
 #### :scroll: Update Public Suffix List
