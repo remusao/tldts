@@ -1,3 +1,28 @@
+# v5.7.77 (Sat Apr 30 2022)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#1325](https://github.com/remusao/tldts/pull/1325) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump typescript from 4.6.3 to 4.6.4 [#1324](https://github.com/remusao/tldts/pull/1324) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 17.0.29 to 17.0.30 [#1323](https://github.com/remusao/tldts/pull/1323) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 17.0.27 to 17.0.29 [#1322](https://github.com/remusao/tldts/pull/1322) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 17.0.25 to 17.0.27 [#1321](https://github.com/remusao/tldts/pull/1321) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/mocha from 9.1.0 to 9.1.1 [#1319](https://github.com/remusao/tldts/pull/1319) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 17.0.23 to 17.0.25 [#1318](https://github.com/remusao/tldts/pull/1318) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @rollup/plugin-node-resolve from 13.2.0 to 13.2.1 [#1317](https://github.com/remusao/tldts/pull/1317) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 2.70.1 to 2.70.2 [#1316](https://github.com/remusao/tldts/pull/1316) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/chai from 4.3.0 to 4.3.1 [#1314](https://github.com/remusao/tldts/pull/1314) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.76 (Sat Apr 16 2022)
 
 #### :scroll: Update Public Suffix List
