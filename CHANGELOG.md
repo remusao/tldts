@@ -1,3 +1,22 @@
+# v5.7.80 (Sun May 22 2022)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#1338](https://github.com/remusao/tldts/pull/1338) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump rollup from 2.70.2 to 2.74.1 [#1339](https://github.com/remusao/tldts/pull/1339) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 17.0.30 to 17.0.35 [#1340](https://github.com/remusao/tldts/pull/1340) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @rollup/plugin-node-resolve from 13.2.1 to 13.3.0 [#1329](https://github.com/remusao/tldts/pull/1329) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.79 (Mon May 16 2022)
 
 #### :scroll: Update Public Suffix List
