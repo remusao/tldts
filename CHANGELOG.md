@@ -1,3 +1,23 @@
+# v5.7.82 (Tue Jun 14 2022)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#1361](https://github.com/remusao/tldts/pull/1361) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/node from 17.0.38 to 17.0.41 [#1357](https://github.com/remusao/tldts/pull/1357) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 2.75.5 to 2.75.6 [#1356](https://github.com/remusao/tldts/pull/1356) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump ts-node from 10.8.0 to 10.8.1 [#1354](https://github.com/remusao/tldts/pull/1354) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript from 4.7.2 to 4.7.3 [#1352](https://github.com/remusao/tldts/pull/1352) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.81 (Sat Jun 04 2022)
 
 #### :scroll: Update Public Suffix List
