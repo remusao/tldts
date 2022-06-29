@@ -1,3 +1,16 @@
+# v5.7.83 (Wed Jun 29 2022)
+
+#### :nut_and_bolt: Dependencies
+
+- Bump mocha from 9.2.2 to 10.0.0 [#1327](https://github.com/remusao/tldts/pull/1327) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 17.0.41 to 18.0.0 [#1364](https://github.com/remusao/tldts/pull/1364) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
 # v5.7.59 (Fri Jan 21 2022)
 
 #### :nut_and_bolt: Dependencies
