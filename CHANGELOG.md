@@ -1,3 +1,38 @@
+# v5.7.85 (Sun Jul 31 2022)
+
+#### :nail_care: Polish
+
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - Include 'src' folder as part of published packages [#1396](https://github.com/remusao/tldts/pull/1396) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump rollup from 2.77.0 to 2.77.2 [#1394](https://github.com/remusao/tldts/pull/1394) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump lerna from 5.2.0 to 5.3.0 [#1393](https://github.com/remusao/tldts/pull/1393) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 18.6.1 to 18.6.2 [#1392](https://github.com/remusao/tldts/pull/1392) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 18.0.6 to 18.6.1 [#1388](https://github.com/remusao/tldts/pull/1388) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump auto from 10.37.2 to 10.37.4 [#1390](https://github.com/remusao/tldts/pull/1390) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump lerna from 5.1.8 to 5.2.0 [#1386](https://github.com/remusao/tldts/pull/1386) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 18.0.4 to 18.0.6 [#1383](https://github.com/remusao/tldts/pull/1383) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump auto from 10.37.1 to 10.37.2 [#1384](https://github.com/remusao/tldts/pull/1384) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 2.76.0 to 2.77.0 [#1382](https://github.com/remusao/tldts/pull/1382) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump terser from 5.7.0 to 5.14.2 [#1385](https://github.com/remusao/tldts/pull/1385) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 18.0.3 to 18.0.4 [#1381](https://github.com/remusao/tldts/pull/1381) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump ts-node from 10.8.2 to 10.9.1 [#1380](https://github.com/remusao/tldts/pull/1380) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump tar from 6.1.0 to 6.1.11 [#1379](https://github.com/remusao/tldts/pull/1379) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 2.75.7 to 2.76.0 [#1378](https://github.com/remusao/tldts/pull/1378) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump ansi-regex from 5.0.0 to 5.0.1 [#1377](https://github.com/remusao/tldts/pull/1377) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump ts-node from 10.8.1 to 10.8.2 [#1372](https://github.com/remusao/tldts/pull/1372) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 18.0.0 to 18.0.3 [#1375](https://github.com/remusao/tldts/pull/1375) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump lerna from 5.1.6 to 5.1.8 [#1376](https://github.com/remusao/tldts/pull/1376) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.84 (Mon Jul 04 2022)
 
 #### :scroll: Update Public Suffix List
