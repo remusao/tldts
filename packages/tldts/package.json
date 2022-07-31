@@ -39,7 +39,8 @@
   "module": "dist/es6/index.js",
   "types": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "bin": {
     "tldts": "bin/cli.js"
