@@ -1,3 +1,15 @@
+# v5.7.85 (Sun Jul 31 2022)
+
+#### :nail_care: Polish
+
+- Include 'src' folder as part of published packages [#1396](https://github.com/remusao/tldts/pull/1396) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.83 (Wed Jun 29 2022)
 
 #### :nut_and_bolt: Dependencies
