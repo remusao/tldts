@@ -1,3 +1,16 @@
+# v5.7.87 (Tue Aug 02 2022)
+
+#### :nail_care: Polish
+
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - Add index.ts as part of published packages [#1398](https://github.com/remusao/tldts/pull/1398) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.85 (Sun Jul 31 2022)
 
 #### :nail_care: Polish
