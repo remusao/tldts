@@ -40,7 +40,8 @@
   "types": "dist/types/index.d.ts",
   "files": [
     "dist",
-    "src"
+    "src",
+    "index.ts"
   ],
   "bin": {
     "tldts": "bin/cli.js"
