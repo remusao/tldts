@@ -1,3 +1,15 @@
+# v5.7.88 (Sun Aug 07 2022)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#1395](https://github.com/remusao/tldts/pull/1395) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.87 (Tue Aug 02 2022)
 
 #### :nail_care: Polish

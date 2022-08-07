@@ -1,3 +1,21 @@
+# v5.7.88 (Sun Aug 07 2022)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#1395](https://github.com/remusao/tldts/pull/1395) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/node from 18.6.2 to 18.6.4 [#1399](https://github.com/remusao/tldts/pull/1399) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.87 (Tue Aug 02 2022)
 
 #### :nail_care: Polish
