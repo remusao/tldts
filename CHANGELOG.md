@@ -1,3 +1,28 @@
+# v5.7.92 (Sat Sep 24 2022)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#1434](https://github.com/remusao/tldts/pull/1434) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump lerna from 5.5.1 to 5.5.2 [#1435](https://github.com/remusao/tldts/pull/1435) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 2.79.0 to 2.79.1 [#1436](https://github.com/remusao/tldts/pull/1436) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 2.78.1 to 2.79.0 [#1421](https://github.com/remusao/tldts/pull/1421) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump lerna from 5.4.3 to 5.5.1 [#1429](https://github.com/remusao/tldts/pull/1429) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump auto from 10.37.4 to 10.37.6 [#1432](https://github.com/remusao/tldts/pull/1432) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 18.7.14 to 18.7.18 [#1433](https://github.com/remusao/tldts/pull/1433) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - Bump @rollup/plugin-node-resolve from 13.3.0 to 14.1.0 [#1431](https://github.com/remusao/tldts/pull/1431) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.91 (Sun Sep 04 2022)
 
 #### :scroll: Update Public Suffix List

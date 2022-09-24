@@ -1,3 +1,15 @@
+# v5.7.92 (Sat Sep 24 2022)
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @rollup/plugin-node-resolve from 13.3.0 to 14.1.0 [#1431](https://github.com/remusao/tldts/pull/1431) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
 # v5.7.87 (Tue Aug 02 2022)
 
 #### :nail_care: Polish
