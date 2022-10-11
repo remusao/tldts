@@ -1,6 +1,6 @@
 {
   "name": "tldts-tests",
-  "version": "5.7.94",
+  "version": "5.7.95",
   "private": true,
   "description": "tests for different tldts implementations",
   "author": {
