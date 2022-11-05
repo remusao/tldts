@@ -1,3 +1,24 @@
+# v5.7.98 (Sat Nov 05 2022)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#1475](https://github.com/remusao/tldts/pull/1475) ([@remusao](https://github.com/remusao))
+
+#### :house: Internal
+
+- Dependencies updates [#1464](https://github.com/remusao/tldts/pull/1464) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/mocha from 9.1.1 to 10.0.0 [#1443](https://github.com/remusao/tldts/pull/1443) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.97 (Fri Oct 14 2022)
 
 #### :scroll: Update Public Suffix List
