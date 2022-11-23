@@ -1,3 +1,22 @@
+# v5.7.101 (Wed Nov 23 2022)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#1483](https://github.com/remusao/tldts/pull/1483) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump rollup from 3.3.0 to 3.4.0 [#1482](https://github.com/remusao/tldts/pull/1482) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript from 4.8.4 to 4.9.3 [#1481](https://github.com/remusao/tldts/pull/1481) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.100 (Tue Nov 15 2022)
 
 #### :scroll: Update Public Suffix List
