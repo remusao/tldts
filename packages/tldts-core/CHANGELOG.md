@@ -1,3 +1,15 @@
+# v5.7.102 (Thu Dec 01 2022)
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @rollup/plugin-typescript from 9.0.2 to 10.0.0 [#1484](https://github.com/remusao/tldts/pull/1484) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
 # v5.7.98 (Sat Nov 05 2022)
 
 #### :house: Internal
