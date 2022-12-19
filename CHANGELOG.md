@@ -1,3 +1,30 @@
+# v5.7.103 (Mon Dec 19 2022)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts`
+  - Update upstream public suffix list [#1497](https://github.com/remusao/tldts/pull/1497) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump typescript from 4.9.3 to 4.9.4 [#1496](https://github.com/remusao/tldts/pull/1496) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump mocha from 10.1.0 to 10.2.0 [#1501](https://github.com/remusao/tldts/pull/1501) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 18.11.10 to 18.11.17 [#1505](https://github.com/remusao/tldts/pull/1505) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 3.5.1 to 3.7.5 [#1506](https://github.com/remusao/tldts/pull/1506) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/mocha from 10.0.0 to 10.0.1 [#1488](https://github.com/remusao/tldts/pull/1488) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump lerna from 6.0.3 to 6.1.0 [#1490](https://github.com/remusao/tldts/pull/1490) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 18.11.9 to 18.11.10 [#1491](https://github.com/remusao/tldts/pull/1491) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 3.5.0 to 3.5.1 [#1492](https://github.com/remusao/tldts/pull/1492) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump decode-uri-component from 0.2.0 to 0.2.2 [#1493](https://github.com/remusao/tldts/pull/1493) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @rollup/plugin-typescript from 10.0.0 to 10.0.1 [#1487](https://github.com/remusao/tldts/pull/1487) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.102 (Thu Dec 01 2022)
 
 #### :scroll: Update Public Suffix List
