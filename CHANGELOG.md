@@ -1,3 +1,24 @@
+# v5.7.104 (Wed Jan 04 2023)
+
+#### :nail_care: Polish
+
+- Bump json5 from 1.0.1 to 1.0.2 [#1513](https://github.com/remusao/tldts/pull/1513) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump rollup from 3.9.0 to 3.9.1 [#1512](https://github.com/remusao/tldts/pull/1512) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 3.8.1 to 3.9.0 [#1511](https://github.com/remusao/tldts/pull/1511) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump lerna from 6.1.0 to 6.3.0 [#1510](https://github.com/remusao/tldts/pull/1510) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 18.11.17 to 18.11.18 [#1509](https://github.com/remusao/tldts/pull/1509) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 3.8.0 to 3.8.1 [#1508](https://github.com/remusao/tldts/pull/1508) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 3.7.5 to 3.8.0 [#1507](https://github.com/remusao/tldts/pull/1507) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
 # v5.7.103 (Mon Dec 19 2022)
 
 #### :scroll: Update Public Suffix List
