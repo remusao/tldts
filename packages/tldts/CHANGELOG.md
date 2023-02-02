@@ -1,3 +1,21 @@
+# v5.7.105 (Thu Feb 02 2023)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#1521](https://github.com/remusao/tldts/pull/1521) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump rimraf from 3.0.2 to 4.1.2 [#1525](https://github.com/remusao/tldts/pull/1525) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @rollup/plugin-typescript from 10.0.1 to 11.0.0 [#1515](https://github.com/remusao/tldts/pull/1515) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.103 (Mon Dec 19 2022)
 
 #### :scroll: Update Public Suffix List

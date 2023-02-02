@@ -1,3 +1,29 @@
+# v5.7.105 (Thu Feb 02 2023)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#1521](https://github.com/remusao/tldts/pull/1521) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump typescript from 4.9.4 to 4.9.5 [#1528](https://github.com/remusao/tldts/pull/1528) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 3.12.0 to 3.12.1 [#1529](https://github.com/remusao/tldts/pull/1529) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 3.9.1 to 3.12.0 [#1527](https://github.com/remusao/tldts/pull/1527) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 3.9.1 to 3.11.0 [#1526](https://github.com/remusao/tldts/pull/1526) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump lerna from 6.4.0 to 6.4.1 [#1517](https://github.com/remusao/tldts/pull/1517) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump lerna from 6.3.0 to 6.4.0 [#1514](https://github.com/remusao/tldts/pull/1514) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - Bump rimraf from 3.0.2 to 4.1.2 [#1525](https://github.com/remusao/tldts/pull/1525) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+  - Bump @rollup/plugin-typescript from 10.0.1 to 11.0.0 [#1515](https://github.com/remusao/tldts/pull/1515) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.104 (Wed Jan 04 2023)
 
 #### :nail_care: Polish
