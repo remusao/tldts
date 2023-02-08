@@ -1,3 +1,24 @@
+# v5.7.106 (Wed Feb 08 2023)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#1536](https://github.com/remusao/tldts/pull/1536) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump auto from 10.37.6 to 10.38.5 [#1531](https://github.com/remusao/tldts/pull/1531) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 3.12.1 to 3.14.0 [#1532](https://github.com/remusao/tldts/pull/1532) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 18.11.18 to 18.13.0 [#1535](https://github.com/remusao/tldts/pull/1535) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump http-cache-semantics from 4.1.0 to 4.1.1 [#1530](https://github.com/remusao/tldts/pull/1530) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.105 (Thu Feb 02 2023)
 
 #### :scroll: Update Public Suffix List
