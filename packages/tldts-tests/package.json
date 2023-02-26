@@ -54,9 +54,9 @@
     "@types/mocha": "^10.0.0",
     "chai": "^4.2.0",
     "nyc": "^15.0.1",
-    "rimraf": "^4.1.2",
+    "rimraf": "^4.4.1",
     "ts-node": "^10.0.0",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.3"
   },
   "dependencies": {
     "@types/chai": "^4.2.18",

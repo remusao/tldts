@@ -82,11 +82,13 @@ export default function extractHostname(
             const lowerCaseCode = url.charCodeAt(i) | 32;
             if (
               !(
-                (lowerCaseCode >= 97 && lowerCaseCode <= 122) || // [a, z]
-                (lowerCaseCode >= 48 && lowerCaseCode <= 57) || // [0, 9]
-                lowerCaseCode === 46 || // '.'
-                lowerCaseCode === 45 || // '-'
-                lowerCaseCode === 43 // '+'
+                (
+                  (lowerCaseCode >= 97 && lowerCaseCode <= 122) || // [a, z]
+                  (lowerCaseCode >= 48 && lowerCaseCode <= 57) || // [0, 9]
+                  lowerCaseCode === 46 || // '.'
+                  lowerCaseCode === 45 || // '-'
+                  lowerCaseCode === 43 // '+'
+                )
               )
             ) {
               return null;
