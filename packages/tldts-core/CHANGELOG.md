@@ -1,3 +1,15 @@
+# v5.7.110 (Wed Mar 01 2023)
+
+#### :house: Internal
+
+- Update deprecated dep and refresh lock [#1554](https://github.com/remusao/tldts/pull/1554) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.105 (Thu Feb 02 2023)
 
 #### :nut_and_bolt: Dependencies

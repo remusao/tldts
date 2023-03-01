@@ -1,3 +1,19 @@
+# v5.7.110 (Wed Mar 01 2023)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#1555](https://github.com/remusao/tldts/pull/1555) ([@remusao](https://github.com/remusao))
+
+#### :house: Internal
+
+- Update deprecated dep and refresh lock [#1554](https://github.com/remusao/tldts/pull/1554) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.109 (Wed Feb 15 2023)
 
 #### :scroll: Update Public Suffix List

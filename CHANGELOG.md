@@ -1,3 +1,32 @@
+# v5.7.110 (Wed Mar 01 2023)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#1555](https://github.com/remusao/tldts/pull/1555) ([@remusao](https://github.com/remusao))
+
+#### :house: Internal
+
+- `tldts-core`, `tldts-experimental`, `tldts`
+  - Update deprecated dep and refresh lock [#1554](https://github.com/remusao/tldts/pull/1554) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/node from 18.14.1 to 18.14.2 [#1556](https://github.com/remusao/tldts/pull/1556) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 18.13.0 to 18.14.1 [#1552](https://github.com/remusao/tldts/pull/1552) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump auto from 10.42.0 to 10.42.2 [#1551](https://github.com/remusao/tldts/pull/1551) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 3.15.0 to 3.17.2 [#1549](https://github.com/remusao/tldts/pull/1549) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump lerna from 6.4.1 to 6.5.1 [#1544](https://github.com/remusao/tldts/pull/1544) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 3.14.0 to 3.15.0 [#1542](https://github.com/remusao/tldts/pull/1542) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump auto from 10.41.0 to 10.42.0 [#1541](https://github.com/remusao/tldts/pull/1541) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.109 (Wed Feb 15 2023)
 
 #### :scroll: Update Public Suffix List
