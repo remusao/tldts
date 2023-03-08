@@ -1,3 +1,24 @@
+# v5.7.111 (Wed Mar 08 2023)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts`
+  - Update upstream public suffix list [#1566](https://github.com/remusao/tldts/pull/1566) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/node from 18.14.2 to 18.14.4 [#1562](https://github.com/remusao/tldts/pull/1562) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rimraf from 4.1.2 to 4.2.0 [#1561](https://github.com/remusao/tldts/pull/1561) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump auto from 10.42.2 to 10.43.0 [#1560](https://github.com/remusao/tldts/pull/1560) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 3.17.3 to 3.18.0 [#1559](https://github.com/remusao/tldts/pull/1559) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.110 (Wed Mar 01 2023)
 
 #### :scroll: Update Public Suffix List
