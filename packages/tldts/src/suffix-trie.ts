@@ -43,12 +43,7 @@ function lookupInTrie(
       break;
     }
 
-    const nextPart = parts[index];
-    if (nextPart === undefined) {
-      break;
-    }
-
-    node = node.succ[nextPart] ?? node.succ['*'];
+    node = node.succ[parts[index]!] ?? node.succ['*'];
     index -= 1;
   }
 
