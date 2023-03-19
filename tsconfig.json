@@ -6,11 +6,11 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true
   }
 }

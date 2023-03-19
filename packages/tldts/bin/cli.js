@@ -15,9 +15,7 @@ if (process.argv.length > 2) {
   const rlInterface = readline.createInterface({
     input: process.stdin,
   });
-  rlInterface.on('line', function(line){
-    console.log(
-      JSON.stringify(parse(line), null, 2),
-    )
-  })
+  rlInterface.on('line', function (line) {
+    console.log(JSON.stringify(parse(line), null, 2));
+  });
 }

@@ -1,7 +1,31 @@
 import { expect } from 'chai';
 import 'mocha';
 
-export default function test(tldts: any): void {
+interface Options {
+  extractHostname?: boolean;
+  allowPrivateDomains?: boolean;
+  allowIcannDomains?: boolean;
+  validateHostname?: boolean;
+  mixedInputs?: boolean;
+  detectIp?: boolean;
+  validHosts?: string[];
+}
+
+export default function test(tldts: {
+  getDomainWithoutSuffix: (url: string, options?: Options) => string | null;
+  getPublicSuffix: (url: string, options?: Options) => string | null;
+  getHostname: (url: string, options?: Options) => string | null;
+  getDomain: (url: string, options?: Options) => string | null;
+  getSubdomain: (url: string, options?: Options) => string | null;
+  parse: (
+    url: string,
+    options?: Options,
+  ) => {
+    domain: string | null;
+    hostname: string | null;
+    publicSuffix: string | null;
+  };
+}): void {
   describe('from https://github.com/rushmorem/publicsuffix/blob/master/src/tests.rs', () => {
     // Copyright (c) 2016 Rushmore Mushambi
     it('should allow parsing IDN email addresses', () => {
@@ -118,7 +142,7 @@ export default function test(tldts: any): void {
         'while',
         'with',
         'yield',
-      ].forEach(keyword => {
+      ].forEach((keyword) => {
         it(keyword, () => {
           expect(tldts.getDomain(`https://${keyword}.com`)).to.equal(
             `${keyword}.com`,
@@ -258,7 +282,9 @@ export default function test(tldts: any): void {
     });
 
     it('should return nytimes.com even in a whole valid', () => {
-      expect(tldts.getDomain('http://www.nytimes.com/')).to.equal('nytimes.com');
+      expect(tldts.getDomain('http://www.nytimes.com/')).to.equal(
+        'nytimes.com',
+      );
     });
 
     // @see https://github.com/oncletom/tld.js/issues/95
@@ -290,7 +316,9 @@ export default function test(tldts: any): void {
 
       // @see https://github.com/oncletom/tld.js/issues/30
       it('should return s3.amazonaws.com if s3.amazonaws.com', () => {
-        expect(getPublicSuffix('s3.amazonaws.com')).to.equal('s3.amazonaws.com');
+        expect(getPublicSuffix('s3.amazonaws.com')).to.equal(
+          's3.amazonaws.com',
+        );
       });
 
       it('should return s3.amazonaws.com if www.s3.amazonaws.com', () => {
@@ -513,9 +541,9 @@ export default function test(tldts: any): void {
     });
 
     it('should handle parameter URL', () => {
-      expect(tldts.getHostname('http://example.co.uk.?and&query#hash')).to.equal(
-        'example.co.uk',
-      );
+      expect(
+        tldts.getHostname('http://example.co.uk.?and&query#hash'),
+      ).to.equal('example.co.uk');
     });
 
     it('should detect invalid protocol characters', () => {
@@ -566,7 +594,9 @@ export default function test(tldts: any): void {
     });
 
     it('should return domain without suffix if domain exists', () => {
-      expect(tldts.getDomainWithoutSuffix('https://sub.foo.co.uk')).to.equal('foo');
+      expect(tldts.getDomainWithoutSuffix('https://sub.foo.co.uk')).to.equal(
+        'foo',
+      );
     });
   });
 
@@ -600,7 +630,9 @@ export default function test(tldts: any): void {
     it('should return the subdomain of a wildcard hostname', () => {
       expect(tldts.getSubdomain('google.co.uk')).to.equal('');
       expect(tldts.getSubdomain('fr.google.co.uk')).to.equal('fr');
-      expect(tldts.getSubdomain('random.fr.google.co.uk')).to.equal('random.fr');
+      expect(tldts.getSubdomain('random.fr.google.co.uk')).to.equal(
+        'random.fr',
+      );
     });
 
     // @see https://github.com/oncletom/tld.js/issues/25
@@ -678,9 +710,10 @@ export default function test(tldts: any): void {
     });
 
     it('should handle data URLs', () => {
-      expect(
-        tldts.parse('data:image/png,some-base-64-value'),
-      ).to.deep.equal({ ...mockResponse(null), isIp: null });
+      expect(tldts.parse('data:image/png,some-base-64-value')).to.deep.equal({
+        ...mockResponse(null),
+        isIp: null,
+      });
     });
 
     it('should handle ipv6 addresses properly', () => {
@@ -694,9 +727,9 @@ export default function test(tldts: any): void {
       expect(tldts.parse('http://[1080::8:800:200C:417A]/foo')).to.deep.equal(
         mockResponse('1080::8:800:200c:417a'),
       );
-      expect(tldts.parse('http://[1080::8:800:200C:417A]:4242/foo')).to.deep.equal(
-        mockResponse('1080::8:800:200c:417a'),
-      );
+      expect(
+        tldts.parse('http://[1080::8:800:200C:417A]:4242/foo'),
+      ).to.deep.equal(mockResponse('1080::8:800:200c:417a'));
     });
 
     it('handles ipv6 address when extractHostname is false', () => {
@@ -734,7 +767,9 @@ export default function test(tldts: any): void {
     });
 
     it('disable ip detection', () => {
-      expect(tldts.parse('http://192.168.0.1/', { detectIp: false })).to.deep.equal({
+      expect(
+        tldts.parse('http://192.168.0.1/', { detectIp: false }),
+      ).to.deep.equal({
         domain: '0.1',
         domainWithoutSuffix: '0',
         hostname: '192.168.0.1',
@@ -749,7 +784,7 @@ export default function test(tldts: any): void {
 
   describe('validHosts', () => {
     describe('non-empty array', () => {
-      const options = {
+      const options: Options = {
         validHosts: ['localhost'],
       };
 
@@ -768,7 +803,9 @@ export default function test(tldts: any): void {
 
       // @see https://github.com/oncletom/tld.js/issues/66
       it('should return the subdomain of a validHost', () => {
-        expect(tldts.getSubdomain('vhost.localhost', options)).to.equal('vhost');
+        expect(tldts.getSubdomain('vhost.localhost', options)).to.equal(
+          'vhost',
+        );
       });
 
       it('should fallback to normal extraction if no match in validHost', () => {

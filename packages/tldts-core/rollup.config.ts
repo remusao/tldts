@@ -8,8 +8,5 @@ export default {
     format: 'cjs',
     sourcemap: true,
   },
-  plugins: [
-    resolve(),
-    sourcemaps(),
-  ],
+  plugins: [resolve(), sourcemaps()],
 };

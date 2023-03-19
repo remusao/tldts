@@ -5,8 +5,5 @@
     "outDir": "dist/cjs",
     "declarationDir": "dist/types"
   },
-  "include": [
-    "./src/**/*.ts",
-    "./index.ts"
-  ]
+  "include": ["./src/**/*.ts", "./index.ts"]
 }

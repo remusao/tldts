@@ -48,9 +48,8 @@
   },
   "scripts": {
     "clean": "rimraf dist coverage",
-    "lint": "tslint --config ../../tslint.json --project ./tsconfig.json",
     "build": "tsc --build ./tsconfig.json",
-    "bundle": "tsc --build ./tsconfig.bundle.json && rollup --config ./rollup.config.ts --configPlugin typescript",
+    "bundle": "tsc --build ./tsconfig.bundle.json && rollup --config ./rollup.config.mjs",
     "prepack": "yarn run bundle",
     "test": "nyc mocha --config ../../.mocharc.js"
   },
@@ -68,9 +67,7 @@
     "rollup": "^3.17.3",
     "rollup-plugin-sourcemaps": "^0.6.1",
     "tldts-tests": "^5.7.112",
-    "tslint": "^6.0.0",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "^4.3.2"
+    "typescript": "^5.0.2"
   },
   "dependencies": {
     "tldts-core": "^5.7.112"

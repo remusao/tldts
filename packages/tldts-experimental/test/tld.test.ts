@@ -1,4 +1,4 @@
-import 'mocha'
+import 'mocha';
 
 import { tldtsTests } from 'tldts-tests';
 

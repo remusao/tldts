@@ -6,14 +6,14 @@ export default function extractHostname(
   url: string,
   urlIsValidHostname: boolean,
 ): string | null {
-  let start: number = 0;
+  let start = 0;
   let end: number = url.length;
-  let hasUpper: boolean = false;
+  let hasUpper = false;
 
   // If url is not already a valid hostname, then try to extract hostname.
-  if (urlIsValidHostname === false) {
+  if (!urlIsValidHostname) {
     // Special handling of data URLs
-    if (url.startsWith('data:') === true) {
+    if (url.startsWith('data:')) {
       return null;
     }
 
@@ -81,11 +81,13 @@ export default function extractHostname(
           for (let i = start; i < indexOfProtocol; i += 1) {
             const lowerCaseCode = url.charCodeAt(i) | 32;
             if (
-              ((lowerCaseCode >= 97 && lowerCaseCode <= 122) || // [a, z]
-              (lowerCaseCode >= 48 && lowerCaseCode <= 57) || // [0, 9]
-              lowerCaseCode === 46 || // '.'
-              lowerCaseCode === 45 || // '-'
-                lowerCaseCode === 43) === false // '+'
+              !(
+                (lowerCaseCode >= 97 && lowerCaseCode <= 122) || // [a, z]
+                (lowerCaseCode >= 48 && lowerCaseCode <= 57) || // [0, 9]
+                lowerCaseCode === 46 || // '.'
+                lowerCaseCode === 45 || // '-'
+                lowerCaseCode === 43 // '+'
+              )
             ) {
               return null;
             }
@@ -103,9 +105,9 @@ export default function extractHostname(
     // Detect first occurrence of '/', '?' or '#'. We also keep track of the
     // last occurrence of '@', ']' or ':' to speed-up subsequent parsing of
     // (respectively), identifier, ipv6 or port.
-    let indexOfIdentifier: number = -1;
-    let indexOfClosingBracket: number = -1;
-    let indexOfPort: number = -1;
+    let indexOfIdentifier = -1;
+    let indexOfClosingBracket = -1;
+    let indexOfPort = -1;
     for (let i = start; i < end; i += 1) {
       const code: number = url.charCodeAt(i);
       if (

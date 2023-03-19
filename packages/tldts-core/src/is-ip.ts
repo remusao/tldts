@@ -40,7 +40,7 @@ function isProbablyIpv6(hostname: string): boolean {
     return false;
   }
 
-  let start = hostname[0] === '[' ? 1 : 0;
+  let start = hostname.startsWith('[') ? 1 : 0;
   let end = hostname.length;
 
   if (hostname[end - 1] === ']') {
@@ -54,7 +54,7 @@ function isProbablyIpv6(hostname: string): boolean {
     return false;
   }
 
-  let hasColon: boolean = false;
+  let hasColon = false;
 
   for (; start < end; start += 1) {
     const code = hostname.charCodeAt(start);
@@ -62,10 +62,11 @@ function isProbablyIpv6(hostname: string): boolean {
     if (code === 58 /* ':' */) {
       hasColon = true;
     } else if (
-      ((code >= 48 && code <= 57) || // 0-9
+      !(
+        (code >= 48 && code <= 57) || // 0-9
         (code >= 97 && code <= 102) || // a-f
-        (code >= 65 && code <= 90)) === // A-F
-      false
+        (code >= 65 && code <= 90) // A-F
+      )
     ) {
       return false;
     }

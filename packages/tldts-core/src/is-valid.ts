@@ -28,13 +28,13 @@ export default function (hostname: string): boolean {
     return false;
   }
 
-  if (/*@__INLINE__*/ isValidAscii(hostname.charCodeAt(0)) === false) {
+  if (/*@__INLINE__*/ !isValidAscii(hostname.charCodeAt(0))) {
     return false;
   }
 
   // Validate hostname according to RFC
-  let lastDotIndex: number = -1;
-  let lastCharCode: number = -1;
+  let lastDotIndex = -1;
+  let lastCharCode = -1;
   const len = hostname.length;
 
   for (let i = 0; i < len; i += 1) {
@@ -54,10 +54,7 @@ export default function (hostname: string): boolean {
       }
 
       lastDotIndex = i;
-    } else if (
-      (/*@__INLINE__*/ isValidAscii(code) || code === 45 || code === 95) ===
-      false
-    ) {
+    } else if (!(/*@__INLINE__*/ isValidAscii(code) || code === 45 || code === 95)) {
       // Check if there is a forbidden character in the label
       return false;
     }

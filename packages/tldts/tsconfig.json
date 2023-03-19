@@ -13,8 +13,5 @@
       "path": "../tldts-tests/tsconfig.json"
     }
   ],
-  "include": [
-    "./src/**/*.ts",
-    "./index.ts"
-  ]
+  "include": ["./src/**/*.ts", "./index.ts"]
 }

@@ -30,11 +30,11 @@ function lookupInTrie(
   let node: ITrie | undefined = trie;
   while (node !== undefined) {
     // We have a match!
-    if ((node.$ & allowedMask) !== 0) {
+    if ((node[0] & allowedMask) !== 0) {
       result = {
         index: index + 1,
-        isIcann: node.$ === RULE_TYPE.ICANN,
-        isPrivate: node.$ === RULE_TYPE.PRIVATE,
+        isIcann: node[0] === RULE_TYPE.ICANN,
+        isPrivate: node[0] === RULE_TYPE.PRIVATE,
       };
     }
 
@@ -43,10 +43,8 @@ function lookupInTrie(
       break;
     }
 
-    const succ: {
-      [label: string]: ITrie;
-    } = node.succ;
-    node = succ && (succ[parts[index]] || succ['*']);
+    const succ: { [label: string]: ITrie } = node[1];
+    node = succ[parts[index]!] ?? succ['*'];
     index -= 1;
   }
 
@@ -61,15 +59,15 @@ export default function suffixLookup(
   options: ISuffixLookupOptions,
   out: IPublicSuffix,
 ): void {
-  if (fastPathLookup(hostname, options, out) === true) {
+  if (fastPathLookup(hostname, options, out)) {
     return;
   }
 
   const hostnameParts = hostname.split('.');
 
   const allowedMask =
-    (options.allowPrivateDomains === true ? RULE_TYPE.PRIVATE : 0) |
-    (options.allowIcannDomains === true ? RULE_TYPE.ICANN : 0);
+    (options.allowPrivateDomains ? RULE_TYPE.PRIVATE : 0) |
+    (options.allowIcannDomains ? RULE_TYPE.ICANN : 0);
 
   // Look for exceptions
   const exceptionMatch = lookupInTrie(
@@ -106,5 +104,5 @@ export default function suffixLookup(
   // public suffix of `hostname` (e.g.: 'example.org' => 'org').
   out.isIcann = false;
   out.isPrivate = false;
-  out.publicSuffix = hostnameParts[hostnameParts.length - 1];
+  out.publicSuffix = hostnameParts[hostnameParts.length - 1] ?? null;
 }
