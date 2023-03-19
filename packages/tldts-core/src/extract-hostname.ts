@@ -86,8 +86,8 @@ export default function extractHostname(
                 (lowerCaseCode >= 48 && lowerCaseCode <= 57) || // [0, 9]
                 lowerCaseCode === 46 || // '.'
                 lowerCaseCode === 45 || // '-'
-                lowerCaseCode === 43
-              ) // '+'
+                lowerCaseCode === 43 // '+'
+              )
             ) {
               return null;
             }
