@@ -30,6 +30,20 @@ interface ITrie {
   succ: { [label: string]: ITrie };
 }
 
+type CompactTrie = [0 | 1 | 2, { [label: string]: CompactTrie }];
+
+function convertToCompactTrie(trie: ITrie): CompactTrie {
+  return [
+    trie.$,
+    Object.fromEntries(
+      Object.entries(trie.succ).map(([label, succ]) => [
+        label,
+        typeof succ === "string" ? succ : convertToCompactTrie(succ),
+      ]),
+    ),
+  ];
+}
+
 /**
  * Insert a public suffix rule in the `trie`.
  */
@@ -113,7 +127,11 @@ function compressToDAWG(trie: ITrie, name: string): string {
   nodesByHash.forEach((nodes) => {
     if (nodes.length > 1) {
       // Dump one of the nodes (they are all the same so it does not matter which one)
-      variables.push(`_${nextId}: ITrie = ${JSON.stringify(nodes[0])}`);
+      variables.push(
+        `_${nextId}: ITrie = ${JSON.stringify(
+          convertToCompactTrie(nodes[0]!),
+        )}`,
+      );
 
       // Replace all the other ones by the name of this new variable
       nodes.forEach((node) => {
@@ -143,7 +161,7 @@ function compressToDAWG(trie: ITrie, name: string): string {
 
   // Dump the root of the DAWG as well, and perform the same replacement of _id
   // parts than for the variables above.
-  let serializedTrie = JSON.stringify(trie);
+  let serializedTrie = JSON.stringify(convertToCompactTrie(trie));
   for (let i = 0; i < nextId; i += 1) {
     serializedTrie = serializedTrie.replace(
       new RegExp(`"_${i}"`, 'g'),
@@ -157,10 +175,7 @@ function compressToDAWG(trie: ITrie, name: string): string {
 
 function convertToTypeScriptSource(rules: ITrie, exceptions: ITrie): string {
   return `
-export interface ITrie {
-  $: 0 | 1 | 2;
-  succ: { [label: string]: ITrie };
-}
+export type ITrie = [0 | 1 | 2, { [label: string]: ITrie}];
 
 export const exceptions: ITrie = (function() {
   ${compressToDAWG(exceptions, 'exceptions')}

@@ -30,11 +30,11 @@ function lookupInTrie(
   let node: ITrie | undefined = trie;
   while (node !== undefined) {
     // We have a match!
-    if ((node.$ & allowedMask) !== 0) {
+    if ((node[0] & allowedMask) !== 0) {
       result = {
         index: index + 1,
-        isIcann: node.$ === RULE_TYPE.ICANN,
-        isPrivate: node.$ === RULE_TYPE.PRIVATE,
+        isIcann: node[0] === RULE_TYPE.ICANN,
+        isPrivate: node[0] === RULE_TYPE.PRIVATE,
       };
     }
 
@@ -43,7 +43,8 @@ function lookupInTrie(
       break;
     }
 
-    node = node.succ[parts[index]!] ?? node.succ['*'];
+    const succ: { [label: string]: ITrie } = node[1];
+    node = succ[parts[index]!] ?? succ['*'];
     index -= 1;
   }
 
