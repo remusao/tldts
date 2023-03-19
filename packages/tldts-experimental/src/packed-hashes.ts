@@ -24,7 +24,7 @@ function binSearch(
 
   while (low <= high) {
     const mid = (low + high) >>> 1;
-    const midVal = arr[mid];
+    const midVal = arr[mid]!;
     if (midVal < elt) {
       low = mid + 1;
     } else if (midVal > elt) {
@@ -104,7 +104,7 @@ export default function suffixLookup(
   options: ISuffixLookupOptions,
   out: IPublicSuffix,
 ): void {
-  if (fastPathLookup(hostname, options, out) === true) {
+  if (fastPathLookup(hostname, options, out)) {
     return;
   }
 
@@ -120,12 +120,12 @@ export default function suffixLookup(
 
   const numberOfHashes = hashHostnameLabelsBackward(
     hostname,
-    packed[0] /* maximumNumberOfLabels */,
+    packed[0]! /* maximumNumberOfLabels */,
   );
 
   for (let label = 0; label < numberOfHashes; label += 1) {
-    const hash = BUFFER[label << 1];
-    const labelStart = BUFFER[(label << 1) + 1];
+    const hash = BUFFER[label << 1]!;
+    const labelStart = BUFFER[(label << 1) + 1]!;
     // For each label, matching proceeds in the following way:
     //
     //  1. check exceptions
@@ -153,76 +153,76 @@ export default function suffixLookup(
     // Lookup exceptions
     // ========================================================================
     // ICANN
-    if (allowIcannDomains === true) {
-      match = binSearch(packed, hash, index + 1, index + packed[index] + 1)
+    if (allowIcannDomains) {
+      match = binSearch(packed, hash, index + 1, index + packed[index]! + 1)
         ? Result.ICANN_MATCH | Result.EXCEPTION_MATCH
         : Result.NO_MATCH;
     }
-    index += packed[index] + 1;
+    index += packed[index]! + 1;
 
     // PRIVATE
-    if (allowPrivateDomains === true && match === Result.NO_MATCH) {
-      match = binSearch(packed, hash, index + 1, index + packed[index] + 1)
+    if (allowPrivateDomains && match === Result.NO_MATCH) {
+      match = binSearch(packed, hash, index + 1, index + packed[index]! + 1)
         ? Result.PRIVATE_MATCH | Result.EXCEPTION_MATCH
         : Result.NO_MATCH;
     }
-    index += packed[index] + 1;
+    index += packed[index]! + 1;
 
     // ========================================================================
     // Lookup wildcards
     // ========================================================================
     // ICANN
     if (
-      allowIcannDomains === true &&
+      allowIcannDomains &&
       match === Result.NO_MATCH &&
       (matchKind & Result.EXCEPTION_MATCH) === 0
     ) {
-      match = binSearch(packed, hash, index + 1, index + packed[index] + 1)
+      match = binSearch(packed, hash, index + 1, index + packed[index]! + 1)
         ? Result.WILDCARD_MATCH | Result.ICANN_MATCH
         : Result.NO_MATCH;
     }
-    index += packed[index] + 1;
+    index += packed[index]! + 1;
 
     // PRIVATE
     if (
-      allowPrivateDomains === true &&
+      allowPrivateDomains &&
       match === Result.NO_MATCH &&
       (matchKind & Result.EXCEPTION_MATCH) === 0
     ) {
-      match = binSearch(packed, hash, index + 1, index + packed[index] + 1)
+      match = binSearch(packed, hash, index + 1, index + packed[index]! + 1)
         ? Result.WILDCARD_MATCH | Result.PRIVATE_MATCH
         : Result.NO_MATCH;
     }
-    index += packed[index] + 1;
+    index += packed[index]! + 1;
 
     // ========================================================================
     // Lookup rules
     // ========================================================================
     // ICANN
     if (
-      allowIcannDomains === true &&
+      allowIcannDomains &&
       match === Result.NO_MATCH &&
       (matchKind & Result.EXCEPTION_MATCH) === 0 &&
       matchLabels <= label
     ) {
-      match = binSearch(packed, hash, index + 1, index + packed[index] + 1)
+      match = binSearch(packed, hash, index + 1, index + packed[index]! + 1)
         ? Result.NORMAL_MATCH | Result.ICANN_MATCH
         : Result.NO_MATCH;
     }
-    index += packed[index] + 1;
+    index += packed[index]! + 1;
 
     // PRIVATE
     if (
-      allowPrivateDomains === true &&
+      allowPrivateDomains &&
       match === Result.NO_MATCH &&
       (matchKind & Result.EXCEPTION_MATCH) === 0 &&
       matchLabels <= label
     ) {
-      match = binSearch(packed, hash, index + 1, index + packed[index] + 1)
+      match = binSearch(packed, hash, index + 1, index + packed[index]! + 1)
         ? Result.NORMAL_MATCH | Result.PRIVATE_MATCH
         : Result.NO_MATCH;
     }
-    index += packed[index] + 1;
+    index += packed[index]! + 1;
 
     // If we found a match, the longest match that is being tracked for this
     // hostname. We need to remember which kind of match it was (exception,

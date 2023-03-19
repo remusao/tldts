@@ -43,10 +43,12 @@ function lookupInTrie(
       break;
     }
 
-    const succ: {
-      [label: string]: ITrie;
-    } = node.succ;
-    node = succ && (succ[parts[index]] || succ['*']);
+    const nextPart = parts[index];
+    if (nextPart === undefined) {
+      break;
+    }
+
+    node = node.succ[nextPart] ?? node.succ['*'];
     index -= 1;
   }
 
@@ -61,15 +63,15 @@ export default function suffixLookup(
   options: ISuffixLookupOptions,
   out: IPublicSuffix,
 ): void {
-  if (fastPathLookup(hostname, options, out) === true) {
+  if (fastPathLookup(hostname, options, out)) {
     return;
   }
 
   const hostnameParts = hostname.split('.');
 
   const allowedMask =
-    (options.allowPrivateDomains === true ? RULE_TYPE.PRIVATE : 0) |
-    (options.allowIcannDomains === true ? RULE_TYPE.ICANN : 0);
+    (options.allowPrivateDomains ? RULE_TYPE.PRIVATE : 0) |
+    (options.allowIcannDomains ? RULE_TYPE.ICANN : 0);
 
   // Look for exceptions
   const exceptionMatch = lookupInTrie(
@@ -106,5 +108,5 @@ export default function suffixLookup(
   // public suffix of `hostname` (e.g.: 'example.org' => 'org').
   out.isIcann = false;
   out.isPrivate = false;
-  out.publicSuffix = hostnameParts[hostnameParts.length - 1];
+  out.publicSuffix = hostnameParts[hostnameParts.length - 1] ?? null;
 }

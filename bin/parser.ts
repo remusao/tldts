@@ -12,13 +12,13 @@ interface IRule {
  * Parse public suffix list and invoke callback on each rule.
  */
 export default (body: string, cb: (_: IRule) => void) => {
-  const beginPrivateDomains: string = '// ===begin private domains===';
-  let isIcann: boolean = true;
+  const beginPrivateDomains = '// ===begin private domains===';
+  let isIcann = true;
 
   // Iterate on lines and extract public suffix rules
   const lines: string[] = body.split('\n');
-  for (let i = 0; i < lines.length; i += 1) {
-    let line = lines[i].trim().toLowerCase();
+  for (let line of lines) {
+    line = line.trim().toLowerCase();
 
     // Ignore comments
     if (line.length === 0 || line.startsWith('//')) {
@@ -34,7 +34,7 @@ export default (body: string, cb: (_: IRule) => void) => {
     let isNormal = false;
 
     // Select correct section to insert the rule
-    if (line[0] === '!') {
+    if (line.startsWith('!')) {
       isException = true;
       line = line.slice(1);
     } else if (line.startsWith('*.')) {

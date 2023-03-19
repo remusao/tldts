@@ -1,7 +1,12 @@
 import { expect } from 'chai';
 import 'mocha';
 
-export default function test(getDomain: any): void {
+export default function test(
+  getDomain: (
+    domain: string,
+    options: { allowIcannDomains: boolean; allowPrivateDomains: boolean },
+  ) => string | null,
+): void {
   // Ease testing by simply copy/pasting tests from Mozilla Central
   // @see https://dxr.mozilla.org/mozilla-central/source/netwerk/test/unit/data/test_psl.txt?raw=1
   function checkPublicSuffix(

@@ -90,7 +90,7 @@ import parse from '../parser';
  * Compute 32 bits hash of `str` backward.
  */
 function fastHash(str: string): number {
-  let hash: number = 5381;
+  let hash = 5381;
   for (let j = str.length - 1; j >= 0; j -= 1) {
     hash = (hash * 33) ^ str.charCodeAt(j);
   }
@@ -98,8 +98,8 @@ function fastHash(str: string): number {
 }
 
 interface IRules {
-  icann: any[];
-  priv: any[];
+  icann: number[][];
+  priv: number[][];
 }
 
 /**
@@ -159,16 +159,18 @@ export default (body: string) => {
     }
 
     maximumNumberOfLabels = Math.max(maximumNumberOfLabels, numberOfLabels);
-    if (hashesPerLabels[numberOfLabels] === undefined) {
-      hashesPerLabels[numberOfLabels] = [];
+    let hashesForLabel = hashesPerLabels[numberOfLabels];
+    if (hashesForLabel === undefined) {
+      hashesForLabel = [];
+      hashesPerLabels[numberOfLabels] = hashesForLabel;
     }
 
-    hashesPerLabels[numberOfLabels].push(fastHash(rule));
+    hashesForLabel.push(fastHash(rule));
   });
 
   // Pack everything together
   const chunks: number[][] = [];
-  const pushHashes = (hashes = []) => {
+  const pushHashes = (hashes: number[] = []) => {
     chunks.push([
       hashes.length,
       ...hashes.sort((a, b) => {
@@ -192,6 +194,8 @@ export default (body: string) => {
     pushHashes(rules.priv[label]);
   }
 
-  // @ts-ignore
-  return new Uint32Array([maximumNumberOfLabels, ...[].concat(...chunks)]);
+  return new Uint32Array([
+    maximumNumberOfLabels,
+    ...([] as number[]).concat(...chunks),
+  ]);
 };

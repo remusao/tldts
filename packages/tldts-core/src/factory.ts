@@ -101,9 +101,9 @@ export function parseImpl(
   // set to `false` to speed-up parsing. If only URLs are expected then
   // `mixedInputs` can be set to `false`. The `mixedInputs` is only a hint
   // and will not change the behavior of the library.
-  if (options.extractHostname === false) {
+  if (!options.extractHostname) {
     result.hostname = url;
-  } else if (options.mixedInputs === true) {
+  } else if (options.mixedInputs) {
     result.hostname = extractHostname(url, isValidHostname(url));
   } else {
     result.hostname = extractHostname(url, false);
@@ -114,9 +114,9 @@ export function parseImpl(
   }
 
   // Check if `hostname` is a valid ip address
-  if (options.detectIp === true) {
+  if (options.detectIp) {
     result.isIp = isIp(result.hostname);
-    if (result.isIp === true) {
+    if (result.isIp) {
       return result;
     }
   }
@@ -124,9 +124,9 @@ export function parseImpl(
   // Perform optional hostname validation. If hostname is not valid, no need to
   // go further as there will be no valid domain or sub-domain.
   if (
-    options.validateHostname === true &&
-    options.extractHostname === true &&
-    isValidHostname(result.hostname) === false
+    options.validateHostname &&
+    options.extractHostname &&
+    !isValidHostname(result.hostname)
   ) {
     result.hostname = null;
     return result;

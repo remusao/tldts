@@ -66,9 +66,8 @@ export default function getDomain(
   // Check if `hostname` ends with a member of `validHosts`.
   if (options.validHosts !== null) {
     const validHosts = options.validHosts;
-    for (let i = 0; i < validHosts.length; i += 1) {
-      const vhost = validHosts[i];
-      if (/*@__INLINE__*/ shareSameDomainSuffix(hostname, vhost) === true) {
+    for (const vhost of validHosts) {
+      if (/*@__INLINE__*/ shareSameDomainSuffix(hostname, vhost)) {
         return vhost;
       }
     }

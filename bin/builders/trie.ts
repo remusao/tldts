@@ -27,9 +27,7 @@ import parse from '../parser';
 
 interface ITrie {
   $: 0 | 1 | 2;
-  succ: {
-    [label: string]: ITrie;
-  };
+  succ: { [label: string]: ITrie };
 }
 
 /**
@@ -47,9 +45,8 @@ function insertInTrie(
 ): ITrie {
   let node: ITrie = trie;
 
-  for (let i = 0; i < parts.length; i += 1) {
-    const part = parts[i];
-    let nextNode: ITrie | undefined = node.succ[part];
+  for (const part of parts) {
+    let nextNode = node.succ[part];
     if (nextNode === undefined) {
       nextNode = { $: 0, succ: {} };
       node.succ[part] = nextNode;
@@ -72,13 +69,13 @@ let nextId = 0;
  * for each shared sub-tree, which are then used in the main DAWG.
  */
 function compressToDAWG(trie: ITrie, name: string): string {
-  const nodesByHash: Map<string, ITrie[]> = new Map();
-  const replaceNodes = new Map();
+  const nodesByHash = new Map<string, ITrie[]>();
+  const replaceNodes = new Map<ITrie, (newNode: ITrie) => void>();
 
   (function groupNodesByHash(node: ITrie): string {
     // Get a sorted list of next labels from this node
-    const nexts = Object.keys(node.succ)
-      .filter(n => n !== '$')
+    const nexts = Object.entries(node.succ)
+      .filter(([n]) => n !== '$')
       .sort();
 
     // Create a setter which can be used later to replace the value of a node.
@@ -86,15 +83,15 @@ function compressToDAWG(trie: ITrie, name: string): string {
     // the new value of the node. Because the context of the node (parent and
     // label) is captured in the closure, it allows to just call it later, in a
     // different context, to change the value of a given node in-place.
-    nexts.forEach(n => {
-      replaceNodes.set(node.succ[n], (newNode: ITrie) => {
+    nexts.forEach(([n, succ]) => {
+      replaceNodes.set(succ, (newNode: ITrie) => {
         node.succ[n] = newNode;
       });
     });
 
     // Compute a unique hash for this node recursively.
     const hash = `(${node.$},${[
-      ...nexts.map(c => `${c},${groupNodesByHash(node.succ[c])}`),
+      ...nexts.map(([c, succ]) => `${c},${groupNodesByHash(succ)}`),
     ].join('|')})`;
 
     // Keep track of all node's hashes
@@ -113,14 +110,15 @@ function compressToDAWG(trie: ITrie, name: string): string {
   // seen more than once and store them in a variable to allow sharing with
   // different parts in the DAWG.
   const variables: string[] = [];
-  nodesByHash.forEach(nodes => {
+  nodesByHash.forEach((nodes) => {
     if (nodes.length > 1) {
       // Dump one of the nodes (they are all the same so it does not matter which one)
-      variables.push(`_${nextId}=${JSON.stringify(nodes[0])}`);
+      variables.push(`_${nextId}: ITrie = ${JSON.stringify(nodes[0])}`);
 
       // Replace all the other ones by the name of this new variable
-      nodes.forEach(node => {
-        replaceNodes.get(node)(`_${nextId}`);
+      nodes.forEach((node) => {
+        // @ts-expect-error
+        replaceNodes.get(node)?.(`_${nextId}`);
       });
 
       nextId += 1;
@@ -152,28 +150,25 @@ function compressToDAWG(trie: ITrie, name: string): string {
       `_${i}`,
     );
   }
-  output.push(`const ${name} = ${serializedTrie};`);
+  output.push(`const ${name}: ITrie = ${serializedTrie};`);
 
   return output.join('\n');
 }
 
 function convertToTypeScriptSource(rules: ITrie, exceptions: ITrie): string {
   return `
-/* tslint:disable */
 export interface ITrie {
-  $: number;
-  succ: {
-    [label: string]: ITrie;
-  };
+  $: 0 | 1 | 2;
+  succ: { [label: string]: ITrie };
 }
 
 export const exceptions: ITrie = (function() {
-  ${compressToDAWG(exceptions, 'exceptions')};
+  ${compressToDAWG(exceptions, 'exceptions')}
   return exceptions;
 })();
 
 export const rules: ITrie = (function() {
-  ${compressToDAWG(rules, 'rules')};
+  ${compressToDAWG(rules, 'rules')}
   return rules;
 })();
 `;

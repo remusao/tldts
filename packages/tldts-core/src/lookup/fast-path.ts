@@ -1,13 +1,13 @@
 import { IPublicSuffix, ISuffixLookupOptions } from './interface';
 
-export default function(
+export default function (
   hostname: string,
   options: ISuffixLookupOptions,
   out: IPublicSuffix,
 ): boolean {
   // Fast path for very popular suffixes; this allows to by-pass lookup
   // completely as well as any extra allocation or string manipulation.
-  if (options.allowPrivateDomains === false && hostname.length > 3) {
+  if (!options.allowPrivateDomains && hostname.length > 3) {
     const last: number = hostname.length - 1;
     const c3: number = hostname.charCodeAt(last);
     const c2: number = hostname.charCodeAt(last - 1);

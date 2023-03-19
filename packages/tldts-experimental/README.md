@@ -12,14 +12,15 @@ The default `tldts` package is what you should use most of the time and what is
 imported out of the box. It makes use of an optimized DAWG (direct acyclic word
 graph) data-structure and delivers very good performances. If that is not
 enough, you can try the `tldts-experimental` package which implements a
-*probabilistic data-structure*. It is:
+_probabilistic data-structure_. It is:
 
-* Must smaller (in terms of bundle size and memory footprint)
-* Loads instantly (no data loading or parsing required)
-* Much faster (lookups are up to 1.5-2x faster)
+- Must smaller (in terms of bundle size and memory footprint)
+- Loads instantly (no data loading or parsing required)
+- Much faster (lookups are up to 1.5-2x faster)
 
-The drawback is that there might be some *unlikely* false positive (think bloom filters).
+The drawback is that there might be some _unlikely_ false positive (think bloom filters).
 
 For more details, check the documentation from the following files:
-* [building](https://github.com/remusao/tldts/blob/master/bin/builders/hashes.ts)
-* [lookups](./src/packed-hashes.ts)
+
+- [building](https://github.com/remusao/tldts/blob/master/bin/builders/hashes.ts)
+- [lookups](./src/packed-hashes.ts)

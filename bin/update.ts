@@ -23,9 +23,8 @@ import buildTrie from './builders/trie';
   writeFileSync(
     resolve(__dirname, '../packages/tldts-experimental/src/data/hashes.ts'),
     `
-/* tslint:disable */
 // Code automatically generated using ./bin/builders/hashes.ts
-export default new Uint32Array([${Array.from(packed)}]);
+export default new Uint32Array([${Array.from(packed).toString()}]);
 `,
     'utf-8',
   );

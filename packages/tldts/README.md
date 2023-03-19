@@ -3,13 +3,14 @@
 `tldts` is a JavaScript library to extract hostnames, domains, public suffixes, top-level domains and subdomains from URLs.
 
 **Features**:
+
 1. Tuned for **performance** (order of 0.1 to 1 μs per input)
 2. Handles both URLs and hostnames
 3. Full Unicode/IDNA support
 4. Support parsing email addresses
 5. Detect IPv4 and IPv6 addresses
 6. Continuously updated version of the public suffix list
-7. **TypeScript**, ships with `umd`, `esm`, `cjs` bundles and *type definitions*
+7. **TypeScript**, ships with `umd`, `esm`, `cjs` bundles and _type definitions_
 8. Small bundles and small memory footprint
 9. Battle tested: full test coverage and production use
 
@@ -22,6 +23,7 @@ npm install --save tldts
 # Usage
 
 Using the command-line interface:
+
 ```js
 $ npx tldts 'http://www.writethedocs.org/conf/eu/2017/'
 {
@@ -37,6 +39,7 @@ $ npx tldts 'http://www.writethedocs.org/conf/eu/2017/'
 ```
 
 Programmatically:
+
 ```js
 const { parse } = require('tldts');
 
@@ -52,22 +55,22 @@ parse('http://www.writethedocs.org/conf/eu/2017/');
 //   subdomain: 'www' }
 ```
 
-Modern *ES6 modules import* is also supported:
+Modern _ES6 modules import_ is also supported:
 
 ```js
 import { parse } from 'tldts';
 ```
 
-Alternatively, you can try it *directly in your browser* here: https://npm.runkit.com/tldts
+Alternatively, you can try it _directly in your browser_ here: https://npm.runkit.com/tldts
 
 # API
 
-* `tldts.parse(url | hostname, options)`
-* `tldts.getHostname(url | hostname, options)`
-* `tldts.getDomain(url | hostname, options)`
-* `tldts.getPublicSuffix(url | hostname, options)`
-* `tldts.getSubdomain(url, | hostname, options)`
-* `tldts.getDomainWithoutSuffix(url | hostname, options)`
+- `tldts.parse(url | hostname, options)`
+- `tldts.getHostname(url | hostname, options)`
+- `tldts.getDomain(url | hostname, options)`
+- `tldts.getPublicSuffix(url | hostname, options)`
+- `tldts.getSubdomain(url, | hostname, options)`
+- `tldts.getDomainWithoutSuffix(url | hostname, options)`
 
 The behavior of `tldts` can be customized using an `options` argument for all
 the functions exposed as part of the public API. This is useful to both change
@@ -114,7 +117,10 @@ tldts.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv');
 //   publicSuffix: 'com',
 //   subdomain: 'spark-public.s3' }
 
-tldts.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv', { allowPrivateDomains: true })
+tldts.parse(
+  'https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv',
+  { allowPrivateDomains: true },
+);
 // { domain: 'spark-public.s3.amazonaws.com',
 //   domainWithoutSuffix: 'spark-public',
 //   hostname: 'spark-public.s3.amazonaws.com',
@@ -134,7 +140,7 @@ tldts.parse('gopher://domain.unknown/');
 //   publicSuffix: 'unknown',
 //   subdomain: '' }
 
-tldts.parse('https://192.168.0.0') // IPv4
+tldts.parse('https://192.168.0.0'); // IPv4
 // { domain: null,
 //   domainWithoutSuffix: null,
 //   hostname: '192.168.0.0',
@@ -144,7 +150,7 @@ tldts.parse('https://192.168.0.0') // IPv4
 //   publicSuffix: null,
 //   subdomain: null }
 
-tldts.parse('https://[::1]') // IPv6
+tldts.parse('https://[::1]'); // IPv6
 // { domain: null,
 //   domainWithoutSuffix: null,
 //   hostname: '::1',
@@ -154,7 +160,7 @@ tldts.parse('https://[::1]') // IPv6
 //   publicSuffix: null,
 //   subdomain: null }
 
-tldts.parse('tldts@emailprovider.co.uk') // email
+tldts.parse('tldts@emailprovider.co.uk'); // email
 // { domain: 'emailprovider.co.uk',
 //   domainWithoutSuffix: 'emailprovider',
 //   hostname: 'emailprovider.co.uk',
@@ -166,7 +172,7 @@ tldts.parse('tldts@emailprovider.co.uk') // email
 ```
 
 | Property Name         | Type   | Description                                     |
-|:--------------------- |:------ |:----------------------------------------------- |
+| :-------------------- | :----- | :---------------------------------------------- |
 | `hostname`            | `str`  | `hostname` of the input extracted automatically |
 | `domain`              | `str`  | Domain (tld + sld)                              |
 | `domainWithoutSuffix` | `str`  | Domain without public suffix                    |
@@ -175,7 +181,6 @@ tldts.parse('tldts@emailprovider.co.uk') // email
 | `isIcann`             | `bool` | Does TLD come from ICANN part of the list       |
 | `isPrivate`           | `bool` | Does TLD come from Private part of the list     |
 | `isIP`                | `bool` | Is `hostname` an IP address?                    |
-
 
 ## Single purpose methods
 
@@ -189,13 +194,15 @@ Returns the hostname from a given string.
 ```javascript
 const { getHostname } = require('tldts');
 
-getHostname('google.com');        // returns `google.com`
-getHostname('fr.google.com');     // returns `fr.google.com`
-getHostname('fr.google.google');  // returns `fr.google.google`
-getHostname('foo.google.co.uk');  // returns `foo.google.co.uk`
-getHostname('t.co');              // returns `t.co`
-getHostname('fr.t.co');           // returns `fr.t.co`
-getHostname('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `example.co.uk`
+getHostname('google.com'); // returns `google.com`
+getHostname('fr.google.com'); // returns `fr.google.com`
+getHostname('fr.google.google'); // returns `fr.google.google`
+getHostname('foo.google.co.uk'); // returns `foo.google.co.uk`
+getHostname('t.co'); // returns `t.co`
+getHostname('fr.t.co'); // returns `fr.t.co`
+getHostname(
+  'https://user:password@example.co.uk:8080/some/path?and&query#hash',
+); // returns `example.co.uk`
 ```
 
 ### getDomain(url | hostname, options?)
@@ -205,12 +212,12 @@ Returns the fully qualified domain from a given string.
 ```javascript
 const { getDomain } = require('tldts');
 
-getDomain('google.com');        // returns `google.com`
-getDomain('fr.google.com');     // returns `google.com`
-getDomain('fr.google.google');  // returns `google.google`
-getDomain('foo.google.co.uk');  // returns `google.co.uk`
-getDomain('t.co');              // returns `t.co`
-getDomain('fr.t.co');           // returns `t.co`
+getDomain('google.com'); // returns `google.com`
+getDomain('fr.google.com'); // returns `google.com`
+getDomain('fr.google.google'); // returns `google.google`
+getDomain('foo.google.co.uk'); // returns `google.co.uk`
+getDomain('t.co'); // returns `t.co`
+getDomain('fr.t.co'); // returns `t.co`
 getDomain('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `example.co.uk`
 ```
 
@@ -221,13 +228,15 @@ Returns the domain (as returned by `getDomain(...)`) without the public suffix p
 ```javascript
 const { getDomainWithoutSuffix } = require('tldts');
 
-getDomainWithoutSuffix('google.com');        // returns `google`
-getDomainWithoutSuffix('fr.google.com');     // returns `google`
-getDomainWithoutSuffix('fr.google.google');  // returns `google`
-getDomainWithoutSuffix('foo.google.co.uk');  // returns `google`
-getDomainWithoutSuffix('t.co');              // returns `t`
-getDomainWithoutSuffix('fr.t.co');           // returns `t`
-getDomainWithoutSuffix('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `example`
+getDomainWithoutSuffix('google.com'); // returns `google`
+getDomainWithoutSuffix('fr.google.com'); // returns `google`
+getDomainWithoutSuffix('fr.google.google'); // returns `google`
+getDomainWithoutSuffix('foo.google.co.uk'); // returns `google`
+getDomainWithoutSuffix('t.co'); // returns `t`
+getDomainWithoutSuffix('fr.t.co'); // returns `t`
+getDomainWithoutSuffix(
+  'https://user:password@example.co.uk:8080/some/path?and&query#hash',
+); // returns `example`
 ```
 
 ### getSubdomain(url | hostname, options?)
@@ -237,14 +246,16 @@ Returns the complete subdomain for a given string.
 ```javascript
 const { getSubdomain } = require('tldts');
 
-getSubdomain('google.com');             // returns ``
-getSubdomain('fr.google.com');          // returns `fr`
-getSubdomain('google.co.uk');           // returns ``
-getSubdomain('foo.google.co.uk');       // returns `foo`
-getSubdomain('moar.foo.google.co.uk');  // returns `moar.foo`
-getSubdomain('t.co');                   // returns ``
-getSubdomain('fr.t.co');                // returns `fr`
-getSubdomain('https://user:password@secure.example.co.uk:443/some/path?and&query#hash'); // returns `secure`
+getSubdomain('google.com'); // returns ``
+getSubdomain('fr.google.com'); // returns `fr`
+getSubdomain('google.co.uk'); // returns ``
+getSubdomain('foo.google.co.uk'); // returns `foo`
+getSubdomain('moar.foo.google.co.uk'); // returns `moar.foo`
+getSubdomain('t.co'); // returns ``
+getSubdomain('fr.t.co'); // returns `fr`
+getSubdomain(
+  'https://user:password@secure.example.co.uk:443/some/path?and&query#hash',
+); // returns `secure`
 ```
 
 ### getPublicSuffix(url | hostname, options?)
@@ -254,19 +265,19 @@ Returns the [public suffix][] for a given string.
 ```javascript
 const { getPublicSuffix } = require('tldts');
 
-getPublicSuffix('google.com');       // returns `com`
-getPublicSuffix('fr.google.com');    // returns `com`
-getPublicSuffix('google.co.uk');     // returns `co.uk`
+getPublicSuffix('google.com'); // returns `com`
+getPublicSuffix('fr.google.com'); // returns `com`
+getPublicSuffix('google.co.uk'); // returns `co.uk`
 getPublicSuffix('s3.amazonaws.com'); // returns `com`
 getPublicSuffix('s3.amazonaws.com', { allowPrivateDomains: true }); // returns `s3.amazonaws.com`
-getPublicSuffix('tld.is.unknown');   // returns `unknown`
+getPublicSuffix('tld.is.unknown'); // returns `unknown`
 ```
 
 # Troubleshooting
 
 ## Retrieving subdomain of `localhost` and custom hostnames
 
-`tldts` methods `getDomain` and `getSubdomain` are designed to **work only with *known and valid* TLDs**.
+`tldts` methods `getDomain` and `getSubdomain` are designed to **work only with _known and valid_ TLDs**.
 This way, you can trust what a domain is.
 
 `localhost` is a valid hostname but not a TLD. You can pass additional options to each method exposed by `tldts`:
@@ -274,11 +285,11 @@ This way, you can trust what a domain is.
 ```js
 const tldts = require('tldts');
 
-tldts.getDomain('localhost');           // returns null
-tldts.getSubdomain('vhost.localhost');  // returns null
+tldts.getDomain('localhost'); // returns null
+tldts.getSubdomain('vhost.localhost'); // returns null
 
 tldts.getDomain('localhost', { validHosts: ['localhost'] }); // returns 'localhost'
-tldts.getSubdomain('vhost.localhost', { validHosts: ['localhost'] });  // returns 'vhost'
+tldts.getSubdomain('vhost.localhost', { validHosts: ['localhost'] }); // returns 'vhost'
 ```
 
 ## Updating the TLDs List
@@ -291,7 +302,7 @@ If you keep `tldts` updated, the lists should be up-to-date as well!
 
 # Performance
 
-`tldts` is the *fastest JavaScript library* available for parsing hostnames. It is able to parse *millions of inputs per second* (typically 2-3M depending on your hardware and inputs). It also offers granular options to fine-tune the behavior and performance of the library depending on the kind of inputs you are dealing with (e.g.: if you know you only manipulate valid hostnames you can disable the hostname extraction step with `{ extractHostname: false }`).
+`tldts` is the _fastest JavaScript library_ available for parsing hostnames. It is able to parse _millions of inputs per second_ (typically 2-3M depending on your hardware and inputs). It also offers granular options to fine-tune the behavior and performance of the library depending on the kind of inputs you are dealing with (e.g.: if you know you only manipulate valid hostnames you can disable the hostname extraction step with `{ extractHostname: false }`).
 
 Please see [this detailed comparison](./comparison/comparison.md) with other available libraries.
 
@@ -310,9 +321,7 @@ This project would not be possible without the amazing Mozilla's
 
 [badge-ci]: https://secure.travis-ci.org/remusao/tldts.svg?branch=master
 [badge-downloads]: https://img.shields.io/npm/dm/tldts.svg
-
 [public suffix list]: https://publicsuffix.org/list/
 [list the recent changes]: https://github.com/publicsuffix/list/commits/master
 [changes Atom Feed]: https://github.com/publicsuffix/list/commits/master.atom
-
 [public suffix]: https://publicsuffix.org/learn/
