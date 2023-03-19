@@ -65,7 +65,7 @@ function isProbablyIpv6(hostname: string): boolean {
       !(
         (code >= 48 && code <= 57) || // 0-9
         (code >= 97 && code <= 102) || // a-f
-        (code >= 65 && code <= 90)
+        (code >= 65 && code <= 90) // A-F
       )
     ) {
       return false;
