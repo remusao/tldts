@@ -54,7 +54,7 @@ export default function (hostname: string): boolean {
       }
 
       lastDotIndex = i;
-    } else if (!(isValidAscii(code) || code === 45 || code === 95)) {
+    } else if (!(/*@__INLINE__*/ isValidAscii(code) || code === 45 || code === 95)) {
       // Check if there is a forbidden character in the label
       return false;
     }
