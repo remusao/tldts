@@ -4,6 +4,6 @@ import { publicSuffixListTests } from 'tldts-tests';
 
 import * as tld from '../index';
 
-describe('tldts classic', () => {
+describe('tldts experimental', () => {
   publicSuffixListTests(tld.getDomain);
 });
