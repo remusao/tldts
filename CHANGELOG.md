@@ -1,3 +1,16 @@
+# v6.0.1 (Sat Apr 01 2023)
+
+#### :bug: Bug Fix
+
+- `tldts-experimental`
+  - Extended tests and fix in wildcard matching from tldts-experimental [#1593](https://github.com/remusao/tldts/pull/1593) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.0.0 (Sat Apr 01 2023)
 
 ### Release Notes
