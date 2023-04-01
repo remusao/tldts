@@ -1,3 +1,56 @@
+# v6.0.0 (Sat Apr 01 2023)
+
+### Release Notes
+
+#### Be more lenient in accepting leading underscores and dots in hostnames ([#1553](https://github.com/remusao/tldts/pull/1553))
+
+Handling of _leading dot(s)_ in input URIs and hostnames:
+```patch
+- expect(isValidHostname('.github.com')).to.equal(false);
++ expect(isValidHostname('.github.com')).to.equal(true);
+
+- expect(getDomain('.github.com')).to.equal(null);
++ expect(getDomain('.github.com')).to.equal('github.com');
+
+- expect(getDomain('.remusao.github.io')).to.equal(null);
++ expect(getDomain('.remusao.github.io')).to.equal('github.io');
+```
+
+Handling of _leading underscores_ in input URIs and hostnames:
+```patch
+- expect(getDomain('_0f6879.bsg-1418.bryanjswift.com')).to.equal(null);
++ expect(getDomain('_0f6879.bsg-1418.bryanjswift.com')).to.equal('bryanjswift.com');
+```
+
+Lastly, increase test coverage using test cases found in the [whatwg](https://url.spec.whatwg.org/#host-miscellaneous) spec.
+
+This is a breaking change because some might rely on the previous behavior to consider leading dots and underscores as invalid hostnames or domains.
+
+Resolves #1534 
+Resolves #1523
+
+#### tooling: migrate to eslint + TypeScript v5 + prettier ([#1575](https://github.com/remusao/tldts/pull/1575))
+
+Updated internal representation of the DAWG used to encode the public suffix list, resulting in ~5% size reduction of minified bundle for identical performance (and likely a faster parsing/loading time of the source, although I did not measure that particular aspect yet).
+
+Migrate from deprecated `tslint` to eslint with TypeScript support and fix most of the issues encountered, resulting in tighter typing. Bump TypeScript to v5 as well and make sure code-base is formatted according to prettier's preset.
+
+---
+
+#### :boom: Breaking Change
+
+- Be more lenient in accepting leading underscores and dots in hostnames [#1553](https://github.com/remusao/tldts/pull/1553) ([@remusao](https://github.com/remusao))
+
+#### :house: Internal
+
+- tooling: migrate to eslint + TypeScript v5 + prettier [#1575](https://github.com/remusao/tldts/pull/1575) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v5.7.110 (Wed Mar 01 2023)
 
 #### :scroll: Update Public Suffix List
