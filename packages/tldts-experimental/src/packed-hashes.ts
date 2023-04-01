@@ -259,10 +259,16 @@ export default function suffixLookup(
   // was *.com, we would have stored only 'com' in the packed structure and we
   // need to take one extra label on the left.
   if ((matchKind & Result.WILDCARD_MATCH) !== 0) {
-    out.publicSuffix =
-      matchLabels >= numberOfHashes
-        ? hostname
-        : hostname.slice(BUFFER[((matchLabels - 1) << 1) + 1]);
+    if (matchLabels < numberOfHashes) {
+      out.publicSuffix = hostname.slice(BUFFER[((matchLabels - 1) << 1) + 1]);
+      return;
+    }
+
+    const parts = hostname.split('.');
+    while (parts.length > matchLabels) {
+      parts.shift();
+    }
+    out.publicSuffix = parts.join('.');
     return;
   }
 
