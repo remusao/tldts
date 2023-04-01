@@ -46,7 +46,7 @@ describe('#isValidHostname', () => {
     expect(isValidHostname('-google.com')).to.equal(false);
     expect(isValidHostname('google-.com')).to.equal(false);
     expect(isValidHostname('google.com-')).to.equal(false);
-    expect(isValidHostname('.google.com')).to.equal(false);
+    expect(isValidHostname('.google.com')).to.equal(true);
     expect(isValidHostname('google..com')).to.equal(false);
     expect(isValidHostname('google.com..')).to.equal(false);
     expect(isValidHostname('example.' + repeat('a', 64) + '.')).to.equal(false);
@@ -75,10 +75,10 @@ describe('#isValidHostname', () => {
     expect(isValidHostname('mañana.com')).to.equal(true);
   });
 
-  it('should be falsy on invalid domain syntax', () => {
-    expect(isValidHostname('.localhost')).to.equal(false);
-    expect(isValidHostname('.google.com')).to.equal(false);
-    expect(isValidHostname('.com')).to.equal(false);
+  it('should allow leading dots', () => {
+    expect(isValidHostname('.localhost')).to.equal(true);
+    expect(isValidHostname('.google.com')).to.equal(true);
+    expect(isValidHostname('.com')).to.equal(true);
   });
 
   it('should accept extra code points in domain (not strict)', () => {

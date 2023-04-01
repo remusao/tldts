@@ -253,6 +253,53 @@ export default function test(tldts: {
       }).not.to.throw();
     });
 
+    // See https://github.com/remusao/tldts/issues/1523
+    it('should accept leading dots in a domain', () => {
+      expect(
+        tldts.getDomain('http://.example.co.uk./some/path?and&query#hash'),
+      ).to.equal('example.co.uk');
+    });
+
+    // See https://github.com/remusao/tldts/issues/1534
+    it('should accept leading dash and underscores in a domain', () => {
+      expect(
+        tldts.parse(
+          '_0f6879f07aa61fc09d9645cce98b30e3.bsg-1418.bryanjswift.com',
+        ),
+      ).to.eql({
+        domain: 'bryanjswift.com',
+        domainWithoutSuffix: 'bryanjswift',
+        hostname: '_0f6879f07aa61fc09d9645cce98b30e3.bsg-1418.bryanjswift.com',
+        isIcann: true,
+        isIp: false,
+        isPrivate: false,
+        publicSuffix: 'com',
+        subdomain: '_0f6879f07aa61fc09d9645cce98b30e3.bsg-1418',
+      });
+
+      expect(tldts.parse('_bsg-1418.bryanjswift.com')).to.eql({
+        domain: 'bryanjswift.com',
+        domainWithoutSuffix: 'bryanjswift',
+        hostname: '_bsg-1418.bryanjswift.com',
+        isIcann: true,
+        isIp: false,
+        isPrivate: false,
+        publicSuffix: 'com',
+        subdomain: '_bsg-1418',
+      });
+
+      expect(tldts.parse('_bryanjswift.com')).to.eql({
+        domain: '_bryanjswift.com',
+        domainWithoutSuffix: '_bryanjswift',
+        hostname: '_bryanjswift.com',
+        isIcann: true,
+        isIp: false,
+        isPrivate: false,
+        publicSuffix: 'com',
+        subdomain: '',
+      });
+    });
+
     // @see https://github.com/oncletom/tld.js/issues/53
     it('should correctly extract domain from paths including "@" in the path', () => {
       const domain = tldts.getDomain(
@@ -534,6 +581,13 @@ export default function test(tldts: {
       ).to.equal('example.co.uk');
     });
 
+    // See https://github.com/remusao/tldts/issues/1523
+    it('should accept leading dots in a hostname', () => {
+      expect(
+        tldts.getHostname('http://.example.co.uk./some/path?and&query#hash'),
+      ).to.equal('.example.co.uk');
+    });
+
     it('should handle fragment URL', () => {
       expect(tldts.getHostname('http://example.co.uk.#hash')).to.equal(
         'example.co.uk',
@@ -812,5 +866,30 @@ export default function test(tldts: {
         expect(tldts.getSubdomain('vhost.evil.com', options)).to.equal('vhost');
       });
     });
+  });
+
+  // Examples based on What-wg specification: https://url.spec.whatwg.org/#example-host-psl
+  describe('whatwg URL spec', () => {
+    for (const [input, publicSuffix, domain] of [
+      ['com', 'com', null],
+      ['example.com', 'com', 'example.com'],
+      ['www.example.com', 'com', 'example.com'],
+      ['sub.www.example.com', 'com', 'example.com'],
+      ['EXAMPLE.COM', 'com', 'example.com'],
+      // ['example.com.', 'com.', 'example.com.'],
+      ['github.io', 'github.io', null],
+      ['whatwg.github.io', 'github.io', 'whatwg.github.io'],
+      ['إختبار', 'إختبار', null],
+      ['example.إختبار', 'إختبار', 'example.إختبار'],
+      ['sub.example.إختبار', 'إختبار', 'example.إختبار'],
+      ['[2001:0db8:85a3:0000:0000:8a2e:0370:7334]', null, null],
+    ] as const) {
+      it(input, () => {
+        const result = tldts.parse(input, { allowPrivateDomains: true });
+        expect(result, input).not.to.equal(null);
+        expect(result.publicSuffix, input).to.equal(publicSuffix);
+        expect(result.domain, input).to.equal(domain);
+      });
+    }
   });
 }

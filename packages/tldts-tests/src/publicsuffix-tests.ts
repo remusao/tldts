@@ -31,8 +31,8 @@ export default function test(
     it('Leading dot.', () => {
       checkPublicSuffix('.com', null);
       checkPublicSuffix('.example', null);
-      checkPublicSuffix('.example.com', null);
-      checkPublicSuffix('.example.example', null);
+      checkPublicSuffix('.example.com', 'example.com');
+      checkPublicSuffix('.example.example', 'example.example');
     });
 
     it('Unlisted TLD.', () => {

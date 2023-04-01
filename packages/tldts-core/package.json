@@ -55,13 +55,13 @@
     "@rollup/plugin-typescript": "^11.0.0",
     "@types/chai": "^4.2.18",
     "@types/mocha": "^10.0.0",
-    "@types/node": "^18.0.0",
+    "@types/node": "^18.15.11",
     "chai": "^4.2.0",
     "mocha": "^10.1.0",
     "nyc": "^15.0.1",
-    "rimraf": "^4.1.2",
-    "rollup": "^3.17.3",
+    "rimraf": "^4.4.1",
+    "rollup": "^3.20.2",
     "rollup-plugin-sourcemaps": "^0.6.1",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.3"
   }
 }

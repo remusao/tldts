@@ -48,15 +48,15 @@
     "release": "auto shipit"
   },
   "devDependencies": {
-    "@types/node": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.55.0",
-    "@typescript-eslint/parser": "^5.55.0",
+    "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
     "auto": "^10.29.2",
     "benchmark": "^2.1.4",
-    "eslint": "^8.36.0",
-    "lerna": "^6.0.1",
+    "eslint": "^8.37.0",
+    "lerna": "^6.6.1",
     "ts-node": "^10.0.0",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.3"
   },
   "auto": {
     "name": "Rémi Berson",

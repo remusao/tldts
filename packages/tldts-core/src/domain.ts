@@ -73,11 +73,21 @@ export default function getDomain(
     }
   }
 
+  let numberOfLeadingDots = 0;
+  if (hostname.startsWith('.')) {
+    while (
+      numberOfLeadingDots < hostname.length &&
+      hostname[numberOfLeadingDots] === '.'
+    ) {
+      numberOfLeadingDots += 1;
+    }
+  }
+
   // If `hostname` is a valid public suffix, then there is no domain to return.
   // Since we already know that `getPublicSuffix` returns a suffix of `hostname`
   // there is no need to perform a string comparison and we only compare the
   // size.
-  if (suffix.length === hostname.length) {
+  if (suffix.length === hostname.length - numberOfLeadingDots) {
     return null;
   }
 

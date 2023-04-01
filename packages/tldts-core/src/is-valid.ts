@@ -28,7 +28,11 @@ export default function (hostname: string): boolean {
     return false;
   }
 
-  if (/*@__INLINE__*/ !isValidAscii(hostname.charCodeAt(0))) {
+  if (
+    /*@__INLINE__*/ !isValidAscii(hostname.charCodeAt(0)) &&
+    hostname.charCodeAt(0) !== 46 && // '.' (dot)
+    hostname.charCodeAt(0) !== 95 // '_' (underscore)
+  ) {
     return false;
   }
 
@@ -54,7 +58,9 @@ export default function (hostname: string): boolean {
       }
 
       lastDotIndex = i;
-    } else if (!(/*@__INLINE__*/ isValidAscii(code) || code === 45 || code === 95)) {
+    } else if (
+      !(/*@__INLINE__*/ (isValidAscii(code) || code === 45 || code === 95))
+    ) {
       // Check if there is a forbidden character in the label
       return false;
     }
