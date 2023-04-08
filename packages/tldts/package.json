@@ -67,7 +67,7 @@
     "rollup": "^3.20.2",
     "rollup-plugin-sourcemaps": "^0.6.1",
     "tldts-tests": "^6.0.2",
-    "typescript": "^5.0.3"
+    "typescript": "^5.0.4"
   },
   "dependencies": {
     "tldts-core": "^6.0.2"

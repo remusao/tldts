@@ -53,10 +53,10 @@
     "@typescript-eslint/parser": "^5.57.0",
     "auto": "^10.29.2",
     "benchmark": "^2.1.4",
-    "eslint": "^8.37.0",
+    "eslint": "^8.38.0",
     "lerna": "^6.6.1",
     "ts-node": "^10.0.0",
-    "typescript": "^5.0.3"
+    "typescript": "^5.0.4"
   },
   "auto": {
     "name": "Rémi Berson",
