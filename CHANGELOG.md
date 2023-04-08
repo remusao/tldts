@@ -31,6 +31,7 @@
 #### Be more lenient in accepting leading underscores and dots in hostnames ([#1553](https://github.com/remusao/tldts/pull/1553))
 
 Handling of _leading dot(s)_ in input URIs and hostnames:
+
 ```patch
 - expect(isValidHostname('.github.com')).to.equal(false);
 + expect(isValidHostname('.github.com')).to.equal(true);
@@ -43,6 +44,7 @@ Handling of _leading dot(s)_ in input URIs and hostnames:
 ```
 
 Handling of _leading underscores_ in input URIs and hostnames:
+
 ```patch
 - expect(getDomain('_0f6879.bsg-1418.bryanjswift.com')).to.equal(null);
 + expect(getDomain('_0f6879.bsg-1418.bryanjswift.com')).to.equal('bryanjswift.com');
@@ -52,7 +54,7 @@ Lastly, increase test coverage using test cases found in the [whatwg](https://ur
 
 This is a breaking change because some might rely on the previous behavior to consider leading dots and underscores as invalid hostnames or domains.
 
-Resolves #1534 
+Resolves #1534
 Resolves #1523
 
 #### tooling: migrate to eslint + TypeScript v5 + prettier ([#1575](https://github.com/remusao/tldts/pull/1575))
@@ -3941,76 +3943,95 @@ Migrate from deprecated `tslint` to eslint with TypeScript support and fix most 
 - chore(deps-dev): bump typescript from 3.8.2 to 3.8.3
 
 Bumps [typescript](https://github.com/Microsoft/TypeScript) from 3.8.2 to 3.8.3.
+
 - [Release notes](https://github.com/Microsoft/TypeScript/releases)
 - [Commits](https://github.com/Microsoft/TypeScript/compare/v3.8.2...v3.8.3)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#399](https://github.com/remusao/tldts/pull/399) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump @types/node from 13.7.6 to 13.7.7
 
 Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 13.7.6 to 13.7.7.
+
 - [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
 - [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#398](https://github.com/remusao/tldts/pull/398) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump auto from 9.15.4 to 9.15.5
 
 Bumps [auto](https://github.com/intuit/auto) from 9.15.4 to 9.15.5.
+
 - [Release notes](https://github.com/intuit/auto/releases)
 - [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
 - [Commits](https://github.com/intuit/auto/compare/v9.15.4...v9.15.5)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#406](https://github.com/remusao/tldts/pull/406) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump auto from 9.15.3 to 9.15.4
 
 Bumps [auto](https://github.com/intuit/auto) from 9.15.3 to 9.15.4.
+
 - [Release notes](https://github.com/intuit/auto/releases)
 - [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
 - [Commits](https://github.com/intuit/auto/compare/v9.15.3...v9.15.4)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#405](https://github.com/remusao/tldts/pull/405) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump auto from 9.15.2 to 9.15.3
 
 Bumps [auto](https://github.com/intuit/auto) from 9.15.2 to 9.15.3.
+
 - [Release notes](https://github.com/intuit/auto/releases)
 - [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
 - [Commits](https://github.com/intuit/auto/compare/v9.15.2...v9.15.3)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#404](https://github.com/remusao/tldts/pull/404) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump auto from 9.15.1 to 9.15.2
 
 Bumps [auto](https://github.com/intuit/auto) from 9.15.1 to 9.15.2.
+
 - [Release notes](https://github.com/intuit/auto/releases)
 - [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
 - [Commits](https://github.com/intuit/auto/compare/v9.15.1...v9.15.2)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#403](https://github.com/remusao/tldts/pull/403) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - `tldts-experimental`, `tldts`
   - chore(deps-dev): bump @ampproject/rollup-plugin-closure-compiler
 
 Bumps [@ampproject/rollup-plugin-closure-compiler](https://github.com/ampproject/rollup-plugin-closure-compiler) from 0.22.2 to 0.23.0.
+
 - [Release notes](https://github.com/ampproject/rollup-plugin-closure-compiler/releases)
 - [Commits](https://github.com/ampproject/rollup-plugin-closure-compiler/commits)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#402](https://github.com/remusao/tldts/pull/402) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump auto from 9.15.0 to 9.15.1
 
 Bumps [auto](https://github.com/intuit/auto) from 9.15.0 to 9.15.1.
+
 - [Release notes](https://github.com/intuit/auto/releases)
 - [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
 - [Commits](https://github.com/intuit/auto/compare/v9.15.0...v9.15.1)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#401](https://github.com/remusao/tldts/pull/401) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump auto from 9.14.0 to 9.15.0
 
 Bumps [auto](https://github.com/intuit/auto) from 9.14.0 to 9.15.0.
+
 - [Release notes](https://github.com/intuit/auto/releases)
 - [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
 - [Commits](https://github.com/intuit/auto/compare/v9.14.0...v9.15.0)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#400](https://github.com/remusao/tldts/pull/400) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump rollup from 1.31.1 to 1.32.0
 
 Bumps [rollup](https://github.com/rollup/rollup) from 1.31.1 to 1.32.0.
+
 - [Release notes](https://github.com/rollup/rollup/releases)
 - [Changelog](https://github.com/rollup/rollup/blob/master/CHANGELOG.md)
 - [Commits](https://github.com/rollup/rollup/compare/v1.31.1...v1.32.0)
@@ -4036,75 +4057,94 @@ Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#397](https://g
 - chore(deps-dev): bump @types/node from 13.7.5 to 13.7.6
 
 Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 13.7.5 to 13.7.6.
+
 - [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
 - [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#396](https://github.com/remusao/tldts/pull/396) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump @types/node from 13.7.4 to 13.7.5
 
 Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 13.7.4 to 13.7.5.
+
 - [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
 - [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#394](https://github.com/remusao/tldts/pull/394) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump typescript from 3.7.5 to 3.8.2
 
 Bumps [typescript](https://github.com/Microsoft/TypeScript) from 3.7.5 to 3.8.2.
+
 - [Release notes](https://github.com/Microsoft/TypeScript/releases)
 - [Commits](https://github.com/Microsoft/TypeScript/commits)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#386](https://github.com/remusao/tldts/pull/386) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump auto from 9.13.1 to 9.14.0
 
 Bumps [auto](https://github.com/intuit/auto) from 9.13.1 to 9.14.0.
+
 - [Release notes](https://github.com/intuit/auto/releases)
 - [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
 - [Commits](https://github.com/intuit/auto/compare/v9.13.1...v9.14.0)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#393](https://github.com/remusao/tldts/pull/393) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump auto from 9.13.0 to 9.13.1
 
 Bumps [auto](https://github.com/intuit/auto) from 9.13.0 to 9.13.1.
+
 - [Release notes](https://github.com/intuit/auto/releases)
 - [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
 - [Commits](https://github.com/intuit/auto/compare/v9.13.0...v9.13.1)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#392](https://github.com/remusao/tldts/pull/392) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump auto from 9.12.1 to 9.13.0
 
 Bumps [auto](https://github.com/intuit/auto) from 9.12.1 to 9.13.0.
+
 - [Release notes](https://github.com/intuit/auto/releases)
 - [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
 - [Commits](https://github.com/intuit/auto/compare/v9.12.1...v9.13.0)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#391](https://github.com/remusao/tldts/pull/391) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump auto from 9.12.0 to 9.12.1
 
 Bumps [auto](https://github.com/intuit/auto) from 9.12.0 to 9.12.1.
+
 - [Release notes](https://github.com/intuit/auto/releases)
 - [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
 - [Commits](https://github.com/intuit/auto/compare/v9.12.0...v9.12.1)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#390](https://github.com/remusao/tldts/pull/390) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump auto from 9.11.0 to 9.12.0
 
 Bumps [auto](https://github.com/intuit/auto) from 9.11.0 to 9.12.0.
+
 - [Release notes](https://github.com/intuit/auto/releases)
 - [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
 - [Commits](https://github.com/intuit/auto/compare/v9.11.0...v9.12.0)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#389](https://github.com/remusao/tldts/pull/389) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump auto from 9.10.8 to 9.11.0
 
 Bumps [auto](https://github.com/intuit/auto) from 9.10.8 to 9.11.0.
+
 - [Release notes](https://github.com/intuit/auto/releases)
 - [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
 - [Commits](https://github.com/intuit/auto/compare/v9.10.8...v9.11.0)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#388](https://github.com/remusao/tldts/pull/388) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump auto from 9.10.7 to 9.10.8
 
 Bumps [auto](https://github.com/intuit/auto) from 9.10.7 to 9.10.8.
+
 - [Release notes](https://github.com/intuit/auto/releases)
 - [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
 - [Commits](https://github.com/intuit/auto/compare/v9.10.7...v9.10.8)
@@ -4131,50 +4171,63 @@ Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#387](https://g
 - chore(deps): bump @types/jest from 25.1.2 to 25.1.3
 
 Bumps [@types/jest](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/jest) from 25.1.2 to 25.1.3.
+
 - [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
 - [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/jest)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#384](https://github.com/remusao/tldts/pull/384) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump @types/node from 13.7.2 to 13.7.4
 
 Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 13.7.2 to 13.7.4.
+
 - [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
 - [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#383](https://github.com/remusao/tldts/pull/383) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump @types/node from 13.7.1 to 13.7.2
 
 Bumps [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/HEAD/types/node) from 13.7.1 to 13.7.2.
+
 - [Release notes](https://github.com/DefinitelyTyped/DefinitelyTyped/releases)
 - [Commits](https://github.com/DefinitelyTyped/DefinitelyTyped/commits/HEAD/types/node)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#381](https://github.com/remusao/tldts/pull/381) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump @ampproject/rollup-plugin-closure-compiler
 
 Bumps [@ampproject/rollup-plugin-closure-compiler](https://github.com/ampproject/rollup-plugin-closure-compiler) from 0.21.0 to 0.22.2.
+
 - [Release notes](https://github.com/ampproject/rollup-plugin-closure-compiler/releases)
 - [Commits](https://github.com/ampproject/rollup-plugin-closure-compiler/commits)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#378](https://github.com/remusao/tldts/pull/378) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps): bump ts-jest from 25.2.0 to 25.2.1
 
 Bumps [ts-jest](https://github.com/kulshekhar/ts-jest) from 25.2.0 to 25.2.1.
+
 - [Release notes](https://github.com/kulshekhar/ts-jest/releases)
 - [Changelog](https://github.com/kulshekhar/ts-jest/blob/master/CHANGELOG.md)
 - [Commits](https://github.com/kulshekhar/ts-jest/commits)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#382](https://github.com/remusao/tldts/pull/382) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump auto from 9.10.6 to 9.10.7
 
 Bumps [auto](https://github.com/intuit/auto) from 9.10.6 to 9.10.7.
+
 - [Release notes](https://github.com/intuit/auto/releases)
 - [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
 - [Commits](https://github.com/intuit/auto/compare/v9.10.6...v9.10.7)
 
 Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#380](https://github.com/remusao/tldts/pull/380) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
 - chore(deps-dev): bump auto from 9.10.5 to 9.10.6
 
 Bumps [auto](https://github.com/intuit/auto) from 9.10.5 to 9.10.6.
+
 - [Release notes](https://github.com/intuit/auto/releases)
 - [Changelog](https://github.com/intuit/auto/blob/master/CHANGELOG.md)
 - [Commits](https://github.com/intuit/auto/compare/v9.10.5...v9.10.6)
@@ -4205,10 +4258,10 @@ Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#379](https://g
 
 # v5.6.6 (Sun Feb 16 2020)
 
-#### ⚠️  Pushed to master
+#### ⚠️ Pushed to master
 
-- clean-up CHANGELOG  ([@remusao](https://github.com/remusao))
-- ci: remove 'released' plugin for auto  ([@remusao](https://github.com/remusao))
+- clean-up CHANGELOG ([@remusao](https://github.com/remusao))
+- ci: remove 'released' plugin for auto ([@remusao](https://github.com/remusao))
 
 #### Authors: 1
 
@@ -4228,12 +4281,12 @@ Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#379](https://g
 - `tldts-core`, `tldts-experimental`, `tldts`
   - fix: handling of ipv6 when 'extractHostname' option is 'false' [#256](https://github.com/remusao/tldts/pull/256) ([@remusao](https://github.com/remusao))
 
-#### ⚠️  Pushed to master
+#### ⚠️ Pushed to master
 
-- ci: remove auto base config  ([@remusao](https://github.com/remusao))
-- ci: try to fix publishing  ([@remusao](https://github.com/remusao))
+- ci: remove auto base config ([@remusao](https://github.com/remusao))
+- ci: try to fix publishing ([@remusao](https://github.com/remusao))
 - `tldts-core`, `tldts-experimental`, `tldts`
-  - Release v5.6.3  ([@remusao](https://github.com/remusao))
+  - Release v5.6.3 ([@remusao](https://github.com/remusao))
 
 #### :house: Internal
 
@@ -4343,33 +4396,33 @@ Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#379](https://g
 
 ### 5.6.3
 
-*2019-12-25*
+_2019-12-25_
 
 - Update version of public suffix rules.
 
 ### 5.6.2
 
-*2019-11-17*
+_2019-11-17_
 
 - Update version of public suffix rules.
 
 ### 5.6.1
 
-*2019-10-14*
+_2019-10-14_
 
 - Fix detection of IPv6 when `extractHostname` is `false` [#256](https://github.com/remusao/tldts/pull/256)
-  * Allow IPv6 to be specified with or without brackets
-  * Make sure detection is case-insensitive
+  - Allow IPv6 to be specified with or without brackets
+  - Make sure detection is case-insensitive
 
 ### 5.6.0
 
-*2019-10-12*
+_2019-10-12_
 
 - New optimizations [#255](https://github.com/remusao/tldts/pull/255)
 
-  * re-use a unique result object for all methods but `parse(...)`
-  * remove memory allocation + callback in packed hash
-  * remove unnecessary calls to `indexOf` and `lastIndexOf` in packed hash
+  - re-use a unique result object for all methods but `parse(...)`
+  - remove memory allocation + callback in packed hash
+  - remove unnecessary calls to `indexOf` and `lastIndexOf` in packed hash
 
   These optimizations result in up to **20%** faster invocations of `parse(...)`
   and **40%** faster invocations of `getPublicSuffix(...)`when using
@@ -4379,27 +4432,27 @@ Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#379](https://g
 
 ### 5.5.0
 
-*2019-09-24*
+_2019-09-24_
 
 - Add minified esm bundle (alongside umd)
 - Update public suffix ruleset
 
 ### 5.4.1
 
-*2019-09-16*
+_2019-09-16_
 
 - Update public suffix ruleset
 
 ### 5.4.0
 
-*2019-08-29*
+_2019-08-29_
 
 - Update public suffix ruleset [#231](https://github.com/remusao/tldts/pull/231)
 - Add new `getDomainWithoutSuffix(...)` method [#231](https://github.com/remusao/tldts/pull/231)
 
 ### 5.3.2
 
-*2019-07-26*
+_2019-07-26_
 
 - update public suffix ruleset [#207](https://github.com/remusao/tldts/pull/207)
 - fix source maps [#207](https://github.com/remusao/tldts/pull/207)
@@ -4407,131 +4460,131 @@ Signed-off-by: dependabot-preview[bot] <support@dependabot.com> [#379](https://g
 
 ### 5.3.1
 
-*2019-07-17*
+_2019-07-17_
 
 - clean-up dead folder + update rules [#199](https://github.com/remusao/tldts/pull/199)
 
 ### 5.3.0
 
-*2019-07-03*
+_2019-07-03_
 
 - change structure of the cliqz/adblocker project into a monorepo [#185](https://github.com/cliqz-oss/adblocker/pull/185)
-  * embrace `lerna` and `yarn` workspaces as a way to manage multiple packages
-  * split `tldts` into two packages `tldts` and `tldts-experimental`
-  * both package inherit from `tldts-core` which contains the building blocks
+  - embrace `lerna` and `yarn` workspaces as a way to manage multiple packages
+  - split `tldts` into two packages `tldts` and `tldts-experimental`
+  - both package inherit from `tldts-core` which contains the building blocks
 
 ### 5.2.1
 
-*2019-07-01*
+_2019-07-01_
 
 - ship both cjs and es6 source + only minified bundles [#183](https://github.com/remusao/tldts/pull/183)
 
 ### 5.2.0
 
-*2019-06-21*
+_2019-06-21_
 
 - Exclude unnecessary files from package.json [#177](https://github.com/remusao/tldts/pull/177)
 
 ### 5.1.0
 
-*2019-06-06*
+_2019-06-06_
 
 - [#164](https://github.com/remusao/tldts/pull/164) Update rules + add fast path for experimental bundle as well
 
 ### 5.0.3
 
-*2019-05-29*
+_2019-05-29_
 
 - [#155](https://github.com/remusao/tldts/pull/151) Update Public Suffix Lists to [f651d07](https://github.com/publicsuffix/list/commit/f651d07f85b5e25f8bc757f0e7db60ec5c41c256)
 
 ### 5.0.2
 
-*2019-05-24*
+_2019-05-24_
 
 - [#151](https://github.com/remusao/tldts/pull/151) Update Public Suffix Lists to [456d938](https://github.com/publicsuffix/list/commit/456d93876bf5435424646114ad577c3e2aee7587)
 
 ### 5.0.1
 
-*2019-05-23*
+_2019-05-23_
 
 - [#150](https://github.com/remusao/tldts/pull/150) Update Public Suffix Lists to [7697e3c](https://github.com/publicsuffix/list/commit/7697e3c95a8bb61831d5b4df1f9c942e2095faba)
 
 ### 5.0.0
 
-*2019-05-23*
+_2019-05-23_
 
 - Improvements in various areas [#149](https://github.com/remusao/tldts/pull/149)
-  * Performance improvements in all methods of public API (up to x2 faster)
-    * `extractHostname`: will now avoid lower-casing the result in some cases
-    * `extractHostname`: handles single or triple '/' after protocol
-    * `extractHostname`: has fast-path for validation of common protocols (e.g. https)
-    * `isProbablyIpv4`: performs first quick check on length of hostname
-    * `isProbablyIpv6`: performs first quick check on length of hostname
-    * `isValidHostname`: make use of `charCodeAt` instead of `codePointAt`
-    * `lookupInTrie`: makes use of Trie with more stable structure (faster)
-    * `lookupInTrie`: lazily allocate memory for result
-    * `suffixLookup`: uses fast-path for most common suffixes (massive speed-up)
-    * `suffixLookup`: does not allocate memory for result anymore
-    * `setDefaults`: fast-path in case no argument was provided
-    * `getSubdomain`: fast-path if subdomain is empty
-  * Add more options to fine-tune behavior and performance
-    * `detectIp` allows to disable IP check
-    * `mixedInput` allows to specify if we expect a mix of URLs and hostnames as
+  - Performance improvements in all methods of public API (up to x2 faster)
+    - `extractHostname`: will now avoid lower-casing the result in some cases
+    - `extractHostname`: handles single or triple '/' after protocol
+    - `extractHostname`: has fast-path for validation of common protocols (e.g. https)
+    - `isProbablyIpv4`: performs first quick check on length of hostname
+    - `isProbablyIpv6`: performs first quick check on length of hostname
+    - `isValidHostname`: make use of `charCodeAt` instead of `codePointAt`
+    - `lookupInTrie`: makes use of Trie with more stable structure (faster)
+    - `lookupInTrie`: lazily allocate memory for result
+    - `suffixLookup`: uses fast-path for most common suffixes (massive speed-up)
+    - `suffixLookup`: does not allocate memory for result anymore
+    - `setDefaults`: fast-path in case no argument was provided
+    - `getSubdomain`: fast-path if subdomain is empty
+  - Add more options to fine-tune behavior and performance
+    - `detectIp` allows to disable IP check
+    - `mixedInput` allows to specify if we expect a mix of URLs and hostnames as
       input. If only hostnames are expected then `extractHostname` can be set to
       `false` to speed-up parsing. If only URLs are expected then `mixedInputs`
       can be set to `false`. The `mixedInputs` is only a hint and will not
       change the behavior of the library.
-    * `validateHostname` can be set to `false` to disable validation and
+    - `validateHostname` can be set to `false` to disable validation and
       speed-up processing further.
-  * Check that input is string before parsing
-  * Fix support for reserved keywords in hostnames
-  * Add tests and bring back coverage to 100%
-  * Minified bundle is now also tested with the same suite
-  * Migrate utils scripts from `bin/` folder to TypeScript
-  * Add small `tldts` cli which can be used to parse URLs
-  * Update README with more accurate information
+  - Check that input is string before parsing
+  - Fix support for reserved keywords in hostnames
+  - Add tests and bring back coverage to 100%
+  - Minified bundle is now also tested with the same suite
+  - Migrate utils scripts from `bin/` folder to TypeScript
+  - Add small `tldts` cli which can be used to parse URLs
+  - Update README with more accurate information
 
 ### 4.0.6
 
-*2019-04-15*
+_2019-04-15_
 
 - [#123](https://github.com/remusao/tldts/pull/123) Update Public Suffix Lists to 033221af7f600bcfce38dcbfafe03b9a2269c4cc
 
 ### 4.0.5
 
-*2019-03-29*
+_2019-03-29_
 
 - [#101](https://github.com/remusao/tldts/pull/101) Update Public Suffix Lists
 - [#101](https://github.com/remusao/tldts/pull/101) Update dev dependencies
 
 ### 4.0.4
 
-*2019-03-28*
+_2019-03-28_
 
 - [#100](https://github.com/remusao/tldts/pull/100) Update Public Suffix Lists
 
 ### 4.0.3
 
-*2019-03-10*
+_2019-03-10_
 
 - [#82](https://github.com/remusao/tldts/pull/82) Update Public Suffix Lists
 
 ### 4.0.2
 
-*2019-02-05*
+_2019-02-05_
 
 - [#36](https://github.com/remusao/tldts/pull/36) Update Public Suffix Lists
 
 ### 4.0.1
 
-*2019-01-29*
+_2019-01-29_
 
 - [#35](https://github.com/remusao/tldts/pull/35) Update Public Suffix Lists
-  * https://github.com/publicsuffix/list/commit/5d3dfdf7f074ca2831d7c2413cf50b976a019a39
+  - https://github.com/publicsuffix/list/commit/5d3dfdf7f074ca2831d7c2413cf50b976a019a39
 
 ### 4.0.0
 
-*2019-01-07*
+_2019-01-07_
 
 This Release introduces some more optimizations both in size of bundles,
 memory usage and speed of parsing. Because it introduces some breaking
@@ -4540,23 +4593,24 @@ of the `isValid` attribute), as well as introducing a new experimental
 backend (`tldts-experimental` bundle), this is a major version bump.
 
 - [#16](https://github.com/remusao/tldts/pull/16) Optimizations + comparison with other libraries (#16)
-  * Optimize Trie into a DAWG (size reduction)
-  * Implement comparison with other libraries
-  * Implement fast path for valid hostnames as arguments
-  * Allow to disable hostname parsing and validation using option
-  * Add tests for corner-cases URLs parsing
-  * Update README
+
+  - Optimize Trie into a DAWG (size reduction)
+  - Implement comparison with other libraries
+  - Implement fast path for valid hostnames as arguments
+  - Allow to disable hostname parsing and validation using option
+  - Add tests for corner-cases URLs parsing
+  - Update README
 
 - [#13](https://github.com/remusao/tldts/pull/13) Implement experimental probabilistic packed suffix structure (#13)
-  * Implement packed hash probabilistic structure for more compact
+  - Implement packed hash probabilistic structure for more compact
     representation and faster lookups. See ./bin/builders/hashes.js for more
     details about how it works.
-  * Create second bundle (tldts-experimental) making use of this new implementation
-  * Simplify hostname validation and remove strict IDNA checks
-  * Move lookup implementations into 'lookup' sub-folder
-  * Move compiled data into 'lookup/data' sub-folder
-  * Refactor suffix list parsing out of builders
-  * Handle IDNA hostnames at build-time instead of runtime (by indexing
+  - Create second bundle (tldts-experimental) making use of this new implementation
+  - Simplify hostname validation and remove strict IDNA checks
+  - Move lookup implementations into 'lookup' sub-folder
+  - Move compiled data into 'lookup/data' sub-folder
+  - Refactor suffix list parsing out of builders
+  - Handle IDNA hostnames at build-time instead of runtime (by indexing
     some suffixes multiple times: once puny-coded and once in unicode form)
 
 ### 3.1.1
@@ -4566,56 +4620,62 @@ backend (`tldts-experimental` bundle), this is a major version bump.
 ### 3.1.0
 
 - [#3](https://github.com/remusao/tldts/pull/3) Various optimizations
-  * Rules are now shipped in a parsed form in the bundle
-  * Rules cannot be updated (opinionated)
-  * Trie matching is now iterative
-  * All rules are stored in their ASCII form instead of Unicode
-  * Use ts-jest to run tests
-  * Remove dist folder from source tree
-  * Hostname parsing has been optimized
+  - Rules are now shipped in a parsed form in the bundle
+  - Rules cannot be updated (opinionated)
+  - Trie matching is now iterative
+  - All rules are stored in their ASCII form instead of Unicode
+  - Use ts-jest to run tests
+  - Remove dist folder from source tree
+  - Hostname parsing has been optimized
 - [#2](https://github.com/remusao/tldts/pull/2) Fix isPrivate being undefined
 - [#4](https://github.com/remusao/tldts/pull/4) Optimize the implementation of options' setDefaults
 
 ### 3.0.2 (2018/10/03 15h46)
 
 - [#6](https://github.com/remusao/tldts/pull/6) Update Public Suffix Lists
-  * https://github.com/publicsuffix/list/commit/6f2b9e75eaf65bb75da83677655a59110088ebc5
+  - https://github.com/publicsuffix/list/commit/6f2b9e75eaf65bb75da83677655a59110088ebc5
 
 ### 3.0.1 (2018/10/02 22:43 +00:00)
 
 - [#5](https://github.com/remusao/tldts/pull/5) Update Public Suffix Lists
-  * https://github.com/publicsuffix/list/commit/1422e8a1dfa290b11a483ec660435e33841cf96a
+  - https://github.com/publicsuffix/list/commit/1422e8a1dfa290b11a483ec660435e33841cf96a
 
 ### 3.0.0 (2018/09/18 11:42 +00:00)
+
 - [#1](https://github.com/remusao/tld.js/pull/1) Tldts - typescript rewrite
-  * Introduce two new options to enabled/disabled the Private/ICANN domains.
-  * 'allowIcann' set to 'false' will ignore the ICANN section of the list.
-  * 'allowPrivate' set to 'false' will ignore the PRIVATE section of the list.
-  * Introduce 'lenient' mode for hostname validation.
-  * typescript rewrite + toolchain improvements
-  * Update travis config
-  * Optimizations + idna compaction
-  * Allow updating the rules
-  * Use minified/optimized version in benchmark
-  * Simplify tsconfig
+  - Introduce two new options to enabled/disabled the Private/ICANN domains.
+  - 'allowIcann' set to 'false' will ignore the ICANN section of the list.
+  - 'allowPrivate' set to 'false' will ignore the PRIVATE section of the list.
+  - Introduce 'lenient' mode for hostname validation.
+  - typescript rewrite + toolchain improvements
+  - Update travis config
+  - Optimizations + idna compaction
+  - Allow updating the rules
+  - Use minified/optimized version in benchmark
+  - Simplify tsconfig
 
 ### 2.3.1 (2018/02/18 17:59 +00:00)
+
 - [#116](https://github.com/oncletom/tld.js/pull/116) Publish bundles to npm (@chrmod)
 
 ### v2.3.0 (2018/02/02 14:13 +00:00)
+
 - [#108](https://github.com/oncletom/tld.js/pull/108) Add ip validation (@remusao)
 - [#113](https://github.com/oncletom/tld.js/pull/113) bundles it for the browser (@srashid5)
 - [#105](https://github.com/oncletom/tld.js/pull/105) Activating Open Collective (@oncletom, @xdamman)
 - [#115](https://github.com/oncletom/tld.js/pull/115) Use Firefox Headless for CI testing (@oncletom)
 
 ### v2.2.0 (2017/09/10 08:45 +00:00)
+
 - [#103](https://github.com/oncletom/tld.js/pull/103) API addition proposal + remove redundancy (@remusao)
 - [#98](https://github.com/oncletom/tld.js/pull/98) Add a benchmark script to tld.js to measure performance evolution (@remusao, @oncletom)
 
 ### v2.1.0 (2017/09/01 18:32 +00:00)
+
 - [#97](https://github.com/oncletom/tld.js/pull/97) Implement rules using a trie data structure. (@remusao)
 
 ### v2.0.0 (2017/07/19 08:36 +00:00)
+
 - [#92](https://github.com/oncletom/tld.js/pull/92) Remove polyfills (#92) (@oncletom)
 - [#96](https://github.com/oncletom/tld.js/pull/96) Add support for fully qualified domains (trailing dot in domain name) (#96) (@remusao)
 - [#91](https://github.com/oncletom/tld.js/pull/91) Bundle rules.json on prepublish (#91) (@oncletom)
@@ -4624,59 +4684,74 @@ backend (`tldts-experimental` bundle), this is a major version bump.
 - [#88](https://github.com/oncletom/tld.js/pull/88) Upgrade development dependencies (#88) (@oncletom)
 
 ### v1.7.0 (2016/09/13 19:44 +00:00)
+
 - [#84](https://github.com/oncletom/tld.js/pull/84) Add an interactive update system (#84) (@oncletom)
 - [#83](https://github.com/oncletom/tld.js/pull/83) Rectify the `tldExists("google.google")` README example (#83) (@oncletom)
 
 ### v1.6.3 (2016/09/13 17:07 +00:00)
+
 - [#81](https://github.com/oncletom/tld.js/pull/81) Publish to npm via Travis CI (#81) (@oncletom)
 - [#80](https://github.com/oncletom/tld.js/pull/80) Do not require end-users to have `npm@2` (#80) (@oncletom)
 
 ### v1.6.2 (2015/11/17 16:24 +00:00)
+
 - [#72](https://github.com/oncletom/tld.js/pull/72) Update rules to remove support for .an TLD (@oncletom)
 
 ### v1.6.1 (2015/11/03 09:12 +00:00)
+
 - [#70](https://github.com/oncletom/tld.js/pull/70) Update rules.json (@Kureev)
 
 ### v1.6.0 (2015/10/26 18:31 +00:00)
+
 - [#67](https://github.com/oncletom/tld.js/pull/67) Expose the updater as a lib function (@oncletom)
 - [#68](https://github.com/oncletom/tld.js/pull/68) Add tld.validHosts (@oncletom)
 
 ### v1.5.5 (2015/10/13 21:04 +00:00)
+
 - [#65](https://github.com/oncletom/tld.js/pull/65) Make sure we do not commit bower_components folder (@oncletom)
 
 ### v1.5.4 (2015/09/17 10:59 +00:00)
+
 - [#60](https://github.com/oncletom/tld.js/pull/60) Update cleanHostValue so it never returns invalid hostname characters (@myndzi)
 - [#62](https://github.com/oncletom/tld.js/pull/62) Adding tests for `getPublicSuffix` (@oncletom)
 - [#61](https://github.com/oncletom/tld.js/pull/61) Build against all major nodejs and iojs versions (@jdesboeufs)
 
 ### v1.5.3 (2015/06/19 11:09 +00:00)
+
 - [#55](https://github.com/oncletom/tld.js/pull/55) Url parse (@myndzi)
 
 ### v1.5.2 (2015/01/15 09:56 +00:00)
+
 - [#52](https://github.com/oncletom/tld.js/pull/52) Make rules with no exceptions valid (@GreyKn)
 
 ### 1.5.1 (2014/10/08 11:30 +00:00)
+
 - [#50](https://github.com/oncletom/tld.js/pull/50) 93% to 97% CI code coverage. (@oncletom)
 - [#49](https://github.com/oncletom/tld.js/pull/49) URL as a parameter in path broke `cleanHostValue` (@oncletom)
 - [#44](https://github.com/oncletom/tld.js/pull/44) Fix typo in README. (@ghostwords)
 
 ### 1.3.3 (2014/05/21 14:39 +00:00)
+
 - [#41](https://github.com/oncletom/tld.js/pull/41) Remove url fragments from host name (@jhnns)
 
 ### 1.3.2 (2014/05/07 08:35 +00:00)
+
 - [#39](https://github.com/oncletom/tld.js/pull/39) Use publicsuffix.org instead of hg.mozilla.org (@Krinkle)
 
 ### 1.3.1 (2014/01/17 13:20 +00:00)
+
 - [#36](https://github.com/oncletom/tld.js/pull/36) Remove grunt dependency (@oncletom)
 - [#35](https://github.com/oncletom/tld.js/pull/35) [WIP] tldjs gives inconsistent results (@oncletom)
 - [#33](https://github.com/oncletom/tld.js/pull/33) tldjs chokes on weird domains (@oncletom)
 
 ### 1.3.0 (2013/11/07 15:21 +00:00)
+
 - [#32](https://github.com/oncletom/tld.js/pull/32) add support for component.io (@olivoil)
 - [#31](https://github.com/oncletom/tld.js/pull/31) Browser feature (@oncletom)
 - [#29](https://github.com/oncletom/tld.js/pull/29) Grunt 0.4 and Node 0.10 compatibility (@oncletom)
 
 ### 1.1.2 (2013/01/08 13:31 +00:00)
+
 - [#13](https://github.com/oncletom/tld.js/pull/13) add getSubdomain() (@oncletom)
 - [#14](https://github.com/oncletom/tld.js/pull/14) add domainExists() (@oncletom)
 - [#24](https://github.com/oncletom/tld.js/pull/24) isValid() does the wrong job (@oncletom)
@@ -4684,9 +4759,11 @@ backend (`tldts-experimental` bundle), this is a major version bump.
 - [#23](https://github.com/oncletom/tld.js/pull/23) Bumping request version (@oncletom)
 
 ### 1.1.0 (2012/12/31 12:12 +00:00)
+
 - [#11](https://github.com/oncletom/tld.js/pull/11) rules as regexp (@oncletom)
 - [#9](https://github.com/oncletom/tld.js/pull/9) Migrate build task as a Grunt task (@oncletom)
 
 ### 1.0.2 (2012/12/06 15:51 +00:00)
+
 - [#7](https://github.com/oncletom/tld.js/pull/7) checkPublicSuffix('example.example', 'example.example'); is failing (@oncletom)
 - [#6](https://github.com/oncletom/tld.js/pull/6) Updated the rules from http://publicsuffix.org/ (@yehezkielbs)

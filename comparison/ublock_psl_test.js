@@ -1,4 +1,3 @@
-
 const suffixList = require('./publicsuffixlist.js/publicsuffixlist');
 // For utf-8 conversion - npm install punycode
 const punycode = require('punycode');

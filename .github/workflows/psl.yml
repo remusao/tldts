@@ -40,12 +40,12 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.CREATE_PULL_REQUEST_TOKEN }}
-          commit-message: "Update upstream public suffix list"
-          title: "Update upstream public suffix list"
-          body: "Automated update of upstream public suffix list"
+          commit-message: 'Update upstream public suffix list'
+          title: 'Update upstream public suffix list'
+          body: 'Automated update of upstream public suffix list'
           reviewers: remusao
           branch: update-psl
-          labels: "PR: Update PSL :scroll:"
+          labels: 'PR: Update PSL :scroll:'
 
       - name: Check outputs
         run: |

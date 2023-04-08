@@ -5,8 +5,12 @@ module.exports = {
     const { domain, tld } = parseDomain(url);
     return `${domain}.${tld}`;
   },
-  getPublicSuffix(domain) { return parseDomain(domain).tld; },
-  getSubdomain(domain) { return parseDomain(domain).subdomain; },
+  getPublicSuffix(domain) {
+    return parseDomain(domain).tld;
+  },
+  getSubdomain(domain) {
+    return parseDomain(domain).subdomain;
+  },
   mem: () => {
     console.log(process.memoryUsage().heapUsed);
     global.gc();
