@@ -17,6 +17,7 @@
 #### Be more lenient in accepting leading underscores and dots in hostnames ([#1553](https://github.com/remusao/tldts/pull/1553))
 
 Handling of _leading dot(s)_ in input URIs and hostnames:
+
 ```patch
 - expect(isValidHostname('.github.com')).to.equal(false);
 + expect(isValidHostname('.github.com')).to.equal(true);
@@ -29,6 +30,7 @@ Handling of _leading dot(s)_ in input URIs and hostnames:
 ```
 
 Handling of _leading underscores_ in input URIs and hostnames:
+
 ```patch
 - expect(getDomain('_0f6879.bsg-1418.bryanjswift.com')).to.equal(null);
 + expect(getDomain('_0f6879.bsg-1418.bryanjswift.com')).to.equal('bryanjswift.com');
@@ -38,7 +40,7 @@ Lastly, increase test coverage using test cases found in the [whatwg](https://ur
 
 This is a breaking change because some might rely on the previous behavior to consider leading dots and underscores as invalid hostnames or domains.
 
-Resolves #1534 
+Resolves #1534
 Resolves #1523
 
 #### tooling: migrate to eslint + TypeScript v5 + prettier ([#1575](https://github.com/remusao/tldts/pull/1575))

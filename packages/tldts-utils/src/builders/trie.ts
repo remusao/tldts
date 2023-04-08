@@ -38,7 +38,7 @@ function convertToCompactTrie(trie: ITrie): CompactTrie {
     Object.fromEntries(
       Object.entries(trie.succ).map(([label, succ]) => [
         label,
-        typeof succ === "string" ? succ : convertToCompactTrie(succ),
+        typeof succ === 'string' ? succ : convertToCompactTrie(succ),
       ]),
     ),
   ];
