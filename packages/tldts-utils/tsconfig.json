@@ -5,10 +5,5 @@
     "outDir": "dist/cjs",
     "declarationDir": "dist/types"
   },
-  "references": [
-    {
-      "path": "../tldts-utils/tsconfig.json"
-    }
-  ],
   "include": ["./src/**/*.ts", "./index.ts"]
 }

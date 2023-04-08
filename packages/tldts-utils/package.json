@@ -1,0 +1,51 @@
+{
+  "name": "tldts-utils",
+  "version": "6.0.2",
+  "description": "tldts internal utils (internal module)",
+  "author": {
+    "name": "Rémi Berson"
+  },
+  "contributors": [
+    "Rémi Berson <remi.berson@pm.me>"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/remusao/tldts#readme",
+  "bugs": {
+    "url": "https://github.com/remusao/tldts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/remusao/tldts.git"
+  },
+  "files": [
+    "dist",
+    "src",
+    "index.ts"
+  ],
+  "bin": {
+    "tldts-update-internal": "bin/update.js"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsc --build ./tsconfig.json",
+    "bundle": "tsc --build ./tsconfig.bundle.json && rollup --config ./rollup.config.ts --configPlugin typescript",
+    "prepack": "yarn run bundle",
+    "test": "nyc mocha --config ../../.mocharc.js"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^10.0.0",
+    "@types/node": "^18.15.11",
+    "chai": "^4.2.0",
+    "nyc": "^15.0.1",
+    "rimraf": "^4.4.1",
+    "rollup": "^3.20.2",
+    "rollup-plugin-sourcemaps": "^0.6.1",
+    "typescript": "^5.0.3"
+  }
+}
