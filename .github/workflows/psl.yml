@@ -9,7 +9,7 @@ jobs:
     name: Update local assets
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Checkout submodules
         shell: bash
@@ -22,7 +22,7 @@ jobs:
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: ${{ steps.yarn-cache.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
@@ -40,12 +40,12 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.CREATE_PULL_REQUEST_TOKEN }}
-          commit-message: "Update upstream public suffix list"
-          title: "Update upstream public suffix list"
-          body: "Automated update of upstream public suffix list"
+          commit-message: 'Update upstream public suffix list'
+          title: 'Update upstream public suffix list'
+          body: 'Automated update of upstream public suffix list'
           reviewers: remusao
           branch: update-psl
-          labels: "PR: Update PSL :scroll:"
+          labels: 'PR: Update PSL :scroll:'
 
       - name: Check outputs
         run: |

@@ -18,13 +18,15 @@ function main() {
         .map(({ url }) => url),
     ),
   );
-  const hostnames = Array.from(new Set(urls.map(url => new URL(url).hostname)));
+  const hostnames = Array.from(
+    new Set(urls.map((url) => new URL(url).hostname)),
+  );
 
   function bench(name, args, fn) {
     const suite = new Benchmark.Suite();
     suite
       .add(name, () => fn(args))
-      .on('cycle', event => {
+      .on('cycle', (event) => {
         console.log(
           `  + ${name} ${Math.floor(event.target.hz * args.length)} ops/second`,
         );
@@ -54,7 +56,7 @@ function main() {
             JSON.stringify(options),
           )})`,
           urls,
-          urls => {
+          (urls) => {
             for (let i = 0; i < urls.length; i += 1) {
               fn(urls[i], options);
             }
@@ -72,7 +74,7 @@ function main() {
             JSON.stringify(options),
           )})`,
           hostnames,
-          hostnames => {
+          (hostnames) => {
             for (let i = 0; i < hostnames.length; i += 1) {
               fn(hostnames[i], options);
             }

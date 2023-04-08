@@ -1,6 +1,6 @@
 import { toASCII } from 'punycode';
 
-interface IRule {
+export interface IRule {
   isException: boolean;
   isIcann: boolean;
   isNormal: boolean;

@@ -37,16 +37,20 @@ const HOSTNAMES = [
 ];
 
 function printOps(n) {
- return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '_');
+  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '_');
 }
 
 function printResult(event) {
-  console.log(`${event.target.name} => ${printOps(Math.floor(event.target.hz * HOSTNAMES.length))} ops/second`);
+  console.log(
+    `${event.target.name} => ${printOps(
+      Math.floor(event.target.hz * HOSTNAMES.length),
+    )} ops/second`,
+  );
 }
 
 console.log();
 console.log('>> getPublicSuffix');
-(new Benchmark.Suite())
+new Benchmark.Suite()
   .add('tldts-experimental no parsing#getPublicSuffix', () => {
     for (let i = 0; i < HOSTNAMES.length; i += 1) {
       tldtsExperimentalNoParse.getPublicSuffix(HOSTNAMES[i]);
@@ -90,10 +94,9 @@ console.log('>> getPublicSuffix');
   .on('cycle', printResult)
   .run({ async: false });
 
-
 console.log();
 console.log('>> getDomain');
-(new Benchmark.Suite())
+new Benchmark.Suite()
   .add('tldts-experimental no parsing#getDomain', () => {
     for (let i = 0; i < HOSTNAMES.length; i += 1) {
       tldtsExperimentalNoParse.getDomain(HOSTNAMES[i]);
@@ -142,10 +145,9 @@ console.log('>> getDomain');
   .on('cycle', printResult)
   .run({ async: false });
 
-
 console.log();
 console.log('>> getSubdomain');
-(new Benchmark.Suite())
+new Benchmark.Suite()
   .add('tldts-experimental no parsing#getSubdomain', () => {
     for (let i = 0; i < HOSTNAMES.length; i += 1) {
       tldtsExperimentalNoParse.getSubdomain(HOSTNAMES[i]);

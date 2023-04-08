@@ -12,6 +12,9 @@
     },
     {
       "path": "./packages/tldts-experimental/tsconfig.json"
+    },
+    {
+      "path": "./packages/tldts-utils/tsconfig.json"
     }
   ]
 }

@@ -44,7 +44,7 @@
     "lint": "eslint --config .eslintrc.cjs .",
     "test": "lerna run --concurrency 2 test",
     "bench": "make -C bench",
-    "update": "git submodule foreach git pull origin master && ts-node -O '{\"module\": \"commonjs\"}' ./bin/update.ts",
+    "update": "git submodule foreach git pull origin master && ts-node -O '{\"module\": \"commonjs\"}' ./packages/tldts-utils/bin/update.js",
     "release": "auto shipit"
   },
   "devDependencies": {
@@ -53,10 +53,10 @@
     "@typescript-eslint/parser": "^5.57.0",
     "auto": "^10.29.2",
     "benchmark": "^2.1.4",
-    "eslint": "^8.37.0",
+    "eslint": "^8.38.0",
     "lerna": "^6.6.1",
     "ts-node": "^10.0.0",
-    "typescript": "^5.0.3"
+    "typescript": "^5.0.4"
   },
   "auto": {
     "name": "Rémi Berson",
