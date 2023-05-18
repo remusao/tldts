@@ -44,7 +44,7 @@
     "@types/node": "^18.15.11",
     "chai": "^4.2.0",
     "nyc": "^15.0.1",
-    "rimraf": "^4.4.1",
+    "rimraf": "^5.0.1",
     "rollup": "^3.20.2",
     "rollup-plugin-sourcemaps": "^0.6.1",
     "typescript": "^5.0.4"

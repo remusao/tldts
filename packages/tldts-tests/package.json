@@ -54,7 +54,7 @@
     "@types/mocha": "^10.0.0",
     "chai": "^4.2.0",
     "nyc": "^15.0.1",
-    "rimraf": "^4.4.1",
+    "rimraf": "^5.0.1",
     "tldts-utils": "^6.0.5",
     "ts-node": "^10.0.0",
     "typescript": "^5.0.4"
