@@ -1,6 +1,6 @@
 {
   "name": "tldts-tests",
-  "version": "6.0.5",
+  "version": "6.0.6",
   "private": true,
   "description": "tests for different tldts implementations",
   "author": {
@@ -55,7 +55,7 @@
     "chai": "^4.2.0",
     "nyc": "^15.0.1",
     "rimraf": "^5.0.1",
-    "tldts-utils": "^6.0.5",
+    "tldts-utils": "^6.0.6",
     "ts-node": "^10.0.0",
     "typescript": "^5.0.4"
   },
