@@ -1,3 +1,16 @@
+# v6.0.6 (Fri Jun 16 2023)
+
+#### :nut_and_bolt: Dependencies
+
+- Bump rimraf from 4.4.1 to 5.0.1 [#1654](https://github.com/remusao/tldts/pull/1654) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 18.16.3 to 20.2.3 [#1658](https://github.com/remusao/tldts/pull/1658) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
 # v6.0.3 (Sat Apr 08 2023)
 
 #### :scroll: Update Public Suffix List

@@ -1,3 +1,21 @@
+# v6.0.6 (Fri Jun 16 2023)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#1640](https://github.com/remusao/tldts/pull/1640) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump rimraf from 4.4.1 to 5.0.1 [#1654](https://github.com/remusao/tldts/pull/1654) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 18.16.3 to 20.2.3 [#1658](https://github.com/remusao/tldts/pull/1658) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.0.5 (Tue May 09 2023)
 
 #### :scroll: Update Public Suffix List
