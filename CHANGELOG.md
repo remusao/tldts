@@ -1,3 +1,22 @@
+# v6.0.9 (Sat Jul 01 2023)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#1698](https://github.com/remusao/tldts/pull/1698) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @typescript-eslint/eslint-plugin from 5.59.11 to 5.60.0 [#1684](https://github.com/remusao/tldts/pull/1684) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump eslint from 8.42.0 to 8.43.0 [#1683](https://github.com/remusao/tldts/pull/1683) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.0.8 (Sun Jun 18 2023)
 
 #### :scroll: Update Public Suffix List
