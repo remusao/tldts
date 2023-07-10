@@ -1,3 +1,29 @@
+# v6.0.10 (Mon Jul 10 2023)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts`
+  - Update upstream public suffix list [#1700](https://github.com/remusao/tldts/pull/1700) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump rollup from 3.26.0 to 3.26.2 [#1707](https://github.com/remusao/tldts/pull/1707) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.3.3 to 20.4.1 [#1708](https://github.com/remusao/tldts/pull/1708) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/parser from 5.59.11 to 5.61.0 [#1703](https://github.com/remusao/tldts/pull/1703) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @rollup/plugin-typescript from 11.1.1 to 11.1.2 [#1695](https://github.com/remusao/tldts/pull/1695) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript from 5.1.3 to 5.1.6 [#1696](https://github.com/remusao/tldts/pull/1696) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 3.25.1 to 3.26.0 [#1699](https://github.com/remusao/tldts/pull/1699) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump eslint from 8.43.0 to 8.44.0 [#1701](https://github.com/remusao/tldts/pull/1701) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.3.1 to 20.3.3 [#1702](https://github.com/remusao/tldts/pull/1702) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/eslint-plugin from 5.60.0 to 5.61.0 [#1704](https://github.com/remusao/tldts/pull/1704) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.0.9 (Sat Jul 01 2023)
 
 #### :scroll: Update Public Suffix List
