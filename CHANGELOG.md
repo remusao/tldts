@@ -1,3 +1,16 @@
+# v6.0.11 (Mon Jul 10 2023)
+
+#### :bug: Bug Fix
+
+- `tldts`
+  - bug: fix for https://github.com/remusao/tldts/issues/1697 [#1709](https://github.com/remusao/tldts/pull/1709) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.0.10 (Mon Jul 10 2023)
 
 #### :scroll: Update Public Suffix List
