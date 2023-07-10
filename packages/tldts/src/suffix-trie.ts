@@ -44,7 +44,9 @@ function lookupInTrie(
     }
 
     const succ: { [label: string]: ITrie } = node[1];
-    node = succ[parts[index]!] ?? succ['*'];
+    node = Object.prototype.hasOwnProperty.call(succ, parts[index]!)
+      ? succ[parts[index]!]
+      : succ['*'];
     index -= 1;
   }
 
