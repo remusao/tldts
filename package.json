@@ -33,10 +33,10 @@
     "url": "git+ssh://git@github.com/remusao/tldts.git"
   },
   "workspaces": [
-    "./packages/*"
+    "packages/*"
   ],
   "scripts": {
-    "bootstrap": "yarn install --frozen-lock && lerna bootstrap",
+    "bootstrap": "yarn install --frozen-lock",
     "build": "tsc --build ./tsconfig.project.json && lerna run build",
     "watch": "tsc --build ./tsconfig.project.json --watch",
     "bundle": "lerna run --concurrency 2 bundle",
@@ -49,12 +49,12 @@
   },
   "devDependencies": {
     "@types/node": "^20.2.3",
-    "@typescript-eslint/eslint-plugin": "^5.57.0",
-    "@typescript-eslint/parser": "^5.57.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
     "auto": "^10.29.2",
     "benchmark": "^2.1.4",
-    "eslint": "^8.38.0",
-    "lerna": "^6.6.1",
+    "eslint": "^8.45.0",
+    "lerna": "^7.1.4",
     "ts-node": "^10.0.0",
     "typescript": "^5.0.4"
   },
