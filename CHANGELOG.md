@@ -1,3 +1,35 @@
+# v6.0.12 (Sat Jul 22 2023)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#1717](https://github.com/remusao/tldts/pull/1717) ([@remusao](https://github.com/remusao))
+
+#### ⚠️ Pushed to `master`
+
+- Update README.md ([@remusao](https://github.com/remusao))
+
+#### :house: Internal
+
+- Revert to Lerna v6 to unbreak publishing [#1721](https://github.com/remusao/tldts/pull/1721) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @typescript-eslint/eslint-plugin from 6.0.0 to 6.1.0 [#1719](https://github.com/remusao/tldts/pull/1719) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 3.26.2 to 3.26.3 [#1718](https://github.com/remusao/tldts/pull/1718) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/parser from 6.0.0 to 6.1.0 [#1720](https://github.com/remusao/tldts/pull/1720) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Update lerna [#1716](https://github.com/remusao/tldts/pull/1716) ([@remusao](https://github.com/remusao))
+- Bump @typescript-eslint/eslint-plugin from 5.61.0 to 5.62.0 [#1711](https://github.com/remusao/tldts/pull/1711) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump semver from 5.7.1 to 5.7.2 [#1712](https://github.com/remusao/tldts/pull/1712) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.4.1 to 20.4.2 [#1713](https://github.com/remusao/tldts/pull/1713) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.0.11 (Mon Jul 10 2023)
 
 #### :bug: Bug Fix
