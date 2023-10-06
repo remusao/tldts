@@ -61,7 +61,7 @@
     "mocha": "^10.1.0",
     "nyc": "^15.0.1",
     "rimraf": "^5.0.1",
-    "rollup": "^3.20.2",
+    "rollup": "^4.0.2",
     "rollup-plugin-sourcemaps": "^0.6.1",
     "tldts-tests": "^6.0.16",
     "typescript": "^5.0.4"
