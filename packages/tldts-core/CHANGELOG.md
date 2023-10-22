@@ -1,3 +1,16 @@
+# v6.0.17 (Sun Oct 22 2023)
+
+#### :nut_and_bolt: Dependencies
+
+- Bump rollup from 3.29.1 to 4.1.0 [#1817](https://github.com/remusao/tldts/pull/1817) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@remusao](https://github.com/remusao))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.0.6 (Fri Jun 16 2023)
 
 #### :nut_and_bolt: Dependencies

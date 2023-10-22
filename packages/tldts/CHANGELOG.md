@@ -1,3 +1,20 @@
+# v6.0.17 (Sun Oct 22 2023)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#1828](https://github.com/remusao/tldts/pull/1828) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump rollup from 3.29.1 to 4.1.0 [#1817](https://github.com/remusao/tldts/pull/1817) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@remusao](https://github.com/remusao))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.0.16 (Fri Oct 06 2023)
 
 #### :scroll: Update Public Suffix List
