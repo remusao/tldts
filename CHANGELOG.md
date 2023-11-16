@@ -1,3 +1,30 @@
+# v6.0.20 (Thu Nov 16 2023)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#1849](https://github.com/remusao/tldts/pull/1849) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump rollup from 4.3.0 to 4.4.1 [#1855](https://github.com/remusao/tldts/pull/1855) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/eslint-plugin from 6.10.0 to 6.11.0 [#1854](https://github.com/remusao/tldts/pull/1854) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/parser from 6.10.0 to 6.11.0 [#1853](https://github.com/remusao/tldts/pull/1853) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump axios from 1.4.0 to 1.6.1 [#1850](https://github.com/remusao/tldts/pull/1850) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/mocha from 10.0.3 to 10.0.4 [#1848](https://github.com/remusao/tldts/pull/1848) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/chai from 4.3.9 to 4.3.10 [#1847](https://github.com/remusao/tldts/pull/1847) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.8.7 to 20.9.0 [#1846](https://github.com/remusao/tldts/pull/1846) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/parser from 6.8.0 to 6.10.0 [#1845](https://github.com/remusao/tldts/pull/1845) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/eslint-plugin from 6.8.0 to 6.10.0 [#1844](https://github.com/remusao/tldts/pull/1844) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump eslint from 8.51.0 to 8.53.0 [#1843](https://github.com/remusao/tldts/pull/1843) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.1.4 to 4.3.0 [#1842](https://github.com/remusao/tldts/pull/1842) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.0.19 (Sun Nov 05 2023)
 
 #### :scroll: Update Public Suffix List
