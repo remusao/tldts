@@ -1,3 +1,21 @@
+# v6.0.21 (Tue Nov 21 2023)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts`
+  - Update upstream public suffix list [#1857](https://github.com/remusao/tldts/pull/1857) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/node from 20.9.0 to 20.9.1 [#1856](https://github.com/remusao/tldts/pull/1856) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.0.20 (Thu Nov 16 2023)
 
 #### :scroll: Update Public Suffix List
