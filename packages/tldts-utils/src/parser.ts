@@ -1,4 +1,4 @@
-import { toASCII } from 'punycode';
+import { toASCII } from 'punycode/';
 
 export interface IRule {
   isException: boolean;
