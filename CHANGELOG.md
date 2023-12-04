@@ -1,3 +1,24 @@
+# v6.0.23 (Mon Dec 04 2023)
+
+#### :nail_care: Polish
+
+- chore: replace native punycode by package to avoid deprecation [#1887](https://github.com/remusao/tldts/pull/1887) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @typescript-eslint/eslint-plugin from 6.12.0 to 6.13.1 [#1880](https://github.com/remusao/tldts/pull/1880) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump eslint from 8.54.0 to 8.55.0 [#1886](https://github.com/remusao/tldts/pull/1886) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.10.0 to 20.10.3 [#1885](https://github.com/remusao/tldts/pull/1885) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.6.0 to 4.6.1 [#1883](https://github.com/remusao/tldts/pull/1883) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/parser from 6.12.0 to 6.13.1 [#1879](https://github.com/remusao/tldts/pull/1879) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.0.22 (Mon Nov 27 2023)
 
 #### :scroll: Update Public Suffix List
