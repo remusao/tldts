@@ -173,9 +173,15 @@ function compressToDAWG(trie: ITrie, name: string): string {
   return output.join('\n');
 }
 
-function convertToTypeScriptSource(rules: ITrie, exceptions: ITrie): string {
+function convertToTypeScriptSource(
+  rules: ITrie,
+  exceptions: ITrie,
+  { includePrivate }: { includePrivate: boolean },
+): string {
   return `
-export type ITrie = [0 | 1 | 2, { [label: string]: ITrie}];
+export type ITrie = [${
+    includePrivate ? '0 | 1 | 2' : '0 | 1'
+  }, { [label: string]: ITrie}];
 
 export const exceptions: ITrie = (function() {
   ${compressToDAWG(exceptions, 'exceptions')}
@@ -189,17 +195,22 @@ export const rules: ITrie = (function() {
 `;
 }
 
-export default (body: string) => {
+export default (
+  body: string,
+  { includePrivate }: { includePrivate: boolean },
+) => {
   const exceptions: ITrie = { $: 0, succ: {} };
   const rules: ITrie = { $: 0, succ: {} };
 
   // Iterate on public suffix rules
   parse(body, ({ rule, isIcann, isException }) => {
-    insertInTrie(
-      { isIcann, parts: rule.split('.').reverse() },
-      isException ? exceptions : rules,
-    );
+    if (isIcann || includePrivate) {
+      insertInTrie(
+        { isIcann, parts: rule.split('.').reverse() },
+        isException ? exceptions : rules,
+      );
+    }
   });
 
-  return convertToTypeScriptSource(rules, exceptions);
+  return convertToTypeScriptSource(rules, exceptions, { includePrivate });
 };

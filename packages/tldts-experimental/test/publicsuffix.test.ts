@@ -5,5 +5,5 @@ import { publicSuffixListTests } from 'tldts-tests';
 import * as tld from '../index';
 
 describe('tldts experimental', () => {
-  publicSuffixListTests(tld.getDomain);
+  publicSuffixListTests(tld.getDomain, { includePrivate: true });
 });

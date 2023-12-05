@@ -12,7 +12,14 @@ export default function () {
   // Build trie and update TypeScript file
   writeFileSync(
     findBaseDir('./tldts/src/data/trie.ts'),
-    buildTrie(publicSuffixList),
+    buildTrie(publicSuffixList, { includePrivate: true }),
+    'utf-8',
+  );
+
+  // Build trie and update TypeScript file (ICANN only)
+  writeFileSync(
+    findBaseDir('./tldts-icann/src/data/trie.ts'),
+    buildTrie(publicSuffixList, { includePrivate: false }),
     'utf-8',
   );
 

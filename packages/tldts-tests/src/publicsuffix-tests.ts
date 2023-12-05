@@ -6,6 +6,7 @@ export default function test(
     domain: string,
     options: { allowIcannDomains: boolean; allowPrivateDomains: boolean },
   ) => string | null,
+  { includePrivate }: { includePrivate: boolean },
 ): void {
   // Ease testing by simply copy/pasting tests from Mozilla Central
   // @see https://dxr.mozilla.org/mozilla-central/source/netwerk/test/unit/data/test_psl.txt?raw=1
@@ -16,7 +17,7 @@ export default function test(
     expect(
       getDomain(testDomain, {
         allowIcannDomains: true,
-        allowPrivateDomains: true,
+        allowPrivateDomains: includePrivate,
       }),
     ).to.equal(expectedResult);
   }
@@ -61,10 +62,12 @@ export default function test(
       checkPublicSuffix('example.com', 'example.com');
       checkPublicSuffix('b.example.com', 'example.com');
       checkPublicSuffix('a.b.example.com', 'example.com');
-      checkPublicSuffix('uk.com', null);
-      checkPublicSuffix('example.uk.com', 'example.uk.com');
-      checkPublicSuffix('b.example.uk.com', 'example.uk.com');
-      checkPublicSuffix('a.b.example.uk.com', 'example.uk.com');
+      if (includePrivate) {
+        checkPublicSuffix('uk.com', null);
+        checkPublicSuffix('example.uk.com', 'example.uk.com');
+        checkPublicSuffix('b.example.uk.com', 'example.uk.com');
+        checkPublicSuffix('a.b.example.uk.com', 'example.uk.com');
+      }
       checkPublicSuffix('test.ac', 'test.ac');
     });
 

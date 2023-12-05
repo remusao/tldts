@@ -13,21 +13,24 @@ interface Options {
   validHosts?: string[];
 }
 
-export default function test(tldts: {
-  getDomainWithoutSuffix: (url: string, options?: Options) => string | null;
-  getPublicSuffix: (url: string, options?: Options) => string | null;
-  getHostname: (url: string, options?: Options) => string | null;
-  getDomain: (url: string, options?: Options) => string | null;
-  getSubdomain: (url: string, options?: Options) => string | null;
-  parse: (
-    url: string,
-    options?: Options,
-  ) => {
-    domain: string | null;
-    hostname: string | null;
-    publicSuffix: string | null;
-  };
-}): void {
+export default function test(
+  tldts: {
+    getDomainWithoutSuffix: (url: string, options?: Options) => string | null;
+    getPublicSuffix: (url: string, options?: Options) => string | null;
+    getHostname: (url: string, options?: Options) => string | null;
+    getDomain: (url: string, options?: Options) => string | null;
+    getSubdomain: (url: string, options?: Options) => string | null;
+    parse: (
+      url: string,
+      options?: Options,
+    ) => {
+      domain: string | null;
+      hostname: string | null;
+      publicSuffix: string | null;
+    };
+  },
+  { includePrivate }: { includePrivate: boolean },
+): void {
   describe('from https://github.com/rushmorem/publicsuffix/blob/master/src/tests.rs', () => {
     // Copyright (c) 2016 Rushmore Mushambi
     it('should allow parsing IDN email addresses', () => {
@@ -319,16 +322,18 @@ export default function test(tldts: {
 
     // @see https://github.com/oncletom/tld.js/issues/25
     // @see https://github.com/oncletom/tld.js/issues/30
-    it('existing rule constraint', () => {
-      expect(tldts.getDomain('s3.amazonaws.com')).to.equal('amazonaws.com');
-      expect(
-        tldts.getDomain('s3.amazonaws.com', { allowPrivateDomains: true }),
-      ).to.equal(null);
-      expect(
-        tldts.getDomain('blogspot.co.uk', { allowPrivateDomains: true }),
-      ).to.equal(null);
-      expect(tldts.getDomain('blogspot.co.uk')).to.equal('blogspot.co.uk');
-    });
+    if (includePrivate) {
+      it('existing rule constraint', () => {
+        expect(tldts.getDomain('s3.amazonaws.com')).to.equal('amazonaws.com');
+        expect(
+          tldts.getDomain('s3.amazonaws.com', { allowPrivateDomains: true }),
+        ).to.equal(null);
+        expect(
+          tldts.getDomain('blogspot.co.uk', { allowPrivateDomains: true }),
+        ).to.equal(null);
+        expect(tldts.getDomain('blogspot.co.uk')).to.equal('blogspot.co.uk');
+      });
+    }
 
     it('should return nytimes.com even in a whole valid', () => {
       expect(tldts.getDomain('http://www.nytimes.com/')).to.equal(
@@ -345,57 +350,59 @@ export default function test(tldts: {
   });
 
   describe('#getPublicSuffix', () => {
-    describe('allowPrivateDomains', () => {
-      const getPublicSuffix = (url: string) => {
-        return tldts.getPublicSuffix(url, { allowPrivateDomains: true });
-      };
+    if (includePrivate) {
+      describe('allowPrivateDomains', () => {
+        const getPublicSuffix = (url: string) => {
+          return tldts.getPublicSuffix(url, { allowPrivateDomains: true });
+        };
 
-      it('should return de if example.de', () => {
-        expect(getPublicSuffix('example.de')).to.equal('de');
-      });
+        it('should return de if example.de', () => {
+          expect(getPublicSuffix('example.de')).to.equal('de');
+        });
 
-      it('should return co.uk if google.co.uk', () => {
-        expect(getPublicSuffix('google.co.uk')).to.equal('co.uk');
-      });
+        it('should return co.uk if google.co.uk', () => {
+          expect(getPublicSuffix('google.co.uk')).to.equal('co.uk');
+        });
 
-      // @see https://github.com/oncletom/tld.js/pull/97
-      it('should return www.ck if www.www.ck', () => {
-        expect(getPublicSuffix('www.www.ck')).to.equal('ck');
-      });
+        // @see https://github.com/oncletom/tld.js/pull/97
+        it('should return www.ck if www.www.ck', () => {
+          expect(getPublicSuffix('www.www.ck')).to.equal('ck');
+        });
 
-      // @see https://github.com/oncletom/tld.js/issues/30
-      it('should return s3.amazonaws.com if s3.amazonaws.com', () => {
-        expect(getPublicSuffix('s3.amazonaws.com')).to.equal(
-          's3.amazonaws.com',
-        );
-      });
+        // @see https://github.com/oncletom/tld.js/issues/30
+        it('should return s3.amazonaws.com if s3.amazonaws.com', () => {
+          expect(getPublicSuffix('s3.amazonaws.com')).to.equal(
+            's3.amazonaws.com',
+          );
+        });
 
-      it('should return s3.amazonaws.com if www.s3.amazonaws.com', () => {
-        expect(getPublicSuffix('www.s3.amazonaws.com')).to.equal(
-          's3.amazonaws.com',
-        );
-      });
+        it('should return s3.amazonaws.com if www.s3.amazonaws.com', () => {
+          expect(getPublicSuffix('www.s3.amazonaws.com')).to.equal(
+            's3.amazonaws.com',
+          );
+        });
 
-      it('should directly return the suffix if it matches a rule key', () => {
-        expect(getPublicSuffix('youtube')).to.equal('youtube');
-      });
+        it('should directly return the suffix if it matches a rule key', () => {
+          expect(getPublicSuffix('youtube')).to.equal('youtube');
+        });
 
-      it('should return the suffix if a rule exists that has no exceptions', () => {
-        expect(getPublicSuffix('microsoft.eu')).to.equal('eu');
-      });
+        it('should return the suffix if a rule exists that has no exceptions', () => {
+          expect(getPublicSuffix('microsoft.eu')).to.equal('eu');
+        });
 
-      // @see https://github.com/oncletom/tld.js/pull/97
-      it('should return the string tldts if the publicsuffix does not exist', () => {
-        expect(getPublicSuffix('www.freedom.nsa')).to.equal('nsa');
-      });
+        // @see https://github.com/oncletom/tld.js/pull/97
+        it('should return the string tldts if the publicsuffix does not exist', () => {
+          expect(getPublicSuffix('www.freedom.nsa')).to.equal('nsa');
+        });
 
-      // @see https://github.com/oncletom/tld.js/issues/95
-      it('should ignore the trailing dot in a domain', () => {
-        expect(getPublicSuffix('https://www.google.co.uk./maps')).to.equal(
-          'co.uk',
-        );
+        // @see https://github.com/oncletom/tld.js/issues/95
+        it('should ignore the trailing dot in a domain', () => {
+          expect(getPublicSuffix('https://www.google.co.uk./maps')).to.equal(
+            'co.uk',
+          );
+        });
       });
-    });
+    }
 
     describe('ignoring Private domains', () => {
       const getPublicSuffix = (url: string) => {
@@ -437,30 +444,32 @@ export default function test(tldts: {
       });
     });
 
-    describe('ignoring ICANN domains', () => {
-      const getPublicSuffix = (url: string) => {
-        return tldts.getPublicSuffix(url, {
-          allowIcannDomains: false,
-          allowPrivateDomains: true,
+    if (includePrivate) {
+      describe('ignoring ICANN domains', () => {
+        const getPublicSuffix = (url: string) => {
+          return tldts.getPublicSuffix(url, {
+            allowIcannDomains: false,
+            allowPrivateDomains: true,
+          });
+        };
+
+        it('should return s3.amazonaws.com if www.s3.amazonaws.com', () => {
+          expect(getPublicSuffix('www.s3.amazonaws.com')).to.equal(
+            's3.amazonaws.com',
+          );
         });
-      };
 
-      it('should return s3.amazonaws.com if www.s3.amazonaws.com', () => {
-        expect(getPublicSuffix('www.s3.amazonaws.com')).to.equal(
-          's3.amazonaws.com',
-        );
-      });
+        it('should return global.prod.fastly.net if global.prod.fastly.net', () => {
+          expect(getPublicSuffix('https://global.prod.fastly.net')).to.equal(
+            'global.prod.fastly.net',
+          );
+        });
 
-      it('should return global.prod.fastly.net if global.prod.fastly.net', () => {
-        expect(getPublicSuffix('https://global.prod.fastly.net')).to.equal(
-          'global.prod.fastly.net',
-        );
+        it('should return co.uk if google.co.uk', () => {
+          expect(getPublicSuffix('google.co.uk')).to.equal('uk');
+        });
       });
-
-      it('should return co.uk if google.co.uk', () => {
-        expect(getPublicSuffix('google.co.uk')).to.equal('uk');
-      });
-    });
+    }
   });
 
   describe('#getHostname', () => {
@@ -753,16 +762,29 @@ export default function test(tldts: {
     };
 
     it('fallback to wildcard', () => {
-      expect(tldts.parse('https://foo.bar.badasdasdada')).to.deep.equal({
-        domain: 'bar.badasdasdada',
-        domainWithoutSuffix: 'bar',
-        hostname: 'foo.bar.badasdasdada',
-        isIcann: false,
-        isIp: false,
-        isPrivate: false,
-        publicSuffix: 'badasdasdada',
-        subdomain: 'foo',
-      });
+      expect(tldts.parse('https://foo.bar.badasdasdada')).to.deep.equal(
+        includePrivate
+          ? {
+              domain: 'bar.badasdasdada',
+              domainWithoutSuffix: 'bar',
+              hostname: 'foo.bar.badasdasdada',
+              isIcann: false,
+              isIp: false,
+              isPrivate: false,
+              publicSuffix: 'badasdasdada',
+              subdomain: 'foo',
+            }
+          : {
+              domain: 'bar.badasdasdada',
+              domainWithoutSuffix: 'bar',
+              hostname: 'foo.bar.badasdasdada',
+              isIcann: null,
+              isIp: false,
+              isPrivate: null,
+              publicSuffix: 'badasdasdada',
+              subdomain: 'foo',
+            },
+      );
     });
 
     it('should handle data URLs', () => {
@@ -825,16 +847,29 @@ export default function test(tldts: {
     it('disable ip detection', () => {
       expect(
         tldts.parse('http://192.168.0.1/', { detectIp: false }),
-      ).to.deep.equal({
-        domain: '0.1',
-        domainWithoutSuffix: '0',
-        hostname: '192.168.0.1',
-        isIcann: false,
-        isIp: null,
-        isPrivate: false,
-        publicSuffix: '1',
-        subdomain: '192.168',
-      });
+      ).to.deep.equal(
+        includePrivate
+          ? {
+              domain: '0.1',
+              domainWithoutSuffix: '0',
+              hostname: '192.168.0.1',
+              isIcann: false,
+              isIp: null,
+              isPrivate: false,
+              publicSuffix: '1',
+              subdomain: '192.168',
+            }
+          : {
+              domain: '0.1',
+              domainWithoutSuffix: '0',
+              hostname: '192.168.0.1',
+              isIcann: null,
+              isIp: null,
+              isPrivate: null,
+              publicSuffix: '1',
+              subdomain: '192.168',
+            },
+      );
     });
   });
 
@@ -872,22 +907,39 @@ export default function test(tldts: {
 
   // Examples based on What-wg specification: https://url.spec.whatwg.org/#example-host-psl
   describe('whatwg URL spec', () => {
-    for (const [input, publicSuffix, domain] of [
-      ['com', 'com', null],
-      ['example.com', 'com', 'example.com'],
-      ['www.example.com', 'com', 'example.com'],
-      ['sub.www.example.com', 'com', 'example.com'],
-      ['EXAMPLE.COM', 'com', 'example.com'],
-      // ['example.com.', 'com.', 'example.com.'],
-      ['github.io', 'github.io', null],
-      ['whatwg.github.io', 'github.io', 'whatwg.github.io'],
-      ['إختبار', 'إختبار', null],
-      ['example.إختبار', 'إختبار', 'example.إختبار'],
-      ['sub.example.إختبار', 'إختبار', 'example.إختبار'],
-      ['[2001:0db8:85a3:0000:0000:8a2e:0370:7334]', null, null],
-    ] as const) {
+    for (const [input, publicSuffix, domain] of includePrivate
+      ? ([
+          ['com', 'com', null],
+          ['example.com', 'com', 'example.com'],
+          ['www.example.com', 'com', 'example.com'],
+          ['sub.www.example.com', 'com', 'example.com'],
+          ['EXAMPLE.COM', 'com', 'example.com'],
+          // ['example.com.', 'com.', 'example.com.'],
+          ['github.io', 'github.io', null],
+          ['whatwg.github.io', 'github.io', 'whatwg.github.io'],
+          ['إختبار', 'إختبار', null],
+          ['example.إختبار', 'إختبار', 'example.إختبار'],
+          ['sub.example.إختبار', 'إختبار', 'example.إختبار'],
+          ['[2001:0db8:85a3:0000:0000:8a2e:0370:7334]', null, null],
+        ] as const)
+      : ([
+          ['com', 'com', null],
+          ['example.com', 'com', 'example.com'],
+          ['www.example.com', 'com', 'example.com'],
+          ['sub.www.example.com', 'com', 'example.com'],
+          ['EXAMPLE.COM', 'com', 'example.com'],
+          // ['example.com.', 'com.', 'example.com.'],
+          ['github.io', 'io', 'github.io'],
+          ['whatwg.github.io', 'io', 'github.io'],
+          ['إختبار', 'إختبار', null],
+          ['example.إختبار', 'إختبار', 'example.إختبار'],
+          ['sub.example.إختبار', 'إختبار', 'example.إختبار'],
+          ['[2001:0db8:85a3:0000:0000:8a2e:0370:7334]', null, null],
+        ] as const)) {
       it(input, () => {
-        const result = tldts.parse(input, { allowPrivateDomains: true });
+        const result = tldts.parse(input, {
+          allowPrivateDomains: includePrivate,
+        });
         expect(result, input).not.to.equal(null);
         expect(result.publicSuffix, input).to.equal(publicSuffix);
         expect(result.domain, input).to.equal(domain);
@@ -897,13 +949,19 @@ export default function test(tldts: {
 
   describe('wildcard tests', () => {
     parsePublicSuffixRules(loadPublicSuffixList(), (rule) => {
-      if (!rule.isException && rule.isWildcard) {
+      if (
+        !rule.isException &&
+        rule.isWildcard &&
+        (rule.isIcann || includePrivate)
+      ) {
         let domain = rule.rule;
         it(domain, () => {
           expect(domain.startsWith('*.')).to.be.true;
           domain = domain.slice(2);
           const url = `https://www.sub.${domain}/`;
-          const result = tldts.parse(url, { allowPrivateDomains: true });
+          const result = tldts.parse(url, {
+            allowPrivateDomains: includePrivate,
+          });
           expect(result, url).not.to.equal(null);
           expect(result.publicSuffix, url).to.equal(`sub.${domain}`);
           expect(result.domain, url).to.equal(`www.sub.${domain}`);
@@ -915,11 +973,17 @@ export default function test(tldts: {
 
   describe('exception tests', () => {
     parsePublicSuffixRules(loadPublicSuffixList(), (rule) => {
-      if (rule.isException && !rule.isWildcard) {
+      if (
+        rule.isException &&
+        !rule.isWildcard &&
+        (rule.isIcann || includePrivate)
+      ) {
         const domain = rule.rule;
         it(domain, () => {
           const url = `https://${domain}/`;
-          const result = tldts.parse(url, { allowPrivateDomains: true });
+          const result = tldts.parse(url, {
+            allowPrivateDomains: includePrivate,
+          });
           expect(result, url).not.to.equal(null);
           expect(result.publicSuffix, url).to.equal(
             domain.split('.').slice(1).join('.'),
@@ -933,11 +997,17 @@ export default function test(tldts: {
 
   describe('extended tests', () => {
     parsePublicSuffixRules(loadPublicSuffixList(), (rule) => {
-      if (!rule.isException && !rule.isWildcard) {
+      if (
+        !rule.isException &&
+        !rule.isWildcard &&
+        (rule.isIcann || includePrivate)
+      ) {
         const suffix = rule.rule;
         it(suffix, () => {
           const url = `https://example.${suffix}/`;
-          const result = tldts.parse(url, { allowPrivateDomains: true });
+          const result = tldts.parse(url, {
+            allowPrivateDomains: includePrivate,
+          });
           expect(result, url).not.to.equal(null);
           expect(result.publicSuffix, url).to.equal(suffix);
           expect(result.domain, url).to.equal(`example.${suffix}`);

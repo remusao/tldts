@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig",
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "dist/cjs",
+    "declarationDir": "dist/types"
+  },
+  "references": [
+    {
+      "path": "../tldts-core/tsconfig.json"
+    },
+    {
+      "path": "../tldts-tests/tsconfig.json"
+    }
+  ],
+  "include": ["./src/**/*.ts", "./index.ts"]
+}
