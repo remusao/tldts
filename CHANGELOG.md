@@ -1,3 +1,16 @@
+# v6.1.0 (Tue Dec 05 2023)
+
+#### :rocket: New Feature
+
+- `tldts-experimental`, `tldts-icann`, `tldts`
+  - Add new tldts-icann package which does not contain private rules [#1888](https://github.com/remusao/tldts/pull/1888) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.0.23 (Mon Dec 04 2023)
 
 #### :nail_care: Polish
