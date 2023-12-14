@@ -1,3 +1,22 @@
+# v6.1.1 (Thu Dec 14 2023)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#1890](https://github.com/remusao/tldts/pull/1890) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump typescript from 5.3.2 to 5.3.3 [#1889](https://github.com/remusao/tldts/pull/1889) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.10.3 to 20.10.4 [#1891](https://github.com/remusao/tldts/pull/1891) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.0 (Tue Dec 05 2023)
 
 #### :rocket: New Feature
