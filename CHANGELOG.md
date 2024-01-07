@@ -1,3 +1,31 @@
+# v6.1.2 (Sun Jan 07 2024)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#1912](https://github.com/remusao/tldts/pull/1912) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @typescript-eslint/eslint-plugin from 6.14.0 to 6.17.0 [#1909](https://github.com/remusao/tldts/pull/1909) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.9.1 to 4.9.2 [#1907](https://github.com/remusao/tldts/pull/1907) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.10.5 to 20.10.6 [#1908](https://github.com/remusao/tldts/pull/1908) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/parser from 6.14.0 to 6.17.0 [#1910](https://github.com/remusao/tldts/pull/1910) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.10.4 to 20.10.5 [#1898](https://github.com/remusao/tldts/pull/1898) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump eslint from 8.55.0 to 8.56.0 [#1899](https://github.com/remusao/tldts/pull/1899) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.9.0 to 4.9.1 [#1901](https://github.com/remusao/tldts/pull/1901) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/parser from 6.13.2 to 6.14.0 [#1894](https://github.com/remusao/tldts/pull/1894) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump ts-node from 10.9.1 to 10.9.2 [#1892](https://github.com/remusao/tldts/pull/1892) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/eslint-plugin from 6.13.2 to 6.14.0 [#1896](https://github.com/remusao/tldts/pull/1896) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.6.1 to 4.9.0 [#1897](https://github.com/remusao/tldts/pull/1897) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.1 (Thu Dec 14 2023)
 
 #### :scroll: Update Public Suffix List
