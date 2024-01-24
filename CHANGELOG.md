@@ -1,3 +1,32 @@
+# v6.1.3 (Wed Jan 24 2024)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#1933](https://github.com/remusao/tldts/pull/1933) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @typescript-eslint/parser from 6.19.0 to 6.19.1 [#1931](https://github.com/remusao/tldts/pull/1931) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/eslint-plugin from 6.19.0 to 6.19.1 [#1932](https://github.com/remusao/tldts/pull/1932) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.9.5 to 4.9.6 [#1930](https://github.com/remusao/tldts/pull/1930) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/eslint-plugin from 6.18.1 to 6.19.0 [#1927](https://github.com/remusao/tldts/pull/1927) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.11.1 to 20.11.5 [#1929](https://github.com/remusao/tldts/pull/1929) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/parser from 6.18.1 to 6.19.0 [#1926](https://github.com/remusao/tldts/pull/1926) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/parser from 6.17.0 to 6.18.1 [#1917](https://github.com/remusao/tldts/pull/1917) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/eslint-plugin from 6.17.0 to 6.18.1 [#1918](https://github.com/remusao/tldts/pull/1918) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @rollup/plugin-typescript from 11.1.5 to 11.1.6 [#1920](https://github.com/remusao/tldts/pull/1920) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.9.2 to 4.9.5 [#1923](https://github.com/remusao/tldts/pull/1923) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.10.6 to 20.11.1 [#1924](https://github.com/remusao/tldts/pull/1924) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump follow-redirects from 1.15.3 to 1.15.4 [#1921](https://github.com/remusao/tldts/pull/1921) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.2 (Sun Jan 07 2024)
 
 #### :scroll: Update Public Suffix List
