@@ -1,3 +1,22 @@
+# v6.1.10 (Thu Feb 08 2024)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#1952](https://github.com/remusao/tldts/pull/1952) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @typescript-eslint/parser from 6.20.0 to 6.21.0 [#1948](https://github.com/remusao/tldts/pull/1948) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/eslint-plugin from 6.20.0 to 6.21.0 [#1949](https://github.com/remusao/tldts/pull/1949) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.9 (Tue Feb 06 2024)
 
 #### :scroll: Update Public Suffix List
