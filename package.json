@@ -51,7 +51,7 @@
     "@types/node": "^20.2.3",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^6.0.0",
-    "auto": "^10.29.2",
+    "auto": "^11.0.5",
     "benchmark": "^2.1.4",
     "eslint": "^8.45.0",
     "lerna": "^6.6.2",
