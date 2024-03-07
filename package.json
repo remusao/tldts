@@ -36,6 +36,7 @@
     "packages/*"
   ],
   "scripts": {
+    "postinstall": "patch-package",
     "bootstrap": "yarn install --frozen-lock",
     "build": "tsc --build ./tsconfig.project.json && lerna run build",
     "watch": "tsc --build ./tsconfig.project.json --watch",
@@ -50,11 +51,12 @@
   "devDependencies": {
     "@types/node": "^20.2.3",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
+    "@typescript-eslint/parser": "^7.1.1",
     "auto": "^11.1.1",
     "benchmark": "^2.1.4",
     "eslint": "^8.45.0",
     "lerna": "^8.1.2",
+    "patch-package": "^8.0.0",
     "ts-node": "^10.0.0",
     "typescript": "^5.0.4"
   },
