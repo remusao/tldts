@@ -1,3 +1,35 @@
+# v6.1.12 (Thu Mar 07 2024)
+
+#### :scroll: Update Public Suffix List
+
+- Bump auto from 10.46.0 to 11.1.1 [#1968](https://github.com/remusao/tldts/pull/1968) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- `tldts-experimental`, `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#1973](https://github.com/remusao/tldts/pull/1973) ([@remusao](https://github.com/remusao))
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#1972](https://github.com/remusao/tldts/pull/1972) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump rollup from 4.12.0 to 4.12.1 [#1974](https://github.com/remusao/tldts/pull/1974) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript from 5.3.3 to 5.4.2 [#1976](https://github.com/remusao/tldts/pull/1976) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.11.21 to 20.11.25 [#1975](https://github.com/remusao/tldts/pull/1975) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump eslint from 8.56.0 to 8.57.0 [#1967](https://github.com/remusao/tldts/pull/1967) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.11.19 to 20.11.21 [#1969](https://github.com/remusao/tldts/pull/1969) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump ip from 2.0.0 to 2.0.1 [#1963](https://github.com/remusao/tldts/pull/1963) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.11.0 to 4.12.0 [#1962](https://github.com/remusao/tldts/pull/1962) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump mocha from 10.2.0 to 10.3.0 [#1954](https://github.com/remusao/tldts/pull/1954) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/punycode from 2.1.3 to 2.1.4 [#1957](https://github.com/remusao/tldts/pull/1957) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/eslint-plugin from 6.21.0 to 7.0.0 [#1958](https://github.com/remusao/tldts/pull/1958) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.11.16 to 20.11.19 [#1960](https://github.com/remusao/tldts/pull/1960) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.9.6 to 4.11.0 [#1961](https://github.com/remusao/tldts/pull/1961) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.11 (Tue Feb 13 2024)
 
 #### :scroll: Update Public Suffix List
