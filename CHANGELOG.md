@@ -1,3 +1,20 @@
+# v6.1.13 (Thu Mar 07 2024)
+
+#### :bug: Bug Fix
+
+- `tldts-core`, `tldts-experimental`, `tldts-icann`, `tldts`
+  - Fixes [#1978](https://github.com/remusao/tldts/pull/1978) ([@remusao](https://github.com/remusao))
+
+#### :nail_care: Polish
+
+- Updates [#1977](https://github.com/remusao/tldts/pull/1977) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.12 (Thu Mar 07 2024)
 
 #### :scroll: Update Public Suffix List

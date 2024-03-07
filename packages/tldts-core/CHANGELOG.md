@@ -1,3 +1,15 @@
+# v6.1.13 (Thu Mar 07 2024)
+
+#### :bug: Bug Fix
+
+- Fixes [#1978](https://github.com/remusao/tldts/pull/1978) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.0.17 (Sun Oct 22 2023)
 
 #### :nut_and_bolt: Dependencies
