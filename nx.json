@@ -1,16 +1,4 @@
 {
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx/tasks-runners/default",
-      "options": {
-        "cacheableOperations": [
-          "build",
-          "bundle",
-          "test"
-        ]
-      }
-    }
-  },
   "targetDefaults": {
     "clean": {
       "dependsOn": [
@@ -23,7 +11,8 @@
       ],
       "outputs": [
         "{projectRoot}/dist"
-      ]
+      ],
+      "cache": true
     },
     "bundle": {
       "dependsOn": [
@@ -31,12 +20,25 @@
       ],
       "outputs": [
         "{projectRoot}/dist"
-      ]
+      ],
+      "cache": true
     },
     "test": {
       "dependsOn": [
         "^test"
-      ]
+      ],
+      "cache": true
     }
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
+    "sharedGlobals": [],
+    "production": [
+      "default"
+    ]
   }
 }
