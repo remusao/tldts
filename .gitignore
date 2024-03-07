@@ -4,3 +4,5 @@ dist/
 node_modules/
 
 bench/requests.json
+
+.nx/cache
