@@ -1,3 +1,23 @@
+# v6.1.16 (Fri Mar 29 2024)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#1998](https://github.com/remusao/tldts/pull/1998) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump rollup from 4.13.1 to 4.13.2 [#1999](https://github.com/remusao/tldts/pull/1999) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.13.0 to 4.13.1 [#1997](https://github.com/remusao/tldts/pull/1997) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/eslint-plugin from 7.3.1 to 7.4.0 [#1994](https://github.com/remusao/tldts/pull/1994) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.15 (Wed Mar 27 2024)
 
 #### :scroll: Update Public Suffix List
