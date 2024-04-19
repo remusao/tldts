@@ -1,3 +1,34 @@
+# v6.1.17 (Fri Apr 19 2024)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#2015](https://github.com/remusao/tldts/pull/2015) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @typescript-eslint/eslint-plugin from 7.5.0 to 7.7.0 [#2018](https://github.com/remusao/tldts/pull/2018) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.12.5 to 20.12.7 [#2014](https://github.com/remusao/tldts/pull/2014) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript from 5.4.4 to 5.4.5 [#2016](https://github.com/remusao/tldts/pull/2016) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.14.1 to 4.14.3 [#2019](https://github.com/remusao/tldts/pull/2019) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/parser from 7.5.0 to 7.7.0 [#2020](https://github.com/remusao/tldts/pull/2020) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/parser from 7.4.0 to 7.5.0 [#2001](https://github.com/remusao/tldts/pull/2001) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.14.0 to 4.14.1 [#2009](https://github.com/remusao/tldts/pull/2009) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.12.4 to 20.12.5 [#2010](https://github.com/remusao/tldts/pull/2010) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/eslint-plugin from 7.4.0 to 7.5.0 [#2002](https://github.com/remusao/tldts/pull/2002) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.13.2 to 4.14.0 [#2005](https://github.com/remusao/tldts/pull/2005) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.12.2 to 20.12.4 [#2006](https://github.com/remusao/tldts/pull/2006) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump auto from 11.1.2 to 11.1.6 [#2007](https://github.com/remusao/tldts/pull/2007) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript from 5.4.3 to 5.4.4 [#2008](https://github.com/remusao/tldts/pull/2008) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.11.30 to 20.12.2 [#2000](https://github.com/remusao/tldts/pull/2000) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.16 (Fri Mar 29 2024)
 
 #### :scroll: Update Public Suffix List
