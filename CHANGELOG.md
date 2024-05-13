@@ -1,3 +1,22 @@
+# v6.1.20 (Mon May 13 2024)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#2035](https://github.com/remusao/tldts/pull/2035) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump rimraf from 5.0.5 to 5.0.7 [#2039](https://github.com/remusao/tldts/pull/2039) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.12.8 to 20.12.11 [#2037](https://github.com/remusao/tldts/pull/2037) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.19 (Sat May 04 2024)
 
 #### :scroll: Update Public Suffix List
