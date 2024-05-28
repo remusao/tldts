@@ -1,6 +1,6 @@
 {
   "name": "tldts-tests",
-  "version": "6.1.22",
+  "version": "6.1.23",
   "private": true,
   "description": "tests for different tldts implementations",
   "author": {
@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "rimraf": "^5.0.1",
-    "tldts-utils": "^6.1.22",
+    "tldts-utils": "^6.1.23",
     "ts-node": "^10.0.0",
     "typescript": "^5.0.4"
   },
