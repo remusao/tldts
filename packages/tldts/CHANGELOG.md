@@ -1,3 +1,20 @@
+# v6.1.26 (Fri Jun 14 2024)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#2063](https://github.com/remusao/tldts/pull/2063) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump nyc from 15.1.0 to 17.0.0 [#2062](https://github.com/remusao/tldts/pull/2062) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.25 (Thu Jun 06 2024)
 
 #### :scroll: Update Public Suffix List

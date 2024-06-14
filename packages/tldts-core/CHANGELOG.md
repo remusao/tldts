@@ -1,3 +1,15 @@
+# v6.1.26 (Fri Jun 14 2024)
+
+#### :nut_and_bolt: Dependencies
+
+- Bump nyc from 15.1.0 to 17.0.0 [#2062](https://github.com/remusao/tldts/pull/2062) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
 # v6.1.13 (Thu Mar 07 2024)
 
 #### :bug: Bug Fix

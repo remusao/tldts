@@ -1,3 +1,26 @@
+# v6.1.26 (Fri Jun 14 2024)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#2063](https://github.com/remusao/tldts/pull/2063) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump braces from 3.0.2 to 3.0.3 [#2066](https://github.com/remusao/tldts/pull/2066) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/parser from 7.12.0 to 7.13.0 [#2064](https://github.com/remusao/tldts/pull/2064) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/eslint-plugin from 7.12.0 to 7.13.0 [#2065](https://github.com/remusao/tldts/pull/2065) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/eslint-plugin from 7.11.0 to 7.12.0 [#2060](https://github.com/remusao/tldts/pull/2060) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts-icann`, `tldts`
+  - Bump nyc from 15.1.0 to 17.0.0 [#2062](https://github.com/remusao/tldts/pull/2062) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.25 (Thu Jun 06 2024)
 
 #### :scroll: Update Public Suffix List
