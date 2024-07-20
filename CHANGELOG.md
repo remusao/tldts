@@ -1,3 +1,27 @@
+# v6.1.33 (Sat Jul 20 2024)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#2102](https://github.com/remusao/tldts/pull/2102) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @typescript-eslint/parser from 7.15.0 to 7.16.1 [#2098](https://github.com/remusao/tldts/pull/2098) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump mocha from 10.4.0 to 10.6.0 [#2088](https://github.com/remusao/tldts/pull/2088) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump lerna from 8.1.5 to 8.1.6 [#2089](https://github.com/remusao/tldts/pull/2089) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.18.0 to 4.18.1 [#2092](https://github.com/remusao/tldts/pull/2092) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @typescript-eslint/eslint-plugin from 7.15.0 to 7.16.1 [#2099](https://github.com/remusao/tldts/pull/2099) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.14.9 to 20.14.11 [#2100](https://github.com/remusao/tldts/pull/2100) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump auto from 11.1.6 to 11.2.0 [#2101](https://github.com/remusao/tldts/pull/2101) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.32 (Wed Jul 17 2024)
 
 #### :scroll: Update Public Suffix List
