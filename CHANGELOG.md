@@ -1,3 +1,27 @@
+# v6.1.42 (Thu Sep 05 2024)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#2137](https://github.com/remusao/tldts/pull/2137) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/node from 22.5.2 to 22.5.4 [#2145](https://github.com/remusao/tldts/pull/2145) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 22.5.1 to 22.5.2 [#2142](https://github.com/remusao/tldts/pull/2142) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.21.1 to 4.21.2 [#2143](https://github.com/remusao/tldts/pull/2143) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.21.0 to 4.21.1 [#2138](https://github.com/remusao/tldts/pull/2138) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 22.5.0 to 22.5.1 [#2139](https://github.com/remusao/tldts/pull/2139) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump auto from 11.2.0 to 11.2.1 [#2140](https://github.com/remusao/tldts/pull/2140) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump micromatch from 4.0.5 to 4.0.8 [#2141](https://github.com/remusao/tldts/pull/2141) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.41 (Thu Aug 22 2024)
 
 #### :scroll: Update Public Suffix List
