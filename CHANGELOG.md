@@ -1,3 +1,23 @@
+# v6.1.45 (Fri Sep 13 2024)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#2149](https://github.com/remusao/tldts/pull/2149) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/mocha from 10.0.7 to 10.0.8 [#2151](https://github.com/remusao/tldts/pull/2151) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.21.2 to 4.21.3 [#2150](https://github.com/remusao/tldts/pull/2150) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript from 5.5.4 to 5.6.2 [#2148](https://github.com/remusao/tldts/pull/2148) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.44 (Tue Sep 10 2024)
 
 #### :scroll: Update Public Suffix List
