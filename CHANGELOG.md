@@ -1,3 +1,23 @@
+# v6.1.47 (Thu Sep 19 2024)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#2154](https://github.com/remusao/tldts/pull/2154) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump nyc from 17.0.0 to 17.1.0 [#2156](https://github.com/remusao/tldts/pull/2156) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump eslint from 8.57.0 to 8.57.1 [#2155](https://github.com/remusao/tldts/pull/2155) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 22.5.4 to 22.5.5 [#2153](https://github.com/remusao/tldts/pull/2153) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.46 (Sun Sep 15 2024)
 
 #### :scroll: Update Public Suffix List
