@@ -1,3 +1,20 @@
+# v6.1.48 (Fri Sep 27 2024)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#2166](https://github.com/remusao/tldts/pull/2166) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @rollup/plugin-typescript from 11.1.6 to 12.1.0 [#2161](https://github.com/remusao/tldts/pull/2161) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.46 (Sun Sep 15 2024)
 
 #### :scroll: Update Public Suffix List

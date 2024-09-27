@@ -1,3 +1,15 @@
+# v6.1.48 (Fri Sep 27 2024)
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @rollup/plugin-typescript from 11.1.6 to 12.1.0 [#2161](https://github.com/remusao/tldts/pull/2161) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
 # v6.1.36 (Mon Jul 29 2024)
 
 #### :nut_and_bolt: Dependencies

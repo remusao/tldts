@@ -1,3 +1,27 @@
+# v6.1.48 (Fri Sep 27 2024)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#2166](https://github.com/remusao/tldts/pull/2166) ([@remusao](https://github.com/remusao))
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#2157](https://github.com/remusao/tldts/pull/2157) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @rollup/plugin-node-resolve from 15.2.3 to 15.3.0 [#2164](https://github.com/remusao/tldts/pull/2164) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 22.5.5 to 22.6.1 [#2163](https://github.com/remusao/tldts/pull/2163) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.21.3 to 4.22.4 [#2160](https://github.com/remusao/tldts/pull/2160) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts-icann`, `tldts`
+  - Bump @rollup/plugin-typescript from 11.1.6 to 12.1.0 [#2161](https://github.com/remusao/tldts/pull/2161) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.47 (Thu Sep 19 2024)
 
 #### :scroll: Update Public Suffix List
