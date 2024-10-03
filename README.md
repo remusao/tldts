@@ -14,6 +14,8 @@
 8. Small bundles and small memory footprint
 9. Battle tested: full test coverage and production use
 
+⚠️ If you are migrating to `tldts` from another library like `psl`, make sure to check [the migration section](#migrating-from-other-libraries).
+
 # Install
 
 ```bash
@@ -90,6 +92,129 @@ import { parse } from 'tldts';
 Alternatively, you can try it _directly in your browser_ here: https://npm.runkit.com/tldts
 
 Check [README.md](/packages/tldts/README.md) for more details about the API.
+
+# Migrating from other libraries
+
+TL;DR—here is a quick overview of how to use `tldts` to match the default behavior of the `psl` library. Skip to after the tables for a more detailed explanation.
+
+| | Parsing a hostname |
+| --- | --- |
+| `tldts` | `tldts.parse('spark-public.s3.amazonaws.com', { allowPrivateDomains: true })` |
+| `psl` | `psl.parse('spark-public.s3.amazonaws.com')` |
+| Note | Make sure to include `{ allowPrivateDomains: true }` to consider private suffixes |
+
+| | Parsing a URL |
+| --- | --- |
+| `tldts` | `tldts.parse('https://spark-public.s3.amazonaws.com/data', { allowPrivateDomains: true })` |
+| `psl` | `psl.parse(new URL('https://spark-public.s3.amazonaws.com/data').hostname)` |
+| Note | No need to extract hostnames from URLs, `tldts` can do that for you |
+
+| | Getting the domain |
+| --- | --- |
+| `tldts` | `tldts.getDomain('spark-public.s3.amazonaws.com', { allowPrivateDomains: true })` |
+| `psl` | `psl.get('spark-public.s3.amazonaws.com')` |
+| Note | Using specific functions like `getDomain` are more efficient then relying on `parse` |
+
+| | Getting the Public Suffix |
+| --- | --- |
+| `tldts` | `tldts.getPublicSuffix('spark-public.s3.amazonaws.com', { allowPrivateDomains: true })` |
+| `psl` | `psl.parse('spark-public.s3.amazonaws.com').tld` |
+
+
+*Explanation*. There are multiple libraries which can be used to parse URIs
+based on the Public Suffix List. Not all these libraries offer the same
+behavior by default and depending on your particular use-case, this can matter.
+When migrating from another library to `tldts`, make sure to read this section
+to preserve the same behavior.
+
+The biggest difference between `tldts`'s default behavior and some other
+libraries like `psl` has to do with which suffixes are considered by default.
+The default for `tldts` is to **only consider the ICANN section** and ignore the
+Private section.
+
+Consider this example using the unmaintained `psl` library:
+```js
+const psl = require('psl');
+
+psl.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv')
+// {
+//   input: 'spark-public.s3.amazonaws.com',
+//   tld: 's3.amazonaws.com', <<< Public Suffix is from Private section
+//   sld: 'spark-public',
+//   domain: 'spark-public.s3.amazonaws.com',
+//   subdomain: null,
+//   listed: true
+// }
+```
+
+And now with `tldts`:
+```js
+const { parse } = require('tldts');
+
+parse('spark-public.s3.amazonaws.com');
+// {
+//   domain: 'amazonaws.com',
+//   domainWithoutSuffix: 'amazonaws',
+//   hostname: 'spark-public.s3.amazonaws.com',
+//   isIcann: true,
+//   isIp: false,
+//   isPrivate: false,
+//   publicSuffix: 'com', <<< By default, use Public Suffix from ICANN section
+//   subdomain: 'spark-public.s3'
+// }
+```
+
+To get the **same behavior**, you need to pass the `{ allowPrivateDomains: true }` option:
+```js
+const { parse } = require('tldts');
+
+parse('spark-public.s3.amazonaws.com', { allowPrivateDomains: true });
+// {
+//   domain: 'spark-public.s3.amazonaws.com',
+//   domainWithoutSuffix: 'spark-public',
+//   hostname: 'spark-public.s3.amazonaws.com',
+//   isIcann: false,
+//   isIp: false,
+//   isPrivate: true,
+//   publicSuffix: 's3.amazonaws.com', <<< Private Public Suffix is used
+//   subdomain: ''
+// }
+```
+
+Here are some other differences which can make your life easy. `tldts` **accepts
+both hostnames and URLs as arguments**, so you do not need to parse your
+inputs before handing them over to `tldts`:
+
+```js
+const { parse } = require('tldts');
+
+// Both are fine!
+parse('spark-public.s3.amazonaws.com', { allowPrivateDomains: true });
+parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv', { allowPrivateDomains: true });
+```
+
+`tldts` offers dedicated methods to extract the Public Suffix, domain,
+subdomain, etc. without having to rely on the more generic `parse` function.
+This is also *more efficient* than calling `parse`, because less work as to be
+done.
+
+```js
+const {
+  getHostname,
+  getDomain,
+  getPublicSuffix,
+  getSubdomain,
+  getDomainWithoutSuffix,
+} = require('tldts');
+
+const url = 'https://spark-public.s3.amazonaws.com';
+
+console.log(getHostname(url)); // spark-public.s3.amazonaws.com
+console.log(getDomain(url, { allowPrivateDomains: true })); // spark-public.s3.amazonaws.com
+console.log(getPublicSuffix(url, { allowPrivateDomains: true })); // s3.amazonaws.com
+console.log(getSubdomain(url, { allowPrivateDomains: true })); // ''
+console.log(getDomainWithoutSuffix(url, { allowPrivateDomains: true })); // spark-public
+```
 
 ## Contributors
 
