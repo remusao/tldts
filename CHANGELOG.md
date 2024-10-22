@@ -1,3 +1,22 @@
+# v6.1.53 (Tue Oct 22 2024)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#2183](https://github.com/remusao/tldts/pull/2183) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/node from 22.7.5 to 22.7.8 [#2186](https://github.com/remusao/tldts/pull/2186) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @rollup/plugin-typescript from 12.1.0 to 12.1.1 [#2182](https://github.com/remusao/tldts/pull/2182) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.52 (Wed Oct 16 2024)
 
 #### :scroll: Update Public Suffix List
