@@ -1,3 +1,26 @@
+# v6.1.59 (Thu Nov 07 2024)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#2205](https://github.com/remusao/tldts/pull/2205) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump rollup from 4.24.3 to 4.24.4 [#2207](https://github.com/remusao/tldts/pull/2207) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 22.8.6 to 22.9.0 [#2208](https://github.com/remusao/tldts/pull/2208) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.24.2 to 4.24.3 [#2198](https://github.com/remusao/tldts/pull/2198) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump mocha from 10.7.3 to 10.8.2 [#2200](https://github.com/remusao/tldts/pull/2200) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 22.8.2 to 22.8.6 [#2202](https://github.com/remusao/tldts/pull/2202) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump lerna from 8.1.8 to 8.1.9 [#2203](https://github.com/remusao/tldts/pull/2203) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.58 (Sat Nov 02 2024)
 
 #### :scroll: Update Public Suffix List
