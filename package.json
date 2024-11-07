@@ -45,7 +45,7 @@
     "lint": "eslint --config .eslintrc.cjs .",
     "test": "lerna run --concurrency 2 test",
     "bench": "make -C bench",
-    "update": "git submodule foreach git pull origin master && ts-node -O '{\"module\": \"commonjs\"}' ./packages/tldts-utils/bin/update.js",
+    "update": "git submodule foreach git pull origin main && ts-node -O '{\"module\": \"commonjs\"}' ./packages/tldts-utils/bin/update.js",
     "release": "auto shipit"
   },
   "devDependencies": {
