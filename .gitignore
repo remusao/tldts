@@ -6,3 +6,4 @@ node_modules/
 bench/requests.json
 
 .nx/cache
+.nx/workspace-data
