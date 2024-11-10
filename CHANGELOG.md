@@ -1,3 +1,21 @@
+# v6.1.60 (Sun Nov 10 2024)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts`
+  - Update upstream public suffix list [#2209](https://github.com/remusao/tldts/pull/2209) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump auto from 11.2.1 to 11.3.0 [#2191](https://github.com/remusao/tldts/pull/2191) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.59 (Thu Nov 07 2024)
 
 #### :scroll: Update Public Suffix List
