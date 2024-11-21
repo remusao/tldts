@@ -1,3 +1,21 @@
+# v6.1.63 (Thu Nov 21 2024)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#2218](https://github.com/remusao/tldts/pull/2218) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/mocha from 10.0.9 to 10.0.10 [#2219](https://github.com/remusao/tldts/pull/2219) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.62 (Wed Nov 20 2024)
 
 #### :scroll: Update Public Suffix List
