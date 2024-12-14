@@ -328,10 +328,11 @@ export default function test(
         expect(
           tldts.getDomain('s3.amazonaws.com', { allowPrivateDomains: true }),
         ).to.equal(null);
-        expect(
-          tldts.getDomain('blogspot.co.uk', { allowPrivateDomains: true }),
-        ).to.equal(null);
-        expect(tldts.getDomain('blogspot.co.uk')).to.equal('blogspot.co.uk');
+        // Removed: https://github.com/publicsuffix/list/pull/2327
+        // expect(
+        //   tldts.getDomain('blogspot.co.uk', { allowPrivateDomains: true }),
+        // ).to.equal(null);
+        // expect(tldts.getDomain('blogspot.co.uk')).to.equal('blogspot.co.uk');
       });
     }
 
@@ -701,12 +702,13 @@ export default function test(
     });
 
     // @see https://github.com/oncletom/tld.js/issues/25
-    it('should return the subdomain of reserved subdomains', () => {
-      expect(tldts.getSubdomain('blogspot.co.uk')).to.equal('');
-      expect(tldts.getSubdomain('emergency.blogspot.co.uk')).to.equal(
-        'emergency',
-      );
-    });
+    // Removed: https://github.com/publicsuffix/list/pull/2327
+    // it('should return the subdomain of reserved subdomains', () => {
+    //   expect(tldts.getSubdomain('blogspot.co.uk')).to.equal('');
+    //   expect(tldts.getSubdomain('emergency.blogspot.co.uk')).to.equal(
+    //     'emergency',
+    //   );
+    // });
 
     it('should not break on specific RegExp characters', () => {
       expect(() => {
