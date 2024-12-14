@@ -1,3 +1,15 @@
+# v6.1.68 (Sat Dec 14 2024)
+
+#### :nut_and_bolt: Dependencies
+
+- Bump mocha from 10.8.2 to 11.0.1 [#2229](https://github.com/remusao/tldts/pull/2229) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
 # v6.1.48 (Fri Sep 27 2024)
 
 #### :nut_and_bolt: Dependencies

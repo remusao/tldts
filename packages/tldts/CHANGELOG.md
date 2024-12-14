@@ -1,3 +1,20 @@
+# v6.1.68 (Sat Dec 14 2024)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#2233](https://github.com/remusao/tldts/pull/2233) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump mocha from 10.8.2 to 11.0.1 [#2229](https://github.com/remusao/tldts/pull/2229) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.67 (Wed Dec 11 2024)
 
 #### :scroll: Update Public Suffix List

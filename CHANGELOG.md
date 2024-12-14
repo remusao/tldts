@@ -1,3 +1,24 @@
+# v6.1.68 (Sat Dec 14 2024)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts-icann`, `tldts-tests`, `tldts`
+  - Update upstream public suffix list [#2233](https://github.com/remusao/tldts/pull/2233) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump rollup from 4.28.0 to 4.28.1 [#2230](https://github.com/remusao/tldts/pull/2230) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 22.10.1 to 22.10.2 [#2232](https://github.com/remusao/tldts/pull/2232) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts-icann`, `tldts-tests`, `tldts`
+  - Bump mocha from 10.8.2 to 11.0.1 [#2229](https://github.com/remusao/tldts/pull/2229) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.67 (Wed Dec 11 2024)
 
 #### :scroll: Update Public Suffix List
