@@ -1,3 +1,20 @@
+# v6.1.69 (Thu Dec 19 2024)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#2234](https://github.com/remusao/tldts/pull/2234) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @rollup/plugin-node-resolve from 15.3.0 to 16.0.0 [#2235](https://github.com/remusao/tldts/pull/2235) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.68 (Sat Dec 14 2024)
 
 #### :scroll: Update Public Suffix List

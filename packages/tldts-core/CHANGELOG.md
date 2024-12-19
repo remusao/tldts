@@ -1,3 +1,15 @@
+# v6.1.69 (Thu Dec 19 2024)
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @rollup/plugin-node-resolve from 15.3.0 to 16.0.0 [#2235](https://github.com/remusao/tldts/pull/2235) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
 # v6.1.68 (Sat Dec 14 2024)
 
 #### :nut_and_bolt: Dependencies
