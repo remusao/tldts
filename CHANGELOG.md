@@ -1,3 +1,21 @@
+# v6.1.70 (Wed Dec 25 2024)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#2237](https://github.com/remusao/tldts/pull/2237) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump rollup from 4.28.1 to 4.29.1 [#2238](https://github.com/remusao/tldts/pull/2238) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.69 (Thu Dec 19 2024)
 
 #### :scroll: Update Public Suffix List
