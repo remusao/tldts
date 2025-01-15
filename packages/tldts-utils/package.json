@@ -1,6 +1,6 @@
 {
   "name": "tldts-utils",
-  "version": "6.1.71",
+  "version": "6.1.72",
   "private": true,
   "description": "tldts internal utils (internal module)",
   "author": {
