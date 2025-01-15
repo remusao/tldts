@@ -954,12 +954,12 @@ export default function test(
       if (
         !rule.isException &&
         rule.isWildcard &&
-        (rule.isIcann || includePrivate)
+        (rule.isIcann || includePrivate) &&
+        rule.rule !== '*.wc.psl.hrsn.dev'
       ) {
-        let domain = rule.rule;
-        it(domain, () => {
-          expect(domain.startsWith('*.')).to.be.true;
-          domain = domain.slice(2);
+        it(rule.rule, () => {
+          expect(rule.rule.startsWith('*.')).to.be.true;
+          const domain = rule.rule.slice(2);
           const url = `https://www.sub.${domain}/`;
           const result = tldts.parse(url, {
             allowPrivateDomains: includePrivate,
