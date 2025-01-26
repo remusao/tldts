@@ -475,8 +475,8 @@ export default function test(
 
   describe('#getHostname', () => {
     it('handles space only inputs', () => {
-      expect(tldts.getHostname(' ')).to.equal('');
-      expect(tldts.getHostname('  ')).to.equal('');
+      expect(tldts.getHostname(' ')).to.equal(null);
+      expect(tldts.getHostname('  ')).to.equal(null);
     });
 
     it('handles space corner-cases', () => {
@@ -647,6 +647,21 @@ export default function test(
       expect(tldts.parse(url)).to.deep.equal(
         tldts.parse(url, { mixedInputs: false }),
       );
+    });
+
+    // https://github.com/remusao/tldts/issues/2258
+    it('should be consistent with parse method', () => {
+      const url = '___id___.c.mystat-in.net';
+
+      // With validation ('_' is forbidden at the start of a label)
+      expect(tldts.parse(url).hostname).to.be.null;
+      expect(tldts.getHostname(url)).to.be.null;
+
+      // Without validation
+      expect(tldts.parse(url, { validateHostname: false }).hostname).to.equal(
+        url,
+      );
+      expect(tldts.getHostname(url, { validateHostname: false })).to.equal(url);
     });
   });
 
