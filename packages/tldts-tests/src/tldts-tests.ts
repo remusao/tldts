@@ -475,8 +475,8 @@ export default function test(
 
   describe('#getHostname', () => {
     it('handles space only inputs', () => {
-      expect(tldts.getHostname(' ')).to.equal('');
-      expect(tldts.getHostname('  ')).to.equal('');
+      expect(tldts.getHostname(' ')).to.equal(null);
+      expect(tldts.getHostname('  ')).to.equal(null);
     });
 
     it('handles space corner-cases', () => {
