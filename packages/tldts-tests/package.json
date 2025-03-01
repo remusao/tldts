@@ -1,7 +1,6 @@
 {
   "name": "tldts-tests",
   "version": "6.1.80",
-  "private": true,
   "description": "tests for different tldts implementations",
   "author": {
     "name": "Rémi Berson"
@@ -25,7 +24,7 @@
     "Yehezkiel Syamsuhadi <yehezkielbs@gmail.com>"
   ],
   "publishConfig": {
-    "access": "private"
+    "access": "true"
   },
   "homepage": "https://github.com/remusao/tldts#readme",
   "bugs": {
