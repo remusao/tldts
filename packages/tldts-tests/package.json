@@ -45,6 +45,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "tsc --build ./tsconfig.json",
+    "bundle": "tsc --build ./tsconfig.bundle.json",
     "prebundle": "yarn run build",
     "prepack": "yarn run bundle"
   },
