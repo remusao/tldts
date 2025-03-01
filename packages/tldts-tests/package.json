@@ -24,7 +24,7 @@
     "Yehezkiel Syamsuhadi <yehezkielbs@gmail.com>"
   ],
   "publishConfig": {
-    "access": "true"
+    "access": "public"
   },
   "homepage": "https://github.com/remusao/tldts#readme",
   "bugs": {
