@@ -1,7 +1,6 @@
 {
   "name": "tldts-utils",
   "version": "6.1.80",
-  "private": true,
   "description": "tldts internal utils (internal module)",
   "author": {
     "name": "Rémi Berson"
@@ -10,7 +9,7 @@
     "Rémi Berson <remi.berson@pm.me>"
   ],
   "publishConfig": {
-    "access": "private"
+    "access": "public"
   },
   "license": "MIT",
   "homepage": "https://github.com/remusao/tldts#readme",
