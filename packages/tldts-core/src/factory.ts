@@ -109,26 +109,29 @@ export function parseImpl(
     result.hostname = extractHostname(url, false);
   }
 
-  if (step === FLAG.HOSTNAME || result.hostname === null) {
-    return result;
-  }
-
   // Check if `hostname` is a valid ip address
-  if (options.detectIp) {
+  if (options.detectIp && result.hostname !== null) {
     result.isIp = isIp(result.hostname);
     if (result.isIp) {
       return result;
     }
   }
 
-  // Perform optional hostname validation. If hostname is not valid, no need to
-  // go further as there will be no valid domain or sub-domain.
+  // Perform hostname validation if enabled. If hostname is not valid, no need to
+  // go further as there will be no valid domain or sub-domain. This validation
+  // is applied before any early returns to ensure consistent behavior across
+  // all API methods including getHostname().
   if (
     options.validateHostname &&
     options.extractHostname &&
+    result.hostname !== null &&
     !isValidHostname(result.hostname)
   ) {
     result.hostname = null;
+    return result;
+  }
+
+  if (step === FLAG.HOSTNAME || result.hostname === null) {
     return result;
   }
 
