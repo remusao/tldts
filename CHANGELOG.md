@@ -1,3 +1,16 @@
+# v7.0.0 (Sat Apr 12 2025)
+
+#### :boom: Breaking Change
+
+- `tldts-core`, `tldts-tests`
+  - Fix inconsistent hostname validation in `getHostname` and `parse(url).hostname` when `validateHostname` is enabled [#2262](https://github.com/remusao/tldts/pull/2262) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.86 (Sat Apr 12 2025)
 
 #### :scroll: Update Public Suffix List
