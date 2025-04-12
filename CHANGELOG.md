@@ -1,3 +1,27 @@
+# v6.1.86 (Sat Apr 12 2025)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#2311](https://github.com/remusao/tldts/pull/2311) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump axios from 1.7.7 to 1.8.4 [#2318](https://github.com/remusao/tldts/pull/2318) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @rollup/plugin-node-resolve from 16.0.0 to 16.0.1 [#2303](https://github.com/remusao/tldts/pull/2303) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @babel/helpers from 7.24.7 to 7.26.10 [#2306](https://github.com/remusao/tldts/pull/2306) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.34.8 to 4.39.0 [#2314](https://github.com/remusao/tldts/pull/2314) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 22.13.5 to 22.14.0 [#2315](https://github.com/remusao/tldts/pull/2315) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript from 5.7.3 to 5.8.3 [#2316](https://github.com/remusao/tldts/pull/2316) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump lerna from 8.2.0 to 8.2.2 [#2317](https://github.com/remusao/tldts/pull/2317) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v6.1.85 (Sat Mar 22 2025)
 
 #### :scroll: Update Public Suffix List
