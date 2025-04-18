@@ -1,6 +1,6 @@
 {
   "name": "tldts-utils",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "description": "tldts internal utils (internal module)",
   "author": {
     "name": "Rémi Berson"
