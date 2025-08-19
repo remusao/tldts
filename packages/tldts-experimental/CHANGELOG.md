@@ -1,3 +1,15 @@
+# v7.0.12 (Tue Aug 19 2025)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#2401](https://github.com/remusao/tldts/pull/2401) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.0.11 (Tue Aug 05 2025)
 
 #### :scroll: Update Public Suffix List
