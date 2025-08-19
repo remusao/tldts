@@ -136,7 +136,7 @@ tldts.parse('gopher://domain.unknown/');
 //   hostname: 'domain.unknown',
 //   isIcann: false,
 //   isIp: false,
-//   isPrivate: true,
+//   isPrivate: false,
 //   publicSuffix: 'unknown',
 //   subdomain: '' }
 
