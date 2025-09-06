@@ -1,3 +1,28 @@
+# v7.0.13 (Sat Sep 06 2025)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#2406](https://github.com/remusao/tldts/pull/2406) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump lerna from 8.2.2 to 8.2.3 [#2376](https://github.com/remusao/tldts/pull/2376) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.40.0 to 4.50.0 [#2413](https://github.com/remusao/tldts/pull/2413) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump mocha from 11.1.0 to 11.7.2 [#2414](https://github.com/remusao/tldts/pull/2414) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @rollup/plugin-typescript from 12.1.2 to 12.1.4 [#2374](https://github.com/remusao/tldts/pull/2374) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump form-data from 4.0.0 to 4.0.4 [#2388](https://github.com/remusao/tldts/pull/2388) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript from 5.8.3 to 5.9.2 [#2393](https://github.com/remusao/tldts/pull/2393) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts-icann`, `tldts-utils`, `tldts`
+  - Bump @types/node from 22.14.1 to 24.3.1 [#2415](https://github.com/remusao/tldts/pull/2415) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.0.12 (Tue Aug 19 2025)
 
 #### :scroll: Update Public Suffix List

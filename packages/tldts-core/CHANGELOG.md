@@ -1,3 +1,15 @@
+# v7.0.13 (Sat Sep 06 2025)
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/node from 22.14.1 to 24.3.1 [#2415](https://github.com/remusao/tldts/pull/2415) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
 # v7.0.0 (Sat Apr 12 2025)
 
 #### :boom: Breaking Change
