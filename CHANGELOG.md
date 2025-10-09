@@ -1,3 +1,16 @@
+# v7.0.17 (Thu Oct 09 2025)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#2431](https://github.com/remusao/tldts/pull/2431) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.0.16 (Mon Sep 22 2025)
 
 #### :scroll: Update Public Suffix List
