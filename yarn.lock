@@ -1140,9 +1140,9 @@
     terser "^5.17.4"
 
 "@rollup/plugin-typescript@^12.1.0":
-  version "12.1.4"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-typescript/-/plugin-typescript-12.1.4.tgz#9a58433e8b13906198953d79faf3b16f67ee0424"
-  integrity sha512-s5Hx+EtN60LMlDBvl5f04bEiFZmAepk27Q+mr85L/00zPDn1jtzlTV6FWn81MaIwqfWzKxmOJrBWHU6vtQyedQ==
+  version "12.2.0"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-typescript/-/plugin-typescript-12.2.0.tgz#f97f32d5afc56e0b6403085c6c54797d09a327db"
+  integrity sha512-g7krmoYCaNhL/jSF1wCYiiUNsWPTj0HwcPDnxIyaonxsQIVp/jc08muGpSz+eGGK+0ajHfl8tpf1lahHXSOF7Q==
   dependencies:
     "@rollup/pluginutils" "^5.1.0"
     resolve "^1.22.1"
