@@ -72,10 +72,16 @@ export default function test(
     });
 
     it('TLD with only 1 (wildcard) rule.', () => {
-      checkPublicSuffix('bd', null);
-      checkPublicSuffix('c.bd', null);
-      checkPublicSuffix('b.c.bd', 'b.c.bd');
-      checkPublicSuffix('a.b.c.bd', 'b.c.bd');
+      // Changed by: https://github.com/publicsuffix/list/pull/2623
+      // checkPublicSuffix('bd', null);
+      // checkPublicSuffix('c.bd', null);
+      // checkPublicSuffix('b.c.bd', 'b.c.bd');
+      // checkPublicSuffix('a.b.c.bd', 'b.c.bd');
+      // Replacing with *.ck
+      checkPublicSuffix('ck', null);
+      checkPublicSuffix('c.ck', null);
+      checkPublicSuffix('b.c.ck', 'b.c.ck');
+      checkPublicSuffix('a.b.c.ck', 'b.c.ck');
     });
 
     it('More complex TLD.', () => {
