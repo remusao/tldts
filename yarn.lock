@@ -15,17 +15,17 @@
     "@jridgewell/gen-mapping" "^0.3.5"
     "@jridgewell/trace-mapping" "^0.3.24"
 
-"@auto-it/bot-list@11.3.0":
-  version "11.3.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-11.3.0.tgz#503d6bfd50f9263f514ee5a240c4fb0330320a03"
-  integrity sha512-+izoqAyOSiDVt3WcjVkSvLBV9c82VXLSf3oSWWcCeoxW/YDQ2AoInQ3M3EEyuBP+Yw9KQwGTTYHqpR7ZFkZpDQ==
+"@auto-it/bot-list@11.3.6":
+  version "11.3.6"
+  resolved "https://registry.yarnpkg.com/@auto-it/bot-list/-/bot-list-11.3.6.tgz#9e1e040e947591595f3d2869397e88b1e47c4d50"
+  integrity sha512-BtFOhGv+V47TAYr77uiFz0l807g655Wcui/1KOJpqUYvF07MjG3+D8Ob4sMl8ewDQfgtAMTJKJF3S7AUdKPQng==
 
-"@auto-it/core@11.3.0":
-  version "11.3.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-11.3.0.tgz#27fb6e5564b102ee8c9931993e0df6dc75603b4a"
-  integrity sha512-3i7ooAhQJulVDG3gmdOioTXLhpFoS75Z/OsLV8ZkrEaEH/sfxlslqFx20VjWva7gMLl2iO8IjbRnlLhkXy5geg==
+"@auto-it/core@11.3.6":
+  version "11.3.6"
+  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-11.3.6.tgz#1ddececa517f43218cf27029fb6f2b1f7a18c651"
+  integrity sha512-OE7feN8pbpcSCiWaOHYah+oXsinhJ6OfDrsLyPywNSfEPjal4q18ss2iQX1zTmrFIEjDSmptdjqlmwx+dm/8wQ==
   dependencies:
-    "@auto-it/bot-list" "11.3.0"
+    "@auto-it/bot-list" "11.3.6"
     "@endemolshinegroup/cosmiconfig-typescript-loader" "^3.0.2"
     "@octokit/core" "^3.5.1"
     "@octokit/plugin-enterprise-compatibility" "1.3.0"
@@ -66,18 +66,18 @@
     typescript-memoize "^1.0.0-alpha.3"
     url-join "^4.0.0"
 
-"@auto-it/npm@11.3.0":
-  version "11.3.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/npm/-/npm-11.3.0.tgz#42afdc637092a2fc60d479acf7d57e284947658d"
-  integrity sha512-II7u1trzi2hSd1Vww635DmvHqHlgtVPqr4VPJlq1M7zqPwi9+FcaMW5J/DSqlwJgWRWviWqepIhasUQhj69p0A==
+"@auto-it/npm@11.3.6":
+  version "11.3.6"
+  resolved "https://registry.yarnpkg.com/@auto-it/npm/-/npm-11.3.6.tgz#27fc0f8625c6d0aba7cd3400152089219ea0f1a9"
+  integrity sha512-yKYvlBcIRIOlFLJFpAq2ipdGihqyxAf5KZ9YeDxF/xN54XUV5A5kQqohSpAckxpWKBwxPIKODdLyY5Y0Tm0qfQ==
   dependencies:
-    "@auto-it/core" "11.3.0"
-    "@auto-it/package-json-utils" "11.3.0"
+    "@auto-it/core" "11.3.6"
+    "@auto-it/package-json-utils" "11.3.6"
     await-to-js "^3.0.0"
     endent "^2.1.0"
     env-ci "^5.0.1"
     fp-ts "^2.5.3"
-    get-monorepo-packages "^1.1.0"
+    get-monorepo-packages "^1.3.0"
     io-ts "^2.1.2"
     registry-url "^5.1.0"
     semver "^7.0.0"
@@ -86,32 +86,32 @@
     url-join "^4.0.0"
     user-home "^2.0.0"
 
-"@auto-it/package-json-utils@11.3.0":
-  version "11.3.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/package-json-utils/-/package-json-utils-11.3.0.tgz#40932da04660c93a63c30024ea0ee95a2f86585d"
-  integrity sha512-wZQLfxYCzqNTlqgYhgm1mZaasA35tuOhGl0npWMZlq0HJ4rbNvUYnjb8bXlyfm/dxTYtYp70IhoV5kv1NmPX8Q==
+"@auto-it/package-json-utils@11.3.6":
+  version "11.3.6"
+  resolved "https://registry.yarnpkg.com/@auto-it/package-json-utils/-/package-json-utils-11.3.6.tgz#6ecdb0e8dc7ec6dd3919d91c12223cc079661b7e"
+  integrity sha512-j1GT9alk4kJoyyuAxqqHD7okHQjJuJXeAMTMRt4ZpjDjElPuPbxvzjM+QZNuxaMTyjxRoT2YbFyx0uIt7pqXlQ==
   dependencies:
     parse-author "^2.0.0"
     parse-github-url "1.0.2"
 
-"@auto-it/released@11.3.0":
-  version "11.3.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/released/-/released-11.3.0.tgz#c5289884d797de76d820cfcf760deda08b9ea3c7"
-  integrity sha512-8Aw8WGuTi3giKU9+KEutebLhhX+4eNVa7SmVLaRIFECUxI/+PS20yMbWsYjsyk5qju1MdpEQGPOW/4U5OZ6Bdw==
+"@auto-it/released@11.3.6":
+  version "11.3.6"
+  resolved "https://registry.yarnpkg.com/@auto-it/released/-/released-11.3.6.tgz#6c70f91603cff145664c4a7e5fe63bdf5f8e3924"
+  integrity sha512-mhe1QjEylUjONE24LUij3A0BCXvadABhbyPS+Jxq6hFS5Rh/gkOmxSuCa1HpO6DSsVdM0gOSF8ZYhUJ/9vHT8A==
   dependencies:
-    "@auto-it/bot-list" "11.3.0"
-    "@auto-it/core" "11.3.0"
+    "@auto-it/bot-list" "11.3.6"
+    "@auto-it/core" "11.3.6"
     deepmerge "^4.0.0"
     fp-ts "^2.5.3"
     io-ts "^2.1.2"
     tslib "2.1.0"
 
-"@auto-it/version-file@11.3.0":
-  version "11.3.0"
-  resolved "https://registry.yarnpkg.com/@auto-it/version-file/-/version-file-11.3.0.tgz#2772c07ac21a66140449f4cc7589d01803730d13"
-  integrity sha512-+ax5/oXKLc5moXrSJuGm3eC10YFapWFwS5MEVwdspPM2YJn1ImuhagXOq5FJ1XK8aeHILZI+2iA+YB5wI1bcLA==
+"@auto-it/version-file@11.3.6":
+  version "11.3.6"
+  resolved "https://registry.yarnpkg.com/@auto-it/version-file/-/version-file-11.3.6.tgz#8fc537d92cb767e15b4579891c821cb9c4260171"
+  integrity sha512-dtf2T02ryIdX1GWQ9jeLW7EQj1IOBNFQX4BGS2uAddjszsd65hYNoRFMzQ+T/tr7j5Fn9RDaxXLamwYfaSPn9Q==
   dependencies:
-    "@auto-it/core" "11.3.0"
+    "@auto-it/core" "11.3.6"
     fp-ts "^2.5.3"
     io-ts "^2.1.2"
     semver "^7.0.0"
@@ -1755,14 +1755,14 @@ author-regex@^1.0.0:
   integrity sha512-KbWgR8wOYRAPekEmMXrYYdc7BRyhn2Ftk7KWfMUnQ43hFdojWEFRxhhRUm3/OFEdPa1r0KAvTTg9YQK57xTe0g==
 
 auto@^11.1.1:
-  version "11.3.0"
-  resolved "https://registry.yarnpkg.com/auto/-/auto-11.3.0.tgz#d8264eea5f42705edb1582267397c4ac6284d81a"
-  integrity sha512-7FWjxrfsVKaToAcjxsijdpL8prbffZk5ovPCTVDk6c0Yq3pNKd2AMm5fkPR5lDbnYNeoU7lbm+0wVtJSoTQhpw==
+  version "11.3.6"
+  resolved "https://registry.yarnpkg.com/auto/-/auto-11.3.6.tgz#4cb2a61ac1e32825c13a254663c68270778e9b87"
+  integrity sha512-Db13X4WVNPzPtWKSoiOzhfW2g3zNUTDR1X3wkQPdIW21xtajwm5Taqg3BXWR2u7/45W0bU+6YykVgioNRwrwIw==
   dependencies:
-    "@auto-it/core" "11.3.0"
-    "@auto-it/npm" "11.3.0"
-    "@auto-it/released" "11.3.0"
-    "@auto-it/version-file" "11.3.0"
+    "@auto-it/core" "11.3.6"
+    "@auto-it/npm" "11.3.6"
+    "@auto-it/released" "11.3.6"
+    "@auto-it/version-file" "11.3.6"
     await-to-js "^3.0.0"
     chalk "^4.0.0"
     command-line-application "^0.10.1"
@@ -3151,10 +3151,10 @@ get-intrinsic@^1.2.6:
     hasown "^2.0.2"
     math-intrinsics "^1.1.0"
 
-get-monorepo-packages@^1.1.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/get-monorepo-packages/-/get-monorepo-packages-1.2.0.tgz#3eee88d30b11a5f65955dec6ae331958b2a168e4"
-  integrity sha512-aDP6tH+eM3EuVSp3YyCutOcFS4Y9AhRRH9FAd+cjtR/g63Hx+DCXdKoP1ViRPUJz5wm+BOEXB4FhoffGHxJ7jQ==
+get-monorepo-packages@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/get-monorepo-packages/-/get-monorepo-packages-1.3.0.tgz#4fd82bff2290765b9ef2e08856c9f1e63f21b5eb"
+  integrity sha512-A/s881nNcKhoM7RgkvYFTOtGO+dy4EWbyRaatncPEhhlJAaZRlpfHwuT68p5GJenEt81nnjJOwGg0WKLkR5ZdQ==
   dependencies:
     globby "^7.1.1"
     load-json-file "^4.0.0"
