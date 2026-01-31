@@ -8818,7 +8818,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tldts-core@npm:^7.0.19, tldts-core@workspace:packages/tldts-core":
+"tldts-core@npm:^7.0.20, tldts-core@workspace:packages/tldts-core":
   version: 0.0.0-use.local
   resolution: "tldts-core@workspace:packages/tldts-core"
   dependencies:
@@ -8853,8 +8853,8 @@ __metadata:
     rimraf: "npm:^5.0.1"
     rollup: "npm:^4.1.0"
     rollup-plugin-sourcemaps2: "npm:^0.5.4"
-    tldts-core: "npm:^7.0.19"
-    tldts-tests: "npm:^7.0.19"
+    tldts-core: "npm:^7.0.20"
+    tldts-tests: "npm:^7.0.20"
     typescript: "npm:^5.0.4"
   languageName: unknown
   linkType: soft
@@ -8875,8 +8875,8 @@ __metadata:
     rimraf: "npm:^5.0.1"
     rollup: "npm:^4.1.0"
     rollup-plugin-sourcemaps2: "npm:^0.5.4"
-    tldts-core: "npm:^7.0.19"
-    tldts-tests: "npm:^7.0.19"
+    tldts-core: "npm:^7.0.20"
+    tldts-tests: "npm:^7.0.20"
     typescript: "npm:^5.0.4"
   languageName: unknown
   linkType: soft
@@ -8898,7 +8898,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"tldts-tests@npm:^7.0.19, tldts-tests@workspace:packages/tldts-tests":
+"tldts-tests@npm:^7.0.20, tldts-tests@workspace:packages/tldts-tests":
   version: 0.0.0-use.local
   resolution: "tldts-tests@workspace:packages/tldts-tests"
   dependencies:
@@ -8908,13 +8908,13 @@ __metadata:
     chai: "npm:^4.4.1"
     mocha: "npm:^11.0.1"
     rimraf: "npm:^5.0.1"
-    tldts-utils: "npm:^7.0.19"
+    tldts-utils: "npm:^7.0.20"
     ts-node: "npm:^10.0.0"
     typescript: "npm:^5.0.4"
   languageName: unknown
   linkType: soft
 
-"tldts-utils@npm:^7.0.19, tldts-utils@workspace:packages/tldts-utils":
+"tldts-utils@npm:^7.0.20, tldts-utils@workspace:packages/tldts-utils":
   version: 0.0.0-use.local
   resolution: "tldts-utils@workspace:packages/tldts-utils"
   dependencies:
@@ -8952,8 +8952,8 @@ __metadata:
     rimraf: "npm:^5.0.1"
     rollup: "npm:^4.1.0"
     rollup-plugin-sourcemaps2: "npm:^0.5.4"
-    tldts-core: "npm:^7.0.19"
-    tldts-tests: "npm:^7.0.19"
+    tldts-core: "npm:^7.0.20"
+    tldts-tests: "npm:^7.0.20"
     typescript: "npm:^5.0.4"
   bin:
     tldts: bin/cli.js

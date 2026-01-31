@@ -1,6 +1,6 @@
 {
   "name": "tldts-icann",
-  "version": "7.0.19",
+  "version": "7.0.20",
   "description": "Library to work against complex domain names, subdomains and URIs. Only contains ICANN section.",
   "author": {
     "name": "Rémi Berson"
@@ -63,11 +63,11 @@
     "rimraf": "^5.0.1",
     "rollup": "^4.1.0",
     "rollup-plugin-sourcemaps2": "^0.5.4",
-    "tldts-tests": "^7.0.19",
+    "tldts-tests": "^7.0.20",
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "tldts-core": "^7.0.19"
+    "tldts-core": "^7.0.20"
   },
   "keywords": [
     "tld",
