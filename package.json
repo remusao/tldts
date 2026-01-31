@@ -1,5 +1,5 @@
 {
-  "name": "tldts",
+  "name": "tldts-root",
   "description": "Library to work against complex domain names, subdomains and URIs.",
   "private": true,
   "license": "MIT",
@@ -32,12 +32,13 @@
     "type": "git",
     "url": "git+ssh://git@github.com/remusao/tldts.git"
   },
+  "packageManager": "yarn@4.12.0",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
     "postinstall": "patch-package",
-    "bootstrap": "yarn install --frozen-lock",
+    "bootstrap": "yarn install --immutable",
     "build": "tsc --build ./tsconfig.project.json && lerna run build",
     "watch": "tsc --build ./tsconfig.project.json --watch",
     "bundle": "lerna run --concurrency 2 bundle",

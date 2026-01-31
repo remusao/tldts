@@ -61,7 +61,7 @@
     "nyc": "^17.0.0",
     "rimraf": "^5.0.1",
     "rollup": "^4.1.0",
-    "rollup-plugin-sourcemaps": "^0.6.1",
+    "rollup-plugin-sourcemaps2": "^0.5.4",
     "typescript": "^5.0.4"
   }
 }

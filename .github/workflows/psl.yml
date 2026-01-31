@@ -18,6 +18,9 @@ jobs:
           git submodule sync --recursive
           git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive
 
+      - name: Enable Corepack
+        run: corepack enable
+
       - name: Get yarn cache
         id: yarn-cache
         run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"
@@ -30,7 +33,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn bootstrap
+        run: yarn install --immutable
 
       - name: Fetch latest assets
         id: fetch

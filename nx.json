@@ -27,7 +27,7 @@
       "dependsOn": [
         "^test"
       ],
-      "cache": true
+      "cache": false
     }
   },
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
