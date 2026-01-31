@@ -48,23 +48,23 @@
     "build": "tsc --build ./tsconfig.json",
     "bundle": "tsc --build ./tsconfig.bundle.json && rollup --config ./rollup.config.mjs",
     "prepack": "yarn run bundle",
-    "test": "mocha --config ../../.mocharc.cjs"
+    "test": "../../node_modules/.bin/mocha --config ../../.mocharc.cjs"
   },
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^16.0.0",
-    "@rollup/plugin-terser": "^0.4.0",
-    "@rollup/plugin-typescript": "^12.1.0",
-    "@types/chai": "^4.2.18",
-    "@types/mocha": "^10.0.0",
-    "@types/node": "^24.3.1",
-    "chai": "^4.4.1",
-    "mocha": "^11.0.1",
-    "nyc": "^17.0.0",
-    "rimraf": "^5.0.1",
-    "rollup": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "@types/chai": "^4.3.20",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^24.10.9",
+    "chai": "^4.5.0",
+    "mocha": "^11.7.5",
+    "nyc": "^17.1.0",
+    "rimraf": "^5.0.10",
+    "rollup": "^4.57.1",
     "rollup-plugin-sourcemaps2": "^0.5.4",
     "tldts-tests": "^7.0.20",
-    "typescript": "^5.0.4"
+    "typescript": "^5.5.4"
   },
   "dependencies": {
     "tldts-core": "^7.0.20"

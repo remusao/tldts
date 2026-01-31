@@ -654,8 +654,8 @@ export default function test(
       const url = '___id___.c.mystat-in.net';
 
       // With validation ('_' is forbidden at the start of a label)
-      expect(tldts.parse(url).hostname).to.be.null;
-      expect(tldts.getHostname(url)).to.be.null;
+      expect(tldts.parse(url).hostname).to.equal(null);
+      expect(tldts.getHostname(url)).to.equal(null);
 
       // Without validation
       expect(tldts.parse(url, { validateHostname: false }).hostname).to.equal(
@@ -973,7 +973,7 @@ export default function test(
         rule.rule !== '*.wc.psl.hrsn.dev'
       ) {
         it(rule.rule, () => {
-          expect(rule.rule.startsWith('*.')).to.be.true;
+          expect(rule.rule.startsWith('*.')).to.equal(true);
           const domain = rule.rule.slice(2);
           const url = `https://www.sub.${domain}/`;
           const result = tldts.parse(url, {
