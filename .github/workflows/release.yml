@@ -43,8 +43,8 @@ jobs:
       - name: Lint
         run: yarn lint
 
-      - name: Restore yarn install state
-        run: git restore -- .yarn/install-state.gz
+      - name: Ignore yarn install state changes
+        run: git update-index --assume-unchanged .yarn/install-state.gz
 
       - name: Create release
         env:
