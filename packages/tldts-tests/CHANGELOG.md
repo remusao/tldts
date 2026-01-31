@@ -1,3 +1,15 @@
+# v7.0.20 (Sat Jan 31 2026)
+
+#### ⚠️ Pushed to `master`
+
+- Bump to Yarn 4 and try to fix publishing. ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.0.18 (Mon Nov 17 2025)
 
 #### :scroll: Update Public Suffix List

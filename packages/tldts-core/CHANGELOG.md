@@ -1,3 +1,15 @@
+# v7.0.20 (Sat Jan 31 2026)
+
+#### ⚠️ Pushed to `master`
+
+- Bump to Yarn 4 and try to fix publishing. ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.0.13 (Sat Sep 06 2025)
 
 #### :nut_and_bolt: Dependencies
