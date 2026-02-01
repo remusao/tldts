@@ -1,3 +1,20 @@
+# v7.0.21 (Sun Feb 01 2026)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-core`, `tldts-experimental`, `tldts-icann`, `tldts-tests`, `tldts-utils`, `tldts`
+  - Update PSL + dependencies [#2497](https://github.com/remusao/tldts/pull/2497) ([@remusao](https://github.com/remusao))
+
+#### ⚠️ Pushed to `master`
+
+- Fix publishing ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.0.20 (Sat Jan 31 2026)
 
 #### :scroll: Update Public Suffix List
