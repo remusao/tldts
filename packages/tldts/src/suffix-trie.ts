@@ -33,8 +33,8 @@ function lookupInTrie(
     if ((node[0] & allowedMask) !== 0) {
       result = {
         index: index + 1,
-        isIcann: node[0] === RULE_TYPE.ICANN,
-        isPrivate: node[0] === RULE_TYPE.PRIVATE,
+        isIcann: (node[0] & RULE_TYPE.ICANN) !== 0,
+        isPrivate: (node[0] & RULE_TYPE.PRIVATE) !== 0,
       };
     }
 

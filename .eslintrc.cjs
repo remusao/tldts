@@ -11,6 +11,7 @@ module.exports = {
     '**/comparison/**',
     '**/bench/**',
     '**/publicsuffix/**',
+    '**/bin/**/*.js',
   ],
   parserOptions: {
     project: 'tsconfig.json',

@@ -31,6 +31,12 @@ describe('#isIp', () => {
     expect(isIp('192.168.0')).to.equal(false);
     expect(isIp('192.168.0.')).to.equal(false);
     expect(isIp('192.16-8.0.1')).to.equal(false);
+    // Too long for IPv4 (length > 15)
+    expect(isIp('255.255.255.2555')).to.equal(false);
+    // Too long for IPv6 (length > 39)
+    expect(
+      isIp('2001:0db8:85a3:0000:0000:8a2e:0370:7334:1234'),
+    ).to.equal(false);
   });
 });
 
