@@ -133,7 +133,6 @@ export default (body: string) => {
       hashesPerLabels = isIcann ? exceptions.icann : exceptions.priv;
     } else if (isWildcard) {
       hashesPerLabels = isIcann ? wildcards.icann : wildcards.priv;
-      // eslint-disable-next-line no-param-reassign
       rule = rule.slice(2);
     } else if (isNormal) {
       hashesPerLabels = isIcann ? rules.icann : rules.priv;

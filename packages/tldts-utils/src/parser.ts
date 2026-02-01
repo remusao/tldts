@@ -47,7 +47,7 @@ export default (body: string, cb: (_: IRule) => void) => {
     // to the first whitespace encountered.
     const spaceIndex = line.indexOf(' ');
     if (spaceIndex !== -1) {
-      line = line.substr(0, spaceIndex);
+      line = line.slice(0, spaceIndex);
     }
 
     // If suffix is not ascii, we index the suffix twice so that we support IDNA

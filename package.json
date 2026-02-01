@@ -43,23 +43,26 @@
     "watch": "tsc --build ./tsconfig.project.json --watch",
     "bundle": "lerna run --concurrency 2 bundle",
     "clean": "lerna run --parallel clean && lerna clean --yes && rimraf node_modules",
-    "lint": "eslint --config .eslintrc.cjs .",
+    "format": "prettier --write .",
+    "lint": "eslint .",
     "test": "lerna run --concurrency 2 test",
     "bench": "make -C bench",
     "update": "git submodule foreach git pull origin main && ts-node -O '{\"module\": \"commonjs\"}' ./packages/tldts-utils/bin/update.js",
     "release": "auto shipit"
   },
   "devDependencies": {
-    "@types/node": "^24.10.9",
-    "@typescript-eslint/eslint-plugin": "^8.54.0",
-    "@typescript-eslint/parser": "^8.54.0",
+    "@types/node": "^25.1.0",
     "auto": "^11.3.6",
     "benchmark": "^2.1.4",
-    "eslint": "^8.57.1",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
     "lerna": "^9.0.3",
     "patch-package": "^8.0.1",
+    "prettier": "^3.8.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.4"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.54.0"
   },
   "resolutions": {
     "get-monorepo-packages": "1.2.0"
