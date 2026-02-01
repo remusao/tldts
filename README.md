@@ -97,31 +97,30 @@ Check [README.md](/packages/tldts/README.md) for more details about the API.
 
 TL;DR—here is a quick overview of how to use `tldts` to match the default behavior of the `psl` library. Skip to after the tables for a more detailed explanation.
 
-| | Parsing a hostname |
-| --- | --- |
-| `tldts` | `tldts.parse('spark-public.s3.amazonaws.com', { allowPrivateDomains: true })` |
-| `psl` | `psl.parse('spark-public.s3.amazonaws.com')` |
-| Note | Make sure to include `{ allowPrivateDomains: true }` to consider private suffixes |
+|         | Parsing a hostname                                                                |
+| ------- | --------------------------------------------------------------------------------- |
+| `tldts` | `tldts.parse('spark-public.s3.amazonaws.com', { allowPrivateDomains: true })`     |
+| `psl`   | `psl.parse('spark-public.s3.amazonaws.com')`                                      |
+| Note    | Make sure to include `{ allowPrivateDomains: true }` to consider private suffixes |
 
-| | Parsing a URL |
-| --- | --- |
+|         | Parsing a URL                                                                              |
+| ------- | ------------------------------------------------------------------------------------------ |
 | `tldts` | `tldts.parse('https://spark-public.s3.amazonaws.com/data', { allowPrivateDomains: true })` |
-| `psl` | `psl.parse(new URL('https://spark-public.s3.amazonaws.com/data').hostname)` |
-| Note | No need to extract hostnames from URLs, `tldts` can do that for you |
+| `psl`   | `psl.parse(new URL('https://spark-public.s3.amazonaws.com/data').hostname)`                |
+| Note    | No need to extract hostnames from URLs, `tldts` can do that for you                        |
 
-| | Getting the domain |
-| --- | --- |
-| `tldts` | `tldts.getDomain('spark-public.s3.amazonaws.com', { allowPrivateDomains: true })` |
-| `psl` | `psl.get('spark-public.s3.amazonaws.com')` |
-| Note | Using specific functions like `getDomain` are more efficient then relying on `parse` |
+|         | Getting the domain                                                                   |
+| ------- | ------------------------------------------------------------------------------------ |
+| `tldts` | `tldts.getDomain('spark-public.s3.amazonaws.com', { allowPrivateDomains: true })`    |
+| `psl`   | `psl.get('spark-public.s3.amazonaws.com')`                                           |
+| Note    | Using specific functions like `getDomain` are more efficient then relying on `parse` |
 
-| | Getting the Public Suffix |
-| --- | --- |
+|         | Getting the Public Suffix                                                               |
+| ------- | --------------------------------------------------------------------------------------- |
 | `tldts` | `tldts.getPublicSuffix('spark-public.s3.amazonaws.com', { allowPrivateDomains: true })` |
-| `psl` | `psl.parse('spark-public.s3.amazonaws.com').tld` |
+| `psl`   | `psl.parse('spark-public.s3.amazonaws.com').tld`                                        |
 
-
-*Explanation*. There are multiple libraries which can be used to parse URIs
+_Explanation_. There are multiple libraries which can be used to parse URIs
 based on the Public Suffix List. Not all these libraries offer the same
 behavior by default and depending on your particular use-case, this can matter.
 When migrating from another library to `tldts`, make sure to read this section
@@ -133,10 +132,11 @@ The default for `tldts` is to **only consider the ICANN section** and ignore the
 Private section.
 
 Consider this example using the unmaintained `psl` library:
+
 ```js
 const psl = require('psl');
 
-psl.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv')
+psl.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv');
 // {
 //   input: 'spark-public.s3.amazonaws.com',
 //   tld: 's3.amazonaws.com', <<< Public Suffix is from Private section
@@ -148,6 +148,7 @@ psl.parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv')
 ```
 
 And now with `tldts`:
+
 ```js
 const { parse } = require('tldts');
 
@@ -165,6 +166,7 @@ parse('spark-public.s3.amazonaws.com');
 ```
 
 To get the **same behavior**, you need to pass the `{ allowPrivateDomains: true }` option:
+
 ```js
 const { parse } = require('tldts');
 
@@ -190,12 +192,14 @@ const { parse } = require('tldts');
 
 // Both are fine!
 parse('spark-public.s3.amazonaws.com', { allowPrivateDomains: true });
-parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv', { allowPrivateDomains: true });
+parse('https://spark-public.s3.amazonaws.com/dataanalysis/loansData.csv', {
+  allowPrivateDomains: true,
+});
 ```
 
 `tldts` offers dedicated methods to extract the Public Suffix, domain,
 subdomain, etc. without having to rely on the more generic `parse` function.
-This is also *more efficient* than calling `parse`, because less work as to be
+This is also _more efficient_ than calling `parse`, because less work as to be
 done.
 
 ```js

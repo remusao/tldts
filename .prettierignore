@@ -1,0 +1,13 @@
+node_modules/
+dist/
+coverage/
+.yarn/
+yarn.lock
+*.min.js
+*.min.mjs
+publicsuffix/
+
+# Auto-generated
+packages/tldts-experimental/src/data/hashes.ts
+packages/tldts/src/data/trie.ts
+packages/tldts-icann/src/data/trie.ts

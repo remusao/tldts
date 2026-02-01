@@ -27,10 +27,10 @@ import parse from '../parser';
 
 interface ITrie {
   $: 0 | 1 | 2;
-  succ: { [label: string]: ITrie };
+  succ: Record<string, ITrie>;
 }
 
-type CompactTrie = [0 | 1 | 2, { [label: string]: CompactTrie }];
+type CompactTrie = [0 | 1 | 2, Record<string, CompactTrie>];
 
 function convertToCompactTrie(trie: ITrie): CompactTrie {
   return [
@@ -135,7 +135,7 @@ function compressToDAWG(trie: ITrie, name: string): string {
 
       // Replace all the other ones by the name of this new variable
       nodes.forEach((node) => {
-        // @ts-expect-error
+        // @ts-expect-error replaceNodes callback expects ITrie, we pass string ref
         replaceNodes.get(node)?.(`_${nextId}`);
       });
 

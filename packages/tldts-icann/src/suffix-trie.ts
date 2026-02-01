@@ -32,7 +32,7 @@ function lookupInTrie(
       break;
     }
 
-    const succ: { [label: string]: ITrie } = node[1];
+    const succ: Record<string, ITrie> = node[1];
     node = Object.prototype.hasOwnProperty.call(succ, parts[index]!)
       ? succ[parts[index]!]
       : succ['*'];

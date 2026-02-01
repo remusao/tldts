@@ -6774,7 +6774,6 @@ _2019-10-14_
 _2019-10-12_
 
 - New optimizations [#255](https://github.com/remusao/tldts/pull/255)
-
   - re-use a unique result object for all methods but `parse(...)`
   - remove memory allocation + callback in packed hash
   - remove unnecessary calls to `indexOf` and `lastIndexOf` in packed hash
@@ -6948,7 +6947,6 @@ of the `isValid` attribute), as well as introducing a new experimental
 backend (`tldts-experimental` bundle), this is a major version bump.
 
 - [#16](https://github.com/remusao/tldts/pull/16) Optimizations + comparison with other libraries (#16)
-
   - Optimize Trie into a DAWG (size reduction)
   - Implement comparison with other libraries
   - Implement fast path for valid hostnames as arguments

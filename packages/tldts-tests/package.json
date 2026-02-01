@@ -50,16 +50,16 @@
     "prepack": "yarn run bundle"
   },
   "devDependencies": {
-    "@types/node": "^24.10.9",
-    "rimraf": "^5.0.10",
+    "@types/node": "^25.1.0",
+    "rimraf": "^6.1.2",
     "tldts-utils": "^7.0.21",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.4"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@types/chai": "^4.3.20",
+    "@types/chai": "^5.2.3",
     "@types/mocha": "^10.0.10",
-    "chai": "^4.5.0",
+    "chai": "^5.2.0",
     "mocha": "^11.7.5"
   }
 }
