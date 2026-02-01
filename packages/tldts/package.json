@@ -57,7 +57,7 @@
     "@rollup/plugin-typescript": "^12.3.0",
     "@types/chai": "^4.3.20",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^24.10.9",
+    "@types/node": "^25.1.0",
     "chai": "^4.5.0",
     "mocha": "^11.7.5",
     "nyc": "^17.1.0",

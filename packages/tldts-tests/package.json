@@ -50,7 +50,7 @@
     "prepack": "yarn run bundle"
   },
   "devDependencies": {
-    "@types/node": "^24.10.9",
+    "@types/node": "^25.1.0",
     "rimraf": "^5.0.10",
     "tldts-utils": "^7.0.21",
     "ts-node": "^10.9.2",

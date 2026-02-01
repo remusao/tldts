@@ -2245,12 +2245,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^24.10.9":
-  version: 24.10.9
-  resolution: "@types/node@npm:24.10.9"
+"@types/node@npm:^25.1.0":
+  version: 25.1.0
+  resolution: "@types/node@npm:25.1.0"
   dependencies:
     undici-types: "npm:~7.16.0"
-  checksum: 10c0/e9e436fcd2136bddb1bbe3271a89f4653910bcf6ee8047c4117f544c7905a106c039e2720ee48f28505ef2560e22fb9ead719f28bf5e075fdde0c1120e38e3b2
+  checksum: 10c0/5f393a127dc9565e2e152514a271455d580c7095afc51302e73ffe8aac3526b64ebacc3c10dd40c93cef81a95436ef2c6a8b522930df567a3f6b189c0eef649a
   languageName: node
   linkType: hard
 
@@ -8859,7 +8859,7 @@ __metadata:
     "@rollup/plugin-typescript": "npm:^12.3.0"
     "@types/chai": "npm:^4.3.20"
     "@types/mocha": "npm:^10.0.10"
-    "@types/node": "npm:^24.10.9"
+    "@types/node": "npm:^25.1.0"
     chai: "npm:^4.5.0"
     mocha: "npm:^11.7.5"
     nyc: "npm:^17.1.0"
@@ -8879,7 +8879,7 @@ __metadata:
     "@rollup/plugin-typescript": "npm:^12.3.0"
     "@types/chai": "npm:^4.3.20"
     "@types/mocha": "npm:^10.0.10"
-    "@types/node": "npm:^24.10.9"
+    "@types/node": "npm:^25.1.0"
     chai: "npm:^4.5.0"
     mocha: "npm:^11.7.5"
     nyc: "npm:^17.1.0"
@@ -8901,7 +8901,7 @@ __metadata:
     "@rollup/plugin-typescript": "npm:^12.3.0"
     "@types/chai": "npm:^4.3.20"
     "@types/mocha": "npm:^10.0.10"
-    "@types/node": "npm:^24.10.9"
+    "@types/node": "npm:^25.1.0"
     chai: "npm:^4.5.0"
     mocha: "npm:^11.7.5"
     nyc: "npm:^17.1.0"
@@ -8918,7 +8918,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tldts-root@workspace:."
   dependencies:
-    "@types/node": "npm:^24.10.9"
+    "@types/node": "npm:^25.1.0"
     "@typescript-eslint/eslint-plugin": "npm:^8.54.0"
     "@typescript-eslint/parser": "npm:^8.54.0"
     auto: "npm:^11.3.6"
@@ -8937,7 +8937,7 @@ __metadata:
   dependencies:
     "@types/chai": "npm:^4.3.20"
     "@types/mocha": "npm:^10.0.10"
-    "@types/node": "npm:^24.10.9"
+    "@types/node": "npm:^25.1.0"
     chai: "npm:^4.5.0"
     mocha: "npm:^11.7.5"
     rimraf: "npm:^5.0.10"
@@ -8955,7 +8955,7 @@ __metadata:
     "@rollup/plugin-typescript": "npm:^12.3.0"
     "@types/chai": "npm:^4.3.20"
     "@types/mocha": "npm:^10.0.10"
-    "@types/node": "npm:^24.10.9"
+    "@types/node": "npm:^25.1.0"
     "@types/punycode": "npm:^2.1.4"
     chai: "npm:^4.5.0"
     nyc: "npm:^17.1.0"
@@ -8978,7 +8978,7 @@ __metadata:
     "@rollup/plugin-typescript": "npm:^12.3.0"
     "@types/chai": "npm:^4.3.20"
     "@types/mocha": "npm:^10.0.10"
-    "@types/node": "npm:^24.10.9"
+    "@types/node": "npm:^25.1.0"
     chai: "npm:^4.5.0"
     mocha: "npm:^11.7.5"
     nyc: "npm:^17.1.0"
