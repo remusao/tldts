@@ -1,6 +1,6 @@
 {
   "name": "tldts-experimental",
-  "version": "7.0.20",
+  "version": "7.0.21",
   "description": "Library to work against complex domain names, subdomains and URIs.",
   "author": {
     "name": "Rémi Berson"
@@ -63,11 +63,11 @@
     "rimraf": "^5.0.10",
     "rollup": "^4.57.1",
     "rollup-plugin-sourcemaps2": "^0.5.4",
-    "tldts-tests": "^7.0.20",
+    "tldts-tests": "^7.0.21",
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "tldts-core": "^7.0.20"
+    "tldts-core": "^7.0.21"
   },
   "keywords": [
     "tld",
