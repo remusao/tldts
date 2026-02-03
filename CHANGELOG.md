@@ -1,3 +1,24 @@
+# v7.0.22 (Tue Feb 03 2026)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#2500](https://github.com/remusao/tldts/pull/2500) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/node from 25.1.0 to 25.2.0 [#2499](https://github.com/remusao/tldts/pull/2499) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts-icann`, `tldts-tests`, `tldts-utils`, `tldts`
+  - Bump chai from 4.5.0 to 6.2.2 [#2482](https://github.com/remusao/tldts/pull/2482) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+  - chore: upgrade dependencies [#2498](https://github.com/remusao/tldts/pull/2498) ([@remusao](https://github.com/remusao))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.0.21 (Sun Feb 01 2026)
 
 #### :scroll: Update Public Suffix List
