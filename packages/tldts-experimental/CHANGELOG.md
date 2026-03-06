@@ -1,3 +1,21 @@
+# v7.0.25 (Fri Mar 06 2026)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#2522](https://github.com/remusao/tldts/pull/2522) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump nyc from 17.1.0 to 18.0.0 [#2517](https://github.com/remusao/tldts/pull/2517) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @rollup/plugin-terser from 0.4.4 to 1.0.0 [#2523](https://github.com/remusao/tldts/pull/2523) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.0.24 (Mon Mar 02 2026)
 
 #### :scroll: Update Public Suffix List

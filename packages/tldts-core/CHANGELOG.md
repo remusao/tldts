@@ -1,3 +1,15 @@
+# v7.0.25 (Fri Mar 06 2026)
+
+#### :nut_and_bolt: Dependencies
+
+- Bump nyc from 17.1.0 to 18.0.0 [#2517](https://github.com/remusao/tldts/pull/2517) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
 # v7.0.22 (Tue Feb 03 2026)
 
 #### :nut_and_bolt: Dependencies

@@ -1,3 +1,29 @@
+# v7.0.25 (Fri Mar 06 2026)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#2522](https://github.com/remusao/tldts/pull/2522) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump rimraf from 6.1.2 to 6.1.3 [#2509](https://github.com/remusao/tldts/pull/2509) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.57.1 to 4.59.0 [#2513](https://github.com/remusao/tldts/pull/2513) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript-eslint from 8.54.0 to 8.56.1 [#2514](https://github.com/remusao/tldts/pull/2514) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump lerna from 9.0.3 to 9.0.5 [#2521](https://github.com/remusao/tldts/pull/2521) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 25.2.1 to 25.3.5 [#2524](https://github.com/remusao/tldts/pull/2524) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts-icann`, `tldts-utils`, `tldts`
+  - Bump nyc from 17.1.0 to 18.0.0 [#2517](https://github.com/remusao/tldts/pull/2517) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- `tldts-experimental`, `tldts-icann`, `tldts`
+  - Bump @rollup/plugin-terser from 0.4.4 to 1.0.0 [#2523](https://github.com/remusao/tldts/pull/2523) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.0.24 (Mon Mar 02 2026)
 
 #### :scroll: Update Public Suffix List
