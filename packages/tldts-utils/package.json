@@ -46,7 +46,7 @@
     "@types/node": "^25.1.0",
     "@types/punycode": "^2.1.4",
     "chai": "^6.2.2",
-    "nyc": "^17.1.0",
+    "nyc": "^18.0.0",
     "rimraf": "^6.1.2",
     "rollup": "^4.57.1",
     "rollup-plugin-sourcemaps2": "^0.5.4",
