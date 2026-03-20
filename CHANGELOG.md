@@ -1,3 +1,23 @@
+# v7.0.27 (Fri Mar 20 2026)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#2534](https://github.com/remusao/tldts/pull/2534) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump flatted from 3.3.1 to 3.4.2 [#2535](https://github.com/remusao/tldts/pull/2535) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript-eslint from 8.57.0 to 8.57.1 [#2533](https://github.com/remusao/tldts/pull/2533) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump tar from 7.5.7 to 7.5.11 [#2532](https://github.com/remusao/tldts/pull/2532) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.0.26 (Mon Mar 16 2026)
 
 #### :scroll: Update Public Suffix List
