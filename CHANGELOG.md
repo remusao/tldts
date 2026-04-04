@@ -1,3 +1,27 @@
+# v7.0.28 (Sat Apr 04 2026)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#2541](https://github.com/remusao/tldts/pull/2541) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump lodash from 4.17.23 to 4.18.1 [#2546](https://github.com/remusao/tldts/pull/2546) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump handlebars from 4.7.8 to 4.7.9 [#2542](https://github.com/remusao/tldts/pull/2542) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump picomatch from 2.3.1 to 2.3.2 [#2540](https://github.com/remusao/tldts/pull/2540) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript-eslint from 8.57.2 to 8.58.0 [#2543](https://github.com/remusao/tldts/pull/2543) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.60.0 to 4.60.1 [#2544](https://github.com/remusao/tldts/pull/2544) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.59.0 to 4.60.0 [#2536](https://github.com/remusao/tldts/pull/2536) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript-eslint from 8.57.1 to 8.57.2 [#2539](https://github.com/remusao/tldts/pull/2539) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.0.27 (Fri Mar 20 2026)
 
 #### :scroll: Update Public Suffix List
