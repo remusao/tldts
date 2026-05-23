@@ -147,6 +147,11 @@ export default function test(
         'while',
         'with',
         'yield',
+        // Object.prototype-member labels (lowercase, so they survive hostname
+        // lowercasing): must be treated as ordinary labels, never resolve
+        // against the prototype chain during trie traversal.
+        'constructor',
+        '__proto__',
       ].forEach((keyword) => {
         it(keyword, () => {
           expect(tldts.getDomain(`https://${keyword}.com`)).to.equal(
@@ -1041,6 +1046,116 @@ export default function test(
           expect(result.domain, url).to.equal(`example.${suffix}`);
         });
       }
+    });
+  });
+
+  describe('options handling (regression for shared default-options reuse)', () => {
+    // Calling a method with no options must behave identically to passing `{}`.
+    // The no-options path now returns a shared cached defaults object instead of
+    // allocating one per call; this guards that the shared object stays read-only.
+    it('omitting options equals passing {} for every public method', () => {
+      const url = 'https://sub.example.co.uk/path?q=1';
+      expect(tldts.parse(url)).to.deep.equal(tldts.parse(url, {}));
+      expect(tldts.getHostname(url)).to.equal(tldts.getHostname(url, {}));
+      expect(tldts.getDomain(url)).to.equal(tldts.getDomain(url, {}));
+      expect(tldts.getPublicSuffix(url)).to.equal(
+        tldts.getPublicSuffix(url, {}),
+      );
+      expect(tldts.getSubdomain(url)).to.equal(tldts.getSubdomain(url, {}));
+      expect(tldts.getDomainWithoutSuffix(url)).to.equal(
+        tldts.getDomainWithoutSuffix(url, {}),
+      );
+    });
+
+    // A prior call with custom options must not corrupt the shared defaults that
+    // a subsequent no-options call relies on (co.uk is ICANN in all packages).
+    it('a custom-options call does not corrupt later default-options results', () => {
+      const url = 'https://sub.example.co.uk/';
+      const before = tldts.getDomain(url); // default options
+      // interleave calls with assorted non-default options
+      tldts.getDomain(url, {
+        allowPrivateDomains: true,
+        validateHostname: false,
+        detectIp: false,
+      });
+      tldts.getDomain('https://other.example.com/', { mixedInputs: false });
+      const after = tldts.getDomain(url); // default options again
+      expect(after).to.equal(before);
+      expect(after).to.equal('example.co.uk');
+    });
+  });
+
+  describe('public-suffix reconstruction (single-slice offset)', () => {
+    // Rules match across multiple labels: the suffix is rebuilt via a single
+    // hostname.slice at the computed offset (was parts.slice(i).join('.')).
+    it('returns a multi-label rules suffix unchanged', () => {
+      expect(tldts.getPublicSuffix('not.evil.co.uk')).to.equal('co.uk');
+      expect(tldts.getDomain('a.b.c.example.co.uk')).to.equal('example.co.uk');
+    });
+
+    // Exception match: suffix offset uses index+1 (the exception removes its
+    // own left-most label, e.g. !www.ck -> suffix 'ck').
+    it('returns an exception suffix unchanged', () => {
+      expect(tldts.getPublicSuffix('www.ck')).to.equal('ck');
+    });
+  });
+
+  describe('hostname validation dedupe', () => {
+    // Already-valid lowercase hostname: extractHostname returns the SAME string
+    // reference, so the post-extraction validation is skipped — result must
+    // still be that hostname.
+    it('keeps an already-valid hostname', () => {
+      expect(tldts.getHostname('example.co.uk')).to.equal('example.co.uk');
+      expect(tldts.getHostname('sub.example.com')).to.equal('sub.example.com');
+    });
+
+    // Trailing dot is trimmed by extractHostname -> returned string differs from
+    // the input -> the skip guard must NOT fire -> trimmed hostname is validated.
+    it('still validates a trailing-dot hostname (guard does not fire)', () => {
+      expect(tldts.getHostname('miam.miam.google.com.')).to.equal(
+        'miam.miam.google.com',
+      );
+    });
+
+    // Uppercase input is not a "valid hostname" to the validator, so the full
+    // extraction + lowercasing path runs and the guard does not fire.
+    it('lowercases an uppercase hostname', () => {
+      expect(tldts.getHostname('EXAMPLE.COM')).to.equal('example.com');
+    });
+
+    // An invalid hostname must still be rejected: the guard only skips the
+    // re-scan when the input was ALREADY valid, so it can never keep an invalid one.
+    it('still rejects an invalid hostname', () => {
+      expect(tldts.getHostname('foo-.com')).to.equal(null);
+    });
+  });
+
+  describe('wildcard suffix reconstruction', () => {
+    // *.sch.uk where the matched suffix spans every label of the hostname:
+    // in the packed-hash impl this takes the backward-scan fallback branch
+    // (matchLabels === number of hashed labels). Must return the full suffix.
+    it('returns a wildcard suffix that spans the whole hostname', () => {
+      expect(tldts.getPublicSuffix('foo.sch.uk')).to.equal('foo.sch.uk');
+    });
+
+    // *.sch.uk with an extra leading label (non-fallback wildcard branch).
+    it('returns a wildcard suffix with a leading subdomain present', () => {
+      expect(tldts.getPublicSuffix('pupils.school.sch.uk')).to.equal(
+        'school.sch.uk',
+      );
+    });
+  });
+
+  describe('prototype-pollution-safe trie traversal', () => {
+    // A label equal to an Object.prototype member, sitting where the trie has a
+    // '*' wildcard child (*.ck), must match the wildcard — NOT resolve to
+    // Object.prototype.constructor / the __proto__ accessor. Guards the
+    // hasOwnProperty check (or, post-Stage-2, the substring-keyed lookup).
+    it('treats constructor/__proto__ labels as ordinary labels under a wildcard', () => {
+      expect(tldts.getPublicSuffix('b.constructor.ck')).to.equal(
+        'constructor.ck',
+      );
+      expect(tldts.getPublicSuffix('b.__proto__.ck')).to.equal('__proto__.ck');
     });
   });
 }

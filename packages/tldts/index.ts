@@ -14,13 +14,13 @@ import suffixLookup from './src/suffix-trie';
 // this un-necessary allocation, we use a global object which is re-used.
 const RESULT: IResult = getEmptyResult();
 
-export function parse(url: string, options: Partial<IOptions> = {}): IResult {
+export function parse(url: string, options?: Partial<IOptions>): IResult {
   return parseImpl(url, FLAG.ALL, suffixLookup, options, getEmptyResult());
 }
 
 export function getHostname(
   url: string,
-  options: Partial<IOptions> = {},
+  options?: Partial<IOptions>,
 ): string | null {
   /*@__INLINE__*/ resetResult(RESULT);
   return parseImpl(url, FLAG.HOSTNAME, suffixLookup, options, RESULT).hostname;
@@ -28,7 +28,7 @@ export function getHostname(
 
 export function getPublicSuffix(
   url: string,
-  options: Partial<IOptions> = {},
+  options?: Partial<IOptions>,
 ): string | null {
   /*@__INLINE__*/ resetResult(RESULT);
   return parseImpl(url, FLAG.PUBLIC_SUFFIX, suffixLookup, options, RESULT)
@@ -37,7 +37,7 @@ export function getPublicSuffix(
 
 export function getDomain(
   url: string,
-  options: Partial<IOptions> = {},
+  options?: Partial<IOptions>,
 ): string | null {
   /*@__INLINE__*/ resetResult(RESULT);
   return parseImpl(url, FLAG.DOMAIN, suffixLookup, options, RESULT).domain;
@@ -45,7 +45,7 @@ export function getDomain(
 
 export function getSubdomain(
   url: string,
-  options: Partial<IOptions> = {},
+  options?: Partial<IOptions>,
 ): string | null {
   /*@__INLINE__*/ resetResult(RESULT);
   return parseImpl(url, FLAG.SUB_DOMAIN, suffixLookup, options, RESULT)
@@ -54,7 +54,7 @@ export function getSubdomain(
 
 export function getDomainWithoutSuffix(
   url: string,
-  options: Partial<IOptions> = {},
+  options?: Partial<IOptions>,
 ): string | null {
   /*@__INLINE__*/ resetResult(RESULT);
   return parseImpl(url, FLAG.ALL, suffixLookup, options, RESULT)

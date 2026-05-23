@@ -264,11 +264,22 @@ export default function suffixLookup(
       return;
     }
 
-    const parts = hostname.split('.');
-    while (parts.length > matchLabels) {
-      parts.shift();
+    // matchLabels >= numberOfHashes: the suffix may extend past the labels we
+    // tracked in BUFFER, so locate its start by scanning backward for the
+    // matchLabels-th dot from the end (no array alloc, no O(n^2) shift). Fewer
+    // dots than matchLabels means the whole hostname is the suffix.
+    let suffixStart = 0;
+    let seenDots = 0;
+    for (let i = hostname.length - 1; i >= 0; i -= 1) {
+      if (hostname.charCodeAt(i) === 46 /* '.' */) {
+        seenDots += 1;
+        if (seenDots === matchLabels) {
+          suffixStart = i + 1;
+          break;
+        }
+      }
     }
-    out.publicSuffix = parts.join('.');
+    out.publicSuffix = hostname.slice(suffixStart);
     return;
   }
 

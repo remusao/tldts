@@ -6,3 +6,8 @@ requests.json:
 
 run: requests.json
 	NODE_ENV=production node benchmark.js
+
+allocations: requests.json
+	NODE_ENV=production node --expose-gc --predictable allocations.js
+
+bench-all: run allocations

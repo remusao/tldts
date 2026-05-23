@@ -79,7 +79,7 @@ export function parseImpl(
     _2: ISuffixLookupOptions,
     _3: IPublicSuffix,
   ) => void,
-  partialOptions: Partial<IOptions>,
+  partialOptions: Partial<IOptions> | undefined,
   result: IResult,
 ): IResult {
   const options: IOptions = /*@__INLINE__*/ setDefaults(partialOptions);
@@ -101,10 +101,15 @@ export function parseImpl(
   // set to `false` to speed-up parsing. If only URLs are expected then
   // `mixedInputs` can be set to `false`. The `mixedInputs` is only a hint
   // and will not change the behavior of the library.
+  // Whether `url` itself was already a valid hostname (only computed on the
+  // mixedInputs path). Lets us skip the post-extraction validation below when
+  // extractHostname returned `url` unchanged (same reference).
+  let urlIsValid = false;
   if (!options.extractHostname) {
     result.hostname = url;
   } else if (options.mixedInputs) {
-    result.hostname = extractHostname(url, isValidHostname(url));
+    urlIsValid = isValidHostname(url);
+    result.hostname = extractHostname(url, urlIsValid);
   } else {
     result.hostname = extractHostname(url, false);
   }
@@ -125,6 +130,9 @@ export function parseImpl(
     options.validateHostname &&
     options.extractHostname &&
     result.hostname !== null &&
+    // Skip the re-scan when `url` was already validated and extractHostname
+    // returned it unchanged (same reference => identical string, still valid).
+    !(urlIsValid && result.hostname === url) &&
     !isValidHostname(result.hostname)
   ) {
     result.hostname = null;
