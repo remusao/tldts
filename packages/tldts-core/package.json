@@ -1,6 +1,6 @@
 {
   "name": "tldts-core",
-  "version": "7.0.31",
+  "version": "7.0.32",
   "description": "tldts core primitives (internal module)",
   "author": {
     "name": "Rémi Berson"
