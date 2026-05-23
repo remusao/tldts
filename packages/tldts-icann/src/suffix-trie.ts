@@ -9,6 +9,11 @@ interface IMatch {
   index: number;
 }
 
+// Reused across calls so that a matching trie node does not allocate a result
+// object every time. Safe because lookups are synchronous and the returned
+// match is consumed before the next lookup runs.
+const MATCH: IMatch = { index: 0 };
+
 /**
  * Lookup parts of domain in Trie
  */
@@ -22,9 +27,8 @@ function lookupInTrie(
   while (node !== undefined) {
     // We have a match!
     if (node[0] === 1) {
-      result = {
-        index: index + 1,
-      };
+      MATCH.index = index + 1;
+      result = MATCH;
     }
 
     // No more `parts` to look for
@@ -40,6 +44,20 @@ function lookupInTrie(
   }
 
   return result;
+}
+
+/**
+ * Index in `hostname` where the public suffix starting at label `p` (in the
+ * forward `parts` split) begins. Equivalent to `parts.slice(p).join('.')` but
+ * returns an offset so we can produce the suffix with a single `hostname.slice`
+ * instead of allocating an intermediate array + joined string.
+ */
+function suffixOffset(hostname: string, parts: string[], p: number): number {
+  let length = 0;
+  for (let i = p; i < parts.length; i += 1) {
+    length += parts[i]!.length + 1;
+  }
+  return hostname.length - length + 1;
 }
 
 /**
@@ -64,7 +82,9 @@ export default function suffixLookup(
   );
 
   if (exceptionMatch !== null) {
-    out.publicSuffix = hostnameParts.slice(exceptionMatch.index + 1).join('.');
+    out.publicSuffix = hostname.slice(
+      suffixOffset(hostname, hostnameParts, exceptionMatch.index + 1),
+    );
     return;
   }
 
@@ -76,7 +96,9 @@ export default function suffixLookup(
   );
 
   if (rulesMatch !== null) {
-    out.publicSuffix = hostnameParts.slice(rulesMatch.index).join('.');
+    out.publicSuffix = hostname.slice(
+      suffixOffset(hostname, hostnameParts, rulesMatch.index),
+    );
     return;
   }
 
