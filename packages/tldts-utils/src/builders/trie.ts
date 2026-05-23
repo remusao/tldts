@@ -1,208 +1,106 @@
 /**
- * This builder implements a fast and compact DAWG data-structure (a.k.a.:
- * direct acyclic word graph, with suffix and prefix compression of the
- * top-level domains) using JavaScript Objects. It is a good trade-off between
- * correctness, speed and space. This is much faster then using a linear scan
- * over all the rules, but slightly slower than the probabilistic
- * data-structure implemented in `bin/builders/hashes.js`.
+ * Builds a flat, allocation-free public-suffix trie.
  *
- * Here is a simple example:
+ * The rules are inserted into an in-memory trie, identical sub-trees are shared
+ * (DAWG compression), and the result is emitted as a handful of flat typed
+ * arrays plus one `text` string holding every edge label:
  *
- *   co.uk
- *   gov.uk
- *   fr
+ *   nodeFlags[node]   -> 0 (none) | 1 (ICANN) | 2 (PRIVATE)
+ *   edgeStart[node]   -> first edge index of `node` (edges of a node are a
+ *                        contiguous, hash-sorted slice [edgeStart[node], edgeStart[node+1]))
+ *   edgeLength[edge]  -> label length
+ *   edgeChild[edge]   -> destination node
+ *   labelText         -> all edge labels concatenated in edge order
  *
- *  <root>
- *    |_ uk
- *       |_ co *
- *       |_ gov *
- *    |_ fr *
+ * The per-edge label offsets (prefix-sum of `edgeLength`) and label hashes
+ * (djb2 over `labelText`) are NOT shipped — they are derived once at load in
+ * `suffix-trie.ts`. This keeps the bundle small (only compressible text +
+ * structure) while the lookup binary-searches integer hashes at runtime.
  *
- *  Finding a match is then a matter of iterating on labels of a hostname
- *  backward and following the branches of the Trie. Whenever we find a terminal
- *  node (indicated with a '*' above), we consider this a match.
+ * Lookup walks a hostname's labels right-to-left following edges; a flagged
+ * node is a public-suffix match. See `suffix-trie.ts`.
  */
 
 import parse from '../parser';
 
 interface ITrie {
-  $: 0 | 1 | 2;
-  succ: Record<string, ITrie>;
-}
-
-type CompactTrie = [0 | 1 | 2, Record<string, CompactTrie>];
-
-function convertToCompactTrie(trie: ITrie): CompactTrie {
-  return [
-    trie.$,
-    Object.fromEntries(
-      Object.entries(trie.succ).map(([label, succ]) => [
-        label,
-        typeof succ === 'string' ? succ : convertToCompactTrie(succ),
-      ]),
-    ),
-  ];
+  flag: 0 | 1 | 2;
+  children: Record<string, ITrie>;
 }
 
 /**
- * Insert a public suffix rule in the `trie`.
+ * Insert a public suffix rule (its labels, already reversed) into the `trie`.
  */
 function insertInTrie(
-  {
-    parts,
-    isIcann,
-  }: {
-    parts: string[];
-    isIcann: boolean;
-  },
+  { parts, isIcann }: { parts: string[]; isIcann: boolean },
   trie: ITrie,
-): ITrie {
-  let node: ITrie = trie;
-
+): void {
+  let node = trie;
   for (const part of parts) {
-    let nextNode = node.succ[part];
-    if (nextNode === undefined) {
-      nextNode = { $: 0, succ: {} };
-      node.succ[part] = nextNode;
+    let next = node.children[part];
+    if (next === undefined) {
+      next = { flag: 0, children: {} };
+      node.children[part] = next;
     }
-
-    node = nextNode;
+    node = next;
   }
-
-  node.$ = isIcann ? 1 : 2;
-
-  return trie;
+  node.flag = isIcann ? 1 : 2;
 }
-
-let nextId = 0;
 
 /**
- * Compress the given `trie` into a DAWG (by compressing common suffixes as
- * well as prefixes). This form is very efficient but cannot be dumped as a
- * simple JSON into the file. The solution is to create intermediary variables
- * for each shared sub-tree, which are then used in the main DAWG.
+ * djb2 hash over `label`, computed backward. MUST stay identical to the
+ * load-time recomputation in `suffix-trie.ts` so edges remain hash-sorted.
  */
-function compressToDAWG(trie: ITrie, name: string): string {
-  const nodesByHash = new Map<string, ITrie[]>();
-  const replaceNodes = new Map<ITrie, (newNode: ITrie) => void>();
-
-  (function groupNodesByHash(node: ITrie): string {
-    // Get a sorted list of next labels from this node
-    const nexts = Object.entries(node.succ)
-      .filter(([n]) => n !== '$')
-      .sort();
-
-    // Create a setter which can be used later to replace the value of a node.
-    // Each node is associated with a lambda function accepting one argument:
-    // the new value of the node. Because the context of the node (parent and
-    // label) is captured in the closure, it allows to just call it later, in a
-    // different context, to change the value of a given node in-place.
-    nexts.forEach(([n, succ]) => {
-      replaceNodes.set(succ, (newNode: ITrie) => {
-        node.succ[n] = newNode;
-      });
-    });
-
-    // Compute a unique hash for this node recursively.
-    const hash = `(${node.$},${[
-      ...nexts.map(([c, succ]) => `${c},${groupNodesByHash(succ)}`),
-    ].join('|')})`;
-
-    // Keep track of all node's hashes
-    let nodes: undefined | ITrie[] = nodesByHash.get(hash);
-    if (nodes === undefined) {
-      nodes = [];
-      nodesByHash.set(hash, nodes);
-    }
-    nodes.push(node);
-
-    return hash;
-  })(trie);
-
-  // Given `nodesByHash`, which associates a list of nodes to each hash
-  // encountered in the previous step, we will detect all the sub-trees being
-  // seen more than once and store them in a variable to allow sharing with
-  // different parts in the DAWG.
-  const variables: string[] = [];
-  nodesByHash.forEach((nodes) => {
-    if (nodes.length > 1) {
-      // Dump one of the nodes (they are all the same so it does not matter which one)
-      variables.push(
-        `_${nextId}: ITrie = ${JSON.stringify(
-          convertToCompactTrie(nodes[0]!),
-        )}`,
-      );
-
-      // Replace all the other ones by the name of this new variable
-      nodes.forEach((node) => {
-        // @ts-expect-error replaceNodes callback expects ITrie, we pass string ref
-        replaceNodes.get(node)?.(`_${nextId}`);
-      });
-
-      nextId += 1;
-    }
-  });
-
-  const output = [];
-
-  // Create TypeScript source code to declare all of these variables. Because
-  // the value of nodes has been set to a value of the form '"_id"', we need to
-  // replace this on the fly to '_id'. We use a RegExp for this.
-  if (variables.length !== 0) {
-    let variablesSourceCode = `const ${variables.join(',')};`;
-    for (let i = 0; i < nextId; i += 1) {
-      variablesSourceCode = variablesSourceCode.replace(
-        new RegExp(`"_${i}"`, 'g'),
-        `_${i}`,
-      );
-    }
-    output.push(variablesSourceCode);
+function labelHash(label: string): number {
+  let hash = 5381;
+  for (let i = label.length - 1; i >= 0; i -= 1) {
+    hash = (hash * 33) ^ label.charCodeAt(i);
   }
-
-  // Dump the root of the DAWG as well, and perform the same replacement of _id
-  // parts than for the variables above.
-  let serializedTrie = JSON.stringify(convertToCompactTrie(trie));
-  for (let i = 0; i < nextId; i += 1) {
-    serializedTrie = serializedTrie.replace(
-      new RegExp(`"_${i}"`, 'g'),
-      `_${i}`,
-    );
-  }
-  output.push(`const ${name}: ITrie = ${serializedTrie};`);
-
-  return output.join('\n');
+  return hash >>> 0;
 }
 
-function convertToTypeScriptSource(
-  rules: ITrie,
-  exceptions: ITrie,
-  { includePrivate }: { includePrivate: boolean },
-): string {
-  return `
-export type ITrie = [${
-    includePrivate ? '0 | 1 | 2' : '0 | 1'
-  }, { [label: string]: ITrie}];
+interface FlatNode {
+  flag: 0 | 1 | 2;
+  edges: { label: string; child: number }[];
+}
 
-export const exceptions: ITrie = (function() {
-  ${compressToDAWG(exceptions, 'exceptions')}
-  return exceptions;
-})();
+/**
+ * Flatten the given tries into a shared pool of nodes (identical sub-trees get
+ * the same id => DAWG compression). Returns the node pool and each root's id.
+ */
+function flatten(roots: ITrie[]): { nodes: FlatNode[]; rootIds: number[] } {
+  const idByKey = new Map<string, number>();
+  const nodes: FlatNode[] = [];
 
-export const rules: ITrie = (function() {
-  ${compressToDAWG(rules, 'rules')}
-  return rules;
-})();
-`;
+  const visit = (node: ITrie): number => {
+    const edges = Object.keys(node.children)
+      .sort()
+      .map((label) => ({ label, child: visit(node.children[label]!) }));
+
+    // Identity key for DAWG dedup: same flag + same (label -> child) set. Built
+    // from the alpha-sorted edges so it is canonical; the stored copy is then
+    // re-sorted by hash because the lookup binary-searches edge hashes.
+    const key = `${node.flag}|${edges.map((e) => `${e.label}>${e.child}`).join(',')}`;
+    let id = idByKey.get(key);
+    if (id === undefined) {
+      edges.sort((a, b) => labelHash(a.label) - labelHash(b.label));
+      id = nodes.length;
+      nodes.push({ flag: node.flag, edges });
+      idByKey.set(key, id);
+    }
+    return id;
+  };
+
+  return { nodes, rootIds: roots.map(visit) };
 }
 
 export default (
   body: string,
   { includePrivate }: { includePrivate: boolean },
-) => {
-  const exceptions: ITrie = { $: 0, succ: {} };
-  const rules: ITrie = { $: 0, succ: {} };
+): string => {
+  const rules: ITrie = { flag: 0, children: {} };
+  const exceptions: ITrie = { flag: 0, children: {} };
 
-  // Iterate on public suffix rules
   parse(body, ({ rule, isIcann, isException }) => {
     if (isIcann || includePrivate) {
       insertInTrie(
@@ -212,5 +110,30 @@ export default (
     }
   });
 
-  return convertToTypeScriptSource(rules, exceptions, { includePrivate });
+  const { nodes, rootIds } = flatten([rules, exceptions]);
+
+  const nodeFlags: number[] = [];
+  const edgeStart: number[] = [0];
+  const edgeLength: number[] = [];
+  const edgeChild: number[] = [];
+  let labelText = '';
+  for (const node of nodes) {
+    nodeFlags.push(node.flag);
+    for (const edge of node.edges) {
+      edgeLength.push(edge.label.length);
+      edgeChild.push(edge.child);
+      labelText += edge.label;
+    }
+    edgeStart.push(edgeLength.length);
+  }
+
+  return `// Auto-generated flat public-suffix trie. Do not edit.
+export const nodeFlags = /*#__PURE__*/ new Uint8Array([${nodeFlags.join(',')}]);
+export const edgeStart = /*#__PURE__*/ new Uint16Array([${edgeStart.join(',')}]);
+export const edgeLength = /*#__PURE__*/ new Uint8Array([${edgeLength.join(',')}]);
+export const edgeChild = /*#__PURE__*/ new Uint16Array([${edgeChild.join(',')}]);
+export const labelText = ${JSON.stringify(labelText)};
+export const rulesRoot = ${rootIds[0]};
+export const exceptionsRoot = ${rootIds[1]};
+`;
 };

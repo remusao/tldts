@@ -89,7 +89,13 @@ const GROUPS = {
   ],
   // wildcard suffix == whole hostname -> experimental packed-hash FALLBACK branch
   // (matchLabels === numberOfHashes); the case item 5 rewrites.
-  wildcardFallback: ['foo.sch.uk', 'abc.sch.uk', 'test.sch.uk', 'bar.ck', 'qux.ck'],
+  wildcardFallback: [
+    'foo.sch.uk',
+    'abc.sch.uk',
+    'test.sch.uk',
+    'bar.ck',
+    'qux.ck',
+  ],
   // IP addresses
   ip: ['192.168.0.1', '8.8.8.8', '[2001:db8::1]', '[::1]', '255.255.255.255'],
   // invalid / weird inputs
@@ -138,7 +144,12 @@ function median(xs) {
 // fires mid-measurement (else the heapUsed delta undercounts). ~1024 calls keeps
 // total allocation well under the young-gen scavenge threshold; median of many
 // trials absorbs the per-trial granularity noise.
-function bytesPerOp(fn, inputs, opts, { warmups = 5, maxCalls = 1024, trials = 25 }) {
+function bytesPerOp(
+  fn,
+  inputs,
+  opts,
+  { warmups = 5, maxCalls = 1024, trials = 25 },
+) {
   const n = inputs.length;
   const passes = Math.max(1, Math.round(maxCalls / n));
   const calls = passes * n;
@@ -159,7 +170,12 @@ function bytesPerOp(fn, inputs, opts, { warmups = 5, maxCalls = 1024, trials = 2
   return median(results);
 }
 
-function opsPerSec(fn, inputs, opts, { warmups = 3, passes = 400, trials = 5 }) {
+function opsPerSec(
+  fn,
+  inputs,
+  opts,
+  { warmups = 3, passes = 400, trials = 5 },
+) {
   const n = inputs.length;
   for (let w = 0; w < warmups; w += 1) {
     for (let i = 0; i < n; i += 1) consume(fn(inputs[i], opts));
