@@ -1,3 +1,33 @@
+# v7.0.31 (Sat May 23 2026)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#2567](https://github.com/remusao/tldts/pull/2567) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump prettier from 3.8.1 to 3.8.3 [#2557](https://github.com/remusao/tldts/pull/2557) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 25.8.0 to 25.9.1 [#2580](https://github.com/remusao/tldts/pull/2580) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript-eslint from 8.59.3 to 8.59.4 [#2581](https://github.com/remusao/tldts/pull/2581) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump mocha from 11.7.5 to 11.7.6 [#2582](https://github.com/remusao/tldts/pull/2582) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump picomatch from 4.0.3 to 4.0.4 [#2576](https://github.com/remusao/tldts/pull/2576) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump serialize-javascript from 6.0.2 to 7.0.5 [#2578](https://github.com/remusao/tldts/pull/2578) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump minimatch from 10.1.1 to 10.2.5 [#2577](https://github.com/remusao/tldts/pull/2577) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump ip-address from 10.1.0 to 10.2.0 [#2568](https://github.com/remusao/tldts/pull/2568) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump axios from 1.13.4 to 1.16.0 [#2570](https://github.com/remusao/tldts/pull/2570) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript-eslint from 8.58.0 to 8.59.3 [#2571](https://github.com/remusao/tldts/pull/2571) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup-plugin-sourcemaps2 from 0.5.4 to 0.5.7 [#2573](https://github.com/remusao/tldts/pull/2573) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.60.1 to 4.60.4 [#2574](https://github.com/remusao/tldts/pull/2574) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 25.5.0 to 25.8.0 [#2575](https://github.com/remusao/tldts/pull/2575) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.0.30 (Sat May 02 2026)
 
 #### :scroll: Update Public Suffix List
