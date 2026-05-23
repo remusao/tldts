@@ -1,3 +1,15 @@
+# v7.1.0 (Sat May 23 2026)
+
+#### :running_woman: Performance
+
+- Better performance and reduce memory allocations [#2585](https://github.com/remusao/tldts/pull/2585) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.0.32 (Sat May 23 2026)
 
 #### :bug: Bug Fix
