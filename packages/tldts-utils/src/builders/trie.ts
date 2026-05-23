@@ -127,6 +127,36 @@ export default (
     edgeStart.push(edgeLength.length);
   }
 
+  // The serialized arrays ship as typed arrays (see the emitted code below):
+  // edgeChild/edgeStart as Uint16Array, edgeLength as Uint8Array. If the PSL
+  // ever outgrows those ranges the values would silently wrap and corrupt every
+  // lookup, so fail the build loudly instead. Headroom is large today (~600
+  // nodes / ~10k edges / max label 31 vs the 65535/255 ceilings). If this trips,
+  // widen the array(s) here AND in the two suffix-trie.ts loaders.
+  let maxEdgeLength = 0;
+  for (const length of edgeLength) {
+    if (length > maxEdgeLength) {
+      maxEdgeLength = length;
+    }
+  }
+  if (nodes.length > 65536) {
+    // edgeChild stores node ids in [0, nodes.length); max id must fit Uint16.
+    throw new Error(
+      `trie builder: ${nodes.length} nodes exceeds the Uint16 edgeChild range (max 65536). Widen edgeChild + edgeStart to Uint32Array here and in suffix-trie.ts.`,
+    );
+  }
+  if (edgeLength.length > 65535) {
+    // edgeStart stores edge indices up to the edge count; must fit Uint16.
+    throw new Error(
+      `trie builder: ${edgeLength.length} edges exceeds the Uint16 edgeStart range (max 65535). Widen edgeStart + edgeChild to Uint32Array here and in suffix-trie.ts.`,
+    );
+  }
+  if (maxEdgeLength > 255) {
+    throw new Error(
+      `trie builder: label length ${maxEdgeLength} exceeds the Uint8 edgeLength range (max 255). Widen edgeLength to Uint16Array here and in suffix-trie.ts.`,
+    );
+  }
+
   return `// Auto-generated flat public-suffix trie. Do not edit.
 export const nodeFlags = /*#__PURE__*/ new Uint8Array([${nodeFlags.join(',')}]);
 export const edgeStart = /*#__PURE__*/ new Uint16Array([${edgeStart.join(',')}]);

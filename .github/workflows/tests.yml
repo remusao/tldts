@@ -44,6 +44,9 @@ jobs:
       - name: Build
         run: yarn build
 
+      - name: Verify generated data is in sync with the PSL
+        run: yarn update:check
+
       - name: Bundle
         run: yarn bundle
 
