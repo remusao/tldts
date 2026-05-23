@@ -14,12 +14,11 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
-
-      - name: Prepare repository
-        run: |
-          git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-          git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
-          git fetch --prune --unshallow
+        with:
+          # Full history + all tags: `auto shipit` needs them to compute the
+          # version bump and changelog. fetch-depth: 0 yields a non-shallow
+          # clone, which avoids the "shallow file has changed" fetch race.
+          fetch-depth: 0
 
       - name: Enable Corepack
         run: corepack enable
