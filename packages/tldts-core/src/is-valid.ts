@@ -49,10 +49,10 @@ export default function (hostname: string): boolean {
         i - lastDotIndex > 64 ||
         // Check that previous character was not already a '.'
         lastCharCode === 46 ||
-        // Check that the previous label does not end with a '-' (dash)
-        lastCharCode === 45 ||
-        // Check that the previous label does not end with a '_' (underscore)
-        lastCharCode === 95
+        // Check that the previous label does not end with '-' (RFC 1035 §2.3.1 LDH).
+        // '_' is intentionally NOT restricted: DNS allows any octet (RFC 2181 §11) and
+        // WHATWG URL does not treat '_' as a forbidden host code point.
+        lastCharCode === 45
       ) {
         return false;
       }
