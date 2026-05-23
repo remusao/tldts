@@ -1,3 +1,15 @@
+# v7.0.32 (Sat May 23 2026)
+
+#### :bug: Bug Fix
+
+- fix: accept labels ending with an underscore [#2583](https://github.com/remusao/tldts/pull/2583) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.0.22 (Tue Feb 03 2026)
 
 #### :nut_and_bolt: Dependencies

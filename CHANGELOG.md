@@ -1,3 +1,20 @@
+# v7.0.32 (Sat May 23 2026)
+
+#### :bug: Bug Fix
+
+- `tldts-core`, `tldts-tests`
+  - fix: accept labels ending with an underscore [#2583](https://github.com/remusao/tldts/pull/2583) ([@remusao](https://github.com/remusao))
+
+#### :house: Internal
+
+- Try to fix release workflow [#2584](https://github.com/remusao/tldts/pull/2584) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.0.31 (Sat May 23 2026)
 
 #### :scroll: Update Public Suffix List
