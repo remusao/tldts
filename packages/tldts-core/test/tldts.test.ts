@@ -71,6 +71,12 @@ describe('#isValidHostname', () => {
     // Accepts domains with '_' (validation is not strict)
     expect(isValidHostname('foo.bar_baz.com')).to.equal(true);
 
+    // A label may END with '_' (DNS/SPF), not just start/contain it — RFC 2181 §11.
+    expect(isValidHostname('spf_.google.com')).to.equal(true); // trailing '_', non-final label (reported bug)
+    expect(isValidHostname('foo_.bar_.com')).to.equal(true); // trailing '_' on consecutive labels
+    expect(isValidHostname('_.google.com')).to.equal(true); // label consisting solely of '_'
+    expect(isValidHostname('google.spf_')).to.equal(true); // trailing '_' on the final label (already valid; pins the symmetry)
+
     // @see https://github.com/oncletom/tld.js/issues/95
     expect(isValidHostname('miam.miam.google.com.')).to.equal(true);
 

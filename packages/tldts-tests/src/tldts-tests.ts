@@ -305,6 +305,16 @@ export default function test(
       });
     });
 
+    // Labels ending with '_' (e.g. SPF / DNS-TXT records). Allowed by DNS (RFC 2181 §11)
+    // and WHATWG URL ('_' is not a forbidden host code point); only the RFC 1035 LDH
+    // "preferred syntax" forbids it, which tldts intentionally does not enforce.
+    it('should accept labels ending with an underscore', () => {
+      expect(tldts.getDomain('spf_.google.com')).to.equal('google.com'); // reported bug
+      expect(tldts.getHostname('spf_.google.com')).to.equal('spf_.google.com'); // full hostname preserved
+      expect(tldts.getDomain('_spf.google.com')).to.equal('google.com'); // leading '_' (reference case)
+      expect(tldts.getDomain('s_pf.google.com')).to.equal('google.com'); // middle '_' (reference case)
+    });
+
     // @see https://github.com/oncletom/tld.js/issues/53
     it('should correctly extract domain from paths including "@" in the path', () => {
       const domain = tldts.getDomain(
@@ -653,9 +663,10 @@ export default function test(
     it('should be consistent with parse method', () => {
       const url = '___id___.c.mystat-in.net';
 
-      // With validation ('_' is forbidden at the start of a label)
-      expect(tldts.parse(url).hostname).to.equal(null);
-      expect(tldts.getHostname(url)).to.equal(null);
+      // Underscores (incl. trailing) are accepted — DNS allows any octet (RFC 2181 §11),
+      // WHATWG URL does not forbid '_'. parse() and getHostname() must agree.
+      expect(tldts.parse(url).hostname).to.equal(url);
+      expect(tldts.getHostname(url)).to.equal(url);
 
       // Without validation
       expect(tldts.parse(url, { validateHostname: false }).hostname).to.equal(
