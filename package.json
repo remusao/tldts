@@ -59,7 +59,7 @@
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
-    "lerna": "^9.0.3",
+    "lerna": "^9.0.7",
     "patch-package": "^8.0.1",
     "prettier": "^3.8.1",
     "ts-node": "^10.9.2",
