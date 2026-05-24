@@ -66,8 +66,8 @@ function isProbablyIpv6(hostname: string): boolean {
         (
           (code >= 48 && code <= 57) || // 0-9
           (code >= 97 && code <= 102) || // a-f
-          (code >= 65 && code <= 90)
-        ) // A-F
+          (code >= 65 && code <= 70)
+        ) // A-F (RFC 4291 §2.2: an IPv6 hextet is hex digits only)
       )
     ) {
       return false;

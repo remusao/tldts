@@ -38,6 +38,25 @@ describe('#isIp', () => {
       false,
     );
   });
+
+  // RFC 4291 §2.2: an IPv6 hextet is "one to four hexadecimal digits", i.e.
+  // 0-9 / a-f / A-F (case-insensitive). Letters g-z and G-Z are NOT hex digits,
+  // so a label containing them is not an IPv6 literal. The uppercase branch is
+  // only reachable via `extractHostname: false` (extraction lowercases, and
+  // isValidHostname rejects uppercase on the fast path), but isIp must still
+  // classify it correctly. https://www.rfc-editor.org/rfc/rfc4291#section-2.2
+  it('should only accept hex digits (a-f/A-F) in IPv6 labels (RFC 4291 §2.2)', () => {
+    // Uppercase A-F are valid hex and must keep matching (guards the 'F' bound).
+    expect(isIp('2001:DB8::F')).to.equal(true);
+    expect(isIp('FACE:B00C::1')).to.equal(true);
+    // 'G' (just past 'F') and 'Z' are not hex digits => not an IPv6 literal.
+    expect(isIp('2001:DB8::G')).to.equal(false);
+    expect(isIp('Z::Z')).to.equal(false);
+    // Lowercase 'g' was already rejected before the fix — regression guard.
+    expect(isIp('2001:db8::g')).to.equal(false);
+    // The rule also applies inside brackets (stripped before the check).
+    expect(isIp('[2001:DB8::G]')).to.equal(false);
+  });
 });
 
 describe('#isValidHostname', () => {

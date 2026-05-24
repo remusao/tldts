@@ -220,6 +220,28 @@ console.log(getSubdomain(url, { allowPrivateDomains: true })); // ''
 console.log(getDomainWithoutSuffix(url, { allowPrivateDomains: true })); // spark-public
 ```
 
+# Limitations and security considerations
+
+`tldts` is a fast, **approximate** extractor — it is **not** a full [WHATWG URL](https://url.spec.whatwg.org/) / RFC 3986 parser, nor a strict hostname or IP validator. It aims to return the same host a browser would for real-world URLs (it strips ASCII tab/newline and treats `\` like `/` for special schemes), but it intentionally deviates in ways worth knowing about:
+
+- **No host normalization**: the host is returned as it appears (ASCII-lower-cased only) — no IDNA/punycode conversion, IPv4 is not canonicalized, and IPv6 is returned without its surrounding brackets (and not zero-compressed).
+- **Lenient parsing**: bare `host:port`, `user@host`, out-of-range ports and trailing dots are accepted/handled rather than rejected.
+- **`isIp` is a heuristic** ("probably an IP"), not a validator: it does not check IPv4 octet ranges and does not recognize IPv4-mapped IPv6.
+
+If you rely on `tldts` for a **security decision** (origin checks, SSRF allow/deny lists, cookie scoping, …), do not treat its output as equivalent to a compliant URL parser. The safest pattern is to **extract the hostname with a real URL parser** — [`new URL(...)`](https://developer.mozilla.org/en-US/docs/Web/API/URL/URL), available in Node.js and browsers — and then hand that hostname to `tldts` with host extraction turned **off** (`extractHostname: false`). That way the platform parser decides where the host begins and ends, and `tldts` is used only for the public-suffix/domain split, so the two can never disagree:
+
+```js
+const { getDomain } = require('tldts');
+
+// 1. Let the platform URL parser determine the hostname (it throws on
+//    invalid input and follows the WHATWG URL spec).
+const { hostname } = new URL(untrustedUrl);
+
+// 2. Ask tldts only for the public-suffix/domain split, skipping its own
+//    (approximate) hostname extraction.
+const domain = getDomain(hostname, { extractHostname: false });
+```
+
 ## Contributors
 
 `tldts` is based upon the excellent `tld.js` library and would not exist without
