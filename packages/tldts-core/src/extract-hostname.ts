@@ -1,6 +1,64 @@
 /**
- * @param url - URL we want to extract a hostname from.
- * @param urlIsValidHostname - hint from caller; true if `url` is already a valid hostname.
+ * Matches an ASCII tab (U+0009) or newline (U+000A / U+000D). The WHATWG URL
+ * parser strips these before parsing; we only allocate a cleaned copy (and
+ * re-parse) on the rare input that actually contains one.
+ */
+const CONTROL_CHARS = /[\t\n\r]/g;
+
+/**
+ * Classify scheme `url.slice(schemeStart, colonIndex)` as a WHATWG special
+ * scheme without allocating a substring (case-insensitive via `| 32`).
+ * Special schemes: ftp, file, http, https, ws, wss
+ * (https://url.spec.whatwg.org/#special-scheme).
+ *
+ * @returns 0 = not special, 1 = special, 2 = file (its host sits only between
+ *          "//" and the next slash).
+ */
+function getSpecialScheme(
+  url: string,
+  schemeStart: number,
+  colonIndex: number,
+): number {
+  const length = colonIndex - schemeStart;
+  const c0 = url.charCodeAt(schemeStart) | 32;
+  if (length === 2) {
+    return c0 === 119 && (url.charCodeAt(schemeStart + 1) | 32) === 115 ? 1 : 0; // ws
+  } else if (length === 3) {
+    const c1 = url.charCodeAt(schemeStart + 1) | 32;
+    const c2 = url.charCodeAt(schemeStart + 2) | 32;
+    if (c0 === 119 && c1 === 115 && c2 === 115) return 1; // wss
+    if (c0 === 102 && c1 === 116 && c2 === 112) return 1; // ftp
+    return 0;
+  } else if (length === 4) {
+    const c1 = url.charCodeAt(schemeStart + 1) | 32;
+    const c2 = url.charCodeAt(schemeStart + 2) | 32;
+    const c3 = url.charCodeAt(schemeStart + 3) | 32;
+    if (c0 === 104 && c1 === 116 && c2 === 116 && c3 === 112) return 1; // http
+    if (c0 === 102 && c1 === 105 && c2 === 108 && c3 === 101) return 2; // file
+    return 0;
+  } else if (length === 5) {
+    return c0 === 104 &&
+      (url.charCodeAt(schemeStart + 1) | 32) === 116 &&
+      (url.charCodeAt(schemeStart + 2) | 32) === 116 &&
+      (url.charCodeAt(schemeStart + 3) | 32) === 112 &&
+      (url.charCodeAt(schemeStart + 4) | 32) === 115
+      ? 1
+      : 0; // https
+  }
+  return 0;
+}
+
+/**
+ * Extract a hostname from `url`, matching a WHATWG URL parser's host-boundary
+ * behaviour (https://url.spec.whatwg.org/#concept-basic-url-parser) for tldts'
+ * scope. It deliberately does NOT normalise the host (no IDNA/punycode or IPv4
+ * canonicalisation; IPv6 brackets are stripped, not compressed), strips trailing
+ * dots, and stays lenient where a strict parser rejects (bare host:port,
+ * out-of-range port, user@host) — all documented deviations.
+ *
+ * @param urlIsValidHostname - when true, `url` is already a valid hostname and is
+ *   returned by the same reference (factory.ts skips re-validation on that
+ *   identity), keeping the common path allocation-free.
  */
 export default function extractHostname(
   url: string,
@@ -9,148 +67,252 @@ export default function extractHostname(
   let start = 0;
   let end: number = url.length;
   let hasUpper = false;
+  let isSpecial = false;
 
-  // If url is not already a valid hostname, then try to extract hostname.
   if (!urlIsValidHostname) {
-    // Special handling of data URLs
+    // Data URLs never carry a host (and may be huge — short-circuit them).
     if (url.startsWith('data:')) {
       return null;
     }
 
-    // Trim leading spaces
+    // WHATWG step 1: trim leading/trailing C0 control or space (<= U+0020).
+    // Tab/newline elsewhere are handled lazily below.
     while (start < url.length && url.charCodeAt(start) <= 32) {
       start += 1;
     }
-
-    // Trim trailing spaces
     while (end > start + 1 && url.charCodeAt(end - 1) <= 32) {
       end -= 1;
     }
 
-    // Skip scheme.
     if (
       url.charCodeAt(start) === 47 /* '/' */ &&
       url.charCodeAt(start + 1) === 47 /* '/' */
     ) {
+      // Scheme-relative reference ("//host/path").
       start += 2;
     } else {
       const indexOfProtocol = url.indexOf(':/', start);
       if (indexOfProtocol !== -1) {
-        // Implement fast-path for common protocols. We expect most protocols
-        // should be one of these 4 and thus we will not need to perform the
-        // more expansive validity check most of the time.
-        const protocolSize = indexOfProtocol - start;
-        const c0 = url.charCodeAt(start);
-        const c1 = url.charCodeAt(start + 1);
-        const c2 = url.charCodeAt(start + 2);
-        const c3 = url.charCodeAt(start + 3);
-        const c4 = url.charCodeAt(start + 4);
-
-        if (
-          protocolSize === 5 &&
-          c0 === 104 /* 'h' */ &&
-          c1 === 116 /* 't' */ &&
-          c2 === 116 /* 't' */ &&
-          c3 === 112 /* 'p' */ &&
-          c4 === 115 /* 's' */
-        ) {
-          // https
-        } else if (
-          protocolSize === 4 &&
-          c0 === 104 /* 'h' */ &&
-          c1 === 116 /* 't' */ &&
-          c2 === 116 /* 't' */ &&
-          c3 === 112 /* 'p' */
-        ) {
-          // http
-        } else if (
-          protocolSize === 3 &&
-          c0 === 119 /* 'w' */ &&
-          c1 === 115 /* 's' */ &&
-          c2 === 115 /* 's' */
-        ) {
-          // wss
-        } else if (
-          protocolSize === 2 &&
-          c0 === 119 /* 'w' */ &&
-          c1 === 115 /* 's' */
-        ) {
-          // ws
+        // "scheme://…". Classify the scheme, then position `start` at the host.
+        const special = getSpecialScheme(url, start, indexOfProtocol);
+        if (special === 1) {
+          // Special scheme: skip the run of '/' and '\' after it
+          // (special-authority-(ignore-)slashes states; '\' acts as '/').
+          isSpecial = true;
+          start = indexOfProtocol + 2;
+          while (
+            url.charCodeAt(start) === 47 /* '/' */ ||
+            url.charCodeAt(start) === 92 /* '\' */
+          ) {
+            start += 1;
+          }
+        } else if (special === 2) {
+          // file: the host is only what sits between "//" and the next slash, so
+          // "file://h/x" => "h" but "file:///x" / "file:/x" => no host.
+          isSpecial = true;
+          start = indexOfProtocol + 1;
+          let slashes = 0;
+          while (
+            (url.charCodeAt(start) === 47 || url.charCodeAt(start) === 92) &&
+            slashes < 2
+          ) {
+            start += 1;
+            slashes += 1;
+          }
+          if (slashes < 2) {
+            return null;
+          }
         } else {
-          // Check that scheme is valid
+          // Unknown scheme: validate the WHATWG scheme grammar [A-Za-z0-9+.-];
+          // a control char means it was split by a tab/newline (strip + re-parse).
           for (let i = start; i < indexOfProtocol; i += 1) {
-            const lowerCaseCode = url.charCodeAt(i) | 32;
+            const code = url.charCodeAt(i) | 32;
             if (
               !(
                 (
-                  (lowerCaseCode >= 97 && lowerCaseCode <= 122) || // [a, z]
-                  (lowerCaseCode >= 48 && lowerCaseCode <= 57) || // [0, 9]
-                  lowerCaseCode === 46 || // '.'
-                  lowerCaseCode === 45 || // '-'
-                  lowerCaseCode === 43
+                  (code >= 97 && code <= 122) || // [a, z]
+                  (code >= 48 && code <= 57) || // [0, 9]
+                  code === 46 || // '.'
+                  code === 45 || // '-'
+                  code === 43
                 ) // '+'
               )
             ) {
+              const raw = url.charCodeAt(i);
+              if (raw === 9 || raw === 10 || raw === 13) {
+                return extractHostname(
+                  url.replace(CONTROL_CHARS, ''),
+                  urlIsValidHostname,
+                );
+              }
               return null;
             }
           }
+          // A non-special scheme has an authority only after "//" (else it is an
+          // opaque path with no host). `indexOf(':/')` already gave the first '/'.
+          if (url.charCodeAt(indexOfProtocol + 2) === 47 /* '/' */) {
+            start = indexOfProtocol + 3;
+          } else {
+            return null;
+          }
+        }
+      } else if (url.charCodeAt(start) !== 91 /* '[' */) {
+        // Cold path: no scheme "://", and not a bare IPv6 literal (whose first
+        // ':' would otherwise look like a scheme separator; "[…]" falls through
+        // to the ipv6 handling below). May be a bare host, a host:port, a
+        // user@host, a slash-less special scheme ("https:host"), or an opaque
+        // URI ("mailto:", "tel:", "urn:…").
+        let indexOfColon = -1;
+        for (let i = start; i < end; i += 1) {
+          const code = url.charCodeAt(i);
+          if (code === 9 || code === 10 || code === 13) {
+            return extractHostname(
+              url.replace(CONTROL_CHARS, ''),
+              urlIsValidHostname,
+            );
+          }
+          if (code === 58 /* ':' */) {
+            indexOfColon = i;
+            break;
+          }
+          if (code === 47 || code === 92 || code === 63 || code === 35) {
+            break;
+          }
         }
 
-        // Skip 0, 1 or more '/' after ':/'
-        start = indexOfProtocol + 2;
-        while (url.charCodeAt(start) === 47 /* '/' */) {
-          start += 1;
+        if (indexOfColon !== -1) {
+          // An '@' before the next delimiter => the ':' is userinfo, not a
+          // scheme ("user:pass@host", "mailto:a@b"): keep the whole authority.
+          let hasIdentifier = false;
+          for (let i = indexOfColon + 1; i < end; i += 1) {
+            const code = url.charCodeAt(i);
+            if (code === 47 || code === 92 || code === 63 || code === 35) {
+              break;
+            }
+            if (code === 64 /* '@' */) {
+              hasIdentifier = true;
+              break;
+            }
+          }
+
+          if (!hasIdentifier) {
+            // All-digits after ':' => a bare "host:port" (tldts accepts
+            // hostnames too); keep `start` and let the port handling trim it.
+            let allDigits = true;
+            let i = indexOfColon + 1;
+            for (; i < end; i += 1) {
+              const code = url.charCodeAt(i);
+              if (code === 47 || code === 92 || code === 63 || code === 35) {
+                break;
+              }
+              if (code < 48 /* '0' */ || code > 57 /* '9' */) {
+                allDigits = false;
+                break;
+              }
+            }
+            if (i === indexOfColon + 1) {
+              allDigits = false; // nothing after ':' => not a port
+            }
+
+            if (!allDigits) {
+              const special = getSpecialScheme(url, start, indexOfColon);
+              if (special === 0) {
+                // No "://" anywhere on the cold path, so a non-special scheme has
+                // no authority: opaque path, no host ("mailto:x", "foo:bar").
+                return null;
+              }
+              isSpecial = true;
+              start = indexOfColon + 1;
+              if (special === 2) {
+                // file (e.g. "file:\\host"): host only between "//" and next slash.
+                let slashes = 0;
+                while (
+                  (url.charCodeAt(start) === 47 ||
+                    url.charCodeAt(start) === 92) &&
+                  slashes < 2
+                ) {
+                  start += 1;
+                  slashes += 1;
+                }
+                if (slashes < 2) {
+                  return null;
+                }
+              } else {
+                while (
+                  url.charCodeAt(start) === 47 ||
+                  url.charCodeAt(start) === 92
+                ) {
+                  start += 1;
+                }
+              }
+            }
+          }
         }
       }
     }
 
-    // Detect first occurrence of '/', '?' or '#'. We also keep track of the
-    // last occurrence of '@', ']' or ':' to speed-up subsequent parsing of
-    // (respectively), identifier, ipv6 or port.
+    // Find the host's end: first '/', '?' or '#' (and '\' for special URLs,
+    // which WHATWG treats like '/'). Track the last '@', ']' and ':' for
+    // userinfo, ipv6 and port; flag uppercase and a stray tab/newline. The loop
+    // is split on `code < 64` so common host characters take fewer comparisons.
     let indexOfIdentifier = -1;
     let indexOfClosingBracket = -1;
     let indexOfPort = -1;
+    let hasControl = false;
     for (let i = start; i < end; i += 1) {
       const code: number = url.charCodeAt(i);
-      if (
-        code === 35 || // '#'
-        code === 47 || // '/'
-        code === 63 // '?'
-      ) {
+      if (code < 64) {
+        if (code === 47 || code === 35 || code === 63) {
+          end = i;
+          break;
+        } else if (code === 58 /* ':' */) {
+          indexOfPort = i;
+        } else if (code === 9 || code === 10 || code === 13) {
+          hasControl = true;
+        }
+      } else if (isSpecial && code === 92 /* '\' */) {
         end = i;
         break;
-      } else if (code === 64) {
-        // '@'
+      } else if (code === 64 /* '@' */) {
         indexOfIdentifier = i;
-      } else if (code === 93) {
-        // ']'
+      } else if (code === 93 /* ']' */) {
         indexOfClosingBracket = i;
-      } else if (code === 58) {
-        // ':'
-        indexOfPort = i;
       } else if (code >= 65 && code <= 90) {
         hasUpper = true;
       }
     }
 
-    // Detect identifier: '@'
+    // A tab/newline inside the authority: strip everything and re-parse (rare).
+    if (hasControl) {
+      return extractHostname(
+        url.replace(CONTROL_CHARS, ''),
+        urlIsValidHostname,
+      );
+    }
+
+    // Skip userinfo. '>= start' so an empty userinfo ("http://@host") works too.
     if (
       indexOfIdentifier !== -1 &&
-      indexOfIdentifier > start &&
+      indexOfIdentifier >= start &&
       indexOfIdentifier < end
     ) {
       start = indexOfIdentifier + 1;
     }
 
-    // Handle ipv6 addresses
     if (url.charCodeAt(start) === 91 /* '[' */) {
+      // ipv6 address: return what is between the brackets, or null if unclosed.
       if (indexOfClosingBracket !== -1) {
         return url.slice(start + 1, indexOfClosingBracket).toLowerCase();
       }
       return null;
     } else if (indexOfPort !== -1 && indexOfPort > start && indexOfPort < end) {
-      // Detect port: ':'
-      end = indexOfPort;
+      end = indexOfPort; // trim ':port'
+    }
+
+    // Empty authority ("http://", "file:///path", "//"); only reachable here via
+    // extraction — a bare valid hostname never lands here.
+    if (start >= end) {
+      return null;
     }
   }
 
