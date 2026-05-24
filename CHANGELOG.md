@@ -1,3 +1,16 @@
+# v7.1.1 (Sun May 24 2026)
+
+#### :nail_care: Polish
+
+- `tldts-core`, `tldts-tests`
+  - fix: make hostname extraction match WHATWG URL host boundaries [#2586](https://github.com/remusao/tldts/pull/2586) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.1.0 (Sat May 23 2026)
 
 #### :running_woman: Performance
