@@ -1,7 +1,52 @@
 import { expect } from 'chai';
 import 'mocha';
+import { existsSync, readFileSync } from 'fs';
+import { dirname, resolve } from 'path';
 
 import { loadPublicSuffixList, parsePublicSuffixRules } from 'tldts-utils';
+
+/**
+ * A single entry of the WHATWG URL test data (web-platform-tests). Entries are
+ * either a comment string or a parsed-result object.
+ */
+interface WhatwgUrlTestCase {
+  input: string;
+  base?: string | null;
+  hostname?: string;
+  protocol?: string;
+  failure?: boolean;
+}
+
+/** Locate a repo fixture whether tests run from `src` (ts-node) or `dist`. */
+function resolveFixture(relativePath: string): string {
+  let dir = __dirname;
+  while (!existsSync(resolve(dir, relativePath)) && dir !== dirname(dir)) {
+    dir = dirname(dir);
+  }
+  return resolve(dir, relativePath);
+}
+
+/** True if `value` contains any non-ASCII (> U+007F) code unit. */
+function containsNonAscii(value: string): boolean {
+  for (let i = 0; i < value.length; i += 1) {
+    if (value.charCodeAt(i) > 127) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * WHATWG URL test data, vendored verbatim from web-platform-tests:
+ * https://github.com/web-platform-tests/wpt/blob/258f285de043b79e44324228c0fd800b38d21879/url/resources/urltestdata.json
+ * Re-pin by re-downloading url/resources/urltestdata.json from that repo.
+ */
+const WHATWG_URL_TEST_DATA = JSON.parse(
+  readFileSync(
+    resolveFixture('packages/tldts-tests/src/data/urltestdata.json'),
+    'utf-8',
+  ),
+) as (string | WhatwgUrlTestCase)[];
 
 interface Options {
   extractHostname?: boolean;
@@ -978,6 +1023,258 @@ export default function test(
         expect(result.domain, input).to.equal(domain);
       });
     }
+  });
+
+  // `getHostname` must pick the same host substring a compliant WHATWG parser
+  // would, for tldts' scope. Intentional deviations (no IDNA/IPv4/IPv6
+  // normalisation, trailing-dot stripping, lenient host:port/email) are pinned
+  // in the "intentional deviations" block below.
+  describe('WHATWG URL hostname compliance', () => {
+    // --- Web Platform Tests: the browsers' own URL conformance corpus ---
+    describe('web-platform-tests url/resources/urltestdata.json', () => {
+      const SPECIAL_SCHEME = new Set([
+        'ftp:',
+        'file:',
+        'http:',
+        'https:',
+        'ws:',
+        'wss:',
+      ]);
+
+      // In-scope = cases where tldts is expected to match the compliant parser
+      // exactly. We exclude representation differences tldts does not perform
+      // (IDN/punycode, IPv4 normalisation, IPv6) and inputs that rely on a base
+      // URL (tldts has no base concept). `failure` cases are excluded because
+      // tldts is best-effort, not strict-reject.
+      const inScope = (o: WhatwgUrlTestCase): boolean => {
+        if (o.failure) {
+          return false;
+        }
+        const hostname = o.hostname;
+        if (typeof hostname !== 'string') {
+          return false;
+        }
+        if (containsNonAscii(o.input)) {
+          return false; // non-ASCII input (IDN) — tldts keeps Unicode
+        }
+        if (hostname.startsWith('xn--')) {
+          return false; // punycode output
+        }
+        if (hostname.startsWith('[')) {
+          return false; // IPv6 (tldts strips brackets, does not compress)
+        }
+        if (o.protocol === 'file:') {
+          return false; // file drive-letter / backslash quirks
+        }
+        if (/^[0-9.]+$/.test(hostname) && !o.input.includes(hostname)) {
+          return false; // IPv4 normalisation (e.g. 0x7f.1 -> 127.0.0.1)
+        }
+        const schemeMatch = /^([a-zA-Z][a-zA-Z0-9+.-]*:)\/\//.exec(o.input);
+        if (schemeMatch !== null) {
+          const scheme = schemeMatch[1];
+          return (
+            scheme !== undefined && SPECIAL_SCHEME.has(scheme.toLowerCase())
+          );
+        }
+        // Bare input (no scheme, not a path) is only meaningful without a base.
+        const bare =
+          !/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(o.input) &&
+          !o.input.startsWith('/');
+        return bare && (o.base === null || o.base === undefined);
+      };
+
+      // tldts strips trailing dots, and reports "no host" as `null` (not "").
+      const expectedHost = (hostname: string): string | null => {
+        let host = hostname;
+        while (host.length > 0 && host.endsWith('.')) {
+          host = host.slice(0, -1);
+        }
+        return host === '' ? null : host;
+      };
+
+      // Documented intentional deviations (NOT boundary bugs): each is an
+      // IDNA / percent-decode / shallow-validation difference. Removing an entry
+      // once tldts handles it becomes the regression gate.
+      const KNOWN_DIVERGENCES = new Set<string>([
+        'http://./', // all-dot host: WHATWG collapses empty labels (IDNA); tldts keeps '.'
+        'http://../', // idem
+        'http://!"$&\'()*+,-.;=_`{}~/', // punctuation host: WHATWG allows, tldts shallow-validation rejects
+        'wss://!"$&\'()*+,-.;=_`{}~/', // idem
+        'https://a%C2%ADb/', // WHATWG percent-decodes + IDNA-maps the soft hyphen; tldts does neither
+      ]);
+
+      for (const entry of WHATWG_URL_TEST_DATA) {
+        if (typeof entry === 'string' || !inScope(entry)) {
+          continue;
+        }
+        const { input } = entry;
+        if (KNOWN_DIVERGENCES.has(input)) {
+          continue;
+        }
+        const expected = expectedHost(entry.hostname!);
+        it(JSON.stringify(input), () => {
+          expect(tldts.getHostname(input), input).to.equal(expected);
+        });
+      }
+    });
+
+    // --- Curated boundary cases (the bugs this change fixes) ---
+    describe('boundary detection', () => {
+      it("treats '\\' as '/' for special schemes", () => {
+        // WHATWG host-state: backslash is a host terminator for special URLs.
+        expect(tldts.getHostname('https:\\\\example.com\\path')).to.equal(
+          'example.com',
+        );
+      });
+
+      it("does not let a '\\' smuggle the host into userinfo", () => {
+        // Security: 'http://example.com\@evil.com' must resolve to example.com,
+        // not evil.com (backslash is normalised to '/' before the '@').
+        expect(tldts.getHostname('http://example.com\\@evil.com')).to.equal(
+          'example.com',
+        );
+      });
+
+      it('parses a special scheme written without "//"', () => {
+        // WHATWG special-authority-slashes state: the authority is parsed even
+        // when the "//" is missing.
+        expect(tldts.getHostname('https:example.com')).to.equal('example.com');
+        expect(tldts.getHostname('http:example.com/foo')).to.equal(
+          'example.com',
+        );
+      });
+
+      it('removes an embedded ASCII tab in the scheme', () => {
+        // WHATWG basic parser step 2: tab/newline are removed before parsing.
+        expect(tldts.getHostname('htt\tp://example.com/')).to.equal(
+          'example.com',
+        );
+      });
+
+      it('removes an embedded newline / carriage return in the host', () => {
+        expect(tldts.getHostname('http://exa\nmple.com/')).to.equal(
+          'example.com',
+        );
+        expect(tldts.getHostname('http://exa\rmple.com/')).to.equal(
+          'example.com',
+        );
+      });
+
+      it('returns null for file:/// (empty authority)', () => {
+        // WHATWG file-host state: an empty buffer means an empty host.
+        expect(tldts.getHostname('file:///etc/passwd')).to.equal(null);
+        expect(tldts.getHostname('file:/etc/passwd')).to.equal(null);
+      });
+
+      it('returns the host for file://host/path', () => {
+        expect(tldts.getHostname('file://server/share')).to.equal('server');
+      });
+
+      it('returns null for opaque (non-special, no "//") schemes', () => {
+        // WHATWG opaque-path state: there is no host.
+        expect(tldts.getHostname('foo:example.com/bar')).to.equal(null);
+        expect(tldts.getHostname('javascript:alert(1)')).to.equal(null);
+        expect(tldts.getHostname('urn:isbn:9780307476463')).to.equal(null);
+        expect(tldts.getHostname('mailto:example.com')).to.equal(null); // no '@'
+      });
+
+      it('extracts the host past an empty userinfo', () => {
+        // WHATWG authority-state: 'http://@host' has empty userinfo, host=host.
+        expect(tldts.getHostname('http://@example.com')).to.equal(
+          'example.com',
+        );
+      });
+
+      it('lower-cases the scheme when matching (case-insensitive)', () => {
+        expect(tldts.getHostname('HTTPS:EXAMPLE.COM')).to.equal('example.com');
+      });
+
+      it('recognises every special scheme written without "//"', () => {
+        // Exercises the ws / wss / ftp / http / https / file classifier arms.
+        expect(tldts.getHostname('ws:example.com')).to.equal('example.com');
+        expect(tldts.getHostname('wss:example.com')).to.equal('example.com');
+        expect(tldts.getHostname('ftp:example.com')).to.equal('example.com');
+        expect(tldts.getHostname('file://h/x')).to.equal('h');
+      });
+
+      it('treats look-alike non-special schemes as opaque (no host)', () => {
+        // Scheme lengths 1..5 that all fail the special-scheme classifier.
+        expect(tldts.getHostname('w:example.com')).to.equal(null);
+        expect(tldts.getHostname('wx:example.com')).to.equal(null);
+        expect(tldts.getHostname('htu:example.com')).to.equal(null);
+        expect(tldts.getHostname('htxp:example.com')).to.equal(null);
+        expect(tldts.getHostname('htxps:example.com')).to.equal(null);
+      });
+
+      it('keeps a bare host:port (lenient superset)', () => {
+        // tldts accepts hostnames, not only URLs; a strict parser treats the
+        // left side as a scheme. The "port" must be numeric.
+        expect(tldts.getHostname('example.co.uk:8080/p?q#h')).to.equal(
+          'example.co.uk',
+        );
+      });
+
+      it('treats host:<non-numeric-port> as an opaque scheme (=> null)', () => {
+        // Documented limit of the host:port heuristic.
+        expect(tldts.getHostname('example.com:foo')).to.equal(null);
+      });
+
+      it('keeps a scheme-relative reference', () => {
+        expect(tldts.getHostname('//user@example.co.uk:8080/x')).to.equal(
+          'example.co.uk',
+        );
+      });
+    });
+
+    // --- Intentional deviations, pinned so they cannot change silently ---
+    describe('intentional deviations (pinned)', () => {
+      it('keeps Unicode hosts (no IDNA/punycode)', () => {
+        expect(tldts.getHostname('http://bücher.example/')).to.equal(
+          'bücher.example',
+        );
+      });
+
+      it('keeps the literal IPv4 (no normalisation)', () => {
+        expect(tldts.getHostname('http://0x7f.1/')).to.equal('0x7f.1');
+      });
+
+      it('returns bracket-less, uncompressed IPv6', () => {
+        expect(tldts.getHostname('http://[2001:0DB8::1]:8080/')).to.equal(
+          '2001:0db8::1',
+        );
+      });
+
+      it('strips trailing dots', () => {
+        expect(tldts.getHostname('http://example.com./')).to.equal(
+          'example.com',
+        );
+      });
+
+      it('is best-effort on an out-of-range port (WHATWG rejects)', () => {
+        expect(tldts.getHostname('http://example.com:99999/')).to.equal(
+          'example.com',
+        );
+      });
+
+      it('extracts the host from an email-like input', () => {
+        expect(tldts.getHostname('Pelé@example.com')).to.equal('example.com');
+      });
+
+      it('keeps an all-dot host instead of collapsing it (no IDNA)', () => {
+        expect(tldts.getHostname('http://./')).to.equal('.');
+        expect(tldts.getHostname('http://../')).to.equal('.');
+      });
+
+      it('rejects punctuation hosts WHATWG allows (shallow validation)', () => {
+        expect(tldts.getHostname('http://!"$&\'()*+,-.;=_`{}~/')).to.equal(
+          null,
+        );
+      });
+
+      it('does not percent-decode the host (no IDNA mapping)', () => {
+        expect(tldts.getHostname('https://a%C2%ADb/')).to.equal(null);
+      });
+    });
   });
 
   describe('wildcard tests', () => {
