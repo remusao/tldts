@@ -1,3 +1,15 @@
+# v7.1.2 (Sun May 24 2026)
+
+#### :nail_care: Polish
+
+- Security-review hardening: IPv6 hextet validation, build-time guard, docs & dep audit [#2587](https://github.com/remusao/tldts/pull/2587) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.1.0 (Sat May 23 2026)
 
 #### :running_woman: Performance
