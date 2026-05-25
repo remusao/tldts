@@ -43,6 +43,18 @@ export function getDomain(
   return parseImpl(url, FLAG.DOMAIN, suffixLookup, options, RESULT).domain;
 }
 
+export function getFullDomain(
+  url: string,
+  options?: Partial<IOptions>,
+): string | null {
+  /*@__INLINE__*/ resetResult(RESULT);
+  const result = parseImpl(url, FLAG.DOMAIN, suffixLookup, options, RESULT);
+  // The hostname *is* the full domain (subdomain + domain) whenever a
+  // registrable domain exists; gate on `domain` so non-registrable inputs
+  // (IPs, suffix-less or invalid hostnames) return `null` like `getDomain`.
+  return result.domain === null ? null : result.hostname;
+}
+
 export function getSubdomain(
   url: string,
   options?: Partial<IOptions>,

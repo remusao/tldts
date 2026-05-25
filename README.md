@@ -222,6 +222,7 @@ done.
 const {
   getHostname,
   getDomain,
+  getFullDomain,
   getPublicSuffix,
   getSubdomain,
   getDomainWithoutSuffix,
@@ -231,6 +232,7 @@ const url = 'https://spark-public.s3.amazonaws.com';
 
 console.log(getHostname(url)); // spark-public.s3.amazonaws.com
 console.log(getDomain(url, { allowPrivateDomains: true })); // spark-public.s3.amazonaws.com
+console.log(getFullDomain(url)); // spark-public.s3.amazonaws.com (subdomain + domain, or null if not a registrable domain)
 console.log(getPublicSuffix(url, { allowPrivateDomains: true })); // s3.amazonaws.com
 console.log(getSubdomain(url, { allowPrivateDomains: true })); // ''
 console.log(getDomainWithoutSuffix(url, { allowPrivateDomains: true })); // spark-public
