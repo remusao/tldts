@@ -65,6 +65,7 @@ export default function test(
     getPublicSuffix: (url: string, options?: Options) => string | null;
     getHostname: (url: string, options?: Options) => string | null;
     getDomain: (url: string, options?: Options) => string | null;
+    getFullDomain: (url: string, options?: Options) => string | null;
     getSubdomain: (url: string, options?: Options) => string | null;
     parse: (
       url: string,
@@ -412,6 +413,134 @@ export default function test(
       expect(tldts.getDomain('https://www.google.co.uk./maps')).to.equal(
         'google.co.uk',
       );
+    });
+  });
+
+  describe('#getFullDomain', () => {
+    it('returns the full hostname (subdomain + domain) for a registrable domain', () => {
+      expect(tldts.getFullDomain('foo.bar.example.co.uk')).to.equal(
+        'foo.bar.example.co.uk',
+      );
+      expect(
+        tldts.getFullDomain('https://foo.bar.example.co.uk:8080/path?q=1'),
+      ).to.equal('foo.bar.example.co.uk');
+    });
+
+    it('equals the domain when there is no subdomain', () => {
+      expect(tldts.getFullDomain('example.com')).to.equal('example.com');
+    });
+
+    it('normalises like the other extractors (lowercase, trailing dot, userinfo/port)', () => {
+      expect(tldts.getFullDomain('FOO.Example.COM.')).to.equal(
+        'foo.example.com',
+      );
+      expect(tldts.getFullDomain('https://user@a.b.example.com:443/')).to.equal(
+        'a.b.example.com',
+      );
+    });
+
+    it('returns null when there is no registrable domain', () => {
+      expect(tldts.getFullDomain('1.2.3.4')).to.equal(null); // IP
+      expect(tldts.getFullDomain('localhost')).to.equal(null); // single label
+      expect(tldts.getFullDomain('co.uk')).to.equal(null); // public suffix only
+    });
+
+    it('keeps subdomains that are not valid hostnames (#2322 DNS-record use case)', () => {
+      expect(
+        tldts.getFullDomain('___sip___._tcp.sipdbw06.rcs01.5gm.example.com'),
+      ).to.equal('___sip___._tcp.sipdbw06.rcs01.5gm.example.com');
+    });
+
+    it('validateHostname:false skips character checks but still requires a public suffix', () => {
+      // '!' is rejected by the default hostname validation...
+      expect(tldts.getFullDomain('a!b.example.com')).to.equal(null);
+      // ...but the registrable domain is still found when validation is off.
+      expect(
+        tldts.getFullDomain('a!b.example.com', { validateHostname: false }),
+      ).to.equal('a!b.example.com');
+      // A bare label has no registrable domain either way.
+      expect(
+        tldts.getFullDomain('foo_bar', { validateHostname: false }),
+      ).to.equal(null);
+    });
+
+    it('is consistent with getHostname gated on getDomain', () => {
+      for (const input of [
+        'foo.bar.example.co.uk',
+        'https://a.b.c.example.com:8080/p',
+        'example.com',
+        '1.2.3.4',
+        'localhost',
+        'co.uk',
+      ]) {
+        const expected =
+          tldts.getDomain(input) === null ? null : tldts.getHostname(input);
+        expect(tldts.getFullDomain(input)).to.equal(expected);
+      }
+    });
+
+    it('avoids the getSubdomain + getDomain join footgun', () => {
+      // The naive `getSubdomain(x) + '.' + getDomain(x)` recipe emits a spurious
+      // leading dot when there is no subdomain; getFullDomain does not.
+      expect(tldts.getFullDomain('example.com')).to.equal('example.com');
+      expect(
+        `${tldts.getSubdomain('example.com')}.${tldts.getDomain('example.com')}`,
+      ).to.equal('.example.com'); // the footgun, shown for contrast
+    });
+
+    it('honors the validHosts option', () => {
+      expect(
+        tldts.getFullDomain('vhost.intranet', { validHosts: ['intranet'] }),
+      ).to.equal('vhost.intranet');
+      expect(
+        tldts.getFullDomain('intranet', { validHosts: ['intranet'] }),
+      ).to.equal('intranet');
+      // Without it, a bare unknown single label has no registrable domain.
+      expect(tldts.getFullDomain('intranet')).to.equal(null);
+    });
+
+    it('honors allowPrivateDomains (private-suffix gating)', () => {
+      // github.io is in the PRIVATE section: by default it is a registrable
+      // domain in every build.
+      expect(tldts.getFullDomain('github.io')).to.equal('github.io');
+      // Once private suffixes count it becomes a bare suffix (=> null). Only
+      // meaningful for builds that ship the PRIVATE section (not tldts-icann).
+      if (includePrivate) {
+        expect(
+          tldts.getFullDomain('github.io', { allowPrivateDomains: true }),
+        ).to.equal(null);
+        expect(
+          tldts.getFullDomain('user.github.io', { allowPrivateDomains: true }),
+        ).to.equal('user.github.io');
+      }
+    });
+
+    it('handles wildcard and exception public-suffix rules', () => {
+      expect(tldts.getFullDomain('foo.bar.ck')).to.equal('foo.bar.ck'); // *.ck
+      expect(tldts.getFullDomain('foo.ck')).to.equal(null); // bare *.ck suffix
+      expect(tldts.getFullDomain('a.www.ck')).to.equal('a.www.ck'); // !www.ck
+    });
+
+    it('preserves IDN / punycode labels without conversion', () => {
+      expect(tldts.getFullDomain('a.münchen.de')).to.equal('a.münchen.de');
+      expect(tldts.getFullDomain('a.xn--mnchen-3ya.de')).to.equal(
+        'a.xn--mnchen-3ya.de',
+      );
+    });
+
+    it('returns null for IP addresses (no registrable domain)', () => {
+      expect(tldts.getFullDomain('http://[2a01:e35::1]:443/x')).to.equal(null);
+      expect(tldts.getFullDomain('2a01:e35::1')).to.equal(null);
+    });
+
+    it('respects the 255-character hostname length limit', () => {
+      const label = 'a'.repeat(63);
+      const max = `${label}.${label}.${label}.${'a'.repeat(59)}.com`;
+      expect(max).to.have.lengthOf(255);
+      expect(tldts.getFullDomain(max)).to.equal(max);
+      const tooLong = `${label}.${label}.${label}.${'a'.repeat(60)}.com`;
+      expect(tooLong).to.have.lengthOf(256);
+      expect(tldts.getFullDomain(tooLong)).to.equal(null);
     });
   });
 
@@ -1722,6 +1851,7 @@ export default function test(
       expect(tldts.parse(url)).to.deep.equal(tldts.parse(url, {}));
       expect(tldts.getHostname(url)).to.equal(tldts.getHostname(url, {}));
       expect(tldts.getDomain(url)).to.equal(tldts.getDomain(url, {}));
+      expect(tldts.getFullDomain(url)).to.equal(tldts.getFullDomain(url, {}));
       expect(tldts.getPublicSuffix(url)).to.equal(
         tldts.getPublicSuffix(url, {}),
       );

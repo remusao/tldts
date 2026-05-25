@@ -116,6 +116,7 @@ const VARIANTS = [
 const METHODS = [
   'parse',
   'getDomain',
+  'getFullDomain',
   'getPublicSuffix',
   'getHostname',
   'getSubdomain',

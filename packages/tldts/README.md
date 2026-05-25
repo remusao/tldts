@@ -68,6 +68,7 @@ Alternatively, you can try it _directly in your browser_ here: https://npm.runki
 - `tldts.parse(url | hostname, options)`
 - `tldts.getHostname(url | hostname, options)`
 - `tldts.getDomain(url | hostname, options)`
+- `tldts.getFullDomain(url | hostname, options)`
 - `tldts.getPublicSuffix(url | hostname, options)`
 - `tldts.getSubdomain(url, | hostname, options)`
 - `tldts.getDomainWithoutSuffix(url | hostname, options)`
@@ -238,6 +239,27 @@ getDomain('foo.google.co.uk'); // returns `google.co.uk`
 getDomain('t.co'); // returns `t.co`
 getDomain('fr.t.co'); // returns `t.co`
 getDomain('https://user:password@example.co.uk:8080/some/path?and&query#hash'); // returns `example.co.uk`
+```
+
+### getFullDomain(url | hostname, options?)
+
+Returns the full domain — the subdomain together with the registrable domain (as
+returned by `getDomain(...)`), i.e. the whole hostname _including_ any subdomain —
+or `null` when the input has no registrable domain (IP address, single label,
+bare public suffix, …). The result is the normalized hostname (lower-cased,
+trailing dot stripped); it is not a DNS-absolute name (no trailing root dot) and
+no IDNA/punycode conversion is performed.
+
+```javascript
+const { getFullDomain } = require('tldts');
+
+getFullDomain('google.com'); // returns `google.com`
+getFullDomain('fr.google.com'); // returns `fr.google.com`
+getFullDomain('foo.google.co.uk'); // returns `foo.google.co.uk`
+getFullDomain('t.co'); // returns `t.co`
+getFullDomain('fr.t.co'); // returns `fr.t.co`
+getFullDomain('1.2.3.4'); // returns null (no registrable domain)
+getFullDomain('localhost'); // returns null
 ```
 
 ### getDomainWithoutSuffix(url | hostname, options?)

@@ -41,6 +41,7 @@ function main() {
       'getHostname',
       'getPublicSuffix',
       'getDomain',
+      'getFullDomain',
       'getSubdomain',
     ]) {
       console.log(`= ${chalk.bold(method)}`);
