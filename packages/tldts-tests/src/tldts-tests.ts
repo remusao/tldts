@@ -370,6 +370,25 @@ export default function test(
       expect(tldts.getDomain('s_pf.google.com')).to.equal('google.com'); // middle '_' (reference case)
     });
 
+    // A label must not BEGIN with a hyphen (RFC 1034 §3.5 / RFC 1035 §2.3.1 LDH;
+    // cf. WHATWG "valid domain" / UTS #46 CheckHyphens). validateHostname is on by
+    // default, so an invalid host yields a null parse — exercised here at the
+    // public-API level (the inline-validation fast path). @see issue #2395.
+    it('should reject labels that begin with a hyphen', () => {
+      expect(tldts.getHostname('foo.-example.com')).to.equal(null); // interior label
+      expect(tldts.getHostname('a.b.-c.com')).to.equal(null); // deeper interior label
+      expect(tldts.getHostname('foo.-com')).to.equal(null); // final label
+      expect(tldts.getDomain('foo.-example.com')).to.equal(null);
+      expect(tldts.getHostname('-example.com')).to.equal(null); // first label (already rejected)
+      // Interior hyphens and underscore-leading labels stay valid.
+      expect(tldts.getHostname('foo.ex-ample.com')).to.equal(
+        'foo.ex-ample.com',
+      );
+      expect(tldts.getHostname('_dmarc.example.com')).to.equal(
+        '_dmarc.example.com',
+      );
+    });
+
     // @see https://github.com/oncletom/tld.js/issues/53
     it('should correctly extract domain from paths including "@" in the path', () => {
       const domain = tldts.getDomain(

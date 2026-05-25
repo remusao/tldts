@@ -369,7 +369,10 @@ export default function extractHostname(
           } else if (code < 48 || code > 57) {
             // < 64 and not a delimiter/dot/digit => only '-' (45) is a valid
             // host char here; everything else (space, %, !, etc.) is invalid.
-            if (code !== 45) {
+            // A '-' must also not START a label (the byte right after a '.') —
+            // mirrors is-valid.ts; the first label is covered by the first-char
+            // rule above. (RFC 1034 §3.5 / RFC 1035 §2.3.1 LDH.)
+            if (code !== 45 || vLastCode === 46 /* label-leading '-' */) {
               vValid = false;
             }
           }
