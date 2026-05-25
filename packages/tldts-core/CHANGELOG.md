@@ -1,3 +1,15 @@
+# v7.3.0 (Mon May 25 2026)
+
+#### :running_woman: Performance
+
+- perf(core): validate hostname inline during extraction to drop a redundant scan [#2590](https://github.com/remusao/tldts/pull/2590) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.2.1 (Mon May 25 2026)
 
 #### :nail_care: Polish
