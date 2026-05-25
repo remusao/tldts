@@ -1,3 +1,15 @@
+# v7.2.1 (Mon May 25 2026)
+
+#### :nail_care: Polish
+
+- fix: extract unbracketed IPv6 hostnames instead of mangling them [#2589](https://github.com/remusao/tldts/pull/2589) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.2.0 (Mon May 25 2026)
 
 #### :rocket: New Feature
