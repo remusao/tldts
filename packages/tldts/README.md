@@ -93,6 +93,10 @@ your inputs.
   validateHostname: boolean;
   // Perform IP address detection (default: true).
   detectIp: boolean;
+  // Detect IANA special-use domains (RFC 6761 et al.) and expose the result as
+  // `isSpecialUse` (default: false). Off by default so the common path does no
+  // extra work; the field stays `null` unless this is enabled.
+  detectSpecialUse: boolean;
   // Assume that both URLs and hostnames can be given as input (default: true)
   // If set to `false` we assume only URLs will be given as input, which
   // speed-ups processing.
@@ -181,6 +185,21 @@ tldts.parse('tldts@emailprovider.co.uk'); // email
 | `isIcann`             | `bool` | Does TLD come from ICANN part of the list       |
 | `isPrivate`           | `bool` | Does TLD come from Private part of the list     |
 | `isIP`                | `bool` | Is `hostname` an IP address?                    |
+| `isSpecialUse`        | `bool` | Is `hostname` an IANA special-use domain?       |
+
+## Special-use domains (RFC 6761 / IANA)
+
+Set `{ detectSpecialUse: true }` to flag reserved special-use names such as `localhost`, `*.test`, `*.local`, `*.onion`, and `home.arpa` via the `isSpecialUse` result field. `isIcann`/`isPrivate` don't identify these: most aren't in the Public Suffix List, and the few that are (e.g. `onion`, `home.arpa`) appear there as ordinary ICANN suffixes. The field is `null` unless the option is enabled, so the default path does no extra work:
+
+```js
+parse('http://printer.local/', { detectSpecialUse: true });
+// { ...
+//   isSpecialUse: true,
+//   publicSuffix: 'local',
+//   subdomain: '' }
+```
+
+The list tracks the IANA [Special-Use Domain Names](https://www.iana.org/assignments/special-use-domain-names/) registry.
 
 ## Single purpose methods
 
