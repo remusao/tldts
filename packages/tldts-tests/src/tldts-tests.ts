@@ -896,6 +896,27 @@ export default function test(
       ).to.deep.equal(mockResponse('1080::8:800:200c:417a'));
     });
 
+    it('handles bare, unbracketed ipv6 addresses (issue #2288)', () => {
+      // Bare and scheme-prefixed unbracketed IPv6 are kept whole and detected,
+      // instead of being dropped or truncated to "2a01:e35:2f22:e3d0:". A
+      // documented deviation from `new URL`, which rejects unbracketed IPv6.
+      expect(tldts.parse('2a01:e35:2f22:e3d0::1')).to.deep.equal(
+        mockResponse('2a01:e35:2f22:e3d0::1'),
+      );
+      expect(tldts.parse('http://2a01:e35:2f22:e3d0::1')).to.deep.equal(
+        mockResponse('2a01:e35:2f22:e3d0::1'),
+      );
+      expect(tldts.parse('fe80::1')).to.deep.equal(mockResponse('fe80::1'));
+      expect(tldts.getHostname('http://2a01:e35:2f22:e3d0::1')).to.equal(
+        '2a01:e35:2f22:e3d0::1',
+      );
+      // A trailing group that looks like a port is part of the address (an
+      // unbracketed IPv6 cannot carry a port), so it is kept and still an IP.
+      expect(tldts.parse('2a01::1:8080')).to.deep.equal(
+        mockResponse('2a01::1:8080'),
+      );
+    });
+
     it('handles ipv6 address when extractHostname is false', () => {
       const hostname = '1080::8:800:200C:417A';
       expect(tldts.parse(hostname, { extractHostname: false })).to.deep.equal({
@@ -1320,6 +1341,15 @@ export default function test(
       it('returns bracket-less, uncompressed IPv6', () => {
         expect(tldts.getHostname('http://[2001:0DB8::1]:8080/')).to.equal(
           '2001:0db8::1',
+        );
+      });
+
+      it('accepts unbracketed IPv6 (WHATWG/`new URL` rejects)', () => {
+        expect(tldts.getHostname('2a01:e35:2f22:e3d0::1')).to.equal(
+          '2a01:e35:2f22:e3d0::1',
+        );
+        expect(tldts.getHostname('http://2a01:e35:2f22:e3d0::1')).to.equal(
+          '2a01:e35:2f22:e3d0::1',
         );
       });
 

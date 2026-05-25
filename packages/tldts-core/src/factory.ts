@@ -16,9 +16,10 @@ import getSubdomain from './subdomain';
 
 export interface IResult {
   // `hostname` is either a registered name (including but not limited to a
-  // hostname), or an IP address. IPv4 addresses must be in dot-decimal
-  // notation, and IPv6 addresses must be enclosed in brackets ([]). This is
-  // directly extracted from the input URL.
+  // hostname), or an IP address, directly extracted from the input URL. IPv4
+  // addresses are in dot-decimal notation. IPv6 is returned without its
+  // surrounding brackets; both bracketed (in URLs, e.g. `http://[::1]/`) and
+  // bare unbracketed (e.g. `2a01:e35::1`) IPv6 literals are accepted.
   hostname: string | null;
 
   // Is `hostname` an IP? (IPv4 or IPv6)

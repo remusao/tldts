@@ -61,6 +61,44 @@ describe('#extractHostname', () => {
     expect(extract('http://[::1')).to.equal(null);
   });
 
+  it('keeps a bare, unbracketed IPv6 literal whole (issue #2288)', () => {
+    // A second ':' marks an unbracketed IPv6 (a host:port has exactly one), so
+    // the trailing group must not be mistaken for a ':port' and trimmed.
+    expect(extract('2a01:e35:2f22:e3d0::1')).to.equal('2a01:e35:2f22:e3d0::1');
+    expect(extract('::1')).to.equal('::1');
+    expect(extract('fe80::1')).to.equal('fe80::1');
+    expect(extract('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).to.equal(
+      '2001:0db8:85a3:0000:0000:8a2e:0370:7334',
+    );
+  });
+
+  it('lower-cases a bare, unbracketed IPv6 literal', () => {
+    expect(extract('2A01:E35::1')).to.equal('2a01:e35::1');
+  });
+
+  it('keeps an unbracketed IPv6 after a scheme, "//" or userinfo (issue #2288)', () => {
+    expect(extract('http://2a01:e35:2f22:e3d0::1')).to.equal(
+      '2a01:e35:2f22:e3d0::1',
+    );
+    expect(extract('//2a01::1')).to.equal('2a01::1');
+    expect(extract('user:pass@2a01::1')).to.equal('2a01::1');
+  });
+
+  it('does not trim a numeric trailing group of an unbracketed IPv6 as a port', () => {
+    // A port is impossible on an unbracketed IPv6 (that is what brackets are
+    // for), so a trailing ":8080" is a hextet, kept — not a ':port' to trim.
+    expect(extract('2a01::1:8080')).to.equal('2a01::1:8080');
+    expect(extract('http://2a01::1:8080')).to.equal('2a01::1:8080');
+    expect(extract('2a01::1:')).to.equal('2a01::1:');
+  });
+
+  it('resets the first-colon marker at each "@" (userinfo before IPv6)', () => {
+    // The host's first ':' is tracked from after the last '@', so colons in
+    // userinfo never make a real host:port look like an IPv6 (and vice versa).
+    expect(extract('a@b@2a01::1')).to.equal('2a01::1');
+    expect(extract('user:pass@example.com:8080')).to.equal('example.com');
+  });
+
   it('treats a colon after a path delimiter as not-a-scheme', () => {
     // The scheme scan stops at the first '/', so there is no scheme here.
     expect(extract('example.com/a:b')).to.equal('example.com');
