@@ -731,6 +731,264 @@ export default function test(
     });
   });
 
+  // The default (validating) path fuses host validation into the extraction
+  // scan: for a "simple" authority (no userinfo / port / brackets / trailing
+  // dot / control char) parseImpl skips the separate isValidHostname pass and
+  // trusts the verdict accumulated during extraction. These cases pin the
+  // user-facing contract of that fusion — exercised end-to-end through the
+  // public API — at the structural boundaries (label/total length, hyphen, dot,
+  // underscore positions) and across the simple-vs-complex authority split. All
+  // expected values were cross-checked against the v7.2.0 pre-fusion baseline
+  // (0 divergences), so an accidental behaviour change here is a regression.
+  describe('inline hostname validation (extract/validate fusion)', () => {
+    const rep = (s: string, n: number): string => {
+      let r = '';
+      for (let i = 0; i < n; i += 1) {
+        r += s;
+      }
+      return r;
+    };
+
+    describe('label-length boundary (63 valid / 64 invalid)', () => {
+      it('accepts a 63-char first label, rejects 64', () => {
+        expect(tldts.getHostname('http://' + rep('a', 63) + '.com/p')).to.equal(
+          rep('a', 63) + '.com',
+        );
+        expect(tldts.getHostname('http://' + rep('a', 64) + '.com/p')).to.equal(
+          null,
+        );
+      });
+
+      it('accepts a 63-char last label, rejects 64', () => {
+        expect(tldts.getHostname('http://ok.' + rep('a', 63))).to.equal(
+          'ok.' + rep('a', 63),
+        );
+        expect(tldts.getHostname('http://ok.' + rep('a', 64))).to.equal(null);
+      });
+
+      it('accepts a single 63-char label, rejects 64 (no dots)', () => {
+        // Public suffix of a bare single label is the label itself => no domain,
+        // but the hostname must still be extracted (or rejected at 64).
+        expect(tldts.getHostname('http://' + rep('a', 63) + '/p')).to.equal(
+          rep('a', 63),
+        );
+        expect(tldts.getHostname('http://' + rep('a', 64) + '/p')).to.equal(
+          null,
+        );
+      });
+
+      it('agrees between URL and bare-hostname forms at the boundary', () => {
+        // The bare form takes the urlIsValidHostname reference path; the URL
+        // form takes the inline-validation path. Both must converge.
+        expect(tldts.getHostname(rep('a', 63) + '.com')).to.equal(
+          rep('a', 63) + '.com',
+        );
+        expect(tldts.getHostname(rep('a', 64) + '.com')).to.equal(null);
+      });
+    });
+
+    describe('total-length boundary (255 valid / 256 invalid)', () => {
+      // 'aaa.' * 63 + 'aaa' = 255 chars with every label <= 63, so this isolates
+      // the total-length guard from the per-label guard. +1 char = 256.
+      const h255 = rep('aaa.', 63) + 'aaa';
+      const h256 = rep('aaa.', 63) + 'aaaa';
+
+      it('precondition: lengths are exactly 255 and 256', () => {
+        expect(h255.length).to.equal(255);
+        expect(h256.length).to.equal(256);
+      });
+
+      it('accepts a 255-char host, rejects 256 (URL form)', () => {
+        expect(tldts.getHostname('http://' + h255 + '/p')).to.equal(h255);
+        expect(tldts.getHostname('http://' + h256 + '/p')).to.equal(null);
+      });
+
+      it('accepts a 255-char host, rejects 256 (bare form)', () => {
+        expect(tldts.getHostname(h255)).to.equal(h255);
+        expect(tldts.getHostname(h256)).to.equal(null);
+      });
+    });
+
+    describe('dot placement', () => {
+      it('accepts a single leading dot', () => {
+        expect(tldts.getHostname('http://.example.com/p')).to.equal(
+          '.example.com',
+        );
+      });
+
+      it('strips a single and multiple trailing dots', () => {
+        expect(tldts.getHostname('http://example.com./p')).to.equal(
+          'example.com',
+        );
+        expect(tldts.getHostname('http://example.com.../p')).to.equal(
+          'example.com',
+        );
+      });
+
+      it('rejects consecutive dots (empty label)', () => {
+        expect(tldts.getHostname('http://a..b.com/p')).to.equal(null);
+        expect(tldts.getHostname('a..b.com')).to.equal(null);
+      });
+    });
+
+    describe('hyphen placement', () => {
+      it('rejects a leading hyphen on the host', () => {
+        expect(tldts.getHostname('http://-example.com/p')).to.equal(null);
+        expect(tldts.getHostname('-example.com')).to.equal(null);
+      });
+
+      it('rejects a trailing hyphen on the whole host', () => {
+        expect(tldts.getHostname('http://example.com-/p')).to.equal(null);
+        expect(tldts.getHostname('example.com-')).to.equal(null);
+      });
+
+      it('rejects a label that ends with a hyphen', () => {
+        expect(tldts.getHostname('http://foo-.bar.com/p')).to.equal(null);
+      });
+
+      it('accepts a hyphen mid-label', () => {
+        expect(tldts.getHostname('http://ex-ample.com/p')).to.equal(
+          'ex-ample.com',
+        );
+        expect(tldts.getHostname('ex-ample.com')).to.equal('ex-ample.com');
+      });
+    });
+
+    describe('underscore placement (DNS-lenient, RFC 2181 §11)', () => {
+      it('accepts a leading underscore', () => {
+        expect(tldts.getHostname('http://_example.com/p')).to.equal(
+          '_example.com',
+        );
+      });
+
+      it('accepts a mid-label underscore', () => {
+        expect(tldts.getHostname('http://ex_ample.com/p')).to.equal(
+          'ex_ample.com',
+        );
+      });
+
+      it('accepts a label-final underscore', () => {
+        expect(tldts.getHostname('http://spf_.example.com/p')).to.equal(
+          'spf_.example.com',
+        );
+      });
+    });
+
+    describe('character classes', () => {
+      it('lower-cases an uppercase host then validates it (URL and bare)', () => {
+        expect(tldts.getHostname('HTTP://SUB.EXAMPLE.COM/P')).to.equal(
+          'sub.example.com',
+        );
+        expect(tldts.getHostname('EXAMPLE.COM')).to.equal('example.com');
+      });
+
+      it('keeps a non-ASCII / IDN host without punycode (URL and bare)', () => {
+        expect(tldts.getHostname('http://bücher.example/p')).to.equal(
+          'bücher.example',
+        );
+        expect(tldts.getHostname('ящик-с-апельсинами.рф')).to.equal(
+          'ящик-с-апельсинами.рф',
+        );
+      });
+
+      it('accepts a digits-only host (no IPv4 normalisation)', () => {
+        expect(tldts.getHostname('http://123.456/p')).to.equal('123.456');
+        expect(tldts.getHostname('123.456')).to.equal('123.456');
+      });
+
+      it('rejects a forbidden host character (%, space)', () => {
+        expect(tldts.getHostname('http://a%b.com/p')).to.equal(null);
+        expect(tldts.getHostname('http://a b.com/p')).to.equal(null);
+      });
+    });
+
+    describe('simple-vs-complex authority split (the fusion gate)', () => {
+      // The fusion is ACTIVE only for a simple authority; a complex one
+      // (userinfo / port / brackets / trailing dot) falls back to the separate
+      // isValidHostname pass. Both branches must yield the identical host.
+      it('extracts the same host with and without userinfo', () => {
+        expect(tldts.getHostname('http://host.com/p')).to.equal('host.com');
+        expect(tldts.getHostname('http://user@host.com/p')).to.equal(
+          'host.com',
+        );
+        expect(tldts.getHostname('http://user:pass@host.com/p')).to.equal(
+          'host.com',
+        );
+      });
+
+      it('extracts the same host with and without a port', () => {
+        expect(tldts.getHostname('http://host.com:8080/p')).to.equal(
+          'host.com',
+        );
+      });
+
+      it('extracts the same host with a trailing-dot (complex) authority', () => {
+        expect(tldts.getHostname('http://host.com./p')).to.equal('host.com');
+      });
+
+      it('extracts a bracketed IPv6 host (complex authority)', () => {
+        expect(tldts.getHostname('http://[::1]/p')).to.equal('::1');
+      });
+    });
+
+    describe('full parse() result parity at the boundary', () => {
+      // The fused verdict gates parseImpl BEFORE public-suffix/domain
+      // extraction, so a valid simple host must still produce a full result and
+      // an invalid one must zero every field.
+      it('produces a full result for a valid simple host', () => {
+        expect(tldts.parse('http://sub.example.com/p')).to.deep.include({
+          hostname: 'sub.example.com',
+          domain: 'example.com',
+          publicSuffix: 'com',
+        });
+      });
+
+      it('zeroes domain and publicSuffix for an invalid simple host', () => {
+        expect(tldts.parse('http://-example.com/p')).to.deep.include({
+          hostname: null,
+          domain: null,
+          publicSuffix: null,
+        });
+      });
+    });
+
+    describe('fusion-inactive controls (must match the validating path)', () => {
+      it('validateHostname:false keeps a host the fused path would reject', () => {
+        // Fusion never runs; the raw host is returned verbatim.
+        expect(
+          tldts.parse('http://-example.com/p', { validateHostname: false })
+            .hostname,
+        ).to.equal('-example.com');
+        expect(
+          tldts.parse('http://' + rep('a', 64) + '.com/p', {
+            validateHostname: false,
+          }).hostname,
+        ).to.equal(rep('a', 64) + '.com');
+      });
+
+      it('mixedInputs:false (URL-only path) matches the default for a valid host', () => {
+        const url = 'http://sub.example.com/p';
+        expect(tldts.parse(url, { mixedInputs: false })).to.deep.equal(
+          tldts.parse(url),
+        );
+      });
+
+      it('mixedInputs:false rejects an invalid simple host like the default', () => {
+        const url = 'http://-example.com/p';
+        expect(tldts.parse(url, { mixedInputs: false }).hostname).to.equal(
+          null,
+        );
+      });
+
+      it('a bare valid hostname (reference path) parses identically to its URL form', () => {
+        expect(tldts.parse('sub.example.com').hostname).to.equal(
+          'sub.example.com',
+        );
+        expect(tldts.parse('sub.example.com').domain).to.equal('example.com');
+      });
+    });
+  });
+
   describe('getDomainWithoutSuffix method', () => {
     it('should return null if the domain cannot be found', () => {
       expect(tldts.getDomainWithoutSuffix('not-a-validHost')).to.equal(null);

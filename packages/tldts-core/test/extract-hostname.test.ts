@@ -1,7 +1,9 @@
 import { expect } from 'chai';
 import 'mocha';
 
-import extractHostname from '../src/extract-hostname';
+import extractHostname, {
+  extractedHostnameValidated,
+} from '../src/extract-hostname';
 
 // Direct unit tests for the hostname extractor, aiming at 100% branch coverage.
 // extractHostname returns the RAW host substring (it does NOT run isIp or
@@ -195,5 +197,238 @@ describe('#extractHostname', () => {
 
   it('returns an already-lowercase extracted host unchanged', () => {
     expect(extract('http://example.com/path')).to.equal('example.com');
+  });
+});
+
+// The `validate` param (default false) is the performance fusion: when true,
+// extractHostname accumulates is-valid.ts's RFC checks during its single
+// authority scan and publishes the verdict via the module-scoped
+// `extractedHostnameValidated`, so factory.ts can skip the redundant
+// isValidHostname pass. The flag is `true` ONLY for a confirmed-valid "simple"
+// authority (no userinfo / port / brackets / trailing dot / control char) where
+// the scanned run equals the final host; every other case leaves it `false` so
+// the caller re-validates. The extractor still returns the RAW host substring
+// regardless of the flag — a `false` flag on an invalid host is the fail-safe
+// (parseImpl then runs isValidHostname, which rejects it).
+//
+// These cases exercise the validate=true branches that the default-arg tests
+// above never reach (the inline isValidHostnameChar / dot-length / first-char /
+// last-label / total-length checks). Expected hosts were cross-checked against
+// the v7.2.0 pre-fusion baseline (0 divergences); expected flag values were
+// probed against the source.
+describe('#extractHostname inline validation (validate=true)', () => {
+  // extractHostname(url, false, true): exercise the fused validation path and
+  // return [host, flag] so each case asserts both the substring AND the verdict.
+  const extractV = (url: string): [string | null, boolean] => {
+    const host = extractHostname(url, false, true);
+    return [host, extractedHostnameValidated];
+  };
+  const rep = (s: string, n: number): string => {
+    let r = '';
+    for (let i = 0; i < n; i += 1) {
+      r += s;
+    }
+    return r;
+  };
+
+  it('sets the flag for a simple valid authority (URL form)', () => {
+    expect(extractV('http://example.com/p')).to.deep.equal([
+      'example.com',
+      true,
+    ]);
+    expect(extractV('http://sub.example.co.uk/p')).to.deep.equal([
+      'sub.example.co.uk',
+      true,
+    ]);
+  });
+
+  it('sets the flag for a simple valid authority (bare host with path)', () => {
+    expect(extractV('example.com/p')).to.deep.equal(['example.com', true]);
+  });
+
+  it('sets the flag once a host with uppercase is lowercased', () => {
+    // hasUpper path + fusion: isValidHostnameChar accepts A-Z because the host
+    // is lowercased before being returned/validated.
+    expect(extractV('HTTP://EXAMPLE.COM/P')).to.deep.equal([
+      'example.com',
+      true,
+    ]);
+    expect(extractV('http://ExAmple.CoM/p')).to.deep.equal([
+      'example.com',
+      true,
+    ]);
+  });
+
+  it('sets the flag for valid "loose" characters is-valid.ts accepts', () => {
+    // Underscores (leading / mid / label-final), a leading dot, mid-label
+    // hyphen, an all-digits label and non-ASCII are all valid per the shallow
+    // validator, so the fused path validates them inline (flag true).
+    expect(extractV('http://_example.com/p')).to.deep.equal([
+      '_example.com',
+      true,
+    ]);
+    expect(extractV('http://ex_ample.com/p')).to.deep.equal([
+      'ex_ample.com',
+      true,
+    ]);
+    expect(extractV('http://spf_.example.com/p')).to.deep.equal([
+      'spf_.example.com',
+      true,
+    ]);
+    expect(extractV('http://.example.com/p')).to.deep.equal([
+      '.example.com',
+      true,
+    ]);
+    expect(extractV('http://ex-ample.com/p')).to.deep.equal([
+      'ex-ample.com',
+      true,
+    ]);
+    expect(extractV('http://123.456/p')).to.deep.equal(['123.456', true]);
+    expect(extractV('http://bücher.example/p')).to.deep.equal([
+      'bücher.example',
+      true,
+    ]);
+    expect(extractV('http://localhost/p')).to.deep.equal(['localhost', true]);
+  });
+
+  it('sets the flag at the length boundaries (label 63, total 255)', () => {
+    // Last label exactly 63 (<= 63): valid, flag true.
+    expect(extractV('http://ok.' + rep('a', 63))).to.deep.equal([
+      'ok.' + rep('a', 63),
+      true,
+    ]);
+    // First label exactly 63 (the in-loop `i - vLastDot > 64` dot check).
+    expect(extractV('http://' + rep('a', 63) + '.com/p')).to.deep.equal([
+      rep('a', 63) + '.com',
+      true,
+    ]);
+    // Total length exactly 255 with a short last label — isolates the
+    // `end - start <= 255` guard from the last-label guard. 'aaa.'*63 + 'aaa'.
+    const h255 = rep('aaa.', 63) + 'aaa';
+    expect(h255.length).to.equal(255);
+    expect(extractV('http://' + h255 + '/p')).to.deep.equal([h255, true]);
+  });
+
+  it('clears the flag when a label exceeds 63 chars (still returns raw host)', () => {
+    // 64-char label: the inline check sets vValid=false. The extractor still
+    // RETURNS the (invalid) host — parseImpl re-runs isValidHostname → null.
+    expect(extractV('http://ok.' + rep('a', 64))).to.deep.equal([
+      'ok.' + rep('a', 64),
+      false,
+    ]);
+    expect(extractV('http://' + rep('a', 64) + '.com/p')).to.deep.equal([
+      rep('a', 64) + '.com',
+      false,
+    ]);
+    // Single 64-char label, no dots (last-label guard with vLastDot = start-1).
+    expect(extractV('http://' + rep('a', 64) + '/p')).to.deep.equal([
+      rep('a', 64),
+      false,
+    ]);
+  });
+
+  it('clears the flag when the total length exceeds 255 chars', () => {
+    // 256 total with a short last label — isolates the total-length guard.
+    const h256 = rep('aaa.', 63) + 'aaaa';
+    expect(h256.length).to.equal(256);
+    expect(extractV('http://' + h256 + '/p')).to.deep.equal([h256, false]);
+  });
+
+  it('clears the flag on a leading hyphen (first-char rule)', () => {
+    // First char '-' is rejected even though isValidHostnameChar allows '-'
+    // mid-label; the explicit `c0 === 45` guard handles it.
+    expect(extractV('http://-example.com/p')).to.deep.equal([
+      '-example.com',
+      false,
+    ]);
+  });
+
+  it('clears the flag on a trailing hyphen (whole host and a label)', () => {
+    // Whole-host trailing hyphen: vLastCode === 45 at the final guard.
+    expect(extractV('http://example.com-/p')).to.deep.equal([
+      'example.com-',
+      false,
+    ]);
+    // A label ending in '-' before a dot: vLastCode === 45 at the dot.
+    expect(extractV('http://foo-.bar.com/p')).to.deep.equal([
+      'foo-.bar.com',
+      false,
+    ]);
+  });
+
+  it('clears the flag on consecutive dots (empty label)', () => {
+    // vLastCode === 46 at the second dot.
+    expect(extractV('http://a..b.com/p')).to.deep.equal(['a..b.com', false]);
+  });
+
+  it('clears the flag on a forbidden host character', () => {
+    // '%' (< 64, not delimiter/dot/digit/'-') and ' ' (space) are invalid.
+    expect(extractV('http://a%b.com/p')).to.deep.equal(['a%b.com', false]);
+    expect(extractV('http://a b.com/p')).to.deep.equal(['a b.com', false]);
+    // A forbidden char >= 64 (the `>= 64` invalid-char branch): '~'.
+    expect(extractV('http://a~b.com/p')).to.deep.equal(['a~b.com', false]);
+  });
+
+  it('clears the flag for a complex authority even when the host is valid', () => {
+    // userinfo / port / brackets / trailing dot make the scanned run differ
+    // from the final host, so the verdict is suppressed (flag false) and the
+    // caller falls back to isValidHostname. Host is still extracted correctly.
+    expect(extractV('http://user@host.com/p')).to.deep.equal([
+      'host.com',
+      false,
+    ]);
+    expect(extractV('http://user:pass@host.com/p')).to.deep.equal([
+      'host.com',
+      false,
+    ]);
+    expect(extractV('http://host.com:8080/p')).to.deep.equal([
+      'host.com',
+      false,
+    ]);
+    expect(extractV('http://[::1]/p')).to.deep.equal(['::1', false]);
+    expect(extractV('http://host.com./p')).to.deep.equal(['host.com', false]);
+  });
+
+  it('clears the flag for an empty / no-host result', () => {
+    // No main return path ran (returned null before the verdict block).
+    expect(extractV('http://')).to.deep.equal([null, false]);
+    expect(extractV('data:text/plain,x')).to.deep.equal([null, false]);
+    expect(extractV('mailto:x')).to.deep.equal([null, false]);
+  });
+
+  it('resets the flag to false when validate is not requested', () => {
+    // Default-arg call (validate=false): the flag must be cleared at entry so a
+    // stale `true` from a prior validate=true call never leaks to the caller.
+    extractHostname('http://example.com/p', false, true);
+    expect(extractedHostnameValidated).to.equal(true);
+    const host = extractHostname('http://example.com/p', false);
+    expect([host, extractedHostnameValidated]).to.deep.equal([
+      'example.com',
+      false,
+    ]);
+  });
+
+  it('clears the flag on the urlIsValidHostname reference-equality path', () => {
+    // When the input is already a valid hostname, extraction is skipped and the
+    // same reference is returned; the flag stays false (factory.ts uses its own
+    // reference-equality skip instead).
+    const input = 'example.com';
+    const host = extractHostname(input, true, true);
+    expect(host).to.equal(input);
+    expect(extractedHostnameValidated).to.equal(false);
+  });
+
+  it('re-validates after stripping an embedded tab/newline', () => {
+    // The control-char branch recurses with `validate` preserved, so a host
+    // that is valid after stripping still gets the flag.
+    expect(extractV('http://exa\tmple.com/p')).to.deep.equal([
+      'example.com',
+      true,
+    ]);
+    // ...and an invalid host after stripping still clears it.
+    expect(extractV('http://-exa\tmple.com/p')).to.deep.equal([
+      '-example.com',
+      false,
+    ]);
   });
 });

@@ -5,6 +5,37 @@
  */
 const CONTROL_CHARS = /[\t\n\r]/g;
 
+// Set by `extractHostname` (a module-scope flag, read synchronously by
+// `parseImpl` right after the call — same pattern as the reused RESULT object).
+// `true` ONLY when extraction validated the returned host inline (a confirmed-
+// valid, "simple" authority) so `parseImpl` can skip the separate
+// `isValidHostname` pass. `false` in every other case (validation disabled, a
+// complex authority — userinfo/port/brackets/trailing-dot/control — an invalid
+// host, or a non-main return path); `parseImpl` then validates as usual. The
+// fast path can only ever SKIP a redundant scan for hosts already known valid,
+// never accept an invalid one.
+export let extractedHostnameValidated = false;
+
+/**
+ * True if char `code` is a valid hostname character. This is the per-char half
+ * of `is-valid.ts`'s `isValidAscii` (a-z, 0-9, > U+007F) PLUS three additions:
+ * A-Z (the host is lowercased before validation, so uppercase ≡ a valid
+ * lowercase letter) and '-' / '_' (valid inside a label). KEEP IN SYNC with
+ * `is-valid.ts`: these rules are deliberately duplicated to validate during
+ * extraction, so any change to the accepted character set there must be
+ * mirrored here (and vice-versa).
+ */
+function isValidHostnameChar(code: number): boolean {
+  return (
+    (code >= 97 && code <= 122) || // a-z
+    (code >= 48 && code <= 57) || // 0-9
+    code > 127 || // non-ASCII (accepted, not punycode-checked)
+    (code >= 65 && code <= 90) || // A-Z (becomes valid once lowercased)
+    code === 45 || // '-'
+    code === 95 // '_'
+  );
+}
+
 /**
  * Classify scheme `url.slice(schemeStart, colonIndex)` as a WHATWG special
  * scheme without allocating a substring (case-insensitive via `| 32`).
@@ -59,15 +90,20 @@ function getSpecialScheme(
  * @param urlIsValidHostname - when true, `url` is already a valid hostname and is
  *   returned by the same reference (factory.ts skips re-validation on that
  *   identity), keeping the common path allocation-free.
+ * @param validate - when true, validate the host inline during the authority
+ *   scan and publish the verdict via `extractedHostnameValidated` so `parseImpl`
+ *   can skip the redundant `isValidHostname` pass for simple authorities.
  */
 export default function extractHostname(
   url: string,
   urlIsValidHostname: boolean,
+  validate = false,
 ): string | null {
   let start = 0;
   let end: number = url.length;
   let hasUpper = false;
   let isSpecial = false;
+  extractedHostnameValidated = false;
 
   if (!urlIsValidHostname) {
     // Data URLs never carry a host (and may be huge — short-circuit them).
@@ -143,6 +179,7 @@ export default function extractHostname(
                 return extractHostname(
                   url.replace(CONTROL_CHARS, ''),
                   urlIsValidHostname,
+                  validate,
                 );
               }
               return null;
@@ -169,6 +206,7 @@ export default function extractHostname(
             return extractHostname(
               url.replace(CONTROL_CHARS, ''),
               urlIsValidHostname,
+              validate,
             );
           }
           if (code === 58 /* ':' */) {
@@ -279,11 +317,36 @@ export default function extractHostname(
     // '@') to tell a bare IPv6 (>= 2 colons) from a host:port (exactly one);
     // flag uppercase and a stray tab/newline. The loop is split on `code < 64`
     // so common host characters take fewer comparisons.
+    //
+    // When `validate`, also accumulate `is-valid.ts`'s checks over the scanned
+    // run so a simple authority's host can be validated in this single pass.
+    // `vValid` only stays meaningful for a "simple" authority (no userinfo, port,
+    // brackets, control or trailing dot); those cases clear it / are rejected by
+    // the guard below, falling back to `isValidHostname`.
     let indexOfIdentifier = -1;
     let indexOfClosingBracket = -1;
     let indexOfPort = -1;
     let indexOfFirstColon = -1;
     let hasControl = false;
+    let vValid = validate; // seeded true when validating; cleared on the first invalid char
+    let vLastDot = start - 1; // mirrors is-valid.ts `lastDotIndex = -1` at host start
+    let vLastCode = -1;
+    if (validate && start < end) {
+      // First-char rule: must be a valid host char, '.', or '_' (NOT '-').
+      const c0 = url.charCodeAt(start);
+      if (
+        !(
+          /*@__INLINE__*/ (
+            isValidHostnameChar(c0) ||
+            c0 === 46 /* '.' */ ||
+            c0 === 95 /* '_' */
+          )
+        ) ||
+        c0 === 45 /* '-' (isValidHostnameChar allows it mid-label, not first) */
+      ) {
+        vValid = false;
+      }
+    }
     for (let i = start; i < end; i += 1) {
       const code: number = url.charCodeAt(i);
       if (code < 64) {
@@ -297,6 +360,19 @@ export default function extractHostname(
           indexOfPort = i;
         } else if (code === 9 || code === 10 || code === 13) {
           hasControl = true;
+        } else if (validate) {
+          if (code === 46 /* '.' */) {
+            if (i - vLastDot > 64 || vLastCode === 46 || vLastCode === 45) {
+              vValid = false;
+            }
+            vLastDot = i;
+          } else if (code < 48 || code > 57) {
+            // < 64 and not a delimiter/dot/digit => only '-' (45) is a valid
+            // host char here; everything else (space, %, !, etc.) is invalid.
+            if (code !== 45) {
+              vValid = false;
+            }
+          }
         }
       } else if (isSpecial && code === 92 /* '\' */) {
         end = i;
@@ -308,6 +384,12 @@ export default function extractHostname(
         indexOfClosingBracket = i;
       } else if (code >= 65 && code <= 90) {
         hasUpper = true;
+      } else if (validate && !(/*@__INLINE__*/ isValidHostnameChar(code))) {
+        // >= 64, not '@'/']'/upper: valid only if a-z, '_', or non-ASCII.
+        vValid = false;
+      }
+      if (validate) {
+        vLastCode = code;
       }
     }
 
@@ -316,6 +398,7 @@ export default function extractHostname(
       return extractHostname(
         url.replace(CONTROL_CHARS, ''),
         urlIsValidHostname,
+        validate,
       );
     }
 
@@ -350,6 +433,31 @@ export default function extractHostname(
     // extraction — a bare valid hostname never lands here.
     if (start >= end) {
       return null;
+    }
+
+    // Publish the inline-validation verdict — but only for a "simple" authority,
+    // where the scanned run equals the final host: no userinfo skip, no port
+    // trim, no brackets, no trailing dot (trimmed below), and length within RFC
+    // limits. Anything else leaves it `false` so `parseImpl` re-validates.
+    //
+    // Every clause below is load-bearing for CORRECTNESS, not just speed: the
+    // loop accumulates `vValid` over the whole scanned run (it does not stop at
+    // ':' or '@', so any port/userinfo bytes are included), so the verdict is
+    // only sound when that run equals the final host. Do not drop a clause as
+    // "redundant" — e.g. without `indexOfPort === -1`, `host:8080` would be
+    // wrongly accepted.
+    if (
+      validate &&
+      vValid &&
+      indexOfIdentifier === -1 &&
+      indexOfPort === -1 &&
+      indexOfClosingBracket === -1 &&
+      url.charCodeAt(end - 1) !== 46 /* no trailing dot */ &&
+      end - start <= 255 && // total length
+      end - vLastDot - 1 <= 63 && // last label length
+      vLastCode !== 45 /* last char not '-' */
+    ) {
+      extractedHostnameValidated = true;
     }
   }
 
