@@ -217,32 +217,54 @@ export default function extractHostname(
             if (!allDigits) {
               const special = getSpecialScheme(url, start, indexOfColon);
               if (special === 0) {
-                // No "://" anywhere on the cold path, so a non-special scheme has
-                // no authority: opaque path, no host ("mailto:x", "foo:bar").
-                return null;
-              }
-              isSpecial = true;
-              start = indexOfColon + 1;
-              if (special === 2) {
-                // file (e.g. "file:\\host"): host only between "//" and next slash.
-                let slashes = 0;
-                while (
-                  (url.charCodeAt(start) === 47 ||
-                    url.charCodeAt(start) === 92) &&
-                  slashes < 2
-                ) {
-                  start += 1;
-                  slashes += 1;
+                // No "://" anywhere on the cold path and not a special scheme.
+                // A second ':' before the host's end marks a bare, unbracketed
+                // IPv6 literal ("2a01:e35::1"): fall through and let the host
+                // loop + isIp classify it. Without one this is an opaque path
+                // with no host ("mailto:x", "foo:bar").
+                let isBareIpv6 = false;
+                for (let j = indexOfColon + 1; j < end; j += 1) {
+                  const code = url.charCodeAt(j);
+                  if (
+                    code === 47 ||
+                    code === 92 ||
+                    code === 63 ||
+                    code === 35
+                  ) {
+                    break;
+                  }
+                  if (code === 58 /* ':' */) {
+                    isBareIpv6 = true;
+                    break;
+                  }
                 }
-                if (slashes < 2) {
+                if (!isBareIpv6) {
                   return null;
                 }
               } else {
-                while (
-                  url.charCodeAt(start) === 47 ||
-                  url.charCodeAt(start) === 92
-                ) {
-                  start += 1;
+                isSpecial = true;
+                start = indexOfColon + 1;
+                if (special === 2) {
+                  // file (e.g. "file:\\host"): host only between "//" and next slash.
+                  let slashes = 0;
+                  while (
+                    (url.charCodeAt(start) === 47 ||
+                      url.charCodeAt(start) === 92) &&
+                    slashes < 2
+                  ) {
+                    start += 1;
+                    slashes += 1;
+                  }
+                  if (slashes < 2) {
+                    return null;
+                  }
+                } else {
+                  while (
+                    url.charCodeAt(start) === 47 ||
+                    url.charCodeAt(start) === 92
+                  ) {
+                    start += 1;
+                  }
                 }
               }
             }
@@ -253,11 +275,14 @@ export default function extractHostname(
 
     // Find the host's end: first '/', '?' or '#' (and '\' for special URLs,
     // which WHATWG treats like '/'). Track the last '@', ']' and ':' for
-    // userinfo, ipv6 and port; flag uppercase and a stray tab/newline. The loop
-    // is split on `code < 64` so common host characters take fewer comparisons.
+    // userinfo, ipv6 and port, plus the first ':' of the host (reset at each
+    // '@') to tell a bare IPv6 (>= 2 colons) from a host:port (exactly one);
+    // flag uppercase and a stray tab/newline. The loop is split on `code < 64`
+    // so common host characters take fewer comparisons.
     let indexOfIdentifier = -1;
     let indexOfClosingBracket = -1;
     let indexOfPort = -1;
+    let indexOfFirstColon = -1;
     let hasControl = false;
     for (let i = start; i < end; i += 1) {
       const code: number = url.charCodeAt(i);
@@ -266,6 +291,9 @@ export default function extractHostname(
           end = i;
           break;
         } else if (code === 58 /* ':' */) {
+          if (indexOfFirstColon === -1) {
+            indexOfFirstColon = i;
+          }
           indexOfPort = i;
         } else if (code === 9 || code === 10 || code === 13) {
           hasControl = true;
@@ -275,6 +303,7 @@ export default function extractHostname(
         break;
       } else if (code === 64 /* '@' */) {
         indexOfIdentifier = i;
+        indexOfFirstColon = -1; // colons before '@' are userinfo, not the host
       } else if (code === 93 /* ']' */) {
         indexOfClosingBracket = i;
       } else if (code >= 65 && code <= 90) {
@@ -305,7 +334,15 @@ export default function extractHostname(
         return url.slice(start + 1, indexOfClosingBracket).toLowerCase();
       }
       return null;
-    } else if (indexOfPort !== -1 && indexOfPort > start && indexOfPort < end) {
+    } else if (
+      indexOfPort !== -1 &&
+      indexOfPort > start &&
+      indexOfPort < end &&
+      // A host:port has exactly one ':' in the host (so its first ':' is its
+      // last); a bare, unbracketed IPv6 literal ("2a01:e35::1") has >= 2, so
+      // its first ':' precedes the last. Only the former has a ':port' to trim.
+      indexOfFirstColon === indexOfPort
+    ) {
       end = indexOfPort; // trim ':port'
     }
 
