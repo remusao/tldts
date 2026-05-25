@@ -64,9 +64,14 @@ export default function (hostname: string): boolean {
 
       lastDotIndex = i;
     } else if (
-      !(/*@__INLINE__*/ (isValidAscii(code) || code === 45 || code === 95))
+      // A forbidden character in the label...
+      !(/*@__INLINE__*/ (isValidAscii(code) || code === 45 || code === 95)) ||
+      // ...or a '-' starting a label (the byte right after a '.'). A label must
+      // not begin with a hyphen (RFC 1034 §3.5 / RFC 1035 §2.3.1 LDH, as amended
+      // by RFC 1123 §2.1; cf. UTS #46 CheckHyphens). The first label is covered by
+      // the leading-character guard above; mirrors the trailing-'-' rule below.
+      (code === 45 && lastCharCode === 46)
     ) {
-      // Check if there is a forbidden character in the label
       return false;
     }
 

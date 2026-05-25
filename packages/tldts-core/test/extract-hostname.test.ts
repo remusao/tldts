@@ -343,6 +343,24 @@ describe('#extractHostname inline validation (validate=true)', () => {
     ]);
   });
 
+  it('clears the flag on a label-leading hyphen (interior / final label)', () => {
+    // A '-' right after a '.' starts a label — invalid (RFC 1034 §3.5 LDH), the
+    // `vLastCode === 46` arm. The first-char rule above only covers the FIRST
+    // label; these interior/final cases use the in-loop check. @see issue #2395.
+    // The extractor still RETURNS the raw host; parseImpl re-validates → null.
+    expect(extractV('http://foo.-example.com/p')).to.deep.equal([
+      'foo.-example.com',
+      false,
+    ]);
+    expect(extractV('http://a.b.-c.com/p')).to.deep.equal(['a.b.-c.com', false]);
+    expect(extractV('http://foo.-com/p')).to.deep.equal(['foo.-com', false]);
+    // A hyphen NOT at a label start stays valid (flag stays true).
+    expect(extractV('http://foo.ex-ample.com/p')).to.deep.equal([
+      'foo.ex-ample.com',
+      true,
+    ]);
+  });
+
   it('clears the flag on a trailing hyphen (whole host and a label)', () => {
     // Whole-host trailing hyphen: vLastCode === 45 at the final guard.
     expect(extractV('http://example.com-/p')).to.deep.equal([

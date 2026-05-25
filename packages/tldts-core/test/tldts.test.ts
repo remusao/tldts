@@ -112,6 +112,34 @@ describe('#isValidHostname', () => {
     expect(isValidHostname('.com')).to.equal(true);
   });
 
+  it('should reject labels that begin with a hyphen', () => {
+    // A label must not start with '-' (RFC 1034 §3.5 / RFC 1035 §2.3.1 LDH; cf.
+    // UTS #46 CheckHyphens). The first label was already rejected ('-google.com');
+    // these pin the same rule for interior and final labels. @see issue #2395
+    expect(isValidHostname('foo.-example.com')).to.equal(false); // interior label
+    expect(isValidHostname('foo.-com')).to.equal(false); // final label
+    expect(isValidHostname('a.b.-c.com')).to.equal(false); // deeper interior label
+    expect(isValidHostname('.-foo.com')).to.equal(false); // leading dot, then hyphen-label
+    expect(isValidHostname('a.--b.com')).to.equal(false); // label starting with '--'
+    expect(isValidHostname('a.-.b.com')).to.equal(false); // single-'-' label
+
+    // Only the FIRST char of a label decides: '-_' starts with '-' (invalid),
+    // '_-' starts with '_' (valid).
+    expect(isValidHostname('a.-_b.com')).to.equal(false);
+    expect(isValidHostname('a._-b.com')).to.equal(true);
+
+    // Underscore-leading labels (DKIM/DMARC/SRV), leading dots and interior
+    // hyphens stay valid — and the rule must NOT touch punycode/IDN labels,
+    // whose interior '--' is legitimate.
+    expect(isValidHostname('_dmarc.example.com')).to.equal(true);
+    expect(isValidHostname('_sip._tcp.example.com')).to.equal(true);
+    expect(isValidHostname('foo._bar.com')).to.equal(true);
+    expect(isValidHostname('.google.com')).to.equal(true);
+    expect(isValidHostname('foo.ex-ample.com')).to.equal(true);
+    expect(isValidHostname('xn--mnchen-3ya.de')).to.equal(true); // IDN label with '--'
+    expect(isValidHostname('a.xn--p1ai')).to.equal(true); // punycode TLD
+  });
+
   it('should accept extra code points in domain (not strict)', () => {
     // @see https://github.com/oncletom/tld.js/pull/122
     expect(isValidHostname('foo.bar_baz.com')).to.equal(true);
