@@ -71,6 +71,10 @@ your inputs.
   validateHostname: boolean;
   // Perform IP address detection (default: true).
   detectIp: boolean;
+  // Detect IANA special-use domains (RFC 6761 et al.) and expose the result as
+  // `isSpecialUse` (default: false). Off by default so the common path does no
+  // extra work; the field stays `null` unless this is enabled.
+  detectSpecialUse: boolean;
   // Assume that both URLs and hostnames can be given as input (default: true)
   // If set to `false` we assume only URLs will be given as input, which
   // speed-ups processing.
@@ -145,6 +149,7 @@ tldts.parse('tldts@emailprovider.co.uk'); // email
 | `subdomain`           | `str`  | Sub domain (what comes after `domain`)          |
 | `publicSuffix`        | `str`  | Public Suffix (tld) of `hostname`               |
 | `isIP`                | `bool` | Is `hostname` an IP address?                    |
+| `isSpecialUse`        | `bool` | Is `hostname` an IANA special-use domain?       |
 
 ## Single purpose methods
 

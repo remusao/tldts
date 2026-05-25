@@ -8,6 +8,7 @@ import getDomain from './domain';
 import getDomainWithoutSuffix from './domain-without-suffix';
 import extractHostname from './extract-hostname';
 import isIp from './is-ip';
+import isSpecialUse from './is-special-use';
 import isValidHostname from './is-valid';
 import { IPublicSuffix, ISuffixLookupOptions } from './lookup/interface';
 import { IOptions, setDefaults } from './options';
@@ -32,6 +33,13 @@ export interface IResult {
   // Specifies if `publicSuffix` comes from the ICANN or PRIVATE section of the list
   isIcann: boolean | null;
   isPrivate: boolean | null;
+
+  // Is `hostname` a special-use domain from the IANA registry (RFC 6761 et al.:
+  // e.g. `localhost`, `*.test`, `*.local`, `*.onion`, `home.arpa`)? `isIcann`/
+  // `isPrivate` do not identify these (most are not in the Public Suffix List;
+  // the few that are appear as ordinary ICANN suffixes). `null` unless the
+  // `detectSpecialUse` option is enabled (see is-special-use.ts).
+  isSpecialUse: boolean | null;
 }
 
 export function getEmptyResult(): IResult {
@@ -42,6 +50,7 @@ export function getEmptyResult(): IResult {
     isIcann: null,
     isIp: null,
     isPrivate: null,
+    isSpecialUse: null,
     publicSuffix: null,
     subdomain: null,
   };
@@ -54,6 +63,7 @@ export function resetResult(result: IResult): void {
   result.isIcann = null;
   result.isIp = null;
   result.isPrivate = null;
+  result.isSpecialUse = null;
   result.publicSuffix = null;
   result.subdomain = null;
 }
@@ -141,6 +151,14 @@ export function parseImpl(
 
   if (step === FLAG.HOSTNAME || result.hostname === null) {
     return result;
+  }
+
+  // Flag special-use domains, only when opted in (`detectSpecialUse`) and only
+  // for the full `parse()` result (FLAG.ALL). Computed here, before the
+  // public-suffix/domain early-returns below, so single-label names like
+  // `localhost` (which have no registrable domain) are still flagged.
+  if (step === FLAG.ALL && options.detectSpecialUse) {
+    result.isSpecialUse = isSpecialUse(result.hostname);
   }
 
   // Extract public suffix

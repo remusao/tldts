@@ -55,6 +55,7 @@ interface Options {
   validateHostname?: boolean;
   mixedInputs?: boolean;
   detectIp?: boolean;
+  detectSpecialUse?: boolean;
   validHosts?: string[];
 }
 
@@ -72,6 +73,7 @@ export default function test(
       domain: string | null;
       hostname: string | null;
       publicSuffix: string | null;
+      isSpecialUse?: boolean | null;
     };
   },
   { includePrivate }: { includePrivate: boolean },
@@ -328,6 +330,7 @@ export default function test(
         isIcann: true,
         isIp: false,
         isPrivate: false,
+        isSpecialUse: null,
         publicSuffix: 'com',
         subdomain: '_0f6879f07aa61fc09d9645cce98b30e3.bsg-1418',
       });
@@ -339,6 +342,7 @@ export default function test(
         isIcann: true,
         isIp: false,
         isPrivate: false,
+        isSpecialUse: null,
         publicSuffix: 'com',
         subdomain: '_bsg-1418',
       });
@@ -350,6 +354,7 @@ export default function test(
         isIcann: true,
         isIp: false,
         isPrivate: false,
+        isSpecialUse: null,
         publicSuffix: 'com',
         subdomain: '',
       });
@@ -834,6 +839,7 @@ export default function test(
         isIcann: null,
         isIp: true,
         isPrivate: null,
+        isSpecialUse: null,
         publicSuffix: null,
         subdomain: null,
       };
@@ -849,6 +855,7 @@ export default function test(
               isIcann: false,
               isIp: false,
               isPrivate: false,
+              isSpecialUse: null,
               publicSuffix: 'badasdasdada',
               subdomain: 'foo',
             }
@@ -859,6 +866,7 @@ export default function test(
               isIcann: null,
               isIp: false,
               isPrivate: null,
+              isSpecialUse: null,
               publicSuffix: 'badasdasdada',
               subdomain: 'foo',
             },
@@ -897,6 +905,7 @@ export default function test(
         isIcann: null,
         isIp: true,
         isPrivate: null,
+        isSpecialUse: null,
         publicSuffix: null,
         subdomain: null,
       });
@@ -911,6 +920,7 @@ export default function test(
         isIcann: null,
         isIp: true,
         isPrivate: null,
+        isSpecialUse: null,
         publicSuffix: null,
         subdomain: null,
       });
@@ -934,6 +944,7 @@ export default function test(
               isIcann: false,
               isIp: null,
               isPrivate: false,
+              isSpecialUse: null,
               publicSuffix: '1',
               subdomain: '192.168',
             }
@@ -944,10 +955,78 @@ export default function test(
               isIcann: null,
               isIp: null,
               isPrivate: null,
+              isSpecialUse: null,
               publicSuffix: '1',
               subdomain: '192.168',
             },
       );
+    });
+  });
+
+  describe('special-use domains (IANA registry)', () => {
+    const special = (url: string) =>
+      tldts.parse(url, { detectSpecialUse: true }).isSpecialUse;
+
+    it('flags special-use names and their sub-domains', () => {
+      for (const hostname of [
+        // RFC 6761
+        'test',
+        'a.b.test',
+        'localhost',
+        'foo.localhost',
+        'invalid',
+        'something.invalid',
+        'example',
+        'sub.example',
+        'example.com',
+        'example.net',
+        'www.example.org',
+        // RFC 6762 / 7686 / 9476
+        'local',
+        'printer.local',
+        'onion',
+        'facebookcorewwwwi.onion',
+        'alt',
+        'x.alt',
+        // named .arpa entries (RFC 8375 / 8880 / 9462 / 9665 / 9031 / 9965)
+        'home.arpa',
+        'router.home.arpa',
+        'ipv4only.arpa',
+        'resolver.arpa',
+        'service.arpa',
+        '6tisch.arpa',
+        'eap.arpa',
+        // normalization contract: extractHostname lower-cases the host and
+        // strips a trailing dot before isSpecialUse sees it (is-special-use.ts).
+        'LocalHost',
+        'a.b.test.',
+      ]) {
+        expect(special(hostname), hostname).to.equal(true);
+      }
+    });
+
+    it('does not flag ordinary domains, partial matches, or excluded entries', () => {
+      for (const hostname of [
+        'google.com',
+        'foo.bar.com',
+        'example.fr', // not a reserved name
+        'latest', // label boundary vs `test`
+        'notlocalhost', // label boundary vs `localhost`
+        'badexample.com', // label boundary vs `example.com`
+        'arpa', // only specific .arpa names are reserved
+        'foo.arpa',
+        'eap-noob.arpa', // deprecated registry entry, intentionally excluded
+      ]) {
+        expect(special(hostname), hostname).to.equal(false);
+      }
+    });
+
+    it('is null unless detectSpecialUse is enabled', () => {
+      expect(tldts.parse('localhost').isSpecialUse).to.equal(null);
+      expect(
+        tldts.parse('localhost', { detectSpecialUse: false }).isSpecialUse,
+      ).to.equal(null);
+      expect(tldts.parse('google.com').isSpecialUse).to.equal(null);
     });
   });
 

@@ -2,6 +2,10 @@ export interface IOptions {
   allowIcannDomains: boolean;
   allowPrivateDomains: boolean;
   detectIp: boolean;
+  // Detect RFC 6761 / IANA special-use domains and expose the result as
+  // `isSpecialUse` on `parse()`. Off by default so the common path stays
+  // allocation-free with no extra work; enable it to populate the field.
+  detectSpecialUse: boolean;
   extractHostname: boolean;
   mixedInputs: boolean;
   validHosts: string[] | null;
@@ -12,6 +16,7 @@ function setDefaultsImpl({
   allowIcannDomains = true,
   allowPrivateDomains = false,
   detectIp = true,
+  detectSpecialUse = false,
   extractHostname = true,
   mixedInputs = true,
   validHosts = null,
@@ -21,6 +26,7 @@ function setDefaultsImpl({
     allowIcannDomains,
     allowPrivateDomains,
     detectIp,
+    detectSpecialUse,
     extractHostname,
     mixedInputs,
     validHosts,

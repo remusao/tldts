@@ -93,6 +93,22 @@ Alternatively, you can try it _directly in your browser_ here: https://npm.runki
 
 Check [README.md](/packages/tldts/README.md) for more details about the API.
 
+# Special-use domains (RFC 6761 / IANA)
+
+Reserved special-use names such as `localhost`, `*.test`, `*.invalid`, `example(.com/.net/.org)`, `*.local`, `*.onion`, `*.alt`, and `home.arpa` aren't identified by `isIcann`/`isPrivate`: most aren't in the Public Suffix List, and the few that are (e.g. `onion`, `home.arpa`) appear there as ordinary ICANN suffixes. Enable detection with `{ detectSpecialUse: true }` to populate the `isSpecialUse` result field; it is `null` otherwise, so the default path does no extra work:
+
+```js
+const { parse } = require('tldts');
+
+parse('http://printer.local/', { detectSpecialUse: true });
+// { ...
+//   isSpecialUse: true,
+//   publicSuffix: 'local',
+//   subdomain: '' }
+```
+
+The list tracks the IANA [Special-Use Domain Names](https://www.iana.org/assignments/special-use-domain-names/) registry (RFC 6761 and the later RFCs that extend it).
+
 # Migrating from other libraries
 
 TL;DR—here is a quick overview of how to use `tldts` to match the default behavior of the `psl` library. Skip to after the tables for a more detailed explanation.
