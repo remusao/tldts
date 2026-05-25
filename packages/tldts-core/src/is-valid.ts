@@ -7,6 +7,11 @@
  * If you need stricter validation, consider using an external library.
  */
 
+// KEEP IN SYNC with `extract-hostname.ts` `isValidHostnameChar` + its inline
+// scan/verdict, which duplicate these structural rules to validate during
+// extraction (a perf fusion). That copy additionally accepts A-Z (the host is
+// not yet lowercased there) and folds in '-' / '_'. Any change to the accepted
+// character set or the label/length rules here must be mirrored there.
 function isValidAscii(code: number): boolean {
   return (
     (code >= 97 && code <= 122) || (code >= 48 && code <= 57) || code > 127

@@ -6,7 +6,9 @@
 
 import getDomain from './domain';
 import getDomainWithoutSuffix from './domain-without-suffix';
-import extractHostname from './extract-hostname';
+import extractHostname, {
+  extractedHostnameValidated,
+} from './extract-hostname';
 import isIp from './is-ip';
 import isSpecialUse from './is-special-use';
 import isValidHostname from './is-valid';
@@ -120,9 +122,13 @@ export function parseImpl(
     result.hostname = url;
   } else if (options.mixedInputs) {
     urlIsValid = isValidHostname(url);
-    result.hostname = extractHostname(url, urlIsValid);
+    result.hostname = extractHostname(
+      url,
+      urlIsValid,
+      options.validateHostname,
+    );
   } else {
-    result.hostname = extractHostname(url, false);
+    result.hostname = extractHostname(url, false, options.validateHostname);
   }
 
   // Check if `hostname` is a valid ip address
@@ -144,6 +150,9 @@ export function parseImpl(
     // Skip the re-scan when `url` was already validated and extractHostname
     // returned it unchanged (same reference => identical string, still valid).
     !(urlIsValid && result.hostname === url) &&
+    // Skip the re-scan when extractHostname already validated the host inline
+    // (a confirmed-valid simple authority — see extract-hostname.ts).
+    !extractedHostnameValidated &&
     !isValidHostname(result.hostname)
   ) {
     result.hostname = null;
