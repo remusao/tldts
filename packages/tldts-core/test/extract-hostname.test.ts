@@ -352,7 +352,10 @@ describe('#extractHostname inline validation (validate=true)', () => {
       'foo.-example.com',
       false,
     ]);
-    expect(extractV('http://a.b.-c.com/p')).to.deep.equal(['a.b.-c.com', false]);
+    expect(extractV('http://a.b.-c.com/p')).to.deep.equal([
+      'a.b.-c.com',
+      false,
+    ]);
     expect(extractV('http://foo.-com/p')).to.deep.equal(['foo.-com', false]);
     // A hyphen NOT at a label start stays valid (flag stays true).
     expect(extractV('http://foo.ex-ample.com/p')).to.deep.equal([

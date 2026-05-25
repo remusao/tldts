@@ -381,8 +381,12 @@ export default function test(
       expect(tldts.getDomain('foo.-example.com')).to.equal(null);
       expect(tldts.getHostname('-example.com')).to.equal(null); // first label (already rejected)
       // Interior hyphens and underscore-leading labels stay valid.
-      expect(tldts.getHostname('foo.ex-ample.com')).to.equal('foo.ex-ample.com');
-      expect(tldts.getHostname('_dmarc.example.com')).to.equal('_dmarc.example.com');
+      expect(tldts.getHostname('foo.ex-ample.com')).to.equal(
+        'foo.ex-ample.com',
+      );
+      expect(tldts.getHostname('_dmarc.example.com')).to.equal(
+        '_dmarc.example.com',
+      );
     });
 
     // @see https://github.com/oncletom/tld.js/issues/53
