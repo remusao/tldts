@@ -1,3 +1,15 @@
+# v7.3.1 (Mon May 25 2026)
+
+#### :bug: Bug Fix
+
+- fix: reject hostname labels that begin with a hyphen (#2395) [#2591](https://github.com/remusao/tldts/pull/2591) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.3.0 (Mon May 25 2026)
 
 #### :running_woman: Performance
