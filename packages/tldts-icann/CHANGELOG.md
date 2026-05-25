@@ -1,3 +1,15 @@
+# v7.2.0 (Mon May 25 2026)
+
+#### :rocket: New Feature
+
+- feat: add opt-in IANA special-use domain detection [#2588](https://github.com/remusao/tldts/pull/2588) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.1.0 (Sat May 23 2026)
 
 #### :running_woman: Performance
