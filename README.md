@@ -2,6 +2,13 @@
 
 `tldts` is a JavaScript library to extract hostnames, domains, public suffixes, top-level domains and subdomains from URLs.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="comparison/bench2/report/charts/readme-hero.dark.svg">
+  <img alt="tldts registrable-domain throughput vs popular public-suffix libraries — getDomain operations per second, higher is better" src="comparison/bench2/report/charts/readme-hero.svg" width="840">
+</picture>
+
+> `getDomain` throughput on a real-world URL corpus, benchmarked on Node against `psl`, `tldjs`, `parse-domain`, `tld-extract` & `haraka-tld` (higher is better).
+
 **Features**:
 
 1. Tuned for **performance** (order of 0.1 to 1 μs per input)
