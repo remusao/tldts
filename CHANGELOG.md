@@ -1,3 +1,26 @@
+# v7.4.1 (Sat May 30 2026)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#2595](https://github.com/remusao/tldts/pull/2595) ([@remusao](https://github.com/remusao))
+
+#### :memo: Documentation
+
+- docs: add a benchmark throughput chart to the README [#2593](https://github.com/remusao/tldts/pull/2593) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump tmp from 0.2.5 to 0.2.7 [#2596](https://github.com/remusao/tldts/pull/2596) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript-eslint from 8.59.4 to 8.60.0 [#2594](https://github.com/remusao/tldts/pull/2594) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.4.0 (Mon May 25 2026)
 
 #### :rocket: New Feature
