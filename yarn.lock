@@ -1809,9 +1809,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/pluginutils@npm:5.3.0":
-  version: 5.3.0
-  resolution: "@rollup/pluginutils@npm:5.3.0"
+"@rollup/pluginutils@npm:5.4.0":
+  version: 5.4.0
+  resolution: "@rollup/pluginutils@npm:5.4.0"
   dependencies:
     "@types/estree": "npm:^1.0.0"
     estree-walker: "npm:^2.0.2"
@@ -1821,7 +1821,7 @@ __metadata:
   peerDependenciesMeta:
     rollup:
       optional: true
-  checksum: 10c0/001834bf62d7cf5bac424d2617c113f7f7d3b2bf3c1778cbcccb72cdc957b68989f8e7747c782c2b911f1dde8257f56f8ac1e779e29e74e638e3f1e2cac2bcd0
+  checksum: 10c0/ccc2cbd3a05df642df60ab05ffb81b2e564bd945e2a118bb8a474ea75b941033c8f44273133d4865643cca1492d0c80b14de1281f74779a64285a80fc3a194d8
   languageName: node
   linkType: hard
 
@@ -7835,17 +7835,17 @@ __metadata:
   linkType: hard
 
 "rollup-plugin-sourcemaps2@npm:^0.5.4":
-  version: 0.5.7
-  resolution: "rollup-plugin-sourcemaps2@npm:0.5.7"
+  version: 0.5.8
+  resolution: "rollup-plugin-sourcemaps2@npm:0.5.8"
   dependencies:
-    "@rollup/pluginutils": "npm:5.3.0"
+    "@rollup/pluginutils": "npm:5.4.0"
   peerDependencies:
     "@types/node": ">=18.0.0"
     rollup: ">=4"
   peerDependenciesMeta:
     "@types/node":
       optional: true
-  checksum: 10c0/17731b602a457781d704bc1657079032bfdcd9717911e1dfd8b86d02da155700ce43372ef0915ab39b4cbec54d8abeccf1d3a336e72a0015a2b2898220491c39
+  checksum: 10c0/bf511f1f87aa71ae70e4517f8008fa19206d192930c1bbf8e230a0ddd992530ddea0e5b33752e9aff6e8e7b319d9b646f575a1207d3bfb7c58d688ca705dffb2
   languageName: node
   linkType: hard
 
