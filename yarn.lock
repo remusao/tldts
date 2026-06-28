@@ -8573,7 +8573,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tldts-core@npm:^7.4.4, tldts-core@workspace:packages/tldts-core":
+"tldts-core@npm:^7.4.5, tldts-core@workspace:packages/tldts-core":
   version: 0.0.0-use.local
   resolution: "tldts-core@workspace:packages/tldts-core"
   dependencies:
@@ -8608,8 +8608,8 @@ __metadata:
     rimraf: "npm:^6.1.2"
     rollup: "npm:^4.57.1"
     rollup-plugin-sourcemaps2: "npm:^0.5.4"
-    tldts-core: "npm:^7.4.4"
-    tldts-tests: "npm:^7.4.4"
+    tldts-core: "npm:^7.4.5"
+    tldts-tests: "npm:^7.4.5"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
@@ -8630,8 +8630,8 @@ __metadata:
     rimraf: "npm:^6.1.2"
     rollup: "npm:^4.57.1"
     rollup-plugin-sourcemaps2: "npm:^0.5.4"
-    tldts-core: "npm:^7.4.4"
-    tldts-tests: "npm:^7.4.4"
+    tldts-core: "npm:^7.4.5"
+    tldts-tests: "npm:^7.4.5"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
@@ -8655,7 +8655,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"tldts-tests@npm:^7.4.4, tldts-tests@workspace:packages/tldts-tests":
+"tldts-tests@npm:^7.4.5, tldts-tests@workspace:packages/tldts-tests":
   version: 0.0.0-use.local
   resolution: "tldts-tests@workspace:packages/tldts-tests"
   dependencies:
@@ -8665,13 +8665,13 @@ __metadata:
     chai: "npm:^6.2.2"
     mocha: "npm:^11.7.5"
     rimraf: "npm:^6.1.2"
-    tldts-utils: "npm:^7.4.4"
+    tldts-utils: "npm:^7.4.5"
     ts-node: "npm:^10.9.2"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"tldts-utils@npm:^7.4.4, tldts-utils@workspace:packages/tldts-utils":
+"tldts-utils@npm:^7.4.5, tldts-utils@workspace:packages/tldts-utils":
   version: 0.0.0-use.local
   resolution: "tldts-utils@workspace:packages/tldts-utils"
   dependencies:
@@ -8709,8 +8709,8 @@ __metadata:
     rimraf: "npm:^6.1.2"
     rollup: "npm:^4.57.1"
     rollup-plugin-sourcemaps2: "npm:^0.5.4"
-    tldts-core: "npm:^7.4.4"
-    tldts-tests: "npm:^7.4.4"
+    tldts-core: "npm:^7.4.5"
+    tldts-tests: "npm:^7.4.5"
     typescript: "npm:^5.9.3"
   bin:
     tldts: bin/cli.js
