@@ -1,3 +1,15 @@
+# v7.4.6 (Thu Jul 02 2026)
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/node from 25.9.1 to 26.1.0 [#2627](https://github.com/remusao/tldts/pull/2627) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
 # v7.1.2 (Sun May 24 2026)
 
 #### :nail_care: Polish

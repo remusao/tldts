@@ -1,3 +1,30 @@
+# v7.4.6 (Thu Jul 02 2026)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#2626](https://github.com/remusao/tldts/pull/2626) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump sigstore from 4.1.0 to 4.1.1 [#2629](https://github.com/remusao/tldts/pull/2629) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @babel/core from 7.24.7 to 7.29.7 [#2618](https://github.com/remusao/tldts/pull/2618) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump form-data from 4.0.5 to 4.0.6 [#2611](https://github.com/remusao/tldts/pull/2611) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.61.1 to 4.62.2 [#2612](https://github.com/remusao/tldts/pull/2612) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup-plugin-sourcemaps2 from 0.5.7 to 0.5.8 [#2619](https://github.com/remusao/tldts/pull/2619) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript-eslint from 8.60.1 to 8.62.1 [#2624](https://github.com/remusao/tldts/pull/2624) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @sigstore/core from 3.1.0 to 3.2.1 [#2625](https://github.com/remusao/tldts/pull/2625) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @sigstore/verify from 3.1.0 to 3.1.1 [#2628](https://github.com/remusao/tldts/pull/2628) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts-icann`, `tldts-tests`, `tldts-utils`, `tldts`
+  - Bump @types/node from 25.9.1 to 26.1.0 [#2627](https://github.com/remusao/tldts/pull/2627) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.4.5 (Sun Jun 28 2026)
 
 #### :scroll: Update Public Suffix List
