@@ -53,7 +53,7 @@
     "release": "auto shipit"
   },
   "devDependencies": {
-    "@types/node": "^25.1.0",
+    "@types/node": "^26.1.0",
     "auto": "^11.3.6",
     "benchmark": "^2.1.4",
     "eslint": "^9.39.2",
