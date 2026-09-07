@@ -1,3 +1,30 @@
+# v7.4.12 (Mon Sep 07 2026)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#2666](https://github.com/remusao/tldts/pull/2666) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump lerna from 9.0.7 to 10.0.1 [#2657](https://github.com/remusao/tldts/pull/2657) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump browserslist from 4.28.4 to 4.28.9 [#2671](https://github.com/remusao/tldts/pull/2671) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump ip-address from 10.2.0 to 10.4.0 [#2649](https://github.com/remusao/tldts/pull/2649) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.62.4 to 4.63.1 [#2664](https://github.com/remusao/tldts/pull/2664) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump postcss-selector-parser from 7.1.1 to 7.1.5 [#2665](https://github.com/remusao/tldts/pull/2665) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @humanfs/node from 0.16.7 to 0.16.8 [#2667](https://github.com/remusao/tldts/pull/2667) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript-eslint from 8.65.0 to 8.69.0 [#2668](https://github.com/remusao/tldts/pull/2668) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 26.1.2 to 26.4.1 [#2670](https://github.com/remusao/tldts/pull/2670) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- `tldts-core`, `tldts-experimental`, `tldts-icann`, `tldts-tests`, `tldts`
+  - Bump mocha from 11.7.6 to 12.0.0 [#2669](https://github.com/remusao/tldts/pull/2669) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.4.11 (Mon Aug 24 2026)
 
 #### :scroll: Update Public Suffix List

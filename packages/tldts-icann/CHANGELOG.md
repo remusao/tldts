@@ -1,3 +1,20 @@
+# v7.4.12 (Mon Sep 07 2026)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#2666](https://github.com/remusao/tldts/pull/2666) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump mocha from 11.7.6 to 12.0.0 [#2669](https://github.com/remusao/tldts/pull/2669) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.4.10 (Thu Jul 30 2026)
 
 #### :scroll: Update Public Suffix List
