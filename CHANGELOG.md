@@ -1,3 +1,21 @@
+# v7.4.13 (Sun Sep 13 2026)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#2673](https://github.com/remusao/tldts/pull/2673) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump tar from 7.5.11 to 7.5.22 [#2672](https://github.com/remusao/tldts/pull/2672) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.4.12 (Mon Sep 07 2026)
 
 #### :scroll: Update Public Suffix List
