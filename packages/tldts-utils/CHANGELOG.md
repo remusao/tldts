@@ -1,3 +1,15 @@
+# v7.4.16 (Sun Sep 27 2026)
+
+#### :scroll: Update Public Suffix List
+
+- Updates [#2691](https://github.com/remusao/tldts/pull/2691) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.4.6 (Thu Jul 02 2026)
 
 #### :nut_and_bolt: Dependencies

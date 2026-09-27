@@ -1,3 +1,16 @@
+# v7.4.16 (Sun Sep 27 2026)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-core`, `tldts-experimental`, `tldts-icann`, `tldts-tests`, `tldts-utils`, `tldts`
+  - Updates [#2691](https://github.com/remusao/tldts/pull/2691) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.4.15 (Wed Sep 23 2026)
 
 #### :scroll: Update Public Suffix List
