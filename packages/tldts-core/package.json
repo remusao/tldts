@@ -61,6 +61,6 @@
     "rimraf": "^6.1.2",
     "rollup": "^4.63.4",
     "rollup-plugin-sourcemaps2": "^0.5.8",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   }
 }
