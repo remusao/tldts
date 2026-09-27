@@ -163,17 +163,13 @@ export default function extractHostname(
           // a control char means it was split by a tab/newline (strip + re-parse).
           for (let i = start; i < indexOfProtocol; i += 1) {
             const code = url.charCodeAt(i) | 32;
-            if (
-              !(
-                (
-                  (code >= 97 && code <= 122) || // [a, z]
-                  (code >= 48 && code <= 57) || // [0, 9]
-                  code === 46 || // '.'
-                  code === 45 || // '-'
-                  code === 43
-                ) // '+'
-              )
-            ) {
+            if (!(
+              (code >= 97 && code <= 122) || // [a, z]
+              (code >= 48 && code <= 57) || // [0, 9]
+              code === 46 || // '.'
+              code === 45 || // '-'
+              code === 43 // '+'
+            )) {
               const raw = url.charCodeAt(i);
               if (raw === 9 || raw === 10 || raw === 13) {
                 return extractHostname(
@@ -335,6 +331,8 @@ export default function extractHostname(
       // First-char rule: must be a valid host char, '.', or '_' (NOT '-').
       const c0 = url.charCodeAt(start);
       if (
+        // Keep these parens: they scope /*@__INLINE__*/ for terser.
+        // prettier-ignore
         !(
           /*@__INLINE__*/ (
             isValidHostnameChar(c0) ||

@@ -32,12 +32,11 @@
     "type": "git",
     "url": "git+ssh://git@github.com/remusao/tldts.git"
   },
-  "packageManager": "yarn@4.12.0",
+  "packageManager": "yarn@4.18.0",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "postinstall": "patch-package",
     "bootstrap": "yarn install --immutable",
     "build": "tsc --build ./tsconfig.project.json && lerna run build",
     "watch": "tsc --build ./tsconfig.project.json --watch",
@@ -53,21 +52,29 @@
     "release": "auto shipit"
   },
   "devDependencies": {
-    "@types/node": "^26.1.0",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.6.2",
     "auto": "^11.3.6",
     "benchmark": "^2.1.4",
-    "eslint": "^9.39.2",
+    "eslint": "^10.11.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-prettier": "^5.5.6",
+    "globals": "^17.12.0",
     "lerna": "^10.0.1",
-    "patch-package": "^8.0.1",
-    "prettier": "^3.8.1",
+    "prettier": "^3.9.8",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.54.0"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.70.1"
   },
   "resolutions": {
-    "get-monorepo-packages": "1.2.0"
+    "lerna/js-yaml": "^4.3.2",
+    "lerna/pacote": "^21.5.1",
+    "nx/smol-toml": "^1.7.1"
+  },
+  "dependenciesMeta": {
+    "nx": {
+      "built": false
+    }
   },
   "auto": {
     "name": "Rémi Berson",

@@ -65,6 +65,8 @@ export default function (hostname: string): boolean {
       lastDotIndex = i;
     } else if (
       // A forbidden character in the label...
+      // Keep these parens: they scope /*@__INLINE__*/ for terser.
+      // prettier-ignore
       !(/*@__INLINE__*/ (isValidAscii(code) || code === 45 || code === 95)) ||
       // ...or a '-' starting a label (the byte right after a '.'). A label must
       // not begin with a hyphen (RFC 1034 §3.5 / RFC 1035 §2.3.1 LDH, as amended
