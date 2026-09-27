@@ -1,5 +1,5 @@
 const Benchmark = require('benchmark');
-const chalk = require('chalk');
+const { styleText } = require('util');
 const { URL } = require('url');
 const fs = require('fs');
 const path = require('path');
@@ -44,7 +44,7 @@ function main() {
       'getFullDomain',
       'getSubdomain',
     ]) {
-      console.log(`= ${chalk.bold(method)}`);
+      console.log(`= ${styleText('bold', method)}`);
       const fn = tldts[method];
 
       for (const options of [
@@ -53,7 +53,8 @@ function main() {
         { validateHostname: false, detectIp: false, mixedInputs: false },
       ]) {
         bench(
-          `#${chalk.bold(method)}(url, ${chalk.underline(
+          `#${styleText('bold', method)}(url, ${styleText(
+            'underline',
             JSON.stringify(options),
           )})`,
           urls,
@@ -71,7 +72,8 @@ function main() {
         { validateHostname: false, detectIp: false, extractHostname: false },
       ]) {
         bench(
-          `#${chalk.bold(method)}(hostname, ${chalk.underline(
+          `#${styleText('bold', method)}(hostname, ${styleText(
+            'underline',
             JSON.stringify(options),
           )})`,
           hostnames,

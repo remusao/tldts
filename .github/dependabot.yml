@@ -10,14 +10,10 @@ updates:
       - remusao
     labels:
       - 'PR: Dependencies :nut_and_bolt:'
-    ignore:
-      - dependency-name: chai
-        versions:
-          - 4.3.2
-      - dependency-name: '@types/node'
-        versions:
-          - 14.14.23
-          - 15.0.0
-      - dependency-name: auto
-        versions:
-          - 10.18.5
+
+  - package-ecosystem: github-actions
+    directory: '/'
+    schedule:
+      interval: weekly
+    labels:
+      - 'PR: Dependencies :nut_and_bolt:'
