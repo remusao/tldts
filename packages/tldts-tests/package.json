@@ -1,6 +1,6 @@
 {
   "name": "tldts-tests",
-  "version": "7.4.16",
+  "version": "7.4.18",
   "description": "tests for different tldts implementations",
   "author": {
     "name": "Rémi Berson"
@@ -52,7 +52,7 @@
   "devDependencies": {
     "@types/node": "^26.6.2",
     "rimraf": "^6.1.2",
-    "tldts-utils": "^7.4.16",
+    "tldts-utils": "^7.4.18",
     "typescript": "^6.0.3"
   },
   "dependencies": {
