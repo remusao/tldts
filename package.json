@@ -47,7 +47,7 @@
     "test": "lerna run --concurrency 2 test",
     "bench": "make -C bench",
     "generate-data": "ts-node -O '{\"module\": \"commonjs\"}' ./packages/tldts-utils/bin/update.js",
-    "update": "git submodule foreach git pull origin main && yarn generate-data",
+    "update": "git submodule update --init --remote && yarn generate-data",
     "update:check": "yarn generate-data && git diff --exit-code -- packages/tldts/src/data/trie.ts packages/tldts-icann/src/data/trie.ts packages/tldts-experimental/src/data/hashes.ts",
     "release": "auto shipit"
   },

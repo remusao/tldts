@@ -1,3 +1,4 @@
 [submodule "publicsuffix"]
 	path = publicsuffix
 	url = https://github.com/publicsuffix/list.git
+	branch = main
