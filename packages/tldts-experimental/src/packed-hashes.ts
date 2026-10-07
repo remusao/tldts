@@ -154,17 +154,17 @@ export default function suffixLookup(
     // ========================================================================
     // ICANN
     if (allowIcannDomains) {
-      match = binSearch(packed, hash, index + 1, index + packed[index]! + 1)
-        ? Result.ICANN_MATCH | Result.EXCEPTION_MATCH
-        : Result.NO_MATCH;
+      if (binSearch(packed, hash, index + 1, index + packed[index]! + 1)) {
+        match = Result.ICANN_MATCH | Result.EXCEPTION_MATCH;
+      }
     }
     index += packed[index]! + 1;
 
     // PRIVATE
     if (allowPrivateDomains && match === Result.NO_MATCH) {
-      match = binSearch(packed, hash, index + 1, index + packed[index]! + 1)
-        ? Result.PRIVATE_MATCH | Result.EXCEPTION_MATCH
-        : Result.NO_MATCH;
+      if (binSearch(packed, hash, index + 1, index + packed[index]! + 1)) {
+        match = Result.PRIVATE_MATCH | Result.EXCEPTION_MATCH;
+      }
     }
     index += packed[index]! + 1;
 
@@ -177,9 +177,9 @@ export default function suffixLookup(
       match === Result.NO_MATCH &&
       (matchKind & Result.EXCEPTION_MATCH) === 0
     ) {
-      match = binSearch(packed, hash, index + 1, index + packed[index]! + 1)
-        ? Result.WILDCARD_MATCH | Result.ICANN_MATCH
-        : Result.NO_MATCH;
+      if (binSearch(packed, hash, index + 1, index + packed[index]! + 1)) {
+        match = Result.WILDCARD_MATCH | Result.ICANN_MATCH;
+      }
     }
     index += packed[index]! + 1;
 
@@ -189,9 +189,9 @@ export default function suffixLookup(
       match === Result.NO_MATCH &&
       (matchKind & Result.EXCEPTION_MATCH) === 0
     ) {
-      match = binSearch(packed, hash, index + 1, index + packed[index]! + 1)
-        ? Result.WILDCARD_MATCH | Result.PRIVATE_MATCH
-        : Result.NO_MATCH;
+      if (binSearch(packed, hash, index + 1, index + packed[index]! + 1)) {
+        match = Result.WILDCARD_MATCH | Result.PRIVATE_MATCH;
+      }
     }
     index += packed[index]! + 1;
 
@@ -205,9 +205,9 @@ export default function suffixLookup(
       (matchKind & Result.EXCEPTION_MATCH) === 0 &&
       matchLabels <= label
     ) {
-      match = binSearch(packed, hash, index + 1, index + packed[index]! + 1)
-        ? Result.NORMAL_MATCH | Result.ICANN_MATCH
-        : Result.NO_MATCH;
+      if (binSearch(packed, hash, index + 1, index + packed[index]! + 1)) {
+        match = Result.NORMAL_MATCH | Result.ICANN_MATCH;
+      }
     }
     index += packed[index]! + 1;
 
@@ -218,9 +218,9 @@ export default function suffixLookup(
       (matchKind & Result.EXCEPTION_MATCH) === 0 &&
       matchLabels <= label
     ) {
-      match = binSearch(packed, hash, index + 1, index + packed[index]! + 1)
-        ? Result.NORMAL_MATCH | Result.PRIVATE_MATCH
-        : Result.NO_MATCH;
+      if (binSearch(packed, hash, index + 1, index + packed[index]! + 1)) {
+        match = Result.NORMAL_MATCH | Result.PRIVATE_MATCH;
+      }
     }
     index += packed[index]! + 1;
 
