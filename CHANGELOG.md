@@ -1,3 +1,32 @@
+# v7.4.17 (Wed Oct 07 2026)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#2708](https://github.com/remusao/tldts/pull/2708) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump mocha from 12.0.2 to 12.0.3 [#2700](https://github.com/remusao/tldts/pull/2700) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 26.6.2 to 26.6.4 [#2701](https://github.com/remusao/tldts/pull/2701) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump globals from 17.12.0 to 17.13.0 [#2702](https://github.com/remusao/tldts/pull/2702) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump chai from 6.2.2 to 6.3.0 [#2703](https://github.com/remusao/tldts/pull/2703) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.63.5 to 4.64.0 [#2704](https://github.com/remusao/tldts/pull/2704) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump eslint from 10.11.0 to 10.12.0 [#2705](https://github.com/remusao/tldts/pull/2705) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump postcss-selector-parser from 7.1.5 to 7.1.6 [#2707](https://github.com/remusao/tldts/pull/2707) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump serialize-javascript from 7.1.1 to 7.1.2 [#2706](https://github.com/remusao/tldts/pull/2706) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump ip-address from 10.4.0 to 10.7.2 [#2697](https://github.com/remusao/tldts/pull/2697) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump prettier from 3.9.8 to 3.9.9 [#2692](https://github.com/remusao/tldts/pull/2692) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup-plugin-sourcemaps2 from 0.5.8 to 0.5.9 [#2693](https://github.com/remusao/tldts/pull/2693) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.63.4 to 4.63.5 [#2694](https://github.com/remusao/tldts/pull/2694) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.4.16 (Sun Sep 27 2026)
 
 #### :scroll: Update Public Suffix List
