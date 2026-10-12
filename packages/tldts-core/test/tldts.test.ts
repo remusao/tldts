@@ -15,9 +15,12 @@ function repeat(str: string, n: number): string {
 describe('#isIp', () => {
   it('should return false on incorrect inputs', () => {
     expect(isIp('')).to.equal(false);
+    expect(isIp(':')).to.equal(false);
   });
 
   it('should return true on valid ip addresses', () => {
+    expect(isIp('::')).to.equal(true);
+    expect(isIp('[::]')).to.equal(true);
     expect(isIp('::1')).to.equal(true);
     expect(isIp('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).to.equal(true);
     expect(isIp('192.168.0.1')).to.equal(true);
