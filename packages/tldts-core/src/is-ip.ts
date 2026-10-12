@@ -36,8 +36,8 @@ function isProbablyIpv4(hostname: string): boolean {
  * Similar to isProbablyIpv4.
  */
 function isProbablyIpv6(hostname: string): boolean {
-  if (hostname.length < 2) {
-    return false;
+  if (hostname.length < 3) {
+    return hostname === '::';
   }
 
   let start = hostname.startsWith('[') ? 1 : 0;

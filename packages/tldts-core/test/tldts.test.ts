@@ -16,6 +16,8 @@ describe('#isIp', () => {
   it('should return false on incorrect inputs', () => {
     expect(isIp('')).to.equal(false);
     expect(isIp(':')).to.equal(false);
+    expect(isIp('a:')).to.equal(false);
+    expect(isIp(':a')).to.equal(false);
   });
 
   it('should return true on valid ip addresses', () => {
