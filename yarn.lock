@@ -6534,8 +6534,8 @@ __metadata:
   linkType: hard
 
 "rollup-plugin-sourcemaps2@npm:^0.5.8":
-  version: 0.5.9
-  resolution: "rollup-plugin-sourcemaps2@npm:0.5.9"
+  version: 0.5.10
+  resolution: "rollup-plugin-sourcemaps2@npm:0.5.10"
   dependencies:
     "@rollup/pluginutils": "npm:5.4.0"
   peerDependencies:
@@ -6544,7 +6544,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/node":
       optional: true
-  checksum: 10c0/26afe8b48e3221b57823ed7f136daed8e22f8a3c562a5690fa71db594a76bee3696cb90de986147ba0573bfc6d8574f2252167a85b226b0537efaa33962ae875
+  checksum: 10c0/2611c2dea052895078b9ed79f549797f0896510f328ca2282759c456baa8113162745e716800fa4b945b9039dc5e15b49cd109e2e2653aaf675a9734dd13b1f2
   languageName: node
   linkType: hard
 
