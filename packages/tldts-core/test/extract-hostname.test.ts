@@ -106,6 +106,31 @@ describe('#extractHostname', () => {
     expect(extract('example.com/a:b')).to.equal('example.com');
   });
 
+  it('treats a ":/" after a path, query or fragment delimiter as not-a-scheme', () => {
+    expect(extract('example.com/a://b')).to.equal('example.com');
+    expect(extract('example.com?u=https://a.org/')).to.equal('example.com');
+    expect(extract('example.com#https://a.org/')).to.equal('example.com');
+    expect(extract('example.com:8080/?u=https://a.org/')).to.equal(
+      'example.com',
+    );
+    expect(extract('user@example.com/?u=https://a.org/')).to.equal(
+      'example.com',
+    );
+    expect(extract('[::1]/?u=https://a.org/')).to.equal('::1');
+    // The cold path then reads a slash-less special scheme ('\' ends its host).
+    expect(extract('https:example.com/?u=https://a.org/')).to.equal(
+      'example.com',
+    );
+    expect(extract('https:example.com\\?u=https://a.org/')).to.equal(
+      'example.com',
+    );
+    // An opaque path keeps no host; tab/newline is still stripped first.
+    expect(extract('foo:bar/?u=https://a.org/')).to.equal(null);
+    expect(extract('exam\tple.com/?u=https://a.org/')).to.equal('example.com');
+    // Without a delimiter before it, the ':/' still ends an invalid scheme.
+    expect(extract('foo:bar://a.org/')).to.equal(null);
+  });
+
   it('treats "token:token@host" as userinfo, not a scheme', () => {
     expect(extract('foo:bar@example.com')).to.equal('example.com');
   });
