@@ -822,6 +822,29 @@ export default function test(
       ).to.equal('www.nytimes.com');
     });
 
+    it('should return the hostname of a scheme-less URL with an URL as a parameter', () => {
+      expect(
+        tldts.getHostname(
+          'www.nytimes.com/glogin?URI=http://www.notnytimes.com/2010/03/26/us/politics/26court.html',
+        ),
+      ).to.equal('www.nytimes.com');
+      expect(
+        tldts.getDomain('example.co.uk/login?next=https://other.example/'),
+      ).to.equal('example.co.uk');
+      expect(
+        tldts.getHostname('example.co.uk:8080/r?u=https://other.example/'),
+      ).to.equal('example.co.uk');
+      expect(
+        tldts.getHostname('user@example.co.uk/r?u=https://other.example/'),
+      ).to.equal('example.co.uk');
+      expect(
+        tldts.getHostname('example.co.uk#https://other.example/'),
+      ).to.equal('example.co.uk');
+      expect(
+        tldts.getHostname('https:example.co.uk/r?u=https://other.example/'),
+      ).to.equal('example.co.uk');
+    });
+
     // @see https://github.com/oncletom/tld.js/issues/95
     it('should ignore the trailing dot in a domain', () => {
       expect(
