@@ -79,6 +79,29 @@ export default function test(
   },
   { includePrivate }: { includePrivate: boolean },
 ): void {
+  describe('IPv6 unspecified address', () => {
+    for (const input of ['::', '[::]', 'http://[::]/', '//[::]:80/']) {
+      it(`should recognize ${input}`, () => {
+        expect(tldts.getHostname(input)).to.equal('::');
+        expect(tldts.parse(input)).to.deep.include({
+          hostname: '::',
+          isIp: true,
+          domain: null,
+          publicSuffix: null,
+        });
+      });
+    }
+
+    it('should recognize the address without hostname extraction', () => {
+      expect(tldts.parse('::', { extractHostname: false })).to.deep.include({
+        hostname: '::',
+        isIp: true,
+        domain: null,
+        publicSuffix: null,
+      });
+    });
+  });
+
   describe('from https://github.com/rushmorem/publicsuffix/blob/master/src/tests.rs', () => {
     // Copyright (c) 2016 Rushmore Mushambi
     it('should allow parsing IDN email addresses', () => {
