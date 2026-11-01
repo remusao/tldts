@@ -1302,6 +1302,22 @@ export default function test(
       );
     });
 
+    it('fallback to wildcard when ICANN domains are disabled', () => {
+      for (const [hostname, publicSuffix] of [
+        ['example.com', 'com'],
+        ['example.de', 'de'],
+        ['example.fr', 'fr'],
+      ] as const) {
+        expect(
+          tldts.parse(hostname, { allowIcannDomains: false }),
+        ).to.deep.include({
+          isIcann: includePrivate ? false : null,
+          isPrivate: includePrivate ? false : null,
+          publicSuffix,
+        });
+      }
+    });
+
     it('should handle data URLs', () => {
       expect(tldts.parse('data:image/png,some-base-64-value')).to.deep.equal({
         ...mockResponse(null),
