@@ -127,7 +127,7 @@ export default function extractHostname(
       // Scheme-relative reference ("//host/path").
       start += 2;
     } else {
-      const indexOfProtocol = url.indexOf(':/', start);
+      let indexOfProtocol = url.indexOf(':/', start);
       if (indexOfProtocol !== -1) {
         // "scheme://…". Classify the scheme, then position `start` at the host.
         const special = getSpecialScheme(url, start, indexOfProtocol);
@@ -178,22 +178,42 @@ export default function extractHostname(
                   validate,
                 );
               }
+              // A '/', '\', '?' or '#' before the ':/' means it is not a scheme
+              // separator but part of a path, query or fragment
+              // ("example.com/r?u=https://x", "https:example.com/r?u=https://x"):
+              // handle the input on the cold path below, like any input without
+              // "scheme://".
+              for (let j = i; j < indexOfProtocol; j += 1) {
+                const c = url.charCodeAt(j);
+                if (c === 47 || c === 92 || c === 63 || c === 35) {
+                  indexOfProtocol = -1;
+                  break;
+                }
+              }
+              if (indexOfProtocol !== -1) {
+                return null;
+              }
+              break;
+            }
+          }
+          if (indexOfProtocol !== -1) {
+            // A non-special scheme has an authority only after "//" (else it is
+            // an opaque path with no host). `indexOf(':/')` already gave the
+            // first '/'.
+            if (url.charCodeAt(indexOfProtocol + 2) === 47 /* '/' */) {
+              start = indexOfProtocol + 3;
+            } else {
               return null;
             }
           }
-          // A non-special scheme has an authority only after "//" (else it is an
-          // opaque path with no host). `indexOf(':/')` already gave the first '/'.
-          if (url.charCodeAt(indexOfProtocol + 2) === 47 /* '/' */) {
-            start = indexOfProtocol + 3;
-          } else {
-            return null;
-          }
         }
-      } else if (url.charCodeAt(start) !== 91 /* '[' */) {
-        // Cold path: no scheme "://", and not a bare IPv6 literal (whose first
-        // ':' would otherwise look like a scheme separator; "[…]" falls through
-        // to the ipv6 handling below). May be a bare host, a host:port, a
-        // user@host, a slash-less special scheme ("https:host"), or an opaque
+      }
+
+      if (indexOfProtocol === -1 && url.charCodeAt(start) !== 91 /* '[' */) {
+        // Cold path: no "scheme://" prefix, and not a bare IPv6 literal (whose
+        // first ':' would otherwise look like a scheme separator; "[…]" falls
+        // through to the ipv6 handling below). May be a bare host, a host:port,
+        // a user@host, a slash-less special scheme ("https:host"), or an opaque
         // URI ("mailto:", "tel:", "urn:…").
         let indexOfColon = -1;
         for (let i = start; i < end; i += 1) {
@@ -251,7 +271,7 @@ export default function extractHostname(
             if (!allDigits) {
               const special = getSpecialScheme(url, start, indexOfColon);
               if (special === 0) {
-                // No "://" anywhere on the cold path and not a special scheme.
+                // No "scheme://" on the cold path and not a special scheme.
                 // A second ':' before the host's end marks a bare, unbracketed
                 // IPv6 literal ("2a01:e35::1"): fall through and let the host
                 // loop + isIp classify it. Without one this is an opaque path
