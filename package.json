@@ -69,7 +69,19 @@
   "resolutions": {
     "lerna/js-yaml": "^4.3.2",
     "lerna/pacote": "^21.5.1",
-    "nx/smol-toml": "^1.7.1"
+    "nx/smol-toml": "^1.7.1",
+    "nx/axios": "^1.21.0",
+    "follow-redirects": "^1.16.2",
+    "nx/follow-redirects": "^1.16.2",
+    "nx/brace-expansion": "^5.0.12",
+    "minimatch@npm:10.2.5": "^11.0.4",
+    "minimatch@npm:^10.0.3": "^11.0.4",
+    "minimatch@npm:^10.1.1": "^11.0.4",
+    "minimatch@npm:^10.2.2": "^11.0.4",
+    "minimatch@npm:^10.2.4": "^11.0.4",
+    "minimatch@npm:^10.2.6": "^11.0.4",
+    "deepmerge@npm:^4.2.2": "patch:deepmerge@npm%3A4.3.1#~/.yarn/patches/deepmerge-npm-4.3.1-4f751a0844.patch",
+    "deepmerge@npm:^4.0.0": "patch:deepmerge@npm%3A4.3.1#~/.yarn/patches/deepmerge-npm-4.3.1-4f751a0844.patch"
   },
   "dependenciesMeta": {
     "nx": {
