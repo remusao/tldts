@@ -1,3 +1,28 @@
+# v7.4.20 (Tue Nov 10 2026)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts-icann`, `tldts`
+  - Update upstream public suffix list [#2739](https://github.com/remusao/tldts/pull/2739) ([@remusao](https://github.com/remusao))
+  - Update upstream public suffix list [#2722](https://github.com/remusao/tldts/pull/2722) ([@remusao](https://github.com/remusao))
+
+#### :bug: Bug Fix
+
+- `tldts-core`, `tldts-tests`
+  - fix: recognize the IPv6 unspecified address [#2711](https://github.com/remusao/tldts/pull/2711) ([@xiehuanyi](https://github.com/xiehuanyi))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump rollup from 4.64.0 to 4.68.0 [#2744](https://github.com/remusao/tldts/pull/2744) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Huanyi Xie ([@xiehuanyi](https://github.com/xiehuanyi))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.4.19 (Tue Oct 20 2026)
 
 #### :scroll: Update Public Suffix List

@@ -1,3 +1,15 @@
+# v7.4.20 (Tue Nov 10 2026)
+
+#### :bug: Bug Fix
+
+- fix: recognize the IPv6 unspecified address [#2711](https://github.com/remusao/tldts/pull/2711) ([@xiehuanyi](https://github.com/xiehuanyi))
+
+#### Authors: 1
+
+- Huanyi Xie ([@xiehuanyi](https://github.com/xiehuanyi))
+
+---
+
 # v7.4.16 (Sun Sep 27 2026)
 
 #### :scroll: Update Public Suffix List
