@@ -8,6 +8,11 @@ jobs:
   release:
     name: Trigger release
     runs-on: ubuntu-latest
+    # Serialize releases (defence in depth for the push below). `queue: max`:
+    # never cancel a pending run, as GitHub may keep a stale one over the newest.
+    concurrency:
+      group: release
+      queue: max
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
     permissions:
       contents: write
@@ -46,6 +51,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_USERCONFIG: ${{ runner.temp }}/npmrc
+          # Root `postpack` pushes the version commit + tag once all packages
+          # are packed, before any is published: a rejected push publishes nothing.
+          PUSH_BEFORE_PUBLISH: 'true'
         run: |
           : > "$NPM_CONFIG_USERCONFIG"
           yarn release
