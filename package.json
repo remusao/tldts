@@ -69,7 +69,10 @@
   "resolutions": {
     "lerna/js-yaml": "^4.3.2",
     "lerna/pacote": "^21.5.1",
-    "nx/smol-toml": "^1.7.1"
+    "nx/smol-toml": "^1.7.1",
+    "nx/axios": "^1.21.0",
+    "nx/follow-redirects": "^1.16.2",
+    "nx/brace-expansion": "^5.0.12"
   },
   "dependenciesMeta": {
     "nx": {

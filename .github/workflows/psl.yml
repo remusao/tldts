@@ -48,7 +48,6 @@ jobs:
           commit-message: 'Update upstream public suffix list'
           title: 'Update upstream public suffix list'
           body: 'Automated update of upstream public suffix list'
-          reviewers: remusao
           branch: update-psl
           labels: 'PR: Update PSL :scroll:'
 

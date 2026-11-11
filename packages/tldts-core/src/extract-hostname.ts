@@ -102,27 +102,48 @@ export default function extractHostname(
   let start = 0;
   let end: number = url.length;
   let hasUpper = false;
-  let isSpecial = false;
+  let isSpecial = true; // '\' ends the host, unless non-special "scheme://"
   extractedHostnameValidated = false;
 
   if (!urlIsValidHostname) {
-    // Data URLs never carry a host (and may be huge — short-circuit them).
-    if (url.startsWith('data:')) {
-      return null;
-    }
-
     // WHATWG step 1: trim leading/trailing C0 control or space (<= U+0020).
     // Tab/newline elsewhere are handled lazily below.
     while (start < url.length && url.charCodeAt(start) <= 32) {
       start += 1;
     }
+
+    // "data:"/"javascript:" never reach a host (inline payload; data URLs may be
+    // huge). `| 32` lowercases letters only; tab/newline is re-parsed below.
+    if (
+      (url.charCodeAt(start + 4) === 58 /* ':' */ &&
+        (url.charCodeAt(start) | 32) === 100 /* d */ &&
+        (url.charCodeAt(start + 1) | 32) === 97 /* a */ &&
+        (url.charCodeAt(start + 2) | 32) === 116 /* t */ &&
+        (url.charCodeAt(start + 3) | 32) === 97) /* a */ ||
+      (url.charCodeAt(start + 10) === 58 /* ':' */ &&
+        (url.charCodeAt(start) | 32) === 106 /* j */ &&
+        (url.charCodeAt(start + 1) | 32) === 97 /* a */ &&
+        (url.charCodeAt(start + 2) | 32) === 118 /* v */ &&
+        (url.charCodeAt(start + 3) | 32) === 97 /* a */ &&
+        (url.charCodeAt(start + 4) | 32) === 115 /* s */ &&
+        (url.charCodeAt(start + 5) | 32) === 99 /* c */ &&
+        (url.charCodeAt(start + 6) | 32) === 114 /* r */ &&
+        (url.charCodeAt(start + 7) | 32) === 105 /* i */ &&
+        (url.charCodeAt(start + 8) | 32) === 112 /* p */ &&
+        (url.charCodeAt(start + 9) | 32) === 116) /* t */
+    ) {
+      return null;
+    }
+
     while (end > start + 1 && url.charCodeAt(end - 1) <= 32) {
       end -= 1;
     }
 
     if (
-      url.charCodeAt(start) === 47 /* '/' */ &&
-      url.charCodeAt(start + 1) === 47 /* '/' */
+      (url.charCodeAt(start) === 47 /* '/' */ ||
+        url.charCodeAt(start) === 92) /* '\' */ &&
+      (url.charCodeAt(start + 1) === 47 /* '/' */ ||
+        url.charCodeAt(start + 1) === 92) /* '\' */
     ) {
       // Scheme-relative reference ("//host/path").
       start += 2;
@@ -134,7 +155,6 @@ export default function extractHostname(
         if (special === 1) {
           // Special scheme: skip the run of '/' and '\' after it
           // (special-authority-(ignore-)slashes states; '\' acts as '/').
-          isSpecial = true;
           start = indexOfProtocol + 2;
           while (
             url.charCodeAt(start) === 47 /* '/' */ ||
@@ -145,7 +165,6 @@ export default function extractHostname(
         } else if (special === 2) {
           // file: the host is only what sits between "//" and the next slash, so
           // "file://h/x" => "h" but "file:///x" / "file:/x" => no host.
-          isSpecial = true;
           start = indexOfProtocol + 1;
           let slashes = 0;
           while (
@@ -162,16 +181,19 @@ export default function extractHostname(
           // Unknown scheme: validate the WHATWG scheme grammar [A-Za-z0-9+.-];
           // a control char means it was split by a tab/newline (strip + re-parse).
           for (let i = start; i < indexOfProtocol; i += 1) {
-            const code = url.charCodeAt(i) | 32;
+            const code = url.charCodeAt(i);
             if (!(
-              (code >= 97 && code <= 122) || // [a, z]
+              ((code | 32) >= 97 && (code | 32) <= 122) || // [a-zA-Z] (fold letters only)
               (code >= 48 && code <= 57) || // [0, 9]
               code === 46 || // '.'
               code === 45 || // '-'
               code === 43 // '+'
             )) {
-              const raw = url.charCodeAt(i);
-              if (raw === 9 || raw === 10 || raw === 13) {
+              if (
+                code === 9 /* tab */ ||
+                code === 10 /* LF */ ||
+                code === 13 /* CR */
+              ) {
                 return extractHostname(
                   url.replace(CONTROL_CHARS, ''),
                   urlIsValidHostname,
@@ -184,6 +206,7 @@ export default function extractHostname(
           // A non-special scheme has an authority only after "//" (else it is an
           // opaque path with no host). `indexOf(':/')` already gave the first '/'.
           if (url.charCodeAt(indexOfProtocol + 2) === 47 /* '/' */) {
+            isSpecial = false;
             start = indexOfProtocol + 3;
           } else {
             return null;
@@ -276,7 +299,6 @@ export default function extractHostname(
                   return null;
                 }
               } else {
-                isSpecial = true;
                 start = indexOfColon + 1;
                 if (special === 2) {
                   // file (e.g. "file:\\host"): host only between "//" and next slash.

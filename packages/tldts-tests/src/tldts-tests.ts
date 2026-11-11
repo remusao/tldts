@@ -1662,6 +1662,19 @@ export default function test(
         expect(tldts.getHostname('http://example.com\\@evil.com')).to.equal(
           'example.com',
         );
+        // Same for scheme-relative and scheme-less input, which a browser
+        // resolves against an http(s) base.
+        for (const url of [
+          '//evil.com\\@good.com',
+          '\\\\evil.com\\@good.com',
+          'http:@evil.com\\@good.com',
+          'ht\rtps://evil.com\\@good.com', // CR is stripped, not a scheme char
+          'evil.com\\@good.com', // scheme-less: '\' ends the host like '/'
+        ]) {
+          expect(tldts.getHostname(url), url).to.equal('evil.com');
+        }
+        // Never the smuggled host (lenient "scheme:port" => the scheme word).
+        expect(tldts.getHostname('http:16909060\\@good.com')).to.equal('http');
       });
 
       it('parses a special scheme written without "//"', () => {
@@ -1705,6 +1718,14 @@ export default function test(
         expect(tldts.getHostname('javascript:alert(1)')).to.equal(null);
         expect(tldts.getHostname('urn:isbn:9780307476463')).to.equal(null);
         expect(tldts.getHostname('mailto:example.com')).to.equal(null); // no '@'
+        for (const url of [
+          'javascript:alert(1)%2F%2F@good.com',
+          "javascript:alert(1);':\\@good.com/'",
+          'DATA:,{"ok":true,"pad":"@good.com/"}', // fetch() returns the inline body
+          'DATA://good.com/,pwn',
+        ]) {
+          expect(tldts.getHostname(url), url).to.equal(null); // inline payload
+        }
       });
 
       it('extracts the host past an empty userinfo', () => {
