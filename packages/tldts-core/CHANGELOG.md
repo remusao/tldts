@@ -1,3 +1,15 @@
+# v7.4.22 (Wed Nov 11 2026)
+
+#### :bug: Bug Fix
+
+- Fix vulns dependencies and harden hostname parsing [#2748](https://github.com/remusao/tldts/pull/2748) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.4.20 (Tue Nov 10 2026)
 
 #### :bug: Bug Fix

@@ -1,3 +1,31 @@
+# v7.4.22 (Wed Nov 11 2026)
+
+#### :bug: Bug Fix
+
+- `tldts-core`, `tldts-experimental`, `tldts-tests`, `tldts`
+  - Fix vulns dependencies and harden hostname parsing [#2748](https://github.com/remusao/tldts/pull/2748) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump serialize-javascript from 7.1.2 to 7.1.4 [#2746](https://github.com/remusao/tldts/pull/2746) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump lerna from 10.0.1 to 10.1.1 [#2717](https://github.com/remusao/tldts/pull/2717) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump prettier from 3.9.9 to 3.9.10 [#2712](https://github.com/remusao/tldts/pull/2712) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump eslint-plugin-prettier from 5.5.6 to 5.5.7 [#2719](https://github.com/remusao/tldts/pull/2719) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup-plugin-sourcemaps2 from 0.5.9 to 0.5.10 [#2726](https://github.com/remusao/tldts/pull/2726) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @rollup/plugin-terser from 1.0.0 to 1.0.2 [#2729](https://github.com/remusao/tldts/pull/2729) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript-eslint from 8.71.0 to 8.72.1 [#2730](https://github.com/remusao/tldts/pull/2730) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 26.6.4 to 26.6.6 [#2733](https://github.com/remusao/tldts/pull/2733) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump eslint from 10.12.0 to 10.14.0 [#2736](https://github.com/remusao/tldts/pull/2736) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump globals from 17.13.0 to 17.14.0 [#2740](https://github.com/remusao/tldts/pull/2740) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rimraf from 6.1.3 to 6.1.4 [#2743](https://github.com/remusao/tldts/pull/2743) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.4.20 (Tue Nov 10 2026)
 
 #### :scroll: Update Public Suffix List
