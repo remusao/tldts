@@ -49,10 +49,17 @@ describe('#extractHostname', () => {
 
   it('handles a scheme-relative reference ("//host")', () => {
     expect(extract('//user@example.com/x')).to.equal('example.com');
+    // '\' counts as '/' in the prefix and ends the host (no userinfo smuggling).
+    expect(extract('\\\\evil.com\\@good.com')).to.equal('evil.com');
+    expect(extract('/\\evil.com')).to.equal('evil.com'); // mixed separators
+    expect(extract('\\a.com')).to.equal(null); // one '\' is a path, not "//"
   });
 
   it('handles a bare bracketed IPv6 literal (skips scheme detection)', () => {
     expect(extract('[::1]')).to.equal('::1');
+    expect(extract('[2606:4700::1111]\\@good.com')).to.equal('2606:4700::1111');
+    expect(extract('http://[::1]\\@evil.com')).to.equal('::1');
+    expect(extract('\\\\[::1]\\@evil.com')).to.equal('::1');
   });
 
   it('lower-cases a bracketed IPv6 host', () => {
@@ -108,6 +115,20 @@ describe('#extractHostname', () => {
 
   it('treats "token:token@host" as userinfo, not a scheme', () => {
     expect(extract('foo:bar@example.com')).to.equal('example.com');
+    expect(extract('foo:bar@evil.com\\@good.com')).to.equal('evil.com'); // '\' as '/'
+  });
+
+  it('never returns a host for "data:" or "javascript:" (inline payload)', () => {
+    expect(extract(' JavaScript:x@good.com')).to.equal(null); // trimmed, any case
+    expect(extract('java\tscript:x@good.com')).to.equal(null); // tab stripped
+    expect(extract('java\tscript://good.com')).to.equal(null); // ...with "//"
+    expect(extract('data\r://good.com/x')).to.equal(null);
+    expect(extract("javascript:alert(1);':\\@good.com/'")).to.equal(null);
+    expect(extract('javascript://good.com/%0Aalert(1)')).to.equal(null);
+    expect(extract('DATA://good.com/,pwn')).to.equal(null); // fetch: inline body
+    expect(extract('Data:x@good.com')).to.equal(null);
+    expect(extract('javascripts:x@good.com')).to.equal('good.com'); // exact only
+    expect(extract('date:x@good.com')).to.equal('good.com'); // exact only
   });
 
   it('keeps a bare host:port when the port is numeric', () => {
@@ -132,10 +153,18 @@ describe('#extractHostname', () => {
     expect(extract('ws://example.com/')).to.equal('example.com');
     expect(extract('wss://example.com/')).to.equal('example.com');
     expect(extract('ftp://example.com/')).to.equal('example.com');
+    // Any case: '\' ends the host (only a non-special "scheme://" keeps it).
+    for (const scheme of ['WSS', 'Ws', 'FTP', 'hTtPs']) {
+      expect(extract(`${scheme}://evil.com\\@good.com`)).to.equal('evil.com');
+    }
+    expect(extract('FILE://evil.com\\@good.com')).to.equal('evil.com');
   });
 
   it('returns null on an invalid scheme character', () => {
     expect(extract('ht~tp://example.com')).to.equal(null);
+    // Controls must not fold into scheme chars (VT | 32 is '+', CR | 32 is '-').
+    expect(extract('ht\x0btps://evil.com')).to.equal(null);
+    expect(extract('ht\rtps://evil.com\\@good.com')).to.equal('evil.com');
   });
 
   it('classifies every special scheme written without "//"', () => {
@@ -144,6 +173,12 @@ describe('#extractHostname', () => {
     expect(extract('ftp:example.com')).to.equal('example.com'); // length 3
     expect(extract('http:example.com')).to.equal('example.com'); // length 4
     expect(extract('https:example.com')).to.equal('example.com'); // length 5
+    // Without "://" too, '\' ends the host like '/' (no userinfo smuggling).
+    expect(extract('HTTP:@evil.com\\@good.com')).to.equal('evil.com');
+    // Decided "scheme:port" leniency (browsers go to 1.2.3.4), never good.com.
+    expect(extract('http:16909060\\@good.com')).to.equal('http');
+    expect(extract('evil.com:8080\\@good.com')).to.equal('evil.com');
+    expect(extract('evil.com\\@good.com')).to.equal('evil.com');
   });
 
   it('does not classify look-alike schemes as special (each length)', () => {
@@ -163,6 +198,9 @@ describe('#extractHostname', () => {
 
   it('treats "\\" as a host terminator for special URLs only', () => {
     expect(extract('http://example.com\\path')).to.equal('example.com');
+    // A non-special "scheme://" keeps '\' in the authority, so userinfo ends at
+    // the last '@' as in WHATWG (a '\' left in the host fails validation).
+    expect(extract('foo://a\\@b.com')).to.equal('b.com');
   });
 
   it('applies the file scheme authority rules', () => {
