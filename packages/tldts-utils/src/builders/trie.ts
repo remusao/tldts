@@ -48,6 +48,20 @@ function insertInTrie(
 }
 
 /**
+ * '*' matches its exact siblings too, but the lookup prefers an exact edge:
+ * give siblings that aren't rules its flag, so the '*' rule still matches.
+ */
+function inheritWildcards(node: ITrie): void {
+  const wildcardFlag = node.children['*']?.flag ?? 0;
+  for (const child of Object.values(node.children)) {
+    if (child.flag === 0) {
+      child.flag = wildcardFlag;
+    }
+    inheritWildcards(child);
+  }
+}
+
+/**
  * djb2 hash over `label`, computed backward. MUST stay identical to the
  * load-time recomputation in `suffix-trie.ts` so edges remain hash-sorted.
  */
@@ -110,6 +124,7 @@ export default (
     }
   });
 
+  inheritWildcards(rules);
   const { nodes, rootIds } = flatten([rules, exceptions]);
 
   const nodeFlags: number[] = [];
