@@ -140,8 +140,10 @@ export default function extractHostname(
     }
 
     if (
-      (url.charCodeAt(start) === 47 || url.charCodeAt(start) === 92) &&
-      (url.charCodeAt(start + 1) === 47 || url.charCodeAt(start + 1) === 92)
+      (url.charCodeAt(start) === 47 /* '/' */ ||
+        url.charCodeAt(start) === 92) /* '\' */ &&
+      (url.charCodeAt(start + 1) === 47 /* '/' */ ||
+        url.charCodeAt(start + 1) === 92) /* '\' */
     ) {
       // Scheme-relative reference ("//host/path").
       start += 2;
@@ -187,7 +189,11 @@ export default function extractHostname(
               code === 45 || // '-'
               code === 43 // '+'
             )) {
-              if (code === 9 || code === 10 || code === 13) {
+              if (
+                code === 9 /* tab */ ||
+                code === 10 /* LF */ ||
+                code === 13 /* CR */
+              ) {
                 return extractHostname(
                   url.replace(CONTROL_CHARS, ''),
                   urlIsValidHostname,
