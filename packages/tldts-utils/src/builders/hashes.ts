@@ -87,12 +87,14 @@
 import parse from '../parser';
 
 /**
- * Compute 32 bits hash of `str` backward.
+ * FNV-1 (32 bits) of `str`'s UTF-16 code units, last to first. MUST stay
+ * identical to the lookup's hash in `packed-hashes.ts`. Chosen over djb2 and
+ * FNV-1a: fewest false positives on short labels.
  */
-function fastHash(str: string): number {
-  let hash = 5381;
+export function fastHash(str: string): number {
+  let hash = 0x811c9dc5;
   for (let j = str.length - 1; j >= 0; j -= 1) {
-    hash = (hash * 33) ^ str.charCodeAt(j);
+    hash = Math.imul(hash, 0x01000193) ^ str.charCodeAt(j);
   }
   return hash >>> 0;
 }

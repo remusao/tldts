@@ -144,6 +144,17 @@ export default function test(
   });
 
   describe('#getDomain', () => {
+    // Short labels whose djb2 hash collided with a rule (e.g. `6g.us` with
+    // `pa.us`) in tldts-experimental's packed hashes.
+    it('should not confuse short labels with public suffixes', () => {
+      for (const domain of ['vw.com', '1c.com', '0w.com', '6g.us', '2a.pl']) {
+        expect(tldts.getDomain(domain)).to.equal(domain);
+        expect(tldts.getDomain(domain, { allowPrivateDomains: true })).to.equal(
+          domain,
+        );
+      }
+    });
+
     it('should allow disabling parsing/validation of hostnames', () => {
       expect(
         tldts.getDomain('foo.com', {
