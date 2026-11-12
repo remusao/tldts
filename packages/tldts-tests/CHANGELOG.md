@@ -1,3 +1,15 @@
+# v7.4.24 (Thu Nov 12 2026)
+
+#### :bug: Bug Fix
+
+- Fix PSL longest match when a wildcard shares a label with a longer rule [#2750](https://github.com/remusao/tldts/pull/2750) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.4.22 (Wed Nov 11 2026)
 
 #### :bug: Bug Fix
