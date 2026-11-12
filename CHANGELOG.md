@@ -1,3 +1,17 @@
+# v7.4.28 (Thu Nov 12 2026)
+
+#### :bug: Bug Fix
+
+- `tldts-core`, `tldts-tests`
+  - fix: do not read a scheme from "://" in a path, query or fragment [#2727](https://github.com/remusao/tldts/pull/2727) ([@mkantautas](https://github.com/mkantautas) [@remusao](https://github.com/remusao))
+
+#### Authors: 2
+
+- Mantas Kantautas ([@mkantautas](https://github.com/mkantautas))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.4.27 (Thu Nov 12 2026)
 
 #### :bug: Bug Fix
