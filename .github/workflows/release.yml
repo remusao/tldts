@@ -48,6 +48,7 @@ jobs:
         run: yarn lint
 
       - name: Create release
+        id: release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_USERCONFIG: ${{ runner.temp }}/npmrc
@@ -57,3 +58,21 @@ jobs:
         run: |
           : > "$NPM_CONFIG_USERCONFIG"
           yarn release
+
+      # npm has no multi-package transaction: if publishing failed after this
+      # run pushed its release commit, publish the missing packages once more,
+      # from exactly that commit (so the bytes match the tag).
+      - name: Retry missing packages
+        if: failure() && steps.release.outcome == 'failure'
+        env:
+          NPM_CONFIG_USERCONFIG: ${{ runner.temp }}/npmrc
+        run: |
+          test "$(git rev-parse HEAD)" != "$GITHUB_SHA"
+          test "$(git tag --points-at HEAD)" = "v$(node -p "require('./lerna.json').version")"
+          git fetch --quiet origin master
+          git merge-base --is-ancestor HEAD origin/master
+          # A failed publish leaves lerna's `gitHead` in package.json files only.
+          if git diff --name-only | grep -qv 'package\.json$'; then exit 1; fi
+          git checkout -- .
+          : > "$NPM_CONFIG_USERCONFIG"
+          yarn lerna publish from-package --yes
