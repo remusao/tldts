@@ -1,3 +1,21 @@
+# v7.5.0 (Thu Nov 12 2026)
+
+#### :rocket: New Feature
+
+- `tldts-core`, `tldts-experimental`, `tldts-icann`, `tldts-tests`, `tldts`
+  - Add the extraSuffixes option for caller-supplied public suffix rules [#2757](https://github.com/remusao/tldts/pull/2757) ([@remusao](https://github.com/remusao))
+
+#### :bug: Bug Fix
+
+- `tldts-icann`, `tldts-tests`
+  - Report ICANN flags in tldts-icann and honor allowIcannDomains [#2756](https://github.com/remusao/tldts/pull/2756) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.4.28 (Thu Nov 12 2026)
 
 #### :bug: Bug Fix

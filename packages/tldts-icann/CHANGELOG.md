@@ -1,3 +1,19 @@
+# v7.5.0 (Thu Nov 12 2026)
+
+#### :rocket: New Feature
+
+- Add the extraSuffixes option for caller-supplied public suffix rules [#2757](https://github.com/remusao/tldts/pull/2757) ([@remusao](https://github.com/remusao))
+
+#### :bug: Bug Fix
+
+- Report ICANN flags in tldts-icann and honor allowIcannDomains [#2756](https://github.com/remusao/tldts/pull/2756) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.4.25 (Thu Nov 12 2026)
 
 #### :nail_care: Polish
