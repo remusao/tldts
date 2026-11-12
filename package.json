@@ -73,7 +73,8 @@
     "nx/smol-toml": "^1.7.1",
     "nx/axios": "^1.21.0",
     "nx/follow-redirects": "^1.16.2",
-    "nx/brace-expansion": "^5.0.12"
+    "nx/brace-expansion": "^5.0.12",
+    "sigstore@npm:^5.0.0": "patch:sigstore@npm%3A5.0.1#~/.yarn/patches/sigstore-npm-5.0.1-b8b419ec57.patch"
   },
   "dependenciesMeta": {
     "nx": {
