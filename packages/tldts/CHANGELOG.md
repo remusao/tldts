@@ -1,3 +1,15 @@
+# v7.4.25 (Thu Nov 12 2026)
+
+#### :nail_care: Polish
+
+- Treat the parent of a wildcard rule as a public suffix [#2752](https://github.com/remusao/tldts/pull/2752) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.4.24 (Thu Nov 12 2026)
 
 #### :bug: Bug Fix

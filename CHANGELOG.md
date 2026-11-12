@@ -1,3 +1,18 @@
+# v7.4.25 (Thu Nov 12 2026)
+
+#### :nail_care: Polish
+
+- `tldts-experimental`, `tldts-tests`, `tldts-utils`
+  - Use FNV-1 for tldts-experimental's packed hashes [#2753](https://github.com/remusao/tldts/pull/2753) ([@remusao](https://github.com/remusao))
+- `tldts-icann`, `tldts-tests`, `tldts-utils`, `tldts`
+  - Treat the parent of a wildcard rule as a public suffix [#2752](https://github.com/remusao/tldts/pull/2752) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.4.24 (Thu Nov 12 2026)
 
 #### :bug: Bug Fix
