@@ -48,15 +48,16 @@ function insertInTrie(
 }
 
 /**
- * '*' matches its exact siblings too, but the lookup prefers an exact edge:
- * give siblings that aren't rules its flag, so the '*' rule still matches.
+ * '*' matches its exact siblings too, but the lookup prefers an exact edge,
+ * and `*.p` implies `p` (as in Chromium, Firefox, libpsl and the PSL linter):
+ * give both the '*' rule's flag, unless they already have one (the PSL guard
+ * test rejects conflicting rule types, so the first flag is always right).
  */
 function inheritWildcards(node: ITrie): void {
   const wildcardFlag = node.children['*']?.flag ?? 0;
+  node.flag ||= wildcardFlag;
   for (const child of Object.values(node.children)) {
-    if (child.flag === 0) {
-      child.flag = wildcardFlag;
-    }
+    child.flag ||= wildcardFlag;
     inheritWildcards(child);
   }
 }

@@ -657,6 +657,20 @@ export default function test(
             tldts.parse('ex.futurecms.at', { allowPrivateDomains: true }),
           ).to.include({ domain: null, isIcann: false, isPrivate: true });
         });
+
+        // `*.p` implies `p` (Chromium, Firefox, libpsl, PSL linter).
+        it('should treat the parent of a wildcard rule as a public suffix', () => {
+          expect(getPublicSuffix('futurecms.at')).to.equal('futurecms.at');
+          expect(getPublicSuffix('run.app')).to.equal('run.app');
+          expect(
+            tldts.parse('futurecms.at', { allowPrivateDomains: true }),
+          ).to.include({ domain: null, isIcann: false, isPrivate: true });
+          expect(tldts.parse('er')).to.include({
+            publicSuffix: 'er',
+            isIcann: true,
+            isPrivate: false,
+          });
+        });
       });
     }
 
@@ -702,6 +716,16 @@ export default function test(
       it('should ignore private wildcard rules', () => {
         expect(getPublicSuffix('ex.futurecms.at')).to.equal('at');
         expect(getPublicSuffix('www.ex.futurecms.at')).to.equal('at');
+        expect(getPublicSuffix('futurecms.at')).to.equal('at');
+      });
+
+      // `*.kobe.jp` implies `kobe.jp`; `!city.kobe.jp` still applies.
+      it('should treat the parent of an ICANN wildcard rule as a public suffix', () => {
+        expect(getPublicSuffix('kobe.jp')).to.equal('kobe.jp');
+        expect(tldts.getDomain('kobe.jp')).to.equal(null);
+        expect(getPublicSuffix('c.kobe.jp')).to.equal('c.kobe.jp');
+        expect(getPublicSuffix('city.kobe.jp')).to.equal('kobe.jp');
+        expect(tldts.getDomain('city.kobe.jp')).to.equal('city.kobe.jp');
       });
     });
 
@@ -728,6 +752,11 @@ export default function test(
 
         it('should return co.uk if google.co.uk', () => {
           expect(getPublicSuffix('google.co.uk')).to.equal('uk');
+        });
+
+        it('should treat the parent of a private wildcard rule as a public suffix', () => {
+          expect(getPublicSuffix('futurecms.at')).to.equal('futurecms.at');
+          expect(getPublicSuffix('kobe.jp')).to.equal('jp');
         });
 
         it('should match a private wildcard rule on a shared label', () => {

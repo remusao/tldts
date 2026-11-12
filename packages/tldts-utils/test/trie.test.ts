@@ -58,32 +58,49 @@ describe('#buildTrie', () => {
     expect(flagOf(`${PRIVATE}\n*.a\n*.b.a`, ['a', 'b'])).to.equal(2);
   });
 
-  it("keeps an exact rule's own rule type", () => {
-    expect(flagOf(`*.a\n${PRIVATE}\nb.a`, ['a', 'b'])).to.equal(2);
+  it("flags the parent of '*' with its rule type", () => {
+    expect(flagOf('*.a', ['a'])).to.equal(1);
+    expect(flagOf(`${PRIVATE}\n*.a`, ['a'])).to.equal(2);
   });
 
-  it("leaves labels without a '*' sibling unflagged", () => {
-    expect(flagOf('*.a\n*.b.a', ['a'])).to.equal(0);
+  it("keeps an exact rule's own rule type", () => {
+    expect(flagOf(`*.a\n${PRIVATE}\nb.a`, ['a', 'b'])).to.equal(2);
+    expect(flagOf(`a\n${PRIVATE}\n*.a`, ['a'])).to.equal(1);
+  });
+
+  it("leaves labels without a '*' sibling or child unflagged", () => {
+    expect(flagOf('*.b.a', ['a'])).to.equal(0);
     expect(flagOf('c.b.a', ['a', 'b'])).to.equal(0);
     expect(flagOf('*.a\nd.c.b.a', ['a', 'b', 'c'])).to.equal(0);
   });
 
-  // Unsupported: exact rule `x.p` beside `*.p` of the other section (the exact
-  // edge hides `*.p` when the exact rule's section is disabled). Fails if the
-  // PSL ever adds one.
-  it("finds no PSL rule beside a '*' rule of the other section", () => {
-    const isIcann = new Map<string, boolean>();
+  // Unsupported: a node holds one rule type, so its own rule, its exception,
+  // `*.x` on itself (`x` implied) and `*.p` on its parent must agree; and an
+  // exception `!x` under `*.x` (Chromium lets `*.x` win below `x`). Otherwise a
+  // section mask or the exception hides a match. Fails if the PSL adds one.
+  it('finds no PSL node with conflicting rules', () => {
+    const sections = new Map<string, Set<boolean>>();
     parsePublicSuffixRules(loadPublicSuffixList(), (rule) => {
-      if (!rule.isException) {
-        isIcann.set(rule.rule, rule.isIcann);
-      }
+      const key = (rule.isException ? '!' : '') + rule.rule;
+      sections.set(key, (sections.get(key) ?? new Set()).add(rule.isIcann));
     });
-    const conflicts = [...isIcann.keys()].filter((rule) => {
-      const wildcard = rule.replace(/^[^.]+/, '*');
+    const nodes = new Set<string>();
+    for (const rule of sections.keys()) {
+      const labels = rule.replace(/^!|^\*\./, '').split('.');
+      labels.forEach((_, i) => nodes.add(labels.slice(i).join('.')));
+    }
+    const conflicts = [...nodes].filter((node) => {
+      const parentWildcard = node.includes('.')
+        ? `*.${node.slice(node.indexOf('.') + 1)}`
+        : '*';
+      const types = new Set(
+        [node, `!${node}`, `*.${node}`, parentWildcard].flatMap((rule) => [
+          ...(sections.get(rule) ?? []),
+        ]),
+      );
       return (
-        wildcard !== rule &&
-        isIcann.has(wildcard) &&
-        isIcann.get(wildcard) !== isIcann.get(rule)
+        types.size > 1 ||
+        (sections.has(`!${node}`) && sections.has(`*.${node}`))
       );
     });
     expect(conflicts).to.eql([]);
