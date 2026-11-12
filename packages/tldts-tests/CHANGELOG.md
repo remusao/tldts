@@ -1,3 +1,15 @@
+# v7.4.27 (Thu Nov 12 2026)
+
+#### :bug: Bug Fix
+
+- fix: skip the suffix fast path when ICANN domains are disabled [#2732](https://github.com/remusao/tldts/pull/2732) ([@youdie006](https://github.com/youdie006))
+
+#### Authors: 1
+
+- KBS ([@youdie006](https://github.com/youdie006))
+
+---
+
 # v7.4.25 (Thu Nov 12 2026)
 
 #### :nail_care: Polish
