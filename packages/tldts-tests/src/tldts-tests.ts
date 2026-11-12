@@ -677,6 +677,13 @@ export default function test(
           expect(
             tldts.parse('futurecms.at', { allowPrivateDomains: true }),
           ).to.include({ domain: null, isIcann: false, isPrivate: true });
+          expect(
+            tldts.parse('.futurecms.at', { allowPrivateDomains: true }),
+          ).to.include({
+            publicSuffix: 'futurecms.at',
+            domain: null,
+            isPrivate: true,
+          });
           expect(tldts.parse('er')).to.include({
             publicSuffix: 'er',
             isIcann: true,
@@ -738,6 +745,15 @@ export default function test(
         expect(getPublicSuffix('c.kobe.jp')).to.equal('c.kobe.jp');
         expect(getPublicSuffix('city.kobe.jp')).to.equal('kobe.jp');
         expect(tldts.getDomain('city.kobe.jp')).to.equal('city.kobe.jp');
+        // '*' never matches an empty label: only the implied `kobe.jp` applies.
+        expect(tldts.parse('.kobe.jp')).to.include({
+          publicSuffix: 'kobe.jp',
+          domain: null,
+          isIcann: true,
+        });
+        expect(
+          tldts.getPublicSuffix('a..kobe.jp', { validateHostname: false }),
+        ).to.equal('kobe.jp');
       });
     });
 
@@ -806,6 +822,19 @@ export default function test(
       expect(tldts.getHostname('example.co.uk.')).to.equal('example.co.uk');
       expect(tldts.getHostname('example.co.uk..')).to.equal('example.co.uk');
       expect(tldts.getHostname('example.co.uk...')).to.equal('example.co.uk');
+    });
+
+    // `new URL()` keeps trailing dots: trim them before IP detection and suffix
+    // lookup, keeping one character as `getHostname('http://../')` does.
+    it('should strip trailing dots without hostname extraction', () => {
+      const options = { extractHostname: false };
+      expect(tldts.getDomain('admin.evil.com.', options)).to.equal('evil.com');
+      for (const hostname of ['www.example.co.uk', '192.168.0.1']) {
+        expect(tldts.parse(`${hostname}..`, options)).to.deep.equal(
+          tldts.parse(hostname),
+        );
+      }
+      expect(tldts.getHostname('..', options)).to.equal('.');
     });
 
     it('should return the hostname of a scheme-less URL', () => {

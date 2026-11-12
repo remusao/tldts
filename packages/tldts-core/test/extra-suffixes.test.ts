@@ -49,9 +49,9 @@ describe('extraSuffixes', () => {
     expect(
       parse('notus.com', ['com', true, false], { extraSuffixes: { icann } }),
     ).to.include({ publicSuffix: 'com', ...ICANN });
-    // Empty rules would match a trailing dot; a dot-less exception, the host.
+    // Empty rules would match a lone dot; a dot-less exception, the host.
     expect(
-      parse('x.com.', ['', false, false], {
+      parse('.', ['', false, false], {
         extractHostname: false,
         extraSuffixes: { icann: ['', '*.', '!'] },
       }),
@@ -125,13 +125,15 @@ describe('extraSuffixes', () => {
         extraSuffixes: { icann: ['*.foo.com'] },
       }),
     ).to.include({ publicSuffix: 'foo.com', domain: null, ...ICANN });
-    // The label under the wildcard may be empty, as in the built-in lookup.
-    expect(
-      parse('.foo.zz', ['zz', false, false], {
-        extractHostname: false,
-        extraSuffixes: { icann: ['*.foo.zz'] },
-      }),
-    ).to.include({ publicSuffix: '.foo.zz', ...ICANN });
+    // The label under a wildcard is never empty: only its parent matches.
+    for (const host of ['.foo.zz', 'x..foo.zz']) {
+      expect(
+        parse(host, ['zz', false, false], {
+          extractHostname: false,
+          extraSuffixes: { icann: ['*.foo.zz'] },
+        }),
+      ).to.include({ publicSuffix: 'foo.zz', ...ICANN });
+    }
   });
 
   it('keeps the built-in flags on a tie, unless it matched no rule', () => {

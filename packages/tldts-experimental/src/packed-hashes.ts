@@ -231,6 +231,14 @@ export default function suffixLookup(
     // important to make sure that we always keep the longest match if there
     // are both a wildcard and a normal rule matching).
     if (match !== Result.NO_MATCH) {
+      // '*' never matches an empty label ('.S', '..S'): `*.S` then only
+      // implies `S`.
+      if (
+        (match & Result.WILDCARD_MATCH) !== 0 &&
+        (labelStart === 1 || hostname.charCodeAt(labelStart - 2) === 46)
+      ) {
+        match = (match & ~Result.WILDCARD_MATCH) | Result.NORMAL_MATCH;
+      }
       matchKind = match;
       matchLabels = label + ((match & Result.WILDCARD_MATCH) !== 0 ? 2 : 1);
       matchIndex = labelStart;

@@ -116,6 +116,7 @@ function findEdge(
  * Walk `hostname`'s labels right-to-left from `root`, recording the deepest
  * ICANN node (with the label boundaries of that match in
  * `matchStart`/`matchEnd`). Returns whether any match was found.
+ * An empty label (leading dot or `..`) never matches a `*` edge.
  */
 function walk(hostname: string, root: number): boolean {
   let node = root;
@@ -127,7 +128,7 @@ function walk(hostname: string, root: number): boolean {
     if (code === 46 /* '.' */) {
       const start = i + 1;
       let edge = findEdge(node, hash >>> 0, hostname, start, end - start);
-      if (edge === -1) {
+      if (edge === -1 && end !== start) {
         edge = wildcardEdge[node]!;
       }
       if (edge === -1) {
@@ -150,7 +151,7 @@ function walk(hostname: string, root: number): boolean {
   // duplicated rather than folded into the loop (via `i >= -1`) because that
   // extra per-character branch measured slightly slower on the hot path.
   let edge = findEdge(node, hash >>> 0, hostname, 0, end);
-  if (edge === -1) {
+  if (edge === -1 && end !== 0) {
     edge = wildcardEdge[node]!;
   }
   if (edge !== -1) {
