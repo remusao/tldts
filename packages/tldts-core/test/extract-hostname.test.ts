@@ -113,6 +113,87 @@ describe('#extractHostname', () => {
     expect(extract('example.com/a:b')).to.equal('example.com');
   });
 
+  it('treats a ":/" after a path, query or fragment delimiter as not-a-scheme', () => {
+    expect(extract('example.com/a://b')).to.equal('example.com');
+    expect(extract('example.com?u=https://a.org/')).to.equal('example.com');
+    expect(extract('example.com#https://a.org/')).to.equal('example.com');
+    expect(extract('example.com:8080/?u=https://a.org/')).to.equal(
+      'example.com',
+    );
+    expect(extract('user@example.com/?u=https://a.org/')).to.equal(
+      'example.com',
+    );
+    expect(extract('[::1]/?u=https://a.org/')).to.equal('::1');
+    // The cold path then reads a slash-less special scheme ('\' ends its host).
+    expect(extract('https:example.com/?u=https://a.org/')).to.equal(
+      'example.com',
+    );
+    expect(extract('https:example.com\\?u=https://a.org/')).to.equal(
+      'example.com',
+    );
+    // An opaque path keeps no host; a tab/newline as the first non-scheme
+    // char triggers the stripped re-parse.
+    expect(extract('foo:bar/?u=https://a.org/')).to.equal(null);
+    expect(extract('exam\tple.com/?u=https://a.org/')).to.equal('example.com');
+    // Without a delimiter before it, the ':/' still ends an invalid scheme.
+    expect(extract('foo:bar://a.org/')).to.equal(null);
+  });
+
+  it('keeps the host-confusion fixes on that fallback', () => {
+    // '\' still ends a special scheme's host; a non-special one keeps it.
+    expect(extract('http:evil.com\\@good.com/?u=https://x/')).to.equal(
+      'evil.com',
+    );
+    expect(extract('ht\ttp:evil.com\\@good.com/?u=https://x/')).to.equal(
+      'evil.com',
+    );
+    expect(extract('foo://evil.com\\@good.com/?u=https://x/')).to.equal(
+      'good.com',
+    );
+    expect(extract('\\\\evil.com/?u=https://good.com')).to.equal('evil.com');
+    expect(extract('/\\evil.com/?u=https://good.com')).to.equal('evil.com');
+    expect(extract('foo:a\\b://x')).to.equal(null);
+    // A tab/newline after the first invalid char: never the userinfo host.
+    for (const c of ['\t', '\n', '\r']) {
+      expect(extract(`evil.com:${c}//good.com/?u=https://x`)).to.equal(null);
+    }
+    // A tab inside a slash-less special host is stripped like the browser does.
+    expect(extract('http:trusted.com\t.attacker.com/?u=https://x')).to.equal(
+      'trusted.com.attacker.com',
+    );
+    // `file:` without '//' has no host.
+    expect(extract('file:example.com/?u=https://x')).to.equal(null);
+    expect(extract('file:a\\b://x')).to.equal(null);
+  });
+
+  it('ignores everything after the first path, query or fragment delimiter', () => {
+    // Inputs reaching the fallback get master's answer for the same prefix, so
+    // known divergences (e.g. "http:2130706433" -> "http"; browsers:
+    // 127.0.0.1) are not widened.
+    for (const prefix of [
+      'example.com',
+      'example.com:8080',
+      'user@example.com',
+      'https:example.com',
+      'http:2130706433',
+      'localhost:3000',
+      '2a01:e35::1',
+      'foo:bar',
+      'file:example.com',
+      'evil.com:\t',
+    ]) {
+      for (const rest of [
+        '/?u=https://evil.com',
+        '?u=https://evil.com',
+        '#https://evil.com',
+      ]) {
+        expect(extract(prefix + rest)).to.equal(
+          extract(prefix + rest.replace('https://', 'x')),
+        );
+      }
+    }
+  });
+
   it('treats "token:token@host" as userinfo, not a scheme', () => {
     expect(extract('foo:bar@example.com')).to.equal('example.com');
     expect(extract('foo:bar@evil.com\\@good.com')).to.equal('evil.com'); // '\' as '/'
