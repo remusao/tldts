@@ -200,11 +200,8 @@ export default function extractHostname(
                   validate,
                 );
               }
-              // A '/', '\', '?' or '#' before the ':/' means it is not a scheme
-              // separator but part of a path, query or fragment
-              // ("example.com/r?u=https://x", "https:example.com/r?u=https://x"):
-              // handle the input on the cold path below, like any input without
-              // "scheme://".
+              // A '/', '\', '?' or '#' first puts this ':/' in a path, query or
+              // fragment ("a.com/r?u=https://x"): re-read the input without it.
               for (let j = i; j < indexOfProtocol; j += 1) {
                 const c = url.charCodeAt(j);
                 if (c === 47 || c === 92 || c === 63 || c === 35) {
