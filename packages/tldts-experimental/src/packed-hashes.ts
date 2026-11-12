@@ -55,7 +55,7 @@ function hashHostnameLabelsBackward(
   hostname: string,
   maximumNumberOfLabels: number,
 ): number {
-  let hash = 5381;
+  let hash = 0x811c9dc5;
   let index = 0;
 
   // Compute hash backward, label per label
@@ -72,8 +72,8 @@ function hashHostnameLabelsBackward(
       }
     }
 
-    // Update hash
-    hash = (hash * 33) ^ code;
+    // Update hash (FNV-1, as the builder's `fastHash`)
+    hash = Math.imul(hash, 0x01000193) ^ code;
   }
 
   // Let's not forget about last label
