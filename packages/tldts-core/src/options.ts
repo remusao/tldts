@@ -6,6 +6,11 @@ export interface IOptions {
   // `isSpecialUse` on `parse()`. Off by default so the common path stays
   // allocation-free with no extra work; enable it to populate the field.
   detectSpecialUse: boolean;
+  // Extra public suffix rules, in PSL syntax, per section (default: null)
+  extraSuffixes: {
+    icann?: readonly string[];
+    private?: readonly string[];
+  } | null;
   extractHostname: boolean;
   mixedInputs: boolean;
   validHosts: string[] | null;
@@ -17,6 +22,7 @@ function setDefaultsImpl({
   allowPrivateDomains = false,
   detectIp = true,
   detectSpecialUse = false,
+  extraSuffixes = null,
   extractHostname = true,
   mixedInputs = true,
   validHosts = null,
@@ -27,6 +33,7 @@ function setDefaultsImpl({
     allowPrivateDomains,
     detectIp,
     detectSpecialUse,
+    extraSuffixes,
     extractHostname,
     mixedInputs,
     validHosts,

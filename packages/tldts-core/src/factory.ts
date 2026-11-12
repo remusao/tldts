@@ -12,6 +12,7 @@ import extractHostname, {
 import isIp from './is-ip';
 import isSpecialUse from './is-special-use';
 import isValidHostname from './is-valid';
+import extraSuffixLookup from './lookup/extra-suffixes';
 import { IPublicSuffix, ISuffixLookupOptions } from './lookup/interface';
 import { IOptions, setDefaults } from './options';
 import getSubdomain from './subdomain';
@@ -91,7 +92,7 @@ export function parseImpl(
     _1: string,
     _2: ISuffixLookupOptions,
     _3: IPublicSuffix,
-  ) => void,
+  ) => unknown,
   partialOptions: Partial<IOptions> | undefined,
   result: IResult,
 ): IResult {
@@ -171,8 +172,11 @@ export function parseImpl(
     result.isSpecialUse = isSpecialUse(result.hostname);
   }
 
-  // Extract public suffix
-  suffixLookup(result.hostname, options, result);
+  // Extract public suffix (`isException`: the winner is an exception rule)
+  const isException = suffixLookup(result.hostname, options, result);
+  if (options.extraSuffixes !== null) {
+    extraSuffixLookup(result.hostname, options, isException === true, result);
+  }
   if (step === FLAG.PUBLIC_SUFFIX || result.publicSuffix === null) {
     return result;
   }

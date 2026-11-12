@@ -20,6 +20,10 @@ _probabilistic data-structure_. It is:
 
 The drawback is that there might be some _unlikely_ false positive (think bloom filters).
 
+Single-label rules (e.g. `uk`) are not stored, so with `extraSuffixes` a
+single-label extra rule equal to a built-in one reports the extra rule's
+section.
+
 For more details, check the documentation from the following files:
 
 - [building](https://github.com/remusao/tldts/blob/master/bin/builders/hashes.ts)
