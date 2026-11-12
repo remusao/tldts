@@ -116,6 +116,12 @@ parse('http://printer.local/', { detectSpecialUse: true });
 
 The list tracks the IANA [Special-Use Domain Names](https://www.iana.org/assignments/special-use-domain-names/) registry (RFC 6761 and the later RFCs that extend it).
 
+# Adding public suffixes
+
+To use suffixes the Public Suffix List does not include, pass the `extraSuffixes`
+option (rules in PSL syntax, per ICANN/private section). See
+[Adding public suffixes](packages/tldts/README.md#adding-public-suffixes).
+
 # Migrating from other libraries
 
 TL;DR—here is a quick overview of how to use `tldts` to match the default behavior of the `psl` library. Skip to after the tables for a more detailed explanation.

@@ -11,7 +11,10 @@ import { IOptions } from './options';
  * * hostname = 'not.evil.com' and vhost = 'evil.com'     => ok
  * * hostname = 'not.evil.com' and vhost = 'not.evil.com' => ok
  */
-function shareSameDomainSuffix(hostname: string, vhost: string): boolean {
+export function shareSameDomainSuffix(
+  hostname: string,
+  vhost: string,
+): boolean {
   if (hostname.endsWith(vhost)) {
     return (
       hostname.length === vhost.length ||

@@ -103,9 +103,9 @@ export default function suffixLookup(
   hostname: string,
   options: ISuffixLookupOptions,
   out: IPublicSuffix,
-): void {
+): boolean {
   if (fastPathLookup(hostname, options, out)) {
-    return;
+    return false;
   }
 
   const { allowIcannDomains, allowPrivateDomains } = options;
@@ -244,7 +244,7 @@ export default function suffixLookup(
   if (matchIndex === -1) {
     out.publicSuffix =
       numberOfHashes === 1 ? hostname : hostname.slice(BUFFER[1]);
-    return;
+    return false;
   }
 
   // If match is an exception, this means that we need to count less label.
@@ -252,7 +252,7 @@ export default function suffixLookup(
   // to locate the next dot and slice from there.
   if ((matchKind & Result.EXCEPTION_MATCH) !== 0) {
     out.publicSuffix = hostname.slice(BUFFER[((matchLabels - 2) << 1) + 1]);
-    return;
+    return true;
   }
 
   // If match is a wildcard, we need to match one more label. If wildcard rule
@@ -261,7 +261,7 @@ export default function suffixLookup(
   if ((matchKind & Result.WILDCARD_MATCH) !== 0) {
     if (matchLabels < numberOfHashes) {
       out.publicSuffix = hostname.slice(BUFFER[((matchLabels - 1) << 1) + 1]);
-      return;
+      return false;
     }
 
     // matchLabels >= numberOfHashes: the suffix may extend past the labels we
@@ -280,10 +280,11 @@ export default function suffixLookup(
       }
     }
     out.publicSuffix = hostname.slice(suffixStart);
-    return;
+    return false;
   }
 
   // if ((matchKind & Result.NORMAL_MATCH) !== 0)
   // For normal match, we just slice the hostname at the beginning of suffix.
   out.publicSuffix = hostname.slice(matchIndex);
+  return false;
 }

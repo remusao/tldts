@@ -102,8 +102,11 @@ your inputs.
   // If set to `false` we assume only URLs will be given as input, which
   // speed-ups processing.
   mixedInputs: boolean;
-  // Specifies extra valid suffixes (default: null)
+  // Hostnames to treat as registrable domains, e.g. ['localhost'] (default: null)
   validHosts: string[] | null;
+  // Extra public suffix rules, in PSL syntax, per section (default: null)
+  // See "Adding public suffixes" below.
+  extraSuffixes: { icann?: readonly string[]; private?: readonly string[] } | null;
 }
 ```
 
@@ -331,6 +334,24 @@ tldts.getSubdomain('vhost.localhost'); // returns null
 
 tldts.getDomain('localhost', { validHosts: ['localhost'] }); // returns 'localhost'
 tldts.getSubdomain('vhost.localhost', { validHosts: ['localhost'] }); // returns 'vhost'
+```
+
+## Adding public suffixes
+
+The Public Suffix List only accepts entries from domain owners. To use suffixes
+it does not list, pass `extraSuffixes` in PSL syntax (`foo.com`, `*.foo.com`,
+`!a.foo.com`), per section:
+
+```js
+const { getDomain, parse } = require('tldts');
+
+getDomain('foo.us.com'); // 'us.com' (us.com is a private PSL entry)
+getDomain('foo.us.com', { extraSuffixes: { icann: ['us.com'] } }); // 'foo.us.com'
+
+parse('a.b.cdn.example', {
+  allowPrivateDomains: true,
+  extraSuffixes: { private: ['*.cdn.example', '!www.cdn.example'] },
+}); // publicSuffix: 'b.cdn.example', domain: 'a.b.cdn.example', isPrivate: true
 ```
 
 ## Updating the TLDs List

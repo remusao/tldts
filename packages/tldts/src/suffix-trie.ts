@@ -174,9 +174,9 @@ export default function suffixLookup(
   hostname: string,
   options: ISuffixLookupOptions,
   out: IPublicSuffix,
-): void {
+): boolean {
   if (fastPathLookup(hostname, options, out)) {
-    return;
+    return false;
   }
 
   const allowedMask =
@@ -189,14 +189,14 @@ export default function suffixLookup(
     out.isIcann = (nodeFlags[matchNode]! & RULE_TYPE.ICANN) !== 0;
     out.isPrivate = (nodeFlags[matchNode]! & RULE_TYPE.PRIVATE) !== 0;
     out.publicSuffix = hostname.slice(matchEnd + 1);
-    return;
+    return true;
   }
 
   if (walk(hostname, rulesRoot, allowedMask)) {
     out.isIcann = (nodeFlags[matchNode]! & RULE_TYPE.ICANN) !== 0;
     out.isPrivate = (nodeFlags[matchNode]! & RULE_TYPE.PRIVATE) !== 0;
     out.publicSuffix = hostname.slice(matchStart);
-    return;
+    return false;
   }
 
   // No match: the prevailing '*' rule makes the right-most label the suffix.
@@ -204,4 +204,5 @@ export default function suffixLookup(
   out.isPrivate = false;
   const lastDot = hostname.lastIndexOf('.');
   out.publicSuffix = lastDot === -1 ? hostname : hostname.slice(lastDot + 1);
+  return false;
 }

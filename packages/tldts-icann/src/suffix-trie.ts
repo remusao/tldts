@@ -171,9 +171,9 @@ export default function suffixLookup(
   hostname: string,
   options: ISuffixLookupOptions,
   out: IPublicSuffix,
-): void {
+): boolean {
   if (fastPathLookup(hostname, options, out)) {
-    return;
+    return false;
   }
 
   // Exceptions have priority and strip their own left-most label (e.g. the
@@ -182,14 +182,14 @@ export default function suffixLookup(
     out.isIcann = true;
     out.isPrivate = false;
     out.publicSuffix = hostname.slice(matchEnd + 1);
-    return;
+    return true;
   }
 
   if (options.allowIcannDomains && walk(hostname, rulesRoot)) {
     out.isIcann = true;
     out.isPrivate = false;
     out.publicSuffix = hostname.slice(matchStart);
-    return;
+    return false;
   }
 
   // No match: the prevailing '*' rule makes the right-most label the suffix.
@@ -197,4 +197,5 @@ export default function suffixLookup(
   out.isPrivate = false;
   const lastDot = hostname.lastIndexOf('.');
   out.publicSuffix = lastDot === -1 ? hostname : hostname.slice(lastDot + 1);
+  return false;
 }

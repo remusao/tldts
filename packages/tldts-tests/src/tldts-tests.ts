@@ -57,6 +57,7 @@ interface Options {
   detectIp?: boolean;
   detectSpecialUse?: boolean;
   validHosts?: string[];
+  extraSuffixes?: { icann?: readonly string[]; private?: readonly string[] };
 }
 
 export default function test(
@@ -1584,6 +1585,108 @@ export default function test(
         tldts.parse('localhost', { detectSpecialUse: false }).isSpecialUse,
       ).to.equal(null);
       expect(tldts.parse('google.com').isSpecialUse).to.equal(null);
+    });
+  });
+
+  // Each case pins the exception bit returned by one built-in lookup outcome:
+  // flipping it changes the result.
+  describe('extraSuffixes', () => {
+    const parse = (url: string, icann: string[]) =>
+      tldts.parse(url, { extraSuffixes: { icann } });
+
+    it('extends a fast-path suffix', () => {
+      expect(parse('foo.us.com', ['us.com'])).to.include({
+        publicSuffix: 'us.com',
+        domain: 'foo.us.com',
+        isIcann: true,
+        isPrivate: false,
+      });
+    });
+
+    it('beats a built-in exception (!city.kobe.jp) only if longer', () => {
+      expect(parse('a.foo.city.kobe.jp', ['foo.city.kobe.jp'])).to.include({
+        publicSuffix: 'foo.city.kobe.jp',
+        domain: 'a.foo.city.kobe.jp',
+      });
+      // Same name as the exception (no agreed result): longest match.
+      expect(parse('city.kobe.jp', ['*.city.kobe.jp'])).to.include({
+        publicSuffix: 'kobe.jp',
+        domain: 'city.kobe.jp',
+      });
+      expect(parse('x.city.kobe.jp', ['*.city.kobe.jp'])).to.include({
+        publicSuffix: 'x.city.kobe.jp',
+        domain: null,
+      });
+    });
+
+    it('extends a built-in rule', () => {
+      expect(parse('a.b.co.uk', ['b.co.uk'])).to.include({
+        publicSuffix: 'b.co.uk',
+        domain: 'a.b.co.uk',
+      });
+    });
+
+    it('extends a built-in wildcard match (*.kobe.jp)', () => {
+      expect(parse('a.x.y.kobe.jp', ['x.y.kobe.jp'])).to.include({
+        publicSuffix: 'x.y.kobe.jp',
+        domain: 'a.x.y.kobe.jp',
+      });
+      // An extra exception beats the wildcard on its own expansion.
+      expect(parse('y.kobe.jp', ['!y.kobe.jp'])).to.include({
+        publicSuffix: 'kobe.jp',
+        domain: 'y.kobe.jp',
+        isIcann: true,
+      });
+    });
+
+    it('turns the implicit `*` fallback into an extra rule', () => {
+      expect(parse('foo.unknowntld', ['unknowntld'])).to.include({
+        publicSuffix: 'unknowntld',
+        isIcann: true,
+        isPrivate: false,
+      });
+    });
+
+    // Ties go to the built-in rule only if the lookup set its flags.
+    it('keeps the built-in rule on a tie', () => {
+      expect(
+        tldts.parse('x.co.uk', {
+          allowPrivateDomains: true,
+          extraSuffixes: { private: ['co.uk'] },
+        }),
+      ).to.include({ publicSuffix: 'co.uk', isIcann: true, isPrivate: false });
+    });
+
+    it('applies private rules only with allowPrivateDomains', () => {
+      const extraSuffixes = { private: ['*.cdn.example', '!www.cdn.example'] };
+      expect(
+        tldts.parse('a.b.cdn.example', {
+          allowPrivateDomains: true,
+          extraSuffixes,
+        }),
+      ).to.include({
+        publicSuffix: 'b.cdn.example',
+        isIcann: false,
+        isPrivate: true,
+      });
+      expect(
+        tldts.parse('a.www.cdn.example', {
+          allowPrivateDomains: true,
+          extraSuffixes,
+        }),
+      ).to.include({ publicSuffix: 'cdn.example', isPrivate: true });
+      expect(tldts.parse('a.b.cdn.example', { extraSuffixes })).to.include({
+        publicSuffix: 'example',
+        isPrivate: false,
+      });
+      // Built-in rules and exceptions (!city.kobe.jp) are gated too.
+      expect(
+        tldts.parse('city.kobe.jp', {
+          allowIcannDomains: false,
+          allowPrivateDomains: true,
+          extraSuffixes: { private: ['city.kobe.jp'] },
+        }),
+      ).to.include({ publicSuffix: 'city.kobe.jp', isPrivate: true });
     });
   });
 

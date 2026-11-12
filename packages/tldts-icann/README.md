@@ -80,8 +80,11 @@ your inputs.
   // If set to `false` we assume only URLs will be given as input, which
   // speed-ups processing.
   mixedInputs: boolean;
-  // Specifies extra valid suffixes (default: null)
+  // Hostnames to treat as registrable domains, e.g. ['localhost'] (default: null)
   validHosts: string[] | null;
+  // Extra public suffix rules, in PSL syntax, per section (default: null)
+  // See "Adding public suffixes" below.
+  extraSuffixes: { icann?: readonly string[]; private?: readonly string[] } | null;
 }
 ```
 
@@ -281,6 +284,21 @@ tldts.getSubdomain('vhost.localhost'); // returns null
 tldts.getDomain('localhost', { validHosts: ['localhost'] }); // returns 'localhost'
 tldts.getSubdomain('vhost.localhost', { validHosts: ['localhost'] }); // returns 'vhost'
 ```
+
+## Adding public suffixes
+
+Pass suffixes the Public Suffix List does not include with the `extraSuffixes`
+option, in PSL syntax:
+
+```js
+const { getDomain } = require('tldts-icann');
+
+getDomain('foo.us.com'); // 'us.com'
+getDomain('foo.us.com', { extraSuffixes: { icann: ['us.com'] } }); // 'foo.us.com'
+```
+
+See [Adding public suffixes](https://github.com/remusao/tldts/tree/master/packages/tldts#adding-public-suffixes)
+for the rule syntax and semantics.
 
 ## Updating the TLDs List
 
