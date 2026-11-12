@@ -7,7 +7,11 @@ export default function (
 ): boolean {
   // Fast path for very popular suffixes; this allows to by-pass lookup
   // completely as well as any extra allocation or string manipulation.
-  if (!options.allowPrivateDomains && hostname.length > 3) {
+  if (
+    !options.allowPrivateDomains &&
+    options.allowIcannDomains &&
+    hostname.length > 3
+  ) {
     const last: number = hostname.length - 1;
     const c3: number = hostname.charCodeAt(last);
     const c2: number = hostname.charCodeAt(last - 1);
