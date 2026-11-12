@@ -1371,31 +1371,40 @@ export default function test(
     };
 
     it('fallback to wildcard', () => {
-      expect(tldts.parse('https://foo.bar.badasdasdada')).to.deep.equal(
-        includePrivate
-          ? {
-              domain: 'bar.badasdasdada',
-              domainWithoutSuffix: 'bar',
-              hostname: 'foo.bar.badasdasdada',
-              isIcann: false,
-              isIp: false,
-              isPrivate: false,
-              isSpecialUse: null,
-              publicSuffix: 'badasdasdada',
-              subdomain: 'foo',
-            }
-          : {
-              domain: 'bar.badasdasdada',
-              domainWithoutSuffix: 'bar',
-              hostname: 'foo.bar.badasdasdada',
-              isIcann: null,
-              isIp: false,
-              isPrivate: null,
-              isSpecialUse: null,
-              publicSuffix: 'badasdasdada',
-              subdomain: 'foo',
-            },
-      );
+      expect(tldts.parse('https://foo.bar.badasdasdada')).to.deep.equal({
+        domain: 'bar.badasdasdada',
+        domainWithoutSuffix: 'bar',
+        hostname: 'foo.bar.badasdasdada',
+        isIcann: false,
+        isIp: false,
+        isPrivate: false,
+        isSpecialUse: null,
+        publicSuffix: 'badasdasdada',
+        subdomain: 'foo',
+      });
+    });
+
+    it('reports ICANN rules consistently across builds', () => {
+      expect(tldts.parse('example.co.uk')).to.include({
+        publicSuffix: 'co.uk',
+        isIcann: true,
+        isPrivate: false,
+      });
+      expect(
+        tldts.parse('example.co.uk', { allowIcannDomains: false }),
+      ).to.include({
+        publicSuffix: 'uk',
+        isIcann: false,
+        isPrivate: false,
+      });
+      // The exception `!city.kobe.jp` is an ICANN rule too.
+      expect(
+        tldts.parse('city.kobe.jp', { allowIcannDomains: false }),
+      ).to.include({
+        publicSuffix: 'jp',
+        isIcann: false,
+        isPrivate: false,
+      });
     });
 
     it('fallback to wildcard when ICANN domains are disabled', () => {
@@ -1407,8 +1416,8 @@ export default function test(
         expect(
           tldts.parse(hostname, { allowIcannDomains: false }),
         ).to.deep.include({
-          isIcann: includePrivate ? false : null,
-          isPrivate: includePrivate ? false : null,
+          isIcann: false,
+          isPrivate: false,
           publicSuffix,
         });
       }
@@ -1497,31 +1506,17 @@ export default function test(
     it('disable ip detection', () => {
       expect(
         tldts.parse('http://192.168.0.1/', { detectIp: false }),
-      ).to.deep.equal(
-        includePrivate
-          ? {
-              domain: '0.1',
-              domainWithoutSuffix: '0',
-              hostname: '192.168.0.1',
-              isIcann: false,
-              isIp: null,
-              isPrivate: false,
-              isSpecialUse: null,
-              publicSuffix: '1',
-              subdomain: '192.168',
-            }
-          : {
-              domain: '0.1',
-              domainWithoutSuffix: '0',
-              hostname: '192.168.0.1',
-              isIcann: null,
-              isIp: null,
-              isPrivate: null,
-              isSpecialUse: null,
-              publicSuffix: '1',
-              subdomain: '192.168',
-            },
-      );
+      ).to.deep.equal({
+        domain: '0.1',
+        domainWithoutSuffix: '0',
+        hostname: '192.168.0.1',
+        isIcann: false,
+        isIp: null,
+        isPrivate: false,
+        isSpecialUse: null,
+        publicSuffix: '1',
+        subdomain: '192.168',
+      });
     });
   });
 

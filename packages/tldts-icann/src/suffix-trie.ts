@@ -3,7 +3,7 @@
 // only fast when the typed arrays are module-scope monomorphic globals —
 // closing over them (a shared factory) measured ~20% slower. This ICANN build
 // specializes: every terminal node is an ICANN rule, so the mask is constant
-// and isIcann/isPrivate are never written. Keep the two in sync.
+// and a match is always ICANN. Keep the two in sync.
 import {
   fastPathLookup,
   IPublicSuffix,
@@ -178,17 +178,23 @@ export default function suffixLookup(
 
   // Exceptions have priority and strip their own left-most label (e.g. the
   // rule '!www.ck' makes the suffix of 'www.ck' be 'ck').
-  if (walk(hostname, exceptionsRoot)) {
+  if (options.allowIcannDomains && walk(hostname, exceptionsRoot)) {
+    out.isIcann = true;
+    out.isPrivate = false;
     out.publicSuffix = hostname.slice(matchEnd + 1);
     return;
   }
 
-  if (walk(hostname, rulesRoot)) {
+  if (options.allowIcannDomains && walk(hostname, rulesRoot)) {
+    out.isIcann = true;
+    out.isPrivate = false;
     out.publicSuffix = hostname.slice(matchStart);
     return;
   }
 
   // No match: the prevailing '*' rule makes the right-most label the suffix.
+  out.isIcann = false;
+  out.isPrivate = false;
   const lastDot = hostname.lastIndexOf('.');
   out.publicSuffix = lastDot === -1 ? hostname : hostname.slice(lastDot + 1);
 }
