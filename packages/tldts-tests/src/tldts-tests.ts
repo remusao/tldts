@@ -638,6 +638,25 @@ export default function test(
             'co.uk',
           );
         });
+
+        // `*.futurecms.at` matches `ex.futurecms.at`, although `ex` is also a
+        // label of the longer `*.ex.futurecms.at` rule.
+        it('should match a wildcard rule on a label shared with a longer rule', () => {
+          for (const hostname of [
+            'ex.futurecms.at',
+            'www.ex.futurecms.at',
+            'in.futurecms.at',
+            'mtls.run.app',
+            'oci.customer-oci.com',
+            'r.cloud.int.apple',
+            'ap-north-1.r.cloud.int.apple',
+          ]) {
+            expect(getPublicSuffix(hostname)).to.equal(hostname);
+          }
+          expect(
+            tldts.parse('ex.futurecms.at', { allowPrivateDomains: true }),
+          ).to.include({ domain: null, isIcann: false, isPrivate: true });
+        });
       });
     }
 
@@ -679,6 +698,11 @@ export default function test(
       it('should return co.uk if google.co.uk', () => {
         expect(getPublicSuffix('google.co.uk')).to.equal('co.uk');
       });
+
+      it('should ignore private wildcard rules', () => {
+        expect(getPublicSuffix('ex.futurecms.at')).to.equal('at');
+        expect(getPublicSuffix('www.ex.futurecms.at')).to.equal('at');
+      });
     });
 
     if (includePrivate) {
@@ -704,6 +728,15 @@ export default function test(
 
         it('should return co.uk if google.co.uk', () => {
           expect(getPublicSuffix('google.co.uk')).to.equal('uk');
+        });
+
+        it('should match a private wildcard rule on a shared label', () => {
+          expect(getPublicSuffix('ex.futurecms.at')).to.equal(
+            'ex.futurecms.at',
+          );
+          expect(getPublicSuffix('www.ex.futurecms.at')).to.equal(
+            'www.ex.futurecms.at',
+          );
         });
       });
     }
