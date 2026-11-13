@@ -273,6 +273,8 @@ const { hostname } = new URL(untrustedUrl);
 const domain = getDomain(hostname, { extractHostname: false });
 ```
 
+With `extractHostname: false`, trailing dots are still stripped (`example.com.` and `example.com` give the same domain), but the input is otherwise used as-is: no lowercasing, IDNA conversion or validation. Pass it a hostname already normalized by `new URL(...)`.
+
 ## Contributors
 
 `tldts` is based upon the excellent `tld.js` library and would not exist without

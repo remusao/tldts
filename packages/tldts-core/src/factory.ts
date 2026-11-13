@@ -120,7 +120,12 @@ export function parseImpl(
   // extractHostname returned `url` unchanged (same reference).
   let urlIsValid = false;
   if (!options.extractHostname) {
-    result.hostname = url;
+    // Trim trailing dots as extractHostname does (`new URL()` keeps them).
+    let end = url.length;
+    while (end > 1 && url.charCodeAt(end - 1) === 46 /* '.' */) {
+      end -= 1;
+    }
+    result.hostname = end === url.length ? url : url.slice(0, end);
   } else if (options.mixedInputs) {
     urlIsValid = isValidHostname(url);
     result.hostname = extractHostname(

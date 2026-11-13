@@ -61,9 +61,9 @@ export default function extraSuffixLookup(
         }
         continue;
       }
-      // `*.p` also matches `p`, else one more label (possibly empty: '.p').
-      if (wildcard && start !== 0) {
-        start = start === 1 ? 0 : hostname.lastIndexOf('.', start - 2) + 1;
+      // `*.p` also matches `p`, else one more non-empty label.
+      if (wildcard && start > 1 && hostname.charCodeAt(start - 2) !== 46) {
+        start = hostname.lastIndexOf('.', start - 2) + 1;
       }
       if (start < rule) {
         rule = start;
