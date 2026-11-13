@@ -1,3 +1,16 @@
+# v7.5.1 (Fri Nov 13 2026)
+
+#### :bug: Bug Fix
+
+- `tldts-core`, `tldts-experimental`, `tldts-icann`, `tldts-tests`, `tldts`
+  - Fix public suffix boundary for trailing dots and empty wildcard labels [#2759](https://github.com/remusao/tldts/pull/2759) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.5.0 (Thu Nov 12 2026)
 
 #### :rocket: New Feature
