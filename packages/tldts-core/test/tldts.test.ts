@@ -30,6 +30,28 @@ describe('#isIp', () => {
     expect(isIp('[2001:0db8:85a3:0000:0000:8a2e:0370:7334]')).to.equal(true);
   });
 
+  it('should return true on ipv6 addresses ending with an ipv4 address', () => {
+    // RFC 4291 §2.2 (form 3): x:x:x:x:x:x:d.d.d.d
+    expect(isIp('::ffff:1.2.3.4')).to.equal(true);
+    expect(isIp('[::ffff:192.168.0.1]')).to.equal(true);
+    expect(isIp('::1.2.3.4')).to.equal(true);
+    expect(isIp('64:ff9b::192.0.2.33')).to.equal(true);
+    expect(isIp('ffff:ffff:ffff:ffff:ffff:ffff:255.255.255.255')).to.equal(
+      true,
+    );
+  });
+
+  it('should return false on ipv6 addresses with a malformed ipv4 part', () => {
+    expect(isIp('::ffff:1.2.3')).to.equal(false);
+    expect(isIp('::ffff:1.2.3.4.5')).to.equal(false);
+    expect(isIp('::ffff:1.2.3.')).to.equal(false);
+    expect(isIp('::ffff:.1.2.3')).to.equal(false);
+    expect(isIp('::ffff:1.2.3.a')).to.equal(false);
+    expect(isIp('::1.2.3.4:5')).to.equal(false);
+    expect(isIp('1.2.3.4::')).to.equal(false);
+    expect(isIp(`::${repeat('0', 40)}:1.2.3.4`)).to.equal(false);
+  });
+
   it('should return false on invalid ip addresses', () => {
     expect(isIp('::1-')).to.equal(false);
     expect(isIp('192.168.0.1.')).to.equal(false);
