@@ -139,8 +139,20 @@ export function parseImpl(
 
   // Check if `hostname` is a valid ip address
   if (options.detectIp && result.hostname !== null) {
-    result.isIp = isIp(result.hostname);
+    const isIpAddress = isIp(result.hostname);
+    result.isIp = isIpAddress === true;
     if (result.isIp) {
+      return result;
+    }
+
+    // `null`: the host ends in a number, as an IPv4 address, without being
+    // one. It is not a valid host then, and never a domain name.
+    if (
+      isIpAddress === null &&
+      options.validateHostname &&
+      options.extractHostname
+    ) {
+      result.hostname = null;
       return result;
     }
   }

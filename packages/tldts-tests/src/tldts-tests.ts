@@ -1527,6 +1527,29 @@ export default function test(
       });
     });
 
+    it('detects every IPv4 notation browsers resolve (no normalisation)', () => {
+      for (const ip of ['127.1', '0x7f.0.0.1', '2130706433', '0177.0.0.1']) {
+        expect(tldts.parse(`http://${ip}/`), ip).to.deep.equal(
+          mockResponse(ip),
+        );
+        expect(tldts.parse(ip), ip).to.deep.equal(mockResponse(ip));
+        expect(tldts.getDomain(ip), ip).to.equal(null);
+      }
+    });
+
+    it('never reads a host ending in a number as a domain', () => {
+      // Browsers reject these: neither a valid IPv4 address nor a domain.
+      for (const host of ['1.2.3.4.5', '999.999.999.999', 'example.123']) {
+        const result = tldts.parse(`http://${host}/`);
+        expect(result.hostname, host).to.equal(null);
+        expect(result.domain, host).to.equal(null);
+        expect(tldts.getDomain(host), host).to.equal(null);
+      }
+      // A digit in the last label is not enough.
+      expect(tldts.getDomain('example.3com')).to.equal('example.3com');
+      expect(tldts.getDomain('1.2.3.4a')).to.equal('3.4a');
+    });
+
     it('accepts `null` options', () => {
       const options = null as unknown as undefined;
       expect(tldts.parse('www.example.com', options)).to.deep.equal(
@@ -1879,6 +1902,7 @@ export default function test(
         'http://!"$&\'()*+,-.;=_`{}~/', // punctuation host: WHATWG allows, tldts shallow-validation rejects
         'wss://!"$&\'()*+,-.;=_`{}~/', // idem
         'https://a%C2%ADb/', // WHATWG percent-decodes + IDNA-maps the soft hyphen; tldts does neither
+        'http://foo.09..', // tldts strips every trailing dot, leaving a host ending in a number that is not an IPv4
       ]);
 
       for (const entry of WHATWG_URL_TEST_DATA) {
