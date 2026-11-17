@@ -452,8 +452,13 @@ export default function extractHostname(
     }
 
     if (url.charCodeAt(start) === 91 /* '[' */) {
-      // ipv6 address: return what is between the brackets, or null if unclosed.
-      if (indexOfClosingBracket !== -1) {
+      // ipv6 address: return what is between the brackets, or null if they are
+      // unclosed or followed by anything but a port ("[::1]x").
+      if (
+        indexOfClosingBracket > start &&
+        (indexOfClosingBracket + 1 === end ||
+          url.charCodeAt(indexOfClosingBracket + 1) === 58) /* ':' */
+      ) {
         return url.slice(start + 1, indexOfClosingBracket).toLowerCase();
       }
       return null;
