@@ -8,7 +8,7 @@
       "path": "./packages/tldts-core/tsconfig.json"
     },
     {
-      "path": "./packages/tldts/tsconfig.json"
+      "path": "./packages/tldts-icann/tsconfig.json"
     },
     {
       "path": "./packages/tldts-experimental/tsconfig.json"
