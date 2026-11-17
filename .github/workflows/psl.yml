@@ -5,6 +5,10 @@ on:
   schedule:
     - cron: '0 20 * * *'
 
+# The pull request is created with CREATE_PULL_REQUEST_TOKEN, not GITHUB_TOKEN.
+permissions:
+  contents: read
+
 jobs:
   assets:
     name: Update local assets

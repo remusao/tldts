@@ -2,6 +2,9 @@ name: Tests
 
 on: [pull_request]
 
+permissions:
+  contents: read
+
 jobs:
   test:
     name: Test on node ${{ matrix.node }} and ${{ matrix.os }}
