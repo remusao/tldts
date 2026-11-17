@@ -265,6 +265,10 @@ describe('#extractHostname', () => {
     // The number is the host, as in browsers (1.2.3.4), never good.com.
     expect(extract('http:16909060\\@good.com')).to.equal('16909060');
     expect(extract('http:8080')).to.equal('8080');
+    // An empty port followed by a path is not a "scheme:/".
+    expect(extract('http:example.com:/path')).to.equal('example.com');
+    expect(extract('http:user@example.com:/path')).to.equal('example.com');
+    expect(extract('file:example.com:/path')).to.equal(null); // no "//"
     expect(extract('evil.com:8080\\@good.com')).to.equal('evil.com');
     expect(extract('evil.com\\@good.com')).to.equal('evil.com');
   });
