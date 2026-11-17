@@ -493,7 +493,8 @@ export default function extractHostname(
         (indexOfClosingBracket + 1 === end ||
           charCodeAt.call(url, indexOfClosingBracket + 1) === 58) /* ':' */
       ) {
-        return url.slice(start + 1, indexOfClosingBracket).toLowerCase();
+        const address = url.slice(start + 1, indexOfClosingBracket);
+        return hasUpper ? address.toLowerCase() : address;
       }
       return null;
     } else if (
