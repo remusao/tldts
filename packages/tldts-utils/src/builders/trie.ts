@@ -29,6 +29,14 @@ interface ITrie {
 }
 
 /**
+ * `children` has no prototype: a label can be any string, including the name
+ * of an `Object.prototype` property ("constructor").
+ */
+function createNode(): ITrie {
+  return { flag: 0, children: Object.create(null) as Record<string, ITrie> };
+}
+
+/**
  * Insert a public suffix rule (its labels, already reversed) into the `trie`.
  */
 function insertInTrie(
@@ -39,7 +47,7 @@ function insertInTrie(
   for (const part of parts) {
     let next = node.children[part];
     if (next === undefined) {
-      next = { flag: 0, children: {} };
+      next = createNode();
       node.children[part] = next;
     }
     node = next;
@@ -113,8 +121,8 @@ export default (
   body: string,
   { includePrivate }: { includePrivate: boolean },
 ): string => {
-  const rules: ITrie = { flag: 0, children: {} };
-  const exceptions: ITrie = { flag: 0, children: {} };
+  const rules = createNode();
+  const exceptions = createNode();
 
   parse(body, ({ rule, isIcann, isException }) => {
     if (isIcann || includePrivate) {
