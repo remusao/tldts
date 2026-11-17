@@ -103,44 +103,78 @@ function isDottedDecimal(hostname: string, i: number, end: number): boolean {
 }
 
 /**
- * Check if `hostname` is probably an IPv6 address.
+ * Check if `hostname` is an IPv6 address, with or without its brackets: eight
+ * groups of one to four hexadecimal digits separated by colons, where a `::`
+ * may stand once for one or more missing groups, and a dotted-decimal IPv4
+ * address may stand for the last two.
+ * https://url.spec.whatwg.org/#concept-ipv6-parser
  */
-function isProbablyIpv6(hostname: string): boolean {
-  if (hostname.length < 3) {
-    return hostname === '::';
-  }
-
-  let start = hostname.startsWith('[') ? 1 : 0;
+function isIpv6(hostname: string): boolean {
+  let i = 0;
   let end = hostname.length;
 
-  if (hostname[end - 1] === ']') {
+  if (hostname.charCodeAt(0) === 91 /* '[' */) {
+    if (hostname.charCodeAt(end - 1) !== 93 /* ']' */) {
+      return false;
+    }
+    i = 1;
     end -= 1;
   }
 
-  // We only consider the maximum size of a normal IPV6. Note that this will
-  // fail on so-called "IPv4 mapped IPv6 addresses" but this is a corner-case
-  // and a proper validation library should be used for these.
-  if (end - start > 39) {
-    return false;
-  }
-
-  let hasColon = false;
-
-  for (; start < end; start += 1) {
-    const code = hostname.charCodeAt(start);
-
-    if (code === 58 /* ':' */) {
-      hasColon = true;
-    } else if (!(
-      (code >= 48 && code <= 57) || // 0-9
-      (code >= 97 && code <= 102) || // a-f
-      (code >= 65 && code <= 70) // A-F (RFC 4291 §2.2: an IPv6 hextet is hex digits only)
-    )) {
+  // An address only starts with a ':' if it starts with "::".
+  if (i < end && hostname.charCodeAt(i) === 58 /* ':' */) {
+    if (i + 1 === end || hostname.charCodeAt(i + 1) !== 58 /* ':' */) {
       return false;
     }
+    i += 1;
   }
 
-  return hasColon;
+  let groups = 0;
+  let compressed = false; // "::" was seen, and counted as one group
+
+  // Here `i` is where a group starts: a ':' can only be the second of a "::".
+  while (i < end && groups < 8) {
+    if (hostname.charCodeAt(i) === 58 /* ':' */) {
+      if (compressed) {
+        return false;
+      }
+      compressed = true;
+      groups += 1;
+      i += 1;
+      continue;
+    }
+
+    const start = i;
+    while (
+      i < end &&
+      i - start < 4 &&
+      hexValue(hostname.charCodeAt(i)) !== 16
+    ) {
+      i += 1;
+    }
+    if (i === start) {
+      return false;
+    }
+    if (i === end) {
+      return compressed || groups === 7;
+    }
+
+    if (hostname.charCodeAt(i) === 46 /* '.' */) {
+      return (
+        (compressed ? groups <= 6 : groups === 6) &&
+        isDottedDecimal(hostname, start, end)
+      );
+    }
+
+    // Anything else is a ':' followed by another group, or by a ':'.
+    if (hostname.charCodeAt(i) !== 58 /* ':' */ || i + 1 === end) {
+      return false;
+    }
+    groups += 1;
+    i += 1;
+  }
+
+  return compressed && i === end;
 }
 
 /**
@@ -171,13 +205,14 @@ export default function isIp(hostname: string): boolean | null {
   // An IPv6 address ends with a group, which follows a ':', with "::" or
   // with a ']'. Its last label is not a number then.
   if (code === 58 /* ':' */ || code === 93 /* ']' */) {
-    return isProbablyIpv6(hostname);
+    return isIpv6(hostname);
   }
 
   // An IPv4 address ends with a number: a last label only made of decimal
   // digits, or of "0x" followed by hexadecimal digits. Four decimal numbers
   // being the usual way to write an IPv4 address, and the fastest to check,
-  // they are tried first.
+  // they are tried first. An IPv6 address ending with an IPv4 one ends with a
+  // number too.
   // https://url.spec.whatwg.org/#ends-in-a-number-checker
   if (
     (i === decimal && i !== last && (code === 46 /* '.' */ || i === -1)) ||
@@ -185,7 +220,9 @@ export default function isIp(hostname: string): boolean | null {
       hostname.charCodeAt(i - 1) === 48 /* '0' */ &&
       (i === 1 || hostname.charCodeAt(i - 2) === 46)) /* '.' */
   ) {
-    return isDottedDecimal(hostname, 0, hostname.length) || isIpv4(hostname)
+    return isDottedDecimal(hostname, 0, hostname.length) ||
+      isIpv4(hostname) ||
+      isIpv6(hostname)
       ? true
       : null;
   }

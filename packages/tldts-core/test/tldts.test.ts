@@ -34,7 +34,7 @@ describe('#isIp', () => {
     expect(isIp('::1-')).to.equal(false);
     expect(isIp('192.168.0.1.')).to.equal(false);
     expect(isIp('192.168.0.')).to.equal(false);
-    // Too long for IPv6 (length > 39)
+    // Too many groups for IPv6
     expect(isIp('2001:0db8:85a3:0000:0000:8a2e:0370:7334:1234')).to.equal(
       false,
     );
@@ -53,6 +53,29 @@ describe('#isIp', () => {
       '1.2.65535',
     ]) {
       expect(isIp(ip), ip).to.equal(true);
+    }
+  });
+
+  it('accepts IPv6 ending with an IPv4 address', () => {
+    for (const ip of [
+      '::ffff:127.0.0.1',
+      '[::ffff:1.2.3.4]',
+      '0000:0000:0000:0000:0000:ffff:255.255.255.255',
+    ]) {
+      expect(isIp(ip), ip).to.equal(true);
+    }
+  });
+
+  it('rejects malformed IPv6', () => {
+    for (const ip of [
+      ':::::::::', // too many groups
+      'a:b:c', // too few
+      '12345::', // too many digits
+      '1::2::3', // two "::"
+      '::ffff:256.2.3.4', // invalid IPv4
+      '[::1', // unclosed
+    ]) {
+      expect(isIp(ip), ip).to.not.equal(true);
     }
   });
 
@@ -108,6 +131,13 @@ describe('#isIp', () => {
       const ipv4 = generate('0123456789.....xXaAfF78');
       if (!ipv4.endsWith('.')) {
         expect(isIp(ipv4), ipv4).to.equal(whatwg(ipv4));
+      }
+
+      const ipv6 = generate('0123456789abcdefAF::::::...');
+      const isIpv6 = whatwg(`[${ipv6}]`) === true;
+      expect(isIp(`[${ipv6}]`) === true, ipv6).to.equal(isIpv6);
+      if (ipv6.includes(':')) {
+        expect(isIp(ipv6) === true, ipv6).to.equal(isIpv6); // optional brackets
       }
     }
   });

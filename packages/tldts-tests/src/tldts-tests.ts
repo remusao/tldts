@@ -1527,6 +1527,26 @@ export default function test(
       });
     });
 
+    it('detects IPv6 addresses ending with an IPv4 address', () => {
+      expect(tldts.parse('http://[::ffff:127.0.0.1]:80/')).to.deep.equal(
+        mockResponse('::ffff:127.0.0.1'),
+      );
+      expect(tldts.parse('::ffff:1.2.3.4')).to.deep.equal(
+        mockResponse('::ffff:1.2.3.4'),
+      );
+    });
+
+    it('rejects malformed addresses', () => {
+      for (const url of [
+        'http://:80/',
+        'http://1234:80:90/',
+        'http://[:::::::::]/',
+        'a:b:c',
+      ]) {
+        expect(tldts.getHostname(url), url).to.equal(null);
+      }
+    });
+
     it('detects every IPv4 notation browsers resolve (no normalisation)', () => {
       for (const ip of ['127.1', '0x7f.0.0.1', '2130706433', '0177.0.0.1']) {
         expect(tldts.parse(`http://${ip}/`), ip).to.deep.equal(
