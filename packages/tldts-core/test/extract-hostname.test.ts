@@ -262,8 +262,9 @@ describe('#extractHostname', () => {
     expect(extract('https:example.com')).to.equal('example.com'); // length 5
     // Without "://" too, '\' ends the host like '/' (no userinfo smuggling).
     expect(extract('HTTP:@evil.com\\@good.com')).to.equal('evil.com');
-    // Decided "scheme:port" leniency (browsers go to 1.2.3.4), never good.com.
-    expect(extract('http:16909060\\@good.com')).to.equal('http');
+    // The number is the host, as in browsers (1.2.3.4), never good.com.
+    expect(extract('http:16909060\\@good.com')).to.equal('16909060');
+    expect(extract('http:8080')).to.equal('8080');
     expect(extract('evil.com:8080\\@good.com')).to.equal('evil.com');
     expect(extract('evil.com\\@good.com')).to.equal('evil.com');
   });
