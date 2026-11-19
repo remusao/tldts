@@ -1,3 +1,23 @@
+# v7.5.5 (Thu Nov 19 2026)
+
+#### :scroll: Update Public Suffix List
+
+- `tldts-experimental`, `tldts`
+  - Update upstream public suffix list [#2765](https://github.com/remusao/tldts/pull/2765) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump prettier from 3.9.10 to 3.10.1 [#2766](https://github.com/remusao/tldts/pull/2766) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump eslint from 10.14.0 to 10.15.0 [#2768](https://github.com/remusao/tldts/pull/2768) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 4.68.2 to 4.68.3 [#2769](https://github.com/remusao/tldts/pull/2769) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.5.4 (Sun Nov 15 2026)
 
 #### :scroll: Update Public Suffix List
