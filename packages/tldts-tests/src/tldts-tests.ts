@@ -103,6 +103,38 @@ export default function test(
     });
   });
 
+  describe('IPv6 address ending with an IPv4 address', () => {
+    const cases: [string, string][] = [
+      ['::ffff:1.2.3.4', '::ffff:1.2.3.4'],
+      ['[::ffff:1.2.3.4]', '::ffff:1.2.3.4'],
+      ['http://[::ffff:1.2.3.4]/', '::ffff:1.2.3.4'],
+      ['https://[::FFFF:192.168.0.1]:8080/path', '::ffff:192.168.0.1'],
+      ['//[64:ff9b::192.0.2.33]/', '64:ff9b::192.0.2.33'],
+    ];
+    for (const [input, hostname] of cases) {
+      it(`should recognize ${input}`, () => {
+        expect(tldts.getHostname(input)).to.equal(hostname);
+        expect(tldts.parse(input)).to.deep.include({
+          hostname,
+          isIp: true,
+          domain: null,
+          publicSuffix: null,
+        });
+      });
+    }
+
+    it('should recognize the address without hostname extraction', () => {
+      expect(
+        tldts.parse('::ffff:1.2.3.4', { extractHostname: false }),
+      ).to.deep.include({
+        hostname: '::ffff:1.2.3.4',
+        isIp: true,
+        domain: null,
+        publicSuffix: null,
+      });
+    });
+  });
+
   describe('from https://github.com/rushmorem/publicsuffix/blob/master/src/tests.rs', () => {
     // Copyright (c) 2016 Rushmore Mushambi
     it('should allow parsing IDN email addresses', () => {

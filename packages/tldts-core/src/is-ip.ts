@@ -47,20 +47,30 @@ function isProbablyIpv6(hostname: string): boolean {
     end -= 1;
   }
 
-  // We only consider the maximum size of a normal IPV6. Note that this will
-  // fail on so-called "IPv4 mapped IPv6 addresses" but this is a corner-case
-  // and a proper validation library should be used for these.
-  if (end - start > 39) {
+  // 45 is the longest IPv6 address that ends with an IPv4 address
+  // ("ffff:ffff:ffff:ffff:ffff:ffff:255.255.255.255"). Without the IPv4 part
+  // the limit is 39, checked below.
+  if (end - start > 45) {
     return false;
   }
 
   let hasColon = false;
+  let hasDot = false;
+  let lastColon = -1;
+  const length = end - start;
 
   for (; start < end; start += 1) {
     const code = hostname.charCodeAt(start);
 
     if (code === 58 /* ':' */) {
+      // A ':' can not follow the IPv4 part
+      if (hasDot) {
+        return false;
+      }
       hasColon = true;
+      lastColon = start;
+    } else if (code === 46 /* '.' */) {
+      hasDot = true;
     } else if (!(
       (code >= 48 && code <= 57) || // 0-9
       (code >= 97 && code <= 102) || // a-f
@@ -70,7 +80,17 @@ function isProbablyIpv6(hostname: string): boolean {
     }
   }
 
-  return hasColon;
+  if (!hasColon) {
+    return false;
+  }
+
+  if (!hasDot) {
+    return length <= 39;
+  }
+
+  // RFC 4291 §2.2 (form 3): "x:x:x:x:x:x:d.d.d.d", the part after the last ':'
+  // has to be an IPv4 address.
+  return isProbablyIpv4(hostname.slice(lastColon + 1, end));
 }
 
 /**
