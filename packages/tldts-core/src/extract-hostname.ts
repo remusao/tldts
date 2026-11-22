@@ -272,7 +272,9 @@ export default function extractHostname(
           if (!hasIdentifier) {
             // All-digits after ':' => a bare "host:port" (tldts accepts
             // hostnames too); keep `start` and let the port handling trim it.
-            let allDigits = true;
+            // Not after a special scheme though: "http:8080" is a URL.
+            const special = getSpecialScheme(url, start, indexOfColon);
+            let allDigits = special === 0;
             let i = indexOfColon + 1;
             for (; i < end; i += 1) {
               const code = url.charCodeAt(i);
@@ -289,7 +291,6 @@ export default function extractHostname(
             }
 
             if (!allDigits) {
-              const special = getSpecialScheme(url, start, indexOfColon);
               if (special === 0) {
                 // No "scheme://" on the cold path and not a special scheme.
                 // A second ':' before the host's end marks a bare, unbracketed

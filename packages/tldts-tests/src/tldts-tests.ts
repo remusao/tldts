@@ -1918,8 +1918,10 @@ export default function test(
         ]) {
           expect(tldts.getHostname(url), url).to.equal('evil.com');
         }
-        // Never the smuggled host (lenient "scheme:port" => the scheme word).
-        expect(tldts.getHostname('http:16909060\\@good.com')).to.equal('http');
+        // Never the smuggled host (the number is the host, as in browsers).
+        expect(tldts.getHostname('http:16909060\\@good.com')).to.equal(
+          '16909060',
+        );
       });
 
       it('parses a special scheme written without "//"', () => {
