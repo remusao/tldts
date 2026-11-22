@@ -202,6 +202,14 @@ export default function extractHostname(
               }
               // A '/', '\', '?' or '#' first puts this ':/' in a path, query or
               // fragment ("a.com/r?u=https://x"): re-read the input without it.
+              // Same when a slash-less special scheme comes first: this ':/' is
+              // then an empty port followed by a path ("http:a.com:/x").
+              if (
+                code === 58 /* ':' */ &&
+                getSpecialScheme(url, start, i) === 1
+              ) {
+                indexOfProtocol = -1;
+              }
               for (let j = i; j < indexOfProtocol; j += 1) {
                 const c = url.charCodeAt(j);
                 if (c === 47 || c === 92 || c === 63 || c === 35) {
