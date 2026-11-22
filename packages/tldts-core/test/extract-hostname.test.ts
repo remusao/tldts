@@ -177,8 +177,8 @@ describe('#extractHostname', () => {
 
   it('ignores everything after the first path, query or fragment delimiter', () => {
     // Inputs reaching the fallback get master's answer for the same prefix, so
-    // known divergences (e.g. "http:2130706433" -> "http"; browsers:
-    // 127.0.0.1) are not widened.
+    // known divergences (e.g. "localhost:3000" -> "localhost"; browsers: no
+    // host) are not widened.
     for (const prefix of [
       'example.com',
       'example.com:8080',
@@ -265,8 +265,12 @@ describe('#extractHostname', () => {
     expect(extract('https:example.com')).to.equal('example.com'); // length 5
     // Without "://" too, '\' ends the host like '/' (no userinfo smuggling).
     expect(extract('HTTP:@evil.com\\@good.com')).to.equal('evil.com');
-    // Decided "scheme:port" leniency (browsers go to 1.2.3.4), never good.com.
-    expect(extract('http:16909060\\@good.com')).to.equal('http');
+    // The number is the host, as in browsers (1.2.3.4), never good.com.
+    expect(extract('http:16909060\\@good.com')).to.equal('16909060');
+    expect(extract('http:8080')).to.equal('8080');
+    expect(extract('WSS:443/x')).to.equal('443'); // any special scheme, any case
+    expect(extract('tel:5551234')).to.equal('tel'); // not special: host:port
+    expect(extract('file:8080')).to.equal(null); // no "//", no host
     expect(extract('evil.com:8080\\@good.com')).to.equal('evil.com');
     expect(extract('evil.com\\@good.com')).to.equal('evil.com');
   });
