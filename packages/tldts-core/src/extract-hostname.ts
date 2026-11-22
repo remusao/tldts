@@ -347,8 +347,8 @@ export default function extractHostname(
     }
 
     // Find the host's end: first '/', '?' or '#' (and '\' for special URLs,
-    // which WHATWG treats like '/'). Track the last '@', ']' and ':' for
-    // userinfo, ipv6 and port, plus the first ':' of the host (reset at each
+    // which WHATWG treats like '/'). Track the last '@' and ':' for userinfo
+    // and port, plus the first ':' of the host (reset at each
     // '@') to tell a bare IPv6 (>= 2 colons) from a host:port (exactly one);
     // flag uppercase and a stray tab/newline. The loop is split on `code < 64`
     // so common host characters take fewer comparisons.
@@ -359,7 +359,6 @@ export default function extractHostname(
     // brackets, control or trailing dot); those cases clear it / are rejected by
     // the guard below, falling back to `isValidHostname`.
     let indexOfIdentifier = -1;
-    let indexOfClosingBracket = -1;
     let indexOfPort = -1;
     let indexOfFirstColon = -1;
     let hasControl = false;
@@ -420,8 +419,6 @@ export default function extractHostname(
       } else if (code === 64 /* '@' */) {
         indexOfIdentifier = i;
         indexOfFirstColon = -1; // colons before '@' are userinfo, not the host
-      } else if (code === 93 /* ']' */) {
-        indexOfClosingBracket = i;
       } else if (code >= 65 && code <= 90) {
         hasUpper = true;
       } else if (validate && !(/*@__INLINE__*/ isValidHostnameChar(code))) {
@@ -452,9 +449,16 @@ export default function extractHostname(
     }
 
     if (url.charCodeAt(start) === 91 /* '[' */) {
-      // ipv6 address: return what is between the brackets, or null if unclosed.
-      if (indexOfClosingBracket !== -1) {
-        return url.slice(start + 1, indexOfClosingBracket).toLowerCase();
+      // ipv6 address: return what is between the brackets, or null if they are
+      // unclosed or followed by anything but a port ("[::1]x").
+      const closingBracket = url.indexOf(']', start);
+      if (
+        closingBracket !== -1 &&
+        closingBracket < end &&
+        (closingBracket + 1 === end ||
+          url.charCodeAt(closingBracket + 1) === 58) /* ':' */
+      ) {
+        return url.slice(start + 1, closingBracket).toLowerCase();
       }
       return null;
     } else if (
@@ -491,7 +495,6 @@ export default function extractHostname(
       vValid &&
       indexOfIdentifier === -1 &&
       indexOfPort === -1 &&
-      indexOfClosingBracket === -1 &&
       url.charCodeAt(end - 1) !== 46 /* no trailing dot */ &&
       end - start <= 255 && // total length
       end - vLastDot - 1 <= 63 && // last label length
