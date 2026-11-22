@@ -74,6 +74,17 @@ describe('#buildTrie', () => {
     expect(flagOf('*.a\nd.c.b.a', ['a', 'b', 'c'])).to.equal(0);
   });
 
+  it('keeps labels named after `Object.prototype` properties', () => {
+    for (const label of ['constructor', '__proto__']) {
+      expect(flagOf(`${label}.example`, ['example', label]), label).to.equal(1);
+      expect(flagOf(`a.${label}`, [label, 'a']), label).to.equal(1);
+      // The exceptions trie too.
+      expect(() =>
+        buildTrie(`!a.${label}`, { includePrivate: true }),
+      ).to.not.throw();
+    }
+  });
+
   // Unsupported: a node holds one rule type, so its own rule, its exception,
   // `*.x` on itself (`x` implied) and `*.p` on its parent must agree; and an
   // exception `!x` under `*.x` (Chromium lets `*.x` win below `x`). Otherwise a
