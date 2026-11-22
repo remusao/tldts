@@ -43,8 +43,9 @@ function setDefaultsImpl({
 
 const DEFAULT_OPTIONS = /*@__INLINE__*/ setDefaultsImpl({});
 
-export function setDefaults(options?: Partial<IOptions>): IOptions {
-  if (options === undefined) {
+export function setDefaults(options?: Partial<IOptions> | null): IOptions {
+  // `null` as well: untyped callers pass it to mean "no options".
+  if (options === undefined || options === null) {
     return DEFAULT_OPTIONS;
   }
 
