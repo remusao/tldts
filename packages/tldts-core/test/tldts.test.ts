@@ -33,15 +33,85 @@ describe('#isIp', () => {
   it('should return false on invalid ip addresses', () => {
     expect(isIp('::1-')).to.equal(false);
     expect(isIp('192.168.0.1.')).to.equal(false);
-    expect(isIp('192.168.0')).to.equal(false);
     expect(isIp('192.168.0.')).to.equal(false);
-    expect(isIp('192.16-8.0.1')).to.equal(false);
-    // Too long for IPv4 (length > 15)
-    expect(isIp('255.255.255.2555')).to.equal(false);
     // Too long for IPv6 (length > 39)
     expect(isIp('2001:0db8:85a3:0000:0000:8a2e:0370:7334:1234')).to.equal(
       false,
     );
+  });
+
+  it('accepts every IPv4 notation browsers do', () => {
+    for (const ip of [
+      '127.1', // 127.0.0.1
+      '192.168.0', // 192.168.0.0
+      '2130706433', // 127.0.0.1
+      '0x7f.0.0.1',
+      '0X7F.1',
+      '0177.0.0.1', // octal
+      '0x', // 0.0.0.0
+      '4294967295',
+      '1.2.65535',
+    ]) {
+      expect(isIp(ip), ip).to.equal(true);
+    }
+  });
+
+  // Browsers read a host ending in a number as an IPv4 address and nothing
+  // else: when it is not a valid one, it is no valid host either.
+  it('returns null for a host ending in a number which is not an IPv4', () => {
+    for (const hostname of [
+      '999.999.999.999',
+      '1.2.65536',
+      '4294967296',
+      '1...234',
+      '1.2.3.4.5',
+      '08.1.1.1', // not octal
+      '192.16-8.0.1',
+      '255.255.255.2555',
+      'example.123',
+      'example.0x1f',
+      'example.0x',
+    ]) {
+      expect(isIp(hostname), hostname).to.equal(null);
+    }
+
+    // The last label is not a number: a domain name.
+    for (const hostname of ['1.2.3.4a', 'example.3com', 'a.0xg', 'a.1f']) {
+      expect(isIp(hostname), hostname).to.equal(false);
+    }
+  });
+
+  // Deterministic fuzzing against Node's WHATWG URL parser.
+  it('agrees with `new URL` on random address-like hosts', () => {
+    let seed = 0x9e3779b9;
+    const random = (n: number): number => {
+      seed ^= seed << 13;
+      seed ^= seed >>> 17;
+      seed ^= seed << 5;
+      return (seed >>> 0) % n;
+    };
+    const generate = (alphabet: string): string => {
+      let host = '';
+      for (let length = 1 + random(12); length > 0; length -= 1) {
+        host += alphabet.charAt(random(alphabet.length));
+      }
+      return host;
+    };
+    // `true` for an IP address, `false` for a domain, `null` if invalid.
+    const whatwg = (host: string): boolean | null => {
+      try {
+        return /^\[|^[0-9.]+$/.test(new URL(`http://${host}/`).hostname);
+      } catch {
+        return null;
+      }
+    };
+
+    for (let i = 0; i < 50000; i += 1) {
+      const ipv4 = generate('0123456789.....xXaAfF78');
+      if (!ipv4.endsWith('.')) {
+        expect(isIp(ipv4), ipv4).to.equal(whatwg(ipv4));
+      }
+    }
   });
 
   // RFC 4291 §2.2: an IPv6 hextet is "one to four hexadecimal digits", i.e.
