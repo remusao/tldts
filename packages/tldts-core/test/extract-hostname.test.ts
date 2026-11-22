@@ -68,6 +68,15 @@ describe('#extractHostname', () => {
 
   it('returns null when the IPv6 bracket is never closed', () => {
     expect(extract('http://[::1')).to.equal(null);
+    expect(extract('http://a]:@[::1/')).to.equal(null); // "]" before "["
+    expect(extract('http://a]:@[::1]/')).to.equal('::1'); // the "]" after "["
+  });
+
+  it('returns null when the IPv6 bracket is followed by anything but a port', () => {
+    expect(extract('http://[::1]evil.com/')).to.equal(null);
+    expect(extract('http://[::1]]/')).to.equal(null);
+    expect(extract('http://[::1]./')).to.equal(null);
+    expect(extract('http://[::1]:/')).to.equal('::1'); // empty port
   });
 
   it('keeps a bare, unbracketed IPv6 literal whole (issue #2288)', () => {
