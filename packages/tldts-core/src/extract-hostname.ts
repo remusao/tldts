@@ -148,7 +148,20 @@ export default function extractHostname(
       // Scheme-relative reference ("//host/path").
       start += 2;
     } else {
-      let indexOfProtocol = url.indexOf(':/', start);
+      // The scheme ends at the first ":/". Most URLs start with "http://" or
+      // "https://", so check for those before searching.
+      let indexOfProtocol =
+        url.charCodeAt(start + 4) === 115 /* 's' */ ? start + 5 : start + 4;
+      if (
+        url.charCodeAt(start) !== 104 /* 'h' */ ||
+        url.charCodeAt(start + 1) !== 116 /* 't' */ ||
+        url.charCodeAt(start + 2) !== 116 /* 't' */ ||
+        url.charCodeAt(start + 3) !== 112 /* 'p' */ ||
+        url.charCodeAt(indexOfProtocol) !== 58 /* ':' */ ||
+        url.charCodeAt(indexOfProtocol + 1) !== 47 /* '/' */
+      ) {
+        indexOfProtocol = url.indexOf(':/', start);
+      }
       if (indexOfProtocol !== -1) {
         // "scheme://…". Classify the scheme, then position `start` at the host.
         const special = getSpecialScheme(url, start, indexOfProtocol);
