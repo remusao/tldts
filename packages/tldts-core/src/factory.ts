@@ -20,9 +20,10 @@ import getSubdomain from './subdomain';
 export interface IResult {
   // `hostname` is either a registered name (including but not limited to a
   // hostname), or an IP address, directly extracted from the input URL. IPv4
-  // addresses are in dot-decimal notation. IPv6 is returned without its
-  // surrounding brackets; both bracketed (in URLs, e.g. `http://[::1]/`) and
-  // bare unbracketed (e.g. `2a01:e35::1`) IPv6 literals are accepted.
+  // addresses are not canonicalized (`0x7f.1` stays `0x7f.1`). IPv6 is
+  // returned without its surrounding brackets; both bracketed (in URLs, e.g.
+  // `http://[::1]/`) and bare unbracketed (e.g. `2a01:e35::1`) IPv6 literals
+  // are accepted.
   hostname: string | null;
 
   // Is `hostname` an IP? (IPv4 or IPv6)
@@ -139,8 +140,20 @@ export function parseImpl(
 
   // Check if `hostname` is a valid ip address
   if (options.detectIp && result.hostname !== null) {
-    result.isIp = isIp(result.hostname);
+    const isIpAddress = isIp(result.hostname);
+    result.isIp = isIpAddress === true;
     if (result.isIp) {
+      return result;
+    }
+
+    // `null`: the host ends in a number, as an IPv4 address, without being
+    // one. It is not a valid host then, and never a domain name.
+    if (
+      isIpAddress === null &&
+      options.validateHostname &&
+      options.extractHostname
+    ) {
+      result.hostname = null;
       return result;
     }
   }
