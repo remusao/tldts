@@ -6,7 +6,7 @@
 
 1. Tuned for **performance** (order of 0.1 to 1 μs per input)
 2. Handles both URLs and hostnames
-3. Full Unicode/IDNA support
+3. Unicode and punycode hostnames (matched as written, no IDNA mapping)
 4. Support parsing email addresses
 5. Detect IPv4 and IPv6 addresses
 6. Continuously updated version of the public suffix list
