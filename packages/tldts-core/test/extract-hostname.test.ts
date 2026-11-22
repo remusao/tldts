@@ -271,6 +271,10 @@ describe('#extractHostname', () => {
     expect(extract('WSS:443/x')).to.equal('443'); // any special scheme, any case
     expect(extract('tel:5551234')).to.equal('tel'); // not special: host:port
     expect(extract('file:8080')).to.equal(null); // no "//", no host
+    // An empty port followed by a path is not a "scheme:/".
+    expect(extract('http:example.com:/path')).to.equal('example.com');
+    expect(extract('http:user@example.com:/path')).to.equal('example.com');
+    expect(extract('file:user@example.com:/path')).to.equal(null); // no "//"
     expect(extract('evil.com:8080\\@good.com')).to.equal('evil.com');
     expect(extract('evil.com\\@good.com')).to.equal('evil.com');
   });
