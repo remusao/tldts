@@ -24,6 +24,8 @@ jobs:
           # version bump and changelog. fetch-depth: 0 yields a non-shallow
           # clone, which avoids the "shallow file has changed" fetch race.
           fetch-depth: 0
+          # The tests read the Public Suffix List.
+          submodules: 'true'
 
       - name: Enable Corepack
         run: corepack enable
@@ -46,6 +48,9 @@ jobs:
 
       - name: Lint
         run: yarn lint
+
+      - name: Test
+        run: yarn test
 
       - name: Create release
         id: release
