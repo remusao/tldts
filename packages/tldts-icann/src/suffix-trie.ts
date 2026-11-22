@@ -19,6 +19,11 @@ import {
   rulesRoot,
 } from './data/trie';
 
+// `charCodeAt.call(hostname, i)`, not `hostname.charCodeAt(i)`: see
+// `is-valid.ts` in tldts-core.
+// eslint-disable-next-line @typescript-eslint/unbound-method
+const charCodeAt = String.prototype.charCodeAt;
+
 const ICANN = 1;
 
 // `edgeOffset` (where each label starts in `labelText`), `edgeHash` (djb2 of
@@ -124,7 +129,7 @@ function walk(hostname: string, root: number): boolean {
   let hash = 5381;
   matched = false;
   for (let i = hostname.length - 1; i >= 0; i -= 1) {
-    const code = hostname.charCodeAt(i);
+    const code = charCodeAt.call(hostname, i);
     if (code === 46 /* '.' */) {
       const start = i + 1;
       let edge = findEdge(node, hash >>> 0, hostname, start, end - start);
