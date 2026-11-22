@@ -1527,6 +1527,12 @@ export default function test(
       });
     });
 
+    it('accepts `null` options', () => {
+      expect(tldts.parse('www.example.com', null as never)).to.deep.equal(
+        tldts.parse('www.example.com'),
+      );
+    });
+
     it('should handle ipv4 addresses properly', () => {
       expect(tldts.parse('http://192.168.0.1/')).to.deep.equal(
         mockResponse('192.168.0.1'),
