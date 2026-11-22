@@ -13,7 +13,7 @@
 
 1. Tuned for **performance** (order of 0.1 to 1 μs per input)
 2. Handles both URLs and hostnames
-3. Full Unicode/IDNA support
+3. Unicode and punycode hostnames (matched as written, no IDNA mapping)
 4. Support parsing email addresses
 5. Detect IPv4 and IPv6 addresses
 6. Continuously updated version of the public suffix list
@@ -255,9 +255,10 @@ console.log(getDomainWithoutSuffix(url, { allowPrivateDomains: true })); // spar
 
 The core of `tldts` is turning a **hostname** into its public suffix, domain and subdomain: an exact lookup against the [Public Suffix List][public suffix list]. As a convenience it also takes a full **URL** and extracts the hostname for you, and that step is fast: `tldts.getHostname(url)` runs at ≈110 ns/call versus ≈290 ns for `new URL(url).hostname` (**~2.6× faster** on Node 26), and returns byte-identical hostnames for 100% of a 12k real-world-URL sample. That extraction is pragmatic, not a 100%-compliant [WHATWG URL](https://url.spec.whatwg.org/) parser, and differs mainly around **normalization**:
 
-- **No host normalization**: the host is returned as it appears (ASCII-lower-cased only) — no IDNA/punycode conversion, IPv4 is not canonicalized, and IPv6 is returned without its surrounding brackets (and not zero-compressed).
+- **No host normalization**: the host is returned as it appears, lower-cased (non-ASCII letters included) only when it holds an ASCII capital letter (`a.ПР.СРБ` stays as is, `A.ПР.СРБ` becomes `a.пр.срб`) — no IDNA mapping or punycode conversion (`example。com` is a single label, and `example.ｃｏｍ` gets the suffix `ｃｏｍ`, not `com`: normalize such hosts with `new URL` first), IPv4 is not canonicalized, and IPv6 is returned without its surrounding brackets (and not zero-compressed).
 - **Lenient parsing**: bare `host:port`, `user@host`, unbracketed IPv6 literals (which `new URL` rejects), out-of-range ports and trailing dots are accepted/handled rather than rejected.
 - **`isIp` is a heuristic** ("probably an IP"), not a validator: it does not check IPv4 octet ranges and does not recognize IPv4-mapped IPv6.
+- **`validHosts` and `extraSuffixes` are matched as written**: give them lower-cased and in the same form (Unicode or punycode) as the hostnames you parse. `validHosts` returns its first matching entry, not the longest.
 
 If you rely on `tldts` for a **security decision** (origin checks, SSRF allow/deny lists, cookie scoping, …), do not treat its output as equivalent to a compliant URL parser. The safest pattern is to **extract the hostname with a real URL parser** — [`new URL(...)`](https://developer.mozilla.org/en-US/docs/Web/API/URL/URL), available in Node.js and browsers — and then hand that hostname to `tldts` with host extraction turned **off** (`extractHostname: false`). That way the platform parser decides where the host begins and ends, and `tldts` is used only for the public-suffix/domain split, so the two can never disagree:
 
