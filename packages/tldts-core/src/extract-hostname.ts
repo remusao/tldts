@@ -1,3 +1,7 @@
+// `charCodeAt.call(url, i)`, not `url.charCodeAt(i)`: see `is-valid.ts`.
+// eslint-disable-next-line @typescript-eslint/unbound-method
+const charCodeAt = String.prototype.charCodeAt;
+
 /**
  * Matches an ASCII tab (U+0009) or newline (U+000A / U+000D). The WHATWG URL
  * parser strips these before parsing; we only allocate a cleaned copy (and
@@ -51,28 +55,30 @@ function getSpecialScheme(
   colonIndex: number,
 ): number {
   const length = colonIndex - schemeStart;
-  const c0 = url.charCodeAt(schemeStart) | 32;
+  const c0 = charCodeAt.call(url, schemeStart) | 32;
   if (length === 2) {
-    return c0 === 119 && (url.charCodeAt(schemeStart + 1) | 32) === 115 ? 1 : 0; // ws
+    return c0 === 119 && (charCodeAt.call(url, schemeStart + 1) | 32) === 115
+      ? 1
+      : 0; // ws
   } else if (length === 3) {
-    const c1 = url.charCodeAt(schemeStart + 1) | 32;
-    const c2 = url.charCodeAt(schemeStart + 2) | 32;
+    const c1 = charCodeAt.call(url, schemeStart + 1) | 32;
+    const c2 = charCodeAt.call(url, schemeStart + 2) | 32;
     if (c0 === 119 && c1 === 115 && c2 === 115) return 1; // wss
     if (c0 === 102 && c1 === 116 && c2 === 112) return 1; // ftp
     return 0;
   } else if (length === 4) {
-    const c1 = url.charCodeAt(schemeStart + 1) | 32;
-    const c2 = url.charCodeAt(schemeStart + 2) | 32;
-    const c3 = url.charCodeAt(schemeStart + 3) | 32;
+    const c1 = charCodeAt.call(url, schemeStart + 1) | 32;
+    const c2 = charCodeAt.call(url, schemeStart + 2) | 32;
+    const c3 = charCodeAt.call(url, schemeStart + 3) | 32;
     if (c0 === 104 && c1 === 116 && c2 === 116 && c3 === 112) return 1; // http
     if (c0 === 102 && c1 === 105 && c2 === 108 && c3 === 101) return 2; // file
     return 0;
   } else if (length === 5) {
     return c0 === 104 &&
-      (url.charCodeAt(schemeStart + 1) | 32) === 116 &&
-      (url.charCodeAt(schemeStart + 2) | 32) === 116 &&
-      (url.charCodeAt(schemeStart + 3) | 32) === 112 &&
-      (url.charCodeAt(schemeStart + 4) | 32) === 115
+      (charCodeAt.call(url, schemeStart + 1) | 32) === 116 &&
+      (charCodeAt.call(url, schemeStart + 2) | 32) === 116 &&
+      (charCodeAt.call(url, schemeStart + 3) | 32) === 112 &&
+      (charCodeAt.call(url, schemeStart + 4) | 32) === 115
       ? 1
       : 0; // https
   }
@@ -108,42 +114,42 @@ export default function extractHostname(
   if (!urlIsValidHostname) {
     // WHATWG step 1: trim leading/trailing C0 control or space (<= U+0020).
     // Tab/newline elsewhere are handled lazily below.
-    while (start < url.length && url.charCodeAt(start) <= 32) {
+    while (start < url.length && charCodeAt.call(url, start) <= 32) {
       start += 1;
     }
 
     // "data:"/"javascript:" never reach a host (inline payload; data URLs may be
     // huge). `| 32` lowercases letters only; tab/newline is re-parsed below.
     if (
-      (url.charCodeAt(start + 4) === 58 /* ':' */ &&
-        (url.charCodeAt(start) | 32) === 100 /* d */ &&
-        (url.charCodeAt(start + 1) | 32) === 97 /* a */ &&
-        (url.charCodeAt(start + 2) | 32) === 116 /* t */ &&
-        (url.charCodeAt(start + 3) | 32) === 97) /* a */ ||
-      (url.charCodeAt(start + 10) === 58 /* ':' */ &&
-        (url.charCodeAt(start) | 32) === 106 /* j */ &&
-        (url.charCodeAt(start + 1) | 32) === 97 /* a */ &&
-        (url.charCodeAt(start + 2) | 32) === 118 /* v */ &&
-        (url.charCodeAt(start + 3) | 32) === 97 /* a */ &&
-        (url.charCodeAt(start + 4) | 32) === 115 /* s */ &&
-        (url.charCodeAt(start + 5) | 32) === 99 /* c */ &&
-        (url.charCodeAt(start + 6) | 32) === 114 /* r */ &&
-        (url.charCodeAt(start + 7) | 32) === 105 /* i */ &&
-        (url.charCodeAt(start + 8) | 32) === 112 /* p */ &&
-        (url.charCodeAt(start + 9) | 32) === 116) /* t */
+      (charCodeAt.call(url, start + 4) === 58 /* ':' */ &&
+        (charCodeAt.call(url, start) | 32) === 100 /* d */ &&
+        (charCodeAt.call(url, start + 1) | 32) === 97 /* a */ &&
+        (charCodeAt.call(url, start + 2) | 32) === 116 /* t */ &&
+        (charCodeAt.call(url, start + 3) | 32) === 97) /* a */ ||
+      (charCodeAt.call(url, start + 10) === 58 /* ':' */ &&
+        (charCodeAt.call(url, start) | 32) === 106 /* j */ &&
+        (charCodeAt.call(url, start + 1) | 32) === 97 /* a */ &&
+        (charCodeAt.call(url, start + 2) | 32) === 118 /* v */ &&
+        (charCodeAt.call(url, start + 3) | 32) === 97 /* a */ &&
+        (charCodeAt.call(url, start + 4) | 32) === 115 /* s */ &&
+        (charCodeAt.call(url, start + 5) | 32) === 99 /* c */ &&
+        (charCodeAt.call(url, start + 6) | 32) === 114 /* r */ &&
+        (charCodeAt.call(url, start + 7) | 32) === 105 /* i */ &&
+        (charCodeAt.call(url, start + 8) | 32) === 112 /* p */ &&
+        (charCodeAt.call(url, start + 9) | 32) === 116) /* t */
     ) {
       return null;
     }
 
-    while (end > start + 1 && url.charCodeAt(end - 1) <= 32) {
+    while (end > start + 1 && charCodeAt.call(url, end - 1) <= 32) {
       end -= 1;
     }
 
     if (
-      (url.charCodeAt(start) === 47 /* '/' */ ||
-        url.charCodeAt(start) === 92) /* '\' */ &&
-      (url.charCodeAt(start + 1) === 47 /* '/' */ ||
-        url.charCodeAt(start + 1) === 92) /* '\' */
+      (charCodeAt.call(url, start) === 47 /* '/' */ ||
+        charCodeAt.call(url, start) === 92) /* '\' */ &&
+      (charCodeAt.call(url, start + 1) === 47 /* '/' */ ||
+        charCodeAt.call(url, start + 1) === 92) /* '\' */
     ) {
       // Scheme-relative reference ("//host/path").
       start += 2;
@@ -151,14 +157,16 @@ export default function extractHostname(
       // The scheme ends at the first ":/". Most URLs start with "http://" or
       // "https://", so check for those before searching.
       let indexOfProtocol =
-        url.charCodeAt(start + 4) === 115 /* 's' */ ? start + 5 : start + 4;
+        charCodeAt.call(url, start + 4) === 115 /* 's' */
+          ? start + 5
+          : start + 4;
       if (
-        url.charCodeAt(start) !== 104 /* 'h' */ ||
-        url.charCodeAt(start + 1) !== 116 /* 't' */ ||
-        url.charCodeAt(start + 2) !== 116 /* 't' */ ||
-        url.charCodeAt(start + 3) !== 112 /* 'p' */ ||
-        url.charCodeAt(indexOfProtocol) !== 58 /* ':' */ ||
-        url.charCodeAt(indexOfProtocol + 1) !== 47 /* '/' */
+        charCodeAt.call(url, start) !== 104 /* 'h' */ ||
+        charCodeAt.call(url, start + 1) !== 116 /* 't' */ ||
+        charCodeAt.call(url, start + 2) !== 116 /* 't' */ ||
+        charCodeAt.call(url, start + 3) !== 112 /* 'p' */ ||
+        charCodeAt.call(url, indexOfProtocol) !== 58 /* ':' */ ||
+        charCodeAt.call(url, indexOfProtocol + 1) !== 47 /* '/' */
       ) {
         indexOfProtocol = url.indexOf(':/', start);
       }
@@ -170,8 +178,8 @@ export default function extractHostname(
           // (special-authority-(ignore-)slashes states; '\' acts as '/').
           start = indexOfProtocol + 2;
           while (
-            url.charCodeAt(start) === 47 /* '/' */ ||
-            url.charCodeAt(start) === 92 /* '\' */
+            charCodeAt.call(url, start) === 47 /* '/' */ ||
+            charCodeAt.call(url, start) === 92 /* '\' */
           ) {
             start += 1;
           }
@@ -181,7 +189,8 @@ export default function extractHostname(
           start = indexOfProtocol + 1;
           let slashes = 0;
           while (
-            (url.charCodeAt(start) === 47 || url.charCodeAt(start) === 92) &&
+            (charCodeAt.call(url, start) === 47 ||
+              charCodeAt.call(url, start) === 92) &&
             slashes < 2
           ) {
             start += 1;
@@ -194,7 +203,7 @@ export default function extractHostname(
           // Unknown scheme: validate the WHATWG scheme grammar [A-Za-z0-9+.-];
           // a control char means it was split by a tab/newline (strip + re-parse).
           for (let i = start; i < indexOfProtocol; i += 1) {
-            const code = url.charCodeAt(i);
+            const code = charCodeAt.call(url, i);
             if (!(
               ((code | 32) >= 97 && (code | 32) <= 122) || // [a-zA-Z] (fold letters only)
               (code >= 48 && code <= 57) || // [0, 9]
@@ -224,7 +233,7 @@ export default function extractHostname(
                 indexOfProtocol = -1;
               }
               for (let j = i; j < indexOfProtocol; j += 1) {
-                const c = url.charCodeAt(j);
+                const c = charCodeAt.call(url, j);
                 if (c === 47 || c === 92 || c === 63 || c === 35) {
                   indexOfProtocol = -1;
                   break;
@@ -240,7 +249,7 @@ export default function extractHostname(
             // A non-special scheme has an authority only after "//" (else it is
             // an opaque path with no host). `indexOf(':/')` already gave the
             // first '/'.
-            if (url.charCodeAt(indexOfProtocol + 2) === 47 /* '/' */) {
+            if (charCodeAt.call(url, indexOfProtocol + 2) === 47 /* '/' */) {
               isSpecial = false;
               start = indexOfProtocol + 3;
             } else {
@@ -250,7 +259,10 @@ export default function extractHostname(
         }
       }
 
-      if (indexOfProtocol === -1 && url.charCodeAt(start) !== 91 /* '[' */) {
+      if (
+        indexOfProtocol === -1 &&
+        charCodeAt.call(url, start) !== 91 /* '[' */
+      ) {
         // Cold path: no "scheme://" prefix, and not a bare IPv6 literal (whose
         // first ':' would otherwise look like a scheme separator; "[…]" falls
         // through to the ipv6 handling below). May be a bare host, a host:port,
@@ -258,7 +270,7 @@ export default function extractHostname(
         // URI ("mailto:", "tel:", "urn:…").
         let indexOfColon = -1;
         for (let i = start; i < end; i += 1) {
-          const code = url.charCodeAt(i);
+          const code = charCodeAt.call(url, i);
           if (code === 9 || code === 10 || code === 13) {
             return extractHostname(
               url.replace(CONTROL_CHARS, ''),
@@ -280,7 +292,7 @@ export default function extractHostname(
           // scheme ("user:pass@host", "mailto:a@b"): keep the whole authority.
           let hasIdentifier = false;
           for (let i = indexOfColon + 1; i < end; i += 1) {
-            const code = url.charCodeAt(i);
+            const code = charCodeAt.call(url, i);
             if (code === 47 || code === 92 || code === 63 || code === 35) {
               break;
             }
@@ -298,7 +310,7 @@ export default function extractHostname(
             let allDigits = special === 0;
             let i = indexOfColon + 1;
             for (; i < end; i += 1) {
-              const code = url.charCodeAt(i);
+              const code = charCodeAt.call(url, i);
               if (code === 47 || code === 92 || code === 63 || code === 35) {
                 break;
               }
@@ -320,7 +332,7 @@ export default function extractHostname(
                 // with no host ("mailto:x", "foo:bar").
                 let isBareIpv6 = false;
                 for (let j = indexOfColon + 1; j < end; j += 1) {
-                  const code = url.charCodeAt(j);
+                  const code = charCodeAt.call(url, j);
                   if (
                     code === 47 ||
                     code === 92 ||
@@ -343,8 +355,8 @@ export default function extractHostname(
                   // file (e.g. "file:\\host"): host only between "//" and next slash.
                   let slashes = 0;
                   while (
-                    (url.charCodeAt(start) === 47 ||
-                      url.charCodeAt(start) === 92) &&
+                    (charCodeAt.call(url, start) === 47 ||
+                      charCodeAt.call(url, start) === 92) &&
                     slashes < 2
                   ) {
                     start += 1;
@@ -355,8 +367,8 @@ export default function extractHostname(
                   }
                 } else {
                   while (
-                    url.charCodeAt(start) === 47 ||
-                    url.charCodeAt(start) === 92
+                    charCodeAt.call(url, start) === 47 ||
+                    charCodeAt.call(url, start) === 92
                   ) {
                     start += 1;
                   }
@@ -389,7 +401,7 @@ export default function extractHostname(
     let vLastCode = -1;
     if (validate && start < end) {
       // First-char rule: must be a valid host char, '.', or '_' (NOT '-').
-      const c0 = url.charCodeAt(start);
+      const c0 = charCodeAt.call(url, start);
       if (
         // Keep these parens: they scope /*@__INLINE__*/ for terser.
         // prettier-ignore
@@ -406,7 +418,7 @@ export default function extractHostname(
       }
     }
     for (let i = start; i < end; i += 1) {
-      const code: number = url.charCodeAt(i);
+      const code: number = charCodeAt.call(url, i);
       if (code < 64) {
         if (code === 47 || code === 35 || code === 63) {
           end = i;
@@ -470,7 +482,7 @@ export default function extractHostname(
       start = indexOfIdentifier + 1;
     }
 
-    if (url.charCodeAt(start) === 91 /* '[' */) {
+    if (charCodeAt.call(url, start) === 91 /* '[' */) {
       // ipv6 address: return what is between the brackets, or null if they are
       // unclosed or followed by anything but a port ("[::1]x").
       const closingBracket = url.indexOf(']', start);
@@ -478,7 +490,7 @@ export default function extractHostname(
         closingBracket !== -1 &&
         closingBracket < end &&
         (closingBracket + 1 === end ||
-          url.charCodeAt(closingBracket + 1) === 58) /* ':' */
+          charCodeAt.call(url, closingBracket + 1) === 58) /* ':' */
       ) {
         return url.slice(start + 1, closingBracket).toLowerCase();
       }
@@ -517,7 +529,7 @@ export default function extractHostname(
       vValid &&
       indexOfIdentifier === -1 &&
       indexOfPort === -1 &&
-      url.charCodeAt(end - 1) !== 46 /* no trailing dot */ &&
+      charCodeAt.call(url, end - 1) !== 46 /* no trailing dot */ &&
       end - start <= 255 && // total length
       end - vLastDot - 1 <= 63 && // last label length
       vLastCode !== 45 /* last char not '-' */
@@ -527,7 +539,7 @@ export default function extractHostname(
   }
 
   // Trim trailing dots
-  while (end > start + 1 && url.charCodeAt(end - 1) === 46 /* '.' */) {
+  while (end > start + 1 && charCodeAt.call(url, end - 1) === 46 /* '.' */) {
     end -= 1;
   }
 

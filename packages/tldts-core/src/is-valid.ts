@@ -7,6 +7,14 @@
  * If you need stricter validation, consider using an external library.
  */
 
+// `charCodeAt.call(s, i)`, not `s.charCodeAt(i)`: V8 specializes a
+// `s.charCodeAt` call site for at most four kinds of strings (flat, sliced,
+// concatenated, internalized, of one or two bytes per character...). Past
+// that, it finds the method through a generic cache and no longer inlines it,
+// on every call. Hostnames come here from callers and from URLs, of any kind.
+// eslint-disable-next-line @typescript-eslint/unbound-method
+const charCodeAt = String.prototype.charCodeAt;
+
 // KEEP IN SYNC with `extract-hostname.ts` `isValidHostnameChar` + its inline
 // scan/verdict, which duplicate these structural rules to validate during
 // extraction (a perf fusion). That copy additionally accepts A-Z (the host is
@@ -34,9 +42,9 @@ export default function (hostname: string): boolean {
   }
 
   if (
-    /*@__INLINE__*/ !isValidAscii(hostname.charCodeAt(0)) &&
-    hostname.charCodeAt(0) !== 46 && // '.' (dot)
-    hostname.charCodeAt(0) !== 95 // '_' (underscore)
+    /*@__INLINE__*/ !isValidAscii(charCodeAt.call(hostname, 0)) &&
+    charCodeAt.call(hostname, 0) !== 46 && // '.' (dot)
+    charCodeAt.call(hostname, 0) !== 95 // '_' (underscore)
   ) {
     return false;
   }
@@ -47,7 +55,7 @@ export default function (hostname: string): boolean {
   const len = hostname.length;
 
   for (let i = 0; i < len; i += 1) {
-    const code = hostname.charCodeAt(i);
+    const code = charCodeAt.call(hostname, i);
     if (code === 46 /* '.' */) {
       if (
         // Check that previous label is < 63 bytes long (64 = 63 + '.')
