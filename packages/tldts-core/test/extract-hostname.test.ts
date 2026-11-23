@@ -66,6 +66,37 @@ describe('#extractHostname', () => {
     expect(extract('http://[ABCD::1]:9/')).to.equal('abcd::1');
   });
 
+  it('percent-decodes the host of a special URL, as browsers do', () => {
+    const decode = (url: string): string | null =>
+      extractHostname(url, false, true);
+    expect(decode('https://%74racker.com/')).to.equal('tracker.com');
+    expect(decode('https://EX%41MPLE.com/')).to.equal('example.com');
+    expect(decode('%74racker.com/x')).to.equal('tracker.com'); // scheme-less
+    expect(decode('https://%E4%BE%8B.com/')).to.equal('例.com'); // UTF-8
+    expect(decode('https://a.com%2e/')).to.equal('a.com'); // trailing dot
+    expect(decode('https://u%40x@a.com/')).to.equal('a.com'); // userinfo only
+    // No valid host for browsers: not UTF-8, no escape, forbidden once decoded.
+    for (const url of [
+      'https://%FF.com/',
+      'https://a%zz.com/',
+      'https://a%.com/',
+      'https://%25.com/', // '%'
+      'https://a%2Fb.com/', // '/'
+      'https://a%3A80/', // ':'
+      'https://%5B::1%5D/', // '[', ']'
+      'https://a%40b.com/', // '@'
+      'https://a%20b.com/', // space
+      'https://a%00b.com/', // C0 control
+    ]) {
+      expect(decode(url), url).to.equal(null);
+    }
+    // Non-special URLs keep their opaque host as written, and so does
+    // extraction without validation.
+    expect(decode('foo://%41/')).to.equal('%41');
+    expect(extract('https://a%zz.com/')).to.equal('a%zz.com');
+    expect(extract('https://%74racker.com/')).to.equal('%74racker.com');
+  });
+
   it('removes tabs and newlines before the host, as browsers do', () => {
     expect(extract('/\t/evil.com')).to.equal('evil.com');
     expect(extract('\\\n\\evil.com')).to.equal('evil.com');
@@ -551,7 +582,9 @@ describe('#extractHostname inline validation (validate=true)', () => {
 
   it('clears the flag on a forbidden host character', () => {
     // '%' (< 64, not delimiter/dot/digit/'-') and ' ' (space) are invalid.
-    expect(extractV('http://a%b.com/p')).to.deep.equal(['a%b.com', false]);
+    // ('%' then starts no valid escape: no host, as for browsers.)
+    expect(extractV('http://a%b.com/p')).to.deep.equal([null, false]);
+    expect(extractV('http://a%2db.com/p')).to.deep.equal(['a-b.com', false]);
     expect(extractV('http://a b.com/p')).to.deep.equal(['a b.com', false]);
     // A forbidden char >= 64 (the `>= 64` invalid-char branch): '~'.
     expect(extractV('http://a~b.com/p')).to.deep.equal(['a~b.com', false]);

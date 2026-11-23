@@ -1536,6 +1536,21 @@ export default function test(
       );
     });
 
+    it('percent-decodes hosts as browsers do', () => {
+      expect(tldts.getHostname('https://%74racker.com/x')).to.equal(
+        'tracker.com',
+      );
+      expect(tldts.getDomain('https://www.ex%61mple.co.uk/')).to.equal(
+        'example.co.uk',
+      );
+      expect(tldts.getDomain('http://%31%32%37.0.0.1/')).to.equal(null); // an IP
+      expect(tldts.getHostname('https://%5B::1%5D/')).to.equal(null);
+      expect(tldts.getHostname('https://a%2Fb.com/')).to.equal(null);
+      expect(
+        tldts.getHostname('https://a%zz.com/', { validateHostname: false }),
+      ).to.equal('a%zz.com');
+    });
+
     it('removes tabs and newlines before the host, as browsers do', () => {
       expect(tldts.getHostname('/\t/evil.com')).to.equal('evil.com');
       expect(tldts.getHostname('file:/\n/evil.com')).to.equal('evil.com');
@@ -2181,8 +2196,10 @@ export default function test(
         );
       });
 
-      it('does not percent-decode the host (no IDNA mapping)', () => {
-        expect(tldts.getHostname('https://a%C2%ADb/')).to.equal(null);
+      it('percent-decodes the host, without IDNA mapping', () => {
+        // Browsers then delete the soft hyphen (U+00AD) and give "ab".
+        expect(tldts.getHostname('https://a%C2%ADb/')).to.equal('a\u00adb');
+        expect(tldts.getHostname('https://a\u00adb/')).to.equal('a\u00adb');
       });
     });
   });
