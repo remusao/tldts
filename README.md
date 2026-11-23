@@ -7,7 +7,7 @@
   <img alt="tldts registrable-domain throughput vs popular public-suffix libraries — getDomain operations per second, higher is better" src="comparison/bench2/report/charts/readme-hero.svg" width="840">
 </picture>
 
-> `getDomain` throughput on a real-world URL corpus, benchmarked on Node against `psl`, `tldjs`, `parse-domain`, `tld-extract` & `haraka-tld` (higher is better).
+> `getDomain` throughput on real-world hostnames with a single-label suffix (such as `.com`), benchmarked on Node against `psl`, `tldjs`, `parse-domain`, `tld-extract` & `haraka-tld` (higher is better).
 
 **Features**:
 
@@ -253,7 +253,7 @@ console.log(getDomainWithoutSuffix(url, { allowPrivateDomains: true })); // spar
 
 # Limitations and security considerations
 
-The core of `tldts` is turning a **hostname** into its public suffix, domain and subdomain: an exact lookup against the [Public Suffix List][public suffix list]. As a convenience it also takes a full **URL** and extracts the hostname for you, and that step is fast: `tldts.getHostname(url)` runs at ≈110 ns/call versus ≈290 ns for `new URL(url).hostname` (**~2.6× faster** on Node 26), and returns byte-identical hostnames for 100% of a 12k real-world-URL sample. That extraction is pragmatic, not a 100%-compliant [WHATWG URL](https://url.spec.whatwg.org/) parser, and differs mainly around **normalization**:
+The core of `tldts` is turning a **hostname** into its public suffix, domain and subdomain: an exact lookup against the [Public Suffix List][public suffix list]. As a convenience it also takes a full **URL** and extracts the hostname for you, and that step is fast: `tldts.getHostname(url)` runs at ≈100 ns/call versus ≈200 ns for `new URL(url).hostname` (**~2× faster** on Node 26.13), and returns byte-identical hostnames for 100% of a 12k real-world-URL sample. That extraction is pragmatic, not a 100%-compliant [WHATWG URL](https://url.spec.whatwg.org/) parser, and differs mainly around **normalization**:
 
 - **No host normalization**: the host is returned as it appears, lower-cased (non-ASCII letters included) only when it holds an ASCII capital letter (`a.ПР.СРБ` stays as is, `A.ПР.СРБ` becomes `a.пр.срб`) — no IDNA mapping or punycode conversion (`example。com` is a single label, and `example.ｃｏｍ` gets the suffix `ｃｏｍ`, not `com`: normalize such hosts with `new URL` first), IPv4 is not canonicalized (`0x7f.1` stays `0x7f.1`), and IPv6 is returned without its surrounding brackets (and not zero-compressed).
 - **Lenient parsing**: bare `host:port`, `user@host`, unbracketed IPv6 literals (which `new URL` rejects), out-of-range ports and trailing dots are accepted/handled rather than rejected.
