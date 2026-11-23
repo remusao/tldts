@@ -5,6 +5,13 @@
  * browser, hence an IP here, but stays `0x7f.1`.
  */
 
+import {
+  ipMappingBlocks,
+  ipMappingFirst,
+  ipMappingLast,
+  ipMappingValue,
+} from './ip-mapping';
+
 /**
  * Value of the hexadecimal digit `code` (0 to 15), or 16 if it is not one.
  */
@@ -178,6 +185,137 @@ function isIpv6(hostname: string): boolean {
 }
 
 /**
+ * What the host parser of browsers maps the non-ASCII code point `cp` to, as
+ * far as IP detection goes: nothing (deleted), '.', digits, 'a'-'f' or 'x', or
+ * else 'g', standing for any character that keeps a label from being a number.
+ * https://www.unicode.org/reports/tr46/#Processing
+ */
+function mapCodePoint(cp: number): string {
+  // Most letters, as in internationalized domain names, are in blocks of the
+  // table without any entry.
+  if (
+    cp < 0x10000 &&
+    ((ipMappingBlocks[cp >> 13]! >>> ((cp >> 8) & 31)) & 1) === 0
+  ) {
+    return 'g';
+  }
+  let low = 0;
+  let high = ipMappingFirst.length - 1;
+  while (low <= high) {
+    const mid = (low + high) >>> 1;
+    if (cp < ipMappingFirst[mid]!) {
+      high = mid - 1;
+    } else if (cp > ipMappingLast[mid]!) {
+      low = mid + 1;
+    } else {
+      const value = ipMappingValue[mid]!;
+      const offset = cp - ipMappingFirst[mid]!;
+      if (value === 0) {
+        return '';
+      }
+      if (value < 128) {
+        return String.fromCharCode(value + offset);
+      }
+      if (value < 2000) {
+        return String(value - 1000 + offset);
+      }
+      return String.fromCharCode(value >> 8, value & 255);
+    }
+  }
+  return 'g';
+}
+
+/**
+ * `isIp` for a host holding non-ASCII characters, read as browsers read it:
+ * they first map some characters to digits or dots and delete others, so that
+ * `１２７.０.０.１`, or `127.0.0.1` followed by a zero-width space, is 127.0.0.1
+ * for them. The host is mapped the same way, as far as IP detection goes, and
+ * checked again.
+ */
+function isMappedIp(hostname: string): boolean | null {
+  // Most such hosts are internationalized domain names, with a character that
+  // keeps their last label from being a number: find it first.
+  for (let i = hostname.length - 1; i >= 0; i -= 1) {
+    let cp = hostname.charCodeAt(i);
+    if (cp === 46 /* '.' */) {
+      break;
+    }
+    if (cp < 128) {
+      if (hexValue(cp) === 16 && (cp | 32) !== 120 /* 'x' */) {
+        return false;
+      }
+      continue;
+    }
+    // Most letters are in blocks of 256 code points without any entry.
+    if (
+      cp < 0xd800 &&
+      ((ipMappingBlocks[cp >> 13]! >>> ((cp >> 8) & 31)) & 1) === 0
+    ) {
+      return false;
+    }
+    if (cp >= 0xdc00 && cp <= 0xdfff && i > 0) {
+      const high = hostname.charCodeAt(i - 1);
+      if (high >= 0xd800 && high <= 0xdbff) {
+        cp = (high - 0xd800) * 0x400 + (cp - 0xdc00) + 0x10000;
+        i -= 1;
+      }
+    }
+    const mapped = mapCodePoint(cp);
+    if (mapped === 'g') {
+      return false;
+    }
+    if (mapped === '.') {
+      break;
+    }
+  }
+
+  // Browsers read an IPv6 address, between brackets, as written: a host
+  // holding non-ASCII characters is never one.
+  if (hostname.includes(':')) {
+    return false;
+  }
+
+  let ascii = '';
+  for (let i = 0; i < hostname.length; i += 1) {
+    const code = hostname.charCodeAt(i);
+    if (code < 128) {
+      ascii += hostname.charAt(i);
+    } else {
+      let cp = code;
+      if (code >= 0xd800 && code <= 0xdbff) {
+        const low = hostname.charCodeAt(i + 1);
+        if (low >= 0xdc00 && low <= 0xdfff) {
+          cp = (code - 0xd800) * 0x400 + (low - 0xdc00) + 0x10000;
+          i += 1;
+        }
+      }
+      ascii += mapCodePoint(cp);
+    }
+  }
+
+  // Trailing dots go, as callers remove them from `hostname`.
+  let end = ascii.length;
+  while (end > 1 && ascii.charCodeAt(end - 1) === 46 /* '.' */) {
+    end -= 1;
+  }
+  return isIp(ascii.slice(0, end));
+}
+
+/**
+ * For a host ending in a number without being an IP address in ASCII: `null`,
+ * unless it holds non-ASCII characters, which browsers may map (see
+ * `isMappedIp`).
+ */
+function isNonAsciiIp(hostname: string): boolean | null {
+  for (let i = 0; i < hostname.length; i += 1) {
+    if (hostname.charCodeAt(i) >= 128) {
+      return isMappedIp(hostname);
+    }
+  }
+  return null;
+}
+
+/**
  * Check if `hostname` is an IP address (either IPv4 or IPv6).
  *
  * The answer is `null` for a host ending in a number without being an IPv4
@@ -219,8 +357,15 @@ export default function isIp(hostname: string): boolean | null {
       hostname.charCodeAt(i - 1) === 48 /* '0' */ &&
       (i === 1 || hostname.charCodeAt(i - 2) === 46)) /* '.' */
   ) {
-    return isIpv4(hostname) || isIpv6(hostname) ? true : null;
+    return isIpv4(hostname) || isIpv6(hostname) ? true : isNonAsciiIp(hostname);
   }
 
-  return false;
+  // A non-ASCII character right before the digits ending `hostname`, or one
+  // or two characters before their "x", may be one that browsers map to a
+  // digit or a dot, or delete: `hostname` may end in a number for them.
+  return code >= 128 ||
+    ((code | 32) === 120 /* 'x' */ &&
+      (hostname.charCodeAt(i - 1) >= 128 || hostname.charCodeAt(i - 2) >= 128))
+    ? isMappedIp(hostname)
+    : false;
 }

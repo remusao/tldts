@@ -1591,6 +1591,21 @@ export default function test(
         expect(result.domain, host).to.equal(null);
         expect(tldts.getDomain(host), host).to.equal(null);
       }
+      // Nor as browsers read it, mapping some characters to digits or dots.
+      for (const host of [
+        '１２７.０.０.１',
+        '127.0.0.1\u200b',
+        '127。0。0。1',
+      ]) {
+        const result = tldts.parse(`http://${host}/`);
+        expect(result.hostname, host).to.equal(host);
+        expect(result.domain, host).to.equal(null);
+        expect(tldts.getDomain(host), host).to.equal(null);
+      }
+      expect(tldts.getHostname('http://example.①/')).to.equal(null);
+      expect(tldts.getHostname('http://[::ffff:１２７.０.０.１]/')).to.equal(
+        null,
+      );
       // A digit in the last label is not enough.
       expect(tldts.getDomain('example.3com')).to.equal('example.3com');
       expect(tldts.getDomain('1.2.3.4a')).to.equal('3.4a');

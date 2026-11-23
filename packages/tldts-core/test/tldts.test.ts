@@ -123,6 +123,82 @@ describe('#isIp', () => {
     }
   });
 
+  // Browsers map some non-ASCII characters to digits, 'a'-'f', 'x' or '.' and
+  // delete others before reading a host (UTS #46), so these are addresses too.
+  it('reads non-ASCII hosts as browsers do', () => {
+    for (const hostname of [
+      '１２７.０.０.１', // fullwidth digits
+      '127。0。0。1', // ideographic full stops
+      '127．0．0．1', // fullwidth full stops
+      '127.0.0.1\u200b', // zero-width space, deleted
+      '1\u00ad27.0.0.1', // soft hyphen, deleted
+      '𝟏𝟐𝟕.𝟎.𝟎.𝟏', // mathematical digits (UTF-16 pairs)
+      '①②⑦.0.0.1', // circled digits
+      '⑩.0.0.1', // circled number: "10"
+      '0ｘ7f.1', // fullwidth 'x'
+      '1.0x㍲', // "da"
+      '²¹³⁴', // superscripts: 2134
+      '127.0.0.1。', // trailing (mapped) dot
+    ]) {
+      expect(isIp(hostname), hostname).to.equal(true);
+    }
+
+    // Ends in a number for browsers without being an IPv4 address.
+    for (const hostname of ['example.①', '1.2.3.4.５', 'a.0ｘ', 'é.123']) {
+      expect(isIp(hostname), hostname).to.equal(null);
+    }
+
+    // Internationalized domain names.
+    for (const hostname of [
+      'пример.рф',
+      'bücher.de',
+      '例え.テスト',
+      'ａ.ｂ',
+      '1.１a',
+      'example.\u{1F600}',
+      '1.2.3.4\u200d', // zero-width joiner: kept, not a digit
+      '1.2.3.℻', // "fax"
+      // IPv6 is read as written: mapped characters never make one.
+      '::ffff:１２７.０.０.１',
+      '::ffff:1.2.3.4\u200b',
+      '[::ffff:1.2.3.４]',
+    ]) {
+      expect(isIp(hostname), hostname).to.equal(false);
+    }
+  });
+
+  it('agrees with `new URL` on random non-ASCII hosts', () => {
+    let seed = 0x2545f491;
+    const random = (n: number): number => {
+      seed ^= seed << 13;
+      seed ^= seed >>> 17;
+      seed ^= seed << 5;
+      return (seed >>> 0) % n;
+    };
+    const alphabet = '0123456789.xabfg-０１９ｘＸａＦ。．\u00ad\u200b①⑩㍲²éф'
+      .split('')
+      .concat(['𝟏']); // a UTF-16 pair
+    for (let i = 0; i < 50000; i += 1) {
+      let host = '';
+      for (let length = 1 + random(10); length > 0; length -= 1) {
+        host += alphabet[random(alphabet.length)]!;
+      }
+      let hostname: string | null;
+      try {
+        hostname = new URL(`http://${host}/`).hostname;
+      } catch {
+        hostname = null;
+      }
+      // Callers remove trailing dots first, and all of them where browsers
+      // remove one: hosts ending in a dot, or in several ones for browsers, are
+      // left aside.
+      if (!host.endsWith('.') && !hostname?.endsWith('..')) {
+        const ip = hostname !== null && /^\d+\.\d+\.\d+\.\d+$/.test(hostname);
+        expect(isIp(host) === true, host).to.equal(ip);
+      }
+    }
+  });
+
   // Deterministic fuzzing against Node's WHATWG URL parser.
   it('agrees with `new URL` on random address-like hosts', () => {
     let seed = 0x9e3779b9;

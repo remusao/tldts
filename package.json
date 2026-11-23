@@ -47,6 +47,7 @@
     "test": "lerna run --concurrency 2 test",
     "bench": "make -C bench",
     "generate-data": "ts-node -O '{\"module\": \"commonjs\"}' ./packages/tldts-utils/bin/update.js",
+    "generate-ip-mapping": "node ./packages/tldts-utils/bin/ip-mapping.js",
     "update": "git submodule update --init --remote && yarn generate-data",
     "update:check": "yarn generate-data && git diff --exit-code -- packages/tldts/src/data/trie.ts packages/tldts-icann/src/data/trie.ts packages/tldts-experimental/src/data/hashes.ts",
     "postpack": "node -e \"process.env.PUSH_BEFORE_PUBLISH === 'true' && require('child_process').execFileSync('git', ['push', '--atomic', '--follow-tags', 'origin', 'HEAD:master'], { stdio: 'inherit' })\"",
