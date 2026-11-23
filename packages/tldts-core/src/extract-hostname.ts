@@ -20,6 +20,11 @@ const CONTROL_CHARS = /[\t\n\r]/g;
 // never accept an invalid one.
 export let extractedHostnameValidated = false;
 
+// Set by `extractHostname`, like `extractedHostnameValidated`: `true` ONLY when
+// the returned host was in brackets ("http://[::1]/"). `parseImpl` then checks
+// that it is an IPv6 address, as browsers do.
+export let extractedBracketedHost = false;
+
 /**
  * True if char `code` is a valid hostname character. This is the per-char half
  * of `is-valid.ts`'s `isValidAscii` (a-z, 0-9, > U+007F) PLUS three additions:
@@ -110,6 +115,7 @@ export default function extractHostname(
   let hasUpper = false;
   let isSpecial = true; // '\' ends the host, unless non-special "scheme://"
   extractedHostnameValidated = false;
+  extractedBracketedHost = false;
 
   if (!urlIsValidHostname) {
     // WHATWG step 1: trim leading/trailing C0 control or space (<= U+0020).
@@ -484,7 +490,8 @@ export default function extractHostname(
 
     if (charCodeAt.call(url, start) === 91 /* '[' */) {
       // ipv6 address: return what is between the brackets, or null if they are
-      // unclosed or followed by anything but a port ("[::1]x").
+      // unclosed or followed by anything but a port ("[::1]x"). `parseImpl`
+      // checks that they hold an IPv6 address (see `extractedBracketedHost`).
       const closingBracket = url.indexOf(']', start);
       if (
         closingBracket !== -1 &&
@@ -492,6 +499,7 @@ export default function extractHostname(
         (closingBracket + 1 === end ||
           charCodeAt.call(url, closingBracket + 1) === 58) /* ':' */
       ) {
+        extractedBracketedHost = true;
         return url.slice(start + 1, closingBracket).toLowerCase();
       }
       return null;
