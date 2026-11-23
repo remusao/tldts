@@ -11,3 +11,4 @@ publicsuffix/
 packages/tldts-experimental/src/data/hashes.ts
 packages/tldts/src/data/trie.ts
 packages/tldts-icann/src/data/trie.ts
+packages/tldts-core/src/ip-mapping.ts
