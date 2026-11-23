@@ -10,6 +10,14 @@ const charCodeAt = String.prototype.charCodeAt;
 const CONTROL_CHARS = /[\t\n\r]/g;
 const HAS_CONTROL_CHAR = /[\t\n\r]/;
 
+/**
+ * Matches a forbidden domain code point
+ * (https://url.spec.whatwg.org/#forbidden-domain-code-point): a C0 control,
+ * space, '#', '%', '/', ':', '<', '>', '?', '@', '[', '\', ']', '^', '|' or DEL.
+ */
+// eslint-disable-next-line no-control-regex
+const FORBIDDEN_DOMAIN_CHAR = /[\x00-\x20#%/:<>?@[\\\]^|\x7f]/;
+
 // Set by `extractHostname` (a module-scope flag, read synchronously by
 // `parseImpl` right after the call — same pattern as the reused RESULT object).
 // `true` ONLY when extraction validated the returned host inline (a confirmed-
@@ -77,6 +85,30 @@ function isSchemeChar(code: number): boolean {
     code === 45 || // '-'
     code === 43 // '+'
   );
+}
+
+/**
+ * `hostname` percent-decoded as browsers decode the host of a special URL,
+ * lower-cased and without trailing dots, or null where they find no valid host:
+ * bytes that are no UTF-8 ("%FF"), a '%' not followed by two hexadecimal digits
+ * ("%zz"), and characters forbidden in a domain once decoded ("%2F", "%3A",
+ * "%5B::1%5D"). https://url.spec.whatwg.org/#concept-host-parser
+ */
+function decodeHostname(hostname: string): string | null {
+  let decoded: string;
+  try {
+    decoded = decodeURIComponent(hostname);
+  } catch {
+    return null;
+  }
+  if (FORBIDDEN_DOMAIN_CHAR.test(decoded)) {
+    return null;
+  }
+  let end = decoded.length;
+  while (end > 1 && charCodeAt.call(decoded, end - 1) === 46 /* '.' */) {
+    end -= 1;
+  }
+  return decoded.slice(0, end).toLowerCase();
 }
 
 /**
@@ -164,6 +196,7 @@ export default function extractHostname(
   let start = 0;
   let end: number = url.length;
   let hasUpper = false;
+  let failedValidation = false; // inline validation failed (always so with a '%')
   let isSpecial = true; // '\' ends the host, unless non-special "scheme://"
   extractedHostnameValidated = false;
   extractedBracketedHost = false;
@@ -621,6 +654,7 @@ export default function extractHostname(
     ) {
       extractedHostnameValidated = true;
     }
+    failedValidation = validate && !vValid;
   }
 
   // Trim trailing dots
@@ -630,6 +664,12 @@ export default function extractHostname(
 
   const hostname: string =
     start !== 0 || end !== url.length ? url.slice(start, end) : url;
+
+  // Browsers percent-decode the host of a special URL ("%74racker.com" is
+  // tracker.com). Only when validating: otherwise the host is kept as written.
+  if (failedValidation && isSpecial && hostname.includes('%')) {
+    return decodeHostname(hostname);
+  }
 
   if (hasUpper) {
     return hostname.toLowerCase();
