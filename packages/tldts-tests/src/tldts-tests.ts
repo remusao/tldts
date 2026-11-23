@@ -1542,9 +1542,35 @@ export default function test(
         'http://1234:80:90/',
         'http://[:::::::::]/',
         'a:b:c',
+        // Brackets holding anything but an IPv6 address.
+        'http://[1.2.3.4]/',
+        'http://[0]/',
+        'http://[0x7f.1]/',
+        'http://[example.com]/',
+        'http://[a]/',
+        'http://[]/',
+        'http://[ ::1]/',
+        'http://[::1%25eth0]/', // zone identifier
+        'http://[1:2:3:4:5:6:7:8:9]/',
+        'http://u@[a.com]:80/',
+        '[1.2.3.4]',
       ]) {
         expect(tldts.getHostname(url), url).to.equal(null);
+        expect(tldts.getDomain(url), url).to.equal(null);
       }
+    });
+
+    it('rejects brackets holding anything but IPv6, whatever the options', () => {
+      const options = { detectIp: false, validateHostname: false };
+      for (const url of [
+        'http://[1.2.3.4]/',
+        'http://[0]/',
+        'http://[example.com]/',
+        '[1.2.3.4]',
+      ]) {
+        expect(tldts.getHostname(url, options), url).to.equal(null);
+      }
+      expect(tldts.getHostname('http://[::1]/', options)).to.equal('::1');
     });
 
     it('detects every IPv4 notation browsers resolve (no normalisation)', () => {

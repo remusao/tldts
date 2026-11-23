@@ -8,6 +8,7 @@ import getDomain from './domain';
 import getDomainWithoutSuffix from './domain-without-suffix';
 import extractHostname, {
   extractedHostnameValidated,
+  extractedBracketedHost,
 } from './extract-hostname';
 import isIp from './is-ip';
 import isSpecialUse from './is-special-use';
@@ -136,6 +137,24 @@ export function parseImpl(
     );
   } else {
     result.hostname = extractHostname(url, false, options.validateHostname);
+  }
+
+  // A host in brackets is an IPv6 address, or the URL is invalid, as browsers
+  // read it: "http://[1.2.3.4]/" and "http://[a.com]/" have no hostname. An
+  // IPv4 address has no ':', every IPv6 address has one.
+  if (
+    options.extractHostname &&
+    extractedBracketedHost &&
+    result.hostname !== null
+  ) {
+    if (isIp(result.hostname) !== true || !result.hostname.includes(':')) {
+      result.hostname = null;
+      return result;
+    }
+    if (options.detectIp) {
+      result.isIp = true;
+      return result;
+    }
   }
 
   // Check if `hostname` is a valid ip address
