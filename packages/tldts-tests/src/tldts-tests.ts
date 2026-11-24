@@ -1536,6 +1536,11 @@ export default function test(
       );
     });
 
+    it('removes tabs and newlines before the host, as browsers do', () => {
+      expect(tldts.getHostname('/\t/evil.com')).to.equal('evil.com');
+      expect(tldts.getHostname('file:/\n/evil.com')).to.equal('evil.com');
+    });
+
     it('skips extra slashes after a scheme-relative "//"', () => {
       expect(tldts.getHostname('///evil.com/x')).to.equal('evil.com');
     });
