@@ -66,6 +66,14 @@ describe('#extractHostname', () => {
     expect(extract('http://[ABCD::1]:9/')).to.equal('abcd::1');
   });
 
+  it('removes tabs and newlines before the host, as browsers do', () => {
+    expect(extract('/\t/evil.com')).to.equal('evil.com');
+    expect(extract('\\\n\\evil.com')).to.equal('evil.com');
+    expect(extract('file:/\t/evil.com')).to.equal('evil.com');
+    expect(extract('file:\n//evil.com')).to.equal('evil.com');
+    expect(extract('1a:\t//x')).to.equal('1a');
+  });
+
   it('skips the slashes browsers skip after a scheme-relative "//"', () => {
     expect(extract('///evil.com/x')).to.equal('evil.com');
     expect(extract('/\\/\\evil.com')).to.equal('evil.com');
@@ -167,10 +175,16 @@ describe('#extractHostname', () => {
     expect(extract('\\\\evil.com/?u=https://good.com')).to.equal('evil.com');
     expect(extract('/\\evil.com/?u=https://good.com')).to.equal('evil.com');
     expect(extract('foo:a\\b://x')).to.equal(null);
-    // A tab/newline after the first invalid char: never the userinfo host.
+    // Browsers remove a tab/newline first: "evil.com:" is then a non-special
+    // scheme whose host follows "//", as without the tab.
     for (const c of ['\t', '\n', '\r']) {
-      expect(extract(`evil.com:${c}//good.com/?u=https://x`)).to.equal(null);
+      expect(extract(`evil.com:${c}//good.com/?u=https://x`)).to.equal(
+        'good.com',
+      );
+      expect(extract(`sc:${c}//host.com`)).to.equal('host.com');
+      expect(extract(`sc:/${c}/host.com`)).to.equal('host.com');
     }
+    expect(extract('evil.com://good.com/?u=https://x')).to.equal('good.com');
     // A tab inside a slash-less special host is stripped like the browser does.
     expect(extract('http:trusted.com\t.attacker.com/?u=https://x')).to.equal(
       'trusted.com.attacker.com',

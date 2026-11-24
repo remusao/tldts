@@ -8,6 +8,7 @@ const charCodeAt = String.prototype.charCodeAt;
  * re-parse) on the rare input that actually contains one.
  */
 const CONTROL_CHARS = /[\t\n\r]/g;
+const HAS_CONTROL_CHAR = /[\t\n\r]/;
 
 // Set by `extractHostname` (a module-scope flag, read synchronously by
 // `parseImpl` right after the call — same pattern as the reused RESULT object).
@@ -43,6 +44,25 @@ function isValidHostnameChar(code: number): boolean {
     code === 45 || // '-'
     code === 95 // '_'
   );
+}
+
+/**
+ * No hostname in `url`, unless a tab or newline, which browsers remove before
+ * anything else, hides one ("sc:\t//host", "/\t/host"): `url` is then read
+ * again without them. Only reached on inputs without a host.
+ */
+function noHostname(
+  url: string,
+  urlIsValidHostname: boolean,
+  validate: boolean,
+): string | null {
+  return HAS_CONTROL_CHAR.test(url)
+    ? extractHostname(
+        url.replace(CONTROL_CHARS, ''),
+        urlIsValidHostname,
+        validate,
+      )
+    : null;
 }
 
 /**
@@ -241,7 +261,7 @@ export default function extractHostname(
             slashes += 1;
           }
           if (slashes < 2) {
-            return null;
+            return noHostname(url, urlIsValidHostname, validate);
           }
         } else if (!isScheme(url, start, start + 1)) {
           // No scheme: one starts with an ASCII letter ("1a://x" is no URL for
@@ -283,7 +303,7 @@ export default function extractHostname(
                   }
                 }
                 if (indexOfProtocol !== -1) {
-                  return null;
+                  return noHostname(url, urlIsValidHostname, validate);
                 }
               }
               indexOfProtocol = -1;
@@ -298,7 +318,7 @@ export default function extractHostname(
               isSpecial = false;
               start = indexOfProtocol + 3;
             } else {
-              return null;
+              return noHostname(url, urlIsValidHostname, validate);
             }
           }
         }
@@ -409,7 +429,7 @@ export default function extractHostname(
                       next !== 63 &&
                       next !== 35))
                 ) {
-                  return null;
+                  return noHostname(url, urlIsValidHostname, validate);
                 }
               } else {
                 start = indexOfColon + 1;
@@ -425,7 +445,7 @@ export default function extractHostname(
                     slashes += 1;
                   }
                   if (slashes < 2) {
-                    return null;
+                    return noHostname(url, urlIsValidHostname, validate);
                   }
                 } else {
                   while (
@@ -571,10 +591,11 @@ export default function extractHostname(
       end = indexOfPort; // trim ':port'
     }
 
-    // Empty authority ("http://", "file:///path", "//"); only reachable here via
-    // extraction — a bare valid hostname never lands here.
+    // Empty authority ("http://", "file:///path", "//"), unless a tab or
+    // newline hides one ("/\t/host"); only reachable here via extraction — a
+    // bare valid hostname never lands here.
     if (start >= end) {
-      return null;
+      return noHostname(url, urlIsValidHostname, validate);
     }
 
     // Publish the inline-validation verdict — but only for a "simple" authority,
