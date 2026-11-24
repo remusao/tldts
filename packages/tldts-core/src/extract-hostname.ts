@@ -46,6 +46,37 @@ function isValidHostnameChar(code: number): boolean {
 }
 
 /**
+ * True if char `code` may follow the first letter of a scheme: an ASCII letter,
+ * a digit, '+', '-' or '.' (https://url.spec.whatwg.org/#scheme-state).
+ */
+function isSchemeChar(code: number): boolean {
+  return (
+    ((code | 32) >= 97 && (code | 32) <= 122) || // [a-zA-Z] (fold letters only)
+    (code >= 48 && code <= 57) || // [0, 9]
+    code === 46 || // '.'
+    code === 45 || // '-'
+    code === 43 // '+'
+  );
+}
+
+/**
+ * True if `url.slice(start, end)` is a scheme, as browsers read one: an ASCII
+ * letter, then scheme characters.
+ */
+function isScheme(url: string, start: number, end: number): boolean {
+  const first = charCodeAt.call(url, start) | 32;
+  if (start === end || first < 97 || first > 122) {
+    return false;
+  }
+  for (let i = start + 1; i < end; i += 1) {
+    if (!isSchemeChar(charCodeAt.call(url, i))) {
+      return false;
+    }
+  }
+  return true;
+}
+
+/**
  * Classify scheme `url.slice(schemeStart, colonIndex)` as a WHATWG special
  * scheme without allocating a substring (case-insensitive via `| 32`).
  * Special schemes: ftp, file, http, https, ws, wss
@@ -212,18 +243,16 @@ export default function extractHostname(
           if (slashes < 2) {
             return null;
           }
+        } else if (!isScheme(url, start, start + 1)) {
+          // No scheme: one starts with an ASCII letter ("1a://x" is no URL for
+          // browsers). Read the input as an authority, as below.
+          indexOfProtocol = -1;
         } else {
           // Unknown scheme: validate the WHATWG scheme grammar [A-Za-z0-9+.-];
           // a control char means it was split by a tab/newline (strip + re-parse).
           for (let i = start; i < indexOfProtocol; i += 1) {
             const code = charCodeAt.call(url, i);
-            if (!(
-              ((code | 32) >= 97 && (code | 32) <= 122) || // [a-zA-Z] (fold letters only)
-              (code >= 48 && code <= 57) || // [0, 9]
-              code === 46 || // '.'
-              code === 45 || // '-'
-              code === 43 // '+'
-            )) {
+            if (!isSchemeChar(code)) {
               if (
                 code === 9 /* tab */ ||
                 code === 10 /* LF */ ||
@@ -235,26 +264,29 @@ export default function extractHostname(
                   validate,
                 );
               }
-              // A '/', '\', '?' or '#' first puts this ':/' in a path, query or
-              // fragment ("a.com/r?u=https://x"): re-read the input without it.
-              // Same when a slash-less special scheme comes first: this ':/' is
-              // then an empty port followed by a path ("http:a.com:/x").
+              // A scheme ending at a first ':' (other than a slash-less special
+              // one) makes this ':/' part of an opaque path ("foo:bar://x", no
+              // host), unless a '/', '\', '?' or '#' first puts it in a path,
+              // query or fragment ("a.com/r?u=https://x"). Otherwise no scheme
+              // ends here: this ':/' is an empty port, after a slash-less
+              // special scheme ("http:a.com:/x") or an authority
+              // ("user@host:/x"). Read the input as such below.
               if (
                 code === 58 /* ':' */ &&
-                getSpecialScheme(url, start, i) === 1
+                getSpecialScheme(url, start, i) !== 1
               ) {
-                indexOfProtocol = -1;
-              }
-              for (let j = i; j < indexOfProtocol; j += 1) {
-                const c = charCodeAt.call(url, j);
-                if (c === 47 || c === 92 || c === 63 || c === 35) {
-                  indexOfProtocol = -1;
-                  break;
+                for (let j = i; j < indexOfProtocol; j += 1) {
+                  const c = charCodeAt.call(url, j);
+                  if (c === 47 || c === 92 || c === 63 || c === 35) {
+                    indexOfProtocol = -1;
+                    break;
+                  }
+                }
+                if (indexOfProtocol !== -1) {
+                  return null;
                 }
               }
-              if (indexOfProtocol !== -1) {
-                return null;
-              }
+              indexOfProtocol = -1;
               break;
             }
           }
@@ -364,7 +396,19 @@ export default function extractHostname(
                     break;
                   }
                 }
-                if (!isBareIpv6) {
+                // Not a scheme either ("@host:", "a_b:/x"): an authority, if
+                // its ':' starts an empty port (digits were read above).
+                // Browsers have no host for "a_b:x".
+                const next = charCodeAt.call(url, i);
+                if (
+                  !isBareIpv6 &&
+                  (isScheme(url, start, indexOfColon) ||
+                    (i < end &&
+                      next !== 47 &&
+                      next !== 92 &&
+                      next !== 63 &&
+                      next !== 35))
+                ) {
                   return null;
                 }
               } else {

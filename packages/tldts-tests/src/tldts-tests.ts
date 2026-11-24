@@ -1540,6 +1540,12 @@ export default function test(
       expect(tldts.getHostname('///evil.com/x')).to.equal('evil.com');
     });
 
+    it('reads no scheme where browsers read none', () => {
+      expect(tldts.getHostname('ht~tp://evil.com')).to.equal(null);
+      expect(tldts.getHostname('user@evil.com:/x')).to.equal('evil.com');
+      expect(tldts.getHostname('my_host:abc')).to.equal(null);
+    });
+
     it('reads no userinfo after a slash-less "file:"', () => {
       expect(tldts.getHostname('file:user@evil.com')).to.equal(null);
     });
