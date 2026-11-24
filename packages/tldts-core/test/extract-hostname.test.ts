@@ -66,6 +66,11 @@ describe('#extractHostname', () => {
     expect(extract('http://[ABCD::1]:9/')).to.equal('abcd::1');
   });
 
+  it('skips the slashes browsers skip after a scheme-relative "//"', () => {
+    expect(extract('///evil.com/x')).to.equal('evil.com');
+    expect(extract('/\\/\\evil.com')).to.equal('evil.com');
+  });
+
   it('returns null when the IPv6 bracket is never closed', () => {
     expect(extract('http://[::1')).to.equal(null);
     expect(extract('http://a]:@[::1/')).to.equal(null); // "]" before "["
