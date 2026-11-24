@@ -296,8 +296,14 @@ export default function extractHostname(
         if (indexOfColon !== -1) {
           // An '@' before the next delimiter => the ':' is userinfo, not a
           // scheme ("user:pass@host", "mailto:a@b"): keep the whole authority.
+          // Not after "file:", which has no userinfo and no host without "//".
+          const special = getSpecialScheme(url, start, indexOfColon);
           let hasIdentifier = false;
-          for (let i = indexOfColon + 1; i < end; i += 1) {
+          for (
+            let i = special === 2 ? end : indexOfColon + 1;
+            i < end;
+            i += 1
+          ) {
             const code = charCodeAt.call(url, i);
             if (code === 47 || code === 92 || code === 63 || code === 35) {
               break;
@@ -312,7 +318,6 @@ export default function extractHostname(
             // All-digits after ':' => a bare "host:port" (tldts accepts
             // hostnames too); keep `start` and let the port handling trim it.
             // Not after a special scheme though: "http:8080" is a URL.
-            const special = getSpecialScheme(url, start, indexOfColon);
             let allDigits = special === 0;
             let i = indexOfColon + 1;
             for (; i < end; i += 1) {

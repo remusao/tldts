@@ -1536,6 +1536,10 @@ export default function test(
       );
     });
 
+    it('reads no userinfo after a slash-less "file:"', () => {
+      expect(tldts.getHostname('file:user@evil.com')).to.equal(null);
+    });
+
     it('rejects malformed addresses', () => {
       for (const url of [
         'http://:80/',

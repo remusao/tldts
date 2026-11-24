@@ -275,6 +275,8 @@ describe('#extractHostname', () => {
     expect(extract('http:example.com:/path')).to.equal('example.com');
     expect(extract('http:user@example.com:/path')).to.equal('example.com');
     expect(extract('file:user@example.com:/path')).to.equal(null); // no "//"
+    expect(extract('file:user@example.com')).to.equal(null); // no userinfo
+    expect(extract('file:@example.com')).to.equal(null);
     expect(extract('evil.com:8080\\@good.com')).to.equal('evil.com');
     expect(extract('evil.com\\@good.com')).to.equal('evil.com');
   });
