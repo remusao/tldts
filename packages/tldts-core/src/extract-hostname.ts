@@ -157,8 +157,15 @@ export default function extractHostname(
       (charCodeAt.call(url, start + 1) === 47 /* '/' */ ||
         charCodeAt.call(url, start + 1) === 92) /* '\' */
     ) {
-      // Scheme-relative reference ("//host/path").
+      // Scheme-relative reference ("//host/path"). Relative to a web page, a
+      // special URL, browsers skip any further slashes ("///host").
       start += 2;
+      while (
+        charCodeAt.call(url, start) === 47 /* '/' */ ||
+        charCodeAt.call(url, start) === 92 /* '\' */
+      ) {
+        start += 1;
+      }
     } else {
       // The scheme ends at the first ":/". Most URLs start with "http://" or
       // "https://", so check for those before searching.

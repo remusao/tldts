@@ -1536,6 +1536,10 @@ export default function test(
       );
     });
 
+    it('skips extra slashes after a scheme-relative "//"', () => {
+      expect(tldts.getHostname('///evil.com/x')).to.equal('evil.com');
+    });
+
     it('reads no userinfo after a slash-less "file:"', () => {
       expect(tldts.getHostname('file:user@evil.com')).to.equal(null);
     });
