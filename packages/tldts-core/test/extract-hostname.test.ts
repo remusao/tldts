@@ -255,11 +255,21 @@ describe('#extractHostname', () => {
     expect(extract('FILE://evil.com\\@good.com')).to.equal('evil.com');
   });
 
-  it('returns null on an invalid scheme character', () => {
-    expect(extract('ht~tp://example.com')).to.equal(null);
+  it('reads no scheme where browsers read none', () => {
+    // An invalid scheme character, or a first one that is no letter: browsers
+    // see no scheme, hence no "//host". The input is read as an authority
+    // (whose host validation then rejects).
+    expect(extract('ht~tp://example.com')).to.equal('ht~tp');
+    expect(extract('1a://example.com')).to.equal('1a');
     // Controls must not fold into scheme chars (VT | 32 is '+', CR | 32 is '-').
-    expect(extract('ht\x0btps://evil.com')).to.equal(null);
+    expect(extract('ht\x0btps://evil.com')).to.equal('ht\x0btps');
     expect(extract('ht\rtps://evil.com\\@good.com')).to.equal('evil.com');
+    // A ':' after an authority starts an empty port, or no host at all.
+    expect(extract('user@host.com:/x')).to.equal('host.com');
+    expect(extract('@evil.com:')).to.equal('evil.com');
+    expect(extract('a_b:/x')).to.equal('a_b');
+    expect(extract('a_b:x')).to.equal(null); // browsers: no host either
+    expect(extract('foo:bar://a.org/')).to.equal(null); // opaque path
   });
 
   it('classifies every special scheme written without "//"', () => {
