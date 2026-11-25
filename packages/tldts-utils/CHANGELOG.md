@@ -1,3 +1,19 @@
+# v7.6.0 (Wed Nov 25 2026)
+
+#### :bug: Bug Fix
+
+- fix: detect IP addresses written with characters browsers map to digits [#2793](https://github.com/remusao/tldts/pull/2793) ([@remusao](https://github.com/remusao))
+
+#### :nail_care: Polish
+
+- fix(utils): keep rules whose labels name Object.prototype properties [#2778](https://github.com/remusao/tldts/pull/2778) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.4.25 (Thu Nov 12 2026)
 
 #### :nail_care: Polish

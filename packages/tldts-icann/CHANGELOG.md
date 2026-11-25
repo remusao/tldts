@@ -1,3 +1,19 @@
+# v7.6.0 (Wed Nov 25 2026)
+
+#### :running_woman: Performance
+
+- perf: stay fast on mixed string kinds in the suffix trie walk too [#2790](https://github.com/remusao/tldts/pull/2790) ([@remusao](https://github.com/remusao))
+
+#### :memo: Documentation
+
+- docs: say that hostnames and options are matched as written [#2780](https://github.com/remusao/tldts/pull/2780) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.5.6 (Wed Nov 25 2026)
 
 #### :scroll: Update Public Suffix List

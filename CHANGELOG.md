@@ -1,3 +1,61 @@
+# v7.6.0 (Wed Nov 25 2026)
+
+#### :rocket: New Feature
+
+- `tldts-core`, `tldts-tests`
+  - fix: percent-decode hosts as browsers do [#2798](https://github.com/remusao/tldts/pull/2798) ([@remusao](https://github.com/remusao))
+
+#### :running_woman: Performance
+
+- `tldts-icann`, `tldts`
+  - perf: stay fast on mixed string kinds in the suffix trie walk too [#2790](https://github.com/remusao/tldts/pull/2790) ([@remusao](https://github.com/remusao))
+- `tldts-core`
+  - perf: stay fast whatever kinds of strings are given [#2787](https://github.com/remusao/tldts/pull/2787) ([@remusao](https://github.com/remusao))
+  - perf: find the end of an "http(s)://" scheme without searching [#2786](https://github.com/remusao/tldts/pull/2786) ([@remusao](https://github.com/remusao))
+
+#### :bug: Bug Fix
+
+- `tldts-core`, `tldts-tests`
+  - fix: remove tabs and newlines before the host, as browsers do [#2797](https://github.com/remusao/tldts/pull/2797) ([@remusao](https://github.com/remusao))
+  - fix: read a scheme only where browsers read one [#2796](https://github.com/remusao/tldts/pull/2796) ([@remusao](https://github.com/remusao))
+  - fix: skip extra slashes after a scheme-relative "//" [#2795](https://github.com/remusao/tldts/pull/2795) ([@remusao](https://github.com/remusao))
+  - fix: read no userinfo after a slash-less "file:" [#2794](https://github.com/remusao/tldts/pull/2794) ([@remusao](https://github.com/remusao))
+  - fix: reject brackets holding anything but an IPv6 address [#2792](https://github.com/remusao/tldts/pull/2792) ([@remusao](https://github.com/remusao))
+  - fix: detect IPv6 addresses as browsers do [#2785](https://github.com/remusao/tldts/pull/2785) ([@remusao](https://github.com/remusao))
+  - fix: detect IPv4 addresses as browsers do [#2784](https://github.com/remusao/tldts/pull/2784) ([@remusao](https://github.com/remusao))
+  - fix: read the number after a slash-less special scheme as the host [#2782](https://github.com/remusao/tldts/pull/2782) ([@remusao](https://github.com/remusao))
+- `tldts-core`, `tldts-tests`, `tldts-utils`
+  - fix: detect IP addresses written with characters browsers map to digits [#2793](https://github.com/remusao/tldts/pull/2793) ([@remusao](https://github.com/remusao))
+- `tldts-core`
+  - fix: read a slash-less special scheme followed by an empty port [#2783](https://github.com/remusao/tldts/pull/2783) ([@remusao](https://github.com/remusao))
+  - fix: reject a bracketed IPv6 address followed by anything but a port [#2781](https://github.com/remusao/tldts/pull/2781) ([@remusao](https://github.com/remusao))
+
+#### :nail_care: Polish
+
+- `tldts-core`, `tldts-tests`
+  - fix: accept null options [#2779](https://github.com/remusao/tldts/pull/2779) ([@remusao](https://github.com/remusao))
+- `tldts-utils`
+  - fix(utils): keep rules whose labels name Object.prototype properties [#2778](https://github.com/remusao/tldts/pull/2778) ([@remusao](https://github.com/remusao))
+
+#### :house: Internal
+
+- build: compile tldts-icann in the project build [#2777](https://github.com/remusao/tldts/pull/2777) ([@remusao](https://github.com/remusao))
+- ci: run the tests before publishing a release [#2776](https://github.com/remusao/tldts/pull/2776) ([@remusao](https://github.com/remusao))
+- ci: give the Tests and psl workflows a read-only token [#2774](https://github.com/remusao/tldts/pull/2774) ([@remusao](https://github.com/remusao))
+- ci: pin actions to commit SHAs [#2773](https://github.com/remusao/tldts/pull/2773) ([@remusao](https://github.com/remusao))
+
+#### :memo: Documentation
+
+- docs: refresh the README speed figures for Node 26.13 [#2791](https://github.com/remusao/tldts/pull/2791) ([@remusao](https://github.com/remusao))
+- `tldts-icann`, `tldts`
+  - docs: say that hostnames and options are matched as written [#2780](https://github.com/remusao/tldts/pull/2780) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.5.6 (Wed Nov 25 2026)
 
 #### :scroll: Update Public Suffix List
