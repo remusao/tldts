@@ -1,3 +1,15 @@
+# v7.6.1 (Thu Nov 26 2026)
+
+#### :scroll: Update Public Suffix List
+
+- Update upstream public suffix list [#2800](https://github.com/remusao/tldts/pull/2800) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v7.6.0 (Wed Nov 25 2026)
 
 #### :running_woman: Performance
